@@ -318,7 +318,40 @@ return [
             'icon_color' => 'cyan',
             'url'        => '#',
         ],
-    ],
+        ['header' => 'CONFIGURACION'],
+        [
+            'text'    => 'Usuarios  ',
+            'icon'    => 'fas fa-fw fa-user',
+            'submenu' => [
+                [
+                    'text' => 'Ver Todos los Usuarios  ',
+                    'url'  => 'usuarios',
+                    'icon' => 'fas fa-fw fa-eye',
+                ],
+                [
+                    'text' => 'Crear Nuevo Usuario  ',
+                    'url'  => 'usuario/nuevo',
+                    'icon' => 'fas fa-fw fa-pen',
+                ],
+            ]
+        ],
+        [
+            'text'    => 'Roles  ',
+            'icon'    => 'fas fa-fw fa-pen-square',
+            'submenu' => [
+                [
+                    'text' => 'Ver Todos los Roles  ',
+                    'url'  => 'roles',
+                    'icon' => 'fas fa-fw fa-eye',
+                ],
+                [
+                    'text' => 'Crear un Rol  ',
+                    'url'  => 'roles/nuevo',
+                    'icon' => 'fas fa-fw fa-pen',
+                ],
+            ]
+        ],
+        ],
 
     /*
     |--------------------------------------------------------------------------
