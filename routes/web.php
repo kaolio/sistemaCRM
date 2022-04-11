@@ -27,6 +27,7 @@ Route::get('/roles',[RolesController::class,'index']);
 Route::get('/roles/nuevo',[RolesController::class,'create']);
 Route::get('/roles/editar/{id}',[RolesController::class,'edit']);
 Route::post('/roles/nuevo',[RolesController::class,'store']);
+Route::delete('/roles/{id}',[RolesController::class,'destroy']);
 
 Route::get('/usuarios',[UsuarioController::class,'index']);
 Route::get('/usuario/nuevo',[UsuarioController::class,'create']);
