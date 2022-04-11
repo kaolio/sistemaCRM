@@ -49,7 +49,7 @@ class UsuarioController extends Controller
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
 
-        return redirect()->route('usuarios.index');
+        return redirect('usuarios');
     }
 
     /**
@@ -87,15 +87,24 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $input = $request->all();
+        if (!empty($input['password'])) {
+            $input['password'] = Hash::make($input['password']);
+        } else {
+            $input = Arr::except($input, array('password'));
+        }
+        
+
         $user = User::find($id);
         $user->update();
 
         DB::table('model_has_roles')
             ->where('model_id',$id)->delete();
 
-        $user->assygnRole($request->input('roles'));
+        $user->assignRole($request->input('roles'));
 
-        return redirect()->route('usuarios.index');
+        return redirect('usuarios');
     }
 
     /**

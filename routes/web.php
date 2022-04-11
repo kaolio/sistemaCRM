@@ -30,5 +30,6 @@ Route::post('/roles/nuevo',[RolesController::class,'store']);
 
 Route::get('/usuarios',[UsuarioController::class,'index']);
 Route::get('/usuario/nuevo',[UsuarioController::class,'create']);
-Route::get('/usuario/editar/{id}',[UsuarioController::class,'edit']);
 Route::post('/usuario/nuevo',[UsuarioController::class,'store']);
+Route::get('/usuario/editar/{id}',[UsuarioController::class,'edit']);
+Route::post('/usuario/editar/{id}',[UsuarioController::class,'update']);

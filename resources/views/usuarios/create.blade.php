@@ -36,8 +36,8 @@
                                                  class="form-control">
                                                  <option selected disabled>Elige un Rol</option>
                                                  @foreach ($roles as $rol)
-                                                 <option  value="{{$rol->name}}">
-                                                     {{$rol->name}}</option>
+                                                 <option  value="{{$rol}}">
+                                                     {{$rol}}</option>
                                                  @endforeach
                                              </select><span id="estadoRol"></span>
                               

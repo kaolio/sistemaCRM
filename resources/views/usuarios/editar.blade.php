@@ -6,7 +6,7 @@
             EDITAR USUARIO
         </div>
         <div class="card-body">
-            <form action="{{ url('usuario/editar'.$user->id)}}" method="post">
+            <form action="{{ url('usuario/editar/'.$user->id)}}" method="post">
                 {{csrf_field()}}
                                    <label form="name">Nombre</label>
                                    <input class="form-control" type="text" name="name" id="name" 
@@ -36,10 +36,10 @@
                                                     class="form-control">
                                                     <option selected disabled>Elige un Rol</option>
                                                     @foreach ($roles as $rol)
-                                                    @if ($rol->name == $userRole->name)
-                                                    <option value="{{$rol->id}}" selected>{{$rol->name}}</option>
+                                                    @if ($rol == $userRole)
+                                                    <option value="{{$rol}}" selected>{{$rol}}</option>
                                                     @else
-                                                    <option value="{{$rol->id}}">{{$rol->name}}</option>
+                                                    <option value="{{$rol}}">{{$rol}}</option>
                                                     @endif
                                                     @endforeach
                                                 </select><span id="estadoRol"></span>
