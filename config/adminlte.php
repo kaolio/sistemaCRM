@@ -320,7 +320,7 @@ return [
         ],*/
         [
             'text' => 'Dashboard',
-            'url'  => '#',
+            'url'  => 'home',
             'icon' => 'fas fa-fw fa-save',
         ],
         [
@@ -355,13 +355,13 @@ return [
             'submenu' => [
                 [
                     'text' => 'Nuevo Disco',
-                    'url'  => 'disco/nuevo',
+                    'url'  => 'inventario/nuevo',
                     'can' => 'crear-inventario',
                     'icon'    => 'fas fa-fw fa-filse',
                 ],
                 [
                     'text' => 'Ver Inventario',
-                    'url'  => 'trabajos',
+                    'url'  => 'inventario',
                     'can' => 'ver-inventario',
                     'icon'    => 'fas fa-fw fa-filse',
                 ],

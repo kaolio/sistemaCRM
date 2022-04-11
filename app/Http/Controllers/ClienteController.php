@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
+
+
+    function __construct()
+    {
+        $this->middleware('permission:ver-cliente|crear-cliente|editar-cliente|borrar-cliente',['only'=>['index']]);
+        $this->middleware('permission:crear-cliente',['only'=>['create','store']]);
+        $this->middleware('permission:editar-cliente',['only'=>['edit','update']]);
+        $this->middleware('permission:borrar-cliente',['only'=>['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        //
+        return view('cliente.index');
     }
 
     /**
@@ -24,7 +33,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('cliente.create');
     }
 
     /**
@@ -35,7 +44,7 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect('clientes');
     }
 
     /**
@@ -46,7 +55,7 @@ class ClienteController extends Controller
      */
     public function show(Cliente $cliente)
     {
-        //
+        
     }
 
     /**
@@ -57,7 +66,7 @@ class ClienteController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        //
+        return view('cliente.editar');
     }
 
     /**
@@ -69,7 +78,7 @@ class ClienteController extends Controller
      */
     public function update(Request $request, Cliente $cliente)
     {
-        //
+        return redirect('clientes');
     }
 
     /**
@@ -80,6 +89,6 @@ class ClienteController extends Controller
      */
     public function destroy(Cliente $cliente)
     {
-        //
+        return redirect('clientes');
     }
 }

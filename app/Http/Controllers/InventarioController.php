@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 
 class InventarioController extends Controller
 {
+
+
+    function __construct()
+    {
+        $this->middleware('permission:ver-inventario|crear-inventario|editar-inventario|borrar-inventario',['only'=>['index']]);
+        $this->middleware('permission:crear-inventario',['only'=>['create','store']]);
+        $this->middleware('permission:editar-inventario',['only'=>['edit','update']]);
+        $this->middleware('permission:borrar-inventario',['only'=>['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,7 @@ class InventarioController extends Controller
      */
     public function index()
     {
-        //
+        return view('inventario.index');
     }
 
     /**
@@ -24,7 +33,7 @@ class InventarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('inventario.create');
     }
 
     /**
@@ -35,7 +44,7 @@ class InventarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect('inventario');
     }
 
     /**
@@ -46,7 +55,7 @@ class InventarioController extends Controller
      */
     public function show(Inventario $inventario)
     {
-        //
+        
     }
 
     /**
@@ -57,7 +66,7 @@ class InventarioController extends Controller
      */
     public function edit(Inventario $inventario)
     {
-        //
+        return view('inventario.editar');
     }
 
     /**
@@ -69,7 +78,7 @@ class InventarioController extends Controller
      */
     public function update(Request $request, Inventario $inventario)
     {
-        //
+        return redirect('inventario');
     }
 
     /**
@@ -80,6 +89,6 @@ class InventarioController extends Controller
      */
     public function destroy(Inventario $inventario)
     {
-        //
+        return redirect('inventario');
     }
 }

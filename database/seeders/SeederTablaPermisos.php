@@ -26,8 +26,21 @@ class SeederTablaPermisos extends Seeder
             'crear-usuario',
             'editar-usuario',
             'borrar-usuario',
-
-
+            //trabajos
+            'ver-trabajo',
+            'crear-trabajo',
+            'editar-trabajo',
+            'borrar-trabajo',
+            //clientes
+            'ver-cliente',
+            'crear-cliente',
+            'editar-cliente',
+            'borrar-cliente',
+            //inventario
+            'ver-inventario',
+            'crear-inventario',
+            'editar-inventario',
+            'borrar-inventario',
 
         ];
 

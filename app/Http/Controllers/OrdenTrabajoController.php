@@ -22,7 +22,7 @@ class OrdenTrabajoController extends Controller
      */
     public function index()
     {
-        //
+        return view('trabajo.index');
     }
 
     /**
@@ -32,7 +32,7 @@ class OrdenTrabajoController extends Controller
      */
     public function create()
     {
-        //
+        return view('trabajo.create');
     }
 
     /**
@@ -43,7 +43,7 @@ class OrdenTrabajoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect('trabajos');
     }
 
     /**
@@ -65,7 +65,7 @@ class OrdenTrabajoController extends Controller
      */
     public function edit(OrdenTrabajo $ordenTrabajo)
     {
-        //
+        return view('trabajo.editar');
     }
 
     /**
@@ -77,7 +77,7 @@ class OrdenTrabajoController extends Controller
      */
     public function update(Request $request, OrdenTrabajo $ordenTrabajo)
     {
-        //
+        return redirect('trabajos');
     }
 
     /**
@@ -88,6 +88,6 @@ class OrdenTrabajoController extends Controller
      */
     public function destroy(OrdenTrabajo $ordenTrabajo)
     {
-        //
+        return redirect('trabajos');
     }
 }
