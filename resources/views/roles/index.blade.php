@@ -43,12 +43,12 @@
                 </tbody>
             </table>
             <div class="pagination justify-content-end">
-                 { !! $roles->links() !! }
+                 
             </div>
 
         </div>
         <div class="card-footer">
-            Footer
+            
         </div>
     </div>
 
