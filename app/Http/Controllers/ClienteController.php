@@ -2,19 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\OrdenTrabajo;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 
-class OrdenTrabajoController extends Controller
+class ClienteController extends Controller
 {
-
-    function __construct()
-    {
-        $this->middleware('permission:ver-trabajo|crear-trabajo|editar-trabajo|borrar-trabajo',['only'=>['index']]);
-        $this->middleware('permission:crear-trabajo',['only'=>['create','store']]);
-        $this->middleware('permission:editar-trabajo',['only'=>['edit','update']]);
-        $this->middleware('permission:borrar-trabajo',['only'=>['destroy']]);
-    }
     /**
      * Display a listing of the resource.
      *
@@ -49,10 +41,10 @@ class OrdenTrabajoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
+     * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function show(OrdenTrabajo $ordenTrabajo)
+    public function show(Cliente $cliente)
     {
         //
     }
@@ -60,10 +52,10 @@ class OrdenTrabajoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
+     * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function edit(OrdenTrabajo $ordenTrabajo)
+    public function edit(Cliente $cliente)
     {
         //
     }
@@ -72,10 +64,10 @@ class OrdenTrabajoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
+     * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OrdenTrabajo $ordenTrabajo)
+    public function update(Request $request, Cliente $cliente)
     {
         //
     }
@@ -83,10 +75,10 @@ class OrdenTrabajoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
+     * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OrdenTrabajo $ordenTrabajo)
+    public function destroy(Cliente $cliente)
     {
         //
     }

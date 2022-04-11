@@ -236,7 +236,7 @@ return [
             'topnav_right' => true,
         ],
 
-        // Sidebar items:
+        /*// Sidebar items:
         [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
@@ -317,37 +317,113 @@ return [
             'text'       => 'information',
             'icon_color' => 'cyan',
             'url'        => '#',
+        ],*/
+        [
+            'text' => 'Dashboard',
+            'url'  => '#',
+            'icon' => 'fas fa-fw fa-save',
         ],
-        ['header' => 'CONFIGURACION'],
+        [
+            'text'    => 'Orden de Trabajo  ',
+            'icon'    => 'fas fa-fw fa-file',
+            'can' => 'ver-trabajo',
+            'submenu' => [
+                [
+                    'text' => 'Nueva Orden de Trabajo',
+                    'url'  => 'trabajo/nuevo',
+                    'can' => 'crear-trabajo',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
+                [
+                    'text' => 'Ver Ordenes de Trabajo',
+                    'url'  => 'trabajos',
+                    'can' => 'ver-trabajo',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
+                [
+                    'text' => 'Prioridad de Trabajos',
+                    'url'  => 'trabajo/prioridad',
+                    'can' => 'prioridad-trabajo',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
+            ]
+        ],
+        [
+            'text'    => 'Inventario',
+            'icon'    => 'fas fa-fw fa-boxes',
+            'can' => 'ver-inventario',
+            'submenu' => [
+                [
+                    'text' => 'Nuevo Disco',
+                    'url'  => 'disco/nuevo',
+                    'can' => 'crear-inventario',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
+                [
+                    'text' => 'Ver Inventario',
+                    'url'  => 'trabajos',
+                    'can' => 'ver-inventario',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
+            ]
+        ],
+        [
+            'text'    => 'Clientes',
+            'icon'    => 'fas fa-fw fa-users',
+            'can' => 'ver-cliente',
+            'submenu' => [
+                [
+                    'text' => 'Nuevo Cliente',
+                    'url'  => 'cliente/nuevo',
+                    'can' => 'crear-inventario',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
+                [
+                    'text' => 'Ver Clientes',
+                    'url'  => 'clientes',
+                    'can' => 'ver-cliente',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
+            ]
+        ],
+        ['header' => 'ADMINISTRACION'],
         [
             'text'    => 'Usuarios  ',
             'icon'    => 'fas fa-fw fa-user',
+            'can' => 'ver-usuario',
             'submenu' => [
+                
+                [
+                    'text' => 'Nuevo Usuario  ',
+                    'url'  => 'usuario/nuevo',
+                    'icon'    => 'fas fa-fw fa-filse',
+                    'can' => 'crear-usuario',
+                ],
                 [
                     'text' => 'Ver Todos los Usuarios  ',
                     'url'  => 'usuarios',
-                    'icon' => 'fas fa-fw fa-eye',
-                ],
-                [
-                    'text' => 'Crear Nuevo Usuario  ',
-                    'url'  => 'usuario/nuevo',
-                    'icon' => 'fas fa-fw fa-pen',
+                    'icon'    => 'fas fa-fw fa-filse',
+                    'can' => 'ver-usuario',
                 ],
             ]
         ],
         [
             'text'    => 'Roles  ',
             'icon'    => 'fas fa-fw fa-pen-square',
+            'can' => 'ver-rol',
             'submenu' => [
+                
+                [
+                    'text' => 'Nuevo Rol  ',
+                    'url'  => 'roles/nuevo',
+                    'icon'    => 'fas fa-fw fa-filse',
+                    'can' => 'crear-rol',
+                ],
                 [
                     'text' => 'Ver Todos los Roles  ',
                     'url'  => 'roles',
-                    'icon' => 'fas fa-fw fa-eye',
-                ],
-                [
-                    'text' => 'Crear un Rol  ',
-                    'url'  => 'roles/nuevo',
-                    'icon' => 'fas fa-fw fa-pen',
+                    'icon'    => 'fas fa-fw fa-filse',
+                    'can' => 'ver-rol',
                 ],
             ]
         ],

@@ -117,6 +117,6 @@ class RolesController extends Controller
             ->where('id',$id)
             ->delete();
 
-        return redirect()->route('roles.index');
+        return redirect('/roles');
     }
 }
