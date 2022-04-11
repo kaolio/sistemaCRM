@@ -48,12 +48,12 @@
                 </tbody>
             </table>
             <div class="pagination justify-content-end">
-                { !! $usuarios->links() !! }
+                
             </div>
 
         </div>
         <div class="card-footer">
-            Footer
+            
         </div>
     </div>
 
