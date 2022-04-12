@@ -1,6 +1,12 @@
 @extends('adminlte::page')
 @section('content')
     <BR>
+        <style>
+            span {
+                text-transform: capitalize;
+                }
+        </style>
+
     <div class="card">
         <div class="card-header">
             NUEVO ROL
@@ -17,8 +23,11 @@
                                
                                      <label form="confirm-password">Permisos para este Rol</label>
                                      <br>
+
+                                     
+
                                      @foreach ($permission as $value)
-                                     <label><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</label><br>
+                                     <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
                                      @endforeach
                                      
                               
