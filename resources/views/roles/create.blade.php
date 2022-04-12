@@ -6,7 +6,7 @@
                 text-transform: capitalize;
                 }
         </style>
-
+        
     <div class="card">
         <div class="card-header">
             NUEVO ROL
@@ -23,9 +23,6 @@
                                
                                      <label form="confirm-password">Permisos para este Rol</label>
                                      <br>
-
-                                     
-
                                      @foreach ($permission as $value)
                                      <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
                                      @endforeach
