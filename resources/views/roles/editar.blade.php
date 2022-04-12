@@ -14,7 +14,7 @@
 
                                    <label form="name">Nombre de Rol</label>
                                    <input class="form-control" type="text" name="name" id="name" 
-                                          placeholder="Nombre Completo" value="{{ old('name') }}" onblur="comprobarName()">
+                                          placeholder="Nombre Completo" value="{{ $role->name }}" onblur="comprobarName()">
                                           <span id="estadoName"></span>
                                 
         
@@ -31,7 +31,6 @@
                                         @if (!in_array($value->id, $rolePermission))
                                             <label><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</label><br>
                                         @endif
-
                                      @endforeach
                                      
 
