@@ -30,9 +30,16 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $usuarios = user::paginate(5);
+        try {
+            
+            $usuarios = user::paginate(5);
 
-        return view('usuarios.index',compact('usuarios'));
+            return view('usuarios.index',compact('usuarios'));
+
+        } catch (\Throwable $th) {
+            return view('errors.error');
+        }
+        
     }
 
     /**
@@ -42,8 +49,15 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        $roles = Role::pluck('name','name')->all();
-        return view('usuarios.create',compact('roles'));
+        try {
+            
+            $roles = Role::pluck('name','name')->all();
+            return view('usuarios.create',compact('roles'));
+
+        } catch (\Throwable $th) {
+            return view('errors.error');
+        }
+        
     }
 
     /**
@@ -54,13 +68,20 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        $input['password'] = Hash::make($input['password']);
+        try {
+            
+            $input = $request->all();
+            $input['password'] = Hash::make($input['password']);
 
-        $user = User::create($input);
-        $user->assignRole($request->input('roles'));
+            $user = User::create($input);
+            $user->assignRole($request->input('roles'));
 
-        return redirect('usuarios');
+            return redirect('usuarios');
+
+        } catch (\Throwable $th) {
+            return view('errors.error');
+        }
+        
     }
 
     /**
@@ -82,11 +103,21 @@ class UsuarioController extends Controller
      */
     public function edit( $id)
     {
-        $user = User::find($id);
-        $roles = Role::pluck('name','name')->all();
-        $userRole = $user->roles->pluck('name','name')->all();
+        try {
 
-        return view('usuarios.editar',compact('user', 'roles', 'userRole'));
+            $user = User::find($id);
+            $roles = Role::pluck('name','name')->all();
+            $userRole = $user->roles->pluck('name','name')->all();
+
+            foreach ($userRole as $value) {
+                $userRole = $value;
+            }
+            return view('usuarios.editar',compact('user', 'roles', 'userRole'));
+
+        } catch (\Throwable $th) {
+            return view('errors.error');
+        }
+        
     }
 
     /**
@@ -99,23 +130,30 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
 
-        $input = $request->all();
-        if (!empty($input['password'])) {
-            $input['password'] = Hash::make($input['password']);
-        } else {
-            $input = Arr::except($input, array('password'));
+        try {
+            $input = $request->all();
+            if (!empty($input['password'])) {
+                $input['password'] = Hash::make($input['password']);
+            } else {
+                $input = Arr::except($input, array('password'));
+            }
+            
+    
+            $user = User::find($id);
+            $user->name = request('name');
+            $user->email = request('email');
+            $user->update();
+    
+            //DB::table('model_has_roles')
+              //  ->where('model_id',$id)->delete();
+    
+            $user->assignRole($request->input('roles'));
+    
+            return redirect('usuarios');
+        } catch (\Throwable $th) {
+            return view('errors.error');
         }
-        
-
-        $user = User::find($id);
-        $user->update();
-
-        DB::table('model_has_roles')
-            ->where('model_id',$id)->delete();
-
-        $user->assignRole($request->input('roles'));
-
-        return redirect('usuarios');
+       
     }
 
     /**
@@ -126,7 +164,16 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
-        return redirect()->route('usuarios.index');
+
+        try {
+            
+            User::find($id)->delete();
+            return redirect()->route('usuarios.index');
+
+        } catch (\Throwable $th) {
+            return view('errors.error');
+        }
+
+        
     }
 }

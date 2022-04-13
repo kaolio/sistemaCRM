@@ -32,8 +32,9 @@
                         </td>
                         <td>
                             @can('editar-usuario')
-                                <a class="btn btn-primary" href="{{ url('usuario/editar/'.$usuario->id) }}">Editar</a>
+                            <a class="btn btn-sm btn-primary float-left"  href="{{ url('usuario/editar/'.$usuario->id) }}">Editar</a>
                             @endcan
+                            <a class="float-left">&nbsp;&nbsp;</a>
                             @if (Auth::user()->id != 1)
                             @can('editar-usuario')
                                 <form action="{{ url('/usuario/'.$usuario->id) }}" method="post">

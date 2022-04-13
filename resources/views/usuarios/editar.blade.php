@@ -30,19 +30,21 @@
                                      <input class="form-control" type="text" name="confirm-password" id="confirm-password" 
                                              Placeholder="vuelva a ingresar la contraseña" >
             
-        
-                                                <label for="roles">Selecciona un Rol</label>
+                                    @if (Auth::user()->id != 1)
+                                        <label for="roles">Selecciona un Rol</label>
                                                 <select name="roles" id="roles" onblur="validarSucursal()" onchange="validarSucursal()"
                                                     class="form-control">
                                                     <option selected disabled>Elige un Rol</option>
                                                     @foreach ($roles as $rol)
-                                                    @if ($rol == $userRole)
+                                                    @if ($userRole == $rol)
                                                     <option value="{{$rol}}" selected>{{$rol}}</option>
                                                     @else
                                                     <option value="{{$rol}}">{{$rol}}</option>
                                                     @endif
                                                     @endforeach
                                                 </select><span id="estadoRol"></span>
+                                    @endif
+                                                
                         
                                     
                                      </br>

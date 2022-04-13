@@ -19,17 +19,17 @@
                         <tr>
                             <td>{{ $rol->name }}</td>
                             <td>
-
+                                
                                 @can('editar-rol')
-                                    <a class="btn btn-primary" href="{{ url('roles/editar/'.$rol->id) }}">Editar</a> 
+                                    <a class="btn btn-sm btn-primary float-left"  href="{{ url('roles/editar/'.$rol->id) }}">Editar</a> 
                                 @endcan
-
+                                <a class="float-left">&nbsp;&nbsp;</a>
                                 @can('borrar-rol')
                                     <form action="{{ url('/roles/'.$rol->id) }}" method="post">
                                         @csrf
                                         @method('delete')
         
-                                        <button type="button" class="btn btn-danger" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
+                                        <button type="button" class="btn btn-sm btn-danger " onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
                                                     Eliminar
                                         </button>
                                     </form>
