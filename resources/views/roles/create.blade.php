@@ -2,9 +2,11 @@
 @section('content')
     <BR>
         <style>
+            
             span {
                 text-transform: capitalize;
                 }
+                
         </style>
         
     <div class="card">
@@ -24,9 +26,11 @@
                                      <label form="confirm-password">Permisos para este Rol</label>
                                      <br>
 
+                                     <input type="checkbox" onClick="toggle(this)" /> Seleccionar/Deseleccionar todos<br><br>
+
                                         <div class="row">
                                                 <div class="col-5">
-                                                <div class="card">
+                                                <div class="card spring-fever">
                                                     <div class="card-header">
                                                         @foreach ($permission as $value)
                                                             @if ($value->tipo == 'rol' )
@@ -107,5 +111,16 @@
             Footer
         </div>
     </div>
+    <script>
+
+        function toggle(source) {
+                    checkboxes = document.getElementsByName('permission[]');
+
+                    for(var i=0, n=checkboxes.length;i<n;i++) {
+                        checkboxes[i].checked = source.checked;
+                    }
+        }
+
+    </script>
 
 @endsection
