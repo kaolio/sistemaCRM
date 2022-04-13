@@ -31,15 +31,23 @@
                             @endif
                         </td>
                         <td>
-                            <form action="{{ url('/usuario/'.$usuario->id) }}" method="post">
-                                @csrf
-                                @method('delete')
-
+                            @can('editar-usuario')
                                 <a class="btn btn-primary" href="{{ url('usuario/editar/'.$usuario->id) }}">Editar</a>
-                                <button type="button" class="btn btn-danger" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
-                                            Eliminar
-                                </button>
-                            </form>
+                            @endcan
+                            @if (Auth::user()->id != 1)
+                            @can('editar-usuario')
+                                <form action="{{ url('/usuario/'.$usuario->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    
+                                    <button type="button" class="btn btn-danger" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
+                                                Eliminar
+                                    </button>
+                                </form> 
+                            @endcan
+                            @endif
+                            
+                           
 
                         </td>
                     </tr>  
