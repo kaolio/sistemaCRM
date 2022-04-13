@@ -6,7 +6,7 @@
                 text-transform: capitalize;
                 }
         </style>
-
+        
     <div class="card">
         <div class="card-header">
             NUEVO ROL
@@ -24,12 +24,74 @@
                                      <label form="confirm-password">Permisos para este Rol</label>
                                      <br>
 
-                                     
+                                        <div class="row">
+                                                <div class="col-5">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        @foreach ($permission as $value)
+                                                            @if ($value->tipo == 'rol' )
+                                                                <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
+                                                            @endif
+                                                        @endforeach 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-5">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        @foreach ($permission as $value)
+                                                            @if ($value->tipo == 'usuario' )
+                                                                <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
+                                                            @endif
+                                                        @endforeach 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                     @foreach ($permission as $value)
-                                     <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
-                                     @endforeach
-                                     
+                                        <div class="row">
+                                            <div class="col-5">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    @foreach ($permission as $value)
+                                                        @if ($value->tipo == 'trabajo' )
+                                                            <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
+                                                        @endif
+                                                    @endforeach 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-5">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    @foreach ($permission as $value)
+                                                        @if ($value->tipo == 'clientes' )
+                                                            <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
+                                                        @endif
+                                                    @endforeach 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-5">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    @foreach ($permission as $value)
+                                                        @if ($value->tipo == 'inventario' )
+                                                            <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
+                                                        @endif
+                                                    @endforeach 
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        </div>
+
+                                        
                               
                                      </br>
                                      </br>

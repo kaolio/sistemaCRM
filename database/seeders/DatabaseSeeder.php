@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,6 +15,86 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+        Permission::create([
+            'name' => 'ver-rol',
+            'tipo' => 'rol',
+        ]);
+        Permission::create([
+            'name' => 'crear-rol',
+            'tipo' => 'rol',
+        ]);
+        Permission::create([
+            'name' => 'editar-rol',
+            'tipo' => 'rol',
+        ]);
+        Permission::create([
+            'name' => 'borrar-rol',
+            'tipo' => 'rol',
+        ]);
+        Permission::create([
+            'name' => 'ver-usuario',
+            'tipo' => 'usuario',
+        ]);
+        Permission::create([
+            'name' => 'crear-usuario',
+            'tipo' => 'usuario',
+        ]);
+        Permission::create([
+            'name' => 'editar-usuario',
+            'tipo' => 'usuario',
+        ]);
+        Permission::create([
+            'name' => 'borrar-usuario',
+            'tipo' => 'usuario',
+        ]);
+        Permission::create([
+            'name' => 'ver-trabajo',
+            'tipo' => 'trabajo',
+        ]);
+        Permission::create([
+            'name' => 'crear-trabajo',
+            'tipo' => 'trabajo',
+        ]);
+        Permission::create([
+            'name' => 'editar-trabajo',
+            'tipo' => 'trabajo',
+        ]);
+        Permission::create([
+            'name' => 'borrar-trabajo',
+            'tipo' => 'trabajo',
+        ]);
+        Permission::create([
+            'name' => 'ver-clientes',
+            'tipo' => 'clientes',
+        ]);
+        Permission::create([
+            'name' => 'crear-clientes',
+            'tipo' => 'clientes',
+        ]);
+        Permission::create([
+            'name' => 'editar-clientes',
+            'tipo' => 'clientes',
+        ]);
+        Permission::create([
+            'name' => 'borrar-clientes',
+            'tipo' => 'clientes',
+        ]);
+        Permission::create([
+            'name' => 'ver-inventario',
+            'tipo' => 'inventario',
+        ]);
+        Permission::create([
+            'name' => 'crear-inventario',
+            'tipo' => 'inventario',
+        ]);
+        Permission::create([
+            'name' => 'editar-inventario',
+            'tipo' => 'inventario',
+        ]);
+        Permission::create([
+            'name' => 'borrar-inventario',
+            'tipo' => 'inventario',
+        ]);
         
     }
 }
