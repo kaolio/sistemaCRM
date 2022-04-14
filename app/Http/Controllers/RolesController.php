@@ -136,7 +136,7 @@ class RolesController extends Controller
             $role->syncPermissions($request->input('permission'));
 
         
-            return redirect()->route('roles.index');
+            return redirect('roles');
             
         } catch (\Throwable $th) {
             return view('errors.error');

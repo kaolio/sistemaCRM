@@ -41,7 +41,7 @@
                                                 <input type="checkbox" onClick="toggle(this)" /> Seleccionar/Deseleccionar todos<br><br>
 
                                                     <div class="row justify-content-center">
-                                                            <div class="col-5">
+                                                        <div class="col-5">
                                                             <div class="card1" >
                                                                 <div class="card-header">
                                                                     @foreach ($permission as $value)
@@ -68,42 +68,42 @@
                                                     <br/>
                                                     <div class="row justify-content-center">
                                                         <div class="col-5">
-                                                        <div class="card1">
-                                                            <div class="card-header">
-                                                                @foreach ($permission as $value)
-                                                                    @if ($value->tipo == 'trabajo' )
-                                                                        <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
-                                                                    @endif
-                                                                @endforeach 
+                                                            <div class="card1">
+                                                                <div class="card-header">
+                                                                    @foreach ($permission as $value)
+                                                                        @if ($value->tipo == 'trabajo' )
+                                                                            <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
+                                                                        @endif
+                                                                    @endforeach 
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
                                                     <br/>
-                                                    <div class="col-5">
-                                                        <div class="card1">
-                                                            <div class="card-header">
-                                                                @foreach ($permission as $value)
-                                                                    @if ($value->tipo == 'clientes' )
-                                                                        <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
-                                                                    @endif
-                                                                @endforeach 
+                                                        <div class="col-5">
+                                                            <div class="card1">
+                                                                <div class="card-header">
+                                                                    @foreach ($permission as $value)
+                                                                        @if ($value->tipo == 'clientes' )
+                                                                            <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
+                                                                        @endif
+                                                                    @endforeach 
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
                                                     </div>
                                                     <br/>
                                                     <div class="row justify-content-center">
                                                         <div class="col-5">
-                                                        <div class="card1">
-                                                            <div class="card-header">
-                                                                @foreach ($permission as $value)
-                                                                    @if ($value->tipo == 'inventario' )
-                                                                        <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
-                                                                    @endif
-                                                                @endforeach 
+                                                            <div class="card1">
+                                                                <div class="card-header">
+                                                                    @foreach ($permission as $value)
+                                                                        @if ($value->tipo == 'inventario' )
+                                                                            <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
+                                                                        @endif
+                                                                    @endforeach 
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
 
                                                     </div>
 
@@ -112,20 +112,12 @@
                                                 </br>
                                                 </br>
                                                 <input type="submit" class="btn btn-success my-2 my-sm-0" value="Agregar">
-                                                
+                                             </form>   
                                         </div>
-                                    </div>
-                                </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="card-footer">
-                        Footer
-                    </div>
-                </div>
-        </div>
+                        </div>
         
-    
+    <br>
     <script>
 
         function toggle(source) {

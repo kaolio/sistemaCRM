@@ -19,21 +19,25 @@
                         <tr>
                             <td>{{ $rol->name }}</td>
                             <td>
+                                @if ($rol->name != 'ADMINISTRADOR')
+                                    @can('editar-rol')
+                                        <a class="btn btn-sm btn-primary float-left"  href="{{ url('roles/editar/'.$rol->id) }}">Editar</a> 
+                                    @endcan
+                                    <a class="float-left">&nbsp;&nbsp;</a>
+                                    @can('borrar-rol')
+                                        <form action="{{ url('/roles/'.$rol->id) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+            
+                                            <button type="button" class="btn btn-sm btn-danger " onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
+                                                        Eliminar
+                                            </button>
+                                        </form>
+                                    @endcan
+                                @else
+                                    <h5><span class="badge badge-dark">Acceso Total</span></h5>
+                                @endif
                                 
-                                @can('editar-rol')
-                                    <a class="btn btn-sm btn-primary float-left"  href="{{ url('roles/editar/'.$rol->id) }}">Editar</a> 
-                                @endcan
-                                <a class="float-left">&nbsp;&nbsp;</a>
-                                @can('borrar-rol')
-                                    <form action="{{ url('/roles/'.$rol->id) }}" method="post">
-                                        @csrf
-                                        @method('delete')
-        
-                                        <button type="button" class="btn btn-sm btn-danger " onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
-                                                    Eliminar
-                                        </button>
-                                    </form>
-                                @endcan
 
                             </td>
                         </tr>

@@ -39,7 +39,7 @@
                                      </br>
                                      </br>
                                     <input type="submit" class="btn btn-success my-2 my-sm-0" value="Agregar">
-                                    
+                                    <a href="{{url('roles')}}"class="btn btn-primary">Regresar</a>
                             </div>
                         </div>
                     </div>

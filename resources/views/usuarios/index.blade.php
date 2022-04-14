@@ -35,13 +35,13 @@
                             <a class="btn btn-sm btn-primary float-left"  href="{{ url('usuario/editar/'.$usuario->id) }}">Editar</a>
                             @endcan
                             <a class="float-left">&nbsp;&nbsp;</a>
-                            @if (Auth::user()->id != 1)
+                            @if ($usuario->name != 'Administrador')
                             @can('editar-usuario')
                                 <form action="{{ url('/usuario/'.$usuario->id) }}" method="post">
                                     @csrf
                                     @method('delete')
                                     
-                                    <button type="button" class="btn btn-danger" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
+                                    <button type="button" class="btn btn-sm btn-danger" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
                                                 Eliminar
                                     </button>
                                 </form> 
