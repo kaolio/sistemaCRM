@@ -9,11 +9,16 @@
 
             .card1  {
 
-                background: linear-gradient(100deg, #C1C2C3, rgb(234, 234, 236));
+                background: linear-gradient(100deg, #5f8ab6, rgb(234, 234, 236));
+                
+            }
+            .card2  {
+
+                background: linear-gradient(100deg, #1b5794, rgb(234, 234, 236));
                 
             }
             .card{
-                background: linear-gradient(100deg, #96a0be, rgb(253, 253, 253));
+                background: linear-gradient(100deg, #1b5794, rgb(253, 253, 253));
                 position: relative;
                 width: 50%;
             }
@@ -26,22 +31,24 @@
         <div class="row justify-content-center">
             <div class="card" >
                     <div class="card-header " style ="font-family:serif,new time roman;">
-                      <h3> <b> NUEVO ROL </b> </h3>
+                      <h3 class="text-center text-white"> <b> NUEVO ROL </b> </h3>
                     </div>
                             <div class="card-body">
                                 <form action="{{ url('roles/nuevo')}}" method="post">
                                     {{csrf_field()}}
-                                                    <label form="name"> Nombre de Rol</label>
+                                                    <label form="name" class="text-white"> Nombre de Rol</label>
                                                         <input class="form-control" type="text" name="name" id="name" 
-                                                            placeholder="Nombre Completo" value="{{ old('name') }}" onblur="comprobarName()">
+                                                            placeholder="Nombre de Rol" value="{{ old('name') }}" onblur="comprobarName()">
                                                             <span id="estadoName"></span>
                                                     
                             
-                                                
-                                                        <label form="confirm-password">Permisos para este Rol</label>
+                                                <br>
+                                                        <label form="confirm-password" class="text-white">Permisos para este Rol</label>
                                                         <br>
 
-                                                        <input type="checkbox" onClick="toggle(this)" style="font-weight:bold;" > <b>Seleccionar/Deseleccionar todos</b><br><br>
+                                                        <div class="card2">
+                                                            <div class="card-body">
+                                                                <input type="checkbox" onClick="toggle(this)" style="font-weight:bold;" > <b class="text-white">Seleccionar todos</b><br><br>
 
                                                             <div class="row justify-content-center">
                                                                     <div class="col-5">
@@ -108,7 +115,11 @@
                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </br>
+                                                        </br> 
+                                                            </div>
+                                                        </div>
+
+                                                        
                                                         </br>
                                                         <input type="submit" class="btn btn-success my-2 my-sm-0" value="Agregar">
                                 </form>
