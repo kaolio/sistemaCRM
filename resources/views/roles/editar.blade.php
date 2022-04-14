@@ -3,7 +3,7 @@
     <BR>
     <div class="card">
         <div class="card-header">
-            NUEVO ROL
+            EDITAR ROL
         </div>
         <div class="card-body">
 
