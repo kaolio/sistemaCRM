@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 @section('content')
-    <BR>
+    
         <style>
             
             span {
@@ -22,10 +22,10 @@
             }
                 
         </style>
-
+        <BR>
         <div class="row justify-content-center">
             <div class="card" >
-                    <div class="card-header " style ="font-family:serif,new time roman;">
+                    <div class="card-header">
                       <h3> <b> NUEVO ROL </b> </h3>
                     </div>
                             <div class="card-body">
