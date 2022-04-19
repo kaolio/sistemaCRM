@@ -14,7 +14,19 @@ class CreateInventariosTable extends Migration
     public function up()
     {
         Schema::create('inventarios', function (Blueprint $table) {
-            $table->id();
+            
+            $table->bigIncrements('id');
+            $table->String('manufactura')->nullable();
+            $table->String('modelo')->nullable();
+            $table->String('numero_de_serie'); 
+            $table->String('firmware')->nullable();
+            $table->String('capacidad')->nullable(); 
+            $table->String('pbc')->nullable();
+            $table->String('ubicacion')->nullable();
+            $table->String('factor_de_forma')->nullable();
+            $table->String('nota')->nullable();
+            $table->String('cabecera')->nullable();
+            $table->String('info_de_cabecera')->nullable();
             $table->timestamps();
         });
     }
