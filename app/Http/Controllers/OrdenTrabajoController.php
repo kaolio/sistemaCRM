@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\OrdenTrabajo;
 use Illuminate\Http\Request;
-
+use App\Models\Cliente;
 class OrdenTrabajoController extends Controller
 {
 
@@ -43,7 +43,22 @@ class OrdenTrabajoController extends Controller
      */
     public function store(Request $request)
     {
-        return redirect('trabajos');
+        $datoTrabajo = new OrdenTrabajo;
+        $datoTrabajo->infoCliente = $request->get('infoC');
+        $datoTrabajo->Prioridad = $request->get('priority');
+        $datoTrabajo->CasoUrgente1 = $request->get('urgent1');
+        $datoTrabajo->CasoUrgente2 = $request->get('urgent2');
+        $datoTrabajo->RAID = $request->get('urgent3');
+        $datoTrabajo->Tipo = $request->get('Type');
+        $datoTrabajo->Rol = $request->get('Role');
+        $datoTrabajo->Fabricante = $request->get('Fab');
+        $datoTrabajo->Modelo = $request->get('Model');
+        $datoTrabajo->Serial = $request->get('Serial');
+        $datoTrabajo->Localizacion = $request->get('Location');
+        $datoTrabajo->infoDevice = $request->get('infoDevice');
+        $datoTrabajo->importantDate = $request->get('important');
+        //dd($datoTrabajo);
+        $datoTrabajo->save();
     }
 
     /**

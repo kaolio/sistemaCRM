@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use Illuminate\Http\Request;
-
 class ClienteController extends Controller
 {
 
@@ -23,7 +22,8 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        return view('cliente.index');
+        $datoCliente['clientes']=Cliente::paginate(10);
+        return view('cliente.index',$datoCliente);
     }
 
     /**
@@ -44,7 +44,44 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        return redirect('clientes');
+
+        $request->validate([
+            'nombre' => 'required|string|regex:/^[\pL\s\-]+$/u|max:50',
+            'vat' => 'required|integer|max:99999999|min:9999999',
+            'calle' => 'required|string|regex:/^[\pL\s\-]+$/u|max:50',
+            'Num' => 'required|integer|max:99999999|min:9999999',
+            'apt' => 'required|integer|max:99999999|min:9999999',
+            'codP' => 'required|integer|max:99999999|min:9999999',
+            'pak' => 'required|integer|max:99999999|min:9999999',
+            'city' => 'required|string|regex:/^[\pL\s\-]+$/u|max:50',
+            'pais' => 'required|string|regex:/^[\pL\s\-]+$/u|max:50',
+            'value' => 'required|string|regex:/^[\pL\s\-]+$/u|max:50',
+            'na' => 'required|string|regex:/^[\pL\s\-]+$/u|max:50',
+            'info' => 'required|string|regex:/^[\pL\s\-]+$/u|max:50',
+        ]);
+
+       
+
+
+
+        $datoCliente = new Cliente;
+        $datoCliente-> NombreCliente = $request->get('nombre');
+        $datoCliente-> VATid = $request->get('vat');
+        $datoCliente->Calle = $request->get('calle');
+        $datoCliente->Numero = $request->get('Num');
+        $datoCliente->Apt = $request->get('apt');
+        $datoCliente->CodigoPostal = $request->get('codP');
+        $datoCliente->Pak = $request->get('pak');
+        $datoCliente->NombreCiudad = $request->get('city');
+        $datoCliente->Pais = $request->get('pais');
+        $datoCliente->Idioma = $request->get('language');
+        $datoCliente->Tipo = $request->get('tipo');
+        $datoCliente->Valor = $request->get('value');
+        $datoCliente->NombreX = $request->get('na');
+        $datoCliente->Nota = $request->get('info');
+        //dd($datoCliente);
+        $datoCliente->save();
+        //return response()->json($datoCliente);
     }
 
     /**
@@ -64,9 +101,10 @@ class ClienteController extends Controller
      * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cliente $cliente)
+    public function edit($id)
     {
-        return view('cliente.editar');
+       $cliente = Cliente::findOrFail($id);
+        return view('cliente.editar',compact('cliente'));
     }
 
     /**
@@ -76,8 +114,25 @@ class ClienteController extends Controller
      * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cliente $cliente)
+    public function update(Request $request, $id)
     {
+        $clienteUpdate = Cliente::findOrFail($id);
+        $clienteUpdate->NombreCliente = $request->Nombre;
+        $clienteUpdate-> VATid = $request->vat;
+        $clienteUpdate->Calle = $request->calle;
+        $clienteUpdate->Numero = $request->Num;
+        $clienteUpdate->Apt = $request->apt;
+        $clienteUpdate->CodigoPostal = $request->codP;
+        $clienteUpdate->Pak = $request->pak;
+        $clienteUpdate->NombreCiudad = $request->city;
+        $clienteUpdate->Pais = $request->pais;
+        $clienteUpdate->Idioma = $request->language;
+        $clienteUpdate->Tipo = $request->tipo;
+        $clienteUpdate->Valor = $request->value;
+        $clienteUpdate->NombreX = $request->na;
+        $clienteUpdate->Nota = $request->info;
+        //dd($clienteUpdate);
+        $clienteUpdate->save();
         return redirect('clientes');
     }
 
@@ -87,8 +142,9 @@ class ClienteController extends Controller
      * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cliente $cliente)
+    public function destroy($id)
     {
+        Cliente::destroy($id); 
         return redirect('clientes');
     }
 }
