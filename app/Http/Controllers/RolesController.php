@@ -27,8 +27,16 @@ class RolesController extends Controller
      */
     public function index()
     {
-        $roles = Role::paginate(5);
-        return view('roles.index',compact('roles'));
+
+        try {
+            
+            $roles = Role::paginate(5);
+            return view('roles.index',compact('roles'));
+
+        } catch (\Throwable $th) {
+            return view('errors.error');
+        }
+        
 
     }
 
@@ -39,8 +47,15 @@ class RolesController extends Controller
      */
     public function create()
     {
-        $permission = Permission::get();
-        return view('roles.create',compact('permission'));
+        try {
+            
+            $permission = Permission::get();
+            return view('roles.create',compact('permission'));
+
+        } catch (\Throwable $th) {
+            return view('errors.error');
+        }
+        
     }
 
     /**
@@ -51,10 +66,17 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        $role = Role::create(['name' => $request->input('name')]);
-        $role->syncPermissions($request->input('permission'));
+        try {
+            
+            $role = Role::create(['name' => $request->input('name')]);
+            $role->syncPermissions($request->input('permission'));
+            
+            return redirect('/roles');
+
+        } catch (\Throwable $th) {
+            return view('errors.error');
+        }
         
-        return redirect('/roles');
     }
 
     /**
@@ -76,14 +98,23 @@ class RolesController extends Controller
      */
     public function edit(Roles $roles, $id)
     {
-        $role = Role::find($id);
-        $permission = Permission::get();
-        $rolePermission = DB::table('role_has_permissions')
-                            ->where('role_has_permissions.role_id',$id)
-                            ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
-                            ->all();
 
-        return view('roles.editar',compact('role','permission','rolePermission'));
+        try {
+            
+            $role = Role::find($id);
+            $permission = Permission::get();
+            $rolePermission = DB::table('role_has_permissions')
+                                ->where('role_has_permissions.role_id',$id)
+                                ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
+                                ->all();
+
+            return view('roles.editar',compact('role','permission','rolePermission'));
+
+        } catch (\Throwable $th) {
+            return view('errors.error');
+        }
+
+        
     }
 
     /**
@@ -95,14 +126,22 @@ class RolesController extends Controller
      */
     public function update(Request $request, Roles $roles,$id)
     {
-        $role = Role::find($id);
-        $role->name = $request->input('name');
-        $role->save();
 
-        $role->syncPermissions($request->input('permission'));
+        try {
+            
+            $role = Role::find($id);
+            $role->name = $request->input('name');
+            $role->save();
 
-    
-        return redirect()->route('roles.index');
+            $role->syncPermissions($request->input('permission'));
+
+        
+            return redirect('roles');
+            
+        } catch (\Throwable $th) {
+            return view('errors.error');
+        }
+        
     }
 
     /**
@@ -113,10 +152,19 @@ class RolesController extends Controller
      */
     public function destroy(Roles $roles , $id)
     {
-        DB::table('roles')
-            ->where('id',$id)
-            ->delete();
 
-        return redirect('/roles');
+        try {
+            
+            DB::table('roles')
+                ->where('id',$id)
+                ->delete();
+
+            return redirect('/roles');
+
+        } catch (\Throwable $th) {
+            return view('errors.error');
+        }
+        
     }
+    
 }
