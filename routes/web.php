@@ -43,10 +43,11 @@ Route::post('/usuario/editar/{id}',[UsuarioController::class,'update']);
 
 //ORDEN DE TRABAJO
 Route::get('/trabajos',[OrdenTrabajoController::class,'index']);
+Route::delete('/trabajo/{id}',[OrdenTrabajoController::class,'destroy']);
 Route::get('/trabajo/nuevo',[OrdenTrabajoController::class,'create']);
 Route::post('/trabajo/nuevo',[OrdenTrabajoController::class,'store']);
 Route::get('/trabajo/editar/{id}',[OrdenTrabajoController::class,'edit']);
-Route::post('/trabajo/editar/{id}',[OrdenTrabajoController::class,'update']);
+Route::put('/trabajo/editar/{id}',[OrdenTrabajoController::class,'update']);
 
 //INVENTARIO
 Route::get('/inventario',[InventarioController::class,'index']);
