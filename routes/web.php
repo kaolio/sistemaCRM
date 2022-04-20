@@ -29,8 +29,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/roles',[RolesController::class,'index']);
 Route::get('/roles',[RolesController::class,'index']);
 Route::get('/roles/nuevo',[RolesController::class,'create']);
-Route::get('/roles/editar/{id}',[RolesController::class,'edit']);
 Route::post('/roles/nuevo',[RolesController::class,'store']);
+Route::get('/roles/editar/{id}',[RolesController::class,'edit']);
+Route::patch('/roles/nuevo/{id}',[RolesController::class,'update']);
 Route::delete('/roles/{id}',[RolesController::class,'destroy']);
 
 //USUARIOS

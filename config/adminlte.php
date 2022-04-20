@@ -68,7 +68,7 @@ return [
     'usermenu_header' => true,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => true,
-    'usermenu_desc' => false,
+    'usermenu_desc' => true,
     'usermenu_profile_url' => false,
 
     /*
@@ -339,6 +339,7 @@ return [
                     'url'  => 'trabajos',
                     'can' => 'ver-trabajo',
                     'icon'    => 'fas fa-fw fa-filse',
+                    'active' => ['trabajos', 'trabajo/editar*'],
                 ],
                 [
                     'text' => 'Prioridad de Trabajos',
@@ -364,6 +365,7 @@ return [
                     'url'  => 'inventario',
                     'can' => 'ver-inventario',
                     'icon'    => 'fas fa-fw fa-filse',
+                    'active' => ['inventario', 'inventario/editar*'],
                 ],
             ]
         ],
@@ -383,6 +385,7 @@ return [
                     'url'  => 'clientes',
                     'can' => 'ver-cliente',
                     'icon'    => 'fas fa-fw fa-filse',
+                    'active' => ['clientes', 'cliente/editar*'],
                 ],
             ]
         ],
@@ -404,6 +407,7 @@ return [
                     'url'  => 'usuarios',
                     'icon'    => 'fas fa-fw fa-filse',
                     'can' => 'ver-usuario',
+                    'active' => ['usuarios', 'usuario/editar*'],
                 ],
             ]
         ],
@@ -418,12 +422,14 @@ return [
                     'url'  => 'roles/nuevo',
                     'icon'    => 'fas fa-fw fa-filse',
                     'can' => 'crear-rol',
+
                 ],
                 [
                     'text' => 'Ver Todos los Roles  ',
                     'url'  => 'roles',
                     'icon'    => 'fas fa-fw fa-filse',
                     'can' => 'ver-rol',
+                    'active' => ['roles', 'roles/editar*'],
                 ],
             ]
         ],

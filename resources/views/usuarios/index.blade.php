@@ -1,9 +1,16 @@
 @extends('adminlte::page')
 @section('content')
-    </BR>
-    <div class="card">
+<style>
+    body{
+                font-family:serif,new time roman;
+            }
+</style>
+    </BR>  
+    <div class="row justify-content-center">
+            <div class="col-9">
+            <div class="card">
         <div class="card-header">
-            USUARIOS 
+            <h4 class="text-center  "> <b> LISTA DE USUARIOS </b> </h4>
         </div>
         <div class="card-body">
 
@@ -31,15 +38,24 @@
                             @endif
                         </td>
                         <td>
-                            <form action="{{ url('/usuario/'.$usuario->id) }}" method="post">
-                                @csrf
-                                @method('delete')
-
-                                <a class="btn btn-primary" href="{{ url('usuario/editar/'.$usuario->id) }}">Editar</a>
-                                <button type="button" class="btn btn-danger" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
-                                            Eliminar
-                                </button>
-                            </form>
+                            @can('editar-usuario')
+                            <a class="btn btn-sm btn-primary float-left"  href="{{ url('usuario/editar/'.$usuario->id) }}">Editar</a>
+                            @endcan
+                            <a class="float-left">&nbsp;&nbsp;</a>
+                            @if ($usuario->name != 'Administrador')
+                            @can('editar-usuario')
+                                <form action="{{ url('/usuario/'.$usuario->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    
+                                    <button type="button" class="btn btn-sm btn-danger" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
+                                                Eliminar
+                                    </button>
+                                </form> 
+                            @endcan
+                            @endif
+                            
+                           
 
                         </td>
                     </tr>  
@@ -56,5 +72,9 @@
             
         </div>
     </div>
+    </div>
+    </div>
+    
+    
 
 @endsection
