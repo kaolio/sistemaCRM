@@ -1,9 +1,16 @@
 @extends('adminlte::page')
 @section('content')
-    </BR>
-    <div class="card">
+<style>
+    body{
+                font-family:serif,new time roman;
+            }
+</style>
+    </BR>  
+    <div class="row justify-content-center">
+            <div class="col-9">
+            <div class="card">
         <div class="card-header">
-            USUARIOS 
+            <h4 class="text-center  "> <b> LISTA DE USUARIOS </b> </h4>
         </div>
         <div class="card-body">
 
@@ -65,5 +72,9 @@
             
         </div>
     </div>
+    </div>
+    </div>
+    
+    
 
 @endsection
