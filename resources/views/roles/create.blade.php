@@ -150,7 +150,9 @@
 
                                                         
                                                         </br>
-                                                        <input type="submit" class="btn btn-success my-2 my-sm-0" value="Agregar">
+                                                        <div class="text-center">
+                                                            <input type="submit" class="btn btn-success my-2 my-sm-0" value="Agregar">
+                                                        </div>
                                 </form>
                             </div>
                 </div>
