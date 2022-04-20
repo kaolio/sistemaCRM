@@ -2,6 +2,7 @@
 @section('content')
 
 
+
 <body>
  <div class="card">
      <div class="card-header">
@@ -22,6 +23,7 @@
                 </div>
                 @endif  
               <div class="card">
+                  <div class="card-body">
                 <div class="row">
                   <div class="col-xs-10 col-sm-10 col-md-10">
                       <div class="form-group">
@@ -39,8 +41,10 @@
                       </div>
                   </div>
                   </div>
+                </div>
                 </div> 
                 <div class="card">
+                    <div class="card-body">
                   <div class="row">
               
                     <div class="col-xs-8 col-sm-8 col-md-8">
@@ -65,8 +69,10 @@
                         </div>
                     </div>
                   </div>
+                </div>
                  </div>
               <div class="card">
+                  <div class="card-body">
                   <div class="row">
               
                     <div class="col-xs-4 col-sm-4 col-md-4">
@@ -90,8 +96,10 @@
                         </div>
                     </div>
                   </div>
+                </div>
               </div>
               <div class="card">
+                  <div class="card-body">
                   <div class="row">
                       <div class="col-xs-12 col-sm-12 col-md-12">
                        <div class="form-group">
@@ -100,14 +108,16 @@
                       </div>
                       </div>
                   </div>
+                </div>
               </div>
               <div class="card">
+                  <div class="card-body">
               <label> Idioma UI del cliente</label>
                   <div class="row">
                       <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group" style="display: flex;">
                           <label for="UI">Idioma </label>
-                          <select name="language" class="form-control">
+                          <select name="language" class="form-control" style="width: 15em;">
                               <option value="0">Seleccione el idioma</option>
                               <option value="Español">Español</option>
                               <option value="Ingles">Ingles</option>
@@ -117,6 +127,7 @@
                       </div>
                       </div>
                   </div>
+                </div>
               </div>
               <div class="container">
                   <h4>Detalles</h4>
@@ -124,6 +135,7 @@
                         <td class="btn-block"><button type="button" name="add" id="add1" class="btn add-btn btn-info" style="border-radius: 50%;"><i class="fa fa-plus"></i> </button></td>
               
               <div class="card">
+                  <div class="card-body">
               <div class="row" id="dynamic_field">
                   <div class="col-xs-4 col-sm-4 col-md-4">
                     <div class="form-group">
@@ -153,13 +165,16 @@
                         </div>
                     </div>
                     </div>
+                </div>
                </div>
               </div>
                   <div class="card">
+                      <div class="card-body">
                         <div class="form-group">
                         <label style="font-size: 16px;">Nota</label>
                           <input type="text" style="height: 5em"name="info"  class="btn-block">
                          </div>
+                        </div>
                    </div>
               
                    <div class="form-group">
@@ -169,15 +184,14 @@
                 </div> 
                    
                     </form>
+                
                 </div>
             
       
                  
       
      </div>
-     <div class="card-footer">
-         Footer
-     </div>
+
  </div>  
 </body>
 
