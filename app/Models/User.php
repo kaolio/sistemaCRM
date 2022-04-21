@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 
 
@@ -56,5 +57,14 @@ class User extends Authenticatable
 
         $usuario = Auth::user()->roles->pluck('name');
         return $usuario[0];
+    }
+
+    public function validarCorreo($correo){
+
+        $result  = DB::table('users')
+                    ->where('email','=', $correo)
+                    ->exists();
+        return $result;
+
     }
 }
