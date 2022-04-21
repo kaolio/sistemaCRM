@@ -6,6 +6,48 @@
 
 @section('content')
 
+<style>
+  span {
+              text-transform: capitalize;
+              }
+
+          .card1  {
+
+              background: linear-gradient(100deg, #5f8ab6, rgb(234, 234, 236));
+              
+          }
+          .card2  {
+
+              background: linear-gradient(100deg, #1b5794, rgb(234, 234, 236));
+              
+          }
+          .menor{
+              color:#2d05f2;
+              font-size: medium;
+          }
+</style>
+<script>
+ function validarModelo() {
+
+if($("#modelo").val() == ""){
+  $("#estadoModelo").html("<span  class='menor'><h5 class='menor'> </h5></span>");
+ }else{
+      if ($("#modelo").val().length < 3) {
+          $("#estadoModelo").html(
+              "<span  class='menor'><h5 class='menor'>Ingrese de 5 a 50 caracteres</h5></span>");
+      } else {
+          if ($("#modelo").val().length > 50) {
+              $("#estadoModelo").html(
+                  "<span  class='menor'><h5 class='menor'>Ingrese menos de 50 caracteres</h5></span>");
+          } else {
+              
+                  $("#estadoModelo").html("<span  class='menor'><h5 class='menor'> </h5></span>");
+          }
+      } 
+}
+}
+</script>
+
 <div class="card">
     <div class="container">
     <form class="m-3" action="{{ url('/inventario/nuevo') }}" method="post">
@@ -17,7 +59,9 @@
         </div>
         <div class="form-group col-md-6">
           <label for="inputPassword4">Modelo</label>
-          <input type="text" class="form-control" id="modelo" name="modelo" placeholder="">
+          <input type="text" class="form-control" id="modelo" name="modelo" placeholder=""
+                 value="{{ old('modelo') }}" onkeyup="validarModelo()">
+                 <span id="estadoModelo"></span>
         </div>
       </div>
       <div class="form-row">

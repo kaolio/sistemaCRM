@@ -55,6 +55,36 @@ class InventarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    protected function validar(Request $request)  //VALIDACIONES
+    {
+        $request->validate([
+        'manufactura' => 'required | unique:forms',
+        'modelo' => 'required | unique:forms',
+        'numero_de_serie' =>'required | string | min:20 | max:30',
+        'firmware' => '',
+        'capacidad' =>'required | numeric',
+        'pbc' =>'',
+        'ubicacion' => 'required | string',
+        'factor_de_forma' => '',
+        'nota' => '',
+        'cabecera' => '',
+        'info_de_cabecera' => ''
+        ]);
+        
+        $form = new Inventario;
+        $form->manufactura = $request->manufactura;
+    }
+
+    protected function validator(array $data)  //VALIDACIONES
+    {
+        return Validator::make($data, [
+            'id' => ['required', 'string', 'max:255'],
+            'manufactura' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'modelo' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+    }
+
     public function store(Request $request)
     {
         $inventario = new Inventario();
@@ -133,7 +163,7 @@ class InventarioController extends Controller
      * @param  \App\Models\Inventario  $inventario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Inventario $inventario)
+    public function destroy(Inventario $inventario, $id)
     {
         $inventario=Inventario::findOrFail($id);
         $inventario->delete();

@@ -54,6 +54,7 @@ Route::get('/inventario/nuevo',[InventarioController::class,'create']);
 Route::post('/inventario/nuevo',[InventarioController::class,'store']);
 Route::get('/inventario/editar/{id}',[InventarioController::class,'edit']);
 Route::post('/inventario/editar/{id}',[InventarioController::class,'update']);
+Route::delete('/inventario/{id}',[InventarioController::class,'destroy']);
 
 //CLIENTES
 Route::get('/clientes',[ClienteController::class,'index']);

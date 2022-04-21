@@ -104,31 +104,65 @@
                     </svg>
                   </button>
                 </a>
-                <a href="">
+                
                   <button class="btn btn-light-active btn-sm" style="padding-left: 1px">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="15" height="20">
                       <path fill-rule="evenodd" d="M3.75 1.5a.25.25 0 00-.25.25v11.5c0 .138.112.25.25.25h8.5a.25.25 0 00.25-.25V6H9.75A1.75 1.75 0 018 4.25V1.5H3.75zm5.75.56v2.19c0 .138.112.25.25.25h2.19L9.5 2.06zM2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v8.086A1.75 1.75 0 0112.25 15h-8.5A1.75 1.75 0 012 13.25V1.75z">
                       </path>
                     </svg>
                   </button>
-                </a>
-                <a href="">
-                  {{-- <form action="{{url('inventario.destroy',$item->id)}}" method="POST"> --}}
-                    @method('DELETE')
-                    <button class="btn btn-light-active btn-sm" style="padding-left: 1px">
+                
+                  
+                    <button class="btn btn-light-active btn-sm" style="padding-left: 1px" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="15" height="20">
                         <path fill-rule="evenodd" d="M2.343 13.657A8 8 0 1113.657 2.343 8 8 0 012.343 13.657zM6.03 4.97a.75.75 0 00-1.06 1.06L6.94 8 4.97 9.97a.75.75 0 101.06 1.06L8 9.06l1.97 1.97a.75.75 0 101.06-1.06L9.06 8l1.97-1.97a.75.75 0 10-1.06-1.06L8 6.94 6.03 4.97z">
                         </path>
                       </svg>
                     </button>
-                  {{-- </form>               --}}
-                </a>
+
+                                        {{-- <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                      Launch demo modal
+                    </button> --}}
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Eliminar Disco</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                           ¿Realmente Desea Borrar el Registro?
+                          </div>
+                          <form action="{{url('inventario',$item->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>
+                                           
+                            <button class="btn btn-light btn-sm" style="padding-left: 1px">
+                              Aceptar
+                            </button>
+                            
+                          </div>
+                        </form> 
+                        </div>
+                      </div>
+                    </div>
+              
               </td>
             </tr>
             @endforeach
             @endif
           </tbody>
     </table>
+
+    
+
   </div>
   {{$inventario->links()}} 
 {{-- Fin tabla de discos --}}
@@ -139,13 +173,10 @@
 @section('js')
     <script>
 
-      
-      var myModal = document.getElementById('myModal')
-      var myInput = document.getElementById('myInput')
-      
-      myModal.addEventListener('shown.bs.modal', function () {
-        myInput.focus()
-      })
+// $('#myModal').on('shown.bs.modal', function () {
+//   $('#myInput').trigger('focus')
+// })
+
       </script>
 
 @stop
