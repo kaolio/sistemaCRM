@@ -6,6 +6,11 @@
 
 @section('content')
 
+<style>
+  body{
+    font-family:Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol;
+  }
+</style>
 <div class="d-flex">
     <div class="p-2">
         <button type="button" class="btn btn-secondary">Excel</button>
@@ -58,7 +63,7 @@
 {{--Inicio tabla de los discos  --}}
 <div class="">
     <table class="table table-striped table-hover table-responsive">
-        <thead class="table table-dark table-striped table-bordered">
+        <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 2, 203); color: aliceblue">
             <tr>
                 <th class="column1">Id</th>
                 <th class="column2">Manufactura</th>
