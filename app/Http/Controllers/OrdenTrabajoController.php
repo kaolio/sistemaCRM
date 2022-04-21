@@ -61,6 +61,8 @@ class OrdenTrabajoController extends Controller
         $datoTrabajo->importantDate = $request->get('important');
         //dd($datoTrabajo);
         $datoTrabajo->save();
+
+        return redirect('trabajos');
     }
 
     /**

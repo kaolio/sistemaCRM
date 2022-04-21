@@ -12,7 +12,7 @@
       @csrf
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="inputEmail4">Manufactura</label>
+          <label for="inputEmail4">Fabricante</label>
           <input type="text" class="form-control" id="manufactura" name="manufactura" placeholder="">
         </div>
         <div class="form-group col-md-6">
