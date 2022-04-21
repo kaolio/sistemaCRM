@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\OrdenTrabajo;
 use Illuminate\Http\Request;
-
+use App\Models\Cliente;
 class OrdenTrabajoController extends Controller
 {
 
@@ -22,7 +22,9 @@ class OrdenTrabajoController extends Controller
      */
     public function index()
     {
-        return view('trabajo.index');
+        $datoTrabajo['trabajos']=OrdenTrabajo::paginate(10);
+        return view('trabajo.index',$datoTrabajo);
+        
     }
 
     /**
@@ -43,6 +45,23 @@ class OrdenTrabajoController extends Controller
      */
     public function store(Request $request)
     {
+        $datoTrabajo = new OrdenTrabajo;
+        $datoTrabajo->infoCliente = $request->get('infoC');
+        $datoTrabajo->Prioridad = $request->get('priority');
+        $datoTrabajo->CasoUrgente1 = $request->get('urgent1');
+        $datoTrabajo->CasoUrgente2 = $request->get('urgent2');
+        $datoTrabajo->RAID = $request->get('urgent3');
+        $datoTrabajo->Tipo = $request->get('Type');
+        $datoTrabajo->Rol = $request->get('Role');
+        $datoTrabajo->Fabricante = $request->get('Fab');
+        $datoTrabajo->Modelo = $request->get('Model');
+        $datoTrabajo->Serial = $request->get('Serial');
+        $datoTrabajo->Localizacion = $request->get('Location');
+        $datoTrabajo->infoDevice = $request->get('infoDevice');
+        $datoTrabajo->importantDate = $request->get('important');
+        //dd($datoTrabajo);
+        $datoTrabajo->save();
+
         return redirect('trabajos');
     }
 
@@ -63,9 +82,11 @@ class OrdenTrabajoController extends Controller
      * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
      * @return \Illuminate\Http\Response
      */
-    public function edit(OrdenTrabajo $ordenTrabajo)
+    public function edit($id)
     {
-        return view('trabajo.editar');
+        $trabajo = OrdenTrabajo::findOrFail($id);
+        return view('trabajo.editar',compact('trabajo'));
+        
     }
 
     /**
@@ -75,8 +96,23 @@ class OrdenTrabajoController extends Controller
      * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OrdenTrabajo $ordenTrabajo)
+    public function update(Request $request, $id)
     {
+        $ordenUpdate = OrdenTrabajo::findOrFail($id);
+        $ordenUpdate->infoCliente = $request->infoC;
+        $ordenUpdate->Prioridad = $request->priority;
+        $ordenUpdate->CasoUrgente1 = $request->urgent1;
+        $ordenUpdate->CasoUrgente2 = $request->urgent2;
+        $ordenUpdate->RAID = $request->urgent3;
+        $ordenUpdate->Tipo = $request->Type;
+        $ordenUpdate->Rol = $request->Role;
+        $ordenUpdate->Fabricante = $request->Fab;
+        $ordenUpdate->Modelo = $request->Model;
+        $ordenUpdate->Serial = $request->Serial;
+        $ordenUpdate->Localizacion = $request->Location;
+        $ordenUpdate->infoDevice = $request->infoDevice;
+        $ordenUpdate->importantDate = $request->important;
+        $ordenUpdate->save();        
         return redirect('trabajos');
     }
 
@@ -86,8 +122,9 @@ class OrdenTrabajoController extends Controller
      * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OrdenTrabajo $ordenTrabajo)
+    public function destroy($id)
     {
+        OrdenTrabajo::destroy($id); 
         return redirect('trabajos');
     }
 }

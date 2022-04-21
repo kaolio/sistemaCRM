@@ -67,7 +67,7 @@
                                                         <input class="form-control" type="text" name="name" id="name" 
                                                             placeholder="Nombre de Rol" value="{{ old('name') }}" onkeyup="validarNombre()"
                                                             autocomplete="off" 
-                                                            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)) ">
+                                                            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32)) ">
                                                             <span id="estadoName"></span>
                                                     
                             
@@ -150,7 +150,9 @@
 
                                                         
                                                         </br>
-                                                        <input type="submit" class="btn btn-success my-2 my-sm-0" value="Agregar">
+                                                        <div class="text-center">
+                                                            <input type="submit" class="btn btn-success my-2 my-sm-0" value="Agregar">
+                                                        </div>
                                 </form>
                             </div>
                 </div>

@@ -14,7 +14,21 @@ class CreateOrdenTrabajosTable extends Migration
     public function up()
     {
         Schema::create('orden_trabajos', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('infoCliente');
+            $table->string('Prioridad');
+            $table->string('CasoUrgente1');
+            $table->string('CasoUrgente2');
+            $table->string('RAID');
+            $table->string('Tipo');
+            $table->string('Rol');
+            $table->string('Fabricante');
+            $table->string('Modelo');
+            $table->string('Serial');
+            $table->string('Localizacion');
+            $table->string('infoDevice');
+            $table->string('importantDate');
+
             $table->timestamps();
         });
     }
