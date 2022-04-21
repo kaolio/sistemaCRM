@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\user;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -176,4 +176,22 @@ class UsuarioController extends Controller
 
         
     }
+
+    public function validarCorreo(){
+        $db_handle = new User();
+
+        if(!empty($_POST["correo"])) {
+            $user_count = $db_handle->validarCorreo($_POST["correo"]);
+
+            if($user_count){
+                echo "<span  class='menor'><h5 class='menor'>&nbsp;&nbsp;Correo electronico ya registrado</h5></span>";
+            }else{
+                if($user_count == false) {
+                    return 1;
+                }
+            }
+            
+        }
+    }
+
 }

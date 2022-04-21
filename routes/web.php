@@ -40,6 +40,8 @@ Route::get('/usuario/nuevo',[UsuarioController::class,'create']);
 Route::post('/usuario/nuevo',[UsuarioController::class,'store']);
 Route::get('/usuario/editar/{id}',[UsuarioController::class,'edit']);
 Route::post('/usuario/editar/{id}',[UsuarioController::class,'update']);
+//script
+Route::post('/usuario/nuevo/validarCorreo', [UsuarioController::class,'validarCorreo']);
 
 //ORDEN DE TRABAJO
 Route::get('/trabajos',[OrdenTrabajoController::class,'index']);

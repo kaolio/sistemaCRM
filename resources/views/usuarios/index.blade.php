@@ -43,7 +43,7 @@
                             @endcan
                             <a class="float-left">&nbsp;&nbsp;</a>
                             @if ($usuario->name != 'Administrador')
-                            @can('editar-usuario')
+                            @can('borrar-usuario')
                                 <form action="{{ url('/usuario/'.$usuario->id) }}" method="post">
                                     @csrf
                                     @method('delete')
@@ -56,7 +56,7 @@
                             @endif
                             
                            
-
+ 
                         </td>
                     </tr>  
                     @endforeach
