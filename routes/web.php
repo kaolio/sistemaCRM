@@ -40,6 +40,7 @@ Route::get('/usuario/nuevo',[UsuarioController::class,'create']);
 Route::post('/usuario/nuevo',[UsuarioController::class,'store']);
 Route::get('/usuario/editar/{id}',[UsuarioController::class,'edit']);
 Route::post('/usuario/editar/{id}',[UsuarioController::class,'update']);
+Route::post('/imagen/validar' ,[UsuarioController::class,'validar']);
 //script
 Route::post('/usuario/nuevo/validarCorreo', [UsuarioController::class,'validarCorreo']);
 
