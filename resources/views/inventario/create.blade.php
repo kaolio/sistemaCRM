@@ -6,18 +6,69 @@
 
 @section('content')
 
+<style>
+  span {
+              text-transform: capitalize;
+              }
+
+          .card1  {
+
+              background: linear-gradient(100deg, #5f8ab6, rgb(234, 234, 236));
+              
+          }
+          .card2  {
+
+              background: linear-gradient(100deg, #1b5794, rgb(234, 234, 236));
+              
+          }
+          .menor{
+              color:#2d05f2;
+              font-size: medium;
+          }
+</style>
+<script>
+ function validarModelo() {
+
+if($("#modelo").val() == ""){
+  $("#estadoModelo").html("<span  class='menor'><h5 class='menor'> </h5></span>");
+ }else{
+      if ($("#modelo").val().length < 3) {
+          $("#estadoModelo").html(
+              "<span  class='menor'><h5 class='menor'>Ingrese de 5 a 50 caracteres</h5></span>");
+      } else {
+          if ($("#modelo").val().length > 50) {
+              $("#estadoModelo").html(
+                  "<span  class='menor'><h5 class='menor'>Ingrese menos de 50 caracteres</h5></span>");
+          } else {
+              
+                  $("#estadoModelo").html("<span  class='menor'><h5 class='menor'> </h5></span>");
+          }
+      } 
+}
+}
+</script>
+
 <div class="card">
     <div class="container">
     <form class="m-3" action="{{ url('/inventario/nuevo') }}" method="post">
       @csrf
       <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputEmail4">Fabricante</label>
-          <input type="text" class="form-control" id="manufactura" name="manufactura" placeholder="">
+        <div class="form-group col-md-6" style="padding-top: 32px">
+              <div class="input-group">
+                <span class="input-group-text" style=" background:rgb(2, 2, 203); color: aliceblue">Fabricante</span>
+                  <select name="manufactura" class="form-control" class="btn-block">
+                    <option value="0">Elija el Fabricante</option>
+                    <option value="Normal">Normal</option>
+                    <option value="Alta">Alta</option>
+                    <option value="Urgente">Urgente</option>
+                  </select>
+              </div>
         </div>
-        <div class="form-group col-md-6">
-          <label for="inputPassword4">Modelo</label>
-          <input type="text" class="form-control" id="modelo" name="modelo" placeholder="">
+        <div class="form-group col-md-6 pb-17">
+            <label for="inputPassword4">Modelo</label>
+            <input type="text" class="form-control" id="modelo" name="modelo" placeholder=""
+                   value="{{ old('modelo') }}" onkeyup="validarModelo()">
+                 <span id="estadoModelo"></span>
         </div>
       </div>
       <div class="form-row">
@@ -63,7 +114,7 @@
           </div>
       </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-lg btn-secondary">Registrar</button>
+          <button type="submit" class="btn btn-lg btn-secondary" style=" background:rgb(2, 2, 203); color: aliceblue">Registrar</button>
         </div>
     </div>
     </form>
