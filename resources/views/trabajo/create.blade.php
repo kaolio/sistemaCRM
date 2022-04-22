@@ -52,14 +52,14 @@
                 <div class="card" style="flex-direction:row;">
                     <div class="card-body">
                         <div class="input-group">
-                          <span class="input-group-text" style=" background:rgb(2, 2, 203); color: aliceblue">Prioridad</span>
+                          <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Prioridad</span>
                             <select name="priority" class="form-control" class="btn-block">
                               <option value="0">Escoga la prioridad</option>
                               <option value="Normal">Normal</option>
                               <option value="Alta">Alta</option>
                               <option value="Urgente">Urgente</option>
                             </select>
-                            <span class="input-group-text" style=" background:rgb(2, 2, 203); color: aliceblue">Tiempo Estimado</span>
+                            <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tiempo Estimado</span>
                             <input type="text" class="form-control" 
                                 placeholder="Ingrese un tiempo estimado" />
 
@@ -118,28 +118,28 @@
                   <div class="card" style="flex-direction:row;">
                       <div class="card-body">
                           <div class="input-group">
-                            <span class="input-group-text" style=" background:rgb(2, 2, 203); color: aliceblue">Tipo</span>
+                            <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo</span>
                             <select name="Type" class="form-control">
                               <option value="hdd">hdd</option>
                               <option value="ssd">ssd</option>
                               <option value="disk">disk</option>
                             </select>
-                            <span class="input-group-text" style=" background:rgb(2, 2, 203); color: aliceblue">Rol</span>
+                            <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Rol</span>
                             <select name="Role" class="form-control">
                               <option value="Junior">Junior</option>
                               <option value="SemiJunior">SemiJunior</option>
                               <option value="Master">Master</option>
                             </select>
-                            <span class="input-group-text" style=" background:rgb(2, 2, 203); color: aliceblue">Fabricante</span>
+                            <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Fabricante</span>
                             <input type="text" class="form-control" 
                                 placeholder="Ingrese el fabricante" />
-                                <span class="input-group-text" style=" background:rgb(2, 2, 203); color: aliceblue">Modelo</span>
+                                <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Modelo</span>
                             <input type="text" class="form-control" 
                                 placeholder="Ingrese el modelo" />
-                                <span class="input-group-text" style=" background:rgb(2, 2, 203); color: aliceblue">Serial</span>
+                                <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Serial</span>
                             <input type="text" class="form-control" 
                                 placeholder="Ingrese el serial" />
-                                <span class="input-group-text" style=" background:rgb(2, 2, 203); color: aliceblue">Localizacion</span>
+                                <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Localizacion</span>
                             <input type="text" class="form-control" 
                                 placeholder="Ingrese la localizacion" />
                           </div>

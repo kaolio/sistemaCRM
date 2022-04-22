@@ -65,10 +65,10 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card card-user">
                     <div class="card-body">
-                        <p class="card-text">
+                        <p class="card-text"style="width:18px">
                             <div class="author">
                                 <div class="block block-one"></div>
                                 <div class="block block-two"></div>
