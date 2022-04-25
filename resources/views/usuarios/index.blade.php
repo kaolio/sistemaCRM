@@ -13,8 +13,8 @@
             <h4 class="text-center  "> <b> LISTA DE USUARIOS </b> </h4>
         </div>
         <div class="card-body">
-
-            <table class="table table-light">
+            <div class="table-responsive">
+                    <table class="table table-light">
                 <thead class="thead-light">
                     <tr>
                         <th style="display: none">ID</th>
@@ -43,7 +43,7 @@
                             @endcan
                             <a class="float-left">&nbsp;&nbsp;</a>
                             @if ($usuario->name != 'Administrador')
-                            @can('editar-usuario')
+                            @can('borrar-usuario')
                                 <form action="{{ url('/usuario/'.$usuario->id) }}" method="post">
                                     @csrf
                                     @method('delete')
@@ -56,21 +56,21 @@
                             @endif
                             
                            
-
+ 
                         </td>
                     </tr>  
                     @endforeach
                     
                 </tbody>
             </table>
+            </div>
+            
             <div class="pagination justify-content-end">
                 
             </div>
 
         </div>
-        <div class="card-footer">
-            
-        </div>
+       
     </div>
     </div>
     </div>

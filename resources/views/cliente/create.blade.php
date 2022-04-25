@@ -29,7 +29,7 @@
               
                   <div class="col-xs-2 col-sm-2 col-md-2">
                       <div class="form-group">
-                          <label for="apellido">VATID</label>
+                          <label for="apellido">VAT ID</label>
                           <input type="text" id="vat" name="vat"  class="form-control" tabindex="2">
                           @error('vat')
                       <div class="alert alert-danger">{{$message}}</div>

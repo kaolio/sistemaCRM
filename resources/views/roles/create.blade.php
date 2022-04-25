@@ -14,17 +14,15 @@
             }
             .card2  {
 
-                background: linear-gradient(100deg, #1b5794, rgb(234, 234, 236));
+                background: linear-gradient(100deg, #6489af, rgb(234, 234, 236));
                 
             }
             .card{
-                background: linear-gradient(100deg, #1b5794, rgb(253, 253, 253));
+                background: linear-gradient(100deg, #6489af, rgb(253, 253, 253));
                 position: relative;
                 width: 50%;
             }
-            body{
-                font-family:serif,new time roman;
-            }
+            
 
             .menor{
                 color:#d7f78c;
@@ -67,7 +65,7 @@
                                                         <input class="form-control" type="text" name="name" id="name" 
                                                             placeholder="Nombre de Rol" value="{{ old('name') }}" onkeyup="validarNombre()"
                                                             autocomplete="off" 
-                                                            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)) ">
+                                                            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32)) ">
                                                             <span id="estadoName"></span>
                                                     
                             
