@@ -45,6 +45,7 @@ class OrdenTrabajoController extends Controller
      */
     public function store(Request $request)
     {
+        
         $datoTrabajo = new OrdenTrabajo;
         $datoTrabajo->infoCliente = $request->get('infoC');
         $datoTrabajo->Prioridad = $request->get('priority');
@@ -59,8 +60,11 @@ class OrdenTrabajoController extends Controller
         $datoTrabajo->Localizacion = $request->get('Location');
         $datoTrabajo->infoDevice = $request->get('infoDevice');
         $datoTrabajo->importantDate = $request->get('important');
-        //dd($datoTrabajo);
+        
+        
         $datoTrabajo->save();
+        return redirect('trabajos');
+        //dd($cliente);
     }
 
     /**

@@ -7,7 +7,7 @@
   </div>
   <div class="card-body">
     <body>
-      <h2>Orden de Trabajo</h2>
+      <h2><strong>Orden de Trabajo</strong></h2>
         <form action="{{url('/trabajo/nuevo')}}" method="POST">
           @csrf
           <div class='container-fluid'>
@@ -49,7 +49,7 @@
                 </div>
   
   
-                    <h4>Dispositivos</h4>
+                    <h4><strong>Dispositivos</strong></h4>
                     <td><button type="button" name="remove" id="" class="btn btn-danger btn_remove" style="border-radius: 50%;">X</button></td>
                         <td class="btn-block"><button type="button" name="add" id="add" class="btn btn-primary" style="border-radius: 50%;"><i class="fa fa-plus"></i> </button></td>
                         <br><br>
@@ -98,21 +98,21 @@
                
                 <div class="card">
                     <div class="card-body">
-                    <h5 class="card-title" style="height: 2rem;">información de mal funcionamiento del dispositivo</h5>
+                    <h5 class="card-title" style="height: 2rem;"><strong>información de mal funcionamiento del dispositivo</strong></h5>
                       <input type="text" style="height: 10em"name="infoDevice" class="btn-block" required="">
                     
                     </div>
                 </div>
                 <div class="card" >
                     <div class="card-body">
-                    <h5 class="card-title" style="height: 2rem;">Dato importante</h5>
+                    <h5 class="card-title" style="height: 2rem;"><strong>Dato importante</strong></h5>
                       <input type="text" style="height: 10em" name="important" class="btn-block" required="">
                     
                     </div>
                 </div>
                 <div class="form-group">
                 <a href="" class="btn btn-danger my-2 my-sm-0">Cancelar</a>
-                <button class="btn btn-primary" type="submit"  onclick="return confirm('¿Esta seguro?')">Aceptar</button>
+                <button class="btn btn-primary" type="submit" >Aceptar</button>
                 </div>
             </div>
           </form>   

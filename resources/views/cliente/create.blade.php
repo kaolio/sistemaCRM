@@ -9,19 +9,11 @@
 
      </div>
      <div class="card-body">
-        <h2>Añadir nuevo cliente</h2>
+        <h2><strong>Añadir nuevo cliente</strong></h2>
         <div class="container-fluid">
             <form action="{{url('/cliente/nuevo')}}" method="POST">
               @csrf
-              @if($errors->any())
-                <div class="alert alert-danger">
-                  <ul>
-                      @foreach($errors->all() as $error)
-                        <li>{{$error}}</li>
-                      @endforeach
-                  </ul>      
-                </div>
-                @endif  
+               
               <div class="card">
                   <div class="card-body">
                 <div class="row">
@@ -29,7 +21,9 @@
                       <div class="form-group">
                           <label for="nombre" style="justify-content-center;">Nombre del cliente</label>
                       <input type="text" name="Nombre" id="nombre" class="form-control" placeholder="Nombre" tabindex="1">
-                      
+                      @error('Nombre')
+                      <div class="alert alert-danger">{{$message}}</div>
+                      @enderror
                       </div>
                   </div>
               
@@ -37,7 +31,9 @@
                       <div class="form-group">
                           <label for="apellido">VATID</label>
                           <input type="text" id="vat" name="vat"  class="form-control" tabindex="2">
-                          
+                          @error('vat')
+                      <div class="alert alert-danger">{{$message}}</div>
+                      @enderror
                       </div>
                   </div>
                   </div>
@@ -51,14 +47,19 @@
                         <div class="form-group">
                             <label for="calle">Direccion</label>
                             <input type="text" name="calle" id="street"  class="form-control" placeholder="Calle"tabindex="1">
-                            {!! $errors->first('calle','<div class="invalid-feedback alert alert-danger">:message</div>')!!}
+                            @error('calle')
+                      <div class="alert alert-danger">{{$message}}</div>
+                      @enderror
                         </div>
                     </div>
               
                     <div class="col-xs-2 col-sm-2 col-md-2">
                         <div class="form-group">
                             <label for="num">Numero</label>
-                            <input type="text" name="Num" id="numero"  class="form-control" tabindex="2">
+                            <input type="text" name="Numero" id="numero"  class="form-control" tabindex="2">
+                            @error('Numero')
+                      <div class="alert alert-danger">{{$message}}</div>
+                      @enderror
                         </div>
                     </div>
               
@@ -66,6 +67,9 @@
                         <div class="form-group">
                             <label for="apt">Apt</label>
                             <input type="text" name="apt" id="Ap"  class="form-control"tabindex="3">
+                            @error('apt')
+                      <div class="alert alert-danger">{{$message}}</div>
+                      @enderror
                         </div>
                     </div>
                   </div>
@@ -78,7 +82,10 @@
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
                             <label for="CodigoP">Codigo Postal</label>
-                            <input type="number" name="codP" id="Postal"  class="form-control" tabindex="1">
+                            <input type="number" name="codigoPostal" id="Postal"  class="form-control" tabindex="1">
+                            @error('codP')
+                      <div class="alert alert-danger">{{$message}}</div>
+                      @enderror
                         </div>
                     </div>
               
@@ -86,35 +93,29 @@
                         <div class="form-group">
                             <label for="PAK">PAK</label>
                             <input type="text" name="pak" id="pak"  class="form-control" tabindex="2">
+                            @error('pak')
+                      <div class="alert alert-danger">{{$message}}</div>
+                      @enderror
                         </div>
                     </div>
               
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
                             <label for="apt">Nombre de la ciudad</label>
-                            <input type="text" name="city" id="nameCity"  class="form-control"tabindex="3">
+                            <input type="text" name="nombreCiudad" id="nameCity"  class="form-control"tabindex="3">
+                            @error('city')
+                      <div class="alert alert-danger">{{$message}}</div>
+                      @enderror
                         </div>
                     </div>
                   </div>
                 </div>
               </div>
+              
               <div class="card">
                   <div class="card-body">
                   <div class="row">
-                      <div class="col-xs-12 col-sm-12 col-md-12">
-                       <div class="form-group">
-                          <label for="pais">Pais</label>
-                          <input type="text" name="pais"  id="country" class="form-control">
-                      </div>
-                      </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card">
-                  <div class="card-body">
-              <label> Idioma UI del cliente</label>
-                  <div class="row">
-                      <div class="col-xs-12 col-sm-12 col-md-12">
+                      <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group" style="display: flex;">
                           <label for="UI">Idioma </label>
                           <select name="language" class="form-control" style="width: 15em;">
@@ -124,23 +125,35 @@
                               <option value="Frances">Frances</option>
                               <option value="Chino">Chino</option>
                           </select>
+                          @error('language')
+                      <div class="alert alert-danger">{{$message}}</div>
+                      @enderror
                       </div>
                       </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="form-group" style="display: flex;" >
+                            <label for="pais">Pais</label>
+                            <input type="text" name="pais" id="pais"  class="form-control"tabindex="3">
+                            @error('pais')
+                      <div class="alert alert-danger">{{$message}}</div>
+                      @enderror
+                        </div>
+                      </div>     
                   </div>
                 </div>
               </div>
               <div class="container">
-                  <h4>Detalles</h4>
-                        <td><button type="button" name="remove" id="" class="btn btn-danger btn_remove" style="border-radius: 50%;">X</button></td>
-                        <td class="btn-block"><button type="button" name="add" id="add1" class="btn add-btn btn-info" style="border-radius: 50%;"><i class="fa fa-plus"></i> </button></td>
+                  <h4><strong>Detalles</strong></h4>
+                        <td><button type="button" name="remove" id="delete" class="btn btn-danger btn_remove" style="border-radius: 50%;">X</button></td>
+                        <td class="btn-block"><button type="button" name="add" id="agregar" class="btn add-btn btn-info" style="border-radius: 50%;"><i class="fa fa-plus"></i> </button></td>
               
               <div class="card">
                   <div class="card-body">
               <div class="row" id="dynamic_field">
                   <div class="col-xs-4 col-sm-4 col-md-4">
-                    <div class="form-group">
+                    <div class="form-group" id="inputDinamic">
                       <label for="Type">Tipo </label>
-                      <select name="tipo" class="form-control">
+                      <select name="tipo[]" class="form-control">
                           <option value="0">Seleccione el tipo</option>
                           <option value="Email">Email</option>
                           <option value="Telefono">Telefono</option>
@@ -148,20 +161,29 @@
                           <option value="Skype">Skype</option>
                           <option value="Fax">Fax</option>
                         </select>
+                        @error('tipo')
+                      <div class="alert alert-danger">{{$message}}</div>
+                      @enderror
                       </div>
                     </div>
               
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group" >
                             <label for="valor">Valor</label>
-                            <input type="text" name="value" id="value"  class="form-control"tabindex="3">
+                            <input type="text" name="value[]" id="value"  class="form-control"tabindex="3">
+                            @error('value')
+                      <div class="alert alert-danger">{{$message}}</div>
+                      @enderror
                         </div>
                     </div>
               
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
                             <label for="name">Nombre</label>
-                            <input type="text" name="na" id="nameN"  class="form-control"tabindex="3">
+                            <input type="text" name="na[]" id="nameN"  class="form-control"tabindex="3">
+                            @error('na')
+                      <div class="alert alert-danger">{{$message}}</div>
+                      @enderror
                         </div>
                     </div>
                     </div>
@@ -173,6 +195,9 @@
                         <div class="form-group">
                         <label style="font-size: 16px;">Nota</label>
                           <input type="text" style="height: 5em"name="info"  class="btn-block">
+                          @error('info')
+                      <div class="alert alert-danger">{{$message}}</div>
+                      @enderror
                          </div>
                         </div>
                    </div>
@@ -194,5 +219,23 @@
 
  </div>  
 </body>
+  <script>
+    var cont = document.getElementById('inputDinamic'); 
+    var botonAgregar = document.getElementById('agregar');
+    var botonEliminar = document.getElementById('delete');
+
+    agregar.onclick = function(){
+      var newField = document.createElement('select');
+      //var newField = document.createElement('input');
+      newField.setAttribute('name','tipo[]');
+      newField.setAttribute('class','form-control');
+      newField.setAttribute('value','0');
+      inputDinamic.appendChild(newField);
+      
+        
+
+    
+    }
+  </script>
 
 @endsection

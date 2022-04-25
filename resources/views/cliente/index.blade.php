@@ -47,7 +47,27 @@
           <form action="{{ url('/cliente/'.$cliente->id) }}" method="post" class="d-inline">
             @csrf
             {{method_field('DELETE')}}
-              <input type="submit"class="btn btn-danger btn_remove" onclick="return confirm('Quieres borrar?')"value="Borrar">
+            <button class="btn btn-danger" data-toggle="modal" data-target="#ventanaModal">Eliminar</button>
+            <div class="modal fade" id="ventanaModal" tabindex="1" role="dialog" aria-labelledby="tituloVentana" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 id="tituloVentana">Cliente Eliminado</h5>
+                      <button class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="alert alert-danger">
+                          <h6><strong>El cliente fue eliminado exitosamente</strong></h6>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button class="btn btn-warning" type="button" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+              </div>
+            </div>
           </form>
           
         </td>  
