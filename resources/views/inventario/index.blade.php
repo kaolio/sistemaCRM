@@ -13,9 +13,9 @@
 </style>
 <div class="d-flex">
     <div class="p-2">
-        <button type="button" class="btn btn-secondary">Excel</button>
-        <button type="button" class="btn btn-secondary">PDF</button> 
-        <button type="button" class="btn btn-secondary">Imprimir</button>
+        <button type="button" class="btn btn-primary">Excel</button>
+        <button type="button" class="btn btn-primary">PDF</button> 
+        <button type="button" class="btn btn-primary">Imprimir</button>
     </div>
     <div class="ml-auto p-2">
             <form class="form-inline" action="{{ url('inventario  ')}}" method="GET">
@@ -63,12 +63,13 @@
 {{--Inicio tabla de los discos  --}}
 <div class="">
     <table class="table table-striped table-hover table-responsive">
-        <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 2, 203); color: aliceblue">
+        <thead class="table-primary table-striped table-bordered text-white" >
+        <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
             <tr>
                 <th class="column1">Id</th>
-                <th class="column2">Manufactura</th>
+                <th class="column2">Fabricante</th>
                 <th class="column3">Modelo</th>
-                <th class="column4">Numero de Serie</th>
+                <th class="column4">N° de Serie</th>
                 <th class="column5">Firmware</th>
                 <th class="column6">Capacidad (GB)</th>
                 <th class="column6">PBC</th>
@@ -117,47 +118,45 @@
                     </svg>
                   </button>
                 
-                  
-                    <button class="btn btn-light-active btn-sm" style="padding-left: 1px" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="15" height="20">
-                        <path fill-rule="evenodd" d="M2.343 13.657A8 8 0 1113.657 2.343 8 8 0 012.343 13.657zM6.03 4.97a.75.75 0 00-1.06 1.06L6.94 8 4.97 9.97a.75.75 0 101.06 1.06L8 9.06l1.97 1.97a.75.75 0 101.06-1.06L9.06 8l1.97-1.97a.75.75 0 10-1.06-1.06L8 6.94 6.03 4.97z">
-                        </path>
-                      </svg>
-                    </button>
+                <!-- Button trigger modal -->
+<button type="button" class="btn" style="padding-left: 1px" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$item->id}}">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="15" height="20">
+    <path fill-rule="evenodd" d="M2.343 13.657A8 8 0 1113.657 2.343 8 8 0 012.343 13.657zM6.03 4.97a.75.75 0 00-1.06 1.06L6.94 8 4.97 9.97a.75.75 0 101.06 1.06L8 9.06l1.97 1.97a.75.75 0 101.06-1.06L9.06 8l1.97-1.97a.75.75 0 10-1.06-1.06L8 6.94 6.03 4.97z"></path>
+  </svg>
+</button>
 
-                                        {{-- <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                      Launch demo modal
-                    </button> --}}
+<!-- Modal -->
+<div class="modal fade" id="modal-delete-{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form action="{{url('inventario',$item->id)}}" method="POST">
+      @csrf
+      @method('DELETE')
+      <button class="btn" value="Eliminar">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="15" height="20">
+          <path fill-rule="evenodd" d="M2.343 13.657A8 8 0 1113.657 2.343 8 8 0 012.343 13.657zM6.03 4.97a.75.75 0 00-1.06 1.06L6.94 8 4.97 9.97a.75.75 0 101.06 1.06L8 9.06l1.97 1.97a.75.75 0 101.06-1.06L9.06 8l1.97-1.97a.75.75 0 10-1.06-1.06L8 6.94 6.03 4.97z"></path>
+        </svg>
+      </button>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminación del Disco</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" align="center">
+        ¿Realmente desea eliminar el registro :
+        <br>
+        <strong> {{$item->manufactura." | ".$item->modelo}} ? </strong>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Rechazar</button>
+        <button class="btn btn-primary" value="Eliminar">
+          Aceptar
+        </button>
+      </div>
+    </div>
+  </form>
+  </div>
+</div>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Eliminar Disco</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                           ¿Realmente Desea Borrar el Registro?
-                          </div>
-                          <form action="{{url('inventario',$item->id)}}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>
-                                           
-                            <button class="btn btn-light btn-sm" style="padding-left: 1px">
-                              Aceptar
-                            </button>
-                            
-                          </div>
-                        </form> 
-                        </div>
-                      </div>
-                    </div>
               
               </td>
             </tr>
@@ -176,12 +175,38 @@
 
 
 @section('js')
-    <script>
-
-// $('#myModal').on('shown.bs.modal', function () {
-//   $('#myInput').trigger('focus')
-// })
-
-      </script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>  
 
 @stop
+
+
+ {{-- <!-- Modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar Disco</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       ¿Realmente Desea Borrar el Registro?
+      </div>
+      <form action="{{url('inventario',$item->id)}}" method="POST">
+        @csrf
+        @method('DELETE')
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>
+                       
+        <button class="btn btn-light btn-sm" style="padding-left: 1px">
+          Aceptar
+        </button>
+        
+      </div>
+    </form> 
+    </div>
+  </div>
+</div> --}}
