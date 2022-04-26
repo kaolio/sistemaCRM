@@ -8,6 +8,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use Intervention\Image\Facades\Image;
 
 
 class UsuarioController extends Controller
@@ -193,5 +194,47 @@ class UsuarioController extends Controller
             
         }
     }
+
+    public function updatePhoto(Request $request){
+
+            $this->validate($request, [
+                'photo' => 'required|image'
+            ]);
+
+            $user = User::auth()->user();
+            $extension = $request->file('photo')->getClientOriginalExtension();
+            $fileName = auth()->id() . '.' . $extension;
+
+            $path = public_path('/imagen es/users'.$fileName);
+
+            Image::make($request->file('photo'))
+                    ->fit(144, 144)
+                    ->save($path);
+
+            $user-> photo = $extension;
+            $user->save();
+
+            $data['success'] = true;
+            $data['file_name'] = $fileName;
+            return $data;
+
+
+
+            //$file = $request->file('photo');
+            //$extension = $file->getClientOriginalExtension();
+            //$fileName = auth()->id() . '.' . $extension;
+            //$path = public_path('/imagen es/users'.$fileName);
+
+            //Image::make($file)->fit(144, 144)->save($path);
+
+            //$user = auth()->user();
+            //$user->photoPerfil = $extension;
+            //$user->save();
+
+            //$data['success'] = $saved;
+            //$data['path'] = $user->getAvatarUrl() . '?' . uniqid();
+
+            //return $data;
+        }
 
 }

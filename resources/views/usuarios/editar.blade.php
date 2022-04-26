@@ -47,32 +47,53 @@
                 background: #419EF9;
             }
 </style>
-    <script>
-        function cambiar(){
-            var pdrs = document.getElementById('file-upload').files[0].name;
-            document.getElementById('info').value = pdrs;
-        }
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+     $(function() {
+                        var $imagenPerfil, $photoPerfil, $photoForm;
 
-        function cambiarImagen() {
-                $("#loaderIcon").show();
+                        $imagenPerfil = $('#imagenPerfil');
+                        $photoPerfil = $('#file-upload');
+                        $photoForm = $('#photoForm');
 
-                jQuery.ajax({
-                    url: "/imagen/validar",
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        "nombre": $("#nombre").val(),
-                    },
-                    asycn: false,
-                    type: "POST",
-                    success: function(data) {
-                        $("#estadoProducto").html(data);
-                        $("#loaderIcon").hide();
-                    },
-                    error: function() {
-                        console.log('no da');
-                    }
+                        $imagenPerfil.on('click', function () {
+                            $photoPerfil.click();
+                        });
+
+                        $photoPerfil.on('change', function () {
+                            alert('onChange');
+                     });
+             });
+
+
+             $imagenPerfil.on('change', function () {
+                    var formData = new FormData();
+                    formData.append('photo', $imagenPerfil[0].files[0]);
+
+                    $.ajax({
+                        url: $photoForm.attr('action') + '?' + $photoForm.serialize(),
+                        method: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false
+
+                    }).done(function (data) {
+                        if (data.success)
+                            $photoPerfil.attr('src', data.path);
+                    }).fail(function () {
+                        alert('La imagen subida no tiene un formato correcto');
+                    });
                 });
-            }
+
+
+</script> 
+
+    <script>
+        
+            
+       
+
+           
   
   </script>
     <BR>
@@ -137,11 +158,12 @@
                   </div>
               </div>
             </div>
-            <div class="col-md-3">
+
+            <!--<div class="col-md-3">
                 <div class="card">
                     <div class="card-body">
                         <div class="card1"> 
-                            <div class="card_img"> <!-- Here I create a New Div for image with class name card_img -->
+                            <div class="card_img">
                                 <img src="https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-1100x628.jpg" alt="user-image">
                             </div>
                             <div class="card_info">
@@ -162,8 +184,49 @@
                        
                     </div>
                 </div>
-          </div>
-        
+            </div>
+         -->
          <!-- -->
+         <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card1"> 
+                        <div class="card_img"> 
+                            <form action=" {{ url('/perfil/foto') }}" method="post" style="display: none" id="photoForm">
+                                {{ csrf_field() }}
+                                <input type="file" id="photoPerfil" name="photo">
+                            </form>
+                            <img src="https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-1100x628.jpg" id="imagenPerfil">
+                        
+                        </div>
+                        <div class="card_info">
+                            <h5 class="title">{{ auth()->user()->name }}</h5>
+
+                            <h5 class="title">{{ Auth::user()->roles->pluck('name')  }}</h5>
+                        </div>
+                    </div>
+                </div>
+
+
+                <form action=" {{ url('/perfil/foto') }}" method="post"  id="photoForm">
+                    {{ csrf_field() }}
+                    
+                    <div class="text-center">
+                        <label for="file-upload" class="subir" >
+                          <i class="fas fa-cloud-upload-alt" ></i> Subir Imagen</label>
+                        <input id="file-upload" name="photo" onclick="cargarImagen()" type="file" style='display: none;'/>
+                     </div>
+
+                </form>
+
+        
+            
+
+                <div class="card-footer">
+                   
+                </div>
+            </div>
+        </div>
+        <!-- -->
 
 @endsection
