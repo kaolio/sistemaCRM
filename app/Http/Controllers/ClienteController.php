@@ -46,18 +46,18 @@ class ClienteController extends Controller
     {
         $request->validate([
             
-            'vat'=>'required|string|regex:/^[\pL\s\-]+$/u|max:50',
+            'vat'=>'required|integer',
             'calle'=>'required|max:50',
             'Numero'=>'required|integer',
             'apt'=>'required|integer',
-            'codigoPostal'=>'required|max:4',
+            'codigoPostal'=>'required|integer',
             'pak'=>'required',
             'nombreCiudad'=>'required|string|max:50',
             'language'=>'required',
             'tipo'=>'required|string',
-            'value'=>'required',
-            'na'=>'required',
-            'info'=>'required'
+            'value'=>'required'
+            
+            
         ]);
         
 
