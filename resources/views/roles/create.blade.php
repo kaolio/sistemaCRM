@@ -14,17 +14,15 @@
             }
             .card2  {
 
-                background: linear-gradient(100deg, #1b5794, rgb(234, 234, 236));
+                background: linear-gradient(100deg, #6489af, rgb(234, 234, 236));
                 
             }
             .card{
-                background: linear-gradient(100deg, #1b5794, rgb(253, 253, 253));
+                background: linear-gradient(100deg, #6489af, rgb(253, 253, 253));
                 position: relative;
                 width: 50%;
             }
-            body{
-                font-family:serif,new time roman;
-            }
+            
 
             .menor{
                 color:#d7f78c;
