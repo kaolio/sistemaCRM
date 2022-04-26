@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 @section('content')
 
-VER ORDENES DE TRABAJO
+
 <div class="container">
   <div class="table-responsive">
 <table class="table table-hover">
@@ -10,9 +10,7 @@ VER ORDENES DE TRABAJO
       <th>#</th>
       <th>Informacion del Cliente</th>
       <th>Prioridad</th>
-      <th>Caso1</th>
-      <th>Caso2</th>
-      <th>Caso3</th>
+      <th>TiempoEstimado</th>
       <th>Tipo</th>
       <th>Rol</th>
       <th>Fabricante</th>
@@ -29,26 +27,50 @@ VER ORDENES DE TRABAJO
       <tr>
         <td>{{$trabajo->id}}</td>
         <td>{{$trabajo->infoCliente}}</td>
-        <td>{{$trabajo->CasoUrgente1}}</td>
         <td>{{$trabajo->Prioridad}}</td>
-        <td>{{$trabajo->CasoUrgente2}}</td>
-        <td>{{$trabajo->RAID}}</td>
+        <td>{{$trabajo->TiempoEstimado}}</td>
         <td>{{$trabajo->Tipo}}</td>
         <td>{{$trabajo->Rol}}</td>
         <td>{{$trabajo->Fabricante}}</td>
         <td>{{$trabajo->Modelo}}</td>
         <td>{{$trabajo->Serial}}</td>
         <td>{{$trabajo->Localizacion}}</td>
-        <td>{{$trabajo->infoDevice}}</td>
-        <td>{{$trabajo->importantDate}}</td>
+        <td>{{$trabajo->informacionDispositivo}}</td>
+        <td>{{$trabajo->datoImportante}}</td>
         <td>
           <a href="{{ url('/trabajo/editar/'.$trabajo->id)}}" class="btn btn-success">Editar</a> 
 
-          <form action="{{ url('/trabajo/'.$trabajo->id) }}" method="post" class="d-inline">
+          {{-- <form action="{{ url('/trabajo/'.$trabajo->id) }}" method="post" class="d-inline">
             @csrf
-            {{method_field('DELETE')}}
-              <input type="submit"class="btn btn-danger btn_remove" onclick="return confirm('Quieres borrar?')"value="Borrar">
-          </form>
+            {{method_field('DELETE')}} --}}
+            <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Eliminar</button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Eliminar trabajo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                   ¿Realmente Desea Borrar el trabajo?
+                  </div>
+                  <form action="{{url('/trabajo/'.$trabajo->id)}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>
+                                   
+                    <button class="btn btn-light btn-sm" style="padding-left: 1px">
+                      Aceptar
+                    </button>
+                    
+                  </div>
+                </form> 
+                </div>
+              </div>
+            </div>
           
         </td>  
       </tr>
