@@ -17,17 +17,15 @@ class CreateOrdenTrabajosTable extends Migration
             $table->increments('id');
             $table->string('infoCliente');
             $table->string('Prioridad');
-            $table->string('CasoUrgente1');
-            $table->string('CasoUrgente2');
-            $table->string('RAID');
+            $table->string('TiempoEstimado');
             $table->string('Tipo');
             $table->string('Rol');
             $table->string('Fabricante');
             $table->string('Modelo');
             $table->string('Serial');
             $table->string('Localizacion');
-            $table->string('infoDevice');
-            $table->string('importantDate');
+            $table->string('informacionDispositivo');
+            $table->string('datoImportante');
 
             $table->timestamps();
         });

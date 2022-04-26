@@ -45,7 +45,7 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'Nombre'=>'required|string|regex:/^[\pL\s\-]+$/u|min:3|max:50',
+            
             'vat'=>'required|string|regex:/^[\pL\s\-]+$/u|max:50',
             'calle'=>'required|max:50',
             'Numero'=>'required|integer',

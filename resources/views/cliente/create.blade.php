@@ -1,7 +1,36 @@
 @extends('adminlte::page')
 @section('content')
-
-
+<style>
+  span{
+    text-transform: capitalize;
+  }
+  .menor{
+              color:red;
+              font-size: medium;
+          }
+</style>
+<script>
+  function validarNombre() {
+ 
+ if($("#Nombre").val() == ""){
+   $("#estadoNombre").html("<span  class='menor'><h5 class='menor'> </h5></span>");
+  }else{
+       if ($("#Nombre").val().length < 3) {
+           $("#estadoNombre").html(
+               "<span  class='menor'><h5 class='menor'>Ingrese de 5 a 50 caracteres</h5></span>");
+       } else {
+           if ($("#Nombre").val().length > 50) {
+               $("#estadoNombre").html(
+                   "<span  class='menor'><h5 class='menor'>Ingrese menos de 50 caracteres</h5></span>");
+           } else {
+               
+                   $("#estadoNombre").html("<span  class='menor'><h5 class='menor'> </h5></span>");
+           }
+       } 
+ }
+ }
+ </script>
+ 
 
 <body>
  <div class="card">
@@ -20,7 +49,8 @@
                   <div class="col-xs-10 col-sm-10 col-md-10">
                       <div class="form-group">
                           <label for="nombre" style="justify-content-center;">Nombre del cliente</label>
-                      <input type="text" name="Nombre" id="nombre" class="form-control" placeholder="Nombre" tabindex="1">
+                      <input type="text" name="Nombre" id="Nombre" class="form-control" onkeyup="validarNombre()" placeholder="Nombre" tabindex="1" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32)) ">
+                      <span id="estadoNombre"></span>
                       @error('Nombre')
                       <div class="alert alert-danger">{{$message}}</div>
                       @enderror
@@ -117,8 +147,8 @@
                   <div class="row">
                       <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group" style="display: flex;">
-                          <label for="UI">Idioma </label>
-                          <select name="language" class="form-control" style="width: 15em;">
+                          <label for="UI" style="width: 4em">Idioma </label>
+                          <select name="language" class="form-control" style="width: 13em;">
                               <option value="0">Seleccione el idioma</option>
                               <option value="Español">Español</option>
                               <option value="Ingles">Ingles</option>
@@ -132,7 +162,7 @@
                       </div>
                       <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group" style="display: flex;" >
-                            <label for="pais">Pais</label>
+                            <label for="pais" style="width: 3em" align="center">Pais</label>
                             <input type="text" name="pais" id="pais"  class="form-control"tabindex="3">
                             @error('pais')
                       <div class="alert alert-danger">{{$message}}</div>
@@ -153,7 +183,7 @@
                   <div class="col-xs-4 col-sm-4 col-md-4">
                     <div class="form-group" id="inputDinamic">
                       <label for="Type">Tipo </label>
-                      <select name="tipo[]" class="form-control">
+                      <select name="tipo" class="form-control">
                           <option value="0">Seleccione el tipo</option>
                           <option value="Email">Email</option>
                           <option value="Telefono">Telefono</option>
@@ -170,7 +200,7 @@
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group" >
                             <label for="valor">Valor</label>
-                            <input type="text" name="value[]" id="value"  class="form-control"tabindex="3">
+                            <input type="text" name="value" id="value"  class="form-control"tabindex="3">
                             @error('value')
                       <div class="alert alert-danger">{{$message}}</div>
                       @enderror
@@ -180,7 +210,7 @@
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
                             <label for="name">Nombre</label>
-                            <input type="text" name="na[]" id="nameN"  class="form-control"tabindex="3">
+                            <input type="text" name="na" id="nameN"  class="form-control"tabindex="3">
                             @error('na')
                       <div class="alert alert-danger">{{$message}}</div>
                       @enderror
@@ -219,7 +249,7 @@
 
  </div>  
 </body>
-  <script>
+  {{-- <script>
     var cont = document.getElementById('inputDinamic'); 
     var botonAgregar = document.getElementById('agregar');
     var botonEliminar = document.getElementById('delete');
@@ -236,6 +266,6 @@
 
     
     }
-  </script>
+  </script> --}}
 
 @endsection

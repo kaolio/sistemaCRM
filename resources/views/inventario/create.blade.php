@@ -36,7 +36,7 @@ if($("#modelo").val() == ""){
           $("#estadoModelo").html(
               "<span  class='menor'><h5 class='menor'>Ingrese de 5 a 50 caracteres</h5></span>");
       } else {
-          if ($("#modelo").val().length > 50) {
+          if ($("#modelo").val().length > 40) {
               $("#estadoModelo").html(
                   "<span  class='menor'><h5 class='menor'>Ingrese menos de 50 caracteres</h5></span>");
           } else {

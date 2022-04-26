@@ -44,31 +44,37 @@
         <td>
           <a href="{{ url('/cliente/editar/'.$cliente->id)}}" class="btn btn-success">Editar</a> 
 
-          <form action="{{ url('/cliente/'.$cliente->id) }}" method="post" class="d-inline">
+          {{-- <form action="{{ url('/cliente/'.$cliente->id) }}" method="post" class="d-inline">
             @csrf
-            {{method_field('DELETE')}}
-            <button class="btn btn-danger" data-toggle="modal" data-target="#ventanaModal">Eliminar</button>
-            <div class="modal fade" id="ventanaModal" tabindex="1" role="dialog" aria-labelledby="tituloVentana" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 id="tituloVentana">Cliente Eliminado</h5>
-                      <button class="close" data-dismiss="modal" aria-label="Cerrar">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="alert alert-danger">
-                          <h6><strong>El cliente fue eliminado exitosamente</strong></h6>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button class="btn btn-warning" type="button" data-dismiss="modal">Cerrar</button>
-                    </div>
+            {{method_field('DELETE')}} --}}
+            <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Eliminar</button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Eliminar Cliente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                   ¿Realmente Desea Borrar el Cliente?
+                  </div>
+                  <form action="{{url('/cliente/'.$cliente->id)}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>
+                                   
+                    <button class="btn btn-light btn-sm" style="padding-left: 1px">
+                      Aceptar
+                    </button>
+                    
+                  </div>
+                </form> 
                 </div>
               </div>
             </div>
-          </form>
           
         </td>  
       </tr>
