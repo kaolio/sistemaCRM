@@ -20,23 +20,20 @@
           }
 </style>
 <script>
- function validarModelo() {
-
-if($("#modelo").val() == ""){
-  $("#estadoModelo").html("<span  class='menor'><h5 class='menor'> </h5></span>");
- }else{
-      if ($("#modelo").val().length < 3) {
-          $("#estadoModelo").html(
-              "<span  class='menor'><h5 class='menor'>Ingrese de 5 a 50 caracteres</h5></span>");
-      } else {
-          if ($("#modelo").val().length > 40) {
-              $("#estadoModelo").html(
-                  "<span  class='menor'><h5 class='menor'>Ingrese menos de 50 caracteres</h5></span>");
-          } else {
-              
-                  $("#estadoModelo").html("<span  class='menor'><h5 class='menor'> </h5></span>");
-          }
-      } 
+ function validarModelo(){
+  if($("#modelo").val() == ""){
+    $("#estadoModelo").html("<span  class='error'><h5 class='menor'>Este campo no puede estar vacío</h5></span>");
+  }else{
+        if ($("#modelo").val().length < 5) {
+            $("#estadoModelo").html("<span  class='error'><h5 class='menor'>Ingrese de 5 hasta 40 caracteres</h5></span>");
+        }else{
+            if($("#modelo").val().length > 40) {
+                $("#estadoModelo").html("<span  class='error'><h5 class='menor'>Ingrese menos de 40 caracteres</h5></span>");
+            }else{
+                    $("#estadoModelo").html("<span  class='bien'><h5 class='menor'> Modelo Válido </h5></span>");
+            }
+        } 
+  }
 }
 function validarSerie(){
   if($("#numero_de_serie").val() == ""){
