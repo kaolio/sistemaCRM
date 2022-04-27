@@ -45,6 +45,13 @@ class OrdenTrabajoController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'infoDispositivo' => '',
+            'DatoImportante' => ''
+            
+            ]);
+
         
         $datoTrabajo = new OrdenTrabajo;
         $datoTrabajo->infoCliente = $request->get('infoC');
