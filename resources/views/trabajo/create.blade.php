@@ -173,19 +173,19 @@ function validarTiempo(){
                
                 <div class="card">
                     <div class="card-body">
-                    <h5 class="card-title" style="height: 2rem;"><strong>información de mal funcionamiento del dispositivo *</strong></h5>
-                      <input type="text" style="height: 10em" name="infoDispositivo" class="btn-block" >
+                    <h5 class="card-title" style="height: 2rem;"><strong>información de mal funcionamiento del dispositivo </strong></h5>
+                      <input type="text" style="height: 10em" name="infoDispositivo" class="btn-block" required >
                     
                     </div>
                 </div>
                 <div class="card" >
                     <div class="card-body">
-                    <h5 class="card-title" style="height: 2rem;"><strong>Dato importante *</strong></h5>
-                      <input type="text" style="height: 10em" name="DatoImportante" class="btn-block" >
+                    <h5 class="card-title" style="height: 2rem;"><strong>Dato importante </strong></h5>
+                      <input type="text" style="height: 10em" name="DatoImportante" class="btn-block" required>
                     
                     </div>
                 </div>
-                <h3>Campos Opcionales *</h3>
+                
                 <br><br>
                 <div class="form-group">
                 <a href="" class="btn btn-danger my-2 my-sm-0">Cancelar</a>
