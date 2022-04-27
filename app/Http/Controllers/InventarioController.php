@@ -29,7 +29,7 @@ class InventarioController extends Controller
                         ->select('id','manufactura','modelo','numero_de_serie','firmware','capacidad','pbc','ubicacion','factor_de_forma','nota','cabecera','info_de_cabecera')
                         ->where('modelo', 'LIKE', '%'.$busqueda.'%')
                         ->orWhere('numero_de_serie', 'LIKE', '%'.$busqueda.'%')
-                        ->orderBy('id','asc')
+                        ->orderBy('id','desc')
                         ->paginate(10);
     //metodo facades para consultar la db //table name
 
