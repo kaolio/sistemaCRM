@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 @section('content')
 
-EDITAR ORDEN DE TRABAJO
+<h1 align="center"><strong>EDITAR ORDEN DE TRABAJO</strong></h1>
 <form action="{{url('/trabajo/editar/'.$trabajo->id)}}" method="post">
   @csrf
   {{method_field('PUT')}}

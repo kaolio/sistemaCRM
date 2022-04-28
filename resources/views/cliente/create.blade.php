@@ -144,7 +144,7 @@ function validarValor(){
                   <div class="col-xs-10 col-sm-10 col-md-10">
                       <div class="form-group">
                           <label for="nombre" style="justify-content-center;">Nombre del cliente</label>
-                      <input type="text" name="Nombre" id="Nombre" class="form-control" onkeyup="validarNombre()" placeholder="Nombre" tabindex="1" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32)) ">
+                      <input type="text" name="Nombre" id="Nombre" value="{{ old('Nombre') }}" class="form-control" onkeyup="validarNombre()" placeholder="Nombre" tabindex="1" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32)) ">
                       <span id="estadoNombre"></span>
                       @error('Nombre')
                       <div class="alert alert-danger">{{$message}}</div>
@@ -155,7 +155,7 @@ function validarValor(){
                   <div class="col-xs-2 col-sm-2 col-md-2">
                       <div class="form-group">
                           <label for="apellido">VAT ID</label>
-                          <input type="number" id="vat" name="vat"  class="form-control" onkeyup="validarVat()" tabindex="2" required>
+                          <input type="number" id="vat" name="vat" value="{{ old('vat') }}" class="form-control" onkeyup="validarVat()" tabindex="2" required>
                           <span id="estadoVat"></span>
                           @error('vat')
                       <div class="alert alert-danger">{{$message}}</div>
@@ -172,7 +172,7 @@ function validarValor(){
                     <div class="col-xs-8 col-sm-8 col-md-8">
                         <div class="form-group">
                             <label for="calle">Direccion</label>
-                            <input type="text" name="calle" id="street"  class="form-control" onkeyup="validarCalle()" placeholder="Calle"tabindex="1" required>
+                            <input type="text" name="calle" id="street" autocomplete="off" value="{{ old('calle') }}"  class="form-control" onkeyup="validarCalle()" placeholder="Calle"tabindex="1" required>
                             <span id="estadoCalle"></span>
                             @error('calle')
                       <div class="alert alert-danger">{{$message}}</div>
@@ -183,7 +183,7 @@ function validarValor(){
                     <div class="col-xs-2 col-sm-2 col-md-2">
                         <div class="form-group">
                             <label for="num">Numero</label>
-                            <input type="number" name="Numero" id="Numero"  class="form-control" tabindex="2" required onkeyup="validarNumero()">
+                            <input type="number" name="Numero" id="Numero" value="{{ old('Numero') }}" class="form-control" tabindex="2" required onkeyup="validarNumero()">
                             <span id="estadoNumero"></span>
                             @error('Numero')
                       <div class="alert alert-danger">{{$message}}</div>
@@ -194,7 +194,7 @@ function validarValor(){
                     <div class="col-xs-2 col-sm-2 col-md-2">
                         <div class="form-group">
                             <label for="apt">Apt</label>
-                            <input type="number" name="apt" id="Apt"  class="form-control"tabindex="3" required onkeyup="validarApt()">
+                            <input type="number" name="apt" id="Apt" value="{{ old('apt') }}" class="form-control"tabindex="3" required onkeyup="validarApt()">
                             <span id="estadoApt"></span>
                             @error('apt')
                       <div class="alert alert-danger">{{$message}}</div>
@@ -211,7 +211,7 @@ function validarValor(){
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
                             <label for="CodigoP">Codigo Postal</label>
-                            <input type="number" name="codigoPostal" id="codigoP"  class="form-control" tabindex="1" required onkeyup="validarCodigoPostal()">
+                            <input type="number" name="codigoPostal" id="codigoP" value="{{ old('codigoPostal') }}" class="form-control" tabindex="1" required onkeyup="validarCodigoPostal()">
                             <span id="estadoCodigoP"></span>
                             @error('codP')
                       <div class="alert alert-danger">{{$message}}</div>
@@ -222,7 +222,7 @@ function validarValor(){
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
                             <label for="PAK">PAK</label>
-                            <input type="number" name="pak" id="pak"  class="form-control" tabindex="2" required onkeyup="validarPak()">
+                            <input type="number" name="pak" id="pak" value="{{ old('pak') }}" class="form-control" tabindex="2" required onkeyup="validarPak()">
                             <span id="estadoPak"></span>
                             @error('pak')
                       <div class="alert alert-danger">{{$message}}</div>
@@ -233,7 +233,7 @@ function validarValor(){
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
                             <label for="apt">Nombre de la ciudad</label>
-                            <input type="text" name="nombreCiudad" id="ciudad"  class="form-control"tabindex="3" required onkeyup="validarCiudad()">
+                            <input type="text" name="nombreCiudad" id="ciudad" value="{{ old('nombreCiudad') }}" class="form-control"tabindex="3" required onkeyup="validarCiudad()">
                             <span id="estadoCiudad"></span>
                             @error('city')
                       <div class="alert alert-danger">{{$message}}</div>
@@ -250,7 +250,7 @@ function validarValor(){
                       <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group" style="display: flex;">
                           <label for="UI" style="width: 4em">Idioma </label>
-                          <select name="language" class="form-control" style="width: 13em;">
+                          <select name="language" class="form-control" style="width: 13em;" required>
                               <option value="0">Seleccione el idioma</option>
                               <option value="Español">Español</option>
                               <option value="Ingles">Ingles</option>
@@ -265,7 +265,7 @@ function validarValor(){
                       <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group" style="display: flex;" >
                             <label for="pais" style="width: 3em" align="center">Pais</label>
-                            <input type="text" name="pais" id="pais"  class="form-control"tabindex="3" required onkeyup="validarPais()">
+                            <input type="text" name="pais" id="pais" value="{{ old('pais') }}" class="form-control"tabindex="3" required onkeyup="validarPais()">
                             <span id="estadoPais"></span>
                             @error('pais')
                       <div class="alert alert-danger">{{$message}}</div>
@@ -303,7 +303,7 @@ function validarValor(){
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group" >
                             <label for="valor">Valor</label>
-                            <input type="text" name="value" id="valor"  class="form-control"tabindex="3" required onkeyup="validarValor()">
+                            <input type="text" name="value" id="valor" value="{{ old('value') }}" class="form-control"tabindex="3" required onkeyup="validarValor()">
                             <span id="estadoValor"></span>
                             @error('value')
                       <div class="alert alert-danger">{{$message}}</div>
@@ -314,7 +314,7 @@ function validarValor(){
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
                             <label for="name">Nombre*</label>
-                            <input type="text" name="na" id="nameN"  class="form-control"tabindex="3">
+                            <input type="text" name="na" id="nameN" value="{{ old('na') }}" class="form-control"tabindex="3">
                             @error('na')
                       <div class="alert alert-danger">{{$message}}</div>
                       @enderror
@@ -328,7 +328,7 @@ function validarValor(){
                       <div class="card-body">
                         <div class="form-group">
                         <label style="font-size: 16px;">Nota*</label>
-                          <input type="text" style="height: 5em"name="info"  class="btn-block">
+                          <input type="text" style="height: 5em"name="info" value="{{ old('info') }}" class="btn-block">
                           @error('info')
                       <div class="alert alert-danger">{{$message}}</div>
                       @enderror
@@ -343,7 +343,7 @@ function validarValor(){
                 <button class="btn btn-success my-2 my-sm-0" type="submit" value="Guardar Datos">Guardar</button>
                 </div> 
                    
-                    </form>
+              </form>
                 
                 </div>
             

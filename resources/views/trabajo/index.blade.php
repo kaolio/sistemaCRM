@@ -1,11 +1,59 @@
 @extends('adminlte::page')
 @section('content')
 
+<h1 align="center"><strong>ORDEN DE TRABAJO</strong></h1>
+<div class="d-flex">
+  <div class="p-2">
+    <button type="button" class="btn btn-primary">Excel</button>
+    <button type="button" class="btn btn-primary">PDF</button> 
+    <button type="button" class="btn btn-primary">Imprimir</button>
+  </div>
+  <div class="ml-auto p-2">
+    <form class="form-inline" action="{{ url('trabajos ')}}" method="GET">
+      
+      <label for="">Busqueda Rápida</label>
+      <div class="form-group mx-sm-3 mb-2">
+        <input type="" class="form-control" id="busqueda" name="busqueda" value="{{$busqueda}}" placeholder="Modelo o Serial">
+      </div>
+      <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+    </form>
+</div>
+</div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text" id="btnGroupAddon">Prioridad</div>
+          <select name="priory" id="priory" class="form-control">
+                                    <option value="Todos">Todos</option>
+                                    <option value="Normal">Normal</option>
+                                    <option value="Alta">Alta</option>
+                                    <option value="Urgente">Urgente</option>
+          </select>
+        </div>
+        <div class="input-group-prepend">
+          <div class="input-group-text" id="btnGroupAddon">Estado</div>
+        
+        <select name="estado" id="estado" class="form-control">
+          <option value="">Todos</option>
+          <option value="enProceso">En Proceso</option>
+          <option value="actuales">Actuales</option>
+          <option value="compleados">Completados</option>
+        </select>
+      </div>
+      <div class="input-group-prepend">
+        <div class="input-group-text" id="btnGroupAddon">Ingeniero</div>
+      
+      <select name="ingeniero" id="ingeniero" class="form-control">
+        <option value="">Todos los Ingenieros</option>
+        <option value="Alex">Alex</option>
+        <option value="Fercho">Fercho</option>
+        <option value="Javier">Javier</option>
+      </select>
+    </div>
+     </div>
 
-<div class="container">
-  <div class="table-responsive">
-<table class="table table-hover">
-  <thead class="thead-dark">
+  <div class="">
+<table class="table table-striped table-hover table-responsive">
+  <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
     <tr>
       <th>#</th>
       <th>Informacion del Cliente</th>
@@ -22,8 +70,13 @@
       <th>Acciones</th>
     </tr>
   </thead>
-  <tbody>
-    @foreach ($trabajos as $trabajo)
+  <tbody class="table-bordered">
+    @if(count($trabajo)<=0)
+      <tr>
+        <th>No Hay Resultados.</th>  
+      <tr>
+     @else   
+    @foreach ($trabajo as $trabajo)
       <tr>
         <td>{{$trabajo->id}}</td>
         <td>{{$trabajo->infoCliente}}</td>
@@ -62,7 +115,7 @@
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>
                                    
-                    <button class="btn btn-light btn-sm" style="padding-left: 1px">
+                    <button class="btn btn-primary btn-sm" style="padding-left: 1px">
                       Aceptar
                     </button>
                     
@@ -74,10 +127,11 @@
           
         </td>  
       </tr>
-      @endforeach  
+      @endforeach 
+      @endif 
   </tbody> 
 </table>
 </div>
-</div>
+
 
 @endsection
