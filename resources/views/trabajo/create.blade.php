@@ -38,41 +38,41 @@ function validarTiempo(){
   }
 }
 
-function validarFabricante(){
-  if($("#fabricante").val() == ""){
-    $("#estadoFabricante").html("<span  class='error'><h5 class='menor'>Este campo no puede estar vacío</h5></span>"); 
-  }else{
-      $("#estadoFabricante").html("<span  class='bien'><h5 >Válido</h5></span>");
+// function validarFabricante(){
+//   if($("#fabricante").val() == ""){
+//     $("#estadoFabricante").html("<span  class='error'><h5 class='menor'>Este campo no puede estar vacío</h5></span>"); 
+//   }else{
+//       $("#estadoFabricante").html("<span  class='bien'><h5 >Válido</h5></span>");
         
-  }
-}
+//   }
+// }
 
-function validarModelo(){
-  if($("#modelo").val() == ""){
-    $("#estadoModelo").html("<span  class='error'><h5 class='menor'>Este campo no puede estar vacío</h5></span>"); 
-  }else{
-      $("#estadoModelo").html("<span  class='bien'><h5 >Válido</h5></span>");
+// function validarModelo(){
+//   if($("#modelo").val() == ""){
+//     $("#estadoModelo").html("<span  class='error'><h5 class='menor'>Este campo no puede estar vacío</h5></span>"); 
+//   }else{
+//       $("#estadoModelo").html("<span  class='bien'><h5 >Válido</h5></span>");
         
-  }
-}
+//   }
+// }
 
-function validarSerial(){
-  if($("#serial").val() == ""){
-    $("#estadoSerial").html("<span  class='error'><h5 class='menor'>Este campo no puede estar vacío</h5></span>"); 
-  }else{
-      $("#estadoSerial").html("<span  class='bien'><h5 >Válido</h5></span>");
+// function validarSerial(){
+//   if($("#serial").val() == ""){
+//     $("#estadoSerial").html("<span  class='error'><h5 class='menor'>Este campo no puede estar vacío</h5></span>"); 
+//   }else{
+//       $("#estadoSerial").html("<span  class='bien'><h5 >Válido</h5></span>");
         
-  }
-}
+//   }
+// }
 
-function validarLocalizacion(){
-  if($("#localizacion").val() == ""){
-    $("#estadoLocalizacion").html("<span  class='error'><h5 class='menor'>Este campo no puede estar vacío</h5></span>"); 
-  }else{
-      $("#estadoLocalizacion").html("<span  class='bien'><h5 >Válido</h5></span>");
+// function validarLocalizacion(){
+//   if($("#localizacion").val() == ""){
+//     $("#estadoLocalizacion").html("<span  class='error'><h5 class='menor'>Este campo no puede estar vacío</h5></span>"); 
+//   }else{
+//       $("#estadoLocalizacion").html("<span  class='bien'><h5 >Válido</h5></span>");
         
-  }
-}
+//   }
+// }
 
 </script>  
 
@@ -90,7 +90,7 @@ function validarLocalizacion(){
                 <div class="card">
                     <div class="card-body">
                     <label class="card-title" style="height: 2rem;">Informacion del Cliente</label>
-                      <input type="text" id="infoCliente" name="infoC" class="btn-block" required onkeyup="validarInfo()">
+                      <input type="text" id="infoCliente" name="infoC" value="{{ old('infoC') }}" class="btn-block" required onkeyup="validarInfo()">
                       <span id="estadoInfo"></span>
                       <br>
                       <a href="{{ url('/cliente/nuevo')}}" class="card-link">Nuevo Cliente</a> 
@@ -146,24 +146,24 @@ function validarLocalizacion(){
                             </select>
                             <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Fabricante</span>
                             <input type="text" id="fabricante" name="Fabricante" class="form-control" 
-                                placeholder="Ingrese el fabricante" required onkeyup="validarFabricante()">
+                                placeholder="Ingrese el fabricante" value="{{ old('Fabricante') }}" required onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32)) ">
                                 <span id="estadoFabricante"></span>
 
                                 <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Modelo</span>
-                            <input type="text" id="modelo" name="Modelo" class="form-control" 
-                                placeholder="Ingrese el modelo" required onkeyup="validarModelo()">
+                            <input type="text" id="modelo" name="Modelo" value="{{ old('Modelo') }}" class="form-control" 
+                                placeholder="Ingrese el modelo" required onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32)) ">
                                 <span id="estadoModelo"></span>
 
 
                                 <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Serial</span>
-                            <input type="text" id="serial" name="Serial" class="form-control" 
-                                placeholder="Ingrese el serial" required onkeyup="validarSerial()">
+                            <input type="text" id="serial" name="Serial" value="{{ old('Serial') }}" class="form-control" 
+                                placeholder="Ingrese el serial" required onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32)) ">
                                 <span id="estadoSerial"></span>
 
 
                                 <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Localizacion</span>
-                            <input type="text" id="localizacion" name="Localizacion" class="form-control" 
-                                placeholder="Ingrese la localizacion" required onkeyup="validarLocalizacion()">
+                            <input type="text" id="localizacion" name="Localizacion" value="{{ old('Localizacion') }}" class="form-control" 
+                                placeholder="Ingrese la localizacion" required onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32)) ">
                                 <span id="estadoLocalizacion"></span>
                           </div>
                       </div>
@@ -173,19 +173,19 @@ function validarLocalizacion(){
                
                 <div class="card">
                     <div class="card-body">
-                    <h5 class="card-title" style="height: 2rem;"><strong>información de mal funcionamiento del dispositivo *</strong></h5>
-                      <input type="text" style="height: 10em" name="infoDispositivo" class="btn-block" >
+                    <h5 class="card-title" style="height: 2rem;"><strong>información de mal funcionamiento del dispositivo </strong></h5>
+                      <input type="text" style="height: 10em" name="infoDispositivo" class="btn-block" required >
                     
                     </div>
                 </div>
                 <div class="card" >
                     <div class="card-body">
-                    <h5 class="card-title" style="height: 2rem;"><strong>Dato importante *</strong></h5>
-                      <input type="text" style="height: 10em" name="DatoImportante" class="btn-block" >
+                    <h5 class="card-title" style="height: 2rem;"><strong>Dato importante </strong></h5>
+                      <input type="text" style="height: 10em" name="DatoImportante" class="btn-block" required>
                     
                     </div>
                 </div>
-                <h3>Campos Opcionales *</h3>
+                
                 <br><br>
                 <div class="form-group">
                 <a href="" class="btn btn-danger my-2 my-sm-0">Cancelar</a>
