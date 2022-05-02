@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 class ClienteController extends Controller
 {
 
@@ -20,10 +21,16 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $datoCliente['clientes']=Cliente::paginate(10);
-        return view('cliente.index',$datoCliente);
+        $busqueda=trim($request->get('busqueda'));
+        $cliente=DB::table('clientes')
+                        ->select('id','NombreCliente','VATid','Calle','Numero','Apt','CodigoPostal','Pak','NombreCiudad','Pais','Idioma','Tipo','Valor','NombreX','Nota')
+                        ->where('NombreCliente', 'LIKE', '%'.$busqueda.'%')
+                        ->orderBy('id','asc')
+                        ->paginate(10);
+        //$datoCliente['clientes']=Cliente::paginate(10);
+        return view('cliente.index', compact('busqueda','cliente'));
     }
 
     /**
@@ -44,35 +51,33 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
-            'nombre' => 'required|string|regex:/^[\pL\s\-]+$/u|max:50',
-            'vat' => 'required|integer|max:99999999|min:9999999',
-            'calle' => 'required|string|regex:/^[\pL\s\-]+$/u|max:50',
-            'Num' => 'required|integer|max:99999999|min:9999999',
-            'apt' => 'required|integer|max:99999999|min:9999999',
-            'codP' => 'required|integer|max:99999999|min:9999999',
-            'pak' => 'required|integer|max:99999999|min:9999999',
-            'city' => 'required|string|regex:/^[\pL\s\-]+$/u|max:50',
-            'pais' => 'required|string|regex:/^[\pL\s\-]+$/u|max:50',
-            'value' => 'required|string|regex:/^[\pL\s\-]+$/u|max:50',
-            'na' => 'required|string|regex:/^[\pL\s\-]+$/u|max:50',
-            'info' => 'required|string|regex:/^[\pL\s\-]+$/u|max:50',
+            
+            'vat'=>'required|integer',
+            'calle'=>'required|max:50',
+            'Numero'=>'required|integer',
+            'apt'=>'required|integer',
+            'codigoPostal'=>'required|integer',
+            'pak'=>'required',
+            'nombreCiudad'=>'required|string|max:50',
+            'language'=>'required',
+            'tipo'=>'required|string',
+            'value'=>'required'
+            
+            
         ]);
-
-       
-
+        
 
 
         $datoCliente = new Cliente;
-        $datoCliente-> NombreCliente = $request->get('nombre');
+        $datoCliente-> NombreCliente = $request->get('Nombre');
         $datoCliente-> VATid = $request->get('vat');
         $datoCliente->Calle = $request->get('calle');
-        $datoCliente->Numero = $request->get('Num');
+        $datoCliente->Numero = $request->get('Numero');
         $datoCliente->Apt = $request->get('apt');
-        $datoCliente->CodigoPostal = $request->get('codP');
+        $datoCliente->CodigoPostal = $request->get('codigoPostal');
         $datoCliente->Pak = $request->get('pak');
-        $datoCliente->NombreCiudad = $request->get('city');
+        $datoCliente->NombreCiudad = $request->get('nombreCiudad');
         $datoCliente->Pais = $request->get('pais');
         $datoCliente->Idioma = $request->get('language');
         $datoCliente->Tipo = $request->get('tipo');
@@ -81,7 +86,7 @@ class ClienteController extends Controller
         $datoCliente->Nota = $request->get('info');
         //dd($datoCliente);
         $datoCliente->save();
-        //return response()->json($datoCliente);
+        return redirect('clientes');
     }
 
     /**
@@ -120,11 +125,11 @@ class ClienteController extends Controller
         $clienteUpdate->NombreCliente = $request->Nombre;
         $clienteUpdate-> VATid = $request->vat;
         $clienteUpdate->Calle = $request->calle;
-        $clienteUpdate->Numero = $request->Num;
+        $clienteUpdate->Numero = $request->Numero;
         $clienteUpdate->Apt = $request->apt;
-        $clienteUpdate->CodigoPostal = $request->codP;
+        $clienteUpdate->CodigoPostal = $request->codigoPostal;
         $clienteUpdate->Pak = $request->pak;
-        $clienteUpdate->NombreCiudad = $request->city;
+        $clienteUpdate->NombreCiudad = $request->nombreCiudad;
         $clienteUpdate->Pais = $request->pais;
         $clienteUpdate->Idioma = $request->language;
         $clienteUpdate->Tipo = $request->tipo;

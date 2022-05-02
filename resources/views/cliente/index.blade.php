@@ -1,9 +1,22 @@
 @extends('adminlte::page')
 @section('content')
-<div class="container">
+<h1 align="center"><strong>CLIENTES</strong></h1>
+<div class="d-flex">
+  <div class="ml-auto p-2">
+    <form class="form-inline" action="{{ url('clientes ')}}" method="GET">
+      
+      <label for="">Busqueda Rápida</label>
+      <div class="form-group mx-sm-3 mb-2">
+        <input type="" class="form-control" id="busqueda" name="busqueda" value="{{$busqueda}}" placeholder="Nombre">
+      </div>
+      <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+    </form>
+</div>
+</div>
+<div class="">
   <div class="table-responsive">
-<table class="table table-hover">
-  <thead class="thead-dark">
+<table class="table table-striped table-hover table-responsive">
+  <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
     <tr>
       <th>#</th>
       <th>Nombre</th>
@@ -24,7 +37,7 @@
     </tr>
   </thead>
   <tbody>
-    @foreach ($clientes as $cliente)
+    @foreach ($cliente as $cliente)
       <tr>
         <td>{{$cliente->id}}</td>
         <td>{{$cliente->NombreCliente}}</td>
@@ -44,11 +57,37 @@
         <td>
           <a href="{{ url('/cliente/editar/'.$cliente->id)}}" class="btn btn-success">Editar</a> 
 
-          <form action="{{ url('/cliente/'.$cliente->id) }}" method="post" class="d-inline">
+          {{-- <form action="{{ url('/cliente/'.$cliente->id) }}" method="post" class="d-inline">
             @csrf
-            {{method_field('DELETE')}}
-              <input type="submit"class="btn btn-danger btn_remove" onclick="return confirm('Quieres borrar?')"value="Borrar">
-          </form>
+            {{method_field('DELETE')}} --}}
+            <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Eliminar</button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Eliminar Cliente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                   ¿Realmente Desea Borrar el Cliente?
+                  </div>
+                  <form action="{{url('/cliente/'.$cliente->id)}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>
+                                   
+                    <button class="btn btn-light btn-sm" style="padding-left: 1px">
+                      Aceptar
+                    </button>
+                    
+                  </div>
+                </form> 
+                </div>
+              </div>
+            </div>
           
         </td>  
       </tr>

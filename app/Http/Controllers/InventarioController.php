@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Inventario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+// use Barryvdh\DomPDF\Facade as PDF;
+use PDF;
 
 class InventarioController extends Controller
 {
@@ -29,6 +31,7 @@ class InventarioController extends Controller
                         ->select('id','manufactura','modelo','numero_de_serie','firmware','capacidad','pbc','ubicacion','factor_de_forma','nota','cabecera','info_de_cabecera')
                         ->where('modelo', 'LIKE', '%'.$busqueda.'%')
                         ->orWhere('numero_de_serie', 'LIKE', '%'.$busqueda.'%')
+                        ->orwhere('factor_de_forma', 'LIKE', '%'.$busqueda.'%')
                         ->orderBy('id','desc')
                         ->paginate(10);
     //metodo facades para consultar la db //table name
@@ -36,9 +39,32 @@ class InventarioController extends Controller
         // $inventario = Inventario::all();
         //metodo eloquent para consultar la bd
 
-        return view('inventario.index', compact('inventario','busqueda'));
+        return view('inventario.index', compact('inventario','busqueda')); 
     }
+    // public function buscarFactor(Request $request )
+    // {
+    //     $busquedaFactor=trim($request->get('busquedaFactor'));
+    //     $inventario=DB::table('inventarios')
+    //                     ->select('id','manufactura','modelo','numero_de_serie','firmware','capacidad','pbc','ubicacion','factor_de_forma','nota','cabecera','info_de_cabecera')
+    //                     ->where('factor_de_forma', 'LIKE', '%'.$busquedaFactor.'%')
+    //                     // ->orWhere('numero_de_serie', 'LIKE', '%'.$busqueda.'%')
+    //                     ->orderBy('id','desc')
+    //                     ->paginate(10);
+    // //metodo facades para consultar la db //table name
 
+    //     // $inventario = Inventario::all();
+    //     //metodo eloquent para consultar la bd
+
+    //     return view('inventario.index', compact('inventario','busquedaFactor')); 
+    // }
+    
+
+    function descargarPDF(){
+        
+        $pdf = PDF::loadView('inventario.index');
+     
+        return $pdf->download('tutsmake.pdf');
+    }
     /**
      * Show the form for creating a new resource.
      *

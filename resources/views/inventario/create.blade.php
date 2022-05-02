@@ -15,8 +15,9 @@
         color: rgb(15, 208, 67);
         font-size: medium;}
 </style>
+
 <script>
-    function validarModelo(){
+  function validarModelo(){
     if($("#modelo").val() == ""){
       $("#estadoModelo").html("<span  class='error'><h5 class='menor'>Este campo no puede estar vacío</h5></span>");
     }else{
@@ -32,8 +33,8 @@
     }
   }
   function validarSerie(){
-    if($("#numero_de_serie").val() == ""){
-      $("#estadoSerie").html("<span  class='error'><h5 class='menor'>Este campo no puede estar vacío</h5></span>"); 
+        if($("#numero_de_serie").val() == ""){
+                $("#estadoSerie").html("<span  class='error'><h5 class='menor'>Este campo no puede estar vacío</h5></span>"); 
     }else{
           if ($("#numero_de_serie").val().length < 5) {
               $("#estadoSerie").html("<span  class='error'><h5 class='menor'>Ingrese de 5 hasta 40 caracteres</h5></span>");
@@ -64,19 +65,15 @@
   function validarCapacidad(){
     if($("#capacidad").val() == ""){
       $("#estadoCapacidad").html("<span  class='error'><h5 class='menor'>Este campo no puede estar vacío</h5></span>"); 
-    }else{
-        $("#estadoCapacidad").html("<span  class='bien'><h5 class='menor'>Válido</h5></span>");
-              jQuery("#capacidad").on('input', function (evt) {
-                  // Allow only numbers.
-                  jQuery(this).val(jQuery(this).val().replace(/[^0-9]/g, ''));
-              });
+    }else{ 
+        $("#estadoCapacidad").html("<span  class='bien'><h5 class='menor'>Válido</h5></span>");              
     }
   }
   function validarPbc(){
     if($("#pbc").val() == ""){
       $("#estadoPbc").html("<span  class='error'><h5 class='menor'>Este campo no puede estar vacío</h5></span>"); 
     }else{
-        $("#estadoPbc").html("<span  class='bien'><h5 class='menor'>Válido</h5></span>");    
+        $("#estadoPbc").html("<span  class='bien'><h5 class='menor'>Válido</h5></span>");
     }
   }
 </script>
@@ -113,7 +110,8 @@
         <div class="form-group col-md-6 pb-17">
             <label for="inputPassword4">Modelo</label>
             <input type="text" class="form-control" id="modelo" name="modelo" placeholder="Ingrese el modelo"
-            value="{{ old('modelo') }}" onkeyup="validarModelo()" required>
+            value="{{ old('modelo') }}" onkeyup="validarModelo()" required
+            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
             <span id="estadoModelo"></span>
           </div>
         </div>
@@ -121,19 +119,21 @@
           <div class="form-group col-md-4">
             <label for="inputCity">Número de Serie</label>
             <input type="text" class="form-control" id="numero_de_serie" name="numero_de_serie"
-            placeholder="Ingrese un numero de serie" value="{{ old('numero_de_serie') }}" onkeyup="validarSerie()" required>
+            placeholder="Ingrese un numero de serie" value="{{ old('numero_de_serie') }}" onkeyup="validarSerie()" pattern="[A-Za-z0-9]+" title="No debe contener caracteres especiales" required
+            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
             <span id="estadoSerie"></span>
           </div>
           <div class="form-group col-md-4">
             <label for="inputCity">Firmware</label>
             <input type="text" class="form-control" id="firmware" name="firmware"
-            placeholder="Ingrese el firmware" value="{{ old('firmware') }}" onkeyup="validarFirmware()" required>
+            placeholder="Ingrese el firmware" value="{{ old('firmware') }}" onkeyup="validarFirmware()" required
+            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
             <span id="estadoFirmware"></span>
           </div>
           <div class="form-group col-md-4">
             <label for="inputCity">Capacidad (GB)</label>
             <input type="text" class="form-control" id="capacidad" name="capacidad" placeholder="Ingrese la capacidad en GB"
-            value="{{ old('capacidad') }}" onkeyup="validarCapacidad()" required maxlength="5">
+            value="{{ old('capacidad') }}" onkeyup="validarCapacidad()" required maxlength="5" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
             <span id="estadoCapacidad"></span>
           </div>
         </div>
@@ -141,12 +141,14 @@
           <div class="form-group col-md-4">
             <label for="inputCity">PCB</label>
             <input type="text" class="form-control" id="pbc" name="pbc" placeholder="Ingrese la placa del disco"
-            value="{{ old('pbc') }}" onkeyup="validarPbc()" required>
+            value="{{ old('pbc') }}" onkeyup="validarPbc()" required
+            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
             <span id="estadoPbc"></span>
           </div>
           <div class="form-group col-md-4">
             <label for="inputCity">Ubicación *</label>
-              <input type="text" class="form-control" id="ubicacion" name="ubicacion" placeholder="Ingrese la ubicación">
+              <input type="text" class="form-control" id="ubicacion" name="ubicacion" placeholder="Ingrese la ubicación" 
+              onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
             </div>
             <div class="form-group col-md-4" style="padding-top: 32px">
               <div class="input-group">
@@ -163,16 +165,16 @@
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="inputCity">Nota *</label>
-          <input type="text" class="form-control" id="nota" name="nota" placeholder="Ingrese una nota del disco">
+          <textarea class="form-control" id="nota" name="nota" rows="1" cols="10" placeholder="Ingrese una nota del disco"></textarea>
         </div>
         <div class="form-group col-md-4">
           <label for="inputCity">Cabezal *</label>
-          <input type="text" class="form-control" id="cabecera" name="cabecera" placeholder="Ingrese el cabezal del disco">
+          <input type="text" class="form-control" id="cabecera" name="cabecera" placeholder="Ingrese el cabezal del disco" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
         </div>
         <div class="form-group col-md-4">
           <label for="inputCity">Información del Cabezal *</label>
           <input type="text" class="form-control" id="info_de_cabecera" name="info_de_cabecera"
-          placeholder="Ingrese información acerca del cabezal">
+          placeholder="Ingrese información acerca del cabezal" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
         </div>
         <span class="mb-4"><strong>*</strong> Campos Opcionales</span>
       </div>
@@ -191,3 +193,4 @@
 @stop
 @section('js')
 @stop
+

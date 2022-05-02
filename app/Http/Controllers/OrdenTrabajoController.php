@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\OrdenTrabajo;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use Illuminate\Support\Facades\DB;
 class OrdenTrabajoController extends Controller
 {
 
@@ -20,10 +21,17 @@ class OrdenTrabajoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $datoTrabajo['trabajos']=OrdenTrabajo::paginate(10);
-        return view('trabajo.index',$datoTrabajo);
+        $busqueda=trim($request->get('busqueda'));
+        $trabajo=DB::table('orden_trabajos')
+                        ->select('id','infoCliente','Prioridad','TiempoEstimado','Tipo','Rol','Fabricante','Modelo','Serial','Localizacion','informacionDispositivo','datoImportante')
+                        ->where('Modelo', 'LIKE', '%'.$busqueda.'%')
+                        ->orWhere('Serial', 'LIKE', '%'.$busqueda.'%')
+                        ->orderBy('id','asc')
+                        ->paginate(10);
+        //$datoTrabajo['trabajos']=OrdenTrabajo::paginate(10);
+        return view('trabajo.index', compact('busqueda','trabajo'));
         
     }
 
@@ -45,24 +53,31 @@ class OrdenTrabajoController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'infoDispositivo' => '',
+            'DatoImportante' => ''
+            
+            ]);
+
+        
         $datoTrabajo = new OrdenTrabajo;
         $datoTrabajo->infoCliente = $request->get('infoC');
         $datoTrabajo->Prioridad = $request->get('priority');
-        $datoTrabajo->CasoUrgente1 = $request->get('urgent1');
-        $datoTrabajo->CasoUrgente2 = $request->get('urgent2');
-        $datoTrabajo->RAID = $request->get('urgent3');
+        $datoTrabajo->TiempoEstimado = $request->get('tiempoEstimado');
         $datoTrabajo->Tipo = $request->get('Type');
         $datoTrabajo->Rol = $request->get('Role');
-        $datoTrabajo->Fabricante = $request->get('Fab');
-        $datoTrabajo->Modelo = $request->get('Model');
+        $datoTrabajo->Fabricante = $request->get('Fabricante');
+        $datoTrabajo->Modelo = $request->get('Modelo');
         $datoTrabajo->Serial = $request->get('Serial');
-        $datoTrabajo->Localizacion = $request->get('Location');
-        $datoTrabajo->infoDevice = $request->get('infoDevice');
-        $datoTrabajo->importantDate = $request->get('important');
-        //dd($datoTrabajo);
+        $datoTrabajo->Localizacion = $request->get('Localizacion');
+        $datoTrabajo->informacionDispositivo = $request->get('infoDispositivo');
+        $datoTrabajo->datoImportante = $request->get('DatoImportante');
+        
+        
         $datoTrabajo->save();
-
         return redirect('trabajos');
+        //dd($cliente);
     }
 
     /**
@@ -101,17 +116,15 @@ class OrdenTrabajoController extends Controller
         $ordenUpdate = OrdenTrabajo::findOrFail($id);
         $ordenUpdate->infoCliente = $request->infoC;
         $ordenUpdate->Prioridad = $request->priority;
-        $ordenUpdate->CasoUrgente1 = $request->urgent1;
-        $ordenUpdate->CasoUrgente2 = $request->urgent2;
-        $ordenUpdate->RAID = $request->urgent3;
+        $ordenUpdate->TiempoEstimado = $request->tiempoEstimado;
         $ordenUpdate->Tipo = $request->Type;
         $ordenUpdate->Rol = $request->Role;
-        $ordenUpdate->Fabricante = $request->Fab;
-        $ordenUpdate->Modelo = $request->Model;
+        $ordenUpdate->Fabricante = $request->Fabricante;
+        $ordenUpdate->Modelo = $request->Modelo;
         $ordenUpdate->Serial = $request->Serial;
-        $ordenUpdate->Localizacion = $request->Location;
-        $ordenUpdate->infoDevice = $request->infoDevice;
-        $ordenUpdate->importantDate = $request->important;
+        $ordenUpdate->Localizacion = $request->Localizacion;
+        $ordenUpdate->informacionDispositivo = $request->infoDispositivo;
+        $ordenUpdate->datoImportante = $request->DatoImportante;
         $ordenUpdate->save();        
         return redirect('trabajos');
     }

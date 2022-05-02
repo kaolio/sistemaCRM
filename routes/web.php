@@ -59,6 +59,7 @@ Route::post('/inventario/nuevo',[InventarioController::class,'store']);
 Route::get('/inventario/editar/{id}',[InventarioController::class,'edit']);
 Route::post('/inventario/editar/{id}',[InventarioController::class,'update']);
 Route::delete('/inventario/{id}',[InventarioController::class,'destroy']);
+Route::get('/inventario/descargar-pdf',[InventarioController::class,'descargarPDF']); //ruta para descargar pdf
 
 //CLIENTES
 Route::get('/clientes',[ClienteController::class,'index']);
