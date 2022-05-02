@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\OrdenTrabajo;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use Illuminate\Support\Facades\DB;
 class OrdenTrabajoController extends Controller
 {
 
@@ -20,10 +21,17 @@ class OrdenTrabajoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $datoTrabajo['trabajos']=OrdenTrabajo::paginate(10);
-        return view('trabajo.index',$datoTrabajo);
+        $busqueda=trim($request->get('busqueda'));
+        $trabajo=DB::table('orden_trabajos')
+                        ->select('id','infoCliente','Prioridad','TiempoEstimado','Tipo','Rol','Fabricante','Modelo','Serial','Localizacion','informacionDispositivo','datoImportante')
+                        ->where('Modelo', 'LIKE', '%'.$busqueda.'%')
+                        ->orWhere('Serial', 'LIKE', '%'.$busqueda.'%')
+                        ->orderBy('id','asc')
+                        ->paginate(10);
+        //$datoTrabajo['trabajos']=OrdenTrabajo::paginate(10);
+        return view('trabajo.index', compact('busqueda','trabajo'));
         
     }
 

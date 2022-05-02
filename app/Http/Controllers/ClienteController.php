@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 class ClienteController extends Controller
 {
 
@@ -20,10 +21,16 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $datoCliente['clientes']=Cliente::paginate(10);
-        return view('cliente.index',$datoCliente);
+        $busqueda=trim($request->get('busqueda'));
+        $cliente=DB::table('clientes')
+                        ->select('id','NombreCliente','VATid','Calle','Numero','Apt','CodigoPostal','Pak','NombreCiudad','Pais','Idioma','Tipo','Valor','NombreX','Nota')
+                        ->where('NombreCliente', 'LIKE', '%'.$busqueda.'%')
+                        ->orderBy('id','asc')
+                        ->paginate(10);
+        //$datoCliente['clientes']=Cliente::paginate(10);
+        return view('cliente.index', compact('busqueda','cliente'));
     }
 
     /**

@@ -1,9 +1,22 @@
 @extends('adminlte::page')
 @section('content')
-<div class="container">
+<h1 align="center"><strong>CLIENTES</strong></h1>
+<div class="d-flex">
+  <div class="ml-auto p-2">
+    <form class="form-inline" action="{{ url('clientes ')}}" method="GET">
+      
+      <label for="">Busqueda Rápida</label>
+      <div class="form-group mx-sm-3 mb-2">
+        <input type="" class="form-control" id="busqueda" name="busqueda" value="{{$busqueda}}" placeholder="Nombre">
+      </div>
+      <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+    </form>
+</div>
+</div>
+<div class="">
   <div class="table-responsive">
-<table class="table table-hover">
-  <thead class="thead-dark">
+<table class="table table-striped table-hover table-responsive">
+  <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
     <tr>
       <th>#</th>
       <th>Nombre</th>
@@ -24,7 +37,7 @@
     </tr>
   </thead>
   <tbody>
-    @foreach ($clientes as $cliente)
+    @foreach ($cliente as $cliente)
       <tr>
         <td>{{$cliente->id}}</td>
         <td>{{$cliente->NombreCliente}}</td>

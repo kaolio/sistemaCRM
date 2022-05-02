@@ -115,7 +115,8 @@
         <div class="form-group col-md-6">
           <label for="inputPassword4">Modelo</label>
           <input type="text" class="form-control" id="modelo" name="modelo" placeholder="" value="{{$inventario->modelo}}"
-                  value="{{ old('modelo') }}" onkeyup="validarModelo()" required>
+                  value="{{ old('modelo') }}" onkeyup="validarModelo()" required
+                  onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
                   <span id="estadoModelo"></span>
         </div>
       </div>
@@ -123,19 +124,22 @@
           <div class="form-group col-md-4">
             <label for="inputCity">Número de Serie</label>
             <input type="text" class="form-control" id="numero_de_serie" name="numero_de_serie" value="{{$inventario->numero_de_serie}}"
-                   value="{{ old('numero_de_serie') }}" onkeyup="validarSerie()" required>
+                   value="{{ old('numero_de_serie') }}" onkeyup="validarSerie()" required 
+                   onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
                    <span id="estadoSerie"></span>
           </div>
           <div class="form-group col-md-4">
               <label for="inputCity">Firmware</label>
               <input type="text" class="form-control" id="firmware" name="firmware" value="{{$inventario->firmware}}"
-                     value="{{ old('firmware') }}" onkeyup="validarFirmware()" required>
+                     value="{{ old('firmware') }}" onkeyup="validarFirmware()" required 
+                     onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
                      <span id="estadoFirmware"></span>
           </div>
             <div class="form-group col-md-4">
               <label for="inputCity">Capacidad (GB)</label>
               <input type="text" class="form-control" id="capacidad" name="capacidad" value="{{$inventario->capacidad}}"
-                     value="{{ old('capacidad') }}" onkeyup="validarCapacidad()" required maxlength="5">
+                     value="{{ old('capacidad') }}" onkeyup="validarCapacidad()" required maxlength="5"
+                     onkeypress="return ((event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
                      <span id="estadoCapacidad"></span>
           </div>
       </div>
@@ -143,12 +147,14 @@
           <div class="form-group col-md-4">
             <label for="inputCity">PCB</label>
             <input type="text" class="form-control" id="pbc" name="pbc" value="{{$inventario->pbc}}"
-                   value="{{ old('pbc') }}" onkeyup="validarPbc()" required>
+                   value="{{ old('pbc') }}" onkeyup="validarPbc()" required
+                   onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
                    <span id="estadoPbc"></span>
           </div>
           <div class="form-group col-md-4">
               <label for="inputCity">Ubicación *</label>
-              <input type="text" class="form-control" id="ubicacion" name="ubicacion" value="{{$inventario->ubicacion}}">
+              <input type="text" class="form-control" id="ubicacion" name="ubicacion" value="{{$inventario->ubicacion}}"
+              onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
           </div>
           <div class="form-group col-md-4" style="padding-top: 32px">
             <div class="input-group">
@@ -169,11 +175,13 @@
           </div>
           <div class="form-group col-md-4">
               <label for="inputCity">Cabezal *</label>
-              <input type="text" class="form-control" id="cabecera" name="cabecera" value="{{$inventario->cabecera}}">
+              <input type="text" class="form-control" id="cabecera" name="cabecera" value="{{$inventario->cabecera}}"
+              onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
           </div>
             <div class="form-group col-md-4">
               <label for="inputCity">Información del Cabezal *</label>
-              <input type="text" class="form-control" id="info_de_cabecera" name="info_de_cabecera" value="{{$inventario->info_de_cabecera}}">
+              <input type="text" class="form-control" id="info_de_cabecera" name="info_de_cabecera" value="{{$inventario->info_de_cabecera}}"
+              onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
           </div>
           <span class="mb-4"><strong>*</strong> Campos Opcionales</span>
       </div>
