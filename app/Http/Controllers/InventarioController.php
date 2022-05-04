@@ -61,9 +61,12 @@ class InventarioController extends Controller
 
     function descargarPDF(){
         
-        $pdf = PDF::loadView('inventario.index');
-     
-        return $pdf->download('tutsmake.pdf');
+        
+
+        $pdf = \PDF::loadView('Inventario.pdf');
+    
+        return $pdf->setPaper('carta', 'portrait')->stream('inventario.pdf');
+
     }
     /**
      * Show the form for creating a new resource.
