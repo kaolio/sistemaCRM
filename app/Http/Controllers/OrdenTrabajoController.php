@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\OrdenTrabajo;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use App\Models\Roles;
 use Illuminate\Support\Facades\DB;
 class OrdenTrabajoController extends Controller
 {
@@ -51,7 +52,7 @@ class OrdenTrabajoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Roles $roles)
     {
 
         $request->validate([
@@ -135,9 +136,12 @@ class OrdenTrabajoController extends Controller
      * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(OrdenTrabajo $trabajo,$id)
     {
-        OrdenTrabajo::destroy($id); 
-        return redirect('trabajos');
+        // OrdenTrabajo::destroy($id); 
+        // return redirect('trabajos');
+        $trabajo=OrdenTrabajo::findOrFail($id);
+        $trabajo->delete();
+                return redirect('trabajos');
     }
 }

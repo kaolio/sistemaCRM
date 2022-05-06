@@ -67,7 +67,7 @@ Route::get('/inventario/descargar-pdf',[InventarioController::class,'descargarPD
 //CLIENTES
 Route::get('/clientes',[ClienteController::class,'index']);
 Route::delete('/cliente/{id}',[ClienteController::class,'destroy']);
-Route::get('/cliente/nuevo',[ClienteController::class,'create']);
-Route::post('/cliente/nuevo',[ClienteController::class,'store']);
+Route::get('/cliente/nuevo/{roles}',[ClienteController::class,'create']);
+Route::post('/cliente/nuevo/{roles}',[ClienteController::class,'store']);
 Route::get('/cliente/editar/{id}',[ClienteController::class,'edit']);
 Route::put('/cliente/editar/{id}',[ClienteController::class,'update']);

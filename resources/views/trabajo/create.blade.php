@@ -138,10 +138,8 @@ function validarTiempo(){
                               <option value="disk">disk</option>
                             </select>
                             <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Rol</span>
-                            <select name="Role" class="form-control" required>
+                            <select name="Role" id="Roles" class="form-control" required>
                               <option value="">Escoja el Rol</option>
-                              <option value="Junior">Junior</option>
-                              <option value="SemiJunior">SemiJunior</option>
                               <option value="Master">Master</option>
                             </select>
                             <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Fabricante</span>
