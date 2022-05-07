@@ -192,7 +192,7 @@
                                         </br>
                                         </br>
                                         <div class="text-center">
-                                            <button class="btn btn-success "  id="sig" name="sig" disabled>Agregar</button>
+                                            <button class="btn btn-success "  id="sig" name="sig" >Agregar</button>
                                         </div>
                                         
                                                     
