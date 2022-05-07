@@ -132,7 +132,7 @@
           </div>
           <div class="form-group col-md-4">
             <label for="inputCity">Capacidad (GB)</label>
-            <input type="text" class="form-control" id="capacidad" name="capacidad" placeholder="Ingrese la capacidad en GB"
+            <input type="text" class="form-control" id="capacidad" name="capacidad" autocomplete="off" placeholder="Ingrese la capacidad en GB"
             value="{{ old('capacidad') }}" onkeyup="validarCapacidad()" required maxlength="5" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
             <span id="estadoCapacidad"></span>
           </div>

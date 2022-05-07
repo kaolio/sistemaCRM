@@ -137,7 +137,7 @@
           </div>
             <div class="form-group col-md-4">
               <label for="inputCity">Capacidad (GB)</label>
-              <input type="text" class="form-control" id="capacidad" name="capacidad" value="{{$inventario->capacidad}}"
+              <input type="text" class="form-control" id="capacidad" name="capacidad" autocomplete="off" value="{{$inventario->capacidad}}"
                      value="{{ old('capacidad') }}" onkeyup="validarCapacidad()" required maxlength="5"
                      onkeypress="return ((event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
                      <span id="estadoCapacidad"></span>

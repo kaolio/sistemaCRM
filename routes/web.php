@@ -62,7 +62,11 @@ Route::post('/inventario/nuevo',[InventarioController::class,'store']);
 Route::get('/inventario/editar/{id}',[InventarioController::class,'edit']);
 Route::post('/inventario/editar/{id}',[InventarioController::class,'update']);
 Route::delete('/inventario/{id}',[InventarioController::class,'destroy']);
-Route::get('/inventario/descargar-pdf',[InventarioController::class,'descargarPDF']); //ruta para descargar pdf
+Route::get('/inventario/pdf',[InventarioController::class,'descargarPDF']); //ruta para descargar pdf
+Route::get('/inventario/itemPdf/{id}',[InventarioController::class,'descargarItemPdf']); //ruta para descargar pdf (1 item)
+Route::get('/inventario/imprimirInventario',[InventarioController::class,'imprimirPDF']); //imprimir
+Route::get('/inventario/excel',[InventarioController::class,'descargarExcel']); //ruta para descargar excel
+Route::get('/inventario/buscador',[InventarioController::class,'buscador']);  //buscador en tiempo real
 
 //CLIENTES
 Route::get('/clientes',[ClienteController::class,'index']);
