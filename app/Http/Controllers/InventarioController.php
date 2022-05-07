@@ -72,7 +72,7 @@ class InventarioController extends Controller
     public function descargarItemPdf($id){
         $inventario = Inventario::find($id);
         $pdf = \PDF::loadView('/inventario/itemPdf',compact('inventario')); //bien
-        return $pdf->setPaper('a4','landscape')->download('Reporte-Item-Inventario.pdf');
+        return $pdf->setPaper('a4')->download('Reporte-Item-Inventario.pdf');
     }
    
     public function imprimirPdf(){
