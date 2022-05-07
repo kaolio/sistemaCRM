@@ -136,7 +136,7 @@ function validarValor(){
         <h2><strong>Añadir nuevo cliente</strong></h2>
         <div class="container-fluid">
             <form action="{{url('/cliente/nuevo')}}" method="POST">
-              @csrf 
+              @csrf
               <div class="card">
                   <div class="card-body">
                 <div class="row">
@@ -353,6 +353,7 @@ function validarValor(){
 
  </div>  
 </body>
+
   {{-- <script>
     var cont = document.getElementById('inputDinamic'); 
     var botonAgregar = document.getElementById('agregar');

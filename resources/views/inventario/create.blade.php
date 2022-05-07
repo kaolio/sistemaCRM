@@ -82,7 +82,7 @@
 
 <div class="card">
   <div class="container">
-    <form class="m-3" action="{{ url('/inventario/nuevo') }}" method="post">
+    <form class="m-3" action="{{ url('/inventario/nuevo') }}" method="POST">
       @csrf
       <div class="form-row">
         <div class="form-group col-md-6" style="padding-top: 32px">
