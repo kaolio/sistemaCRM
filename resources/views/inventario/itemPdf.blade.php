@@ -11,20 +11,30 @@
     hr {
         height: 1px;
         border-color: 858383;
-
       }
       body {
          /* el tamaño por defecto es 14px */
-         font-size: 12px;
+         font-size: 14px;
         }
         h2{
           font-family:Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol;
         }
+        .titulo{
+            /* text-align:center; */
+            background:rgb(2, 117, 216); 
+            color: aliceblue;
+        }
+        .h3{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        p{
+            font-size: 22px;
+        }
       </style>
 <body>
-  <h2 align="center">REPORTE DE DISCO </h2>
+  <h2 align="center">REPORTE DE DISCO</h2>
     {{-- <img src="{{public_path('imagenes/logo.jpg')}}" class="text-align-left " width="200px "> --}}
-    <div  style="position: absolute; top: 40 px;left: 400px; margin-botom:20px;">
+    <div  style="position: absolute; top: 40 px;left: 250px; margin-botom:20px;">
             Sitio Web: &nbsp;&nbsp; www.irecovery.com <br/>
             E-mail: &nbsp;&nbsp;&nbsp; usuario@irecovery.com <br>
     </div>
@@ -50,66 +60,90 @@
     </div>  --}}
 
   
-    <table  width="50%" align="center" style="margin-top: 40px;margin-bottom: 20px;" >
-      <!--  <tr>
-       <td><hr width="100%"></td>
-       </tr> -->
-         <tr>
-          <td  align="right">
+    <!--  <tr>
+        <td><hr width="100%"></td>
+    </tr> -->
+    <div style="position: absolute; right: 50px" >
+        NXXXXxxx XXXX <br/>
+        XXXXxxxXX <br/>
+        073738 838 <br/>
+        
+    </div>
+
+<table  width="50%" align="center" style="margin-top: 125px" >
+    {{-- <tr align="right">
+        <td   style="margin-left: 190px">
             <address>
-            NXXX xxxx XXXX <br>
-            P.o.Box  4678 , XXxxXX <br>
-            0719 260 602 <br>
-           </address>
-    
+                NXXX xxxx XXXX <br>
+                P.o.Box  4678 , XXxxXX <br>
+                0719 260 602 <br>
+            </address>
+            
         </td>
-    
-      </tr>
-    
-      <!-- <tr>
-      <td><hr width="100%"></td>
-       </tr> -->
+        
+    </tr> --}}
     
     <!-- <tr>
-      <td><hr width="100%" align="right"></td>
-     </tr> -->
-     <h3 align="center">Item N°{{$inventario->id}} - {{$inventario->manufactura}} </h3>
+        <td><hr width="100%"></td>
+    </tr> -->
+    
+    <!-- <tr>
+        <td><hr width="100%" align="right"></td>
+    </tr> -->
+     {{-- <h3 class="h3" align="center" style="font-family: Arial, Helvetica, sans-serif">Item N°{{$inventario->id}} - {{$inventario->manufactura}} </h3> --}}
+     <p class="m-2" align="center"> <strong> Item N°{{$inventario->id}} - {{$inventario->manufactura}}</strong> </p>
     <tr>
       <td>
           <table  width="100%" cellpadding="6" cellspacing="1" align="center"  border="groove">
            
-            <tr style="text-align:center;background:rgb(2, 117, 216); color: aliceblue">
-              <td><b>ID</b></td>
-              <td><b>FABRICANTE</b></td>
-              <td><b>MODELO</b></td>
-              <td><b>NUMERO DE SERIE</b></td>
-              <td><b>FIRMWARE</b></td>
-              <td><b>CAPACIDAD</b></td>
-              <td><b>PBC</b></td>
-              <td><b>UBICACIÓN</b></td>
-              <td><b>FACTOR DE FORMA</b></td>
-              <td><b>NOTA</b></td>
-              <td><b>CABEZAL</b></td>
-              <td><b>INF. DEL CABEZAL</b></td>
-            </tr>
-            
-            
-              {{-- <!-- @foreach($inventario as $item) --> --}}
             <tr>
+              <td class="titulo"><b>ID</b></td>
               <td>{{$inventario->id}}</td>
-              <td>{{$inventario->manufactura}}</td>
-              <td>{{$inventario->modelo}}</td>
-              <td>{{$inventario->numero_de_serie}}</td>
-              <td>{{ $inventario->firmware}}</td>
-              <td>{{ $inventario->capacidad}}</td>
-              <td>{{ $inventario->pbc}}</td>
-              <td>{{ $inventario->ubicacion}}</td>
-              <td>{{ $inventario->factor_de_forma}}</td>
-              <td>{{ $inventario->nota}}</td>
-              <td>{{ $inventario->cabecera}}</td>
-              <td>{{ $inventario->info_de_cabecera}}</td>
             </tr>
-            {{-- <!-- @endforeach --> --}}
+            <tr>
+                <td class="titulo"><b>FABRICANTE</b></td>
+                <td>{{$inventario->manufactura}}</td>
+            </tr>
+            <tr>
+                <td class="titulo"><b>MODELO</b></td>
+                <td>{{$inventario->modelo}}</td>
+            </tr>
+            <tr>
+                <td class="titulo"><b>NUMERO DE SERIE</b></td>
+                <td>{{$inventario->numero_de_serie}}</td>
+            </tr>
+            <tr>
+                <td class="titulo"><b>FIRMWARE</b></td>
+                <td>{{ $inventario->firmware}}</td>
+            </tr>
+            <tr>
+                <td class="titulo"><b>CAPACIDAD</b></td>
+                <td>{{ $inventario->capacidad}}</td>
+            </tr>
+            <tr>
+                <td class="titulo"><b>PBC</b></td>
+                <td>{{ $inventario->pbc}}</td>
+            </tr>
+            <tr>
+                <td class="titulo"><b>UBICACIÓN</b></td>
+                <td>{{ $inventario->ubicacion}}</td>
+            </tr>
+            <tr>
+                <td class="titulo"><b>FACTOR DE FORMA</b></td>
+                <td>{{ $inventario->factor_de_forma}}</td>
+            </tr>
+            <tr>
+                <td class="titulo"><b>NOTA</b></td>
+                <td>{{ $inventario->nota}}</td>
+            </tr>
+            <tr>
+                <td class="titulo"><b>CABEZAL</b></td>
+                <td>{{ $inventario->cabecera}}</td>
+            </tr>
+            <tr>
+                <td class="titulo"><b>INF. DEL CABEZAL</b></td>
+                <td>{{ $inventario->info_de_cabecera}}</td>
+            </tr>
            
           </table>
         </td>
@@ -134,10 +168,10 @@
              <td><hr width="30%" align="right"></td>
        </tr> --}}
       
-        <tr>
-            <td colspan="6" align="center"><i>Thanks for Visit!</i></td>
-          </tr>
-    
+        <tr style="margin-top: 25px">
+            <td colspan="6" align="center" style="margin-top: 25px"><i>Thanks for Visit!</i></td>
+        </tr>
+</table>
   
            <hr>
         {{-- <div style="position: absolute; left: 50px" >
