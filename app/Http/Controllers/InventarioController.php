@@ -175,8 +175,11 @@ class InventarioController extends Controller
     public function edit($id)
     {
         $inventario=Inventario::findOrFail($id);
+        $inventario_elegido = DB::table('inventarios')  //recuperar el valor del select
+        ->select('*')
+        ->Where('inventarios.id', '=', $id)->first();
         // return $inventario;
-        return view('inventario.editar',compact('inventario'));
+        return view('inventario.editar',compact('inventario', 'inventario_elegido'));
     }
 
     /**
