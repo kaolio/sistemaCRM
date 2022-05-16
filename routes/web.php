@@ -68,6 +68,8 @@ Route::get('/inventario/imprimirInventario',[InventarioController::class,'imprim
 Route::get('/inventario/excel',[InventarioController::class,'descargarExcel']); //ruta para descargar excel
 Route::get('/inventario/buscador',[InventarioController::class,'buscador']);  //buscador en tiempo real
 
+Route::post('/inventario/busqueda' .[InventarioController::class.'busqueda']);
+
 //CLIENTES
 Route::get('/clientes',[ClienteController::class,'index']);
 Route::get('/cliente/nuevo',[ClienteController::class,'create']);
