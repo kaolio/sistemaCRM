@@ -2,16 +2,14 @@
 @section('content')
 
 <style>
-    body{
-                font-family:serif,new time roman;
-            }
+    
 </style>
     <br>
     <div class="row justify-content-center">
          <div class="col-6">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="text-center  "> <b> LISTA DE ROLES </b> </h4>
+                    <h4 class="text-center  " style ="font-family:serif,new time roman;"> <b> LISTA DE ROLES </b> </h4>
                 </div>
                 <div class="card-body">
                             <!-- Tabla -->

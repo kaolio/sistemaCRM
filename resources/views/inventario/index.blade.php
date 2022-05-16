@@ -117,7 +117,7 @@
 </div>
 </div>
 
-<!-- html agregado-->
+<!-- html agregado
 <div class="col-5 ml-auto p-2" >
   <div class="input-group" align="center">
       <input type="text" class="form-control" id="texto" placeholder="Ingrese fabricante o factor de forma">
@@ -125,7 +125,7 @@
   </div>
   <div id="resultados" class="bg-light border" style="background: rgb(109, 82, 49)"></div>
 </div>
-<!-- fin del html agregado-->
+ fin del html agregado-->
 {{-- <div class="col-8" id="contenedor">
   @include('inventario.paginas')
 </div> --}}

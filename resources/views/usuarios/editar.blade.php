@@ -1,9 +1,7 @@
 @extends('adminlte::page')
 @section('content')
 <style>
-    body{
-                font-family:serif,new time roman;
-            }
+    
 
             .card1 {
                 border: 1px solid #ddd;
@@ -102,7 +100,7 @@
         <div class="row justify-content-center">
             <div class="col-sm-6">
               <div class="card">
-                <div class="card-header text-center">
+                <div class="card-header text-center" style ="font-family:serif,new time roman;">
                     EDITAR USUARIO
                 </div>
                 <div class="card-body">
@@ -228,5 +226,4 @@
             </div>
         </div>
         <!-- -->
-
-@endsection
+        @endsection

@@ -2,9 +2,7 @@
 @section('content')
 
     <style>
-        body{
-                    font-family:serif,new time roman;
-            }
+        
         .menor{
                 color:#ff3333;
                 font-size: medium;
@@ -142,7 +140,7 @@
                 <div class="col-8">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="text-center  "> <b> NUEVO USUARIO </b> </h4>
+                        <h4 class="text-center  "style ="font-family:serif,new time roman;" > <b> NUEVO USUARIO </b> </h4>
                     </div>
                     
                         <div class="card-body">
