@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content_header')
-    <h1 align="center"><strong>EDITAR DISCO</strong></h1>
+    <h1 align="center" style="font-weight: 700">EDITAR DISCO</h1>
 @stop
 
 <style>
@@ -13,6 +13,9 @@
   .bien{
         color: rgb(15, 208, 67);
         font-size: medium;}
+  strong{
+          color: red;
+        }
 </style>
 
 <script>
@@ -92,29 +95,33 @@
       <div class="form-row">
         <div class="form-group col-md-6" style="padding-top: 32px">
           <div class="input-group">
-            <span class="input-group-text" style="background:rgb(41, 43, 44); color: aliceblue">Fabricante</span>
+            <span class="input-group-text" style="background:rgb(41, 43, 44); color: aliceblue">Fabricante &nbsp;<strong>*</strong></span>
             <select name="manufactura" class="form-control" class="btn-block" required value="{{$inventario->manufactura}}">
-              <option value="">Elija el Fabricante</option>
-              <option value="Seagate">Seagate</option>
-              <option value="Toshiba">Toshiba</option>
-              <option value="Samsung">Samsung</option>
-              <option value="Verbatim">Verbatim</option>
-              <option value="Wester Digital">Western Digital</option>
-              <option value="SkayNet">SkyNet</option>
-              <option value="Maxtor">Maxtor</option>
-              <option value="Adata">Adata</option>
-              <option value="Crucial">Crucial</option>
-              <option value="Kingston">Kingston</option>
-              <option value="Sony">Sony</option>
-              <option value="Hitachi">Hitachi</option>
-              <option value="Asus">Asus</option>
+                <option selected disabled value="">Elija el Fabricante</option>
+                 @if ($inventario->manufactura == $inventario_elegido->manufactura)
+                 <option value="{{$inventario->manufactura}}" selected>{{$inventario->manufactura}}</option>
+                 @else
+                 <option value="{{$inventario->manufactura}}">{{$inventario->manufactura}}</option>
+                 @endif
+                <option value="Toshiba">Toshiba</option>
+                <option value="Samsung">Samsung</option>
+                <option value="Verbatim">Verbatim</option>
+                <option value="Wester Digital">Western Digital</option>
+                <option value="SkayNet">SkyNet</option>
+                <option value="Maxtor">Maxtor</option>
+                <option value="Adata">Adata</option>
+                <option value="Crucial">Crucial</option>
+                <option value="Kingston">Kingston</option>
+                <option value="Sony">Sony</option>
+                <option value="Hitachi">Hitachi</option>
+                <option value="Asus">Asus</option>
             </select>
             <span id="estadoManufactura"></span>
           </div>
         </div>
         <div class="form-group col-md-6">
-          <label for="inputPassword4">Modelo</label>
-          <input type="text" class="form-control" id="modelo" name="modelo" placeholder="" value="{{$inventario->modelo}}"
+          <label for="inputPassword4">Modelo <strong>*</strong></label>
+          <input type="text" class="form-control" id="modelo" name="modelo" placeholder="" value="{{$inventario->modelo}}" autocomplete="off"
                   value="{{ old('modelo') }}" onkeyup="validarModelo()" required
                   onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
                   <span id="estadoModelo"></span>
@@ -122,21 +129,21 @@
       </div>
       <div class="form-row">
           <div class="form-group col-md-4">
-            <label for="inputCity">Número de Serie</label>
-            <input type="text" class="form-control" id="numero_de_serie" name="numero_de_serie" value="{{$inventario->numero_de_serie}}"
+            <label for="inputCity">Número de Serie <strong>*</strong></label>
+            <input type="text" class="form-control" id="numero_de_serie" name="numero_de_serie" value="{{$inventario->numero_de_serie}}" autocomplete="off"
                    value="{{ old('numero_de_serie') }}" onkeyup="validarSerie()" required 
                    onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
                    <span id="estadoSerie"></span>
           </div>
           <div class="form-group col-md-4">
-              <label for="inputCity">Firmware</label>
-              <input type="text" class="form-control" id="firmware" name="firmware" value="{{$inventario->firmware}}"
+              <label for="inputCity">Firmware <strong>*</strong></label>
+              <input type="text" class="form-control" id="firmware" name="firmware" value="{{$inventario->firmware}}" autocomplete="off"
                      value="{{ old('firmware') }}" onkeyup="validarFirmware()" required 
                      onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
                      <span id="estadoFirmware"></span>
           </div>
             <div class="form-group col-md-4">
-              <label for="inputCity">Capacidad (GB)</label>
+              <label for="inputCity">Capacidad (GB) <strong>*</strong></label>
               <input type="text" class="form-control" id="capacidad" name="capacidad" autocomplete="off" value="{{$inventario->capacidad}}"
                      value="{{ old('capacidad') }}" onkeyup="validarCapacidad()" required maxlength="5"
                      onkeypress="return ((event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
@@ -145,51 +152,56 @@
       </div>
       <div class="form-row">
           <div class="form-group col-md-4">
-            <label for="inputCity">PCB</label>
-            <input type="text" class="form-control" id="pbc" name="pbc" value="{{$inventario->pbc}}"
+            <label for="inputCity">PCB <strong>*</strong></label>
+            <input type="text" class="form-control" id="pbc" name="pbc" value="{{$inventario->pbc}}" autocomplete="off"
                    value="{{ old('pbc') }}" onkeyup="validarPbc()" required
                    onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
                    <span id="estadoPbc"></span>
           </div>
           <div class="form-group col-md-4">
-              <label for="inputCity">Ubicación *</label>
-              <input type="text" class="form-control" id="ubicacion" name="ubicacion" value="{{$inventario->ubicacion}}"
+              <label for="inputCity">Ubicación </label>
+              <input type="text" class="form-control" id="ubicacion" name="ubicacion" value="{{$inventario->ubicacion}}" autocomplete="off"
               onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
           </div>
           <div class="form-group col-md-4" style="padding-top: 32px">
             <div class="input-group">
-              <span class="input-group-text" style="background:rgb(41, 43, 44); color: aliceblue">Factor de Forma</span>
+              <span class="input-group-text" style="background:rgb(41, 43, 44); color: aliceblue">Factor de Forma &nbsp;<strong>*</strong></span>
               <select class="form-control" class="btn-block" id="factor_de_forma" name="factor_de_forma" required value="{{$inventario->factor_de_forma}}">
-                <option value="">Elija el Factor de Forma</option>
-                <option value="3.5 pulgadas ">3.5 pulgadas</option>
-                <option value="2.5 pulgadas">2.5 pulgadas</option>
-                <option value="M2">M2</option>
+                  <option selected disabled value="">Elija el Factor de Forma</option>
+                  @if ($inventario->factor_de_forma == $inventario_elegido->factor_de_forma)
+                    <option value="{{$inventario->factor_de_forma}}" selected>{{$inventario->factor_de_forma}}</option>                      
+                  @else
+                    <option value="{{$inventario->factor_de_forma}}">{{$inventario->factor_de_forma}}</option>      
+                  @endif
+                  <option value="3.5 pulgadas">3.5 pulgadas</option>
+                  <option value="3.5 pulgadas">2.5 pulgadas</option>
+                  <option value="M2">M2</option>
               </select>
             </div>
           </div>  
       </div>
       <div class="form-row">
           <div class="form-group col-md-4">
-            <label for="inputCity">Nota *</label>
-            <input type="text" class="form-control" id="nota" name="nota" value="{{$inventario->nota}}">
+            <label for="inputCity">Nota </label>
+            <input type="text" class="form-control" id="nota" name="nota" value="{{$inventario->nota}}" autocomplete="off">
           </div>
           <div class="form-group col-md-4">
-              <label for="inputCity">Cabezal *</label>
-              <input type="text" class="form-control" id="cabecera" name="cabecera" value="{{$inventario->cabecera}}"
+              <label for="inputCity">Cabezal</label>
+              <input type="text" class="form-control" id="cabecera" name="cabecera" value="{{$inventario->cabecera}}" autocomplete="off"
               onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
           </div>
             <div class="form-group col-md-4">
-              <label for="inputCity">Información del Cabezal *</label>
+              <label for="inputCity">Información del Cabezal</label>
               <input type="text" class="form-control" id="info_de_cabecera" name="info_de_cabecera" value="{{$inventario->info_de_cabecera}}"
               onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
           </div>
-          <span class="mb-4"><strong>*</strong> Campos Opcionales</span>
+          <span class="mb-4"><strong>*</strong> Campos Obligatorios</span>
       </div>
         <div class="form-group">
           <button type="submit" class="btn btn-lg btn-dark">Actualizar</button>
-          <button type="submit" class="btn btn-lg btn-secondary float-right" {{url('inventario')}}>Regresar al Inventario</button>
+          <a href="{{url('/inventario')}}" class="btn btn-lg btn-secondary float-right">Regresar al Inventario</a>
         </div>
-    </div>
+      </div>
     </form>
   </div>
   </div>
