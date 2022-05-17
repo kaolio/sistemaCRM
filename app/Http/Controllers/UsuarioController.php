@@ -237,4 +237,5 @@ class UsuarioController extends Controller
             //return $data;
         }
 
+
 }

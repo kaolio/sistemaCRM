@@ -42,7 +42,7 @@ Route::get('/usuario/editar/{id}',[UsuarioController::class,'edit']);
 Route::post('/usuario/editar/{id}',[UsuarioController::class,'update']);
 Route::post('/imagen/validar' ,[UsuarioController::class,'validar']);
 //Edicion foto
-Route::post('/perfil/foto', [ProfileController::class,'updatePhoto']);
+Route::post('/usuario/change-profile-picture{id}', [UsuarioController::class,'updatePicture']);
 
 //script
 Route::post('/usuario/nuevo/validarCorreo', [UsuarioController::class,'validarCorreo']);
