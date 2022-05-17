@@ -11,6 +11,7 @@
 
 
 <div class="card">
+    <div class="card-body">
   <div class="row">
     <div class="col-xs-10 col-sm-10 col-md-10">
         <div class="form-group">
@@ -28,8 +29,10 @@
         </div>
     </div>
     </div>
+    </div>
   </div> 
   <div class="card">
+      <div class="card-body">
     <div class="row">
 
       <div class="col-xs-8 col-sm-8 col-md-8">
@@ -54,8 +57,10 @@
           </div>
       </div>
     </div>
+      </div>
    </div>
 <div class="card">
+    <div class="card-body">
     <div class="row">
 
       <div class="col-xs-4 col-sm-4 col-md-4">
@@ -79,8 +84,10 @@
           </div>
       </div>
     </div>
+    </div>
 </div>
 <div class="card">
+    <div class="card-body">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
          <div class="form-group">
@@ -89,9 +96,13 @@
         </div>
         </div>
     </div>
+    </div>
 </div>
 <div class="card">
+<div class="card-body">
 <label> Idioma UI del cliente</label>
+</div>
+<div class="card-body">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="form-group" style="display: flex;">
@@ -113,13 +124,15 @@
         </div>
     </div>
 </div>
+</div>
 <div class="container">
     <h4>Detalles</h4>
           <td><button type="button" name="remove" id="" class="btn btn-danger btn_remove" style="border-radius: 50%;">X</button></td>
           <td class="btn-block"><button type="button" name="add" id="add1" class="btn add-btn btn-info" style="border-radius: 50%;"><i class="fa fa-plus"></i> </button></td>
 
 <div class="card">
-<div class="row" id="dynamic_field">
+    <div class="card-body">
+        <div class="row" id="dynamic_field">
     <div class="col-xs-4 col-sm-4 col-md-4">
       <div class="form-group">
         <label for="Type">Tipo </label>
@@ -153,13 +166,16 @@
           </div>
       </div>
       </div>
+    </div>
  </div>
 </div>
     <div class="card">
+        <div class="card-body">
           <div class="form-group">
           <label style="font-size: 16px;">Nota</label>
             <input type="text" style="height: 5em"name="info" value="{{$cliente->Nota}}" class="btn-block">
            </div>
+        </div>
      </div>
 
      <div class="form-group">

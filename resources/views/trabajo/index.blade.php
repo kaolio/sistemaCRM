@@ -2,6 +2,20 @@
 @section('content')
 
 <h1 align="center"><strong>ORDEN DE TRABAJO</strong></h1>
+
+<div class="ml-auto p-2">
+  <form class="form-inline" action="{{ url('trabajos ')}}" method="GET">
+    
+    <label for="">Trabajo ID</label>
+    <div class="form-group mx-sm-3 mb-2">
+      <input type="" class="form-control" id="busqueda" name="busqueda" value="{{$busqueda}}" placeholder="ID">
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+  </form>
+</div>
+
+
+
 <div class="d-flex">
   <div class="p-2">
     <button type="button" class="btn btn-primary">Excel</button>

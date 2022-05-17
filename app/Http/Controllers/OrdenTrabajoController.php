@@ -29,6 +29,7 @@ class OrdenTrabajoController extends Controller
                         ->select('id','infoCliente','Prioridad','TiempoEstimado','Tipo','Rol','Fabricante','Modelo','Serial','Localizacion','informacionDispositivo','datoImportante')
                         ->where('Modelo', 'LIKE', '%'.$busqueda.'%')
                         ->orWhere('Serial', 'LIKE', '%'.$busqueda.'%')
+                        ->orWhere('id', 'LIKE', '%'.$busqueda.'%')
                         ->orderBy('id','asc')
                         ->paginate(10);
         //$datoTrabajo['trabajos']=OrdenTrabajo::paginate(10);
