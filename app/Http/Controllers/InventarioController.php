@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 use PDF; // use Barryvdh\DomPDF\Facade as PDF;
 use Maatwebsite\Excel\Facades\Excel; //excel
 use App\Exports\InventarioExport;    //excel
-use Svg\Tag\Rect;
 
 class InventarioController extends Controller
 {
@@ -223,6 +222,4 @@ class InventarioController extends Controller
 
         return redirect('inventario');
     }
-
-    
 }
