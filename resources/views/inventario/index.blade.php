@@ -13,14 +13,18 @@
  .tabla-general{
    font-size: 14px;
  }
+ .input-group-text, .form-control{
+   font-size: 14px;
+   border-radius: 0%;
+   padding:4px;
+   height: 90%;
+ }
 </style>
 <div class="d-flex">
     <div class="p-2">
-        <button type="button" class="btn btn-primary">
-          Excel</button>
-            <a href="{{URL('/inventario/descargar-pdf')}}">pdf</a>
-        <button type="button" class="btn btn-primary">PDF</button> 
-        <button type="button" class="btn btn-primary">Imprimir</button>
+        <a class="btn btn-primary" href="{{URL('inventario/excel')}}" role="button">Excel</a>
+        <a class="btn btn-primary" href="{{URL('inventario/pdf')}}" role="button">PDF</a>
+        <a class="btn btn-primary" href="{{URL('inventario/imprimirInventario')}}" role="button">Imprimir</a>
     </div>
     <div class="ml-auto p-2">
             <form class="form-inline" action="{{ url('inventario')}}" method="GET">
@@ -32,16 +36,6 @@
               <button type="submit" class="btn btn-primary mb-2">Buscar</button>
             </form>
     </div>
-    <div class="ml-auto p-2">
-      <form class="form-inline" action="{{ url('inventario')}}" method="GET">
-        
-        <label for="">Busqueda Rápida</label>
-        <div class="form-group mx-sm-3 mb-2">
-          <input type="" class="form-control" id="busqueda" name="busqueda" value="{{$busqueda}}" placeholder="factor de forma">
-        </div>
-        <button type="submit" class="btn btn-primary mb-2">Buscar</button>
-      </form>
-</div>
 </div>
 <div class="input-group">
   <div class="input-group-prepend">
@@ -55,64 +49,103 @@
   </div>
   <div class="input-group-prepend">
     <div class="input-group-text" id="btnGroupAddon">Fabricante</div>
-    <select name="estado" id="estado" class="form-control">
-    <option value="">Todos</option>
-    <option value="enProceso">En Proceso</option>
-    <option value="actuales">Actuales</option>
-    <option value="compleados">Completados</option>
-  </select>
-</div>
+      <form class="form-inline" action="{{ url('inventario')}}" method="GET">
+          <select name="busqueda" id="busqueda" class="form-control">
+            <option value="">Todos</option>
+            <option value="{{$busqueda="Seagate"}}">Seagate</option>
+            <option value="{{$busqueda="Toshiba"}}">Toshiba</option>
+            <option value="{{$busqueda="Samsung"}}">Samsung</option>
+            <option value="{{$busqueda="Maxtor"}}">Maxtor</option>
+            <option value="{{$busqueda="Crucial"}}">Crucial</option>
+            <option value="{{$busqueda="Sony"}}">Sony</option>
+            <option value="{{$busqueda="Kingston"}}">Kingston</option>
+          </select>
+        <button type="submit" class="btn btn-primary">Buscar</button>
+      </form>
+  </div>
 <div class="input-group-prepend">
   <div class="input-group-text" id="btnGroupAddon">Tipo</div>
 
 <select name="ingeniero" id="ingeniero" class="form-control">
-  <option value="">Todos los Ingenieros</option>
-  <option value="Alex">Alex</option>
+  <option value="">Todos</option>
+  {{-- <option value="Alex">Alex</option>
   <option value="Fercho">Fercho</option>
-  <option value="Javier">Javier</option>
+  <option value="Javier">Javier</option> --}}
 </select>
 </div>
 <div class="input-group-prepend">
   <div class="input-group-text" id="btnGroupAddon">Factor de Forma</div>
-
-<select name="ingeniero" id="ingeniero" class="form-control">
-  <option value="">Todos</option>
-  <option value="Alex">3.5 pulgadas</option>
-  <option value="Fercho">2.5 pulgadas</option>
-  <option value="Javier">M2</option>
-</select>
+    <form class="form-inline" action="{{ url('inventario')}}" method="GET">
+        <select name="busqueda" id="busqueda" class="form-control">
+          <option value="">Todos</option>
+          <option value="{{$busqueda="3.5 pulgadas"}}">3.5 pulgadas</option>
+          <option value="{{$busqueda="2.5 pulgadas"}}">2.5 pulgadas</option>
+          <option value="{{$busqueda="M2"}}">M2</option>
+        </select>
+      <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
 </div>
 <div class="input-group-prepend">
   <div class="input-group-text" id="btnGroupAddon">Activo</div>
 
 <select name="ingeniero" id="ingeniero" class="form-control">
-  <option value="">Todos los Ingenieros</option>
-  <option value="Alex">Alex</option>
+  <option value="">Todos</option>
+  {{-- <option value="Alex">Alex</option>
   <option value="Fercho">Fercho</option>
-  <option value="Javier">Javier</option>
+  <option value="Javier">Javier</option> --}}
 </select>
 </div>
 <div class="input-group-prepend">
   <div class="input-group-text" id="btnGroupAddon">Ocupado</div>
 
 <select name="ingeniero" id="ingeniero" class="form-control">
-  <option value="">Todos los Ingenieros</option>
-  <option value="Alex">Alex</option>
+  <option value="">Todos</option>
+  {{-- <option value="Alex">Alex</option>
   <option value="Fercho">Fercho</option>
-  <option value="Javier">Javier</option>
+  <option value="Javier">Javier</option> --}}
 </select>
 </div>
 <div class="input-group-prepend">
   <div class="input-group-text" id="btnGroupAddon">Recursos</div>
 
 <select name="ingeniero" id="ingeniero" class="form-control">
-  <option value="">Todos los Ingenieros</option>
-  <option value="Alex">Alex</option>
+  <option value="">Todos</option>
+  {{-- <option value="Alex"></option>
   <option value="Fercho">Fercho</option>
-  <option value="Javier">Javier</option>
+  <option value="Javier">Javier</option> --}}
 </select>
 </div>
 </div>
+
+<!-- html agregado-->
+<div class="col-5 ml-auto p-2" >
+  <div class="input-group" align="center">
+      <input type="text" class="form-control" id="texto" placeholder="Ingrese fabricante o factor de forma">
+      {{-- <div class="input-group-append"><span class="input-group-text">Buscar</span></div> --}}
+  </div>
+  <div id="resultados" class="bg-light border" style="background: rgb(109, 82, 49)"></div>
+</div>
+<!-- fin del html agregado-->
+{{-- <div class="col-8" id="contenedor">
+  @include('inventario.paginas')
+</div> --}}
+<div id="cargando" hidden><h1>CARGANDO...</h1></div>
+
+
+<script>
+  window.addEventListener("load",function(){
+      document.getElementById("texto").addEventListener("keyup",function(){
+      if((document.getElementById("texto").value.length)>=2)
+          fetch(`/inventario/buscador?texto=${document.getElementById("texto").value}`,
+                {method:'get'})
+          .then(response => response.text())
+          .then(html =>   { document.getElementById("resultados").innerHTML = html})
+else
+    document.getElementById("resultados").innerHTML = ""
+    })
+  });
+</script>
+
 
 
 {{--Inicio tabla de los discos  --}}
@@ -121,19 +154,19 @@
         <thead class="table-primary table-striped table-bordered text-white" >
         <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
             <tr>
-                <th class="column1">Id</th>
-                <th class="column2">Fabricante</th>
-                <th class="column3">Modelo</th>
-                <th class="column4">N° de Serie</th>
-                <th class="column5">Firmware</th>
-                <th class="column6">Capacidad (GB)</th>
-                <th class="column6">PBC</th>
-                <th class="column6">Ubicación</th>
-                <th class="column6">Factor de Forma</th>
-                <th class="column6">Nota</th>
-                <th class="column6">Cabecera</th>
-                <th class="column6">Info Cabecera</th>
-                <th class="column6">Acciones</th>
+                <th class="column1 text-center">Id</th>
+                <th class="column2 text-center">Fabricante</th>
+                <th class="column3 text-center p-2">Modelo</th>
+                <th class="column4 text-center p-2">N° de Serie</th>
+                <th class="column5 text-center p-2">Firmware</th>
+                <th class="column6 text-center p-2">Capacidad (GB)</th>
+                <th class="column6 text-center p-2">PBC</th>
+                <th class="column6 text-center p-2">Ubicación</th>
+                <th class="column6 text-center p-2">Factor de Forma</th>
+                <th class="column6 text-center p-2">Nota</th>
+                <th class="column6 text-center p-2">Cabezal</th>
+                <th class="column6 text-center p-2">Inf. del Cabezal</th>
+                <th class="column6 text-center p-3">Acciones</th>
             </tr>
           </thead>
           <tbody class="table-bordered">
@@ -156,7 +189,7 @@
               <td>{{ $item->nota}}</td>
               <td>{{ $item->cabecera}}</td>
               <td>{{ $item->info_de_cabecera}}</td>
-              <td style="padding: 1px; padding-top:8px; margin:3px">
+              <td class="text-center" style="padding: 1px;">
                 <a href="{{url('inventario/editar',$item->id)}}">
                   <button class="btn btn-light-active btn-sm"  >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="18" height="20">
@@ -165,19 +198,30 @@
                     </svg>
                   </button>
                 </a>
-                
-                  <button class="btn btn-light-active btn-sm" >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="18" height="20">
-                      <path fill-rule="evenodd" d="M3.75 1.5a.25.25 0 00-.25.25v11.5c0 .138.112.25.25.25h8.5a.25.25 0 00.25-.25V6H9.75A1.75 1.75 0 018 4.25V1.5H3.75zm5.75.56v2.19c0 .138.112.25.25.25h2.19L9.5 2.06zM2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v8.086A1.75 1.75 0 0112.25 15h-8.5A1.75 1.75 0 012 13.25V1.75z">
-                      </path>
-                    </svg>
+                  <a href="{{url('inventario/itemPdf',$item->id)}}">
+
+                    <button class="btn btn-light-active btn-sm" >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16">
+  <path d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V6.5z"/>
+  <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg>
+                    </button>
+                  </a>
+                  <a href="{{url('inventario/editar',$item->id)}}">
+                  <button class="btn btn-light-active btn-sm"  >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
+                    <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                    <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+                  </svg>
                   </button>
-                
+                </a>
+                    
                 <!-- Button trigger modal -->
 <button type="button" class="btn"  data-bs-toggle="modal" data-bs-target="#modal-delete-{{$item->id}}">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="18" height="20">
-    <path fill-rule="evenodd" d="M2.343 13.657A8 8 0 1113.657 2.343 8 8 0 012.343 13.657zM6.03 4.97a.75.75 0 00-1.06 1.06L6.94 8 4.97 9.97a.75.75 0 101.06 1.06L8 9.06l1.97 1.97a.75.75 0 101.06-1.06L9.06 8l1.97-1.97a.75.75 0 10-1.06-1.06L8 6.94 6.03 4.97z"></path>
-  </svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+</svg>
 </button>
 
 <!-- Modal -->

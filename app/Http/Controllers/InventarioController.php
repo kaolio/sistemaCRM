@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Inventario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-// use Barryvdh\DomPDF\Facade as PDF;
-use PDF;
+use PDF; // use Barryvdh\DomPDF\Facade as PDF;
+use Maatwebsite\Excel\Facades\Excel; //excel
+use App\Exports\InventarioExport;    //excel
 
 class InventarioController extends Controller
 {
@@ -30,6 +31,7 @@ class InventarioController extends Controller
         $inventario=DB::table('inventarios')
                         ->select('id','manufactura','modelo','numero_de_serie','firmware','capacidad','pbc','ubicacion','factor_de_forma','nota','cabecera','info_de_cabecera')
                         ->where('modelo', 'LIKE', '%'.$busqueda.'%')
+                        ->orWhere('manufactura', 'LIKE', '%'.$busqueda.'%')
                         ->orWhere('numero_de_serie', 'LIKE', '%'.$busqueda.'%')
                         ->orwhere('factor_de_forma', 'LIKE', '%'.$busqueda.'%')
                         ->orderBy('id','desc')
@@ -59,14 +61,32 @@ class InventarioController extends Controller
     // }
     
 
-    function descargarPDF(){
-        
-        
+    public function descargarPDF(){
+        $inventario = Inventario::all();
+        $pdf = \PDF::loadView('/inventario/pdf',compact('inventario'));
+                              //ruta del archivo        envio de la variable de la db 
+        return $pdf->setPaper('a4','landscape')->download('Reporte-Inventario.pdf');
+                                                             //nombre del pdf a descargar
+    }
 
-        $pdf = \PDF::loadView('Inventario.pdf');
-    
-        return $pdf->setPaper('carta', 'portrait')->stream('inventario.pdf');
-
+    public function descargarItemPdf($id){
+        $inventario = Inventario::find($id);
+        $pdf = \PDF::loadView('/inventario/itemPdf',compact('inventario')); //bien
+        return $pdf->setPaper('a4')->download('Reporte-Item-Inventario.pdf');
+    }
+   
+    public function imprimirPdf(){
+        $inventario = Inventario::all();
+        $pdf = \PDF::loadView('/inventario/pdf',compact('inventario'));
+        return $pdf->setPaper('a4','landscape')->stream(); //mandar a imprimir  en formato horizontal
+    }
+    public function descargarExcel(Request $request){
+        return Excel::download(new InventarioExport, 'Reporte-Inventario-Excel.xlsx');
+    }
+    public function buscador(Request $request){
+        $inventario = Inventario::where("manufactura",'like','%'.$request->texto.'%')
+                               ->orWhere("factor_de_forma",'like','%'.$request->texto.'%')->get();
+        return view("/inventario/paginas",compact("inventario"));        
     }
     /**
      * Show the form for creating a new resource.
@@ -155,8 +175,11 @@ class InventarioController extends Controller
     public function edit($id)
     {
         $inventario=Inventario::findOrFail($id);
+        $inventario_elegido = DB::table('inventarios')  //recuperar el valor del select
+        ->select('*')
+        ->Where('inventarios.id', '=', $id)->first();
         // return $inventario;
-        return view('inventario.editar',compact('inventario'));
+        return view('inventario.editar',compact('inventario', 'inventario_elegido'));
     }
 
     /**
