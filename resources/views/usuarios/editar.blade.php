@@ -46,6 +46,7 @@
             }
 </style>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<!--
 <script>
      $(function() {
                         var $imagenPerfil, $photoPerfil, $photoForm;
@@ -85,26 +86,26 @@
 
 
 </script> 
-
+-->
     <script>
         $(document).on('click','#change_picture_btn', function(){
             $('#admin_image').click();
             });
 
             $('#admin_image').ijaboCropTool({
-          preview : '',
-          setRatio:1,
-          allowedExtensions: ['jpg', 'jpeg','png'],
-          buttonsText:['CROP','QUIT'],
-          buttonsColor:['#30bf7d','#ee5155', -15],
-          processUrl:'/usuario/change-profile-picture',
-          //withCSRF:['_token','{{ csrf_token() }}'],
-          onSuccess:function(message, element, status){
-             alert(message);
-          },
-          onError:function(message, element, status){
-            alert(message);
-          }
+                preview : '',
+                setRatio:1,
+                allowedExtensions: ['jpg', 'jpeg','png'],
+                buttonsText:['CROP','QUIT'],
+                buttonsColor:['#30bf7d','#ee5155', -15],
+                processUrl:'/usuario/change-profile-picture',
+                withCSRF:['_token','{{ csrf_token() }}'],
+                onSuccess:function(message, element, status){
+                    alert(message);
+                },
+                onError:function(message, element, status){
+                    alert(message);
+                }
        });
   
   </script>

@@ -20,7 +20,7 @@ class CreateClientesTable extends Migration
             $table->string('Calle')->nullable();
             $table->integer('Numero')->nullable();
             $table->string('Apt')->nullable();
-            $table->integer('CodigoPostal')->nullable();
+            $table->string('CodigoPostal')->nullable();
             $table->string('Pak')->nullable();
             $table->string('NombreCiudad')->nullable();
             $table->string('Pais')->nullable();
