@@ -54,6 +54,7 @@ Route::get('/trabajo/nuevo',[OrdenTrabajoController::class,'create']);
 Route::post('/trabajo/nuevo',[OrdenTrabajoController::class,'store']);
 Route::get('/trabajo/editar/{id}',[OrdenTrabajoController::class,'edit']);
 Route::put('/trabajo/editar/{id}',[OrdenTrabajoController::class,'update']);
+Route::get('/trabajo/buscador',[OrdenTrabajoController::class,'buscador']);
 
 //INVENTARIO
 Route::get('/inventario',[InventarioController::class,'index']);

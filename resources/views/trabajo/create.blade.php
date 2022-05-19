@@ -1,5 +1,6 @@
 @extends('adminlte::page')
 @section('content')
+<h1 align="center" style="font-weight: 700">ORDEN DE TRABAJO</h1>
 
 <style>
   span {
@@ -24,9 +25,19 @@
   if($("#infoCliente").val() == ""){
     $("#estadoInfo").html("<span  class='error'><h5 class='menor'>Este campo no puede estar vacío</h5></span>"); 
   }else{
+    if ($("#infoCliente").val().length < 5) {
+           $("#estadoInfo").html(
+               "<span  class='menor'><h5 class='menor'>Ingrese de 5 a 50 caracteres</h5></span>");
+       } else {
+        if ($("#infoCliente").val().length > 50) {
+               $("#estadoInfo").html(
+                   "<span  class='menor'><h5 class='menor'>Ingrese menos de 50 caracteres</h5></span>");
+           } else {
+    
       $("#estadoInfo").html("<span  class='bien'><h5 >Válido</h5></span>");
-        
+    }
   }
+}
 }
 
 function validarTiempo(){
@@ -78,19 +89,16 @@ function validarTiempo(){
 
 
 <div class="card">
-  <div class="card-header">
-    
-  </div>
   <div class="card-body">
     <body>
-      <h2><strong>Orden de Trabajo</strong></h2>
+      
         <form action="{{url('/trabajo/nuevo')}}" method="POST">
           @csrf
           <div class='container-fluid'>
                 <div class="card">
                     <div class="card-body">
                     <label class="card-title" style="height: 2rem;">Informacion del Cliente</label>
-                      <input type="text" id="infoCliente" name="infoC" value="{{ old('infoC') }}" class="btn-block" required onkeyup="validarInfo()">
+                      <input type="text" id="infoCliente" name="infoC" value="{{ old('infoC') }}" class="btn-block" autocomplete="off" required onkeyup="validarInfo()" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
                       <span id="estadoInfo"></span>
                       <br>
                       <a href="{{ url('/cliente/nuevo')}}" class="card-link">Nuevo Cliente</a> 
@@ -112,15 +120,15 @@ function validarTiempo(){
                             </select>
                             <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Tiempo Estimado</span>
                             <input type="text" id="tiempo" name="tiempoEstimado" class="form-control" 
-                                placeholder="Ingrese un tiempo estimado" required onkeyup="validarTiempo()">
-                                <span id="estadoTiempo"></span>
-
+                                placeholder="Ingrese un tiempo estimado" required onkeyup="validarTiempo()" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+                                {{-- <span id="estadoTiempo"></span> --}}
                         </div>
+                        <span id="estadoTiempo"></span>
                     </div>
                 </div>
                  <!-- -->
 
-                    <h4>Dispositivos</h4>
+                    <h4><strong>Dispositivos</strong></h4>
                     <td><button type="button" name="remove" id="" class="btn btn-danger btn_remove" style="border-radius: 50%;">X</button></td>
                         <td class="btn-block"><button type="button" name="add" id="add" class="btn btn-primary" style="border-radius: 50%;"><i class="fa fa-plus"></i> </button></td>
                         <br><br>
@@ -144,23 +152,23 @@ function validarTiempo(){
                             </select>
                             <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Fabricante</span>
                             <input type="text" id="fabricante" name="Fabricante" class="form-control" 
-                                placeholder="Ingrese el fabricante" value="{{ old('Fabricante') }}" required onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32)) ">
+                                placeholder="Ingrese el fabricante" value="{{ old('Fabricante') }}" autocomplete="off" required onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32)) ">
                                 <span id="estadoFabricante"></span>
 
                                 <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Modelo</span>
-                            <input type="text" id="modelo" name="Modelo" value="{{ old('Modelo') }}" class="form-control" 
+                            <input type="text" id="modelo" name="Modelo" value="{{ old('Modelo') }}" autocomplete="off" class="form-control" 
                                 placeholder="Ingrese el modelo" required onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32)) ">
                                 <span id="estadoModelo"></span>
 
 
                                 <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Serial</span>
-                            <input type="text" id="serial" name="Serial" value="{{ old('Serial') }}" class="form-control" 
+                            <input type="text" id="serial" name="Serial" value="{{ old('Serial') }}" autocomplete="off" class="form-control" 
                                 placeholder="Ingrese el serial" required onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32)) ">
                                 <span id="estadoSerial"></span>
 
 
                                 <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Localizacion</span>
-                            <input type="text" id="localizacion" name="Localizacion" value="{{ old('Localizacion') }}" class="form-control" 
+                            <input type="text" id="localizacion" name="Localizacion" value="{{ old('Localizacion') }}" autocomplete="off" class="form-control" 
                                 placeholder="Ingrese la localizacion" required onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32)) ">
                                 <span id="estadoLocalizacion"></span>
                           </div>
@@ -171,15 +179,15 @@ function validarTiempo(){
                
                 <div class="card">
                     <div class="card-body">
-                    <h5 class="card-title" style="height: 2rem;"><strong>información de mal funcionamiento del dispositivo </strong></h5>
-                      <input type="text" style="height: 10em" name="infoDispositivo" class="btn-block" required >
+                    <h5 class="card-title" style="height: 2rem;"><strong>Información de mal funcionamiento del dispositivo </strong></h5>
+                      <input type="text" style="height: 10em" name="infoDispositivo" class="btn-block" autocomplete="off" required onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32)) ">
                     
                     </div>
                 </div>
                 <div class="card" >
                     <div class="card-body">
                     <h5 class="card-title" style="height: 2rem;"><strong>Dato importante </strong></h5>
-                      <input type="text" style="height: 10em" name="DatoImportante" class="btn-block" required>
+                      <input type="text" style="height: 10em" name="DatoImportante" class="btn-block" autocomplete="off" required onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32)) ">
                     
                     </div>
                 </div>

@@ -109,7 +109,10 @@ class ClienteController extends Controller
     public function edit($id)
     {
        $cliente = Cliente::findOrFail($id);
-        return view('cliente.editar',compact('cliente'));
+       $cliente_elegido = DB::table('clientes')  //recuperar el valor del select
+        ->select('*')
+        ->Where('clientes.id', '=', $id)->first();
+        return view('cliente.editar',compact('cliente','cliente_elegido'));
     }
 
     /**

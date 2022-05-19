@@ -29,11 +29,19 @@ class OrdenTrabajoController extends Controller
                         ->select('id','infoCliente','Prioridad','TiempoEstimado','Tipo','Rol','Fabricante','Modelo','Serial','Localizacion','informacionDispositivo','datoImportante')
                         ->where('Modelo', 'LIKE', '%'.$busqueda.'%')
                         ->orWhere('Serial', 'LIKE', '%'.$busqueda.'%')
+                        ->orWhere('id', 'LIKE', '%'.$busqueda.'%')
                         ->orderBy('id','asc')
                         ->paginate(10);
         //$datoTrabajo['trabajos']=OrdenTrabajo::paginate(10);
         return view('trabajo.index', compact('busqueda','trabajo'));
         
+    }
+
+
+    public function buscador(Request $request){
+        $trabajo = OrdenTrabajo::where("Prioridad",'like','%'.$request->texto.'%')->get();
+                               
+        return view("/trabajo/paginas",compact("trabajo"));        
     }
 
     /**
@@ -101,7 +109,10 @@ class OrdenTrabajoController extends Controller
     public function edit($id)
     {
         $trabajo = OrdenTrabajo::findOrFail($id);
-        return view('trabajo.editar',compact('trabajo'));
+        $trabajo_elegido = DB::table('orden_trabajos')  //recuperar el valor del select
+        ->select('*')
+        ->Where('orden_trabajos.id', '=', $id)->first();
+        return view('trabajo.editar',compact('trabajo','trabajo_elegido'));
         
     }
 
