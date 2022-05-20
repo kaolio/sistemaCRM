@@ -117,16 +117,16 @@ function validarTiempo(){
                           <tbody id="tabla">
                               <span id="estadoBoton"></span>
                               <tr id="columna-0">
-                                  <th>
+                                  <td>
                                       <div class="input-group">
                                         <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo</span>
                                           <select name="tipo[]" id="tipo" class="form-control" class="btn-block" required>
-                                            <option disabled>Escoga la prioridad</option>
+                                            <option >Tipo de Dispositivo</option>
                                             <option value="HDD">HDD</option>
                                             <option value="CD/DVD">CD/DVD</option>
                                             <option value="Unidad">Unidad Flash</option>
                                             <option value="MEMORY">Tarjeta de Memoria</option>
-                                            <option value="Tarjeta">Impresora</option>
+                                            <option value="Impresora">Impresora</option>
                                             <option value="Memoria">Memoria</option>
                                             <option value="cabezales">herramientas de cambio de cabezales</option>
                                             <option value="disco">herramientas de disco duro</option>
@@ -142,12 +142,12 @@ function validarTiempo(){
 
                                           </select>
                                       </div>
-                                  </th>
+                                  </td>
                                   <td>
                                       <div class="input-group">
                                         <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Rol</span>
-                                          <select name="rol[]" id="rol-0" class="form-control" class="btn-block" required>
-                                            <option disabled>Escoga la prioridad</option>
+                                          <select name="rol[]" id="rol" class="form-control" class="btn-block" required>
+                                            <option >Escoja un rol</option>
                                             <option value="Normal">Normal</option>
                                             <option value="Alta">Alta</option>
                                             <option value="Urgente">Urgente</option>
@@ -187,10 +187,6 @@ function validarTiempo(){
                                           <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                                           <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
                                         </svg>
-                                          <span class="btn-inner--icon">
-                                            
-
-                                          </span>
                                       </button>
                                   </td>
                               </tr>
@@ -245,13 +241,69 @@ function validarTiempo(){
               var iman = 0;
               iman = iman + 1;
               //$("#tabla tbody tr:eq(0)").clone().appendTo("#tabla").attr("id", "columna-" + (iman)).find('input, select').attr('readonly', true).show();
-              var $tableBody = $('#tabla').find("tbody"),
-              $trLast = $tableBody.find("tr:last"),
-              
-              $trNew = $trLast.clone();
-            //Set updated value
-            $('select', $trNew).val($('select', $trLast).val());
-            $trLast.after($trNew);
+              //adding row to end and start
+              //$("#tabla>tbody").prepend("<tr><td>Test Row Prepend</td></tr>");
+              var tipo = document.getElementById("tipo");
+              var selectedTipo = tipo.options[tipo.selectedIndex].text;
+              var rol = document.getElementById("rol");
+              var selectedRol = rol.options[rol.selectedIndex].text;
+              var fabricante = document.getElementById("fabricante").value;
+              var modelo = document.getElementById("modelo").value;
+              var serial = document.getElementById("serial").value;
+              var localizacion = document.getElementById("localizacion").value;
+              $("#tabla>tbody").append("<tr>"+
+                                          "<td>"+
+                                            "<div class='input-group'>"+
+                                            "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Tipo</span>"+
+                                            "<input type='text' class='form-control' name='tipo[]'id='tipo' readonly value='"+selectedTipo+"'>"+
+                                            "</div>"+
+                                          "</td>"+
+                                          "<td>"+
+                                            "<div class='input-group'>"+
+                                            "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Rol</span>"+
+                                            "<input type='text' class='form-control' name='rol[]'id='rol' readonly value='"+selectedRol+"'>"+
+                                            "</div>"+
+                                          "</td>"+
+                                          "<td>"+
+                                            "<div class='input-group'>"+
+                                            "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Fabricante</span>"+
+                                            "<input type='text' class='form-control' name='fabricante[]'id='fabricante' readonly value='"+fabricante+"'>"+
+                                            "</div>"+
+                                          "</td>"+
+                                          "<td>"+
+                                            "<div class='input-group'>"+
+                                            "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Modelo</span>"+
+                                            "<input type='text' class='form-control' name='modelo[]'id='modelo' readonly value='"+modelo+"'>"+
+                                            "</div>"+
+                                          "</td>"+
+                                          "<td>"+
+                                            "<div class='input-group'>"+
+                                            "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Serial</span>"+
+                                            "<input type='text' class='form-control' name='serial[]'id='serial' readonly value='"+serial+"'>"+
+                                            "</div>"+
+                                          "</td>"+
+                                          "<td>"+
+                                            "<div class='input-group'>"+
+                                            "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Localizacion</span>"+
+                                            "<input type='text' class='form-control' name='localizacion[]'id='localizacion' readonly value='"+localizacion+"'>"+
+                                            "</div>"+
+                                          "</td>"+
+                                          "<td class='eliminar'>"+
+                                            "<button class='btn btn-icon btn-danger' type='button' id='deletRow' name='deletRow'>"+
+                                            "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>"+
+                                            "<path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'/>"+
+                                            "<path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/>"+
+                                            "</svg>"+
+                                            "</button>"+
+                                          "</td>"+
+                                        "</tr>");
+
+                                        $("#tipo").val('Tipo de Dispositivo'); 
+                                        $("#rol").val('Escoja un rol'); 
+                                        $("#fabricante").val('');    
+                                        $("#modelo").val('');  
+                                        $("#serial").val(''); 
+                                        $("#localizacion").val('');                           
       });
       
      $(document).on("click", ".eliminar", function() {
