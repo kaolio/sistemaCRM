@@ -2,6 +2,10 @@
 @section('content')
 
 <h1 align="center"><strong>ORDEN DE TRABAJO</strong></h1>
+<button class="btn btn-danger">
+    <a href="{{ url('/trabajos/nuevo/detalle')}}" type="submit">detalle</a>
+</button>
+
 <div class="d-flex">
   <div class="p-2">
     <button type="button" class="btn btn-primary">Excel</button>

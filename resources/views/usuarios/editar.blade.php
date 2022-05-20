@@ -46,9 +46,8 @@
             }
 </style>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<!--
 <script>
-     $(function() {
+             $(function() {
                         var $imagenPerfil, $photoPerfil, $photoForm;
 
                         $imagenPerfil = $('#imagenPerfil');
@@ -60,10 +59,11 @@
                         });
 
                         $photoPerfil.on('change', function () {
-                            alert('onChange');
+                            alert('imagen cargada');
                      });
              });
 
+             
 
              $imagenPerfil.on('change', function () {
                     var formData = new FormData();
@@ -86,27 +86,13 @@
 
 
 </script> 
--->
-    <script>
-        $(document).on('click','#change_picture_btn', function(){
-            $('#admin_image').click();
-            });
 
-            $('#admin_image').ijaboCropTool({
-                preview : '',
-                setRatio:1,
-                allowedExtensions: ['jpg', 'jpeg','png'],
-                buttonsText:['CROP','QUIT'],
-                buttonsColor:['#30bf7d','#ee5155', -15],
-                processUrl:'/usuario/change-profile-picture',
-                withCSRF:['_token','{{ csrf_token() }}'],
-                onSuccess:function(message, element, status){
-                    alert(message);
-                },
-                onError:function(message, element, status){
-                    alert(message);
-                }
-       });
+    <script>
+        
+            
+       
+
+           
   
   </script>
     <BR>
@@ -205,32 +191,31 @@
                 <div class="card-body">
                     <div class="card1"> 
                         <div class="card_img"> 
-                            <form action=" {{ url('/perfil/foto') }}" method="post" style="display: none" id="photoForm">
+                            <form action=" {{ url('/usuario/foto') }}" method="post" style="display: none" id="photoForm">
                                 {{ csrf_field() }}
                                 <input type="file" id="photoPerfil" name="photo">
                             </form>
-                            <img src="https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-1100x628.jpg" id="imagenPerfil">
+                            <img src="{{ auth()->user()->getAvatarUrl() }}" id="imagenPerfil">
                         
+                            
                         </div>
                         <div class="card_info">
                             <h5 class="title">{{ auth()->user()->name }}</h5>
 
                             <h5 class="title">{{ Auth::user()->roles->pluck('name')  }}</h5>
+
+                            <div class="text-center">
+                                <label for="file-upload" class="subir" >
+                                  <i class="fas fa-cloud-upload-alt" ></i> Subir Imagen</label>
+                                <input id="file-upload" name="photo" onclick="cargarImagen()" type="file" style='display: none;'/>
+                             </div>
+                            
                         </div>
                     </div>
                 </div>
 
 
-                <form action=" {{ url('/perfil/foto') }}" method="post"  id="photoForm">
-                    {{ csrf_field() }}
-                    
-                    <div class="text-center">
-                        <label for="file-upload" class="subir" >
-                          <i class="fas fa-cloud-upload-alt" ></i> Subir Imagen</label>
-                        <input id="file-upload" name="photo" onclick="cargarImagen()" type="file" style='display: none;'/>
-                     </div>
-
-                </form>
+               
 
         
             
@@ -242,23 +227,4 @@
         </div>
         <!-- -->
 
-        <!-- Profile Image -->
-        <div class="card card-primary card-outline">
-            <div class="card-body box-profile">
-              <div class="text-center">
-                <img class="profile-user-img img-fluid img-circle admin_picture" src="{{ Auth::user()->picture }}" alt="User profile picture">
-              </div>
-
-              <h3 class="profile-username text-center admin_name">{{Auth::user()->name}}</h3>
-
-              <p class="text-muted text-center">Admin</p>
-
-              <input type="file" name="admin_image" id="admin_image" style="opacity: 0;height:1px;display:none">
-              <a href="javascript:void(0)" class="btn btn-primary btn-block" id="change_picture_btn"><b>Change picture</b></a>
-              
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-
-@endsection 
+@endsection
