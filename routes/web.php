@@ -42,7 +42,7 @@ Route::get('/usuario/editar/{id}',[UsuarioController::class,'edit']);
 Route::post('/usuario/editar/{id}',[UsuarioController::class,'update']);
 Route::post('/imagen/validar' ,[UsuarioController::class,'validar']);
 //Edicion foto
-Route::post('/perfil/foto', [ProfileController::class,'updatePhoto']);
+Route::post('/usuario/foto', [UsuarioController::class,'updatePhoto']);
 
 //script
 Route::post('/usuario/nuevo/validarCorreo', [UsuarioController::class,'validarCorreo']);
@@ -54,6 +54,10 @@ Route::get('/trabajo/nuevo',[OrdenTrabajoController::class,'create']);
 Route::post('/trabajo/nuevo',[OrdenTrabajoController::class,'store']);
 Route::get('/trabajo/editar/{id}',[OrdenTrabajoController::class,'edit']);
 Route::put('/trabajo/editar/{id}',[OrdenTrabajoController::class,'update']);
+Route::get('/trabajo/buscador',[OrdenTrabajoController::class,'buscador']);
+//detalle de trabajo
+Route::get('/trabajos/nuevo/detalle',[OrdenTrabajoController::class,'detalle']);
+
 
 //INVENTARIO
 Route::get('/inventario',[InventarioController::class,'index']);
@@ -69,10 +73,12 @@ Route::get('/inventario/imprimirItemPdf/{id}',[InventarioController::class,'impr
 Route::get('/inventario/excel',[InventarioController::class,'descargarExcel']); //ruta para descargar excel
 Route::get('/inventario/buscador',[InventarioController::class,'buscador']);  //buscador en tiempo real
 
+Route::post('/inventario/busqueda' ,[InventarioController::class.'busqueda']);
+
 //CLIENTES
 Route::get('/clientes',[ClienteController::class,'index']);
-Route::delete('/cliente/{id}',[ClienteController::class,'destroy']);
 Route::get('/cliente/nuevo',[ClienteController::class,'create']);
 Route::post('/cliente/nuevo',[ClienteController::class,'store']);
 Route::get('/cliente/editar/{id}',[ClienteController::class,'edit']);
 Route::put('/cliente/editar/{id}',[ClienteController::class,'update']);
+Route::delete('/cliente/{id}',[ClienteController::class,'destroy']);

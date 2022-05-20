@@ -1,5 +1,6 @@
 @extends('adminlte::page')
 @section('content')
+<h1 align="center" style="font-weight: 700">REGISTRAR NUEVO CLIENTE</h1>
 <style>
   span{
     text-transform: capitalize;
@@ -21,7 +22,7 @@
   function validarNombre() {
  
  if($("#Nombre").val() == ""){
-   $("#estadoNombre").html("<span  class='menor'><h5 class='menor'> </h5></span>");
+   $("#estadoNombre").html("<span  class='error'><h5 class='menor'>Este campo no puede estar vacío</h5></span>");
   }else{
        if ($("#Nombre").val().length < 3) {
            $("#estadoNombre").html(
@@ -32,7 +33,7 @@
                    "<span  class='menor'><h5 class='menor'>Ingrese menos de 50 caracteres</h5></span>");
            } else {
                
-                   $("#estadoNombre").html("<span  class='menor'><h5 class='menor'> </h5></span>");
+                   $("#estadoNombre").html("<span  class='bien'><h5 class='bien'> Válido </h5></span>");
            }
        } 
  }
@@ -133,11 +134,10 @@ function validarValor(){
 
      </div>
      <div class="card-body">
-        <h2><strong>Añadir nuevo cliente</strong></h2>
+  
         <div class="container-fluid">
             <form action="{{url('/cliente/nuevo')}}" method="POST">
               @csrf
-               
               <div class="card">
                   <div class="card-body">
                 <div class="row">
@@ -354,6 +354,7 @@ function validarValor(){
 
  </div>  
 </body>
+
   {{-- <script>
     var cont = document.getElementById('inputDinamic'); 
     var botonAgregar = document.getElementById('agregar');

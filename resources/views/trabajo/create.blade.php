@@ -1,5 +1,6 @@
 @extends('adminlte::page')
 @section('content')
+<h1 align="center" style="font-weight: 700">ORDEN DE TRABAJO</h1>
 
 <style>
   span {
@@ -78,12 +79,9 @@ function validarTiempo(){
 
 
 <div class="card">
-  <div class="card-header">
-    
-  </div>
   <div class="card-body">
     <body>
-      <h2><strong>Orden de Trabajo</strong></h2>
+      
         <form action="{{url('/trabajo/nuevo')}}" method="POST">
           @csrf
           <div class='container-fluid'>
@@ -120,7 +118,7 @@ function validarTiempo(){
                 </div>
                  <!-- -->
 
-                    <h4>Dispositivos</h4>
+                    <h4><strong>Dispositivos</strong></h4>
                     <td><button type="button" name="remove" id="" class="btn btn-danger btn_remove" style="border-radius: 50%;">X</button></td>
                         <td class="btn-block"><button type="button" name="add" id="add" class="btn btn-primary" style="border-radius: 50%;"><i class="fa fa-plus"></i> </button></td>
                         <br><br>
@@ -138,10 +136,8 @@ function validarTiempo(){
                               <option value="disk">disk</option>
                             </select>
                             <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Rol</span>
-                            <select name="Role" class="form-control" required>
+                            <select name="Role" id="Roles" class="form-control" required>
                               <option value="">Escoja el Rol</option>
-                              <option value="Junior">Junior</option>
-                              <option value="SemiJunior">SemiJunior</option>
                               <option value="Master">Master</option>
                             </select>
                             <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Fabricante</span>

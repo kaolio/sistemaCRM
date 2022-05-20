@@ -1,6 +1,4 @@
 
-
-
 @if($errors->any())
 <div class="alert alert-danger">
    <ul>
@@ -17,7 +15,7 @@
     <div class="col-xs-10 col-sm-10 col-md-10">
         <div class="form-group">
             <label for="nombre">Nombre del cliente</label>
-        <input type="text" name="Nombre" id="nombre" class="form-control" value="{{$cliente->NombreCliente}}" placeholder="Nombre" tabindex="1">
+        <input type="text" name="Nombre" id="nombre" class="form-control" value="{{$cliente->NombreCliente}}" required onkeyup="validarNombre()" placeholder="Nombre" tabindex="1">
         
         </div>
     </div>
@@ -25,7 +23,7 @@
     <div class="col-xs-2 col-sm-2 col-md-2">
         <div class="form-group">
             <label for="apellido">VATID</label>
-            <input type="text" id="vat" name="vat" value="{{$cliente->VATid}}" class="form-control" tabindex="2">
+            <input type="text" id="vat" name="vat" value="{{$cliente->VATid}}" required onkeyup="validarVat()" class="form-control" tabindex="2">
             
         </div>
     </div>
@@ -37,7 +35,7 @@
       <div class="col-xs-8 col-sm-8 col-md-8">
           <div class="form-group">
               <label for="calle">Direccion</label>
-              <input type="text" name="calle" id="street" value="{{$cliente->Calle}}" class="form-control" placeholder="Calle"tabindex="1">
+              <input type="text" name="calle" id="street" value="{{$cliente->Calle}}" required onkeyup="validarCalle()" class="form-control" placeholder="Calle"tabindex="1">
               {!! $errors->first('calle','<div class="invalid-feedback alert alert-danger">:message</div>')!!}
           </div>
       </div>
@@ -45,14 +43,14 @@
       <div class="col-xs-2 col-sm-2 col-md-2">
           <div class="form-group">
               <label for="num">Numero</label>
-              <input type="text" name="Num" id="numero" value="{{$cliente->Numero}}" class="form-control" tabindex="2">
+              <input type="text" name="Num" id="numero" value="{{$cliente->Numero}}" required onkeyup="validarNumero()" class="form-control" tabindex="2">
           </div>
       </div>
 
       <div class="col-xs-2 col-sm-2 col-md-2">
           <div class="form-group">
               <label for="apt">Apt</label>
-              <input type="text" name="apt" value="{{$cliente->Apt}}" id="Ap"  class="form-control"tabindex="3">
+              <input type="text" name="apt" value="{{$cliente->Apt}}" id="Ap" required onkeyup="validarApt()" class="form-control"tabindex="3">
           </div>
       </div>
     </div>
@@ -63,21 +61,21 @@
       <div class="col-xs-4 col-sm-4 col-md-4">
           <div class="form-group">
               <label for="CodigoP">Codigo Postal</label>
-              <input type="number" name="codP" id="Postal" value="{{$cliente->CodigoPostal}}" class="form-control" tabindex="1">
+              <input type="number" name="codP" id="Postal" value="{{$cliente->CodigoPostal}}" required onkeyup="validarCodigoPostal()" class="form-control" tabindex="1">
           </div>
       </div>
 
       <div class="col-xs-4 col-sm-4 col-md-4">
           <div class="form-group">
               <label for="PAK">PAK</label>
-              <input type="text" name="pak" id="pak" value="{{$cliente->Pak}}" class="form-control" tabindex="2">
+              <input type="text" name="pak" id="pak" value="{{$cliente->Pak}}" class="form-control" tabindex="2" required onkeyup="validarPak()">
           </div>
       </div>
 
       <div class="col-xs-4 col-sm-4 col-md-4">
           <div class="form-group">
               <label for="apt">Nombre de la ciudad</label>
-              <input type="text" name="city" id="nameCity" value="{{$cliente->NombreCiudad}}" class="form-control"tabindex="3">
+              <input type="text" name="city" id="nameCity" value="{{$cliente->NombreCiudad}}" class="form-control"tabindex="3" required onkeyup="validarCiudad()">
           </div>
       </div>
     </div>
@@ -87,7 +85,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
          <div class="form-group">
             <label for="pais">Pais</label>
-            <input type="text" name="pais"  id="country" value="{{$cliente->Pais}}" class="form-control">
+            <input type="text" name="pais"  id="country" value="{{$cliente->Pais}}" class="form-control" required onkeyup="validarPais()">
         </div>
         </div>
     </div>
@@ -98,7 +96,13 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="form-group" style="display: flex;">
             <label for="UI">Idioma </label>
-            <select name="language" class="form-control" required>
+            <select name="language" class="form-control" required value="{{$cliente->Idioma}}">
+                <option selected disabled value="">Seleccione el idioma</option>
+                  @if ($cliente->Idioma == $cliente_elegido->Idioma)
+                    <option value="{{$cliente_elegido->Idioma}}" selected>{{$cliente_elegido->Idioma}}</option>                      
+                  @else
+                    <option value="{{$cliente_elegido->Idioma}}">{{$cliente_elegido->Idioma}}</option>      
+                  @endif
                 <option value="0">Seleccione el idioma</option>
                 <option value="Español">Español</option>
                 <option value="Ingles">Ingles</option>
@@ -119,8 +123,13 @@
     <div class="col-xs-4 col-sm-4 col-md-4">
       <div class="form-group">
         <label for="Type">Tipo </label>
-        <select name="tipo" class="form-control" required>
-            <option value="0">Seleccione el tipo</option>
+        <select name="tipo" class="form-control" required value="{{$cliente->Tipo}}">
+            <option selected disabled value="">Seleccione el tipo</option>
+                  @if ($cliente->Tipo == $cliente_elegido->Tipo)
+                    <option value="{{$cliente_elegido->Tipo}}" selected>{{$cliente_elegido->Tipo}}</option>                      
+                  @else
+                    <option value="{{$cliente_elegido->Tipo}}">{{$cliente_elegido->Tipo}}</option>      
+                  @endif
             <option value="Email">Email</option>
             <option value="Telefono">Telefono</option>
             <option value="Celular">Celular</option>
@@ -133,7 +142,7 @@
       <div class="col-xs-4 col-sm-4 col-md-4">
           <div class="form-group" >
               <label for="valor">Valor</label>
-              <input type="text" name="value" id="value" value="{{$cliente->Valor}}" class="form-control"tabindex="3">
+              <input type="text" name="value" id="value" value="{{$cliente->Valor}}" class="form-control"tabindex="3" required onkeyup="validarValor()">
           </div>
       </div>
 
@@ -154,7 +163,9 @@
      </div>
 
      <div class="form-group">
-  <a href="" class="btn btn-warning my-2 my-sm-0">Resetear</a>
-  <button class="btn btn-success" type="submit">Guardar y Crear el trabajo</button>
-  <button class="btn btn-success my-2 my-sm-0" type="submit" value="Guardar Datos">Guardar</button>
+        <button type="submit" class="btn btn-lg btn-dark">Actualizar</button>
+        <a href="{{url('/clientes')}}" class="btn btn-lg btn-secondary float-right">Regresar a clientes</a>
   </div>
+
+
+

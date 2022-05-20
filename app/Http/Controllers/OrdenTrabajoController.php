@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\OrdenTrabajo;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use App\Models\Roles;
 use Illuminate\Support\Facades\DB;
 class OrdenTrabajoController extends Controller
 {
@@ -35,6 +36,13 @@ class OrdenTrabajoController extends Controller
         
     }
 
+
+    public function buscador(Request $request){
+        $trabajo = OrdenTrabajo::where("Prioridad",'like','%'.$request->texto.'%')->get();
+                               
+        return view("/trabajo/paginas",compact("trabajo"));        
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -51,7 +59,7 @@ class OrdenTrabajoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Roles $roles)
     {
 
         $request->validate([
@@ -100,7 +108,10 @@ class OrdenTrabajoController extends Controller
     public function edit($id)
     {
         $trabajo = OrdenTrabajo::findOrFail($id);
-        return view('trabajo.editar',compact('trabajo'));
+        $trabajo_elegido = DB::table('orden_trabajos')  //recuperar el valor del select
+        ->select('*')
+        ->Where('orden_trabajos.id', '=', $id)->first();
+        return view('trabajo.editar',compact('trabajo','trabajo_elegido'));
         
     }
 
@@ -135,9 +146,17 @@ class OrdenTrabajoController extends Controller
      * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(OrdenTrabajo $trabajo,$id)
     {
-        OrdenTrabajo::destroy($id); 
-        return redirect('trabajos');
+        // OrdenTrabajo::destroy($id); 
+        // return redirect('trabajos');
+        $trabajo=OrdenTrabajo::findOrFail($id);
+        $trabajo->delete();
+                return redirect('trabajos');
+    }
+    
+    public function detalle(){
+        
+        return view('trabajo.informacion.detalle');
     }
 }

@@ -13,15 +13,13 @@
         .card1  {
         background: linear-gradient(100deg, #C1C2C3, rgb(234, 234, 236));
         }
-        body{
-                font-family:serif,new time roman;
-            }
+        
 </style>
 <BR>
     <div class="row justify-content-center">
         <div class="card">
         <div class="card-header">
-            <h3> <b> EDITAR ROL </b> </h3>
+            <h3 class="text-center" style ="font-family:serif,new time roman;"> <b> EDITAR ROL </b> </h3>
         </div>
         <div class="card-body">
 
@@ -153,8 +151,11 @@
 
                                      </br>
                                      </br>
-                                    <input type="submit" class="btn btn-success my-2 my-sm-0" value="Agregar">
-                                    <a href="{{url('roles')}}"class="btn btn-primary">Regresar</a>
+                                     <div class="text-center">
+                                                <input type="submit" class="btn btn-success my-2 my-sm-0" value="Agregar">
+                                                <a href="{{url('roles')}}"class="btn btn-primary">Regresar</a>
+                                     </div>
+                                    
                             </div>
                         </div>
                     </div>
