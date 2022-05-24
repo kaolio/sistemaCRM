@@ -4,6 +4,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\OrdenTrabajoController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\DetalleController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
@@ -57,6 +58,7 @@ Route::put('/trabajo/editar/{id}',[OrdenTrabajoController::class,'update']);
 Route::get('/trabajo/buscador',[OrdenTrabajoController::class,'buscador']);
 //detalle de trabajo
 Route::get('/trabajos/nuevo/detalle',[OrdenTrabajoController::class,'detalle']);
+Route::get('/trabajos/nuevo/detalle{id}',[OrdenTrabajoController::class,'dispositivoPaciente']);
 
 
 //INVENTARIO

@@ -1,7 +1,9 @@
 @extends('adminlte::page')
 @section('content')
 <style>
-   
+   .table-responsive{
+   font-size: 14px;
+ }
 </style>
 
         
@@ -24,9 +26,7 @@
                             <div class="card-body">
                                 <div class="tab-content">
                                 <!--General-->
-                                <div class="active tab-pane" id="general">
-                                    
-                                </div>
+                                    @include('trabajo.informacion.general')
                                 <!--/General-->
 
                                 <!--Dispositivos de trabajo-->

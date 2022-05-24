@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Inventario;
 use App\Models\OrdenTrabajo;
 use Illuminate\Http\Request;
-use App\Models\Cliente;
 use App\Models\Roles;
 use Illuminate\Support\Facades\DB;
-class OrdenTrabajoController extends Controller
+class DetalleController extends Controller
 {
 
     function __construct()
@@ -97,6 +97,20 @@ class OrdenTrabajoController extends Controller
     public function destroy(OrdenTrabajo $trabajo,$id)
     {
       
+    }
+
+    public function dispositivoPaciente( $id){
+
+        $trabajos = DB::table('orden_trabajos')
+        ->select('*')
+        ->when('id','=',$id)
+        ->first();
+        
+        dd($trabajos);
+
+        $discos = Inventario::all();
+
+        return view('trabajo.informacion.general',['trabajo'=>$trabajos, 'item'=>$discos]);
     }
     
 
