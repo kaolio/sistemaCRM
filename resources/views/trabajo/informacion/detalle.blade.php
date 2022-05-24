@@ -32,6 +32,7 @@
                                 <!--Dispositivos de trabajo-->
                                 <div class="tab-pane" id="dispositivosTrabajo">
                                     <p>holas</p>
+                                    @include('trabajo/informacion/dispositivos-de-trabajo')
                                 </div>
                                 <!--/Dispositivos de trabajo-->
 

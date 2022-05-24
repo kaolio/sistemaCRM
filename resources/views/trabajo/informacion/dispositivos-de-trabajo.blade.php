@@ -1,0 +1,364 @@
+<style>
+    .subtitulo{  
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 2px;
+    }
+    .btn{
+        padding: 7px 8px;
+        border-radius: 25px;
+        font-size: 12px;
+        text-align: center;
+    }
+    #botones{
+        font-size: 14px;
+        border-radius: 4px;
+        padding: 5px;
+        box-shadow: 2px 2px 2px rgb(95, 93, 93);
+
+    }
+    .dejar-en-blanco{
+        color: rgb(59, 57, 57);
+        font-size: 14px;
+        padding-bottom: 8px;
+    }
+</style>
+<div class="fila-botones">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" id="botones" data-toggle="modal" data-target="#exampleModal">
+        Mover Dispositivos Seleccionados
+    </button>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel" align="center">Mover Dispositivos Seleccionados</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <h5>Mover todos los dispositivos a un nuevo lugar</h5>
+                    <div class="input-group md-2">
+                        <span class="input-group-text">Nueva Ubicación</span>
+                        <input type="text" class="form-control">
+                    </div>
+                        <span class="dejar-en-blanco m-2">Dejar en blanco para no cambiar</span>
+                    <br><br>
+                    <div class="input-group">
+                        <span class="input-group-text">Nueva Ubicación Temporal</span>
+                        <input type="text" class="form-control"><br>
+                    </div>
+                        <span class="dejar-en-blanco m-2">Dejar en blanco para no cambiar</span>    
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="botones" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary" id="botones">Mover</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+
+        <button class="btn btn-danger" id="botones">Eliminar dispositivos seleccionados</button>
+        <button class="btn btn-success" id="botones">Agregar nuevo dispositivos del cliente</button>
+        <button class="btn btn-success" id="botones">Agregar dispositivo</button>
+        <button class="btn btn-danger" id="botones">Liberar seleccionados</button>
+</div>
+
+    <p class="subtitulo">Dispositivos del Paciente</p>
+    <div class="table">
+    <table class="table table-responsive">
+        <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
+            <tr>
+                <th class="p-1">&nbsp;&nbsp;&nbsp;</th>
+                <th class="p-1">Tipo</th>
+                <th class="p-1">Fabricante</th>
+                <th class="p-1">Modelo</th>
+                <th class="p-1">Serie</th>
+                <th class="p-1">Ubicación</th>
+                <th class="p-1">Diagnóstico</th>
+                <th class="p-1">Nota</th>
+                <th class="p-1"></th>
+            </tr>
+          </thead>
+          <tbody class="table-bordered">
+            {{-- @if(count($inventario)<=0) --}}
+            <tr>
+                <th class="col-md-3">No hay datos disponibles</th>  
+            <tr>
+             {{-- @else    --}}
+             {{-- @foreach ($inventario as $item) --}}
+            
+             <tr>
+                <th scope="row"></th>
+                <td>Hdd</td>
+                <td>Wester Digital</td>
+                <td>ZSDGSER346sSF5</td>
+                <td>ER56T78</td>
+                <td>Salta</td>
+                <td>Sin Diagnostico</td>
+                <td>Falla en la cabecera</td>
+                <td>
+                    {{-- Buscar --}}
+                    <a href="">
+                        <button class="btn btn-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                              </svg>
+                        </button>
+                    </a>
+
+{{-- Editar --}}
+                    <a href="">
+                        <button class="btn btn-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+                              </svg>
+                        </button>
+                    </a>
+{{--Fin Editar}}
+{{-- Diagnostico --}}
+                   
+                        <!-- Button trigger modal -->
+                    {{-- <a href=""> --}}
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
+                                    <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+                                </svg>
+                            </button>
+                    {{-- </a> --}}
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel2" align="center">Diagnóstico</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container">
+                                    <p align="center">Seleccionar diagnostico para el dispositivo: <br>
+                                        Wester Digital - 0723GG45RT
+                                    </p>
+                                    <div class="input-group md-2">
+                                        <span class="input-group-text">Diagnóstico</span>
+                                        <select name="" class="form-control" class="btn-block">
+                                            <option value=""></option>
+                                            <option value="Seagate">Seagate</option>
+                                            <option value="Toshiba">Toshiba</option>
+                                            <option value="Samsung">Samsung</option>
+                                            <option value="Verbatim">Verbatim</option>
+                                            <option value="Wester Digital">Western Digital</option>
+                                            <option value="SkayNet">SkyNet</option>
+                                            <option value="Maxtor">Maxtor</option>
+                                            <option value="Adata">Adata</option>
+                                            <option value="Crucial">Crucial</option>
+                                            <option value="Kingston">Kingston</option>
+                                            <option value="Sony">Sony</option>
+                                            <option value="Hitachi">Hitachi</option>
+                                            <option value="Asus">Asus</option>
+                                        </select>                           
+                                    </div><br>
+                                    <div class="input-group">
+                                        <div class="form-check">
+                                            <input class="form-check-input" style="width: 20px; height:18px;" type="checkbox" value="" id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                &nbsp; Asignar a todos los discos en el trabajo
+                                            </label>
+                                        </div>
+                                    </div>  
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" id="botones" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary" id="botones">Guardar</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+{{-- Fin Diagnostico --}}
+
+
+{{-- Descargar --}}
+                    <a href="">
+                        <button class="btn btn-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                              </svg>
+                        </button>
+                    </a>
+                    {{--Mover --}}
+                    <a href="">
+                        <button class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-move" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z"/>
+                            </svg>
+                        </button>
+                    </a>
+                    {{--Arrastrar --}}
+                    <a href="">
+                        <button class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
+                            </svg>
+                        </button>
+                    </a>
+                     {{--Eliminar --}}
+                     <a href="">
+                        <button class="btn btn-danger">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                              </svg>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+         
+        </tbody>
+    </table>
+     </div>
+
+<p class="subtitulo">Clones de Trabajo</p>
+<div class="table">
+    <table class="table table-responsive">
+        <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
+            <tr>
+                <th class="p-1"> &nbsp;&nbsp;&nbsp; </th>
+                <th class="col-md-1 p-1"> ID </th>
+                <th class="col-md-1 p-1">Tipo</th>
+                <th class="col-md-2 p-1">Fabricante</th>
+                <th class="col-md-2 p-1">Modelo</th>
+                <th class="col-md-2 p-1">Serie</th>
+                <th class="col-md-1 p-1">Ubicación</th>
+                <th class="col-md-2 p-1">Nota</th>
+                <th class="col-md-1 p-1"></th>
+            </tr>
+          </thead>
+          <tbody class="table-bordered">
+              {{-- @if(count($inventario)<=0) --}}
+                <tr>
+                  <th class="col-md-3">No hay datos disponibles</th>  
+                <tr>
+               {{-- @else    --}}
+               {{-- @foreach ($inventario as $item) --}}
+            <tr>
+             
+            </tr>
+           
+          </tbody>
+    </table>
+     </div>     
+
+
+<p class="subtitulo">Donantes de Trabajo</p>
+<div class="table">
+    <table class="table table-responsive">
+        <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
+            <tr>
+                <th class="p-1">&nbsp;&nbsp;&nbsp;</th>
+                <th class="col-md-1 p-1"> ID  </th>
+                <th class="col-md-1 p-1">Tipo</th>
+                <th class="col-md-1 p-1">Rol</th>
+                <th class="col-md-2 p-1">Fabricante</th>
+                <th class="col-md-2 p-1">Modelo</th>
+                <th class="col-md-2 p-1">Serie</th>
+                <th class="col-md-1 p-1">Ubicación</th>
+                <th class="col-md-2 p-1">Nota</th>
+                <th class="col-md-1 p-1"></th>
+            </tr>
+          </thead>
+          <tbody class="table-bordered">
+              {{-- @if(count($inventario)<=0) --}}
+            <tr>
+                <th class="col-md-3">No hay datos disponibles</th>
+            <tr>
+               {{-- @else    --}}
+               {{-- @foreach ($inventario as $item) --}}
+            <tr>
+             
+            </tr>
+           
+          </tbody>
+    </table>
+     </div>     
+
+
+<p class="subtitulo">Otros Dispositivos de los Clientes</p>
+<div class="table">
+    <table class="table table-responsive">
+        <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
+            <tr>
+                <th class="p-1"> &nbsp;&nbsp;&nbsp; </th>
+                <th class="p-1">Tipo</th>
+                <th class="p-1">Fabricante</th>
+                <th class="p-1">Modelo</th>
+                <th class="p-1">Serie</th>
+                <th class="p-1">Ubicación</th>
+                <th class="p-1">Nota</th>
+                <th class="p-1"></th>
+            </tr>
+          </thead>
+          <tbody class="table-bordered">
+              {{-- @if(count($inventario)<=0) --}}
+            <tr>
+                <th class="col-md-3">No hay datos disponibles</th>
+            <tr>
+               {{-- @else    --}}
+               {{-- @foreach ($inventario as $item) --}}
+            <tr>
+                <th scope="row"></th>
+                <td>Hdd</td>
+                <td>Wester Digital</td>
+                <td>ZSDGSER346sSF5</td>
+                <td>ER56T78</td>
+                <td>Cabinet</td>
+                <td>Falla en la cabecera</td>
+                <td>
+                    {{--Mover --}}
+                    <a href="">
+                        <button class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-move" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z"/>
+                            </svg>
+                        </button>
+                    </a>
+                      {{-- Editar --}}
+                      <a href="">
+                        <button class="btn btn-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+                              </svg>
+                        </button>
+                    </a>
+                    {{--Arrastrar --}}
+                    <a href="">
+                        <button class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
+                            </svg>
+                        </button>
+                    </a>
+                     {{--Eliminar --}}
+                     <a href="">
+                        <button class="btn btn-danger">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                              </svg>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+           
+          </tbody>
+    </table>
+     </div>     
+
