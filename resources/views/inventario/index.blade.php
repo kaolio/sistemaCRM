@@ -166,7 +166,7 @@ else
                 <th class="column6 text-center p-2">Nota</th>
                 <th class="column6 text-center p-2">Cabezal</th>
                 <th class="column6 text-center p-2">Inf. del Cabezal</th>
-                <th class="column6 text-center p-3">Acciones</th>
+                <th class="column6 text-center p-2">Acciones</th>
             </tr>
           </thead>
           <tbody class="table-bordered">
