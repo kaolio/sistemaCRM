@@ -1,9 +1,7 @@
 @extends('adminlte::page')
 @section('content')
 <style>
-    body{
-                font-family:serif,new time roman;
-            }
+    
 
             .card1 {
                 border: 1px solid #ddd;
@@ -49,7 +47,7 @@
 </style>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
-     $(function() {
+             $(function() {
                         var $imagenPerfil, $photoPerfil, $photoForm;
 
                         $imagenPerfil = $('#imagenPerfil');
@@ -61,10 +59,11 @@
                         });
 
                         $photoPerfil.on('change', function () {
-                            alert('onChange');
+                            alert('imagen cargada');
                      });
              });
 
+             
 
              $imagenPerfil.on('change', function () {
                     var formData = new FormData();
@@ -102,7 +101,7 @@
         <div class="row justify-content-center">
             <div class="col-sm-6">
               <div class="card">
-                <div class="card-header text-center">
+                <div class="card-header text-center" style ="font-family:serif,new time roman;">
                     EDITAR USUARIO
                 </div>
                 <div class="card-body">
@@ -192,32 +191,31 @@
                 <div class="card-body">
                     <div class="card1"> 
                         <div class="card_img"> 
-                            <form action=" {{ url('/perfil/foto') }}" method="post" style="display: none" id="photoForm">
+                            <form action=" {{ url('/usuario/foto') }}" method="post" style="display: none" id="photoForm">
                                 {{ csrf_field() }}
                                 <input type="file" id="photoPerfil" name="photo">
                             </form>
-                            <img src="https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-1100x628.jpg" id="imagenPerfil">
+                            <img src="{{ auth()->user()->getAvatarUrl() }}" id="imagenPerfil">
                         
+                            
                         </div>
                         <div class="card_info">
                             <h5 class="title">{{ auth()->user()->name }}</h5>
 
                             <h5 class="title">{{ Auth::user()->roles->pluck('name')  }}</h5>
+
+                            <div class="text-center">
+                                <label for="file-upload" class="subir" >
+                                  <i class="fas fa-cloud-upload-alt" ></i> Subir Imagen</label>
+                                <input id="file-upload" name="photo" onclick="cargarImagen()" type="file" style='display: none;'/>
+                             </div>
+                            
                         </div>
                     </div>
                 </div>
 
 
-                <form action=" {{ url('/perfil/foto') }}" method="post"  id="photoForm">
-                    {{ csrf_field() }}
-                    
-                    <div class="text-center">
-                        <label for="file-upload" class="subir" >
-                          <i class="fas fa-cloud-upload-alt" ></i> Subir Imagen</label>
-                        <input id="file-upload" name="photo" onclick="cargarImagen()" type="file" style='display: none;'/>
-                     </div>
-
-                </form>
+               
 
         
             

@@ -42,7 +42,7 @@ Route::get('/usuario/editar/{id}',[UsuarioController::class,'edit']);
 Route::post('/usuario/editar/{id}',[UsuarioController::class,'update']);
 Route::post('/imagen/validar' ,[UsuarioController::class,'validar']);
 //Edicion foto
-Route::post('/perfil/foto', [ProfileController::class,'updatePhoto']);
+Route::post('/usuario/foto', [UsuarioController::class,'updatePhoto']);
 
 //script
 Route::post('/usuario/nuevo/validarCorreo', [UsuarioController::class,'validarCorreo']);
@@ -55,7 +55,13 @@ Route::post('/trabajo/nuevo',[OrdenTrabajoController::class,'store']);
 Route::get('/trabajo/editar/{id}',[OrdenTrabajoController::class,'edit']);
 Route::put('/trabajo/editar/{id}',[OrdenTrabajoController::class,'update']);
 Route::get('/trabajo/buscador',[OrdenTrabajoController::class,'buscador']);
+<<<<<<< HEAD
 Route::get('/trabajo/pdf',[InventarioController::class,'descargarPDF']);
+=======
+//detalle de trabajo
+Route::get('/trabajos/nuevo/detalle',[OrdenTrabajoController::class,'detalle']);
+
+>>>>>>> 5dcc02822c2a463d10f9301a3cec49a621c09f8b
 
 //INVENTARIO
 Route::get('/inventario',[InventarioController::class,'index']);
@@ -66,10 +72,13 @@ Route::post('/inventario/editar/{id}',[InventarioController::class,'update']);
 Route::delete('/inventario/{id}',[InventarioController::class,'destroy']);
 Route::get('/inventario/pdf',[InventarioController::class,'descargarPDF']); //ruta para descargar pdf
 Route::get('/inventario/itemPdf/{id}',[InventarioController::class,'descargarItemPdf']); //ruta para descargar pdf (1 item)
-Route::get('/inventario/imprimirInventario',[InventarioController::class,'imprimirPDF']); //imprimir
+Route::get('/inventario/imprimirInventario',[InventarioController::class,'imprimirPDF']); //imprimir pdf
+Route::get('/inventario/imprimirItemPdf/{id}',[InventarioController::class,'imprimirItemPdf']); //imprimir un item del inventario
 Route::get('/inventario/excel',[InventarioController::class,'descargarExcel']); //ruta para descargar excel
 Route::get('/inventario/buscador',[InventarioController::class,'buscador']);  //buscador en tiempo real
 Route::get('/inventario/discos',[InventarioController::class,'clone']);//clonados
+
+Route::post('/inventario/busqueda' ,[InventarioController::class.'busqueda']);
 
 //CLIENTES
 Route::get('/clientes',[ClienteController::class,'index']);

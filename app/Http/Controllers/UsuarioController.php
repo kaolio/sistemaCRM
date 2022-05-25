@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -205,7 +206,7 @@ class UsuarioController extends Controller
             $extension = $request->file('photo')->getClientOriginalExtension();
             $fileName = auth()->id() . '.' . $extension;
 
-            $path = public_path('/imagen es/users'.$fileName);
+            $path = public_path('/imagenes/users'.$fileName);
 
             Image::make($request->file('photo'))
                     ->fit(144, 144)

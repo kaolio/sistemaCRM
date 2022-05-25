@@ -78,8 +78,15 @@ class InventarioController extends Controller
     public function imprimirPdf(){
         $inventario = Inventario::all();
         $pdf = \PDF::loadView('/inventario/pdf',compact('inventario'));
-        return $pdf->setPaper('a4','landscape')->stream(); //mandar a imprimir  en formato horizontal
+        return $pdf->setPaper('a4','landscape')->stream(); //mandar a imprimir la vista pdf en horizontal
     }
+    public function imprimirItemPdf($id){
+        $inventario = Inventario::find($id);
+        $pdf = \PDF::loadView('/inventario/itemPdf',compact('inventario')); //imprimir la vista itemPdf
+                                         //ruta del archivo
+        return $pdf->setPaper('a4')->stream();
+    }
+
     public function descargarExcel(Request $request){
         return Excel::download(new InventarioExport, 'Reporte-Inventario-Excel.xlsx');
     }
