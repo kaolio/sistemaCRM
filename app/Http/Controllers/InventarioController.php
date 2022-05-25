@@ -222,4 +222,9 @@ class InventarioController extends Controller
 
         return redirect('inventario');
     }
+
+
+    public function clone(Request $request){
+        return view('inventario.clone');
+    }
 }

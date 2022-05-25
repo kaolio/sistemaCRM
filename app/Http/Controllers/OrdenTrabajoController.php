@@ -38,6 +38,21 @@ class OrdenTrabajoController extends Controller
     }
 
 
+    public function descargarPDF(){
+        $trabajo = OrdenTrabajo::all();
+        $pdf = \PDF::loadView('/trabajo/pdf',compact('trabajo'));
+                              //ruta del archivo        envio de la variable de la db 
+        return $pdf->setPaper('a4','landscape')->download('Reporte-Trabajo.pdf');
+                                                             //nombre del pdf a descargar
+    }
+
+    public function descargarItemPdf($id){
+        $trabajo = Inventario::find($id);
+        $pdf = \PDF::loadView('/inventario/itemPdf',compact('inventario')); //bien
+        return $pdf->setPaper('a4')->download('Reporte-Item-trabajo.pdf');
+    }
+
+
     public function buscador(Request $request){
         $trabajo = OrdenTrabajo::where("Prioridad",'like','%'.$request->texto.'%')->get();
                                

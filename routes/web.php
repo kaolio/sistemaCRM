@@ -55,6 +55,7 @@ Route::post('/trabajo/nuevo',[OrdenTrabajoController::class,'store']);
 Route::get('/trabajo/editar/{id}',[OrdenTrabajoController::class,'edit']);
 Route::put('/trabajo/editar/{id}',[OrdenTrabajoController::class,'update']);
 Route::get('/trabajo/buscador',[OrdenTrabajoController::class,'buscador']);
+Route::get('/trabajo/pdf',[InventarioController::class,'descargarPDF']);
 
 //INVENTARIO
 Route::get('/inventario',[InventarioController::class,'index']);
@@ -68,6 +69,7 @@ Route::get('/inventario/itemPdf/{id}',[InventarioController::class,'descargarIte
 Route::get('/inventario/imprimirInventario',[InventarioController::class,'imprimirPDF']); //imprimir
 Route::get('/inventario/excel',[InventarioController::class,'descargarExcel']); //ruta para descargar excel
 Route::get('/inventario/buscador',[InventarioController::class,'buscador']);  //buscador en tiempo real
+Route::get('/inventario/discos',[InventarioController::class,'clone']);//clonados
 
 //CLIENTES
 Route::get('/clientes',[ClienteController::class,'index']);
