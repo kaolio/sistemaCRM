@@ -89,7 +89,7 @@
       <th>Serial</th>
       <th>Localizacion</th>
       <th>Informacion Mal funcionamiento</th>
-      <th>Dato Importante</th> 
+      <th>Dato Importante</th>
       <th>Acciones</th>
     </tr>
   </thead>

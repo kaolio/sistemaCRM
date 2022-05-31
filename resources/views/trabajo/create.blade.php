@@ -128,7 +128,7 @@ function validarTiempo(){
                   <div class="card" style="flex-direction:row;">
                       <div class="card-body">
                           <div class="input-group">
-                            <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo</span>
+                            <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue" id="tipo">Tipo</span>
                             <select name="Type" class="form-control" required>
                               <option value="">Escoja el tipo</option>
                               <option value="hdd">hdd</option>
@@ -140,24 +140,24 @@ function validarTiempo(){
                               <option value="">Escoja el Rol</option>
                               <option value="Master">Master</option>
                             </select>
-                            <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Fabricante</span>
+                            <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue" id="fabricante">Fabricante</span>
                             <input type="text" id="fabricante" name="Fabricante" class="form-control" 
                                 placeholder="Ingrese el fabricante" value="{{ old('Fabricante') }}" required onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32)) ">
                                 <span id="estadoFabricante"></span>
 
-                                <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Modelo</span>
+                                <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue" id="modelo">Modelo</span>
                             <input type="text" id="modelo" name="Modelo" value="{{ old('Modelo') }}" class="form-control" 
                                 placeholder="Ingrese el modelo" required onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32)) ">
                                 <span id="estadoModelo"></span>
 
 
-                                <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Serial</span>
+                                <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue" id="serial">Serial</span>
                             <input type="text" id="serial" name="Serial" value="{{ old('Serial') }}" class="form-control" 
                                 placeholder="Ingrese el serial" required onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32)) ">
                                 <span id="estadoSerial"></span>
 
 
-                                <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Localizacion</span>
+                                <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue" id="localizacion">Localizacion</span>
                             <input type="text" id="localizacion" name="Localizacion" value="{{ old('Localizacion') }}" class="form-control" 
                                 placeholder="Ingrese la localizacion" required onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32)) ">
                                 <span id="estadoLocalizacion"></span>

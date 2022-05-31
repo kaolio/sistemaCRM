@@ -154,23 +154,5 @@ class OrdenTrabajoController extends Controller
         $trabajo->delete();
                 return redirect('trabajos');
     }
-    
-    public function detalle(){
-        
-        return view('trabajo.informacion.detalle');
-    }
 
-    public function dispositivoPaciente( $id){
-
-        $trabajos = DB::table('orden_trabajos')
-        ->select('*')
-        ->when('id','=',$id)
-        ->first();
-        
-        dd($trabajos);
-
-        $discos = Inventario::all();
-
-        return view('trabajo.informacion.general',['trabajo'=>$trabajos, 'item'=>$discos]);
-    }
 }

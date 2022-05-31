@@ -38,14 +38,14 @@
                     <div class="card" >
                         <div class="card-body">
                             <p style="height:20px;">Informacion de Trabajo</p>
-                                <input type="text" style="height: 80px" name="informacionTrabajo" class="btn-block" required>
+                                <textarea type="text" style="height: 80px" name="informacionTrabajo" class="btn-block" required></textarea>
                             </br>
                             <p style="height:20px;">Datos Importantes</p>
-                               <input type="text" style="height: 80px" name="datosimportantes" class="btn-block" required>
+                               <textarea type="text" style="height: 80px" name="datosimportantes" class="btn-block" required></textarea>
                             
                             </br>
                             <p style="height:20px;">Nota de Cliente</p>
-                                <input type="text" style="height: 80px" name="notaCliente" class="btn-block" required>
+                                <textarea type="text" style="height: 80px" name="notaCliente" class="btn-block" required></textarea>
                              </br>
                                       <!--Boton agregar-->
                                         <div style="position: relative;left:5px">
@@ -55,7 +55,7 @@
                                     </br>
                                         <div class="input-group">
                                             <span class="input-group-text"  style="height: 80px">Comentario</span>
-                                             <input class="form-control" type="text" name="precio"  style="height: 80px">
+                                             <textarea class="form-control" type="text" name="precio"  style="height: 80px"></textarea>
                                         </div> 
                                     </br>
                                      <!--Boton agregar-->
@@ -81,15 +81,15 @@
                             <p class="text-left" style="position: relative;left:30px">&nbsp;&nbsp;Nota: </p>
 
                             <!--Tabla dispositivos pacientes -->
+                            <meta name="csrf-token" content="{{ csrf_token()}}">
                             <div class="card"> 
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <p class="text-left" style="position: relative;">Dispositivos Pacientes </p>
-                                        <table class="table table-striped table-hover">
+                                        <table class="table table-striped table-hover" id="tabla-pacientes">
                                             <thead class="table-primary table-striped table-bordered text-white" >
                                             <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
                                                 <tr>
-                                                    <th class="column1 text-center">Id</th>
                                                     <th class="column2 text-center">Tipo</th>
                                                     <th class="column2 text-center">Manufactura</th>
                                                     <th class="column3 text-center">Modelo</th>
@@ -99,17 +99,11 @@
                                                     <th class="column6 text-center">Nota</th>
                                                 </tr>
                                             </thead>
-                                            <tbody class="table-bordered">
-                                                  
-                                              
-                                                
-                                                <tr>
-                                                    
-                                                    
-                                                </tr>
-                                               
-                                                
+                                            
+                                            <tbody id="datosTabla" class="table-bordered">
+  
                                             </tbody>
+                                            <span id="estadoTabla"></span>
                                         </table>
                                     </div>
                                 </div>
@@ -240,3 +234,107 @@
           
     </div>
     <!--/General-->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+
+            var url = "{{URL('datosTabla')}}";
+            $.ajax({
+                url: "/trabajos/nuevo/detalle/datosTabla",
+                type: "POST",
+                data:{ 
+                    _token:'{{ csrf_token() }}'
+                },
+                cache: false,
+                dataType: 'json',
+                success: function(dataResult){
+                    console.log(dataResult);
+                    var resultData = dataResult.data;
+                    var bodyData = '';
+                    var i=1;
+                    $.each(resultData,function(index,row){
+                        var editUrl = url+'/'+row.id;
+                        datosTabla+="<tr>"
+                        datosTabla+="<td>"+row.Tipo+"</td><td>"+row.Fabricante+"</td><td>"+row.Modelo+"</td>"
+                        +"<td>"+row.Serial+"</td><td>"+row.Localizacion+"</td><td>"+"</td><td>";
+                        datosTabla+="</tr>";
+                        
+                    })
+                    $("#datosTabla").append(datosTabla);
+                }
+            });
+            
+    });
+    </script>
+    <!--
+    <script>
+       
+
+        $(document).ready(function () {
+                
+        $("#loaderIcon").show();
+
+        jQuery.ajax({
+            url: "/trabajos/nuevo/detalle/tabla",
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "tipo": $("#tipo").val(),
+                "fabricante": $("#fabricante").val(),
+                "modelo": $("#modelo").val(),
+                "serial": $("#serial").val(),
+                "localizacion": $("#localizacion").val(),
+            },
+            asycn: false,
+            type: "POST",
+            success: function(data) {
+                $("#estadoTabla").html(data);
+                $("#loaderIcon").hide();
+            },
+            error: function() {
+                console.log('no da');
+            }
+        });
+
+         });
+    
+    </script>
+    
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            
+            $.ajaxSetip({
+                
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            jQuery.ajax({
+                url: "/trabajos/nuevo/detalle/tabla",
+                method: 'POST',
+                data: {
+                   
+                 
+                }
+                
+            }).done(function(res){
+                var arreglo= JSON.parse(res);
+                for(var x=0; x<arreglo.length;x++){
+                    var todo= '<tr><td>'+arreglo[x].id+'</td>';
+                        todo+= '<td>'+arreglo[x].Tipo+'</td>';
+                        todo+= '<td>'+arreglo[x].Fabricante+'</td>';
+                        todo+= '<td>'+arreglo[x].Modelo+'</td>';
+                        todo+= '<td>'+arreglo[x].Serial+'</td>';
+                        todo+= '<td>'+arreglo[x].Localizacion+'</td>';
+                        todo+= '<td></td></tr>';
+                        console.log(todo);
+
+                        $('tBody').append(todo);
+                }
+            });
+        });       
+
+    </script>--> 

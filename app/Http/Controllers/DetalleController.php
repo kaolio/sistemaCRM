@@ -6,7 +6,10 @@ use App\Models\Inventario;
 use App\Models\OrdenTrabajo;
 use Illuminate\Http\Request;
 use App\Models\Roles;
+use App\Models\Detalle;
 use Illuminate\Support\Facades\DB;
+use JeroenNoten\LaravelAdminLte\View\Components\Tool\Datatable;
+
 class DetalleController extends Controller
 {
 
@@ -99,19 +102,68 @@ class DetalleController extends Controller
       
     }
 
+    public function detalle(){
+        
+        return view('trabajo.informacion.detalle');
+    }
+
+    public function datosTabla(){
+
+        $datosTabla = Detalle::get();
+        return json_encode(array('data'=>$datosTabla));
+    }
+/*
+    public function datosTabla(Request $request)
+    {
+        $trabajos = new Detalle();
+
+        return 'trabajos';
+    }
+
+    public function tabla(Request $request){
+
+        $trabajos = \DB::table('orden_trabajos')
+            ->select('*')
+            ->orderBy('id','Tipo','Fabricante','Modelo','Serial','Localizacion')
+            ->get();
+
+        return response(json_encode($trabajos));
+    }
+    */
+
+    
+
+  /*  public function getPacientes(){
+
+        $pacientes = OrdenTrabajo::orderby('id','asc')
+                    ->select('*')
+                    ->get();
+
+        $respuesta['data'] = $pacientes;
+
+        return response()-> json($respuesta);
+    }
+
+    public function getPacientebyid(Request $request){
+
+        $userid = $request-> userid;
+
+        $pacientes = OrdenTrabajo::select('*') ->where('id',$userid) ->get();
+
+        $respuesta['data'] = $pacientes;
+
+        return response() -> json($respuesta);
+    }
+
     public function dispositivoPaciente( $id){
 
-        $trabajos = DB::table('orden_trabajos')
-        ->select('*')
-        ->when('id','=',$id)
-        ->first();
+        $trabajos = OrdenTrabajo::all();
         
-        dd($trabajos);
+       dd($trabajos);
 
-        $discos = Inventario::all();
-
-        return view('trabajo.informacion.general',['trabajo'=>$trabajos, 'item'=>$discos]);
+        return view('trabajo.informacion.general',['trabajos'=>$trabajos]);
     }
+        */
     
 
 }

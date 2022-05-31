@@ -57,8 +57,9 @@ Route::get('/trabajo/editar/{id}',[OrdenTrabajoController::class,'edit']);
 Route::put('/trabajo/editar/{id}',[OrdenTrabajoController::class,'update']);
 Route::get('/trabajo/buscador',[OrdenTrabajoController::class,'buscador']);
 //detalle de trabajo
-Route::get('/trabajos/nuevo/detalle',[OrdenTrabajoController::class,'detalle']);
-Route::get('/trabajos/nuevo/detalle{id}',[OrdenTrabajoController::class,'dispositivoPaciente']);
+Route::get('/trabajos/nuevo/detalle',[DetalleController::class,'detalle']);
+//Route::post('/trabajos/nuevo/detalle/tabla',[DetalleController::class,'tabla']);
+Route::post('/trabajos/nuevo/detalle/datosTabla',[DetalleController::class,'datosTabla']);
 
 
 //INVENTARIO
