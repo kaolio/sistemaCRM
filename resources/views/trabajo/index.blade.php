@@ -2,14 +2,9 @@
 @section('content')
 
 <h1 align="center"><strong>ORDEN DE TRABAJO</strong></h1>
-<<<<<<< HEAD
-
-
-=======
 <button class="btn btn-danger">
     <a href="{{ url('/trabajos/nuevo/detalle')}}" type="submit">detalle</a>
 </button>
->>>>>>> 5dcc02822c2a463d10f9301a3cec49a621c09f8b
 
 <div class="d-flex">
   <div class="p-2">
@@ -64,19 +59,7 @@
      </div>
 
      <div id="cargando" hidden><h1>CARGANDO...</h1></div>
-     <script>
-      window.addEventListener("load",function(){
-          document.getElementById("texto").addEventListener("keyup",function(){
-          if((document.getElementById("texto").value.length)>=2)
-              fetch(`/inventario/buscador?texto=${document.getElementById("texto").value}`,
-                    {method:'get'})
-              .then(response => response.text())
-              .then(html =>   { document.getElementById("resultados").innerHTML = html})
-    else
-        document.getElementById("resultados").innerHTML = ""
-        })
-      });
-    </script>
+     
 
 
   <div class="tabla-general">

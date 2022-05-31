@@ -231,7 +231,4 @@ class InventarioController extends Controller
     }
 
 
-    public function clone(Request $request){
-        return view('inventario.clone');
-    }
 }
