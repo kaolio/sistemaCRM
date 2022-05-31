@@ -229,4 +229,6 @@ class InventarioController extends Controller
 
         return redirect('inventario');
     }
+
+
 }

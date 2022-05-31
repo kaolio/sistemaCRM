@@ -26,7 +26,8 @@ class CreateOrdenTrabajosTable extends Migration
             $table->string('Localizacion')->nullable();
             $table->string('informacionDispositivo');
             $table->string('datoImportante');
-
+            $table->string('Diagnostico');
+            $table->string('Nota');
             $table->timestamps();
         });
     }

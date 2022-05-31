@@ -9,7 +9,7 @@
 <div class="d-flex">
   <div class="p-2">
     <button type="button" class="btn btn-primary">Excel</button>
-    <button type="button" class="btn btn-primary">PDF</button> 
+    <a class="btn btn-primary" href="{{URL('trabajo/pdf')}}" role="button">PDF</a> 
     <button type="button" class="btn btn-primary">Imprimir</button>
   </div>
   <div class="ml-auto p-2">
@@ -59,19 +59,7 @@
      </div>
 
      <div id="cargando" hidden><h1>CARGANDO...</h1></div>
-     <script>
-      window.addEventListener("load",function(){
-          document.getElementById("texto").addEventListener("keyup",function(){
-          if((document.getElementById("texto").value.length)>=2)
-              fetch(`/inventario/buscador?texto=${document.getElementById("texto").value}`,
-                    {method:'get'})
-              .then(response => response.text())
-              .then(html =>   { document.getElementById("resultados").innerHTML = html})
-    else
-        document.getElementById("resultados").innerHTML = ""
-        })
-      });
-    </script>
+     
 
 
   <div class="tabla-general">
