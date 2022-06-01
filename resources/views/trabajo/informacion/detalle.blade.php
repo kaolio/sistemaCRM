@@ -12,6 +12,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
+                            <h3>{{$orden_elegida->id}} - </h3>
                             <button class="btn btn-warning" id="botones"data-toggle="modal" data-target="#exampleModal01">Asignar un ingeniero</button>
                             <button class="btn btn-primary" id="botones">Formulario de Admision</button>
                             <button class="btn btn-primary" id="botones">Ir a Lista de archivos</button>

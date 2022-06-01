@@ -24,10 +24,10 @@ class CreateOrdenTrabajosTable extends Migration
             $table->string('Modelo')->nullable();
             $table->string('Serial')->nullable();
             $table->string('Localizacion')->nullable();
-            $table->string('informacionDispositivo');
-            $table->string('datoImportante');
-            $table->string('Diagnostico');
-            $table->string('Nota');
+            $table->string('informacionDispositivo')->nullable();
+            $table->string('datoImportante')->nullable();
+            $table->string('Diagnostico')->nullable();
+            $table->string('Nota')->nullable();
             $table->timestamps();
         });
     }

@@ -171,18 +171,4 @@ class OrdenTrabajoController extends Controller
         $trabajo->delete();
                 return redirect('trabajos');
     }
-<<<<<<< HEAD
-
-=======
-    
-    public function detalle(){
-        
-
-        
-        return view('trabajo.informacion.detalle');
-    }
-
-
-    
->>>>>>> 52db96d5aa6da5a56ac129e9df0de246f7d80613
 }

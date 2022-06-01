@@ -1,3 +1,8 @@
+<style>
+    textarea {
+    resize: none;
+}
+</style>
 
     <!--General-->
     <div class="active tab-pane" id="general">
@@ -20,7 +25,16 @@
                             <div class="input-group">
                                 <span class="input-group-text">Estado</span>
                                  <select name="priority" class="form-control" class="btn-block" required>
-                                    <option value="">Seleccione el estado</option>
+                                    <option value="recibido">Recibido</option>
+                                    <option value="enProceso">En proceso</option>
+                                    <option value="esperandoPiezas">Esperando Piezas</option>
+                                    <option value="trabajoCompleto">Trabajo Completo</option>
+                                    <option value="trabajoIncompleto">Trabajo Incompleto</option>
+                                    <option value="pagado">Pagado</option>
+                                    <option value="devueltoAlCliente">Devuelto al Cliente</option>
+                                    <option value="pagoPendiente">Pago Pendiente</option>
+                                    <option value="llegadaPendiente">Llegada Pendiente</option>
+                                    <option value="pagadoRegresadoCliente">Pagado y regresado a Cliente</option>
                                  </select>
                             </div>
                         </br>
@@ -38,14 +52,14 @@
                     <div class="card" >
                         <div class="card-body">
                             <p style="height:20px;">Informacion de Trabajo</p>
-                                <textarea type="text" style="height: 80px" name="informacionTrabajo" class="btn-block" required></textarea>
+                                <textarea type="text" style="height: 80px " name="informacionTrabajo" class="form-control" required></textarea>
                             </br>
                             <p style="height:20px;">Datos Importantes</p>
-                               <textarea type="text" style="height: 80px" name="datosimportantes" class="btn-block" required></textarea>
+                               <textarea type="text" style="height: 80px" name="datosimportantes" class="form-control" required></textarea>
                             
                             </br>
                             <p style="height:20px;">Nota de Cliente</p>
-                                <textarea type="text" style="height: 80px" name="notaCliente" class="btn-block" required></textarea>
+                                <textarea type="text" style="height: 80px" name="notaCliente" class="form-control" required></textarea>
                              </br>
                                       <!--Boton agregar-->
                                         <div style="position: relative;left:5px">
@@ -103,7 +117,6 @@
                                             <tbody id="datosTabla" class="table-bordered">
   
                                             </tbody>
-                                            <span id="estadoTabla"></span>
                                         </table>
                                     </div>
                                 </div>
@@ -124,7 +137,6 @@
                                                 <th class="column3 text-center">Modelo</th>
                                                 <th class="column4 text-center">N°Serie</th>
                                                 <th class="column5 text-center">Localizacion</th>
-                                                <th class="column6 text-center">Diagnostico</th>
                                                 <th class="column6 text-center">Nota</th>
                                             </tr>
                                         </thead>
@@ -155,7 +167,6 @@
                                                 <th class="column3 text-center">Modelo</th>
                                                 <th class="column4 text-center">N°Serie</th>
                                                 <th class="column5 text-center">Localizacion</th>
-                                                <th class="column6 text-center">Diagnostico</th>
                                                 <th class="column6 text-center">Nota</th>
                                             </tr>
                                         </thead>
@@ -246,7 +257,8 @@
                 url: "/trabajos/nuevo/detalle/datosTabla",
                 type: "POST",
                 data:{ 
-                    _token:'{{ csrf_token() }}'
+                    "_token": "{{ csrf_token() }}",
+                    "nombre": "{{$orden_elegida->id}}",
                 },
                 cache: false,
                 dataType: 'json',
@@ -254,9 +266,8 @@
                     console.log(dataResult);
                     var resultData = dataResult.data;
                     var bodyData = '';
-                    var i=1;
+
                     $.each(resultData,function(index,row){
-                        var editUrl = url+'/'+row.id;
                         datosTabla+="<tr>"
                         datosTabla+="<td>"+row.Tipo+"</td><td>"+row.Fabricante+"</td><td>"+row.Modelo+"</td>"
                         +"<td>"+row.Serial+"</td><td>"+row.Localizacion+"</td><td>"+"</td><td>";
@@ -269,72 +280,3 @@
             
     });
     </script>
-    <!--
-    <script>
-       
-
-        $(document).ready(function () {
-                
-        $("#loaderIcon").show();
-
-        jQuery.ajax({
-            url: "/trabajos/nuevo/detalle/tabla",
-            data: {
-                "_token": "{{ csrf_token() }}",
-                "tipo": $("#tipo").val(),
-                "fabricante": $("#fabricante").val(),
-                "modelo": $("#modelo").val(),
-                "serial": $("#serial").val(),
-                "localizacion": $("#localizacion").val(),
-            },
-            asycn: false,
-            type: "POST",
-            success: function(data) {
-                $("#estadoTabla").html(data);
-                $("#loaderIcon").hide();
-            },
-            error: function() {
-                console.log('no da');
-            }
-        });
-
-         });
-    
-    </script>
-    
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            
-            $.ajaxSetip({
-                
-                headers:{
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            jQuery.ajax({
-                url: "/trabajos/nuevo/detalle/tabla",
-                method: 'POST',
-                data: {
-                   
-                 
-                }
-                
-            }).done(function(res){
-                var arreglo= JSON.parse(res);
-                for(var x=0; x<arreglo.length;x++){
-                    var todo= '<tr><td>'+arreglo[x].id+'</td>';
-                        todo+= '<td>'+arreglo[x].Tipo+'</td>';
-                        todo+= '<td>'+arreglo[x].Fabricante+'</td>';
-                        todo+= '<td>'+arreglo[x].Modelo+'</td>';
-                        todo+= '<td>'+arreglo[x].Serial+'</td>';
-                        todo+= '<td>'+arreglo[x].Localizacion+'</td>';
-                        todo+= '<td></td></tr>';
-                        console.log(todo);
-
-                        $('tBody').append(todo);
-                }
-            });
-        });       
-
-    </script>--> 

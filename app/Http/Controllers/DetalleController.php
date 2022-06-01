@@ -102,68 +102,25 @@ class DetalleController extends Controller
       
     }
 
-    public function detalle(){
-        
-        return view('trabajo.informacion.detalle');
-    }
-
     public function datosTabla(){
 
-        $datosTabla = Detalle::get();
+        $datosTabla =  DB::table('orden_trabajos')
+                    ->select('*')
+                    ->where('id','=',$_POST["nombre"])
+                    ->get(); 
         return json_encode(array('data'=>$datosTabla));
     }
-/*
-    public function datosTabla(Request $request)
-    {
-        $trabajos = new Detalle();
 
-        return 'trabajos';
+    public function buscarOrden($id){
+
+        $orden_elegida = DB::table('orden_trabajos')
+                                ->select('*')
+                                ->where('id','=',$id)
+                                ->first(); 
+
+                               // dd($orden_elegida);
+
+        return view('trabajo.informacion.detalle',(compact('orden_elegida')));
     }
-
-    public function tabla(Request $request){
-
-        $trabajos = \DB::table('orden_trabajos')
-            ->select('*')
-            ->orderBy('id','Tipo','Fabricante','Modelo','Serial','Localizacion')
-            ->get();
-
-        return response(json_encode($trabajos));
-    }
-    */
-
-    
-
-  /*  public function getPacientes(){
-
-        $pacientes = OrdenTrabajo::orderby('id','asc')
-                    ->select('*')
-                    ->get();
-
-        $respuesta['data'] = $pacientes;
-
-        return response()-> json($respuesta);
-    }
-
-    public function getPacientebyid(Request $request){
-
-        $userid = $request-> userid;
-
-        $pacientes = OrdenTrabajo::select('*') ->where('id',$userid) ->get();
-
-        $respuesta['data'] = $pacientes;
-
-        return response() -> json($respuesta);
-    }
-
-    public function dispositivoPaciente( $id){
-
-        $trabajos = OrdenTrabajo::all();
-        
-       dd($trabajos);
-
-        return view('trabajo.informacion.general',['trabajos'=>$trabajos]);
-    }
-        */
-    
 
 }

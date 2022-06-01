@@ -11,6 +11,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             
 <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+
+<style>
+    
+   .table-responsive{
+     font-size: 14px;
+   }
+   
+  </style>
 <div class="card">
     
     <div class="card-body">
@@ -83,6 +91,33 @@
         </div>
 
     </div>
+    <!--Tabla-->
+        <div class="row">
+            <div class="col-9">
+                            <div class="card"> 
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-hover" id="tabla-pacientes">
+                                            <thead class="table-primary table-striped table-bordered text-white" >
+                                            <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
+                                                <tr>
+                                                    <th class="column2 text-center" style="width: 100px">Usuario</th>
+                                                    <th class="column2 text-center" style="width: 100px">Fecha</th>
+                                                    <th class="column3 text-center"style="width: 80px">NºOrden</th>
+                                                    <th class="column4 text-center">Comentarios</th>
+                                                </tr>
+                                            </thead>
+                                            
+                                            <tbody id="datosTabla" class="table-bordered">
+  
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+            </div>
+        </div>
+    <!--Fin Tabla-->
 </div>
 
 @endsection
