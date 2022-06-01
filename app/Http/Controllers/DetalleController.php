@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Inventario;
 use App\Models\OrdenTrabajo;
 use Illuminate\Http\Request;
-use App\Models\Cliente;
 use App\Models\Roles;
+use App\Models\Detalle;
 use Illuminate\Support\Facades\DB;
-class OrdenTrabajoController extends Controller
+use JeroenNoten\LaravelAdminLte\View\Components\Tool\Datatable;
+
+class DetalleController extends Controller
 {
 
     function __construct()
@@ -98,6 +101,26 @@ class OrdenTrabajoController extends Controller
     {
       
     }
-    
+
+    public function datosTabla(){
+
+        $datosTabla =  DB::table('orden_trabajos')
+                    ->select('*')
+                    ->where('id','=',$_POST["nombre"])
+                    ->get(); 
+        return json_encode(array('data'=>$datosTabla));
+    }
+
+    public function buscarOrden($id){
+
+        $orden_elegida = DB::table('orden_trabajos')
+                                ->select('*')
+                                ->where('id','=',$id)
+                                ->first(); 
+
+                               // dd($orden_elegida);
+
+        return view('trabajo.informacion.detalle',(compact('orden_elegida')));
+    }
 
 }

@@ -1,15 +1,33 @@
 @extends('adminlte::page')
 @section('content')
 
+ 
+  <!--?php 
+  $orden = $_POST['orden'];
+?> -->
+
+
+
 <h1 align="center"><strong>ORDEN DE TRABAJO</strong></h1>
-<button class="btn btn-danger">
-    <a href="{{ url('/trabajos/nuevo/detalle')}}" type="submit">detalle</a>
-</button>
+
+  <div class="col-3">
+    <form action="{{url('/trabajos/detalle', ['id'=>1])}}" method="GET" id="formOrden">
+      @csrf
+        <div class="input-group md-2">
+          <span class="input-group-text">NºOrden </span>
+          <input class="form-control" id="orden" name="orden" >
+          <span class="input-group-text"><button type="submit" id="btnBuscar" name="btnBuscar" onclick="buscarOrden()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"  class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+            <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+          </svg></button></span>               
+      </div> 
+    </form>
+  </div>
+
 
 <div class="d-flex">
   <div class="p-2">
     <button type="button" class="btn btn-primary">Excel</button>
-    <button type="button" class="btn btn-primary">PDF</button> 
+    <a class="btn btn-primary" href="{{URL('trabajo/pdf')}}" role="button">PDF</a> 
     <button type="button" class="btn btn-primary">Imprimir</button>
   </div>
   <div class="ml-auto p-2">
@@ -59,19 +77,7 @@
      </div>
 
      <div id="cargando" hidden><h1>CARGANDO...</h1></div>
-     <script>
-      window.addEventListener("load",function(){
-          document.getElementById("texto").addEventListener("keyup",function(){
-          if((document.getElementById("texto").value.length)>=2)
-              fetch(`/inventario/buscador?texto=${document.getElementById("texto").value}`,
-                    {method:'get'})
-              .then(response => response.text())
-              .then(html =>   { document.getElementById("resultados").innerHTML = html})
-    else
-        document.getElementById("resultados").innerHTML = ""
-        })
-      });
-    </script>
+     
 
 
   <div class="tabla-general">
@@ -175,5 +181,14 @@
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>  
+<script>
 
+  $(function(){
+    $('#btnBuscar').on('click', function () {
+      var orden = document.getElementById("orden").value;
+      alert('Se ha dado clic al botón!');
+      
+    });
+  })
+</script>
 @stop

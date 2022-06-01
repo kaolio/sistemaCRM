@@ -37,7 +37,35 @@
         </svg>
         Mover Dispositivos Seleccionados
     </button>
-    
+    <!-- add device --> 
+
+    <script>
+        function buscador_modal(){
+            event.preventDefault();
+            const CSRF_TOKERN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                data:parametros,
+                type:'POST',
+                url:'buscador.blade.php'
+                success: function(data){
+                    document.getElementById("datos_buscador").innerHTML = data;
+                }
+            })
+        }
+    </script>
+
+
+
+
+    <script>
+        function text(x){
+          if (x==0) document.getElementById("donante").style.display= "block";
+          else document.getElementById("donante").style.display = "none"; 
+          return;
+        }
+      </script>
+
+
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -72,6 +100,131 @@
         </div>
     </div>
     
+        <!-- Modal mover añadir -->
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Añadir nuevo dispositivo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" >
+          
+              <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div class="form-group" style="display: flex;">
+                      
+                      <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Clonado</span>
+                      <input type="radio" name="selected" class="form-control" id="clonado"  onclick="text(1)"  >
+                  
+                  </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div class="form-group" style="display: flex;">
+                <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Donado</span>
+                <input type="radio" name="selected" class="form-control" id="clonado" checked onclick="text(0)">
+                 </div>
+                </div>
+              </div>  
+              <div class="row" id="donante">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group" style="display: flex;">
+                     <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Donante para</span>
+                     <select class="form-control" class="btn-block" name="donante">
+                         <option value="Carlos">Carlos</option>
+                     </select> 
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group" style="display: flex;">
+              <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Internal ID</span>
+                    <input type="text" id="buscar" name="buscar" class="form-control"> 
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group" style="display: flex;">
+              <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Modelo</span>
+                    <input type="text" id="buscar" name="buscar" class="form-control"> 
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group" style="display: flex;">
+              <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Serial</span>
+                    <input type="text" id="buscar" name="buscar" class="form-control"> 
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group" style="display: flex;">
+              <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tamaño</span>
+                    <input type="text" id="buscar" name="buscar" class="form-control"> 
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group" style="display: flex;">
+              <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">PCB ID</span>
+                    <input type="text" id="buscar" name="buscar" class="form-control"> 
+                  </div>
+                </div>
+              </div> 
+              {{-- <div class="tabla-general">
+                <table class="table table-striped table-hover table-responsive">
+                    <thead class="table-primary table-striped table-bordered text-white" >
+                    <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
+                        <tr>
+                            <th class="column1 text-center">Id</th>
+                            <th class="column2 text-center">Fabricante</th>
+                            <th class="column3 text-center p-2">Modelo</th>
+                            <th class="column4 text-center p-2">N° de Serie</th>
+                            <th class="column6 text-center p-2">Capacidad (GB)</th>
+                            <th class="column6 text-center p-2">Ubicación</th>
+                            <th class="column6 text-center p-2">Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody class="table-bordered">
+                          @if(count($inventario)<=0)
+                            <tr>
+                              <th>No Hay Resultados.</th>  
+                            <tr>
+                           @else   
+                           @foreach ($inventario as $item)
+                        <tr>
+                          <th scope="row">{{$item->id}}</th>
+                          <td>{{ $item->manufactura}}</td>
+                          <td>{{ $item->modelo}}</td>
+                          <td>{{ $item->numero_de_serie}}</td>
+                          <td>{{ $item->capacidad}}</td>
+                          <td>{{ $item->ubicacion}}</td>
+                          <td></td>
+                        </tr>
+                        @endforeach
+                        @endif
+                      </tbody>
+                </table>
+              </div>  --}}
+              <div class="modal-footer">
+                <button type="button" id="botones" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button onclick="buscador_modal()" id="botones" class="btn btn-success" >Buscar</button>
+              </div>  
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+
+
 
         <button class="btn btn-danger" id="botones">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">

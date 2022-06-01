@@ -4,6 +4,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\OrdenTrabajoController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\DetalleController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
@@ -55,8 +56,14 @@ Route::post('/trabajo/nuevo',[OrdenTrabajoController::class,'store']);
 Route::get('/trabajo/editar/{id}',[OrdenTrabajoController::class,'edit']);
 Route::put('/trabajo/editar/{id}',[OrdenTrabajoController::class,'update']);
 Route::get('/trabajo/buscador',[OrdenTrabajoController::class,'buscador']);
-//detalle de trabajo
-Route::get('/trabajos/nuevo/detalle',[OrdenTrabajoController::class,'detalle']);
+//Detalle de trabajo
+//Route::get('/trabajos/nuevo/detalle',[DetalleController::class,'detalle']);
+Route::get('/trabajos/detalle/{id}',[DetalleController::class,'buscarOrden']); //ruta buscador de orden trabajo
+//Route::post('/trabajos/detalle/{id}',[DetalleController::class,'buscarOrden']);
+Route::post('/trabajos/nuevo/detalle/datosTabla',[DetalleController::class,'datosTabla']); //ruta de tabla pacientes
+
+
+
 
 
 //INVENTARIO
@@ -72,6 +79,7 @@ Route::get('/inventario/imprimirInventario',[InventarioController::class,'imprim
 Route::get('/inventario/imprimirItemPdf/{id}',[InventarioController::class,'imprimirItemPdf']); //imprimir un item del inventario
 Route::get('/inventario/excel',[InventarioController::class,'descargarExcel']); //ruta para descargar excel
 Route::get('/inventario/buscador',[InventarioController::class,'buscador']);  //buscador en tiempo real
+
 
 Route::post('/inventario/busqueda' ,[InventarioController::class.'busqueda']);
 

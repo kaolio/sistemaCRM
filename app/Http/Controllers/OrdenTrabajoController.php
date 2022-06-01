@@ -29,11 +29,28 @@ class OrdenTrabajoController extends Controller
                         ->select('id','infoCliente','Prioridad','TiempoEstimado','Tipo','Rol','Fabricante','Modelo','Serial','Localizacion','informacionDispositivo','datoImportante')
                         ->where('Modelo', 'LIKE', '%'.$busqueda.'%')
                         ->orWhere('Serial', 'LIKE', '%'.$busqueda.'%')
+                        ->orWhere('Prioridad', 'LIKE', '%'.$busqueda.'%')
+                        ->orWhere('id', 'LIKE', '%'.$busqueda.'%')
                         ->orderBy('id','asc')
                         ->paginate(10);
         //$datoTrabajo['trabajos']=OrdenTrabajo::paginate(10);
         return view('trabajo.index', compact('busqueda','trabajo'));
         
+    }
+
+
+    public function descargarPDF(){
+        $trabajo = OrdenTrabajo::all();
+        $pdf = \PDF::loadView('/trabajo/pdf',compact('trabajo'));
+                              //ruta del archivo        envio de la variable de la db 
+        return $pdf->setPaper('a4','landscape')->download('Reporte-Trabajo.pdf');
+                                                             //nombre del pdf a descargar
+    }
+
+    public function descargarItemPdf($id){
+        $trabajo = Inventario::find($id);
+        $pdf = \PDF::loadView('/inventario/itemPdf',compact('inventario')); //bien
+        return $pdf->setPaper('a4')->download('Reporte-Item-trabajo.pdf');
     }
 
 
@@ -153,10 +170,5 @@ class OrdenTrabajoController extends Controller
         $trabajo=OrdenTrabajo::findOrFail($id);
         $trabajo->delete();
                 return redirect('trabajos');
-    }
-    
-    public function detalle(){
-        
-        return view('trabajo.informacion.detalle');
     }
 }
