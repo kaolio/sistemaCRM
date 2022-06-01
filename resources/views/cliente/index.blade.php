@@ -40,20 +40,20 @@
     @foreach ($cliente as $cliente)
       <tr>
         <td>{{$cliente->id}}</td>
-        <td>{{$cliente->NombreCliente}}</td>
-        <td>{{$cliente->VATid}}</td>
-        <td>{{$cliente->Calle}}</td>
-        <td>{{$cliente->Numero}}</td>
-        <td>{{$cliente->Apt}}</td>
-        <td>{{$cliente->CodigoPostal}}</td>
-        <td>{{$cliente->Pak}}</td>
-        <td>{{$cliente->NombreCiudad}}</td>
-        <td>{{$cliente->Pais}}</td>
-        <td>{{$cliente->Idioma}}</td>
-        <td>{{$cliente->Tipo}}</td>
-        <td>{{$cliente->Valor}}</td>
-        <td>{{$cliente->NombreX}}</td>
-        <td>{{$cliente->Nota}}</td>
+        <td>{{$cliente->nombreCliente}}</td>
+        <td>{{$cliente->vat}}</td>
+        <td>{{$cliente->calle}}</td>
+        <td>{{$cliente->numero}}</td>
+        <td>{{$cliente->apt}}</td>
+        <td>{{$cliente->codigoPostal}}</td>
+        <td>{{$cliente->pak}}</td>
+        <td>{{$cliente->nombreCiudad}}</td>
+        <td>{{$cliente->pais}}</td>
+        <td>{{$cliente->idioma}}</td>
+        <td>{{$cliente->idioma}}</td>
+        <td>{{$cliente->idioma}}</td>
+        <td>{{$cliente->idioma}}</td>
+        <td>{{$cliente->nota}}</td>
         <td>
           <a href="{{ url('/cliente/editar/'.$cliente->id)}}" class="btn">
             <button class="btn btn-light-active btn-sm"  >

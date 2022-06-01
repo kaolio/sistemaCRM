@@ -14,21 +14,20 @@ class CreateClientesTable extends Migration
     public function up()
     {
         Schema::create('clientes', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('NombreCliente')->nullable();
-            $table->string('VATid')->nullable();
-            $table->string('Calle')->nullable();
-            $table->integer('Numero')->nullable();
-            $table->string('Apt')->nullable();
-            $table->string('CodigoPostal')->nullable();
-            $table->string('Pak')->nullable();
-            $table->string('NombreCiudad')->nullable();
-            $table->string('Pais')->nullable();
-            $table->string('Idioma')->nullable();
-            $table->string('Tipo')->nullable();
-            $table->string('Valor')->nullable();
-            $table->string('NombreX')->nullable();
-            $table->text('Nota')->nullable();
+            $table->bigIncrements('id');
+            $table->string('nombreCliente')->nullable();
+            $table->string('vat')->nullable();
+            $table->string('calle')->nullable();
+            $table->string('numero')->nullable();
+            $table->string('apt')->nullable();
+            $table->string('codigoPostal')->nullable();
+            $table->string('pak')->nullable();
+            $table->string('nombreCiudad')->nullable();
+            $table->string('pais')->nullable();
+            $table->string('idioma')->nullable();
+            $table->string('tipo')->nullable();
+            $table->string('valor')->nullable();
+            $table->text('nota')->nullable();
             $table->timestamps();
         });
     }

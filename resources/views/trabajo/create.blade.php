@@ -34,17 +34,47 @@
                    "<span  class='menor'><h5 class='menor'>Ingrese menos de 50 caracteres</h5></span>");
            } else {
     
-      $("#estadoInfo").html("<span  class='bien'><h5 >Válido</h5></span>");
+              $("#estadoInfo").html("<span  class='bien'><h5 >Válido</h5></span>");
+            }
+        }
     }
-  }
-}
 }
 
 function validarTiempo(){
   if($("#tiempo").val() == ""){
     $("#estadoTiempo").html("<span  class='error'><h5 class='menor'>Este campo no puede estar vacío</h5></span>"); 
   }else{
-      $("#estadoTiempo").html("<span  class='bien'><h5 >Válido</h5></span>");
+    if ($("#tiempo").val().length < 3) {
+           $("#estadoTiempo").html("<span  class='menor'><h5 class='menor'>Ingrese de 3 a 50 caracteres</h5></span>");
+       } else {
+        if ($("#tiempo").val().length > 50) {
+               $("#estadoTiempo").html(
+                   "<span  class='menor'><h5 class='menor'>Ingrese menos de 50 caracteres</h5></span>");
+           } else {
+    
+              $("#estadoTiempo").html("<span  class='bien'><h5 >Válido</h5></span>");
+            }
+        }
+        
+  }
+}
+
+function validarClientes(){
+  if($("#cliente").val() == ""){
+    $("#estadoCliente").html("<span  class='error'><h5 class='menor'></h5></span>"); 
+  }else{
+    
+    if ($("#cliente").val().length < 3) {
+           $("#estadoCliente").html("<span  class='menor'><h5 class='menor'>Ingrese de 3 a 50 caracteres</h5></span>");
+       } else {
+        if ($("#cliente").val().length > 50) {
+               $("#estadoInfo").html(
+                   "<span  class='menor'><h5 class='menor'>Ingrese menos de 50 caracteres</h5></span>");
+           } else {
+    
+              $("#estadoCliente").html("<span  class='bien'><h5 >Válido</h5></span>");
+            }
+        }
         
   }
 }
@@ -65,8 +95,13 @@ function validarTiempo(){
                       <div class="row justify-content-center">
                           <div class="col-11 ">
                             <label class="card-title" style="height: 2rem;">Informacion del Cliente</label>
-                            <input type="text" id="infoCliente" name="infoC" value="{{ old('infoC') }}" class="btn-block" autocomplete="off" required onkeyup="validarInfo()" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
-                            <span id="estadoInfo"></span>
+                            <div class="input-group">
+                              <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Cliente</span>
+                             <input type="text" id="cliente" name="cliente" class="form-control" required onkeyup="validarCliente()" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+                               
+                           </div>
+                            
+                            <span id="estadoCliente"></span>
                             <br>
                             <a href="{{ url('/cliente/nuevo')}}" class="card-link">Nuevo Cliente</a> 
                           </div>
@@ -79,8 +114,8 @@ function validarTiempo(){
                           <div class="col-5">
                             <div class="input-group">
                               <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Prioridad</span>
-                                <select name="priority" class="form-control" class="btn-block" required>
-                                  <option value="">Escoga la prioridad</option>
+                                <select name="prioridad" class="form-control" class="btn-block" required>
+                                  <option disabled>Escoja la prioridad</option>
                                   <option value="Normal">Normal</option>
                                   <option value="Alta">Alta</option>
                                   <option value="Urgente">Urgente</option>
@@ -121,7 +156,7 @@ function validarTiempo(){
                                       <div class="input-group">
                                         <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo</span>
                                           <select name="tipo[]" id="tipo" class="form-control" class="btn-block" required>
-                                            <option >Tipo de Dispositivo</option>
+                                            <option disabled >Tipo de Dispositivo</option>
                                             <option value="HDD">HDD</option>
                                             <option value="CD/DVD">CD/DVD</option>
                                             <option value="Unidad">Unidad Flash</option>
@@ -147,47 +182,42 @@ function validarTiempo(){
                                       <div class="input-group">
                                         <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Rol</span>
                                           <select name="rol[]" id="rol" class="form-control" class="btn-block" required>
-                                            <option >Escoja un rol</option>
-                                            <option value="Normal">Normal</option>
-                                            <option value="Alta">Alta</option>
-                                            <option value="Urgente">Urgente</option>
+                                            <option disabled>Escoja un rol</option>
+                                            <option value="Paciente">Paciente</option>
+                                            <option value="Alta">Datos</option>
+                                            <option value="Urgente">Donante</option>
                                           </select>
                                       </div>
                                   </td>
                                   <td>
                                     <div class="input-group">
                                       <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Fabricante</span>
-                                        <input type="text" class="form-control  {{$errors->has('unidad')?'is-invalid':'' }}" name="fabricante[]"id="fabricante">
+                                        <input type="text" class="form-control" name="fabricante[]"id="fabricante">
                                     </div>
                                       
                                   </td>
                                   <td>
                                     <div class="input-group">
                                       <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Modelo</span>
-                                        <input type="text" class="form-control  {{$errors->has('unidad')?'is-invalid':'' }}" name="modelo[]"id="modelo">
+                                        <input type="text" class="form-control" name="modelo[]"id="modelo">
                                     </div>
                                   </td>
                                   <td>
                                     <div class="input-group">
                                       <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Serial</span>
-                                        <input type="text" class="form-control  {{$errors->has('unidad')?'is-invalid':'' }}" name="serial[]"id="serial">
+                                        <input type="text" class="form-control " name="serial[]"id="serial">
                                     </div>
                   
                                   </td>
                                   <td>
                                     <div class="input-group">
                                       <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Localizacion</span>
-                                        <input type="text" class="form-control  {{$errors->has('unidad')?'is-invalid':'' }}" name="localizacion[]"id="localizacion">
+                                        <input type="text" class="form-control " name="localizacion[]"id="localizacion">
                                     </div>
                   
                                   </td>
-                                  <td class="eliminar">
-                                      <button class="btn btn-icon btn-danger" type="button" id="deletRow" name="deletRow">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                          <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                                          <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                                        </svg>
-                                      </button>
+                                  <td>
+                                      
                                   </td>
                               </tr>
                   
@@ -236,81 +266,115 @@ function validarTiempo(){
   <script>
     $(function() {
       
-      $("#adicional").on('click', function() {
-        
-              var iman = 0;
-              iman = iman + 1;
-              //$("#tabla tbody tr:eq(0)").clone().appendTo("#tabla").attr("id", "columna-" + (iman)).find('input, select').attr('readonly', true).show();
-              //adding row to end and start
-              //$("#tabla>tbody").prepend("<tr><td>Test Row Prepend</td></tr>");
-              var tipo = document.getElementById("tipo");
-              var selectedTipo = tipo.options[tipo.selectedIndex].text;
-              var rol = document.getElementById("rol");
-              var selectedRol = rol.options[rol.selectedIndex].text;
-              var fabricante = document.getElementById("fabricante").value;
-              var modelo = document.getElementById("modelo").value;
-              var serial = document.getElementById("serial").value;
-              var localizacion = document.getElementById("localizacion").value;
-              $("#tabla>tbody").append("<tr>"+
-                                          "<td>"+
-                                            "<div class='input-group'>"+
-                                            "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Tipo</span>"+
-                                            "<input type='text' class='form-control' name='tipo[]'id='tipo' readonly value='"+selectedTipo+"'>"+
-                                            "</div>"+
-                                          "</td>"+
-                                          "<td>"+
-                                            "<div class='input-group'>"+
-                                            "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Rol</span>"+
-                                            "<input type='text' class='form-control' name='rol[]'id='rol' readonly value='"+selectedRol+"'>"+
-                                            "</div>"+
-                                          "</td>"+
-                                          "<td>"+
-                                            "<div class='input-group'>"+
-                                            "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Fabricante</span>"+
-                                            "<input type='text' class='form-control' name='fabricante[]'id='fabricante' readonly value='"+fabricante+"'>"+
-                                            "</div>"+
-                                          "</td>"+
-                                          "<td>"+
-                                            "<div class='input-group'>"+
-                                            "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Modelo</span>"+
-                                            "<input type='text' class='form-control' name='modelo[]'id='modelo' readonly value='"+modelo+"'>"+
-                                            "</div>"+
-                                          "</td>"+
-                                          "<td>"+
-                                            "<div class='input-group'>"+
-                                            "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Serial</span>"+
-                                            "<input type='text' class='form-control' name='serial[]'id='serial' readonly value='"+serial+"'>"+
-                                            "</div>"+
-                                          "</td>"+
-                                          "<td>"+
-                                            "<div class='input-group'>"+
-                                            "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Localizacion</span>"+
-                                            "<input type='text' class='form-control' name='localizacion[]'id='localizacion' readonly value='"+localizacion+"'>"+
-                                            "</div>"+
-                                          "</td>"+
-                                          "<td class='eliminar'>"+
-                                            "<button class='btn btn-icon btn-danger' type='button' id='deletRow' name='deletRow'>"+
-                                            "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>"+
-                                            "<path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'/>"+
-                                            "<path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/>"+
-                                            "</svg>"+
-                                            "</button>"+
-                                          "</td>"+
-                                        "</tr>");
-
-                                        $("#tipo").val('Tipo de Dispositivo'); 
-                                        $("#rol").val('Escoja un rol'); 
-                                        $("#fabricante").val('');    
-                                        $("#modelo").val('');  
-                                        $("#serial").val(''); 
-                                        $("#localizacion").val('');                           
-      });
       
-     $(document).on("click", ".eliminar", function() {
-            $(this).parents('tr').remove();
+
+      var eliminar = 0;
+
+      $("#adicional").on('click', function() {
+
+        if (validarTabla()) {
+          eliminar = eliminar+1;
+                //var iman = 0;
+                //iman = iman + 1;
+                //$("#tabla tbody tr:eq(0)").clone().appendTo("#tabla").attr("id", "columna-" + (iman)).find('input, select').attr('readonly', true).show();
+                //adding row to end and start
+                //$("#tabla>tbody").prepend("<tr><td>Test Row Prepend</td></tr>");
+                var tipo = document.getElementById("tipo");
+                var selectedTipo = tipo.options[tipo.selectedIndex].text;
+                var rol = document.getElementById("rol");
+                var selectedRol = rol.options[rol.selectedIndex].text;
+                var fabricante = document.getElementById("fabricante").value;
+                var modelo = document.getElementById("modelo").value;
+                var serial = document.getElementById("serial").value;
+                var localizacion = document.getElementById("localizacion").value;
+                $("#tabla>tbody").append("<tr>"+
+                                            "<td>"+
+                                              "<div class='input-group'>"+
+                                              "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Tipo</span>"+
+                                              "<input type='text' class='form-control' name='tipo[]'id='tipo' readonly value='"+selectedTipo+"'>"+
+                                              "</div>"+
+                                            "</td>"+
+                                            "<td>"+
+                                              "<div class='input-group'>"+
+                                              "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Rol</span>"+
+                                              "<input type='text' class='form-control' name='rol[]'id='rol' readonly value='"+selectedRol+"'>"+
+                                              "</div>"+
+                                            "</td>"+
+                                            "<td>"+
+                                              "<div class='input-group'>"+
+                                              "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Fabricante</span>"+
+                                              "<input type='text' class='form-control' name='fabricante[]'id='fabricante' readonly value='"+fabricante+"'>"+
+                                              "</div>"+
+                                            "</td>"+
+                                            "<td>"+
+                                              "<div class='input-group'>"+
+                                              "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Modelo</span>"+
+                                              "<input type='text' class='form-control' name='modelo[]'id='modelo' readonly value='"+modelo+"'>"+
+                                              "</div>"+
+                                            "</td>"+
+                                            "<td>"+
+                                              "<div class='input-group'>"+
+                                              "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Serial</span>"+
+                                              "<input type='text' class='form-control' name='serial[]'id='serial' readonly value='"+serial+"'>"+
+                                              "</div>"+
+                                            "</td>"+
+                                            "<td>"+
+                                              "<div class='input-group'>"+
+                                              "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Localizacion</span>"+
+                                              "<input type='text' class='form-control' name='localizacion[]'id='localizacion' readonly value='"+localizacion+"'>"+
+                                              "</div>"+
+                                            "</td>"+
+                                            "<td class='eliminar'>"+
+                                              "<button class='btn btn-icon btn-danger' type='button' id='deletRow' name='deletRow'>"+
+                                              "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>"+
+                                              "<path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'/>"+
+                                              "<path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/>"+
+                                              "</svg>"+
+                                              "</button>"+
+                                            "</td>"+
+                                          "</tr>");
+
+                                          $("#tipo").val('Tipo de Dispositivo'); 
+                                          $("#rol").val('Escoja un rol'); 
+                                          $("#fabricante").val('');    
+                                          $("#modelo").val('');  
+                                          $("#serial").val(''); 
+                                          $("#localizacion").val('');                           
         
-    });
-});
+                                          $("#stateRow").html("<span  class='bien text-center'><h5 ></h5></span>");
+        } else {
+          $("#stateRow").html("<span  class='menor' ><h5 >Llene todos los campos</h5></span>");
+        }
+              
+      });
+      $(document).on("click", ".eliminar", function() {
+        
+        
+        if (eliminar != 0) {
+            $(this).parents('tr').remove();
+            eliminar = eliminar-1;
+        }
+          
+      });
+  });
+
+  function validarTabla(){ 
+    
+    var validado = true;
+
+    var fabricante = document.getElementById("fabricante").value;
+    var modelo = document.getElementById("modelo").value;
+    var serial = document.getElementById("serial").value;
+    var localizacion = document.getElementById("localizacion").value;
+
+    if (fabricante == '' || modelo == '' || serial == '' || localizacion == '') {
+      return false;
+    } else {
+      return true;
+    }
+    
+  }
+
   </script>
 
 @endsection

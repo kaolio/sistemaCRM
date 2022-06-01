@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\DetalleCliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class ClienteController extends Controller
@@ -25,8 +26,8 @@ class ClienteController extends Controller
     {
         $busqueda=trim($request->get('busqueda'));
         $cliente=DB::table('clientes')
-                        ->select('id','NombreCliente','VATid','Calle','Numero','Apt','CodigoPostal','Pak','NombreCiudad','Pais','Idioma','Tipo','Valor','NombreX','Nota')
-                        ->where('NombreCliente', 'LIKE', '%'.$busqueda.'%')
+                        ->select('id','nombreCliente','vat','calle','numero','apt','codigoPostal','pak','nombreCiudad','pais','idioma','nota')
+                        ->where('nombreCliente', 'LIKE', '%'.$busqueda.'%')
                         ->orderBy('id','asc')
                         ->paginate(10);
         //$datoCliente['clientes']=Cliente::paginate(10);
@@ -51,41 +52,45 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            
-            'vat'=>'required|integer',
-            'calle'=>'required|max:50',
-            'Numero'=>'required|integer',
-            'apt'=>'required|integer',
-            'codigoPostal'=>'required|integer',
-            'pak'=>'required',
-            'nombreCiudad'=>'required|string|max:50',
-            'language'=>'required',
-            'tipo'=>'required|string',
-            'value'=>'required'
-            
-            
-        ]);
-        
-
 
         $datoCliente = new Cliente;
-        $datoCliente-> NombreCliente = $request->get('Nombre');
-        $datoCliente-> VATid = $request->get('vat');
-        $datoCliente->Calle = $request->get('calle');
-        $datoCliente->Numero = $request->get('Numero');
-        $datoCliente->Apt = $request->get('apt');
-        $datoCliente->CodigoPostal = $request->get('codigoPostal');
-        $datoCliente->Pak = $request->get('pak');
-        $datoCliente->NombreCiudad = $request->get('nombreCiudad');
-        $datoCliente->Pais = $request->get('pais');
-        $datoCliente->Idioma = $request->get('language');
-        $datoCliente->Tipo = $request->get('tipo');
-        $datoCliente->Valor = $request->get('value');
-        $datoCliente->NombreX = $request->get('na');
-        $datoCliente->Nota = $request->get('info');
+        $datoCliente->nombreCliente = $request->get('nombreCliente');
+        $datoCliente->vat = $request->get('vat');
+        $datoCliente->calle = $request->get('direccion');
+        $datoCliente->numero = $request->get('numero');
+        $datoCliente->apt = $request->get('apt');
+        $datoCliente->codigoPostal = $request->get('postal');
+        $datoCliente->pak = $request->get('pak');
+        $datoCliente->nombreCiudad = $request->get('ciudad');
+        $datoCliente->pais = $request->get('pais');
+        $datoCliente->idioma = $request->get('idioma');
+        $datoCliente->nota = $request->get('nota');
         //dd($datoCliente);
         $datoCliente->save();
+
+        $cliente = DB::table('clientes')
+                ->select('id')
+                ->where('nombreCliente','=',$request->get('nombreCliente'))
+                ->where('calle','=',$request->get('direccion'))
+                ->where('codigoPostal','=',$request->get('postal'))
+                ->first();
+
+
+        $tipo = request('tipo');
+        $valor = request('valor');
+        $nombre = request('nombre');
+
+        for ($i=0; $i < sizeOf($tipo); $i++) { 
+            $detalle = new DetalleCliente;
+            $detalle->tipo = $tipo[$i];
+            $detalle->valor = $valor[$i];
+            $detalle->nombre = $nombre[$i];
+            $detalle->id_cliente = $cliente->id;
+            $detalle->save();
+        }
+
+        
+
         return redirect('clientes');
     }
 
@@ -124,7 +129,7 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $clienteUpdate = Cliente::findOrFail($id);
+        /*$clienteUpdate = Cliente::findOrFail($id);
         $clienteUpdate->NombreCliente = $request->Nombre;
         $clienteUpdate-> VATid = $request->vat;
         $clienteUpdate->Calle = $request->calle;
@@ -141,7 +146,7 @@ class ClienteController extends Controller
         $clienteUpdate->Nota = $request->info;
         //dd($clienteUpdate);
         $clienteUpdate->save();
-        return redirect('clientes');
+        return redirect('clientes');*/
     }
 
     /**
