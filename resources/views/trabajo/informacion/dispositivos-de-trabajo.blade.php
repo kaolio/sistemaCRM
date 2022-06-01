@@ -22,10 +22,19 @@
         font-size: 14px;
         padding-bottom: 8px;
     }
+    .form-check-input{
+        position: relative;
+    }
+    .agregar{
+        color: green;
+    }
 </style>
 <div class="fila-botones">
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" id="botones" data-toggle="modal" data-target="#exampleModal">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-arrows-move" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z"/>
+        </svg>
         Mover Dispositivos Seleccionados
     </button>
     
@@ -64,10 +73,204 @@
     </div>
     
 
-        <button class="btn btn-danger" id="botones">Eliminar dispositivos seleccionados</button>
-        <button class="btn btn-success" id="botones">Agregar nuevo dispositivos del cliente</button>
-        <button class="btn btn-success" id="botones">Agregar dispositivo</button>
-        <button class="btn btn-danger" id="botones">Liberar seleccionados</button>
+        <button class="btn btn-danger" id="botones">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+            </svg>
+            Eliminar dispositivos seleccionados
+        </button>
+        <button class="btn btn-success" id="botones">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+            </svg>
+            Agregar nuevo dispositivo del cliente
+        </button>
+
+        <!-- Button trigger modal -->
+        <button type="button" id="botones" class="btn btn-success" data-toggle="modal" data-target="#exampleModalMover">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+            </svg>
+            Agregar dispositivo
+        </button>
+        <!-- Modal -->
+        <div class="modal fade bd-example-modal-lg" id="exampleModalMover" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelMover" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabelMover">Agregar Nuevo Dispositivo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                
+                    
+                    <div class="col-md-12">
+                        <div class="card">
+                                <div class="card-body p-1" id="card">
+                                    <ul class="nav nav-pills">
+                                    <li class="nav-item col-md-6">
+                                        <a class="nav-link" href="#clonar" data-toggle="tab">
+                                            <div class="input-group">
+                                                <div class="input-group-text" id="btnGroupAddon">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input class="form-check-input" type="radio" name="radioNoLabel1" id="radioNoLabel1" value="" aria-label="...">
+                                                    </div>
+                                                </div>
+                                                <span class="input-group-text form-control">Clonar</span>
+                                            </div> 
+                                        </a>
+                                    </li>
+                                    <li class="nav-item col-md-6">
+                                        <a class="nav-link" href="#donar" data-toggle="tab">
+                                            <div class=" input-group">
+                                                <div class="input-group-text" id="btnGroupAddon">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input class="form-check-input" type="radio" name="radioNoLabel2" id="radioNoLabel2" value="" aria-label="...">
+                                                    </div>
+                                                </div>
+                                                <span class="input-group-text form-control">Donar</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    </ul>
+                                </div><!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="tab-content">
+                                        <!--Clonar-->
+                                        <div class="active tab-pane" id="clonar">
+                                            <div class="clonar">
+                                                <div class="input-group mt-2">
+                                                    <span class="input-group-text">ID Interno</span>
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                                <div class="input-group mt-2">
+                                                    <span class="input-group-text">Modelo</span>
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                                <div class="input-group mt-2">
+                                                    <span class="input-group-text">Serie</span>
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                                <div class="input-group mt-2">
+                                                    <span class="input-group-text">Tamaño</span>
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                                <div class="input-group mt-2">
+                                                    <span class="input-group-text">PCB ID</span>
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/Clonar-->
+        
+                                        <!--Donar-->
+                                        <div class="tab-pane" id="donar">
+                                            <div class="donar">
+                                                <div class="input-group mt-2">
+                                                    <span class="input-group-text">Donante para</span>
+                                                    <select name="manufactura" class="form-control" class="btn-block">
+                                                        <option value="">Elija el donante</option>
+                                                        <option value="Seagate">Donante de cabezal</option>
+                                                        <option value="Toshiba">xxxx</option>
+                                                        <option value="Samsung">xxxx</option>
+                                                        <option value="Verbatim">xxxxx</option>
+                                                        <option value="Wester Digital">xxxxxx</option>
+                                                      </select>
+                                                </div>
+                                                <div class="input-group mt-2">
+                                                    <span class="input-group-text">ID Interno</span>
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                                <div class="input-group mt-2">
+                                                    <span class="input-group-text">Modelo</span>
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                                <div class="input-group mt-2">
+                                                    <span class="input-group-text">Serie</span>
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                                <div class="input-group mt-2">
+                                                    <span class="input-group-text">Tamaño</span>
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                                <div class="input-group mt-2">
+                                                    <span class="input-group-text">PCB ID</span>
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                            {{-- @endif --}}
+                                        </div>
+                                        <!--/Donar-->
+                                    </div>
+                                    <!-- /.tab-content -->
+                                </div><!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+
+
+
+
+
+                    <div class="table mt-2">
+                        <table class="table table-responsive">
+                            <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
+                                <tr>
+                                    <th class="col-md-1 p-1"> ID  </th>
+                                    <th class="col-md-2 p-1">Fabricante</th>
+                                    <th class="col-md-2 p-1">Modelo</th>
+                                    <th class="col-md-2 p-1">Serie</th>
+                                    <th class="col-md-2 p-1">Tamaño</th>
+                                    <th class="col-md-1 p-1">Ubicación</th>
+                                    <th class="col-md-1 p-1"></th>
+                                </tr>
+                              </thead>
+                              <tbody class="table-bordered">
+                                  {{-- @if(count($inventario)<=0) --}}
+                                   {{-- @else    --}}
+
+                                   {{-- @foreach ($inventario as $item) --}}
+                                   
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td></td>
+                                    <td>xxxxxx</td>
+                                    <td>xxxxx</td>
+                                    <td>xxxxx</td>
+                                    <td>xx xxx xx</td>
+                                    <td>
+                                        <button type="button">
+                                            <svg class="agregar" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                </tr>
+                               
+                              </tbody>
+                        </table>
+                    </div> 
+
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="botones" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="botones">Buscar</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+
+        <button class="btn btn-danger" id="botones">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
+                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+            </svg>
+            Liberar seleccionados
+        </button>
 </div>
 
     <p class="subtitulo">Dispositivos del Paciente</p>
@@ -151,20 +354,23 @@
                                     <div class="input-group md-2">
                                         <span class="input-group-text">Diagnóstico</span>
                                         <select name="" class="form-control" class="btn-block">
-                                            <option value=""></option>
-                                            <option value="Seagate">Seagate</option>
-                                            <option value="Toshiba">Toshiba</option>
-                                            <option value="Samsung">Samsung</option>
-                                            <option value="Verbatim">Verbatim</option>
-                                            <option value="Wester Digital">Western Digital</option>
-                                            <option value="SkayNet">SkyNet</option>
-                                            <option value="Maxtor">Maxtor</option>
-                                            <option value="Adata">Adata</option>
-                                            <option value="Crucial">Crucial</option>
-                                            <option value="Kingston">Kingston</option>
-                                            <option value="Sony">Sony</option>
-                                            <option value="Hitachi">Hitachi</option>
-                                            <option value="Asus">Asus</option>
+                                            <option value="">No Establecido</option>
+                                            <option value="Cabezal">Cabezal</option>
+                                            <option value="PCB">PCB</option>
+                                            <option value="Motor">Motor</option>
+                                            <option value="Lógico">Lógico</option>
+                                            <option value="Sectores malos">Sectores malos</option>
+                                            <option value="Firmware">Firmware</option>
+                                            <option value="Ransomware">Ransomware</option>
+                                            <option value="CD/DVD">CD/DVD</option>
+                                            <option value="Disco flexible">Disco flexible</option>
+                                            <option value="NAND lógico">NAND Logico</option>
+                                            <option value="NAND electrónico">NAND Electronico</option>
+                                            <option value="SSD lógico">SSD Lógico</option>
+                                            <option value="SDD firmware">SDD Firmware</option>
+                                            <option value="Teléfono móvil lógico">Teléfono movil lógico</option>
+                                            <option value="Teléfono móvil electrónico">Teléfono movil electrónico</option>
+                                            <option value="Unidad de cinta">Unidad de cinta</option>
                                         </select>                           
                                     </div><br>
                                     <div class="input-group">
@@ -256,7 +462,7 @@
            
           </tbody>
     </table>
-     </div>     
+</div>     
 
 
 <p class="subtitulo">Donantes de Trabajo</p>
@@ -289,7 +495,7 @@
            
           </tbody>
     </table>
-     </div>     
+</div>     
 
 
 <p class="subtitulo">Otros Dispositivos de los Clientes</p>
@@ -310,19 +516,20 @@
           <tbody class="table-bordered">
               {{-- @if(count($inventario)<=0) --}}
             <tr>
-                <th class="col-md-3">No hay datos disponibles</th>
+                  <th class="col-md-3">No hay datos disponibles</th>
             <tr>
+                {{-- @foreach ($inventario as $item) --}}
                {{-- @else    --}}
-               {{-- @foreach ($inventario as $item) --}}
-            <tr>
-                <th scope="row"></th>
-                <td>Hdd</td>
-                <td>Wester Digital</td>
-                <td>ZSDGSER346sSF5</td>
-                <td>ER56T78</td>
-                <td>Cabinet</td>
-                <td>Falla en la cabecera</td>
-                <td>
+               <tr>
+                   {{-- <th scope="row">{{$item->id}}</th> --}}
+                   {{-- <td>{{$item->modelo}}</td> --}}
+                   <td>Wester Digital</td>
+                   <td>ZSDGSER346sSF5</td>
+                   <td>ER56T78</td>
+                   <td>Cabinet</td>
+                   <td>Falla en la cabecera</td>
+                   {{-- @endforeach --}}
+                   <td>
                     {{--Mover --}}
                     <a href="">
                         <button class="btn btn-primary">
