@@ -56,6 +56,8 @@ Route::get('/trabajo/editar/{id}',[OrdenTrabajoController::class,'edit']);
 Route::put('/trabajo/editar/{id}',[OrdenTrabajoController::class,'update']);
 Route::get('/trabajo/buscador',[OrdenTrabajoController::class,'buscador']);
 
+Route::post('/autocompletarCliente',[OrdenTrabajoController::class,'autoCompletar']);
+
 //INVENTARIO
 Route::get('/inventario',[InventarioController::class,'index']);
 Route::get('/inventario/nuevo',[InventarioController::class,'create']);
@@ -78,3 +80,9 @@ Route::post('/cliente/nuevo',[ClienteController::class,'store']);
 Route::get('/cliente/editar/{id}',[ClienteController::class,'edit']);
 Route::put('/cliente/editar/{id}',[ClienteController::class,'update']);
 Route::delete('/cliente/{id}',[ClienteController::class,'destroy']);
+
+/*Puede llamar a un comando de Artisan fuera de la CLI.
+Route::get('/clear-cache', function() {
+$exitCode = Artisan::call('cache:clear');
+// return what you want
+});*/
