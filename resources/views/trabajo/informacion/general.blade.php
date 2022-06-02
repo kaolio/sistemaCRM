@@ -269,8 +269,8 @@
 
                     $.each(resultData,function(index,row){
                         datosTabla+="<tr>"
-                        datosTabla+="<td>"+row.Tipo+"</td><td>"+row.Fabricante+"</td><td>"+row.Modelo+"</td>"
-                        +"<td>"+row.Serial+"</td><td>"+row.Localizacion+"</td><td>"+"</td><td>";
+                        datosTabla+="<td>"+row.tipo+"</td><td>"+row.fabricante+"</td><td>"+row.modelo+"</td>"
+                        +"<td>"+row.serial+"</td><td>"+row.localizacion+"</td><td>"+"</td><td>";
                         datosTabla+="</tr>";
                         
                     })

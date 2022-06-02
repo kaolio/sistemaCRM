@@ -66,6 +66,8 @@ Route::post('/trabajos/nuevo/detalle/datosTabla',[DetalleController::class,'dato
 
 
 
+Route::post('/autocompletarCliente',[OrdenTrabajoController::class,'autoCompletar']);
+
 //INVENTARIO
 Route::get('/inventario',[InventarioController::class,'index']);
 Route::get('/inventario/nuevo',[InventarioController::class,'create']);
@@ -80,7 +82,6 @@ Route::get('/inventario/imprimirItemPdf/{id}',[InventarioController::class,'impr
 Route::get('/inventario/excel',[InventarioController::class,'descargarExcel']); //ruta para descargar excel
 Route::get('/inventario/buscador',[InventarioController::class,'buscador']);  //buscador en tiempo real
 
-
 Route::post('/inventario/busqueda' ,[InventarioController::class.'busqueda']);
 
 //CLIENTES
@@ -90,3 +91,9 @@ Route::post('/cliente/nuevo',[ClienteController::class,'store']);
 Route::get('/cliente/editar/{id}',[ClienteController::class,'edit']);
 Route::put('/cliente/editar/{id}',[ClienteController::class,'update']);
 Route::delete('/cliente/{id}',[ClienteController::class,'destroy']);
+
+/*Puede llamar a un comando de Artisan fuera de la CLI.
+Route::get('/clear-cache', function() {
+$exitCode = Artisan::call('cache:clear');
+// return what you want
+});*/

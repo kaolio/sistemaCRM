@@ -85,17 +85,15 @@
   <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
     <tr>
       <th>#</th>
-      <th>Informacion del Cliente</th>
+      <th>Orden de Trabajo</th>
       <th>Prioridad</th>
-      <th>TiempoEstimado</th>
-      <th>Tipo</th>
-      <th>Rol</th>
-      <th>Fabricante</th>
-      <th>Modelo</th>
-      <th>Serial</th>
-      <th>Localizacion</th>
-      <th>Informacion Mal funcionamiento</th>
-      <th>Dato Importante</th>
+      <th>Cliente</th>
+      <th>Estado</th>
+      <th>Informacion</th>
+      <th>Ultima Nota</th>
+      <th>Asignado</th>
+      <th>Creado por</th>
+      <th>Fecha</th>
       <th>Acciones</th>
     </tr>
   </thead>
@@ -107,18 +105,16 @@
      @else   
     @foreach ($trabajo as $trabajo)
       <tr>
+        <td>check</td>
         <td>{{$trabajo->id}}</td>
-        <td>{{$trabajo->infoCliente}}</td>
-        <td>{{$trabajo->Prioridad}}</td>
-        <td>{{$trabajo->TiempoEstimado}}</td>
-        <td>{{$trabajo->Tipo}}</td>
-        <td>{{$trabajo->Rol}}</td>
-        <td>{{$trabajo->Fabricante}}</td>
-        <td>{{$trabajo->Modelo}}</td>
-        <td>{{$trabajo->Serial}}</td>
-        <td>{{$trabajo->Localizacion}}</td>
-        <td>{{$trabajo->informacionDispositivo}}</td>
-        <td>{{$trabajo->datoImportante}}</td>
+        <td>{{$trabajo->prioridad}}</td>
+        <td>{{$trabajo->nombreCliente}}</td>
+        <td>{{$trabajo->estado}}</td>
+        <td>{{$trabajo->informacion}}</td>
+        <td>{{$trabajo->datosImportantes}}</td>
+        <td>{{$trabajo->asignado}}</td>
+        <td>{{$trabajo->creado}}</td>
+        <td>{{$trabajo->created_at}}</td>
         <td>
           <a href="{{ url('/trabajo/editar/'.$trabajo->id)}}">
             <button class="btn btn-light-active btn-sm"  >

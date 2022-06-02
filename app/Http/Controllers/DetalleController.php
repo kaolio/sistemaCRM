@@ -104,7 +104,7 @@ class DetalleController extends Controller
 
     public function datosTabla(){
 
-        $datosTabla =  DB::table('orden_trabajos')
+        $datosTabla =  DB::table('detalle_ordens')
                     ->select('*')
                     ->where('id','=',$_POST["nombre"])
                     ->get(); 
