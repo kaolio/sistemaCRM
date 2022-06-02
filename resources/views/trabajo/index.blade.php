@@ -11,11 +11,11 @@
 <h1 align="center"><strong>ORDEN DE TRABAJO</strong></h1>
 
   <div class="col-3">
-    <form action="{{url('/trabajos/detalle', ['id'=>1])}}" method="GET" id="formOrden">
+    <form action="{{url('/trabajos/detalle', ['id'=>1])}}" method="GET" id="formOrden" name="formOrden">
       @csrf
         <div class="input-group md-2">
           <span class="input-group-text">NºOrden </span>
-          <input class="form-control" id="orden" name="orden" >
+          <input class="form-control" id="orden" name="orden" autocomplete="off">
           <span class="input-group-text"><button type="submit" id="btnBuscar" name="btnBuscar" onclick="buscarOrden()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"  class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
             <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
           </svg></button></span>               
@@ -182,13 +182,16 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>  
 <script>
-
   $(function(){
     $('#btnBuscar').on('click', function () {
-      var orden = document.getElementById("orden").value;
-      alert('Se ha dado clic al botón!');
-      
+
+          document.getElementById('formOrden').addEventListener('click', function() {
+          console.log(document.getElementById('orden').value)
+
+          alert('Se ha dado clic al botón!');
+          })
     });
+
   })
 </script>
 @stop
