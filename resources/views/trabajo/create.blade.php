@@ -203,7 +203,7 @@ function validarTiempo(){
                                     <div class="input-group">
                                       <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Modelo</span>
                                         <input type="text" class="form-control" onkeyup="mayus(this);" name="modelo[]"id="modelo" 
-                                        onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 45) || (event.charCode == 32))" >
+                                        onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 45) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32))" >
                                     </div>
                                     <span id="estadoModelo"></span>
                                   </td>
@@ -211,7 +211,7 @@ function validarTiempo(){
                                     <div class="input-group">
                                       <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Serial</span>
                                         <input type="text" class="form-control " name="serial[]"id="serial" onkeyup="mayus(this);" 
-                                        onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 45) || (event.charCode == 32))" >
+                                        onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 45) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32))" >
                                     </div>
                   
                                   </td>
@@ -264,7 +264,7 @@ function validarTiempo(){
                     </div>
                 </div>
                 
-                <br><br>
+                <br>
                 <div class="form-group">
                 <a href="" class="btn btn-danger my-2 my-sm-0">Cancelar</a>
                 <button class="btn btn-primary" type="submit" >Aceptar</button>
