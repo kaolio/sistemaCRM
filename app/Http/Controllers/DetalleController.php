@@ -87,7 +87,6 @@ class DetalleController extends Controller
 
 
         return json_encode(array('data'=>$datosTabla));
-       // setInterval(datosTabla, 30000);
     }
     
 
@@ -108,8 +107,6 @@ class DetalleController extends Controller
                                 ->select('*')
                                 ->where('id','=',$id)
                                 ->first(); 
-
-                               // dd($orden_elegida);
 
         return view('trabajo.informacion.detalle',(compact('orden_elegida')));
 
