@@ -30,51 +30,6 @@ class DetalleController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
-     * @return \Illuminate\Http\Response
-     */
-    public function show(OrdenTrabajo $ordenTrabajo)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-       
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-      
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(OrdenTrabajo $trabajo,$id)
-    {
-      
-    }
-
     public function datosTabla(){
 
         $datosTabla =  DB::table('detalle_ordens')
