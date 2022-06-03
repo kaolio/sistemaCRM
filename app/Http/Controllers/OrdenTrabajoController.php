@@ -9,6 +9,8 @@ use App\Models\DetalleOrden;
 use App\Models\Roles;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+
 class OrdenTrabajoController extends Controller
 {
 
@@ -62,7 +64,8 @@ class OrdenTrabajoController extends Controller
      */
     public function create()
     {
-        return view('trabajo.create');
+        $cadena = Session::get('cadena');
+        return view('trabajo.create',compact('cadena'));
     }
 
     /**

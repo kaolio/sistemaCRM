@@ -6,6 +6,8 @@ use App\Models\Cliente;
 use App\Models\DetalleCliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+
 class ClienteController extends Controller
 {
 
@@ -44,15 +46,20 @@ class ClienteController extends Controller
         return view('cliente.create');
     }
 
+    public function createTho()
+    {
+        $ver=$_POST['ver'];
+        echo 'trabajo/nuevoTho/'.$ver;
+        //return redirect('/trabajo/nuevo',compact('cliente'));
+    }
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-
         $datoCliente = new Cliente;
         $datoCliente->nombreCliente = $request->get('nombreCliente');
         $datoCliente->vat = $request->get('vat');
@@ -90,8 +97,14 @@ class ClienteController extends Controller
         }
 
         
-
-        return redirect('clientes');
+        if ($id == 1) {
+            return redirect('clientes');
+        }else {
+            $cadena = $request->get('nombreCliente').', '.$request->get('direccion').' '.$request->get('numero').', '.$request->get('postal').' '.$request->get('ciudad');
+            return redirect('trabajo/nuevo')->with(compact('cadena'));
+            //return Redirect::route('trabajo.create, $cadena');
+        }
+        
     }
 
     /**
