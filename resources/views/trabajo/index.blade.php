@@ -11,7 +11,7 @@
 <h1 align="center"><strong>ORDEN DE TRABAJO</strong></h1>
 
   <div class="col-3">
-    <form action="{{url('/trabajos/detalle', ['id'=>1])}}" method="GET" id="formOrden" name="formOrden">
+    <form action="{{url('/trabajos/detalle', ['id'=>4])}}" method="GET" id="formOrden" name="formOrden">
       @csrf
         <div class="input-group md-2">
           <span class="input-group-text">NºOrden </span>

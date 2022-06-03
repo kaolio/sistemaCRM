@@ -29,6 +29,12 @@ class DetalleController extends Controller
 
     public function store(Request $request)
     {
+       // $nota = new Nota();
+       // $nota->comentario = $request->get('comentario');
+       // $nota->save();
+
+        //dd($nota);
+        
         Nota::create([
             'comentario' => $request->comentario
           ]);
