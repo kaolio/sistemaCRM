@@ -123,6 +123,9 @@ class OrdenTrabajoController extends Controller
             $detalle->save();
         }
 
+        DB::table('orden_trabajos')
+                ->where('id', $trabajo->id)
+                ->update(['bandera' => '1']);
 
         return redirect('trabajos');
         //dd($cliente);
