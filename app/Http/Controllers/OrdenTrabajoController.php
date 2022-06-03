@@ -164,13 +164,8 @@ class OrdenTrabajoController extends Controller
      * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        $trabajo = OrdenTrabajo::findOrFail($id);
-        $trabajo_elegido = DB::table('orden_trabajos')  //recuperar el valor del select
-        ->select('*')
-        ->Where('orden_trabajos.id', '=', $id)->first();
-        return view('trabajo.editar',compact('trabajo','trabajo_elegido'));
         
     }
 
@@ -183,20 +178,7 @@ class OrdenTrabajoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $ordenUpdate = OrdenTrabajo::findOrFail($id);
-        $ordenUpdate->infoCliente = $request->infoC;
-        $ordenUpdate->Prioridad = $request->priority;
-        $ordenUpdate->TiempoEstimado = $request->tiempoEstimado;
-        $ordenUpdate->Tipo = $request->Type;
-        $ordenUpdate->Rol = $request->Role;
-        $ordenUpdate->Fabricante = $request->Fabricante;
-        $ordenUpdate->Modelo = $request->Modelo;
-        $ordenUpdate->Serial = $request->Serial;
-        $ordenUpdate->Localizacion = $request->Localizacion;
-        $ordenUpdate->informacionDispositivo = $request->infoDispositivo;
-        $ordenUpdate->datoImportante = $request->DatoImportante;
-        $ordenUpdate->save();        
-        return redirect('trabajos');
+        
     }
 
     /**
@@ -207,6 +189,7 @@ class OrdenTrabajoController extends Controller
      */
     public function destroy(OrdenTrabajo $trabajo,$id)
     {
+        dd($id);
         // OrdenTrabajo::destroy($id); 
         // return redirect('trabajos');
         $trabajo=OrdenTrabajo::findOrFail($id);
