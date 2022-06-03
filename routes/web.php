@@ -61,6 +61,10 @@ Route::get('/trabajo/buscador',[OrdenTrabajoController::class,'buscador']);
 Route::get('/trabajos/detalle/{id}',[DetalleController::class,'buscarOrden']); //ruta buscador de orden trabajo
 //Route::post('/trabajos/detalle/{id}',[DetalleController::class,'buscarOrden']);
 Route::post('/trabajos/nuevo/detalle/datosTabla',[DetalleController::class,'datosTabla']); //ruta de tabla pacientes
+Route::post('/trabajos/nuevo/detalle/datosDispositivos',[DetalleController::class,'datosDispositivos']); // ruta de tabla dispositivos
+
+Route::get('/trabajo/detalle/nota',[DetalleController::class,'create']);
+Route::post('/trabajo/detalle/nota',[DetalleController::class,'store']);
 
 
 

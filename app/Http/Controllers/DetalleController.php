@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Inventario;
+use App\Models\Nota;
 use App\Models\OrdenTrabajo;
 use Illuminate\Http\Request;
 use App\Models\Roles;
@@ -20,41 +20,20 @@ class DetalleController extends Controller
         $this->middleware('permission:editar-trabajo',['only'=>['edit','update']]);
         $this->middleware('permission:borrar-trabajo',['only'=>['destroy']]);
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
-        
-        
-    }
 
-
-    public function buscador(Request $request){
-              
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        
+        $nota = Nota::all();
+        return view('trabajo.informacion.detalle',(compact('nota')));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Roles $roles)
+    public function store(Request $request)
     {
-
+        Nota::create([
+            'comentario' => $request->comentario
+          ]);
+          
+          return response()->json(['success'=>'Form is successfully submitted!']);
     }
 
     /**
@@ -105,14 +84,32 @@ class DetalleController extends Controller
     public function datosTabla(){
 
         $datosTabla =  DB::table('detalle_ordens')
-                    ->select('*')
-                    ->where('id','=',$_POST["nombre"])
+                    ->join('orden_trabajos','orden_trabajos.id','=','detalle_ordens.id_trabajos')
+                    ->select('orden_trabajos.diagnostico','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
+                            'detalle_ordens.serial','detalle_ordens.localizacion','detalle_ordens.id')
+                    ->where('detalle_ordens.id_trabajos','=',$_POST["nombre"])
+                    ->where('detalle_ordens.rol','=','Paciente')
+                    ->get(); 
+
+
+        return json_encode(array('data'=>$datosTabla));
+    }
+
+    public function datosDispositivos(){
+
+        $datosTabla =  DB::table('detalle_ordens')
+                    ->join('orden_trabajos','orden_trabajos.id','=','detalle_ordens.id_trabajos')
+                    ->select('orden_trabajos.diagnostico','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
+                            'detalle_ordens.serial','detalle_ordens.localizacion','detalle_ordens.id')
+                    ->where('detalle_ordens.id_trabajos','=',$_POST["nombre"])
+                    ->where('detalle_ordens.rol','<>','Paciente')
                     ->get(); 
         return json_encode(array('data'=>$datosTabla));
     }
 
     public function buscarOrden($id){
 
+        $nota = Nota::all();
         $orden_elegida = DB::table('orden_trabajos')
                                 ->select('*')
                                 ->where('id','=',$id)
@@ -120,7 +117,7 @@ class DetalleController extends Controller
 
                                // dd($orden_elegida);
 
-        return view('trabajo.informacion.detalle',(compact('orden_elegida')));
-    }
+        return view('trabajo.informacion.detalle',(compact('orden_elegida','nota')));
+    }  
 
 }
