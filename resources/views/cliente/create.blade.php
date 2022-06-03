@@ -175,14 +175,14 @@
    
      <div class="card-body">
   
-            <form action="{{url('/cliente/nuevo')}}" method="POST">
+            <form action="{{url('/cliente/nuevo')}}" id="formulario" method="POST">
               @csrf
               <div class="card">
                   <div class="card-body">
                     <div class="row">
                       <div class="col-9">
                         <label for="nombre" style="justify-content-center;">Nombre del cliente</label>
-                        <input type="text" name="nombreCliente" id="nombreCliente" value="{{ old('Nombre') }}" class="form-control" onkeyup="validarNombre()" placeholder="Nombre" tabindex="1" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)) ">
+                        <input type="text" name="nombreCliente" id="nombreCliente" required value="{{ old('Nombre') }}" class="form-control" onkeyup="validarNombre()" placeholder="Nombre" tabindex="1" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)) ">
                         <span id="estadoNombre"></span>
                       </div>
                       <div class="col-3">
@@ -338,10 +338,12 @@
               </div>
 
               <div class="form-group">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a href="" class="btn btn-warning my-2 my-sm-0">Resetear</a>
-                <button class="btn btn-success" type="submit">Guardar y Crear Orden</button>
-                <button class="btn btn-success my-2 my-sm-0" type="submit" value="Guardar Datos">Guardar</button>
-                </div> 
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a href="" class="btn btn-warning my-2 my-sm-0">Resetear</a>
+              
+                <button class="btn btn-success" type="submit" onclick="enviarOrden()" >Guardar y Crear Orden</button>
+
+                <button class="btn btn-success my-2 my-sm-0" type="submit" onclick="enviarCliente()" >Guardar</button>
+              </div> 
       </div>
                 
 
@@ -351,6 +353,14 @@
 </body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script>
+
+  function enviarCliente(){
+    $("#formulario").attr("action","{{url('/cliente/nuevo/1')}}");
+  }
+  function enviarOrden(){
+    $("#formulario").attr("action","{{url('/cliente/nuevo/2')}}");
+  }
+ 
  
 $(document).ready(function(){
   
@@ -403,10 +413,12 @@ $(document).ready(function(){
 		
 	});
 });
+
 </script>
 <script>
+
   $(function() {
-    
+
 
     var eliminar = 0;
 

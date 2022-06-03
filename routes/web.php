@@ -51,7 +51,7 @@ Route::post('/usuario/nuevo/validarCorreo', [UsuarioController::class,'validarCo
 //ORDEN DE TRABAJO
 Route::get('/trabajos',[OrdenTrabajoController::class,'index']);
 Route::delete('/trabajo/{id}',[OrdenTrabajoController::class,'destroy']);
-Route::get('/trabajo/nuevo',[OrdenTrabajoController::class,'create']);
+Route::get('/trabajo/nuevo',[OrdenTrabajoController::class,'create'])->name('orden');
 Route::post('/trabajo/nuevo',[OrdenTrabajoController::class,'store']);
 Route::get('/trabajo/editar/{id}',[OrdenTrabajoController::class,'edit']);
 Route::put('/trabajo/editar/{id}',[OrdenTrabajoController::class,'update']);
@@ -91,7 +91,8 @@ Route::post('/inventario/busqueda' ,[InventarioController::class.'busqueda']);
 //CLIENTES
 Route::get('/clientes',[ClienteController::class,'index']);
 Route::get('/cliente/nuevo',[ClienteController::class,'create']);
-Route::post('/cliente/nuevo',[ClienteController::class,'store']);
+Route::post('/cliente/nuevoTho',[ClienteController::class,'createTho']);
+Route::post('/cliente/nuevo/{id}',[ClienteController::class,'store']);
 Route::get('/cliente/editar/{id}',[ClienteController::class,'edit']);
 Route::put('/cliente/editar/{id}',[ClienteController::class,'update']);
 Route::delete('/cliente/{id}',[ClienteController::class,'destroy']);

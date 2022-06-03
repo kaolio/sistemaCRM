@@ -9,6 +9,8 @@ use App\Models\DetalleOrden;
 use App\Models\Roles;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+
 class OrdenTrabajoController extends Controller
 {
 
@@ -78,7 +80,8 @@ class OrdenTrabajoController extends Controller
      */
     public function create()
     {
-        return view('trabajo.create');
+        $cadena = Session::get('cadena');
+        return view('trabajo.create',compact('cadena'));
     }
 
     /**
@@ -136,6 +139,9 @@ class OrdenTrabajoController extends Controller
             $detalle->save();
         }
 
+        DB::table('orden_trabajos')
+                ->where('id', $trabajo->id)
+                ->update(['bandera' => '1']);
 
         return redirect('trabajos');
         //dd($cliente);
