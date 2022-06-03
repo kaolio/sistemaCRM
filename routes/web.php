@@ -63,7 +63,7 @@ Route::get('/trabajos/detalle/{id}',[DetalleController::class,'buscarOrden']); /
 Route::post('/trabajos/nuevo/detalle/datosTabla',[DetalleController::class,'datosTabla']); //ruta de tabla pacientes
 
 Route::post('/trabajos/nuevo/detalle/datosPacientes',[DetalleController::class,'datosPacientes']); //ruta de inventarios en (dispositivos de trabajo)
-
+Route::get('/trabajos/nuevo/detalle/listaInventario',[DetalleController::class,'buscarModelo']);  //buscador en tiempo real de lista inventario
 
 
 

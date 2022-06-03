@@ -32,9 +32,9 @@ class DetalleController extends Controller
     }
 
 
-    public function buscador(Request $request){
+    // public function buscador(Request $request){
               
-    }
+    // }
 
     /**
      * Show the form for creating a new resource.
