@@ -93,7 +93,9 @@ class DetalleController extends Controller
 
 
         return json_encode(array('data'=>$datosTabla));
+       // setInterval(datosTabla, 30000);
     }
+    
 
     public function datosDispositivos(){
 
