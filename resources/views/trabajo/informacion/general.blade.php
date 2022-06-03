@@ -70,8 +70,7 @@
                                     <div class="alert alert-success" role="alert" id="successMsg" style="display: none" >
                                         Thank you for getting in touch! 
                                       </div>
-                                    <form action="" id="comentarioForm">
-                                        @csrf
+                                    
                                         <div class="input-group">
                                             <span class="input-group-text"  style="height: 80px">Comentario</span>
                                              <textarea class="form-control" type="text" name="comentario" id="comentario"  style="height: 80px"></textarea>
@@ -83,7 +82,6 @@
                                             <button class="btn btn-success" id="submit">Enviar Comenatario</button>
                                         </div>
                                         <!-- /Boton agregar-->
-                                    </form>
                                         
                             </div>
                     </div>
@@ -273,7 +271,7 @@
                 cache: false,
                 dataType: 'json',
                 success: function(dataResult){
-                    console.log(dataResult);
+                    //console.log(dataResult);
                     var resultData = dataResult.data;
                     var bodyData = '';
 
@@ -303,7 +301,7 @@
                     cache: false,
                     dataType: 'json',
                     success: function(dataResult){
-                        console.log(dataResult);
+                        //console.log(dataResult);
                         var resultData = dataResult.data;
                         var bodyData = '';
 
@@ -320,28 +318,36 @@
 
         });
         //
-        $('#comentarioForm').on('submit',function(e){
-        e.preventDefault();
 
-        let comentario = $('#comentario').val();
+        $('#submit').on('click', function () {
 
-        $.ajax({
-          url: "/trabajo/detalle/nota",
-          type:"POST",
-          data:{
-            "_token": "{{ csrf_token() }}",
-            comentario:comentario,
-          },
-          success:function(response){
-            console.log(response);
-            if (response) {
-              $('#success-message').text(response.success); 
-              $("#comentarioForm")[0].reset(); 
-            }
-          },
-          error: function(response) {
-            $('#message-error').text(response.responseJSON.errors.comentario);
-           }
-         });
+            var url = $('#comentario').val();
+
+            $.ajax({
+                url: "/trabajos/detalle/nota",
+                type: "POST",
+                data:{ 
+                    "_token": "{{ csrf_token() }}",
+                    comentario: url,
+                },
+                cache: false,
+                dataType: 'json',
+                success: function(dataResult){
+                    console.log(dataResult);
+                    var resultData = dataResult.data;
+                    var bodyData = '';
+
+                    $.each(resultData,function(index,row){
+                        datosTabla+="<tr>"
+                        datosTabla+="<td>"+row.tipo+"</td><td>"+row.fabricante+"</td><td>"+row.modelo+"</td>"
+                        +"<td>"+row.serial+"</td><td>"+row.localizacion+"</td><td>"+row.diagnostico+"</td><td>";
+                        datosTabla+="</tr>";
+                        
+                    })
+                    $("#datosTabla").append(datosTabla);
+                }
+            });
+        
         });
+
     </script>

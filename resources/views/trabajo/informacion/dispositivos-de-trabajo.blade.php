@@ -30,31 +30,11 @@
     </button>
     <!-- add device --> 
 
-    <script>
-        function buscador_modal(){
-            event.preventDefault();
-            const CSRF_TOKERN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                data:parametros,
-                type:'POST',
-                url:'buscador.blade.php'
-                success: function(data){
-                    document.getElementById("datos_buscador").innerHTML = data;
-                }
-            })
-        }
-    </script>
+ 
 
 
 
 
-    <script>
-        function text(x){
-          if (x==0) document.getElementById("donante").style.display= "block";
-          else document.getElementById("donante").style.display = "none"; 
-          return;
-        }
-      </script>
 
 
     <!-- Modal -->

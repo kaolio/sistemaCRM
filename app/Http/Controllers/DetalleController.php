@@ -21,25 +21,13 @@ class DetalleController extends Controller
         $this->middleware('permission:borrar-trabajo',['only'=>['destroy']]);
     }
 
-    public function create()
-    {
-        $nota = Nota::all();
-        return view('trabajo.informacion.detalle',(compact('nota')));
-    }
 
-    public function store(Request $request)
+    public function guardarNota()
     {
-       // $nota = new Nota();
-       // $nota->comentario = $request->get('comentario');
-       // $nota->save();
+        $nota = new Nota();
+        $nota->nota = $_POST["comentario"];
+        $nota->save();
 
-        //dd($nota);
-        
-        Nota::create([
-            'comentario' => $request->comentario
-          ]);
-          
-          return response()->json(['success'=>'Form is successfully submitted!']);
     }
 
     /**
@@ -114,10 +102,8 @@ class DetalleController extends Controller
                     ->get(); 
         return json_encode(array('data'=>$datosTabla));
     }
+    public function buscar($id){
 
-    public function buscarOrden($id){
-
-        $nota = Nota::all();
         $orden_elegida = DB::table('orden_trabajos')
                                 ->select('*')
                                 ->where('id','=',$id)
@@ -125,7 +111,15 @@ class DetalleController extends Controller
 
                                // dd($orden_elegida);
 
-        return view('trabajo.informacion.detalle',(compact('orden_elegida','nota')));
+        return view('trabajo.informacion.detalle',(compact('orden_elegida')));
+
+    }
+
+    public function buscarOrden(){
+                 
+        $ruta =  "/trabajos/detalle/".$_POST["orden"];
+
+        return json_encode(array('data'=>$ruta));
     }  
 
 }
