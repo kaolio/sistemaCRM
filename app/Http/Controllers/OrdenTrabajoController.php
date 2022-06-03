@@ -31,7 +31,7 @@ class OrdenTrabajoController extends Controller
         $busqueda=trim($request->get('busqueda'));
         $trabajo = DB::table('orden_trabajos')
                     ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-                    ->select('*')
+                    ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','asignado','creado','orden_trabajos.created_at')
                     ->where('nombreCliente', 'LIKE', '%'.$busqueda.'%')
                     ->orWhere('asignado', 'LIKE', '%'.$busqueda.'%')
                     ->orWhere('orden_trabajos.id', 'LIKE', '%'.$busqueda.'%')
