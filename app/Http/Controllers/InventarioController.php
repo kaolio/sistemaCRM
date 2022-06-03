@@ -156,6 +156,7 @@ class InventarioController extends Controller
         $inventario->nota = request('nota');
         $inventario->cabecera = request('cabecera');
         $inventario->info_de_cabecera = request('info_de_cabecera');
+        $inventario->diagnostico = request('diagnostico');
 
         $inventario->save();
         return redirect('inventario');

@@ -336,10 +336,12 @@
                                                     <span class="input-group-text">ID Interno</span>
                                                     <input type="text" class="form-control">
                                                 </div>
-                                                <div class="input-group mt-2">
-                                                    <span class="input-group-text">Modelo</span>
-                                                    <input type="text" class="form-control">
-                                                </div>
+                                                <form action= method="GET" id="formOrden">
+                                                    <div class="input-group mt-2">
+                                                        <span class="input-group-text">Modelo</span>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </form>
                                                 <div class="input-group mt-2">
                                                     <span class="input-group-text">Serie</span>
                                                     <input type="text" class="form-control">
@@ -365,8 +367,7 @@
 
 
 
-
-
+                    <h1>hola</h1>
                     <div class="table mt-2">
                         <table class="table table-responsive">
                             <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
@@ -380,26 +381,16 @@
                                     <th class="col-md-1 p-1"></th>
                                 </tr>
                               </thead>
-                              <tbody class="table-bordered">
-                                  {{-- @if(count($inventario)<=0) --}}
-                                   {{-- @else    --}}
-
-                                   {{-- @foreach ($inventario as $item) --}}
-                                   
+                              <tbody class="table-bordered" id="datosInventario">
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td></td>
-                                    <td>xxxxxx</td>
-                                    <td>xxxxx</td>
-                                    <td>xxxxx</td>
-                                    <td>xx xxx xx</td>
-                                    <td>
+                                    
+                                    {{-- <td>
                                         <button type="button">
                                             <svg class="agregar" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                                                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
                                             </svg>
                                         </button>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                                
                               </tbody>
@@ -442,144 +433,131 @@
                 <th class="p-1"></th>
             </tr>
           </thead>
-          <tbody class="table-bordered">
-            {{-- @if(count($inventario)<=0) --}}
-            <tr>
-                <th class="col-md-3">No hay datos disponibles</th>  
-            <tr>
-             {{-- @else    --}}
-             {{-- @foreach ($inventario as $item) --}}
+          <tbody class="table-bordered" id="datosPacientes">
+           
             
              <tr>
-                <th scope="row"></th>
-                <td>Hdd</td>
-                <td>Wester Digital</td>
-                <td>ZSDGSER346sSF5</td>
-                <td>ER56T78</td>
-                <td>Salta</td>
-                <td>Sin Diagnostico</td>
-                <td>Falla en la cabecera</td>
-                <td>
-                    {{-- Buscar --}}
-                    <a href="">
-                        <button class="btn btn-secondary">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                              </svg>
-                        </button>
-                    </a>
+                
+{{-- Buscar --}}
+<a href="">
+    <button class="btn btn-secondary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+    </button>
+</a>
 
 {{-- Editar --}}
-                    <a href="">
-                        <button class="btn btn-secondary">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
-                                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
-                              </svg>
-                        </button>
-                    </a>
+<a href="">
+    <button class="btn btn-secondary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+          </svg>
+    </button>
+</a>
 {{--Fin Editar}}
 {{-- Diagnostico --}}
-                   
-                        <!-- Button trigger modal -->
-                    {{-- <a href=""> --}}
-                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
-                                    <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
-                                </svg>
-                            </button>
-                    {{-- </a> --}}
-                    
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel2" align="center">Diagnóstico</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container">
-                                    <p align="center">Seleccionar diagnostico para el dispositivo: <br>
-                                        Wester Digital - 0723GG45RT
-                                    </p>
-                                    <div class="input-group md-2">
-                                        <span class="input-group-text">Diagnóstico</span>
-                                        <select name="" class="form-control" class="btn-block">
-                                            <option value="">No Establecido</option>
-                                            <option value="Cabezal">Cabezal</option>
-                                            <option value="PCB">PCB</option>
-                                            <option value="Motor">Motor</option>
-                                            <option value="Lógico">Lógico</option>
-                                            <option value="Sectores malos">Sectores malos</option>
-                                            <option value="Firmware">Firmware</option>
-                                            <option value="Ransomware">Ransomware</option>
-                                            <option value="CD/DVD">CD/DVD</option>
-                                            <option value="Disco flexible">Disco flexible</option>
-                                            <option value="NAND lógico">NAND Logico</option>
-                                            <option value="NAND electrónico">NAND Electronico</option>
-                                            <option value="SSD lógico">SSD Lógico</option>
-                                            <option value="SDD firmware">SDD Firmware</option>
-                                            <option value="Teléfono móvil lógico">Teléfono movil lógico</option>
-                                            <option value="Teléfono móvil electrónico">Teléfono movil electrónico</option>
-                                            <option value="Unidad de cinta">Unidad de cinta</option>
-                                        </select>                           
-                                    </div><br>
-                                    <div class="input-group">
-                                        <div class="form-check">
-                                            <input class="form-check-input" style="width: 20px; height:18px;" type="checkbox" value="" id="flexCheckDefault">
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                &nbsp; Asignar a todos los discos en el trabajo
-                                            </label>
-                                        </div>
-                                    </div>  
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" id="botones" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary" id="botones">Guardar</button>
-                            </div>
-                        </div>
-                        </div>
+
+    <!-- Button trigger modal -->
+{{-- <a href=""> --}}
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
+                <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+            </svg>
+        </button>
+{{-- </a> --}}
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2" align="center">Diagnóstico</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <p align="center">Seleccionar diagnostico para el dispositivo: <br>
+                    Wester Digital - 0723GG45RT
+                </p>
+                <div class="input-group md-2">
+                    <span class="input-group-text">Diagnóstico</span>
+                    <select name="" class="form-control" class="btn-block">
+                        <option value="">No Establecido</option>
+                        <option value="Cabezal">Cabezal</option>
+                        <option value="PCB">PCB</option>
+                        <option value="Motor">Motor</option>
+                        <option value="Lógico">Lógico</option>
+                        <option value="Sectores malos">Sectores malos</option>
+                        <option value="Firmware">Firmware</option>
+                        <option value="Ransomware">Ransomware</option>
+                        <option value="CD/DVD">CD/DVD</option>
+                        <option value="Disco flexible">Disco flexible</option>
+                        <option value="NAND lógico">NAND Logico</option>
+                        <option value="NAND electrónico">NAND Electronico</option>
+                        <option value="SSD lógico">SSD Lógico</option>
+                        <option value="SDD firmware">SDD Firmware</option>
+                        <option value="Teléfono móvil lógico">Teléfono movil lógico</option>
+                        <option value="Teléfono móvil electrónico">Teléfono movil electrónico</option>
+                        <option value="Unidad de cinta">Unidad de cinta</option>
+                    </select>                           
+                </div><br>
+                <div class="input-group">
+                    <div class="form-check">
+                        <input class="form-check-input" style="width: 20px; height:18px;" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            &nbsp; Asignar a todos los discos en el trabajo
+                        </label>
                     </div>
+                </div>  
+            </div>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="botones" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="botones">Guardar</button>
+        </div>
+    </div>
+    </div>
+</div>
 {{-- Fin Diagnostico --}}
 
 
 {{-- Descargar --}}
-                    <a href="">
-                        <button class="btn btn-success">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
-                                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-                                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
-                              </svg>
-                        </button>
-                    </a>
-                    {{--Mover --}}
-                    <a href="">
-                        <button class="btn btn-primary">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-move" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z"/>
-                            </svg>
-                        </button>
-                    </a>
-                    {{--Arrastrar --}}
-                    <a href="">
-                        <button class="btn btn-primary">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
-                            </svg>
-                        </button>
-                    </a>
-                     {{--Eliminar --}}
-                     <a href="">
-                        <button class="btn btn-danger">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-                              </svg>
-                        </button>
-                    </a>
-                </td>
+<a href="">
+    <button class="btn btn-success">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+          </svg>
+    </button>
+</a>
+{{--Mover --}}
+<a href="">
+    <button class="btn btn-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-move" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z"/>
+        </svg>
+    </button>
+</a>
+{{--Arrastrar --}}
+<a href="">
+    <button class="btn btn-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
+        </svg>
+    </button>
+</a>
+ {{--Eliminar --}}
+ <a href="">
+    <button class="btn btn-danger">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+          </svg>
+    </button>
+</a>
+</td>
             </tr>
          
         </tbody>
@@ -720,5 +698,37 @@
            
           </tbody>
     </table>
-     </div>     
+     </div>
 
+     
+    <script>
+        $(document).ready(function() {
+
+            var url = "{{URL('datosPacientes')}}";
+            $.ajax({
+                url: "/trabajos/nuevo/detalle/datosPacientes",
+                type: "POST",
+                data:{ 
+                    "_token": "{{ csrf_token() }}",
+                    "nombre": "{{$orden_elegida->id}}",
+                },
+                cache: false,
+                dataType: 'json',
+                success: function(dataResult){
+                    console.log(dataResult);
+                    var resultData = dataResult.data;
+                    var bodyData = '';
+
+                    $.each(resultData,function(index,row){
+                        datosPacientes+="<tr>"
+                        datosPacientes+="<td>"+row.Tipo+"</td><td>"+row.Fabricante+"</td><td>"+row.Modelo+"</td>"
+                        +"<td>"+row.Serial+"</td><td>"+row.Localizacion+"</td><td>"+"</td><td>";
+                        datosPacientes+="</tr>";
+                        
+                    })
+                    $("#datosPacientes").append(datosPacientes);
+                }
+            });
+            
+    });
+    </script>

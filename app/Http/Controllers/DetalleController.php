@@ -111,6 +111,14 @@ class DetalleController extends Controller
         return json_encode(array('data'=>$datosTabla));
     }
 
+    public function datosPacientes(){
+
+        $datosPacientes =  DB::table('orden_trabajos')
+                    ->select('*')
+                    ->where('id','=',$_POST["nombre"])
+                    ->get(); 
+        return json_encode(array('data'=>$datosPacientes));
+    }
     public function buscarOrden($id){
 
         $orden_elegida = DB::table('orden_trabajos')
