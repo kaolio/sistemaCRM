@@ -63,8 +63,8 @@ Route::post('/trabajos/detalle/nota',[DetalleController::class,'guardarNota']); 
 Route::post('/trabajos/nuevo/detalle/datosTabla',[DetalleController::class,'datosTabla']); //ruta de tabla pacientes
 Route::post('/trabajos/nuevo/detalle/datosDispositivos',[DetalleController::class,'datosDispositivos']); // ruta de tabla dispositivos
 
-
-
+Route::post('/trabajos/nuevo/detalle/datosPacientes',[DetalleController::class,'datosPacientes']); //ruta de inventarios en (dispositivos de trabajo)
+Route::get('/trabajos/nuevo/detalle/tablaInventario',[DetalleController::class,'tablaInventario']);
 
 
 

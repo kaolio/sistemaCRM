@@ -8,20 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Inventario extends Model
 {
     use HasFactory;
-
-    // protected $fillable = [
-    //     'manufactura',
-    //     'modelo',
-    //     'numero_de_serie',
-    //     'firmware',
-    //     'capacidad',
-    //     'pbc',
-    //     'ubicacion',
-    //     'factor_de_forma',
-    //     'nota',
-    //     'cabecera',
-    //     'info_de_cabecera',
-    // ];
+    
+    protected $table = "inventarios";
+    protected $fillable = [
+        'manufactura',
+        'modelo',
+        'numero_de_serie',
+        'firmware',
+        'capacidad',
+        'pbc',
+        'ubicacion',
+        'factor_de_forma',
+        'nota',
+        'cabecera',
+        'info_de_cabecera',
+        'diagnostico',
+        'rol',
+    ];
     // //Scope
     // public function scopeManufactura($query, $manufactura){
     //     if($manufactura){

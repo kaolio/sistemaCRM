@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Nota;
 use App\Models\OrdenTrabajo;
+use App\Models\Inventario;
 use Illuminate\Http\Request;
 use App\Models\Roles;
 use App\Models\Detalle;
@@ -75,4 +76,30 @@ class DetalleController extends Controller
 
     }
 
+
+    public function datosPacientes(){
+
+        $datosPacientes =  DB::table('detalle_ordens')
+                    ->join('orden_trabajos','orden_trabajos.id','=','detalle_ordens.id_trabajos')
+                    ->select('orden_trabajos.diagnostico','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
+                            'detalle_ordens.serial','detalle_ordens.localizacion','detalle_ordens.id')
+                    ->where('detalle_ordens.id_trabajos','=',$_POST["nombre"])
+                    ->where('detalle_ordens.rol','=','Paciente')
+                    ->get();  
+        return json_encode(array('data'=>$datosPacientes));
+    }
+
+    //datos del inventario
+    public function datosInventario(){
+
+        $datosTabla =  DB::table('inventarios')
+                    ->select('orden_trabajos.diagnostico','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
+                            'detalle_ordens.serial','detalle_ordens.localizacion','detalle_ordens.id')
+                    ->where('detalle_ordens.id_trabajos','=',$_POST["nombre"])
+                    ->where('detalle_ordens.rol','=','Paciente')
+                    ->get(); 
+
+
+        return json_encode(array('data'=>$datosTabla));
+    }
 }
