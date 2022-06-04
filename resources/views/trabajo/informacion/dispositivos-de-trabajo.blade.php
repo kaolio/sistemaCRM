@@ -39,31 +39,11 @@
     </button>
     <!-- add device --> 
 
-    <script>
-        function buscador_modal(){
-            event.preventDefault();
-            const CSRF_TOKERN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                data:parametros,
-                type:'POST',
-                url:'buscador.blade.php'
-                success: function(data){
-                    document.getElementById("datos_buscador").innerHTML = data;
-                }
-            })
-        }
-    </script>
+ 
 
 
 
 
-    <script>
-        function text(x){
-          if (x==0) document.getElementById("donante").style.display= "block";
-          else document.getElementById("donante").style.display = "none"; 
-          return;
-        }
-      </script>
 
 
     <!-- Modal -->
@@ -321,54 +301,6 @@
                                         <!--Donar-->
                                         <div class="tab-pane" id="donar">
                                             <div class="donar">
-
-                                                <!-- html agregado-->
-
-  <!-- html agregado-->
-<div class="col-5 ml-auto p-2" >
-  <div class="input-group" align="center">
-      <input type="text" class="form-control" id="texto" placeholder="Ingrese Modelo">
-      <div class="input-group-append"><span class="input-group-text">Buscar</span></div>
-  </div>
-  <div id="resultados" class="bg-light border" style="background: rgb(109, 82, 49)"></div>
-</div>
- <!--fin del html agregado-->
-<div class="col-12" id="contenedor">
-  @include('trabajo.informacion.listaInventario')
-</div>
-<div id="cargando" hidden><h1>CARGANDO...</h1></div>
-
-
-<script>
-  window.addEventListener("load",function(){
-      document.getElementById("texto").addEventListener("keyup",function(){
-      if((document.getElementById("texto").value.length)>=2)
-          fetch(`trabajo.nuevo.detalle.listaInventario?texto=${document.getElementById("texto").value}`,
-                {method:'get'})
-          .then(response => response.text())
-          .then(html =>   { document.getElementById("resultados").innerHTML = html})
-else
-    document.getElementById("resultados").innerHTML = ""
-    })
-  });
-</script>
-
-
-
-<div class="ml-auto p-2">
-    <form class="form-inline" action="{{ url('inventario')}}" method="GET">
-      
-      <label for="">Busqueda Rápida</label>
-      <div class="form-group mx-sm-3 mb-2">
-        <input type="" class="form-control" id="busqueda" name="busqueda" value="{{$busqueda}}" placeholder="Modelo o número de serie">
-      </div>
-      <button type="submit" class="btn btn-primary mb-2">Buscar</button>
-    </form>
-</div>
-
-
-  
-
                                                 <div class="input-group mt-2">
                                                     <span class="input-group-text">Donar para </span>
                                                     <select name="manufactura" class="form-control" class="btn-block">
@@ -401,20 +333,18 @@ else
                                                     <span class="input-group-text">PCB ID</span>
                                                     <input type="text" class="form-control">
                                                 </div>
-                                            </div>
-                                            {{-- @endif --}}
-                                        </div>
-                                        <!--/Donar-->
-                                    </div>
-                                    <!-- /.tab-content -->
-                                </div><!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
-                    </div>
-
-
-
-                    <h1>hola</h1>
+                                                <h1>hola donar</h1>
+                                                
+                                                <div class="ml-auto p-2">
+                                                    <form class="form-inline" action="{{ url('trabajos/detalle')}}" method="GET">
+                                                      
+                                                      <label for="">Busqueda Rápida</label>
+                                                      <div class="form-group mx-sm-3 mb-2">
+                                                        <input type="" class="form-control" id="busqueda" name="busqueda"  placeholder="Modelo ">
+                                                      </div>
+                                                      <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+                                                    </form>
+                                                </div>
                     <div class="table mt-2">
                         <table class="table table-responsive">
                             <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
@@ -430,24 +360,46 @@ else
                               </thead>
                               <tbody class="table-bordered" id="datosInventario">
                                 <tr>
+                                    {{-- <td>{{$item->id}}</td> --}}
+                                    <td>wawe</td>
+                                    <td></td>
+                                    <td></td>    
+                                    <td></td>
+                                    <td></td>
                                     
-                                    {{-- <td>
+                                    <td>
                                         <button type="button">
                                             <svg class="agregar" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                                                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
                                             </svg>
                                         </button>
-                                    </td> --}}
+                                    </td>
+                                    
                                 </tr>
-                               
                               </tbody>
                         </table>
                     </div> 
 
+
+                                            </div>
+                                            {{-- @endif --}}
+                                        </div>
+                                        <!--/Donar-->
+                                    </div>
+                                    <!-- /.tab-content -->
+                                </div><!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+
+
+
+                    
+
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" id="botones" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="botones">Buscar</button>
+                <button type="button" class="btn btn-primary" id="botones"><a href=""></a>XXXXX</button>
                 </div>
             </div>
             </div>
@@ -477,7 +429,7 @@ else
                 <th class="p-1">Ubicación</th>
                 <th class="p-1">Diagnóstico</th>
                 <th class="p-1">Nota</th>
-                <th class="p-1"></th>
+                <th width="280px">Action</th>
             </tr>
           </thead>
           <tbody class="table-bordered" id="datosPacientes">
@@ -747,6 +699,7 @@ else
 
      
     <script>
+        //AJAX DE LA TABLA DE otros dispositivos/dispositivos de pacientes
         $(document).ready(function() {
 
             var url = "{{URL('datosPacientes')}}";
@@ -766,9 +719,8 @@ else
 
                     $.each(resultData,function(index,row){
                         datosPacientes+="<tr>"
-                        datosPacientes+="<td></td>"+"<td>"+row.Tipo+"</td><td>"+row.Fabricante+"</td><td>"+row.Modelo+"</td>"
-                        +"<td>"+row.Serial+"</td><td>"+row.Localizacion+"</td><td>"+"</td><td>"+
-                            "<td></td>";
+                        datosPacientes+="<td></td>"+"<td>"+row.tipo+"</td><td>"+row.fabricante+"</td><td>"+row.modelo+"</td>"
+                        +"<td>"+row.serial+"</td><td>"+row.localizacion+"</td><td>"+row.diagnostico+"<td></td>"+"<td><button>""</button></td>";
                         datosPacientes+="</tr>";
                         
                     })
@@ -777,4 +729,37 @@ else
             });
             
     });
+
+    //XXXXXXXXXXXXXXX
+
+        $(document).ready(function() {
+
+            var url = "{{URL('datosInventario')}}";
+            $.ajax({
+                url: "/trabajos/nuevo/detalle/datosInventario",
+                type: "POST",
+                data:{ 
+                    "_token": "{{ csrf_token() }}",
+                    "nombre": "{{$orden_elegida->id}}",
+                },
+                cache: false,
+                dataType: 'json',
+                success: function(dataResult){
+                    console.log(dataResult);
+                    var resultData = dataResult.data;
+                    var bodyData = '';
+
+                    $.each(resultData,function(index,row){
+                        datosInventario+="<tr>"
+                        datosInventario+="<td></td>"+"<td>"+row.tipo+"</td><td>"+row.fabricante+"</td><td>"+row.modelo+"</td>"
+                        +"<td>"+row.serial+"</td><td>"+row.localizacion+"</td><td>"+row.diagnostico+"</td>"+<>+"<td>";
+                        datosInventario+="</tr>";
+                        
+                    })
+                    $("#datosInventario").append(datosInventario);
+                }
+            });
+            
+    });
+    
     </script>

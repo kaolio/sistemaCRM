@@ -51,21 +51,25 @@ Route::post('/usuario/nuevo/validarCorreo', [UsuarioController::class,'validarCo
 //ORDEN DE TRABAJO
 Route::get('/trabajos',[OrdenTrabajoController::class,'index']);
 Route::delete('/trabajo/{id}',[OrdenTrabajoController::class,'destroy']);
-Route::get('/trabajo/nuevo',[OrdenTrabajoController::class,'create']);
+Route::get('/trabajo/nuevo',[OrdenTrabajoController::class,'create'])->name('orden');
 Route::post('/trabajo/nuevo',[OrdenTrabajoController::class,'store']);
-Route::get('/trabajo/editar/{id}',[OrdenTrabajoController::class,'edit']);
-Route::put('/trabajo/editar/{id}',[OrdenTrabajoController::class,'update']);
 Route::get('/trabajo/buscador',[OrdenTrabajoController::class,'buscador']);
+
 //Detalle de trabajo
-//Route::get('/trabajos/nuevo/detalle',[DetalleController::class,'detalle']);
-Route::get('/trabajos/detalle/{id}',[DetalleController::class,'buscarOrden']); //ruta buscador de orden trabajo
+Route::get('/trabajos/detalle/{id}',[DetalleController::class,'buscar']);
+Route::post('/trabajos/detalle',[DetalleController::class,'buscarOrden']); //ruta buscador de orden trabajo
 //Route::post('/trabajos/detalle/{id}',[DetalleController::class,'buscarOrden']);
+Route::post('/trabajos/detalle/nota',[DetalleController::class,'guardarNota']); //guardar nota
 Route::post('/trabajos/nuevo/detalle/datosTabla',[DetalleController::class,'datosTabla']); //ruta de tabla pacientes
+Route::post('/trabajos/nuevo/detalle/datosDispositivos',[DetalleController::class,'datosDispositivos']); // ruta de tabla dispositivos
 
 Route::post('/trabajos/nuevo/detalle/datosPacientes',[DetalleController::class,'datosPacientes']); //ruta de inventarios en (dispositivos de trabajo)
-Route::get('/trabajos/nuevo/detalle/listaInventario',[DetalleController::class,'buscarModelo']);  //buscador en tiempo real de lista inventario
+Route::get('/trabajos/nuevo/detalle/tablaInventario',[DetalleController::class,'tablaInventario']);
 
 
+
+
+Route::post('/autocompletarCliente',[OrdenTrabajoController::class,'autoCompletar']);
 
 //INVENTARIO
 Route::get('/inventario',[InventarioController::class,'index']);
@@ -81,13 +85,19 @@ Route::get('/inventario/imprimirItemPdf/{id}',[InventarioController::class,'impr
 Route::get('/inventario/excel',[InventarioController::class,'descargarExcel']); //ruta para descargar excel
 Route::get('/inventario/buscador',[InventarioController::class,'buscador']);  //buscador en tiempo real
 
-
 Route::post('/inventario/busqueda' ,[InventarioController::class.'busqueda']);
 
 //CLIENTES
 Route::get('/clientes',[ClienteController::class,'index']);
 Route::get('/cliente/nuevo',[ClienteController::class,'create']);
-Route::post('/cliente/nuevo',[ClienteController::class,'store']);
+Route::post('/cliente/nuevoTho',[ClienteController::class,'createTho']);
+Route::post('/cliente/nuevo/{id}',[ClienteController::class,'store']);
 Route::get('/cliente/editar/{id}',[ClienteController::class,'edit']);
 Route::put('/cliente/editar/{id}',[ClienteController::class,'update']);
 Route::delete('/cliente/{id}',[ClienteController::class,'destroy']);
+
+/*Puede llamar a un comando de Artisan fuera de la CLI.
+Route::get('/clear-cache', function() {
+$exitCode = Artisan::call('cache:clear');
+// return what you want
+});*/

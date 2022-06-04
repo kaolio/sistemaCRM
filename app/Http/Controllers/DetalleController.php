@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Inventario;
+use App\Models\Nota;
 use App\Models\OrdenTrabajo;
+use App\Models\Inventario;
 use Illuminate\Http\Request;
 use App\Models\Roles;
 use App\Models\Detalle;
@@ -20,115 +21,84 @@ class DetalleController extends Controller
         $this->middleware('permission:editar-trabajo',['only'=>['edit','update']]);
         $this->middleware('permission:borrar-trabajo',['only'=>['destroy']]);
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+
+
+    public function guardarNota()
     {
-        
-        
-    }
+        $nota = new Nota();
+        $nota->nota = $_POST["comentario"];
+        $nota->save();
 
-
-    // public function buscador(Request $request){
-              
-    // }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Roles $roles)
-    {
-
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
-     * @return \Illuminate\Http\Response
-     */
-    public function show(OrdenTrabajo $ordenTrabajo)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-       
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-      
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(OrdenTrabajo $trabajo,$id)
-    {
-      
     }
 
     public function datosTabla(){
 
-        $datosTabla =  DB::table('orden_trabajos')
-                    ->select('*')
-                    ->where('id','=',$_POST["nombre"])
+        $datosTabla =  DB::table('detalle_ordens')
+                    ->join('orden_trabajos','orden_trabajos.id','=','detalle_ordens.id_trabajos')
+                    ->select('orden_trabajos.diagnostico','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
+                            'detalle_ordens.serial','detalle_ordens.localizacion','detalle_ordens.id')
+                    ->where('detalle_ordens.id_trabajos','=',$_POST["nombre"])
+                    ->where('detalle_ordens.rol','=','Paciente')
+                    ->get(); 
+
+
+        return json_encode(array('data'=>$datosTabla));
+    }
+    
+
+    public function datosDispositivos(){
+
+        $datosTabla =  DB::table('detalle_ordens')
+                    ->join('orden_trabajos','orden_trabajos.id','=','detalle_ordens.id_trabajos')
+                    ->select('orden_trabajos.diagnostico','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
+                            'detalle_ordens.serial','detalle_ordens.localizacion','detalle_ordens.id')
+                    ->where('detalle_ordens.id_trabajos','=',$_POST["nombre"])
+                    ->where('detalle_ordens.rol','<>','Paciente')
                     ->get(); 
         return json_encode(array('data'=>$datosTabla));
     }
-
-    public function datosPacientes(){
-
-        $datosPacientes =  DB::table('orden_trabajos')
-                    ->select('*')
-                    ->where('id','=',$_POST["nombre"])
-                    ->get(); 
-        return json_encode(array('data'=>$datosPacientes));
-    }
-    public function buscarOrden($id){
+    public function buscar($id){
 
         $orden_elegida = DB::table('orden_trabajos')
                                 ->select('*')
                                 ->where('id','=',$id)
                                 ->first(); 
 
-                               // dd($orden_elegida);
-
         return view('trabajo.informacion.detalle',(compact('orden_elegida')));
+
     }
 
+    public function buscarOrden(){
+                 
+        $ruta =  "/trabajos/detalle/".$_POST["orden"];
+
+        return json_encode(array('data'=>$ruta));
+    }  
+
+
+    public function datosPacientes(){
+
+        $datosPacientes =  DB::table('detalle_ordens')
+                    ->join('orden_trabajos','orden_trabajos.id','=','detalle_ordens.id_trabajos')
+                    ->select('orden_trabajos.diagnostico','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
+                            'detalle_ordens.serial','detalle_ordens.localizacion','detalle_ordens.id')
+                    ->where('detalle_ordens.id_trabajos','=',$_POST["nombre"])
+                    ->where('detalle_ordens.rol','=','Paciente')
+                    ->get();  
+        return json_encode(array('data'=>$datosPacientes));
+    }
+
+    //datos del inventario
+    public function datosInventario(){
+
+        $datosTabla =  DB::table('inventarios')
+                    ->select('orden_trabajos.diagnostico','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
+                            'detalle_ordens.serial','detalle_ordens.localizacion','detalle_ordens.id')
+                    ->where('detalle_ordens.id_trabajos','=',$_POST["nombre"])
+                    ->where('detalle_ordens.rol','=','Paciente')
+                    ->get(); 
+
+
+        return json_encode(array('data'=>$datosTabla));
+    }
 }

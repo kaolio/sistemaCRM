@@ -17,9 +17,9 @@ class Detalle extends Model
 {
     use HasFactory;
 
-    protected $table = "orden_trabajos";
+    protected $table = "detalle_ordens";
     protected $fillable = [
-        'tipo', 'Fabricante','Modelo','Serial','Localizacion'
+        'tipo', 'fabricante','modelo','serial','localizacion' 
     ];
     
 }

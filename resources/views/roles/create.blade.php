@@ -36,17 +36,20 @@
 
                 if($("#name").val() == ""){
                     $("#estadoName").html("<span  class='menor'><h5 class='menor'> </h5></span>");
+                    desabilitar();
                    }else{
                         if ($("#name").val().length < 3) {
                             $("#estadoName").html(
                                 "<span  class='menor'><h5 class='menor'>Ingrese de 3 a 50 caracteres</h5></span>");
+                                desabilitar();
                         } else {
                             if ($("#name").val().length > 50) {
                                 $("#estadoName").html(
                                     "<span  class='menor'><h5 class='menor'>Ingrese de 3 a 50 caracteres</h5></span>");
+                                    desabilitar();
                             } else {
-                                
                                     $("#estadoName").html("<span  class='menor'><h5 class='menor'> </h5></span>");
+                                    habilitar();
                             }
                         } 
                }
@@ -149,7 +152,7 @@
                                                         
                                                         </br>
                                                         <div class="text-center">
-                                                            <input type="submit" class="btn btn-success my-2 my-sm-0" value="Agregar">
+                                                            <input type="submit" id="enviar" class="btn btn-success my-2 my-sm-0" disabled value="Agregar">
                                                         </div>
                                 </form>
                             </div>
@@ -158,6 +161,15 @@
         
     <br>
     <script>
+
+        function habilitar(){
+            button = document.getElementById('enviar'); 
+            button.disabled = false;
+        }
+        function desabilitar(){
+            button = document.getElementById('enviar'); 
+            button.disabled = true;
+        }
 
         function toggle(source) {
                     checkboxes = document.getElementsByName('permission[]');

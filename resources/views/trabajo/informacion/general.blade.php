@@ -67,16 +67,22 @@
                                         </div>
                                         <!-- /Boton agregar-->
                                     </br>
+                                    <div class="alert alert-success" role="alert" id="successMsg" style="display: none" >
+                                        Thank you for getting in touch! 
+                                      </div>
+                                    
                                         <div class="input-group">
                                             <span class="input-group-text"  style="height: 80px">Comentario</span>
-                                             <textarea class="form-control" type="text" name="precio"  style="height: 80px"></textarea>
-                                        </div> 
-                                    </br>
-                                     <!--Boton agregar-->
-                                     <div style="position: relative;left:5px">
-                                        <input type="submit" class="btn btn-success my-2 my-sm-0" value="Enviar Comentario">
-                                     </div>
-                                    <!-- /Boton agregar-->
+                                             <textarea class="form-control" type="text" name="comentario" id="comentario"  style="height: 80px"></textarea>
+                                             <span class="text-danger" id="message-error"></span>
+                                            </div> 
+                                        </br>
+                                        <!--Boton agregar-->
+                                        <div class="form-group" style="position: relative;left:5px">
+                                            <button class="btn btn-success" id="submit">Enviar Comenatario</button>
+                                        </div>
+                                        <!-- /Boton agregar-->
+                                        
                             </div>
                     </div>
                 </div>
@@ -200,7 +206,7 @@
                                                 <th class="column6 text-center">Nota</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="table-bordered">
+                                        <tbody id="datosDispositivos" class="table-bordered">
                                             
                                             <tr>
                                         
@@ -247,9 +253,11 @@
     <!--/General-->
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 
 
     <script>
+        
         $(document).ready(function() {
 
             var url = "{{URL('datosTabla')}}";
@@ -263,14 +271,14 @@
                 cache: false,
                 dataType: 'json',
                 success: function(dataResult){
-                    console.log(dataResult);
+                    //console.log(dataResult);
                     var resultData = dataResult.data;
                     var bodyData = '';
 
                     $.each(resultData,function(index,row){
                         datosTabla+="<tr>"
-                        datosTabla+="<td>"+row.Tipo+"</td><td>"+row.Fabricante+"</td><td>"+row.Modelo+"</td>"
-                        +"<td>"+row.Serial+"</td><td>"+row.Localizacion+"</td><td>"+"</td><td>";
+                        datosTabla+="<td>"+row.tipo+"</td><td>"+row.fabricante+"</td><td>"+row.modelo+"</td>"
+                        +"<td>"+row.serial+"</td><td>"+row.localizacion+"</td><td>"+row.diagnostico+"</td><td>";
                         datosTabla+="</tr>";
                         
                     })
@@ -278,5 +286,68 @@
                 }
             });
             
-    });
+         });
+         //
+         $(document).ready(function() {
+
+                var url = "{{URL('datosDispositivos')}}";
+                $.ajax({
+                    url: "/trabajos/nuevo/detalle/datosDispositivos",
+                    type: "POST",
+                    data:{ 
+                        "_token": "{{ csrf_token() }}",
+                        "nombre": "{{$orden_elegida->id}}",
+                    },
+                    cache: false,
+                    dataType: 'json',
+                    success: function(dataResult){
+                        //console.log(dataResult);
+                        var resultData = dataResult.data;
+                        var bodyData = '';
+
+                        $.each(resultData,function(index,row){
+                            datosDispositivos+="<tr>"
+                            datosDispositivos+="<td>"+row.tipo+"</td><td>"+row.fabricante+"</td><td>"+row.modelo+"</td>"
+                            +"<td>"+row.serial+"</td><td>"+row.localizacion+"</td><td>"+row.diagnostico+"</td><td>";
+                            datosDispositivos+="</tr>";
+                            
+                        })
+                        $("#datosDispositivos").append(datosDispositivos);
+                    }
+                });
+
+        });
+        //
+
+        $('#submit').on('click', function () {
+
+            var url = $('#comentario').val();
+
+            $.ajax({
+                url: "/trabajos/detalle/nota",
+                type: "POST",
+                data:{ 
+                    "_token": "{{ csrf_token() }}",
+                    comentario: url,
+                },
+                cache: false,
+                dataType: 'json',
+                success: function(dataResult){
+                    console.log(dataResult);
+                    var resultData = dataResult.data;
+                    var bodyData = '';
+
+                    $.each(resultData,function(index,row){
+                        datosTabla+="<tr>"
+                        datosTabla+="<td>"+row.tipo+"</td><td>"+row.fabricante+"</td><td>"+row.modelo+"</td>"
+                        +"<td>"+row.serial+"</td><td>"+row.localizacion+"</td><td>"+row.diagnostico+"</td><td>";
+                        datosTabla+="</tr>";
+                        
+                    })
+                    $("#datosTabla").append(datosTabla);
+                }
+            });
+        
+        });
+
     </script>
