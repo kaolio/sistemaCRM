@@ -22,13 +22,6 @@ class DetalleController extends Controller
     }
 
 
-    public function guardarNota()
-    {
-        $nota = new Nota();
-        $nota->nota = $_POST["comentario"];
-        $nota->save();
-
-    }
 
     public function datosTabla(){
 
@@ -73,5 +66,13 @@ class DetalleController extends Controller
 
         return json_encode(array('data'=>$ruta));
     }  
+
+    public function guardarNota(){
+
+            $nota = new Nota();
+            $nota->nota = $_POST["comentario"];
+            $nota->save();
+
+    }
 
 }
