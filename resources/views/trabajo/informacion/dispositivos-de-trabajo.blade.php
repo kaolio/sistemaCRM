@@ -15,7 +15,6 @@
         border-radius: 4px;
         padding: 5px;
         box-shadow: 2px 2px 2px rgb(95, 93, 93);
-
     }
     .dejar-en-blanco{
         color: rgb(59, 57, 57);
@@ -305,10 +304,9 @@
                                                     <span class="input-group-text">Donar para </span>
                                                     <select name="manufactura" class="form-control" class="btn-block">
                                                         <option value="">Elija la opción</option>
-                                                        <option value="Seagate">Donante de cabezal</option>
-                                                        <option value="Cabezal">Cabezal</option>
                                                         <option value="Paciente">Paciente</option>
-                                                        <option value="Clonar">Clonante</option>
+                                                        <option value="Datos">Datos</option>
+                                                        <option value="Donante">Donante</option>
                                                       </select>
                                                 </div>
                                                 <div class="input-group mt-2">
@@ -429,7 +427,7 @@
                 <th class="p-1">Ubicación</th>
                 <th class="p-1">Diagnóstico</th>
                 <th class="p-1">Nota</th>
-                <th width="280px">Action</th>
+                <th class="p-1"></th>
             </tr>
           </thead>
           <tbody class="table-bordered" id="datosPacientes">
@@ -701,7 +699,6 @@
     <script>
         //AJAX DE LA TABLA DE otros dispositivos/dispositivos de pacientes
         $(document).ready(function() {
-
             var url = "{{URL('datosPacientes')}}";
             $.ajax({
                 url: "/trabajos/nuevo/detalle/datosPacientes",
@@ -716,11 +713,17 @@
                     console.log(dataResult);
                     var resultData = dataResult.data;
                     var bodyData = '';
-
                     $.each(resultData,function(index,row){
                         datosPacientes+="<tr>"
                         datosPacientes+="<td></td>"+"<td>"+row.tipo+"</td><td>"+row.fabricante+"</td><td>"+row.modelo+"</td>"
-                        +"<td>"+row.serial+"</td><td>"+row.localizacion+"</td><td>"+row.diagnostico+"<td></td>"+"<td><button>""</button></td>";
+                        +"<td>"+row.serial+"</td><td>"+row.localizacion+"</td><td>"+row.diagnostico+"<td></td>"+"<td>"+
+                            "<button class='btn btn-icon btn-danger' type='button' id='deletRow' name='deletRow'>"+
+                                              "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>"+
+                                              "<path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'/>"+
+                                              "<path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/>"+
+                                              "</svg>"+
+                        "</button>"
+                        +"</td>";
                         datosPacientes+="</tr>";
                         
                     })
@@ -729,37 +732,41 @@
             });
             
     });
-
-    //XXXXXXXXXXXXXXX
-
-        $(document).ready(function() {
-
-            var url = "{{URL('datosInventario')}}";
-            $.ajax({
-                url: "/trabajos/nuevo/detalle/datosInventario",
-                type: "POST",
-                data:{ 
-                    "_token": "{{ csrf_token() }}",
-                    "nombre": "{{$orden_elegida->id}}",
-                },
-                cache: false,
-                dataType: 'json',
-                success: function(dataResult){
-                    console.log(dataResult);
-                    var resultData = dataResult.data;
-                    var bodyData = '';
-
-                    $.each(resultData,function(index,row){
-                        datosInventario+="<tr>"
-                        datosInventario+="<td></td>"+"<td>"+row.tipo+"</td><td>"+row.fabricante+"</td><td>"+row.modelo+"</td>"
-                        +"<td>"+row.serial+"</td><td>"+row.localizacion+"</td><td>"+row.diagnostico+"</td>"+<>+"<td>";
-                        datosInventario+="</tr>";
+    //
+    //     $(document).ready(function() {
+    //         var url = "{{URL('datosInventario')}}";
+    //         $.ajax({
+    //             url: "/trabajos/nuevo/detalle/datosInventario",
+    //             type: "POST",
+    //             data:{ 
+    //                 "_token": "{{ csrf_token() }}",
+    //                 "nombre": "{{$orden_elegida->id}}",
+    //             },
+    //             cache: false,
+    //             dataType: 'json',
+    //             success: function(dataResult){
+    //                 console.log(dataResult);
+    //                 var resultData = dataResult.data;
+    //                 var bodyData = '';
+    //                 $.each(resultData,function(index,row){
+    //                     datosInventario+="<tr>"
+    //                     datosInventario+="<td></td>"+"<td>"+row.tipo+"</td><td>"+row.fabricante+"</td><td>"+row.modelo+"</td>"
+    //                     +"<td>"+row.serial+"</td><td>"+row.localizacion+"</td><td>"+row.diagnostico+
+    //                     "</td>"
+    //                     "<button class='btn btn-icon btn-danger' type='button' id='deletRow' name='deletRow'>"+
+    //                                           "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>"+
+    //                                           "<path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'/>"+
+    //                                           "<path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/>"+
+    //                                           "</svg>"+
+    //                     "</button>"
+    //                     +"<td>";
+    //                     datosInventario+="</tr>";
                         
-                    })
-                    $("#datosInventario").append(datosInventario);
-                }
-            });
+    //                 })
+    //                 $("#datosInventario").append(datosInventario);
+    //             }
+    //         });
             
-    });
+    // });
     
     </script>
