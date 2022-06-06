@@ -63,9 +63,9 @@ Route::post('/trabajos/detalle/nota',[DetalleController::class,'guardarNota']); 
 Route::post('/trabajos/nuevo/detalle/datosTabla',[DetalleController::class,'datosTabla']); //ruta de tabla pacientes
 Route::post('/trabajos/nuevo/detalle/datosDispositivos',[DetalleController::class,'datosDispositivos']); // ruta de tabla dispositivos
 
-Route::post('/trabajos/nuevo/detalle/datosPacientes',[DetalleController::class,'datosPacientes']); //ruta de inventarios en (dispositivos de trabajo)
-Route::get('/trabajos/nuevo/detalle/tablaInventario',[DetalleController::class,'tablaInventario']);
-
+Route::post('/trabajos/nuevo/detalle/datosPacientes',[DetalleController::class,'datosPacientes']); //ruta de orden de trabajos en (dispositivos de trabajo)
+Route::post('/trabajos/nuevo/detalle/datosInventario',[DetalleController::class,'datosInventario']); //ruta de inventario en (dispositivos de trabajo)
+// Route::get('/trabajos/nuevo/detalle/datosInventario',[DetalleController::class,'datosInventario']);  //buscador en tiempo real de listaInventario
 
 
 

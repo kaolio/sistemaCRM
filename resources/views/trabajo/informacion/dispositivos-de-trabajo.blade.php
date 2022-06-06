@@ -314,12 +314,10 @@
                                                     <span class="input-group-text">ID Interno</span>
                                                     <input type="text" class="form-control">
                                                 </div>
-                                                <form action= method="GET" id="formOrden">
                                                     <div class="input-group mt-2">
                                                         <span class="input-group-text">Modelo</span>
                                                         <input type="text" class="form-control">
                                                     </div>
-                                                </form>
                                                 <div class="input-group mt-2">
                                                     <span class="input-group-text">Serie</span>
                                                     <input type="text" class="form-control">
@@ -333,51 +331,73 @@
                                                     <input type="text" class="form-control">
                                                 </div>
                                                 <h1>hola donar</h1>
-                                                
-                                                <div class="ml-auto p-2">
-                                                    <form class="form-inline" action="{{ url('trabajos/detalle')}}" method="GET">
-                                                      
-                                                      <label for="">Busqueda Rápida</label>
-                                                      <div class="form-group mx-sm-3 mb-2">
-                                                        <input type="" class="form-control" id="busqueda" name="busqueda"  placeholder="Modelo ">
-                                                      </div>
-                                                      <button type="submit" class="btn btn-primary mb-2">Buscar</button>
-                                                    </form>
-                                                </div>
-                    <div class="table mt-2">
-                        <table class="table table-responsive">
-                            <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
-                                <tr>
-                                    <th class="col-md-1 p-1"> ID  </th>
-                                    <th class="col-md-2 p-1">Fabricante</th>
-                                    <th class="col-md-2 p-1">Modelo</th>
-                                    <th class="col-md-2 p-1">Serie</th>
-                                    <th class="col-md-2 p-1">Tamaño</th>
-                                    <th class="col-md-1 p-1">Ubicación</th>
-                                    <th class="col-md-1 p-1"></th>
-                                </tr>
-                              </thead>
-                              <tbody class="table-bordered" id="datosInventario">
-                                <tr>
-                                    {{-- <td>{{$item->id}}</td> --}}
-                                    <td>wawe</td>
-                                    <td></td>
-                                    <td></td>    
-                                    <td></td>
-                                    <td></td>
-                                    
-                                    <td>
-                                        <button type="button">
-                                            <svg class="agregar" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
-                                            </svg>
-                                        </button>
-                                    </td>
-                                    
-                                </tr>
-                              </tbody>
-                        </table>
-                    </div> 
+ 
+   <!--fin del html agregado-->
+  {{-- <div class="col-12" id="contenedor">
+    @include('trabajo.informacion.listaInventario')
+  </div>
+  <div id="cargando" hidden><h1>CARGANDO...</h1></div>  --}}
+  
+  
+  {{-- <script>
+    window.addEventListener("load",function(){
+        document.getElementById("texto").addEventListener("keyup",function(){
+             
+        if((document.getElementById("texto").value.length)>=2)
+            fetch(`/trabajos/nuevo/detalle/datosInventario?texto=${document.getElementById("texto").value}`,
+                  {method:'get'})
+            .then(response => response.text())
+            .then(html =>   { 
+            
+                var html2="Name:<input type='text' name='name'><br>Comment:<br><textarea rows='5' cols='80'>"+.html.+"</textarea><br><input type='submit' value='Post Comment'>";  
+                document.getElementById("resultados").innerHTML = html2
+                // "Name:<input type='text' name='name'><br>Comment:<br><textarea rows='5' cols='80'>"+.html.manufactura.+"</textarea><br><input type='submit' value='Post Comment'>"
+                // '<p class="p-2 border-bottom">'.'<b>'.html.id'<b>' .':  '.resultados.id' - '.html.id.'</p>'
+            }
+            )
+  else
+      document.getElementById("resultados").innerHTML = "holaaaaaaaaaa"
+      })
+    });
+  </script>  --}}
+   {{-- <script>
+    window.addEventListener("load",function(){
+        document.getElementById("texto").addEventListener("keyup",function(){
+        if((document.getElementById("texto").value.length)>=2)
+            fetch(`/trabajos/nuevo/detalle/datosInventario?texto=${document.getElementById("texto").value}`,
+                  {method:'get'})
+            .then(response => response.text())
+            .then(html =>   { document.getElementById("resultados").innerHTML = html})
+  else
+      document.getElementById("resultados").innerHTML = ""
+      })
+    });
+  </script> --}}
+                                            
+                                            <div class="table mt-2">
+                                                <table class="table table-responsive">
+                                                    <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
+                                                        <tr>
+                                                            <th class="col-md-1 p-1"> ID  </th>
+                                                            <th class="col-md-2 p-1">Fabricante</th>
+                                                            <th class="col-md-2 p-1">Modelo</th>
+                                                            <th class="col-md-2 p-1">Serie</th>
+                                                            <th class="col-md-2 p-1">Tamaño</th>
+                                                            <th class="col-md-1 p-1">Ubicación</th>
+                                                            <th class="col-md-1 p-1"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="table-bordered" id="datosInventario">
+                                                        
+                                                        <tr>
+                                                            {{-- Aqui va los datos de la lista de inventario --}}
+                                                        </tr>
+                                                        {{-- @foreach ($inventario as $item)
+                                                        <td>$item->id}}</td>
+                                                        @endforeach --}}
+                                                    </tbody>
+                                                </table>
+                                            </div> 
 
 
                                             </div>
@@ -698,7 +718,7 @@
 
      
     <script>
-        //AJAX DE LA TABLA DE otros dispositivos/dispositivos de pacientes
+        //AJAX DE LA TABLA  dispositivos-de-trabajo/dispositivos de pacientes
         $(document).ready(function() {
 
             var url = "{{URL('datosPacientes')}}";
@@ -736,44 +756,42 @@
             
     });
 
-    //
+    //Ajax en el modal Dispositivos-de-trabajo/Agregar-Dispositivo/donar 
 
-    //     $(document).ready(function() {
+        $(document).ready(function() {
 
-    //         var url = "{{URL('datosInventario')}}";
-    //         $.ajax({
-    //             url: "/trabajos/nuevo/detalle/datosInventario",
-    //             type: "POST",
-    //             data:{ 
-    //                 "_token": "{{ csrf_token() }}",
-    //                 "nombre": "{{$orden_elegida->id}}",
-    //             },
-    //             cache: false,
-    //             dataType: 'json',
-    //             success: function(dataResult){
-    //                 console.log(dataResult);
-    //                 var resultData = dataResult.data;
-    //                 var bodyData = '';
+            var url = "{{URL('datosInventario')}}";
+            $.ajax({
+                url: "/trabajos/nuevo/detalle/datosInventario",
+                type: "POST",
+                data:{ 
+                    "_token": "{{ csrf_token() }}",
+                    // "nombre": "{{$orden_elegida->id}}",
+                },
+                cache: false,
+                dataType: 'json',
+                success: function(dataResult){
+                    console.log(dataResult);
+                    var resultData = dataResult.data;
+                    var bodyData = '';
 
-    //                 $.each(resultData,function(index,row){
-    //                     datosInventario+="<tr>"
-    //                     datosInventario+="<td></td>"+"<td>"+row.tipo+"</td><td>"+row.fabricante+"</td><td>"+row.modelo+"</td>"
-    //                     +"<td>"+row.serial+"</td><td>"+row.localizacion+"</td><td>"+row.diagnostico+
-    //                     "</td>"
-    //                     "<button class='btn btn-icon btn-danger' type='button' id='deletRow' name='deletRow'>"+
-    //                                           "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>"+
-    //                                           "<path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'/>"+
-    //                                           "<path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/>"+
-    //                                           "</svg>"+
-    //                     "</button>"
-    //                     +"<td>";
-    //                     datosInventario+="</tr>";
-                        
-    //                 })
-    //                 $("#datosInventario").append(datosInventario);
-    //             }
-    //         });
+                    $.each(resultData,function(index,row){
+                        datosInventario+="<tr>"
+                        datosInventario+="<td>"+row.id+"</td><td>"+row.manufactura+"</td><td>"+row.modelo+"</td>"
+                        +"<td>"+row.numero_de_serie+"</td><td>"+row.capacidad+"</td><td>"+row.ubicacion+"<td>"+
+                            "<button class='btn btn-icon btn-success' type='button' id='edit' name='edit'>"+
+                                "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-plus-circle' viewBox='0 0 16 16'>"+
+                                    "<path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/>"+
+                                    "<path d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z'/>"+
+                                "</svg>"+
+                        "</button>"
+                        +"</td>";
+                        datosInventario+="</tr>";
+                    })
+                    $("#datosInventario").append(datosInventario);
+                }
+            });
             
-    // });
-    
+    });
+
     </script>
