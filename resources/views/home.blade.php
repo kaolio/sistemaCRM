@@ -108,7 +108,7 @@
                                                 </tr>
                                             </thead>
                                             
-                                            <tbody id="datosTabla" class="table-bordered">
+                                            <tbody id="datosDashboard" class="table-bordered">
   
                                             </tbody>
                                         </table>
@@ -119,5 +119,6 @@
         </div>
     <!--Fin Tabla-->
 </div>
+
 
 @endsection

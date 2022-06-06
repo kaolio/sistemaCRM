@@ -8,6 +8,7 @@ use App\Models\Inventario;
 use Illuminate\Http\Request;
 use App\Models\Roles;
 use App\Models\Detalle;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use JeroenNoten\LaravelAdminLte\View\Components\Tool\Datatable;
 
@@ -52,12 +53,18 @@ class DetalleController extends Controller
     }
     public function buscar($id){
 
-        $orden_elegida = DB::table('orden_trabajos')
+        $usuarioDesignado = DB::table('users')
                                 ->select('*')
-                                ->where('id','=',$id)
+                                ->get();
+
+        $orden_elegida = DB::table('orden_trabajos')
+                                ->join('clientes','clientes.id','=','orden_trabajos.id_cliente')
+                                ->select('clientes.nombreCliente','clientes.vat','clientes.calle','clientes.codigoPostal',
+                                'clientes.pais','clientes.nota','orden_trabajos.id')
+                                ->where('orden_trabajos.id','=',$id)
                                 ->first(); 
 
-        return view('trabajo.informacion.detalle',(compact('orden_elegida')));
+        return view('trabajo.informacion.detalle',(compact('orden_elegida','usuarioDesignado')));
 
     }
 
@@ -70,11 +77,86 @@ class DetalleController extends Controller
 
     public function guardarNota(){
 
+        $trabajo = DB::table('orden_trabajos')
+                    ->select('id')
+                    ->where('id','=',$_POST["nombre"])
+                    ->first();
+
             $nota = new Nota();
+            $nota->creado = Auth::user()->name;
+            $nota ->id_trabajos = $trabajo->id;
             $nota->nota = $_POST["comentario"];
             $nota->save();
 
+            $notas = DB::table('notas')
+                        ->select('*')
+                        ->where('id_trabajos','=',$trabajo->id)
+                        ->first();
+
+                return json_encode(array('data'=>$notas));
+                  
     }
+
+    public function tablaNotas(){
+        $trabajo = DB::table('orden_trabajos')
+                    ->select('id')
+                    ->where('id','=',$_POST["nombre"])
+                    ->first();
+
+    $notas = DB::table('notas')
+                    ->select('*')
+                    ->where('id_trabajos','=',$trabajo->id)
+                    ->get();
+
+                return json_encode(array('data'=>$notas));
+        
+    }
+
+   /* public function guardarDesignacion(){
+
+        $usuarioDesignado = DB::table('users')
+                    ->select('id.users')
+                    ->where('id_users','=',$_POST["nombre"])
+                    ->first();
+
+            $designacion = 
+            $designacion ->id_clientes = $usuarioDesignado->id;
+            $designacion->id_clientes = $_POST["selectDesignacion"];
+            $designacion->save();
+
+            $notas = DB::table('notas')
+                        ->select('*')
+                        ->where('id_trabajos','=',$trabajo->id)
+                        ->first();
+
+                return json_encode(array('data'=>$notas));
+                  
+    }*/
+
+    /* public function datosDashboard(){
+        $trabajo = DB::table('orden_trabajos')
+                    ->select('id')
+                    ->where('id','=',$_POST["nombre"])
+                    ->first();
+
+    $notasDashboard = DB::table('notas')
+                    ->select('*')
+                    ->where('id_trabajos','=',$trabajo->id)
+                    ->get();
+
+                return json_encode(array('data'=>$notasDashboard));
+        
+    }*/
+
+   /* public function destroy(){
+                 
+        $ruta =  "/trabajos/detalle/notas".$_POST["orden"];
+        $notas=Nota::findOrFail($id);
+        $notas->delete();
+
+        return json_encode(array('data'=>$ruta));
+    }*/
+
 
 
     public function datosPacientes(){
@@ -102,4 +184,6 @@ class DetalleController extends Controller
 
         return json_encode(array('data'=>$datosTabla));
     }
+
+   
 }
