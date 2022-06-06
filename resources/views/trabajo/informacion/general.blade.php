@@ -13,7 +13,7 @@
                 </br>
                     <p class="text-left" style="position: relative;left:20px">&nbsp;&nbsp;<b>Servicios:</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Recuperacion de Datos </p>
                     <p class="text-left" style="position: relative;left:20px">&nbsp;&nbsp;<b>Contraseña de Archivo:</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-                    <p class="text-left" style="position: relative;left:20px">&nbsp;&nbsp;<b>Ingeniero Designado:</b> </p>
+                    <p class="text-left" style="position: relative;left:20px">&nbsp;&nbsp;<b>Ingeniero Designado:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$orden_elegida->asignado}} </p>
 
                     <div class="card" style="flex-direction:row;">
                         <div class="card-body">

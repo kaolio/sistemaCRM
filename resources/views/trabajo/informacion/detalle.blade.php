@@ -52,7 +52,7 @@
                                             </div>
                                     </div>
                                 </div>
-                             {{-- Fin Diagnostico --}}
+                             {{-- Fin modal ingeniero --}}
                     </div>
                     <div class="card">
                             <div class="card-header" id="card">
@@ -97,7 +97,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 
   <script>
-      /*
      $('#btnAsignar').on('click', function () {
 
     var url = $('#selectDesignacion').val();
@@ -107,17 +106,18 @@
             type: "POST",
             data:{ 
                 "_token": "{{ csrf_token() }}",
-                comentario: url,
+                selectDesignacion: url,
                 "nombre": "{{$orden_elegida->id}}",
             },
             cache: false,
             dataType: 'json',
             success: function(dataResult){
             console.log(dataResult);
+
                 
             }
         });
-    });*/
+    });
   </script>              
                 
             

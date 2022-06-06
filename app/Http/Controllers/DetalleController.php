@@ -10,6 +10,7 @@ use App\Models\Roles;
 use App\Models\Detalle;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use JeroenNoten\LaravelAdminLte\View\Components\Tool\Datatable;
 
 class DetalleController extends Controller
@@ -60,7 +61,7 @@ class DetalleController extends Controller
         $orden_elegida = DB::table('orden_trabajos')
                                 ->join('clientes','clientes.id','=','orden_trabajos.id_cliente')
                                 ->select('clientes.nombreCliente','clientes.vat','clientes.calle','clientes.codigoPostal',
-                                'clientes.pais','clientes.nota','orden_trabajos.id')
+                                'clientes.pais','clientes.nota','orden_trabajos.asignado','orden_trabajos.id')
                                 ->where('orden_trabajos.id','=',$id)
                                 ->first(); 
 
@@ -112,26 +113,21 @@ class DetalleController extends Controller
         
     }
 
-   /* public function guardarDesignacion(){
+    public function guardarDesignacion(){
 
         $usuarioDesignado = DB::table('users')
-                    ->select('id.users')
-                    ->where('id_users','=',$_POST["nombre"])
+                    ->select('*')
+                    ->where('id','=',$_POST["nombre"])
                     ->first();
 
-            $designacion = 
-            $designacion ->id_clientes = $usuarioDesignado->id;
-            $designacion->id_clientes = $_POST["selectDesignacion"];
-            $designacion->save();
+            DB::table('orden_trabajos')
+                    ->where('id', $usuarioDesignado->id)
+                    ->update(['asignado' => $_POST["selectDesignacion"]]);
 
-            $notas = DB::table('notas')
-                        ->select('*')
-                        ->where('id_trabajos','=',$trabajo->id)
-                        ->first();
-
-                return json_encode(array('data'=>$notas));
+        
+                return json_encode(array('data'=>$usuarioDesignado));
                   
-    }*/
+    }
 
     /* public function datosDashboard(){
         $trabajo = DB::table('orden_trabajos')
