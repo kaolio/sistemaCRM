@@ -21,7 +21,7 @@ class CreateOrdenTrabajosTable extends Migration
             $table->string('estado')->nullable();
             $table->string('informacion')->nullable();
             $table->string('datosImportantes')->nullable();
-            $table->string('asignado')->nullable();
+            $table->unsignedBigInteger('asignado')->nullable();
             $table->string('creado')->nullable();
             $table->string('diagnostico')->nullable();
             $table->string('precio')->nullable();
