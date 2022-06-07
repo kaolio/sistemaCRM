@@ -65,7 +65,7 @@ class DetalleController extends Controller
                                 ->select('clientes.nombreCliente','clientes.vat','clientes.calle','clientes.codigoPostal',
                                 'clientes.pais','clientes.nota','users.name','orden_trabajos.id','orden_trabajos.informacion','orden_trabajos.datosImportantes')
                                 ->where('orden_trabajos.id','=',$id)
-                                ->get(); 
+                                ->first(); 
 
         return view('trabajo.informacion.detalle',(compact('orden_elegida','usuarioDesignado')));
 
