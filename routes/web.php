@@ -53,6 +53,9 @@ Route::get('/trabajos',[OrdenTrabajoController::class,'index']);
 Route::delete('/trabajo/{id}',[OrdenTrabajoController::class,'destroy']);
 Route::get('/trabajo/nuevo',[OrdenTrabajoController::class,'create'])->name('orden');
 Route::post('/trabajo/nuevo',[OrdenTrabajoController::class,'store']);
+Route::post('/trabajo/prioridad',[OrdenTrabajoController::class,'prioridad']);
+Route::post('/trabajo/estado',[OrdenTrabajoController::class,'estado']);
+Route::post('/trabajo/ingeniero',[OrdenTrabajoController::class,'ingeniero']);
 Route::get('/trabajo/buscador',[OrdenTrabajoController::class,'buscador']);
 
 //Detalle de trabajo
