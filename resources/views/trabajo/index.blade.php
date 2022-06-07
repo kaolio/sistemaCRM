@@ -32,7 +32,6 @@
   </div>
   <div class="ml-auto p-2">
     <form class="form-inline" action="{{ url('trabajos ')}}" method="GET">
-      
       <label for="">Busqueda Rápida</label>
       <div class="form-group mx-sm-3 mb-2">
         <input type="" class="form-control" id="busqueda" name="busqueda" value="{{$busqueda}}" placeholder="Modelo o Serial">
@@ -191,7 +190,9 @@
 
   })
     
+   
     
+  
 
       
   

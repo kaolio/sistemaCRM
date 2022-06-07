@@ -113,7 +113,7 @@ class DetalleController extends Controller
         
     }
 
-    public function guardarDesignacion(){
+     public function guardarDesignacion(){
 
         $usuarioDesignado = DB::table('users')
                     ->select('*')

@@ -100,6 +100,7 @@ class OrdenTrabajoController extends Controller
                         ->select('id')
                         ->where('nombreCliente','=',$cliente)
                         ->first();
+                        
         $datoTrabajo = new OrdenTrabajo;
         $datoTrabajo->id_cliente = $identificado->id;
         $datoTrabajo->prioridad = $request->get('prioridad');
@@ -107,7 +108,6 @@ class OrdenTrabajoController extends Controller
         $datoTrabajo->estado = "Recibido";
         $datoTrabajo->informacion = $request->get('informacion');
         $datoTrabajo->datosImportantes = $request->get('datos');
-        $datoTrabajo->asignado = "No asignado";
         $datoTrabajo->creado = Auth::user()->name;
         $datoTrabajo->diagnostico = "No Actualizado";
         $datoTrabajo->bandera = "0";
