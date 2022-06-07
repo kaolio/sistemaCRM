@@ -15,9 +15,9 @@ class CreateNotasTable extends Migration
     {
         Schema::create('notas', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('creado')->nullable();
             $table->string('nota')->nullable();
             $table->unsignedBigInteger('id_trabajos')->nullable();
-            $table->unsignedBigInteger('id_users')->nullable();
             $table->timestamps();
 
             $table->foreign('id_trabajos')
@@ -25,10 +25,7 @@ class CreateNotasTable extends Migration
             ->on('orden_trabajos')
             ->onDelete('cascade');
 
-            $table->foreign('id_users')
-            ->references('id')
-            ->on('users')
-            ->onDelete('cascade');
+            
         });
     }
 

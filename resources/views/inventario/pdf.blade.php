@@ -35,8 +35,7 @@
         Telefono: &nbsp;&nbsp; 4446652 <br/>
         Skype: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Empres@ <br/>
         Sitio Web: &nbsp; www.empresa100.com <br/>
-        E-mail: &nbsp; empresa@gmail.com <br/>
-        
+        E-mail: &nbsp; empresa@gmail.com <br/> 
     </div>
 {{--      
     <div style="position: absolute; left: 50px" >
@@ -61,18 +60,10 @@
             P.o.Box  4678 , XXxxXX <br>
             0719 260 602 <br>
            </address>
-    
         </td>
     
       </tr>
-    
-      <!-- <tr>
-      <td><hr width="100%"></td>
-       </tr> -->
-    
-    <!-- <tr>
-      <td><hr width="100%" align="right"></td>
-     </tr> -->
+
     <tr>
       <td>
           <table  width="100%" cellpadding="3" cellspacing="1" align="center"  border="groove">
@@ -91,8 +82,7 @@
               <td><b>CABEZAL</b></td>
               <td><b>INF. DEL CABEZAL</b></td>
             </tr>
-            
-            
+  
               <!-- @foreach($inventario as $item) -->
             <tr>
               <td>{{$item->id}}</td>
@@ -109,7 +99,6 @@
               <td>{{ $item->info_de_cabecera}}</td>
             </tr>
             <!-- @endforeach -->
-           
           </table>
         </td>
     </tr>
@@ -133,7 +122,7 @@
              <td><hr width="30%" align="right"></td>
        </tr> --}}
       
-        <tr>
+          <tr>
             <td colspan="6" align="center"><i>Thanks for Visit!</i></td>
           </tr>
     
@@ -146,8 +135,6 @@
             Nro de Cuenta: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   00-501-0028639.1 <br/>
             Siwft: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DBDBRSBG <br/>
             Banco: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Banca Intesa AD.<br/>
-        </div> --}}
-    
-     
+        </div> --}} 
 </body>
 </html>

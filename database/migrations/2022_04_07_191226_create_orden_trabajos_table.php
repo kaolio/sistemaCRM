@@ -21,10 +21,12 @@ class CreateOrdenTrabajosTable extends Migration
             $table->string('estado')->nullable();
             $table->string('informacion')->nullable();
             $table->string('datosImportantes')->nullable();
-            $table->string('asignado')->nullable();
+            $table->unsignedBigInteger('asignado')->nullable();
             $table->string('creado')->nullable();
             $table->string('diagnostico')->nullable();
+            $table->string('precio')->nullable();
             $table->string('bandera')->nullable();
+
             $table->timestamps();
 
             $table->foreign('id_cliente')
@@ -32,6 +34,11 @@ class CreateOrdenTrabajosTable extends Migration
             ->on('clientes')
             ->onDelete('cascade');
 
+           $table->foreign('asignado')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade');
+        
             /*$table->string('infoCliente')->nullable();
             $table->string('Prioridad')->nullable();
             $table->string('TiempoEstimado')->nullable();

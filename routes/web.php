@@ -61,13 +61,16 @@ Route::get('/trabajo/buscador',[OrdenTrabajoController::class,'buscador']);
 //Detalle de trabajo
 Route::get('/trabajos/detalle/{id}',[DetalleController::class,'buscar']);
 Route::post('/trabajos/detalle',[DetalleController::class,'buscarOrden']); //ruta buscador de orden trabajo
-//Route::post('/trabajos/detalle/{id}',[DetalleController::class,'buscarOrden']);
+Route::post('/trabajos/detalle/guardarDesignacion',[DetalleController::class,'guardarDesignacion']); //ruta para guardar usuario desigando
 Route::post('/trabajos/detalle/nota',[DetalleController::class,'guardarNota']); //guardar nota
 Route::post('/trabajos/nuevo/detalle/datosTabla',[DetalleController::class,'datosTabla']); //ruta de tabla pacientes
 Route::post('/trabajos/nuevo/detalle/datosDispositivos',[DetalleController::class,'datosDispositivos']); // ruta de tabla dispositivos
+Route::post('/trabajos/nuevo/detalle/tablaNotas',[DetalleController::class,'tablaNotas']); // ruta tabla de notas agregadas
+//Route::delete('/trabajos/detalle/notas',[OrdenTrabajoController::class,'destroy']); // eliminar 
+//Route::post('/trabajos/nuevo/detalle/datosDashboard',[DetalleController::class,'datosDashboard']); //ruta de datos de dashboard
 
-
-
+Route::post('/trabajos/nuevo/detalle/datosPacientes',[DetalleController::class,'datosPacientes']); //ruta de inventarios en (dispositivos de trabajo)
+Route::get('/trabajos/nuevo/detalle/tablaInventario',[DetalleController::class,'tablaInventario']);
 
 
 

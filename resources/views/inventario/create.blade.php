@@ -18,6 +18,9 @@
   strong{
           color: red;
         }
+  textarea{
+        resize: none;
+       }
 </style>
 
 <script>
