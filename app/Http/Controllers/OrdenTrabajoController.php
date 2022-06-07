@@ -107,7 +107,7 @@ class OrdenTrabajoController extends Controller
         $datoTrabajo->tiempoEstimado = $request->get('tiempoEstimado');
         $datoTrabajo->estado = "Recibido";
         $datoTrabajo->informacion = $request->get('informacion');
-        $datoTrabajo->datosImportantes = $request->get('datos');
+        $datoTrabajo->datosImportantes = $request->get('dato');
         $datoTrabajo->creado = Auth::user()->name;
         $datoTrabajo->diagnostico = "No Actualizado";
         $datoTrabajo->bandera = "0";

@@ -56,12 +56,14 @@ class DetalleController extends Controller
 
         $usuarioDesignado = DB::table('users')
                                 ->select('*')
+                                ->where('name','<>','Administrador')
                                 ->get();
 
         $orden_elegida = DB::table('orden_trabajos')
                                 ->join('clientes','clientes.id','=','orden_trabajos.id_cliente')
+                                ->join('users','users.id','=','orden_trabajos.asignado')
                                 ->select('clientes.nombreCliente','clientes.vat','clientes.calle','clientes.codigoPostal',
-                                'clientes.pais','clientes.nota','orden_trabajos.asignado','orden_trabajos.id')
+                                'clientes.pais','clientes.nota','users.name','orden_trabajos.id','orden_trabajos.informacion','orden_trabajos.datosImportantes')
                                 ->where('orden_trabajos.id','=',$id)
                                 ->first(); 
 

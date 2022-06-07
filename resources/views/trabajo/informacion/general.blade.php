@@ -13,7 +13,7 @@
                 </br>
                     <p class="text-left" style="position: relative;left:20px">&nbsp;&nbsp;<b>Servicios:</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Recuperacion de Datos </p>
                     <p class="text-left" style="position: relative;left:20px">&nbsp;&nbsp;<b>Contraseña de Archivo:</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-                    <p class="text-left" style="position: relative;left:20px">&nbsp;&nbsp;<b>Ingeniero Designado:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$orden_elegida->asignado}} </p>
+                    <p class="text-left" style="position: relative;left:20px">&nbsp;&nbsp;<b>Ingeniero Designado:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$orden_elegida->name}} </p>
 
                     <div class="card" style="flex-direction:row;">
                         <div class="card-body">
@@ -52,10 +52,10 @@
                     <div class="card" >
                         <div class="card-body">
                             <p style="height:20px;">Informacion de Trabajo</p>
-                                <textarea type="text" style="height: 80px " name="informacionTrabajo" class="form-control" required></textarea>
+                                <textarea type="text" style="height: 80px " name="informacionTrabajo" class="form-control" >{{$orden_elegida->informacion}}</textarea>
                             </br>
                             <p style="height:20px;">Datos Importantes</p>
-                               <textarea type="text" style="height: 80px" name="datosimportantes" class="form-control" required></textarea>
+                               <textarea type="text" style="height: 80px" name="datosimportantes" class="form-control" >{{$orden_elegida->datosImportantes}}</textarea>
                             
                             </br>
                             <p style="height:20px;">Nota de Cliente</p>

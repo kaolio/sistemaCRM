@@ -39,7 +39,7 @@
                                                             <select id="selectDesignacion" name="selectDesignacion" class="form-control" class="btn-block">
                                                                 <option selected disabled>Seleccione Usuario</option>
                                                                 @foreach ($usuarioDesignado as $designado)
-                                                                <option  value="{{$designado->name}}"> {{$designado->name}}</option>
+                                                                <option  value="{{$designado->id}}"> {{$designado->name}}</option>
                                                                 @endforeach
                                                             </select>                           
                                                         </div> 
@@ -100,7 +100,7 @@
      $('#btnAsignar').on('click', function () {
 
     var url = $('#selectDesignacion').val();
-
+        console.log(url);
         $.ajax({
             url: "/trabajos/detalle/guardarDesignacion",
             type: "POST",
