@@ -183,5 +183,61 @@ class DetalleController extends Controller
         return json_encode(array('data'=>$datosTabla));
     }
 
-   
+    ////// busqueda
+   /* function action($busquedaRapida){
+        if ($busquedaRapida->ajax()) {
+            $output = '';
+            $query = $busquedaRapida->get($_POST["busquedaRapida"]);
+
+            if ($query != '') {
+                $data = DB::table('notas')
+                    ->select('creado','nota')
+                    ->where('creado', 'like', '%' . $query . '%')
+                    ->Where('nota', 'like', '%' . $query . '%')
+                    ->get();
+            } else {
+                $data = DB::table('notas')
+                    ->select('creado','nota')
+                    ->orderBy('created_at') 
+                    ->get();
+            }
+            $total_row = $data->count();
+            if ($total_row > 0) {
+                foreach ($data as $row) {
+                    $output .= '
+                    <tr>
+                    <td>'. $row->creado.'</td>
+                    <td>'. $row->created_at.'</td>
+                    <td>'. $row->nota.'</td>
+                    </tr>
+                    ';
+                }
+            } else {
+                $output .= '
+                <tr>
+                <td align="center" colspan="5">
+                Nessun dato trovato
+                </td>
+                </tr>
+                ';
+            }
+            $data = array(
+                'table_data' => $output
+            );
+            
+            return json_encode(array('data'=>$data));
+
+        }
+    }*/
+
+    function busquedaRapida(Request $request)
+    {
+      if($request->ajax())
+      {
+          $data = Nota::search($request->get('full_text_search_query'))->get();
+
+           return response()->json($data);
+          //return json_encode(array('data'=>$$data));
+      }
+    }
 }

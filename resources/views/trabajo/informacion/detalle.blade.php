@@ -100,7 +100,7 @@
      $('#btnAsignar').on('click', function () {
 
     var url = $('#selectDesignacion').val();
-        console.log(url);
+       // console.log(url);
         $.ajax({
             url: "/trabajos/detalle/guardarDesignacion",
             type: "POST",
@@ -112,7 +112,7 @@
             cache: false,
             dataType: 'json',
             success: function(dataResult){
-            console.log(dataResult);
+           // console.log(dataResult);
 
                 
             }
