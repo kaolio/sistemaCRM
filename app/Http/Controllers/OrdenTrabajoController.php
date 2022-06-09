@@ -28,7 +28,7 @@ class OrdenTrabajoController extends Controller
      */
     public function index(Request $request)
     {
-        $busqueda=trim($request->get('busqueda'));
+        
         $rol = DB::table('users')
                 ->select('*')
                 ->where('id','<>','1')
@@ -36,22 +36,14 @@ class OrdenTrabajoController extends Controller
         $trabajo = DB::table('orden_trabajos')
                     ->join('clientes','clientes.id','orden_trabajos.id_cliente')
                     ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','asignado','creado','orden_trabajos.created_at')
-                    ->orderBy('orden_trabajos.id','asc')
-                    ->paginate(10);
+                    ->orderBy('orden_trabajos.id','desc')
+                    ->get();
 
-        /*$trabajo=DB::table('orden_trabajos')
-                        ->select('id')
-                        ->where('Modelo', 'LIKE', '%'.$busqueda.'%')
-                        ->orWhere('Serial', 'LIKE', '%'.$busqueda.'%')
-                        ->orWhere('Prioridad', 'LIKE', '%'.$busqueda.'%')
-                        ->orWhere('id', 'LIKE', '%'.$busqueda.'%')
-                        ->orderBy('id','asc')
-                        ->paginate(10);*/
-        //$datoTrabajo['trabajos']=OrdenTrabajo::paginate(10);
-        return view('trabajo.index', compact('busqueda','trabajo','rol'));
+        return view('trabajo.index', compact('trabajo','rol'));
         
     }
 
+    
 
     public function descargarPDF(){
         $trabajo = OrdenTrabajo::all();

@@ -58,6 +58,7 @@ Route::post('/trabajo/estado',[OrdenTrabajoController::class,'estado']);
 Route::post('/trabajo/ingeniero',[OrdenTrabajoController::class,'ingeniero']);
 Route::get('/trabajo/buscador',[OrdenTrabajoController::class,'buscador']);
 
+
 //Detalle de trabajo
 Route::get('/trabajos/detalle/{id}',[DetalleController::class,'buscar']);
 Route::post('/trabajos/detalle',[DetalleController::class,'buscarOrden']); //ruta buscador de orden trabajo

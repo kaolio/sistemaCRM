@@ -22,24 +22,31 @@
   </div>
     
   </div>
-
+  <div class="d-flex">
+    <div class="p-2">
+      <button class="btn btn-warning text-white" id="factura">Generar Factura</button>
+      <button class="btn btn-primary text-white" id="factura">Cambiar Prioridad</button>
+      <button class="btn btn-primary text-white" id="factura">Cambiar Estado</button>
+      <button class="btn text-white" style="background: red" id="factura">Eliminar</button>
+    </div>
+  </div>
+  
 
 <div class="d-flex">
   <div class="p-2">
-    <button type="button" class="btn btn-primary">Excel</button>
+    <button type="button" class="btn text-white" style="background: rgb(20, 141, 9)">Excel</button>
     <a class="btn btn-primary" href="{{URL('trabajo/pdf')}}" role="button">PDF</a> 
     <button type="button" class="btn btn-primary">Imprimir</button>
   </div>
   <div class="ml-auto p-2">
-    <form class="form-inline" action="{{ url('trabajos ')}}" method="GET">
-      <label for="">Busqueda Rápida</label>
-      <div class="form-group mx-sm-3 mb-2">
-        <input type="" class="form-control" id="busqueda" name="busqueda" value="{{$busqueda}}" placeholder="Modelo o Serial">
-      </div>
-      <button type="submit" class="btn btn-primary mb-2">Buscar</button>
-    </form>
-  </div>
+    <div class="input-group">
+      <span class="input-group-text">Busqueda Rápida</span>
+    <input type="text" class="form-control" id="myInput" name="myInput" id="myInput" autocomplete="off" >         
+   </div>
+    
 </div>
+      
+  </div>
       <div class="input-group">
         <div class="input-group-prepend">
           <div class="input-group-text" id="btnGroupAddon">Prioridad</div>
@@ -70,7 +77,7 @@
           <div class="input-group-text" id="btnGroupAddon">Ingeniero</div>
         
           <select name="ingeniero" id="ingeniero" class="form-control">
-            <option value="">Todos los Ingenieros</option>
+            <option value="todos">Todos los Ingenieros</option>
             @foreach ($rol as $rol)
               <option {{ old('categoria') == $rol->id ? "selected" : "" }} value="{{$rol->id}}">{{$rol->name}}</option>
             @endforeach
@@ -78,94 +85,40 @@
         </div>
      </div>
 
-    
+     @include('trabajo.table')
 
-  <div class="tabla-general">
-<table class="table table-striped table-hover table-responsive" id="Table">
-  <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
-    <tr>
-      <th>#</th>
-      <th class="text-center">Orden de Trabajo</th>
-      <th class="text-center">Prioridad</th>
-      <th class="text-center">Cliente</th>
-      <th class="text-center">Estado</th>
-      <th class="text-center">Informacion</th>
-      <th class="text-center">Ultima Nota</th>
-      <th class="text-center">Asignado</th>
-      <th class="text-center">Creado por</th>
-      <th class="text-center">Fecha</th>
-      <th class="text-center">Acciones</th>
-    </tr>
-  </thead>
-  <tbody class="table-bordered" id="myTable">
-    @if(count($trabajo)<=0)
-      <tr>
-        <th>No Hay Resultados.</th>  
-      <tr>
-     @else   
-    @foreach ($trabajo as $trabajo)
-      <tr>
-        <td>check</td>
-        <td class="text-center">{{$trabajo->id}}</td>
-        <td class="text-center">{{$trabajo->prioridad}}</td>
-        <td>{{$trabajo->nombreCliente}}</td>
-        <td>{{$trabajo->estado}}</td>
-        <td>{{$trabajo->informacion}}</td>
-        <td>{{$trabajo->datosImportantes}}</td>
-        <td>{{$trabajo->asignado}}</td>
-        <td>{{$trabajo->creado}}</td>
-        <td>{{$trabajo->created_at}}</td>
-        <td class="text-center">
-
-            <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal{{$trabajo->id}}">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">
-                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-              </svg>
-            </button>
-            <div class="modal fade" id="exampleModal{{$trabajo->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Eliminar trabajo</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                   ¿Realmente Desea Borrar el trabajo?
-                  </div>
-                  <form action="{{url('/trabajo/'.$trabajo->id)}}" method="POST" class="d-inline">
-                    @csrf
-                    @method('DELETE')
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>
-                                   
-                    <button class="btn btn-primary" style="padding-left: 5px">
-                      Aceptar
-                    </button>
-                    
-                  </div>
-                </form> 
-                </div>
-              </div>
-            </div>
-          
-        </td>  
-      </tr>
-      @endforeach 
-      @endif 
-  </tbody> 
-</table>
-</div>
-
+     <ul class="pagination">
+            
+      <li class="page-item disabled" aria-disabled="true" aria-label="« Anterior">
+      <span class="page-link" aria-hidden="true">‹</span>
+      </li>
+          <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
+          <li class="page-item"><a class="page-link" href="http://localhost:8000/trabajos?page=2">2</a></li>
+          <li class="page-item"><a class="page-link" href="http://localhost:8000/trabajos?page=3">3</a></li>
+          <li class="page-item">
+          <a class="page-link" href="http://localhost:8000/trabajos?page=2" rel="next" aria-label="Siguiente »">›</a>
+      </li>
+      </ul>
 </div>
 
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
 <script>
   $(function(){
+
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+
     $("#ingeniero").on('change',function(){
+      $("#grado").val('todos'); 
+      $("#estado").val('todos'); 
       $('#Table > tbody').empty();
         var tipo = document.getElementById("ingeniero");
         var selectedTipo = tipo.options[tipo.selectedIndex].text;
@@ -238,6 +191,8 @@
     
 
     $("#estado").on('change',function(){
+      $("#grado").val('todos');
+      $("#ingeniero").val('todos');
       $('#Table > tbody').empty();
         var tipo = document.getElementById("estado");
         var selectedTipo = tipo.options[tipo.selectedIndex].text;
@@ -309,6 +264,8 @@
 
 
     $("#grado").on('change',function(){
+      $("#estado").val('todos');
+      $("#ingeniero").val('todos');
       $('#Table > tbody').empty();
         var tipo = document.getElementById("grado");
         var selectedTipo = tipo.options[tipo.selectedIndex].text;
