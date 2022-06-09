@@ -8,13 +8,13 @@ use App\Models\Inventario;
 use Illuminate\Http\Request;
 use App\Models\Roles;
 use App\Models\Detalle;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use JeroenNoten\LaravelAdminLte\View\Components\Tool\Datatable;
-// use App\Http\Controllers\InventarioController;
 
-class DetalleController extends InventarioController
+class DetalleController extends Controller
 {
-    // use Inventario;
+
     function __construct()
     {
         $this->middleware('permission:ver-trabajo|crear-trabajo|editar-trabajo|borrar-trabajo',['only'=>['index']]);
@@ -24,13 +24,6 @@ class DetalleController extends InventarioController
     }
 
 
-    public function guardarNota()
-    {
-        $nota = new Nota();
-        $nota->nota = $_POST["comentario"];
-        $nota->save();
-
-    }
 
     public function datosTabla(){
 
@@ -60,12 +53,18 @@ class DetalleController extends InventarioController
     }
     public function buscar($id){
 
-        $orden_elegida = DB::table('orden_trabajos')
+        $usuarioDesignado = DB::table('users')
                                 ->select('*')
-                                ->where('id','=',$id)
+                                ->get();
+
+        $orden_elegida = DB::table('orden_trabajos')
+                                ->join('clientes','clientes.id','=','orden_trabajos.id_cliente')
+                                ->select('clientes.nombreCliente','clientes.vat','clientes.calle','clientes.codigoPostal',
+                                'clientes.pais','clientes.nota','orden_trabajos.id')
+                                ->where('orden_trabajos.id','=',$id)
                                 ->first(); 
 
-        return view('trabajo.informacion.detalle',(compact('orden_elegida')));
+        return view('trabajo.informacion.detalle',(compact('orden_elegida','usuarioDesignado')));
 
     }
 
@@ -76,7 +75,83 @@ class DetalleController extends InventarioController
         return json_encode(array('data'=>$ruta));
     }  
 
+    public function guardarNota(){
 
+        $trabajo = DB::table('orden_trabajos')
+                    ->select('id')
+                    ->where('id','=',$_POST["nombre"])
+                    ->first();
+
+            $nota = new Nota();
+            $nota->creado = Auth::user()->name;
+            $nota ->id_trabajos = $trabajo->id;
+            $nota->nota = $_POST["comentario"];
+            $nota->save();
+
+            $notas = DB::table('notas')
+                        ->select('*')
+                        ->where('id_trabajos','=',$trabajo->id)
+                        ->first();
+
+                return json_encode(array('data'=>$notas));
+                  
+    }
+
+    public function tablaNotas(){
+        $trabajo = DB::table('orden_trabajos')
+                    ->select('id')
+                    ->where('id','=',$_POST["nombre"])
+                    ->first();
+
+    $notas = DB::table('notas')
+                    ->select('*')
+                    ->where('id_trabajos','=',$trabajo->id)
+                    ->get();
+
+                return json_encode(array('data'=>$notas));
+        
+    }
+
+   /* public function guardarDesignacion(){
+        $usuarioDesignado = DB::table('users')
+                    ->select('id.users')
+                    ->where('id_users','=',$_POST["nombre"])
+                    ->first();
+            $designacion = 
+            $designacion ->id_clientes = $usuarioDesignado->id;
+            $designacion->id_clientes = $_POST["selectDesignacion"];
+            $designacion->save();
+            $notas = DB::table('notas')
+                        ->select('*')
+                        ->where('id_trabajos','=',$trabajo->id)
+                        ->first();
+                return json_encode(array('data'=>$notas));
+                  
+    }*/
+
+    /* public function datosDashboard(){
+        $trabajo = DB::table('orden_trabajos')
+                    ->select('id')
+                    ->where('id','=',$_POST["nombre"])
+                    ->first();
+    $notasDashboard = DB::table('notas')
+                    ->select('*')
+                    ->where('id_trabajos','=',$trabajo->id)
+                    ->get();
+                return json_encode(array('data'=>$notasDashboard));
+        
+    }*/
+
+   /* public function destroy(){
+                 
+        $ruta =  "/trabajos/detalle/notas".$_POST["orden"];
+        $notas=Nota::findOrFail($id);
+        $notas->delete();
+        return json_encode(array('data'=>$ruta));
+    }*/
+
+
+    //tabla de dispositivos paciente
     public function datosPacientes(){
 
         $datosPacientes =  DB::table('detalle_ordens')
@@ -89,8 +164,21 @@ class DetalleController extends InventarioController
         return json_encode(array('data'=>$datosPacientes));
     }
 
-        //datos del inventario CON AJAX
-    public function datosInventario(){
+    //tabla de otros disp de los clientes
+    public function datosOtrosDispositivos(){
+
+        $datosOtrosDispositivos =  DB::table('detalle_ordens')
+                    ->join('orden_trabajos','orden_trabajos.id','=','detalle_ordens.id_trabajos')
+                    ->select('orden_trabajos.diagnostico','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
+                            'detalle_ordens.serial','detalle_ordens.localizacion','detalle_ordens.id')
+                    ->where('detalle_ordens.id_trabajos','=',$_POST["nombre"])
+                    ->where('detalle_ordens.rol','<>','Paciente')
+                    ->get(); 
+        return json_encode(array('data'=>$datosOtrosDispositivos));
+    }
+
+     //datos del inventario CON AJAX
+     public function datosInventario(){
 
         $datosInventario =  DB::table('inventarios')
                             // ->join('orden_trabajos','orden_trabajos.id','=','detalle_ordens.id_trabajos')
@@ -102,33 +190,5 @@ class DetalleController extends InventarioController
                             ->get();  
 
         return json_encode(array('data'=>$datosInventario));
-    }
-
-    
-    // buscador en tiemp real de lista de inventario
-    public function buscarInventario(Request $request){
-        $inventario = Inventario::where("manufactura",'like','%'.$request->texto.'%')
-        ->orWhere("modelo",'like','%'.$request->texto.'%')->get();
-        return view("trabajo/informacion/listaInventario",compact("inventario"));        
-    }
-
-   
-
-
-
-//  public function new($inventario){
-//     return $this->var = $var;
-//     //  $inventario = Inventario::all();
-//      return view("trabajo/informacion/datosInventario",compact("var"));  
- 
-// https://www.zentica-global.com/es/zentica-blog/ver/tutorial-de-ejemplo-de-laravel-8-ajax-como-usar-ajax-en-laravel-6073a83a75014
-
-// public function getInve(Request $request)
-// {
-//     $inventario = Inventario::latest()->paginate(5);
-
-//     return Request::ajax() ? 
-//                  response()->json($inventario,Response::HTTP_OK) 
-//                  : abort(404);
-// }
+    }   
 }

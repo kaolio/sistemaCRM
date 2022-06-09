@@ -12,8 +12,8 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <h3>{{$orden_elegida->id}} - </h3>
-                            <button class="btn btn-warning" id="botones"data-toggle="modal" data-target="#exampleModal01">Asignar un ingeniero</button>
+                            <h3><b>{{$orden_elegida->id}} - {{$orden_elegida->nombreCliente}}</b></h3>
+                            <button class="btn btn-warning" id="botones"data-toggle="modal" data-target="#exampleModal01">Asignar un Usuario</button>
                             <button class="btn btn-primary" id="botones">Formulario de Admision</button>
                             <button class="btn btn-primary" id="botones">Ir a Lista de archivos</button>
                             <button class="btn btn-warning" id="botones">Desbloquear Acceso de cliente</button>
@@ -25,31 +25,31 @@
                              <!-- Modal asignar ingeniero-->
                                 <div class="modal fade" id="exampleModal01" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel2" align="center">Asignar Trabajo a Ingeniero:</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="container">
-                                                <div class="input-group md-2">
-                                                    <span class="input-group-text">Ingeniero</span>
-                                                    <select name="" class="form-control" class="btn-block">
-                                                        <option value=""></option>
-                                                        <option value="Seagate">Ingeniero1</option>
-                                                        <option value="Toshiba">Ingeniero2</option>
-                                                        <option value="Samsung">Ingeniero3</option>
-                                                    </select>                           
-                                                </div> 
+                                        <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel2" align="center">Asignar Trabajo a Usuario:</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="container">
+                                                        <div class="input-group md-2">
+                                                            <span class="input-group-text">Usuario</span>
+                                                            <select id="selectDesignacion" name="selectDesignacion" class="form-control" class="btn-block">
+                                                                <option selected disabled>Seleccione Usuario</option>
+                                                                @foreach ($usuarioDesignado as $designado)
+                                                                <option  value="{{$designado->name}}"> {{$designado->name}}</option>
+                                                                @endforeach
+                                                            </select>                           
+                                                        </div> 
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" id="botones" data-dismiss="modal">Cancelar</button>
+                                                <button type="button" class="btn btn-success" id="btnAsignar" name="btnAsignar">Guardar</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" id="botones" data-dismiss="modal">Cancelar</button>
-                                        <button type="button" class="btn btn-success" id="botones">Guardar</button>
-                                        </div>
-                                    </div>
                                     </div>
                                 </div>
                              {{-- Fin Diagnostico --}}
@@ -92,8 +92,35 @@
                 </div>
                 <!-- /.col -->
 
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+
+  <script>
+      /*
+     $('#btnAsignar').on('click', function () {
+
+    var url = $('#selectDesignacion').val();
+
+        $.ajax({
+            url: "/trabajos/detalle/guardarDesignacion",
+            type: "POST",
+            data:{ 
+                "_token": "{{ csrf_token() }}",
+                comentario: url,
+                "nombre": "{{$orden_elegida->id}}",
+            },
+            cache: false,
+            dataType: 'json',
+            success: function(dataResult){
+            console.log(dataResult);
                 
+            }
+        });
+    });*/
+  </script>              
                 
             
 
 @endsection
+

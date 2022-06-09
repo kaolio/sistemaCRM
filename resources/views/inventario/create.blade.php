@@ -20,6 +20,8 @@
         }
   textarea{
         resize: none;
+        overflow: none;
+        /* autocapitalize: disabled; */
        }
 </style>
 
@@ -172,7 +174,7 @@
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="inputCity">Nota</label>
-          <textarea class="form-control" id="nota" name="nota" rows="1" cols="10" placeholder="Ingrese una nota del disco" autocomplete="off"></textarea>
+          <textarea class="form-control" id="nota" name="nota" rows="1" cols="20" placeholder="Ingrese una nota del disco" autocomplete="off"></textarea>
         </div>
         <div class="form-group col-md-4">
           <label for="inputCity">Cabezal</label>
