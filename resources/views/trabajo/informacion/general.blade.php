@@ -252,7 +252,7 @@
                         </div>
                       </div>
                         
-                    <table class="table table-striped table-hover">
+                    <table class="table table-striped table-hover" id="tablaN">
                         <thead class="table-primary table-striped table-bordered text-white" >
                         <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
                             <tr>
@@ -263,13 +263,14 @@
                             </tr>
                         </thead>
                         <tbody id="tablaNotas" class="table-bordered" >
-                            
+                            @foreach ($notas as $nota)
                             <tr>
-                                 
-                        
+                                <td class="text-center">{{$nota->creado}}</td>
+                                <td>{{$nota->created_at}}</td>
+                                <td>{{$nota->nota}}</td>
                                
                             </tr>
-                           
+                            @endforeach 
                         </tbody>
                     </table>
                 </div>
@@ -350,7 +351,7 @@
         //
 
         $('#submit').on('click', function () {
-
+            $('#tablaN > tbody').empty();
             var url = $('#comentario').val();
 
             $.ajax({
@@ -364,31 +365,7 @@
                 cache: false,
                 dataType: 'json',
                 success: function(dataResult){
-                   // console.log(dataResult);
-                    
-                }
-            });
-        });
-
-        function limpiar() {
-            setTimeout('document.comentario.reset()',1000);
-            return false;
-            }
-        //
-        $(document).ready(function() {
-
-            var url = "{{URL('tablaNotas')}}";
-            $.ajax({
-                url: "/trabajos/nuevo/detalle/tablaNotas",
-                type: "POST",
-                data:{ 
-                    "_token": "{{ csrf_token() }}",
-                    "nombre": "{{$orden_elegida->id}}",
-                },
-                cache: false,
-                dataType: 'json',
-                success: function(dataResult){
-                    //console.log(dataResult);
+                   console.log(dataResult);
                     var resultData = dataResult.data;
                     var bodyData = '';
                     
@@ -406,10 +383,12 @@
                         
                     })
                     $("#tablaNotas").append(tablaNotas);
+
                 }
             });
-
         });
+
+        //
 
         // busqueda rapida
        /* $(document).ready(function () {

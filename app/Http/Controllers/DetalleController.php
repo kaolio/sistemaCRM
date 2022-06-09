@@ -54,6 +54,11 @@ class DetalleController extends Controller
     }
     public function buscar($id){
 
+        $notas = DB::table('notas')
+                    ->join('orden_trabajos','orden_trabajos.id','=','notas.id_trabajos')
+                    ->select('notas.creado','notas.created_at','notas.nota','notas.id_trabajos')
+                    ->get();
+
         $usuarioDesignado = DB::table('users')
                                 ->select('*')
                                 ->where('name','<>','Administrador')
@@ -67,7 +72,7 @@ class DetalleController extends Controller
                                 ->where('orden_trabajos.id','=',$id)
                                 ->first(); 
 
-        return view('trabajo.informacion.detalle',(compact('orden_elegida','usuarioDesignado')));
+        return view('trabajo.informacion.detalle',(compact('orden_elegida','usuarioDesignado','notas')));
 
     }
 
@@ -94,25 +99,10 @@ class DetalleController extends Controller
             $notas = DB::table('notas')
                         ->select('*')
                         ->where('id_trabajos','=',$trabajo->id)
-                        ->first();
+                        ->get();
 
                 return json_encode(array('data'=>$notas));
                   
-    }
-
-    public function tablaNotas(){
-        $trabajo = DB::table('orden_trabajos')
-                    ->select('id')
-                    ->where('id','=',$_POST["nombre"])
-                    ->first();
-
-    $notas = DB::table('notas')
-                    ->select('*')
-                    ->where('id_trabajos','=',$trabajo->id)
-                    ->get();
-
-                return json_encode(array('data'=>$notas));
-        
     }
 
      public function guardarDesignacion(){
@@ -130,21 +120,6 @@ class DetalleController extends Controller
                 return json_encode(array('data'=>$usuarioDesignado));
                   
     }
-
-    /* public function datosDashboard(){
-        $trabajo = DB::table('orden_trabajos')
-                    ->select('id')
-                    ->where('id','=',$_POST["nombre"])
-                    ->first();
-
-    $notasDashboard = DB::table('notas')
-                    ->select('*')
-                    ->where('id_trabajos','=',$trabajo->id)
-                    ->get();
-
-                return json_encode(array('data'=>$notasDashboard));
-        
-    }*/
 
    /* public function destroy(){
                  
