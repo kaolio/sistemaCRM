@@ -70,9 +70,9 @@ Route::delete('/trabajos/detalle/{id}',[DetalleController::class,'eliminarNota']
 //Route::post('/trabajos/nuevo/detalle/datosDashboard',[DetalleController::class,'datosDashboard']); //ruta de datos de dashboard
 Route::post('/trabajos/nuevo/detalle/busquedaRapida',[DetalleController::class,'busquedaRapida']);//busqueda de notas 
 
-Route::post('/trabajos/nuevo/detalle/datosPacientes',[DetalleController::class,'datosPacientes']); //ruta de inventarios en (dispositivos de trabajo)
-Route::get('/trabajos/nuevo/detalle/tablaInventario',[DetalleController::class,'tablaInventario']);
-
+Route::post('/trabajos/nuevo/detalle/datosPacientes',[DetalleController::class,'datosPacientes']); //ruta de orden de trabajos en (dispositivos de trabajo)
+Route::post('/trabajos/nuevo/detalle/datosInventario',[DetalleController::class,'datosInventario']); //ruta de inventario en (dispositivos de trabajo)
+// Route::get('/trabajos/nuevo/detalle/datosInventario',[DetalleController::class,'datosInventario']);  //buscador en tiempo real de listaInventario
 
 
 
