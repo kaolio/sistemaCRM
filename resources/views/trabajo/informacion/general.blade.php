@@ -238,17 +238,10 @@
         <div class="card"> 
             <div class="card-body">
                 <div class="table-responsive">
-                    <p class="text-left" style="position: relative;">Mostrar</p>
-
-                    <div class="col-5 ml-auto p-2">
+                    <div class="col-4 ml-auto p-2">
                         <div class="input-group md-2 ">
                           <span class="input-group-text">Búsqueda Rapida  </span>
-                          <input class="form-control" id="busquedaRapida" name="busquedaRapida" autocomplete="off">
-                          @csrf
-                          <button  id="btnBusqueda" name="btnBusqueda" style="border-color: #ced4da;border-style: solid;" >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#007BFF" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
-                              <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
-                            </svg></button>          
+                          <input class="form-control" id="busquedaRapida" name="busquedaRapida" autocomplete="off">         
                         </div>
                       </div>
                         
@@ -256,18 +249,57 @@
                         <thead class="table-primary table-striped table-bordered text-white" >
                         <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
                             <tr>
-                                <th class="column2 text-center" style="width: 150px">Usuario</th>
+                                <th class="column2 text-center" style="width: 120px">Usuario</th>
                                 <th class="column2 text-center" style="width: 150px">Fecha</th>
                                 <th class="column3 text-center">Nota</th>
-                                <th class="column2 text-center" style="width: 150px">Acciones</th>
+                                <th class="column2 text-center" style="width:50px"></th>
                             </tr>
                         </thead>
                         <tbody id="tablaNotas" class="table-bordered" >
                             @foreach ($notas as $nota)
                             <tr>
                                 <td class="text-center">{{$nota->creado}}</td>
-                                <td>{{$nota->created_at}}</td>
+                                <td class="text-center">{{$nota->created_at}}</td>
                                 <td>{{$nota->nota}}</td>
+                                <td class="text-center">
+    
+                                    <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal{{$nota->id}}">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                      </svg>
+                                    </button>
+                                    <div class="modal fade" id="exampleModal{{$nota->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Eliminar Nota</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                           ¿Realmente Desea Eliminar la nota?
+                                          </div>
+                                          <form action="{{url('/trabajos/detalle/notas/'.$nota->id)}}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>
+                                                           
+                                            <button class="btn btn-primary" style="padding-left: 5px">
+                                              Aceptar
+                                            </button>
+                                            
+                                          </div>
+                                        </form> 
+                                        </div>
+                                      </div>
+                                    </div>
+                                  
+                                </td>  
+                                
+
                                
                             </tr>
                             @endforeach 
@@ -372,13 +404,7 @@
 
                     $.each(resultData,function(index,row){
                         tablaNotas+="<tr>"
-                        tablaNotas+="<td>"+row.creado+"</td><td>"+row.created_at+"</td><td>"+row.nota+"<td>"+
-                            "<button class='btn btn-icon btn-danger' type='button delete' id='deleteNot' name='deleteNot'>"+
-                                              "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>"+
-                                              "<path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'/>"+
-                                              "<path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/>"+
-                                              "</svg>"+"</button>"
-                                              +"</td>";
+                        tablaNotas+="<td>"+row.creado+"</td><td>"+row.created_at+"</td><td>"+row.nota+"<td>"+"</td>";
                         tablaNotas+="</tr>";
                         
                     })
@@ -389,82 +415,14 @@
         });
 
         //
-
-        // busqueda rapida
-       /* $(document).ready(function () {
-
-            
-        fetch_customer_data();
-            function fetch_customer_data(query = '') {
-                $.ajax({
-                    url: "/trabajos/nuevo/detalle/busquedaRapida",
-                    method: 'GET',
-                    data: {
-                        query: query,
-                        "nombre": "{{$orden_elegida->id}}",
-                    },
-                    dataType: 'json',
-                    success: function (data) {
-                        console.log(data);
-                        $('tbody').html(data.table_data);
-                    }
-                })
-            }
-
-            $(document).on('keyup', '#busquedaRapida', function () {
-                var query = $(this).val();
-                fetch_customer_data(query);
-            });
-        });*/
-
         $(document).ready(function(){
-
-            load_data('');
-
-            function load_data(full_text_search_query = ''){
-
-            var _token = $("input[name=_token]").val();
-                    //console.log(full_text_search_query);
-                    $.ajax({
-                    url:"/trabajos/nuevo/detalle/busquedaRapida",
-                    method:"POST",
-                    data:{
-                        full_text_search_query:full_text_search_query,
-                        "_token": "{{ csrf_token() }}",
-                    },
-                    dataType:"json",
-                    success:function(data){
-                    console.log(data);
-                    var output = '';
-                    if(data.length > 0)
-                    {
-                        for(var count = 0; count < data.length; count++)
-                        {
-                        output += '<tr>';
-                        output += '<td>'+data[count].creado+'</td>';
-                        output += '<td>'+data[count].created_at+'</td>';
-                        output += '<td>'+data[count].nota+'</td>';
-                        output += '</tr>';
-                        }
-                    }
-                    else
-                    {
-                        output += '<tr>';
-                        output += '<td colspan="6">No Data Found</td>';
-                        output += '</tr>';
-                    }
-                    $('tbody').html(output);
-                    }
-                    });
-                    }
-
-                    $('#btnBusqueda').click(function(){
-
-                    var full_text_search_query = $('#busquedaRapida').val();
-                    load_data(full_text_search_query);
-                    });
-
+            $("#busquedaRapida").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#tablaNotas tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
             });
+        });
 
      
     </script>
