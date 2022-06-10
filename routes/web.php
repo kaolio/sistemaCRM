@@ -53,6 +53,9 @@ Route::get('/trabajos',[OrdenTrabajoController::class,'index']);
 Route::delete('/trabajo/{id}',[OrdenTrabajoController::class,'destroy']);
 Route::get('/trabajo/nuevo',[OrdenTrabajoController::class,'create'])->name('orden');
 Route::post('/trabajo/nuevo',[OrdenTrabajoController::class,'store']);
+Route::post('/trabajo/prioridad',[OrdenTrabajoController::class,'prioridad']);
+Route::post('/trabajo/estado',[OrdenTrabajoController::class,'estado']);
+Route::post('/trabajo/ingeniero',[OrdenTrabajoController::class,'ingeniero']);
 Route::get('/trabajo/buscador',[OrdenTrabajoController::class,'buscador']);
 
 //Detalle de trabajo
@@ -65,6 +68,7 @@ Route::post('/trabajos/nuevo/detalle/datosDispositivos',[DetalleController::clas
 Route::post('/trabajos/nuevo/detalle/tablaNotas',[DetalleController::class,'tablaNotas']); // ruta tabla de notas agregadas
 //Route::delete('/trabajos/detalle/notas',[OrdenTrabajoController::class,'destroy']); // eliminar 
 //Route::post('/trabajos/nuevo/detalle/datosDashboard',[DetalleController::class,'datosDashboard']); //ruta de datos de dashboard
+Route::post('/trabajos/nuevo/detalle/busquedaRapida',[DetalleController::class,'busquedaRapida']);//busqueda de notas 
 
 Route::post('/trabajos/nuevo/detalle/datosPacientes',[DetalleController::class,'datosPacientes']); //ruta de orden de trabajos en (dispositivos de trabajo)
 Route::post('/trabajos/nuevo/detalle/datosOtrosDispositivos',[DetalleController::class,'datosOtrosDispositivos']); //para orden de trab. otros dispositivos del client en(dispositivos de trabajo)

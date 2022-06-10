@@ -10,6 +10,7 @@ use App\Models\Roles;
 use App\Models\Detalle;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use JeroenNoten\LaravelAdminLte\View\Components\Tool\Datatable;
 
 class DetalleController extends Controller
@@ -55,12 +56,14 @@ class DetalleController extends Controller
 
         $usuarioDesignado = DB::table('users')
                                 ->select('*')
+                                ->where('name','<>','Administrador')
                                 ->get();
 
         $orden_elegida = DB::table('orden_trabajos')
                                 ->join('clientes','clientes.id','=','orden_trabajos.id_cliente')
+                                ->join('users','users.id','=','orden_trabajos.asignado')
                                 ->select('clientes.nombreCliente','clientes.vat','clientes.calle','clientes.codigoPostal',
-                                'clientes.pais','clientes.nota','orden_trabajos.id')
+                                'clientes.pais','clientes.nota','users.name','orden_trabajos.id','orden_trabajos.informacion','orden_trabajos.datosImportantes')
                                 ->where('orden_trabajos.id','=',$id)
                                 ->first(); 
 
@@ -112,22 +115,21 @@ class DetalleController extends Controller
         
     }
 
-   /* public function guardarDesignacion(){
+     public function guardarDesignacion(){
+
         $usuarioDesignado = DB::table('users')
-                    ->select('id.users')
-                    ->where('id_users','=',$_POST["nombre"])
+                    ->select('*')
+                    ->where('id','=',$_POST["nombre"])
                     ->first();
-            $designacion = 
-            $designacion ->id_clientes = $usuarioDesignado->id;
-            $designacion->id_clientes = $_POST["selectDesignacion"];
-            $designacion->save();
-            $notas = DB::table('notas')
-                        ->select('*')
-                        ->where('id_trabajos','=',$trabajo->id)
-                        ->first();
-                return json_encode(array('data'=>$notas));
+
+            DB::table('orden_trabajos')
+                    ->where('id', $usuarioDesignado->id)
+                    ->update(['asignado' => $_POST["selectDesignacion"]]);
+
+        
+                return json_encode(array('data'=>$usuarioDesignado));
                   
-    }*/
+    }
 
     /* public function datosDashboard(){
         $trabajo = DB::table('orden_trabajos')
@@ -151,7 +153,7 @@ class DetalleController extends Controller
     }*/
 
 
-    //tabla de dispositivos paciente
+
     public function datosPacientes(){
 
         $datosPacientes =  DB::table('detalle_ordens')
@@ -164,6 +166,18 @@ class DetalleController extends Controller
         return json_encode(array('data'=>$datosPacientes));
     }
 
+    //datos del inventario
+    public function datosInventario(){
+
+        $datosTabla =  DB::table('inventarios')
+                    ->select('*')
+                    // ->where('detalle_ordens.id_trabajos','=',$_POST["nombre"])
+                    // ->where('detalle_ordens.rol','=','Paciente')
+                    ->get(); 
+
+
+        return json_encode(array('data'=>$datosTabla));
+    }
     //tabla de otros disp de los clientes
     public function datosOtrosDispositivos(){
 
@@ -177,18 +191,59 @@ class DetalleController extends Controller
         return json_encode(array('data'=>$datosOtrosDispositivos));
     }
 
-     //datos del inventario CON AJAX
-     public function datosInventario(){
+    ////// busqueda
+   /* function action($busquedaRapida){
+        if ($busquedaRapida->ajax()) {
+            $output = '';
+            $query = $busquedaRapida->get($_POST["busquedaRapida"]);
+            if ($query != '') {
+                $data = DB::table('notas')
+                    ->select('creado','nota')
+                    ->where('creado', 'like', '%' . $query . '%')
+                    ->Where('nota', 'like', '%' . $query . '%')
+                    ->get();
+            } else {
+                $data = DB::table('notas')
+                    ->select('creado','nota')
+                    ->orderBy('created_at') 
+                    ->get();
+            }
+            $total_row = $data->count();
+            if ($total_row > 0) {
+                foreach ($data as $row) {
+                    $output .= '
+                    <tr>
+                    <td>'. $row->creado.'</td>
+                    <td>'. $row->created_at.'</td>
+                    <td>'. $row->nota.'</td>
+                    </tr>
+                    ';
+                }
+            } else {
+                $output .= '
+                <tr>
+                <td align="center" colspan="5">
+                Nessun dato trovato
+                </td>
+                </tr>
+                ';
+            }
+            $data = array(
+                'table_data' => $output
+            );
+            
+            return json_encode(array('data'=>$data));
+        }
+    }*/
 
-        $datosInventario =  DB::table('inventarios')
-                            // ->join('orden_trabajos','orden_trabajos.id','=','detalle_ordens.id_trabajos')
-                            ->select('inventarios.id','inventarios.manufactura','inventarios.modelo','inventarios.numero_de_serie','inventarios.firmware',
-                                    'inventarios.capacidad','inventarios.pbc','inventarios.ubicacion','inventarios.factor_de_forma','inventarios.cabecera',
-                                    'inventarios.info_de_cabecera','inventarios.diagnostico','inventarios.rol')
-                            // ->where('inventarios.id','=',$_POST["nombre"])
-                            // ->where('detalle_ordens.rol','=','Paciente')
-                            ->get();  
+    function busquedaRapida(Request $request)
+    {
+      if($request->ajax())
+      {
+          $data = Nota::search($request->get('full_text_search_query'))->get();
 
-        return json_encode(array('data'=>$datosInventario));
-    }   
+           return response()->json($data);
+          //return json_encode(array('data'=>$$data));
+      }
+    }
 }

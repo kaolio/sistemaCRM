@@ -16,13 +16,12 @@ class CreateOrdenTrabajosTable extends Migration
         Schema::create('orden_trabajos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_cliente')->nullable();
-            $table->unsignedBigInteger('id_users')->nullable();
             $table->string('prioridad')->nullable();
             $table->string('tiempoEstimado')->nullable();
             $table->string('estado')->nullable();
             $table->string('informacion')->nullable();
             $table->string('datosImportantes')->nullable();
-            $table->string('asignado')->nullable();
+            $table->unsignedBigInteger('asignado')->nullable();
             $table->string('creado')->nullable();
             $table->string('diagnostico')->nullable();
             $table->string('precio')->nullable();
@@ -35,7 +34,7 @@ class CreateOrdenTrabajosTable extends Migration
             ->on('clientes')
             ->onDelete('cascade');
 
-            $table->foreign('id_users')
+           $table->foreign('asignado')
             ->references('id')
             ->on('users')
             ->onDelete('cascade');

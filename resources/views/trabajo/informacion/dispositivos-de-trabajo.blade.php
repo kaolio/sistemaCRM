@@ -198,47 +198,6 @@
                                                     <input type="text" class="form-control">
                                                 </div>
  
-   <!--fin del html agregado-->
-  {{-- <div class="col-12" id="contenedor">
-    @include('trabajo.informacion.listaInventario')
-  </div>
-  <div id="cargando" hidden><h1>CARGANDO...</h1></div>  --}}
-  
-  
-  {{-- <script>
-    window.addEventListener("load",function(){
-        document.getElementById("texto").addEventListener("keyup",function(){
-             
-        if((document.getElementById("texto").value.length)>=2)
-            fetch(`/trabajos/nuevo/detalle/datosInventario?texto=${document.getElementById("texto").value}`,
-                  {method:'get'})
-            .then(response => response.text())
-            .then(html =>   { 
-            
-                var html2="Name:<input type='text' name='name'><br>Comment:<br><textarea rows='5' cols='80'>"+.html.+"</textarea><br><input type='submit' value='Post Comment'>";  
-                document.getElementById("resultados").innerHTML = html2
-                // "Name:<input type='text' name='name'><br>Comment:<br><textarea rows='5' cols='80'>"+.html.manufactura.+"</textarea><br><input type='submit' value='Post Comment'>"
-                // '<p class="p-2 border-bottom">'.'<b>'.html.id'<b>' .':  '.resultados.id' - '.html.id.'</p>'
-            }
-            )
-  else
-      document.getElementById("resultados").innerHTML = "holaaaaaaaaaa"
-      })
-    });
-  </script>  --}}
-   {{-- <script>
-    window.addEventListener("load",function(){
-        document.getElementById("texto").addEventListener("keyup",function(){
-        if((document.getElementById("texto").value.length)>=2)
-            fetch(`/trabajos/nuevo/detalle/datosInventario?texto=${document.getElementById("texto").value}`,
-                  {method:'get'})
-            .then(response => response.text())
-            .then(html =>   { document.getElementById("resultados").innerHTML = html})
-  else
-      document.getElementById("resultados").innerHTML = ""
-      })
-    });
-  </script> --}}
                                             
                                             <div class="table mt-2">
                                                 <table class="table table-responsive">
@@ -505,13 +464,14 @@
     </table>
 </div>     
 
+<div class="container">
 
-<p class="subtitulo">Otros Dispositivos de los Clientes</p>
-<div class="table">
+    <p class="subtitulo">Otros Dispositivos de los Clientes</p>
+    <div class="table">
     <table class="table table-responsive">
         <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
             <tr>
-                {{-- <th class="p-1"> &nbsp;&nbsp;&nbsp; </th> --}}
+                <th class="p-1"> &nbsp;&nbsp;&nbsp; </th>
                 <th class="p-1">Tipo</th>
                 <th class="p-1">Fabricante</th>
                 <th class="p-1">Modelo</th>
@@ -520,12 +480,13 @@
                 <th class="p-1">Nota</th>
                 <th class="p-1"></th>
             </tr>
-          </thead>
-          <tbody class="table-bordered" id="datosOtrosDispositivos">
-                <tr >
-                </tr>
-          </tbody>
+        </thead>
+        <tbody class="table-bordered" id="datosOtrosDispositivos">
+            <tr >
+            </tr>
+        </tbody>
     </table>
+</div>
 </div>
 
 

@@ -13,7 +13,12 @@
                 </br>
                     <p class="text-left" style="position: relative;left:20px">&nbsp;&nbsp;<b>Servicios:</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Recuperacion de Datos </p>
                     <p class="text-left" style="position: relative;left:20px">&nbsp;&nbsp;<b>Contraseña de Archivo:</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-                    <p class="text-left" style="position: relative;left:20px">&nbsp;&nbsp;<b>Ingeniero Designado:</b> </p>
+                    @if ($orden_elegida->name != "Administrador")
+                    <p class="text-left" style="position: relative;left:20px">&nbsp;&nbsp;<b>Ingeniero Designado:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$orden_elegida->name}} </p>
+                    @else
+                    <p class="text-left" style="position: relative;left:20px">&nbsp;&nbsp;<b>Ingeniero Designado:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+                    @endif
+                    
 
                     <div class="card" style="flex-direction:row;">
                         <div class="card-body">
@@ -52,10 +57,10 @@
                     <div class="card" >
                         <div class="card-body">
                             <p style="height:20px;">Informacion de Trabajo</p>
-                                <textarea type="text" style="height: 80px " name="informacionTrabajo" class="form-control" required></textarea>
+                                <textarea type="text" style="height: 80px " name="informacionTrabajo" class="form-control" readonly>{{$orden_elegida->informacion}}</textarea>
                             </br>
                             <p style="height:20px;">Datos Importantes</p>
-                               <textarea type="text" style="height: 80px" name="datosimportantes" class="form-control" required></textarea>
+                               <textarea type="text" style="height: 80px" name="datosimportantes" class="form-control" readonly>{{$orden_elegida->datosImportantes}}</textarea>
                             
                             </br>
                             <p style="height:20px;">Nota de Cliente</p>
@@ -79,7 +84,7 @@
                                         </br>
                                         <!--Boton agregar-->
                                         <div class="form-group" style="position: relative;left:5px">
-                                            <button class="btn btn-success" id="submit">Enviar Comenatario</button>
+                                            <button class="btn btn-success" id="submit" onSubmit="return limpiar()">Enviar Comenatario</button>
                                         </div>
                                         <!-- /Boton agregar-->
                                         
@@ -234,6 +239,19 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <p class="text-left" style="position: relative;">Mostrar</p>
+
+                    <div class="col-5 ml-auto p-2">
+                        <div class="input-group md-2 ">
+                          <span class="input-group-text">Búsqueda Rapida  </span>
+                          <input class="form-control" id="busquedaRapida" name="busquedaRapida" autocomplete="off">
+                          @csrf
+                          <button  id="btnBusqueda" name="btnBusqueda" style="border-color: #ced4da;border-style: solid;" >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#007BFF" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                              <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                            </svg></button>          
+                        </div>
+                      </div>
+                        
                     <table class="table table-striped table-hover">
                         <thead class="table-primary table-striped table-bordered text-white" >
                         <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
@@ -247,35 +265,11 @@
                         <tbody id="tablaNotas" class="table-bordered" >
                             
                             <tr>
+                                 
                         
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h5 class="modal-title" id="exampleModalLabel">Eliminar trabajo</h5>
-                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                          </button>
-                                        </div>
-                                        <div class="modal-body">
-                                         ¿Realmente Desea Borrar el trabajo?
-                                        </div>
-                                        <form action="" method="POST" class="d-inline">
-                                          @csrf
-                                          @method('DELETE')
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>
-                                                         
-                                          <button class="btn btn-primary" style="padding-left: 5px">
-                                            Aceptar
-                                          </button>
-                                          
-                                        </div>
-                                      </form> 
-                                      </div>
-                                    </div>
-                                  </div>
+                               
                             </tr>
+                           
                         </tbody>
                     </table>
                 </div>
@@ -288,6 +282,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+ 
 
 
     <script>
@@ -373,6 +369,11 @@
                 }
             });
         });
+
+        function limpiar() {
+            setTimeout('document.comentario.reset()',1000);
+            return false;
+            }
         //
         $(document).ready(function() {
 
@@ -390,6 +391,7 @@
                     //console.log(dataResult);
                     var resultData = dataResult.data;
                     var bodyData = '';
+                    
 
                     $.each(resultData,function(index,row){
                         tablaNotas+="<tr>"
@@ -408,6 +410,82 @@
             });
 
         });
-        //
-        
+
+        // busqueda rapida
+       /* $(document).ready(function () {
+
+            
+        fetch_customer_data();
+            function fetch_customer_data(query = '') {
+                $.ajax({
+                    url: "/trabajos/nuevo/detalle/busquedaRapida",
+                    method: 'GET',
+                    data: {
+                        query: query,
+                        "nombre": "{{$orden_elegida->id}}",
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data);
+                        $('tbody').html(data.table_data);
+                    }
+                })
+            }
+
+            $(document).on('keyup', '#busquedaRapida', function () {
+                var query = $(this).val();
+                fetch_customer_data(query);
+            });
+        });*/
+
+        $(document).ready(function(){
+
+            load_data('');
+
+            function load_data(full_text_search_query = ''){
+
+            var _token = $("input[name=_token]").val();
+                    //console.log(full_text_search_query);
+                    $.ajax({
+                    url:"/trabajos/nuevo/detalle/busquedaRapida",
+                    method:"POST",
+                    data:{
+                        full_text_search_query:full_text_search_query,
+                        "_token": "{{ csrf_token() }}",
+                    },
+                    dataType:"json",
+                    success:function(data){
+                    console.log(data);
+                    var output = '';
+                    if(data.length > 0)
+                    {
+                        for(var count = 0; count < data.length; count++)
+                        {
+                        output += '<tr>';
+                        output += '<td>'+data[count].creado+'</td>';
+                        output += '<td>'+data[count].created_at+'</td>';
+                        output += '<td>'+data[count].nota+'</td>';
+                        output += '</tr>';
+                        }
+                    }
+                    else
+                    {
+                        output += '<tr>';
+                        output += '<td colspan="6">No Data Found</td>';
+                        output += '</tr>';
+                    }
+                    $('tbody').html(output);
+                    }
+                    });
+                    }
+
+                    $('#btnBusqueda').click(function(){
+
+                    var full_text_search_query = $('#busquedaRapida').val();
+                    load_data(full_text_search_query);
+                    });
+
+            });
+
+     
     </script>
