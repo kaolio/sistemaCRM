@@ -217,12 +217,14 @@ class OrdenTrabajoController extends Controller
             $datosTabla =  DB::table('orden_trabajos')
             ->join('clientes','clientes.id','orden_trabajos.id_cliente')
             ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','asignado','creado','orden_trabajos.created_at')
+            ->orderBy('orden_trabajos.id','desc')
             ->get();  
         }else{
             $datosTabla =  DB::table('orden_trabajos')
             ->join('clientes','clientes.id','orden_trabajos.id_cliente')
             ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','asignado','creado','orden_trabajos.created_at')
                         ->where('orden_trabajos.prioridad','=',$_POST["orden"])
+                        ->orderBy('orden_trabajos.id','desc')
                         ->get();  
         }
         
@@ -235,12 +237,14 @@ class OrdenTrabajoController extends Controller
             $datosTabla =  DB::table('orden_trabajos')
             ->join('clientes','clientes.id','orden_trabajos.id_cliente')
             ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','asignado','creado','orden_trabajos.created_at')
+            ->orderBy('orden_trabajos.id','desc')
             ->get();  
         }else{
             $datosTabla =  DB::table('orden_trabajos')
             ->join('clientes','clientes.id','orden_trabajos.id_cliente')
             ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','asignado','creado','orden_trabajos.created_at')
                         ->where('orden_trabajos.estado','=',$_POST["orden"])
+                        ->orderBy('orden_trabajos.id','desc')
                         ->get();  
         }
         
@@ -253,15 +257,40 @@ class OrdenTrabajoController extends Controller
             $datosTabla =  DB::table('orden_trabajos')
             ->join('clientes','clientes.id','orden_trabajos.id_cliente')
             ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','asignado','creado','orden_trabajos.created_at')
+            ->orderBy('orden_trabajos.id','desc')
             ->get();  
         }else{
             $datosTabla =  DB::table('orden_trabajos')
             ->join('clientes','clientes.id','orden_trabajos.id_cliente')
             ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','asignado','creado','orden_trabajos.created_at')
                         ->where('orden_trabajos.estado','=',$_POST["orden"])
+                        ->orderBy('orden_trabajos.id','desc')
                         ->get();  
         }
         
         return json_encode(array('data'=>$datosTabla));
     }
+
+    public function ver()
+    {
+            $datosTabla =  DB::table('orden_trabajos')
+            ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+            ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','asignado','creado','orden_trabajos.created_at')
+            ->orderBy('orden_trabajos.id','desc')
+            ->get();  
+        
+        return json_encode(array('data'=>$datosTabla));
+    }
+
+    public function redireccionar()
+    {
+            $datosTabla =  DB::table('orden_trabajos')
+            ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+            ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','asignado','creado','orden_trabajos.created_at')
+            ->orderBy('orden_trabajos.id','desc')
+            ->get();  
+        
+        return json_encode(array('data'=>$datosTabla));
+    }
 }
+
