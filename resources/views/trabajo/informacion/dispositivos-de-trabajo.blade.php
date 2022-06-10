@@ -30,18 +30,27 @@
 </style>
 <div class="fila-botones">
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" id="botones" data-toggle="modal" data-target="#exampleModalDisp">
+    <button type="button" class="btn btn-primary" id="botones" data-toggle="modal" data-target="#exampleModal">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-arrows-move" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z"/>
         </svg>
         Mover Dispositivos Seleccionados
     </button>
+    <!-- add device --> 
+
+ 
+
+
+
+
+
+
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalDisp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelDisp" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabelDisp" align="center">Mover Dispositivos Seleccionados</h5>
+            <h5 class="modal-title" id="exampleModalLabel" align="center">Mover Dispositivos Seleccionados</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -70,15 +79,138 @@
         </div>
     </div>
     
+        <!-- Modal mover añadir -->
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Añadir nuevo dispositivo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" >
+          
+              <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div class="form-group" style="display: flex;">
+                      
+                      <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Clonado</span>
+                      <input type="radio" name="selected" class="form-control" id="clonado"  onclick="text(1)"  >
+                  
+                  </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div class="form-group" style="display: flex;">
+                <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Donado</span>
+                <input type="radio" name="selected" class="form-control" id="clonado" checked onclick="text(0)">
+                 </div>
+                </div>
+              </div>  
+              <div class="row" id="donante">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group" style="display: flex;">
+                     <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Donante para</span>
+                     <select class="form-control" class="btn-block" name="donante">
+                         <option value="Carlos">Carlos</option>
+                     </select> 
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group" style="display: flex;">
+              <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Internal ID</span>
+                    <input type="text" id="buscar" name="buscar" class="form-control"> 
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group" style="display: flex;">
+              <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Modelo</span>
+                    <input type="text" id="buscar" name="buscar" class="form-control"> 
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group" style="display: flex;">
+              <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Serial</span>
+                    <input type="text" id="buscar" name="buscar" class="form-control"> 
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group" style="display: flex;">
+              <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tamaño</span>
+                    <input type="text" id="buscar" name="buscar" class="form-control"> 
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group" style="display: flex;">
+              <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">PCB ID</span>
+                    <input type="text" id="buscar" name="buscar" class="form-control"> 
+                  </div>
+                </div>
+              </div> 
+              {{-- <div class="tabla-general">
+                <table class="table table-striped table-hover table-responsive">
+                    <thead class="table-primary table-striped table-bordered text-white" >
+                    <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
+                        <tr>
+                            <th class="column1 text-center">Id</th>
+                            <th class="column2 text-center">Fabricante</th>
+                            <th class="column3 text-center p-2">Modelo</th>
+                            <th class="column4 text-center p-2">N° de Serie</th>
+                            <th class="column6 text-center p-2">Capacidad (GB)</th>
+                            <th class="column6 text-center p-2">Ubicación</th>
+                            <th class="column6 text-center p-2">Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody class="table-bordered">
+                          @if(count($inventario)<=0)
+                            <tr>
+                              <th>No Hay Resultados.</th>  
+                            <tr>
+                           @else   
+                           @foreach ($inventario as $item)
+                        <tr>
+                          <th scope="row">{{$item->id}}</th>
+                          <td>{{ $item->manufactura}}</td>
+                          <td>{{ $item->modelo}}</td>
+                          <td>{{ $item->numero_de_serie}}</td>
+                          <td>{{ $item->capacidad}}</td>
+                          <td>{{ $item->ubicacion}}</td>
+                          <td></td>
+                        </tr>
+                        @endforeach
+                        @endif
+                      </tbody>
+                </table>
+              </div>  --}}
+              <div class="modal-footer">
+                <button type="button" id="botones" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button onclick="buscador_modal()" id="botones" class="btn btn-success" >Buscar</button>
+              </div>  
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
 
-    {{-- BOTON ELIMINAR --}}
+
+
         <button class="btn btn-danger" id="botones">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
             </svg>
             Eliminar dispositivos seleccionados
         </button>
-        {{-- BOTON AGREGAR NUEVO DISPOSITIVO DEL CLIENTE --}}
         <button class="btn btn-success" id="botones">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
@@ -86,7 +218,7 @@
             Agregar nuevo dispositivo del cliente
         </button>
 
-        <!-- MODAL DE AGREGAR DISPOSITIVO -->
+        <!-- Button trigger modal -->
         <button type="button" id="botones" class="btn btn-success" data-toggle="modal" data-target="#exampleModalMover">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
@@ -94,7 +226,7 @@
             Agregar dispositivo
         </button>
         <!-- Modal -->
-        <div class="modal fade bd-example-modal-lg" id="exampleModalMover" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelMover" aria-hidden="true">
+        <div class="modal fade bd-example-modal" id="exampleModalMover" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelMover" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -106,7 +238,7 @@
                 <div class="modal-body">
                 
                     
-                    <div class="col-md-12">
+                    <div class="col-md-9">
                         <div class="card">
                                 <div class="card-body p-1" id="card">
                                     <ul class="nav nav-pills">
@@ -162,6 +294,10 @@
                                                     <input type="text" class="form-control">
                                                 </div>
                                             </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" id="botones" data-dismiss="modal">Cancelar</button>
+                                                <button type="button" class="btn btn-primary" id="" name=""><a href=""></a>Buscar</button>
+                                            </div>
                                         </div>
                                         <!--/Clonar-->
         
@@ -177,78 +313,66 @@
                                                         <option value="Donante">Donante</option>
                                                       </select>
                                                 </div>
-                                                <div class="input-group mt-2">
-                                                    <span class="input-group-text">ID Interno</span>
-                                                    <input type="text" class="form-control">
-                                                </div>
                                                     <div class="input-group mt-2">
-                                                        <span class="input-group-text">Modelo</span>
-                                                        <input type="text" class="form-control">
+                                                        <span class="input-group-text" >ID Interno</span>
+                                                        <input type="text" class="form-control" id="idInternoDonante">
                                                     </div>
-                                                <div class="input-group mt-2">
-                                                    <span class="input-group-text">Serie</span>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                                <div class="input-group mt-2">
-                                                    <span class="input-group-text">Tamaño</span>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                                <div class="input-group mt-2">
-                                                    <span class="input-group-text">PCB ID</span>
-                                                    <input type="text" class="form-control">
-                                                </div>
- 
-                                            
-                                            <div class="table mt-2">
-                                                <table class="table table-responsive">
-                                                    <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
-                                                        <tr>
-                                                            <th class="col-md-1 p-1"> ID  </th>
-                                                            <th class="col-md-2 p-1">Fabricante</th>
-                                                            <th class="col-md-2 p-1">Modelo</th>
-                                                            <th class="col-md-2 p-1">Serie</th>
-                                                            <th class="col-md-2 p-1">Tamaño</th>
-                                                            <th class="col-md-1 p-1">Ubicación</th>
-                                                            <th class="col-md-1 p-1"></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody class="table-bordered" id="datosInventario" >
-                                                        
-                                                        <tr>
-                                                            {{-- Aqui va los datos de la lista de inventario --}}
-                                                        </tr>
-                                                    
-                                                    </tbody>
-                                                </table>
-                                            </div> 
+                                                        <div class="input-group mt-2">
+                                                            <span class="input-group-text" >Modelo</span>
+                                                            <input type="text" class="form-control" id="modeloDonante">
+                                                        </div>
+                                                    <div class="input-group mt-2">
+                                                        <span class="input-group-text" >Serie</span>
+                                                        <input type="text" class="form-control" id="serieDonante">
+                                                    </div>
+                                                    <div class="input-group mt-2">
+                                                        <span class="input-group-text" >Tamaño</span>
+                                                        <input type="text" class="form-control" id="tamañoDonante">
+                                                    </div>
+                                                    <div class="input-group mt-2">
+                                                        <span class="input-group-text" >PCB ID</span>
+                                                        <input type="text" class="form-control" id="pcbDonante">
+                                                    </div>
 
+                                                        <br>
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                 <div class="table mt-2">
+                                                                    <table class="table table-responsive">
+                                                                        <thead  id="cabeceraDonantes" class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
+                                                                            <tr>
+                                                                                
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="buscadorDonantes" class="table-bordered" >
+                                                                            <tr>
 
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div> 
+                                                            </div>
+                                                        </div>
+                                                
+                                            </div>{{-- @endif --}}
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" id="botones" data-dismiss="modal">Cancelar</button>
+                                                <button type="button" class="btn btn-primary" id="btnBuscarDonante" name="btnBuscarDonante"><a href=""></a>Buscar</button>
                                             </div>
-                                            {{-- @endif --}}
-                                        </div>
-                                        <!--/Donar-->
+                                        </div> <!--/Donar-->
                                     </div>
                                     <!-- /.tab-content -->
                                 </div><!-- /.card-body -->
                         </div>
                         <!-- /.card -->
                     </div>
-
-
-
-                    
-
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="botones" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="botones"><a href=""></a>Buscar</button>
                 </div>
             </div>
             </div>
         </div>
 
 
-    {{-- Liberrar Seleccionados --}}
+
         <button class="btn btn-danger" id="botones">
             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
                 <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
@@ -257,8 +381,6 @@
             Liberar seleccionados
         </button>
 </div>
-
-
 
     <p class="subtitulo">Dispositivos del Paciente</p>
     <div class="table">
@@ -455,19 +577,23 @@
             </tr>
           </thead>
           <tbody class="table-bordered">
-                                                        
+              {{-- @if(count($inventario)<=0) --}}
             <tr>
-                {{-- Aqui va los datos de la lista de inventario --}}
+                <th class="col-md-3">No hay datos disponibles</th>
+            <tr>
+               {{-- @else    --}}
+               {{-- @foreach ($inventario as $item) --}}
+            <tr>
+             
             </tr>
-        
-        </tbody>
+           
+          </tbody>
     </table>
 </div>     
 
-<div class="container">
 
-    <p class="subtitulo">Otros Dispositivos de los Clientes</p>
-    <div class="table">
+<p class="subtitulo">Otros Dispositivos de los Clientes</p>
+<div class="table">
     <table class="table table-responsive">
         <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
             <tr>
@@ -480,81 +606,69 @@
                 <th class="p-1">Nota</th>
                 <th class="p-1"></th>
             </tr>
-        </thead>
-        <tbody class="table-bordered" id="datosOtrosDispositivos">
-            <tr >
+          </thead>
+          <tbody class="table-bordered">
+              {{-- @if(count($inventario)<=0) --}}
+            <tr>
+                  <th class="col-md-3">No hay datos disponibles</th>
+            <tr>
+                {{-- @foreach ($inventario as $item) --}}
+               {{-- @else    --}}
+               <tr>
+                   {{-- <th scope="row">{{$item->id}}</th> --}}
+                   {{-- <td>{{$item->modelo}}</td> --}}
+                   <td>Wester Digital</td>
+                   <td>ZSDGSER346sSF5</td>
+                   <td>ER56T78</td>
+                   <td>Cabinet</td>
+                   <td>Falla en la cabecera</td>
+                   {{-- @endforeach --}}
+                   <td>
+                    {{--Mover --}}
+                    <a href="">
+                        <button class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-move" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z"/>
+                            </svg>
+                        </button>
+                    </a>
+                      {{-- Editar --}}
+                      <a href="">
+                        <button class="btn btn-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+                              </svg>
+                        </button>
+                    </a>
+                    {{--Arrastrar --}}
+                    <a href="">
+                        <button class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
+                            </svg>
+                        </button>
+                    </a>
+                     {{--Eliminar --}}
+                     <a href="">
+                        <button class="btn btn-danger">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                              </svg>
+                        </button>
+                    </a>
+                </td>
             </tr>
-        </tbody>
+           
+          </tbody>
     </table>
 </div>
-</div>
 
-
-<script>
-        //lista de otros dispositivos en: dispositivos-de-trabajo/tabla otros disp. del cliente 
-        $(document).ready(function() {
-
-var url = "{{URL('datosOtrosDispositivos')}}";
-$.ajax({
-    url: "/trabajos/nuevo/detalle/datosOtrosDispositivos",
-    type: "POST",
-    data:{ 
-        "_token": "{{ csrf_token() }}",
-        "nombre": "{{$orden_elegida->id}}",
-    },
-    cache: false,
-    dataType: 'json',
-    success: function(dataResult){
-        //console.log(dataResult);
-        var resultData = dataResult.data;
-        var bodyData = '';
-
-        $.each(resultData,function(index,row){
-            datosOtrosDispositivos+="<tr>"
-            datosOtrosDispositivos+="<td name='tipo[]' id=''>"+row.tipo+"</td><td name='fabricante[]' id=''>"+row.fabricante+"</td><td name='modelo[]' id=''>"+row.modelo+"</td>"
-            +"<td name='serial[]' id=''>"+row.serial+"</td><td name='localizacion[]' id=''>"+row.localizacion+"<td></td>"+
-            "<td class='eliminar'>"+  
-              
-                        "<button class='btn btn-primary'>"+
-                            "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-arrows-move' viewBox='0 0 16 16'>"+
-                                "<path fill-rule='evenodd' d='M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z'/>"+
-                            "</svg>"+
-                        "</button>"+
-                  
-                 
-                            "<button class='btn btn-success'>"+
-                                "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-pen' viewBox='0 0 16 16'>"+
-                                    "<path d='m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z'/>"+
-                                "</svg>"+
-                            "</button>"+
-                
-                
-                        "<button class='btn btn-primary'>"+
-                            "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-arrow-left-right' viewBox='0 0 16 16'>"+
-                                "<path fill-rule='evenodd' d='M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z'/>"+
-                            "</svg>"+
-                        "</button>"+
-                    
-                        
-                        "<button class='btn btn-danger' class='borrar' id='deletRow' name='deletRow'>"+
-                            "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash3' viewBox='0 0 16 16'>"+
-                                "<path d='M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z'/>"+
-                            "</svg>"+
-                        "</button>"+
-                        
-            "</td>";
-            datosOtrosDispositivos+="</tr>";
-            
-        })
-        $("#datosOtrosDispositivos").append(datosOtrosDispositivos);
-    }
-});
-
-});
-
-        //AJAX DE LA TABLA  dispositivos-de-trabajo/dispositivos de pacientes
+     
+    <script>
+        //AJAX DE LA TABLA DE otros dispositivos/dispositivos de pacientes
         $(document).ready(function() {
             var url = "{{URL('datosPacientes')}}";
+            
             $.ajax({
                 url: "/trabajos/nuevo/detalle/datosPacientes",
                 type: "POST",
@@ -587,68 +701,91 @@ $.ajax({
             });
             
     });
-
-    //Ajax en el modal Dispositivos-de-trabajo/Agregar-Dispositivo/donantes de trabajo
-
-        $(document).ready(function() {
-
-            var url = "{{URL('datosInventario')}}";
-            $.ajax({
-                url: "/trabajos/nuevo/detalle/datosInventario",
-                type: "POST",
-                data:{ 
-                    "_token": "{{ csrf_token() }}",
-                    // "nombre": "{{$orden_elegida->id}}",
-                },
-                cache: false,
-                dataType: 'json',
-                success: function(dataResult){
-                    console.log(dataResult);
-                    var resultData = dataResult.data;
-                    var bodyData = '';
-
-                    $.each(resultData,function(index,row){
-                        datosInventario+="<tr>"
-                        datosInventario+="<td>"+row.id+"</td><td>"+row.manufactura+"</td><td>"+row.modelo+"</td>"
-                        +"<td>"+row.numero_de_serie+"</td><td>"+row.capacidad+"</td><td>"+row.ubicacion+"<td>"+
-                            "<button class='btn btn-icon btn-success' type='button' id='edit' name='edit'>"+
-                                "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-plus-circle' viewBox='0 0 16 16'>"+
-                                    "<path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/>"+
-                                    "<path d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z'/>"+
-                                "</svg>"+
-                        "</button>"
-                        +"</td>";
-                        datosInventario+="</tr>";
-                    })
-                    $("#datosInventario").append(datosInventario);
-                }
-            });
+    //
+    //     $(document).ready(function() {
+    //         var url = "{{URL('datosInventario')}}";
+    //         $.ajax({
+    //             url: "/trabajos/nuevo/detalle/datosInventario",
+    //             type: "POST",
+    //             data:{ 
+    //                 "_token": "{{ csrf_token() }}",
+    //                 "nombre": "{{$orden_elegida->id}}",
+    //             },
+    //             cache: false,
+    //             dataType: 'json',
+    //             success: function(dataResult){
+    //                 console.log(dataResult);
+    //                 var resultData = dataResult.data;
+    //                 var bodyData = '';
+    //                 $.each(resultData,function(index,row){
+    //                     datosInventario+="<tr>"
+    //                     datosInventario+="<td></td>"+"<td>"+row.tipo+"</td><td>"+row.fabricante+"</td><td>"+row.modelo+"</td>"
+    //                     +"<td>"+row.serial+"</td><td>"+row.localizacion+"</td><td>"+row.diagnostico+
+    //                     "</td>"
+    //                     "<button class='btn btn-icon btn-danger' type='button' id='deletRow' name='deletRow'>"+
+    //                                           "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>"+
+    //                                           "<path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'/>"+
+    //                                           "<path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/>"+
+    //                                           "</svg>"+
+    //                     "</button>"
+    //                     +"<td>";
+    //                     datosInventario+="</tr>";
+                        
+    //                 })
+    //                 $("#datosInventario").append(datosInventario);
+    //             }
+    //         });
             
-    });
-
-    //Eliminar en otros dispositivos de clientes
-    $(document).on("click", ".eliminar", function() {
-var eliminar = 0;
-                var tipo = document.getElementById("tipo");
-                var fabricante = document.getElementById("fabricante").value;
-                var modelo = document.getElementById("modelo").value;
-                var serial = document.getElementById("serial").value;
-                var serial = document.getElementById("localizacion").value;
-        
-        
-        if (eliminar != 0) {
-            $(this).parents('tr').remove();
-            eliminar = eliminar-1;
-        }
-          
-      });
-
-      $(document).on("click", ".borrar", function(){
-      $("#tipo").val(''); 
-      $("#fabricante").val('');
-      $("#modelo").val('');
-      $("#serial").val('');
-      $("#localizacion").val('');
-    //   $("#estado").html("<span  class='mayor'><h5 class='bien'></h5></span>");
-    });
+    // });
+  ////////////////////
+  // ajax de buscador de donante
+    $('#btnBuscarDonante').on('click', function () {
+        var url1 = $('#idInternoDonante').val();
+        var url2 = $('#modeloDonante').val();
+        var url3 = $('#serieDonante').val();
+        var url4 = $('#tamañoDonante').val();
+        var url5 = $('#pcbDonante').val();
+      //  console.log(url3);
+        $.ajax({
+            
+            url: "/trabajos/nuevo/detalle/modalDonante",
+            type: "POST",
+            data:{ 
+                "_token": "{{ csrf_token() }}",
+                idInternoDonante: url1,
+                modeloDonante: url2,
+                serieDonante: url3,
+                tamañoDonante: url4,
+                pcbDonante: url5,
+                
+            },
+            cache: false,
+            dataType: 'json',
+            success: function(dataResult){
+            console.log(dataResult);
+                var resultData = dataResult.data;
+                var bodyData = '';
+                $.each(resultData,function(index,row){
+                    cabeceraDonantes+="<tr>"
+                    cabeceraDonantes+="<th>"+"ID"+"</th><th>"+"Fabricante"+"</th><th>"+"Modelo"+"</th>"
+                    +"<th>"+"Serie"+"</th><th>"+"Tamaño"+"</th><th>"+"Ubicacion"+"<th></th>";
+                    cabeceraDonantes+="</tr>";
+                    buscadorDonantes+="<tr>"
+                    buscadorDonantes+="<td>"+row.id+"</td><td>"+row.manufactura+"</td><td>"+row.modelo+"</td>"
+                    +"<td>"+row.numero_de_serie+"</td><td>"+row.capacidad+"</td><td>"+row.ubicacion+
+                    "<td>"+
+                            "<button class='btn btn-secondary' type='button' id='deletRow' name='deletRow'>"+
+                                              "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-search' viewBox=' 0 16 16'>"+
+                                              "<path d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/>"+
+                                              "</svg>"+
+                        "</button>"
+                    ;
+                    buscadorDonantes+="</tr>";
+                    
+                })
+                $("#cabeceraDonantes").append(cabeceraDonantes);
+                $("#buscadorDonantes").append(buscadorDonantes);
+            }
+        });
+});
     </script>

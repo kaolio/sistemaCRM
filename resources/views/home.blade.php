@@ -119,6 +119,37 @@
         </div>
     <!--Fin Tabla-->
 </div>
+<script>
+  /*  $(document).ready(function() {
 
+        var url = "{{URL('datosDashboard')}}";
+        //console.log(url)
+        $.ajax({
+            url: "/home/datosDashboard",
+            type: "POST",
+            data:{ 
+                "_token": "{{ csrf_token() }}",
+                "nombre": ,
+            },
+            cache: false,
+            dataType: 'json',
+            success: function(dataResult){
+                console.log(dataResult);
+                var resultData = dataResult.data;
+                var bodyData = '';
+                
+
+                $.each(resultData,function(index,row){
+                    datosDashboard+="<tr>"
+                    datosDashboard+="<td>"+row.creado+"</td><td>"+row.created_at+"</td><td>"+row.id_trabajos+"<td>"+row.nota+"<td>"+"</td>";
+                    datosDashboard+="</tr>";
+                    
+                })
+                $("#datosDashboard").append(datosDashboard);
+            }
+        });
+
+});*/
+</script>
 
 @endsection

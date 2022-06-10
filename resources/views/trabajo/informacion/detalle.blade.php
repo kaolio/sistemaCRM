@@ -98,11 +98,11 @@
 
   <script>
      $('#btnAsignar').on('click', function () {
-
-    var url = $('#selectDesignacion').val();
-       // console.log(url);
+        
+        var url = $('#selectDesignacion').val();
+       //console.log(url);
         $.ajax({
-            url: "/trabajos/detalle/guardarDesignacion",
+            url: "/trabajos/detalle/guardarDesignado",
             type: "POST",
             data:{ 
                 "_token": "{{ csrf_token() }}",
@@ -112,7 +112,7 @@
             cache: false,
             dataType: 'json',
             success: function(dataResult){
-           // console.log(dataResult);
+            //console.log(dataResult);
 
                 
             }
