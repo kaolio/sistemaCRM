@@ -226,7 +226,7 @@
             Agregar dispositivo
         </button>
         <!-- Modal -->
-        <div class="modal fade bd-example-modal-lg" id="exampleModalMover" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelMover" aria-hidden="true">
+        <div class="modal fade bd-example-modal" id="exampleModalMover" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelMover" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -238,7 +238,7 @@
                 <div class="modal-body">
                 
                     
-                    <div class="col-md-12">
+                    <div class="col-md-9">
                         <div class="card">
                                 <div class="card-body p-1" id="card">
                                     <ul class="nav nav-pills">
@@ -294,6 +294,10 @@
                                                     <input type="text" class="form-control">
                                                 </div>
                                             </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" id="botones" data-dismiss="modal">Cancelar</button>
+                                                <button type="button" class="btn btn-primary" id="" name=""><a href=""></a>Buscar</button>
+                                            </div>
                                         </div>
                                         <!--/Clonar-->
         
@@ -309,95 +313,59 @@
                                                         <option value="Donante">Donante</option>
                                                       </select>
                                                 </div>
-                                                <div class="input-group mt-2">
-                                                    <span class="input-group-text">ID Interno</span>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                                <form action= method="GET" id="formOrden">
                                                     <div class="input-group mt-2">
-                                                        <span class="input-group-text">Modelo</span>
-                                                        <input type="text" class="form-control">
+                                                        <span class="input-group-text" >ID Interno</span>
+                                                        <input type="text" class="form-control" id="idInternoDonante">
                                                     </div>
-                                                </form>
-                                                <div class="input-group mt-2">
-                                                    <span class="input-group-text">Serie</span>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                                <div class="input-group mt-2">
-                                                    <span class="input-group-text">Tamaño</span>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                                <div class="input-group mt-2">
-                                                    <span class="input-group-text">PCB ID</span>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                                <h1>hola donar</h1>
+                                                        <div class="input-group mt-2">
+                                                            <span class="input-group-text" >Modelo</span>
+                                                            <input type="text" class="form-control" id="modeloDonante">
+                                                        </div>
+                                                    <div class="input-group mt-2">
+                                                        <span class="input-group-text" >Serie</span>
+                                                        <input type="text" class="form-control" id="serieDonante">
+                                                    </div>
+                                                    <div class="input-group mt-2">
+                                                        <span class="input-group-text" >Tamaño</span>
+                                                        <input type="text" class="form-control" id="tamañoDonante">
+                                                    </div>
+                                                    <div class="input-group mt-2">
+                                                        <span class="input-group-text" >PCB ID</span>
+                                                        <input type="text" class="form-control" id="pcbDonante">
+                                                    </div>
+
+                                                        <br>
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                 <div class="table mt-2">
+                                                                    <table class="table table-responsive">
+                                                                        <thead  id="cabeceraDonantes" class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
+                                                                            <tr>
+                                                                                
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="buscadorDonantes" class="table-bordered" >
+                                                                            <tr>
+
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div> 
+                                                            </div>
+                                                        </div>
                                                 
-                                                <div class="ml-auto p-2">
-                                                    <form class="form-inline" action="{{ url('trabajos/detalle')}}" method="GET">
-                                                      
-                                                      <label for="">Busqueda Rápida</label>
-                                                      <div class="form-group mx-sm-3 mb-2">
-                                                        <input type="" class="form-control" id="busqueda" name="busqueda"  placeholder="Modelo ">
-                                                      </div>
-                                                      <button type="submit" class="btn btn-primary mb-2">Buscar</button>
-                                                    </form>
-                                                </div>
-                    <div class="table mt-2">
-                        <table class="table table-responsive">
-                            <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
-                                <tr>
-                                    <th class="col-md-1 p-1"> ID  </th>
-                                    <th class="col-md-2 p-1">Fabricante</th>
-                                    <th class="col-md-2 p-1">Modelo</th>
-                                    <th class="col-md-2 p-1">Serie</th>
-                                    <th class="col-md-2 p-1">Tamaño</th>
-                                    <th class="col-md-1 p-1">Ubicación</th>
-                                    <th class="col-md-1 p-1"></th>
-                                </tr>
-                              </thead>
-                              <tbody class="table-bordered" id="datosInventario">
-                                <tr>
-                                    {{-- <td>{{$item->id}}</td> --}}
-                                    <td>wawe</td>
-                                    <td></td>
-                                    <td></td>    
-                                    <td></td>
-                                    <td></td>
-                                    
-                                    <td>
-                                        <button type="button">
-                                            <svg class="agregar" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
-                                            </svg>
-                                        </button>
-                                    </td>
-                                    
-                                </tr>
-                              </tbody>
-                        </table>
-                    </div> 
-
-
+                                            </div>{{-- @endif --}}
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" id="botones" data-dismiss="modal">Cancelar</button>
+                                                <button type="button" class="btn btn-primary" id="btnBuscarDonante" name="btnBuscarDonante"><a href=""></a>Buscar</button>
                                             </div>
-                                            {{-- @endif --}}
-                                        </div>
-                                        <!--/Donar-->
+                                        </div> <!--/Donar-->
                                     </div>
                                     <!-- /.tab-content -->
                                 </div><!-- /.card-body -->
                         </div>
                         <!-- /.card -->
                     </div>
-
-
-
-                    
-
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="botones" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="botones"><a href=""></a>XXXXX</button>
                 </div>
             </div>
             </div>
@@ -693,13 +661,14 @@
            
           </tbody>
     </table>
-     </div>
+</div>
 
      
     <script>
         //AJAX DE LA TABLA DE otros dispositivos/dispositivos de pacientes
         $(document).ready(function() {
             var url = "{{URL('datosPacientes')}}";
+            
             $.ajax({
                 url: "/trabajos/nuevo/detalle/datosPacientes",
                 type: "POST",
@@ -768,7 +737,61 @@
     //         });
             
     // });
+  ////////////////////
+  // ajax de buscador de donante
 
-    
-    
+    $('#btnBuscarDonante').on('click', function () {
+
+        var url1 = $('#idInternoDonante').val();
+        var url2 = $('#modeloDonante').val();
+        var url3 = $('#serieDonante').val();
+        var url4 = $('#tamañoDonante').val();
+        var url5 = $('#pcbDonante').val();
+
+      //  console.log(url3);
+
+        $.ajax({
+            
+            url: "/trabajos/nuevo/detalle/modalDonante",
+            type: "POST",
+            data:{ 
+                "_token": "{{ csrf_token() }}",
+                idInternoDonante: url1,
+                modeloDonante: url2,
+                serieDonante: url3,
+                tamañoDonante: url4,
+                pcbDonante: url5,
+                
+            },
+            cache: false,
+            dataType: 'json',
+            success: function(dataResult){
+            console.log(dataResult);
+                var resultData = dataResult.data;
+                var bodyData = '';
+                $.each(resultData,function(index,row){
+                    cabeceraDonantes+="<tr>"
+                    cabeceraDonantes+="<th>"+"ID"+"</th><th>"+"Fabricante"+"</th><th>"+"Modelo"+"</th>"
+                    +"<th>"+"Serie"+"</th><th>"+"Tamaño"+"</th><th>"+"Ubicacion"+"<th></th>";
+                    cabeceraDonantes+="</tr>";
+
+                    buscadorDonantes+="<tr>"
+                    buscadorDonantes+="<td>"+row.id+"</td><td>"+row.manufactura+"</td><td>"+row.modelo+"</td>"
+                    +"<td>"+row.numero_de_serie+"</td><td>"+row.capacidad+"</td><td>"+row.ubicacion+
+                    "<td>"+
+                            "<button class='btn btn-secondary' type='button' id='deletRow' name='deletRow'>"+
+                                              "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-search' viewBox=' 0 16 16'>"+
+                                              "<path d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/>"+
+                                              "</svg>"+
+                        "</button>"
+                    ;
+                    buscadorDonantes+="</tr>";
+                    
+                })
+                $("#cabeceraDonantes").append(cabeceraDonantes);
+                $("#buscadorDonantes").append(buscadorDonantes);
+            }
+        });
+
+});
     </script>

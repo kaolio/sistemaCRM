@@ -46,7 +46,9 @@
                             <div class="input-group">
                                 <span class="input-group-text">Prioridad</span>
                                  <select name="prioridad" class="form-control" class="btn-block" required>
-                                    <option value="">Seleccione la prioridad</option>
+                                    @foreach ($prioridadTrabajo as $prioridad)
+                                    <option  value="{{$prioridad->id}}"> {{$prioridad->prioridad}}</option>
+                                    @endforeach
                                  </select>
                             </div>
                         </div>
@@ -84,7 +86,7 @@
                                         </br>
                                         <!--Boton agregar-->
                                         <div class="form-group" style="position: relative;left:5px">
-                                            <button class="btn btn-success" id="submit" onSubmit="return limpiar()">Enviar Comenatario</button>
+                                            <button class="btn btn-success" id="submit" onSubmit="return limpiar()">Enviar Comentario</button>
                                         </div>
                                         <!-- /Boton agregar-->
                                         
@@ -281,7 +283,7 @@
                                           <div class="modal-body">
                                            ¿Realmente Desea Eliminar la nota?
                                           </div>
-                                          <form action="{{url('/trabajos/detalle/notas/'.$nota->id)}}" method="POST" class="d-inline">
+                                          <form action="{{url('/trabajos/detalle/'.$nota->id)}}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
                                           <div class="modal-footer">

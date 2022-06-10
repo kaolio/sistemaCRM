@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use JeroenNoten\LaravelAdminLte\View\Components\Tool\Datatable;
+use Psy\Command\WhereamiCommand;
+
 // use App\Http\Controllers\InventarioController;
 
 class DetalleController extends InventarioController
@@ -55,6 +57,14 @@ class DetalleController extends InventarioController
     }
     public function buscar($id){
 
+        $recuperarDatos = DB::table('inventarios')
+                        ->select('*')
+                        ->get();
+
+        $prioridadTrabajo = DB::table('orden_trabajos')
+                        ->select('*')
+                        ->get();
+
         $notas = DB::table('notas')
                     ->join('orden_trabajos','orden_trabajos.id','=','notas.id_trabajos')
                     ->select('notas.creado','notas.created_at','notas.nota','notas.id_trabajos','notas.id')
@@ -73,7 +83,7 @@ class DetalleController extends InventarioController
                                 ->where('orden_trabajos.id','=',$id)
                                 ->first(); 
 
-        return view('trabajo.informacion.detalle',(compact('orden_elegida','usuarioDesignado','notas')));
+        return view('trabajo.informacion.detalle',(compact('orden_elegida','usuarioDesignado','notas','recuperarDatos','prioridadTrabajo')));
 
     }
 
@@ -108,15 +118,18 @@ class DetalleController extends InventarioController
 
      public function guardarDesignacion(){
 
-        $usuarioDesignado = DB::table('users')
+        $ordenTrabajo = DB::table('orden_trabajos')
                     ->select('*')
                     ->where('id','=',$_POST["nombre"])
                     ->first();
-dd($usuarioDesignado);
+
             DB::table('orden_trabajos')
-                    ->where('id', $usuarioDesignado->id)
+                    ->where('id', $ordenTrabajo->id)
                     ->update(['asignado' => $_POST["selectDesignacion"]]);
 
+        $usuarioDesignado = DB::table('users')
+                        ->select('name')
+                        ->get();
         
                 return json_encode(array('data'=>$usuarioDesignado));
                   
@@ -126,6 +139,7 @@ dd($usuarioDesignado);
     {
         $nota=Nota::findOrFail($id);
         $nota->delete();
+        
                 return redirect('trabajo.informacion.detalle');
     }
 
@@ -164,7 +178,19 @@ dd($usuarioDesignado);
         return view("trabajo/informacion/listaInventario",compact("inventario"));        
     }
 
-   
+    public function buscadorDonante(){
+        
+        $recuperarDatos = DB::table('inventarios')
+                        ->select('*')
+                        ->orWhere('id','=',$_POST["idInternoDonante"])
+                        ->orWhere('modelo','=',$_POST["modeloDonante"])
+                        ->orWhere('numero_de_serie','=',$_POST["serieDonante"])
+                        ->orWhere('capacidad','=',$_POST["tamañoDonante"])
+                        ->orWhere('pbc','=',$_POST["pcbDonante"])
+                        ->get();
+
+                        return json_encode(array('data'=>$recuperarDatos));
+    }
 
 
 
