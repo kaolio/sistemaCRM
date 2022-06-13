@@ -64,7 +64,8 @@ Route::post('/trabajo/redireccionar',[OrdenTrabajoController::class,'redireccion
 Route::get('/trabajos/detalle/{id}',[DetalleController::class,'buscar']);
 Route::post('/trabajos/detalle',[DetalleController::class,'buscarOrden']); //ruta buscador de orden trabajo
 Route::post('/trabajos/detalle/guardarDesignado',[DetalleController::class,'guardarDesignacion']); //ruta para guardar usuario desigando
-Route::post('/trabajos/detalle/nota',[DetalleController::class,'guardarNota']); //guardar nota
+Route::post('/trabajos/detalle/NotaCliente',[DetalleController::class,'guardarNotaCliente']); //guardar nota de cliente
+Route::post('/trabajos/detalle/nota',[DetalleController::class,'guardarNota']); //guardar comentario
 Route::post('/trabajos/nuevo/detalle/datosTabla',[DetalleController::class,'datosTabla']); //ruta de tabla pacientes
 Route::post('/trabajos/nuevo/detalle/datosDispositivos',[DetalleController::class,'datosDispositivos']); // ruta de tabla dispositivos
 Route::delete('/trabajos/detalle/{id}',[DetalleController::class,'eliminarNota']);// eliminar nota

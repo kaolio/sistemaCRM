@@ -17,6 +17,7 @@ class CreateNotasTable extends Migration
             $table->bigIncrements('id');
             $table->string('creado')->nullable();
             $table->string('nota')->nullable();
+            $table->string('clienteInfo')->nullable();
             $table->unsignedBigInteger('id_trabajos')->nullable();
             $table->timestamps();
 

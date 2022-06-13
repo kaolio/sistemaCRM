@@ -12,6 +12,6 @@ class Nota extends Model
 
     protected $table = "notas";
     protected $fillable = [
-        'creado','nota','created_at',
+        'creado','nota','created_at','clienteInfo',
     ];
 }

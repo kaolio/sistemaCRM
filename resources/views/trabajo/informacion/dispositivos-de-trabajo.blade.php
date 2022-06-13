@@ -238,7 +238,7 @@
                 <div class="modal-body">
                 
                     
-                    <div class="col-md-9">
+                    <div class="col-md-12">
                         <div class="card">
                                 <div class="card-body p-1" id="card">
                                     <ul class="nav nav-pills">
@@ -338,7 +338,7 @@
                                                         <div class="card">
                                                             <div class="card-body">
                                                                  <div class="table mt-2">
-                                                                    <table class="table table-responsive">
+                                                                    <table class="table table-responsive" id="tablaDonante">
                                                                         <thead  id="cabeceraDonantes" class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
                                                                             <tr>
                                                                                 
@@ -741,7 +741,7 @@
   // ajax de buscador de donante
 
     $('#btnBuscarDonante').on('click', function () {
-
+        $('#tablaDonante > tbody').empty();
         var url1 = $('#idInternoDonante').val();
         var url2 = $('#modeloDonante').val();
         var url3 = $('#serieDonante').val();

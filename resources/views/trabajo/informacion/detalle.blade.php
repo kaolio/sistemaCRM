@@ -63,7 +63,7 @@
                                 <li class="nav-item"><a class="nav-link" href="#" data-toggle="tab">Clonacion</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#" data-toggle="tab">Archivos adjuntos</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#" data-toggle="tab">Facturacion</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#" data-toggle="tab">Historial</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#historial" data-toggle="tab">Historial</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#" data-toggle="tab">Iniciar Sesion</a></li>
                                 </ul>
                             </div><!-- /.card-header -->
@@ -84,6 +84,12 @@
                                     <p>munfo</p>
                                 </div>
                                 <!-- /Servicios -->
+
+                                <!--Historial-->
+                                <div class="tab-pane" id="historial" >
+                                    @include('trabajo.informacion.historial')
+                                </div>
+                                <!-- /Historial -->
                                 </div>
                                 <!-- /.tab-content -->
                             </div><!-- /.card-body -->
@@ -98,7 +104,7 @@
 
   <script>
      $('#btnAsignar').on('click', function () {
-        
+
         var url = $('#selectDesignacion').val();
        //console.log(url);
         $.ajax({
@@ -112,9 +118,10 @@
             cache: false,
             dataType: 'json',
             success: function(dataResult){
-            //console.log(dataResult);
-
+            console.log(dataResult);
                 
+            $('#exampleModal01').modal('hide');
+            $('#userDesignado').html(dataResult);
             }
         });
     });

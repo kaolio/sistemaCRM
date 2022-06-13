@@ -78,7 +78,7 @@ class DetalleController extends InventarioController
         $orden_elegida = DB::table('orden_trabajos')
                                 ->join('clientes','clientes.id','=','orden_trabajos.id_cliente')
                                 ->join('users','users.id','=','orden_trabajos.asignado')
-                                ->select('clientes.nombreCliente','clientes.vat','clientes.calle','clientes.codigoPostal',
+                                ->select('clientes.nombreCliente','clientes.vat','clientes.calle','clientes.codigoPostal','clientes.nombreCiudad',
                                 'clientes.pais','clientes.nota','users.name','orden_trabajos.id','orden_trabajos.informacion','orden_trabajos.datosImportantes')
                                 ->where('orden_trabajos.id','=',$id)
                                 ->first(); 
@@ -94,6 +94,12 @@ class DetalleController extends InventarioController
         return json_encode(array('data'=>$ruta));
     }  
 
+    public function guardarNotaCliente(){
+
+        //
+                  
+    }
+
     public function guardarNota(){
 
         $trabajo = DB::table('orden_trabajos')
@@ -105,6 +111,7 @@ class DetalleController extends InventarioController
             $nota->creado = Auth::user()->name;
             $nota ->id_trabajos = $trabajo->id;
             $nota->nota = $_POST["comentario"];
+            $nota->clienteInfo = " ";
             $nota->save();
 
             $notas = DB::table('notas')
@@ -129,7 +136,8 @@ class DetalleController extends InventarioController
 
         $usuarioDesignado = DB::table('users')
                         ->select('name')
-                        ->get();
+                        ->where('id','=',$_POST["selectDesignacion"])
+                        ->first();
         
                 return json_encode(array('data'=>$usuarioDesignado));
                   
