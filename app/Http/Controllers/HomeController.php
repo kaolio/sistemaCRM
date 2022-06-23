@@ -25,6 +25,42 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $trabajosUrgentes = DB::table('orden_trabajos')
+                        ->select('*')
+                        ->where('prioridad','=','Urgente')
+                        ->count();
+
+        $trabajosCompletos = DB::table('orden_trabajos')
+                        ->select('*')
+                        ->where('estado','=','Trabajo Completo')
+                        ->count();
+
+        $trabajosInCompletos = DB::table('orden_trabajos')
+                        ->select('*')
+                        ->where('estado','=','Trabajo Incompleto')
+                        ->count();
+
+        $trabajosPagados = DB::table('orden_trabajos')
+                        ->select('*')
+                        ->where('estado','=','Pagado')
+                        ->count();
+
+                       // dd($trabajosUrgentes);
+
+        $datosDashboard = DB::table('notas')
+                        ->select('*')
+                        ->get();
+
+        return view('home',compact('datosDashboard','trabajosUrgentes','trabajosCompletos','trabajosInCompletos','trabajosPagados'));
     }
+
+    public function datosDashboard(){
+
+        $datosDashboard = DB::table('notas')
+                        ->select('*')
+                        ->get();
+
+         return json_encode(array('data'=>$datosDashboard));
+    }
+
 }

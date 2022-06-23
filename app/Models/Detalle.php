@@ -19,7 +19,9 @@ class Detalle extends Model
 
     protected $table = "detalle_ordens";
     protected $fillable = [
-        'tipo', 'fabricante','modelo','serial','localizacion' 
+        'tipo', 'fabricante','modelo','serial','localizacion',
     ];
+
+
     
 }
