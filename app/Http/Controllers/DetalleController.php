@@ -82,8 +82,14 @@ class DetalleController extends InventarioController
                                 'clientes.pais','clientes.nota','users.name','orden_trabajos.id','orden_trabajos.informacion','orden_trabajos.datosImportantes')
                                 ->where('orden_trabajos.id','=',$id)
                                 ->first(); 
-
-        return view('trabajo.informacion.detalle',(compact('orden_elegida','usuarioDesignado','notas','recuperarDatos','prioridadTrabajo')));
+        $diagnosticoCambiado = DB::table('orden_trabajos')
+                                ->select('*')
+                                ->get();
+        $recuperarDonante = DB::table('inventarios')
+                                ->select('*')
+                                ->get();
+                                
+        return view('trabajo.informacion.detalle',(compact('orden_elegida','usuarioDesignado','notas','recuperarDatos','prioridadTrabajo','diagnosticoCambiado','recuperarDonante')));
 
     }
 
@@ -169,13 +175,17 @@ class DetalleController extends InventarioController
 
         return json_encode(array('data'=>$datosInventario));
     }
+    //tabla de otros disp de los clientes
+    public function datosOtrosDispositivos(){
 
-    
-    // buscador en tiemp real de lista de inventario
-    public function buscarInventario(Request $request){
-        $inventario = Inventario::where("manufactura",'like','%'.$request->texto.'%')
-        ->orWhere("modelo",'like','%'.$request->texto.'%')->get();
-        return view("trabajo/informacion/listaInventario",compact("inventario"));        
+        $datosOtrosDispositivos =  DB::table('detalle_ordens')
+                    ->join('orden_trabajos','orden_trabajos.id','=','detalle_ordens.id_trabajos')
+                    ->select('orden_trabajos.diagnostico','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
+                            'detalle_ordens.serial','detalle_ordens.localizacion','detalle_ordens.id')
+                    ->where('detalle_ordens.id_trabajos','=',$_POST["nombre"])
+                    ->where('detalle_ordens.rol','<>','Paciente')
+                    ->get(); 
+        return json_encode(array('data'=>$datosOtrosDispositivos));
     }
 
     public function buscadorDonante(){
@@ -192,6 +202,84 @@ class DetalleController extends InventarioController
                         return json_encode(array('data'=>$recuperarDatos));
     }
 
+    public function agregarDonante(){
+        // $donante = DB::table('inventarios')
+        //                  ->select('*')
+        //                 ->orWhere('id','=',$_POST["idInterno"])
+        //                 ->orWhere('manufactura','=',$_POST["manufacturaDonante"])
+        //                 ->orWhere('modelo','=',$_POST["modeloDonante"])
+        //                 ->orWhere('numero_de_serie','=',$_POST["serieDonante"])
+        //                 ->orWhere('capacidad','=',$_POST["capacidadDonante"])
+        //                 ->orWhere('ubicacion','=',$_POST["ubicacionDonante"])
+        //                 ->orWhere('rol','=',$_POST["selectDonante"])
+        //                 ->get();
+
+        //     DB::table('inventarios')
+        //             ->where('id', $rol->id)
+        //             ->update('manufactura','=',$_POST["manufacturaDonante"]) //variable del input de la tabla
+        //             ->update('modelo','=',$_POST["modeloDonante"])
+        //             ->update('numero_de_serie','=',$_POST["serieDonante"])
+        //             ->update('capacidad','=',$_POST["capacidadDonante"])
+        //             ->update('ubicacion','=',$_POST["ubicacionDonante"])
+        //             ->update(['rol' => $_POST["selectDonante"]]); //del select
+
+        // $recuperarDonante = DB::table('inventarios')
+        //                 ->select('*')
+        //                 ->get();
+        
+        //         return json_encode(array('data'=>$recuperarDonante));
+        $recuperarDonante = DB::table('inventarios')
+                            ->select('*')
+                            ->orWhere('id','=',$_POST["idInternoDonante1"])
+                            ->orWhere('modelo','=',$_POST["modeloDonante1"])
+                            ->orWhere('numero_de_serie','=',$_POST["serieDonante1"])
+                            ->orWhere('capacidad','=',$_POST["tamañoDonante1"])
+                            ->orWhere('pbc','=',$_POST["pcbDonante1"])
+                            ->get();
+
+        return json_encode(array('data'=>$recuperarDonante));
+    }
+
+
+    // public function moverUbicacion(){
+        
+
+    //     $ubicacion = DB::table('detalle_ordens')
+    //                 ->join('orden_trabajos','detalle_ordens.id', '=')
+    //                 ->select('*')
+    //                 ->where('id','=',$_POST["nombre"])
+    //                 ->first();
+
+    //         DB::table('orden_trabajos')
+    //                 ->where('id', $ordenTrabajo->id)
+    //                 ->update(['localizacion' => $_POST["moverUbicacion"]]);
+
+    //         $moverUbicacion = DB::table('detalle_ordens')
+    //                 ->select('localizacion')
+    //                 ->where(['id','=',$_POST["moverUbicacion"]])
+    //                 ->first();
+        
+    //             return json_encode(array('data'=>$moverUbicacion));
+                  
+    // }
+    public function guardarDiagnostico(){
+
+        $diagnostico = DB::table('orden_trabajos')
+                    ->select('*')
+                    ->where('id','=',$_POST["nombre"])
+                    ->first();
+
+            DB::table('orden_trabajos')
+                    ->where('id', $diagnostico->id)
+                    ->update(['diagnostico' => $_POST["selectDiagnostico"]]);
+
+        $diagnosticoCambiado = DB::table('orden_trabajos')
+                        ->select('diagnostico')
+                        ->get();
+        
+                return json_encode(array('data'=>$diagnosticoCambiado));
+                  
+    }
 
 
 //  public function new($inventario){

@@ -60,7 +60,7 @@
     if($("#firmware").val() == ""){
       $("#estadoFirmware").html("<span  class='error'><h5 class='menor'>Este campo no puede estar vacío</h5></span>"); 
     }else{
-          if ($("#firmware").val().length < 5) {
+          if ($("#firmware").val().length < 4) {
               $("#estadoFirmware").html("<span  class='error'><h5 class='menor'>Ingrese de 5 hasta 40 caracteres</h5></span>");
           }else {
               if ($("#firmware").val().length > 40) {
@@ -120,7 +120,7 @@
             <label for="inputPassword4">Modelo <strong>*</strong></label>
             <input type="text" class="form-control" id="modelo" name="modelo" placeholder="Ingrese el modelo" autocomplete="off"
             value="{{ old('modelo') }}" onkeyup="validarModelo()" required
-            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+            onkeypress="return ((event.charCode =45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
             <span id="estadoModelo"></span>
           </div>
         </div>
@@ -129,18 +129,19 @@
             <label for="inputCity">Número de Serie <strong>*</strong></label>
             <input type="text" class="form-control" id="numero_de_serie" name="numero_de_serie" autocomplete="off"
             placeholder="Ingrese un numero de serie" value="{{ old('numero_de_serie') }}" onkeyup="validarSerie()" pattern="[A-Za-z0-9]+" title="No debe contener caracteres especiales" required
-            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+            onkeypress="return ((event.charCode =45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
             <span id="estadoSerie"></span>
           </div>
           <div class="form-group col-md-4">
             <label for="inputCity">Firmware <strong>*</strong></label>
             <input type="text" class="form-control" id="firmware" name="firmware" autocomplete="off"
             placeholder="Ingrese el firmware" value="{{ old('firmware') }}" onkeyup="validarFirmware()" required
-            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+            onkeypress="return ((event.charCode =45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
             <span id="estadoFirmware"></span>
           </div>
           <div class="form-group col-md-4">
             <label for="inputCity">Capacidad (GB) <strong>*</strong></label>
+
             <input type="text" class="form-control" id="capacidad" name="capacidad" autocomplete="off" placeholder="Ingrese la capacidad en GB"
             value="{{ old('capacidad') }}" onkeyup="validarCapacidad()" required maxlength="5" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
             <span id="estadoCapacidad"></span>

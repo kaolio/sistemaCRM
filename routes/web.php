@@ -74,6 +74,10 @@ Route::post('/trabajos/nuevo/detalle/datosPacientes',[DetalleController::class,'
 Route::post('/trabajos/nuevo/detalle/datosOtrosDispositivos',[DetalleController::class,'datosOtrosDispositivos']); //para orden de trab. otros dispositivos del client en(dispositivos de trabajo)
 Route::post('/trabajos/nuevo/detalle/datosInventario',[DetalleController::class,'datosInventario']); //ruta de inventario en (dispositivos de trabajo)
 Route::post('/trabajos/nuevo/detalle/modalDonante',[DetalleController::class,'buscadorDonante']);  //buscador donante
+Route::post('/trabajos/nuevo/detalle/agregarDonante',[DetalleController::class,'agregarDonante']);  //buscador donante
+// Route::post('/trabajos/nuevo/detalle/agregarDonante',[DetalleController::class,'agregarDonante']);  //ver lista de donantes en dispositivos de trabajo
+// Route::post('/trabajos/nuevo/detalle/moverUbicacion',[DetalleController::class,'moverUbicacion']);  // mover ubicacion de la tabla de dispositivos del paciente
+Route::post('/trabajos/nuevo/detalle/guardarDiagnostico',[DetalleController::class,'guardarDiagnostico']);  // guardar diagnostico a los disp de los pacientes
 
 Route::post('/autocompletarCliente',[OrdenTrabajoController::class,'autoCompletar']);
 
