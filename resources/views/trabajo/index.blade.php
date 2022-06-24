@@ -26,7 +26,7 @@
     <div class="p-2">
       <button class="btn btn-warning text-white" id="factura">Generar Factura</button>
       <!-- Button trigger modal 2-->
-      <button type="button" class="btn btn-primary text-white" data-toggle="modal" data-target="#exampleModal2">Cambiar Prioridad</button>
+      <button type="button" class="btn btn-primary text-white" id="modal2" disabled data-toggle="modal" data-target="#exampleModal2">Cambiar Prioridad</button>
       <button class="btn btn-primary text-white" id="factura">Cambiar Estado</button>
       <button class="btn text-white" style="background: red" id="factura">Eliminar</button>
     </div>
@@ -48,7 +48,7 @@
               <div class="input-group-prepend col-10">
                 <div class="input-group-text">Prioridad</div>
                       <select name="prio" id="prio" class="form-control" >
-                        <option selected disabled>Seleccione una prioridad</option>
+                        <option selected disabled value="new">Seleccione una prioridad</option>
                         <option value="normal">Normal</option>
                         <option value="alta">Alta</option>
                         <option value="urgente">Urgente</option>
@@ -71,7 +71,7 @@
         <div class="input-group-prepend">
           <div class="input-group-text">Ver</div>
                 <select name="ver" id="ver" class="form-control">
-                  @for ($i = 10; $i <= 30; $i++)
+                  @for ($i = 1; $i <= 30; $i++)
                       <option value="{{$i}}">{{$i}}</option>
                   @endfor
                 </select>
@@ -155,6 +155,7 @@
 
 <script>
 
+
   function cambiarPrioridad(){
     var seleccionados = $("input:checkbox:checked");
     var arreglo = [];
@@ -183,13 +184,12 @@
               success: function (dataResult) {
                 console.log(dataResult);
                 var filas = dataResult.data.length;
-                
+                  
                 if (filas > selectedTipo) {
                   filas = selectedTipo;
                   var cantidad = dataResult.data.length;
                   var valor = factor(cantidad,selectedTipo);
-                  
-                  
+
                   for (let index = 1; index <= valor; index++) {
                     $("#nuevo"+index).remove();
                   }
@@ -203,9 +203,7 @@
                     //$("#addItem").append("<li class='page-item'><a class='page-link' href='http://localhost:8000/trabajos/"+index+"'>"+index+"</a></li>");
                   }
                 }else{
-                  for (let index = 1; index <= valor; index++) {
-                    $("#nuevo"+index).remove();
-                  }
+                    $("#nuevo1").remove();
                   $("ul li:last").before("<li id='nuevo1' class='page-item active' aria-current='page'><span class='page-link'>1</span></li>");
                 }
 
@@ -266,6 +264,8 @@
                     
                   $("#myTable").append(nuevafila)
                 }
+                $('#exampleModal2').modal('hide');
+                $('#prio').val('new');
                       //$("#datosTabla").append(datosTabla);
                       
                       var bloq = factor(cantidad,selectedTipo);
@@ -274,7 +274,7 @@
                     $("#next").attr('class', 'page-item disabled');
                 }
                 
-
+                
               }
           });
   }
@@ -331,8 +331,11 @@
                   }else{
                     text = " ";
                   }
-                var nuevafila= "<tr><td>" +
-                  "CHECK" + "</td><td class='text-center'>" +
+                var nuevafila=  "<tr><td>" +
+                    "<div class='form-check'>"+
+                    "<input class='form-check-input' type='checkbox' value='' id='"+dataResult.data[i].id+"'>"+
+                    "</div>"+
+                  "</td><td class='text-center'>" +
                   dataResult.data[i].id + "</td><td>" +
                   dataResult.data[i].prioridad  + "</td><td>" +
                   dataResult.data[i].nombreCliente  + "</td><td>" +
@@ -527,7 +530,7 @@
 
   $(function(){
 
-
+     
     $("#ver").on('change',function(){
       $("#grado").val('todos'); 
       $("#estado").val('todos'); 
@@ -581,7 +584,10 @@
                     text = " ";
                   }
                 var nuevafila= "<tr><td>" +
-                  "CHECK" + "</td><td class='text-center'>" +
+                    "<div class='form-check'>"+
+                    "<input class='form-check-input'  type='checkbox' value='' id='"+dataResult.data[i].id+"'>"+
+                    "</div>"+
+                  "</td><td class='text-center'>" +
                   dataResult.data[i].id + "</td><td>" +
                   dataResult.data[i].prioridad  + "</td><td>" +
                   dataResult.data[i].nombreCliente  + "</td><td>" +
@@ -698,7 +704,10 @@
                     text = " ";
                   }
                 var nuevafila= "<tr><td>" +
-                  "CHECK" + "</td><td class='text-center'>" +
+                    "<div class='form-check'>"+
+                    "<input class='form-check-input' type='checkbox' value='' id='"+dataResult.data[i].id+"'>"+
+                    "</div>"+
+                  "</td><td class='text-center'>" +
                   dataResult.data[i].id + "</td><td>" +
                   dataResult.data[i].prioridad  + "</td><td>" +
                   dataResult.data[i].nombreCliente  + "</td><td>" +
@@ -810,7 +819,10 @@
                     text = " ";
                   }
                 var nuevafila= "<tr><td>" +
-                  "CHECK" + "</td><td class='text-center'>" +
+                    "<div class='form-check'>"+
+                    "<input class='form-check-input' type='checkbox' value='' id='"+dataResult.data[i].id+"'>"+
+                    "</div>"+
+                  "</td><td class='text-center'>" +
                   dataResult.data[i].id + "</td><td>" +
                   dataResult.data[i].prioridad  + "</td><td>" +
                   dataResult.data[i].nombreCliente  + "</td><td>" +
@@ -925,7 +937,10 @@
                     text = " ";
                   }
                 var nuevafila= "<tr><td>" +
-                  "CHECK" + "</td><td class='text-center'>" +
+                    "<div class='form-check'>"+
+                    "<input class='form-check-input' type='checkbox' value='' id='"+dataResult.data[i].id+"'>"+
+                    "</div>"+
+                  "</td><td class='text-center'>" +
                   dataResult.data[i].id + "</td><td>" +
                   dataResult.data[i].prioridad  + "</td><td>" +
                   dataResult.data[i].nombreCliente  + "</td><td>" +
@@ -1039,7 +1054,10 @@
                     text = " ";
                   }
                 var nuevafila= "<tr><td>" +
-                  "CHECK" + "</td><td class='text-center'>" +
+                    "<div class='form-check'>"+
+                    "<input class='form-check-input' type='checkbox' value='' id='"+dataResult.data[i].id+"'>"+
+                    "</div>"+
+                  "</td><td class='text-center'>" +
                   dataResult.data[i].id + "</td><td>" +
                   dataResult.data[i].prioridad  + "</td><td>" +
                   dataResult.data[i].nombreCliente  + "</td><td>" +

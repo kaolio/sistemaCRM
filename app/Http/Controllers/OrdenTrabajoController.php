@@ -354,13 +354,12 @@ class OrdenTrabajoController extends Controller
     public function cambioPrioridadNueva()
     {
 
-        
+        for ($i=0; $i < sizeof($_POST['arreglo']); $i++) { 
             DB::table('orden_trabajos')
-                ->where('id', $_POST['arreglo'][0])
+                ->where('id', $_POST['arreglo'][$i])
                 ->update(['prioridad' => $_POST["seleccionado"]]);
-                
-
-
+        }
+            
         $datosTablas =  DB::table('orden_trabajos')
         ->join('clientes','clientes.id','orden_trabajos.id_cliente')
         ->join('users','users.id','orden_trabajos.asignado')
