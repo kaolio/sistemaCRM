@@ -9,8 +9,9 @@ class Nota extends Model
 {
     use HasFactory;
 
+
     protected $table = "notas";
     protected $fillable = [
-        'nota',
+        'creado','nota','created_at','clienteInfo','id_trabajos',
     ];
 }

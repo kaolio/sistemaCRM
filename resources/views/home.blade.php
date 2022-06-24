@@ -28,7 +28,7 @@
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-danger">
                     <div class="inner">
-                        <h3>150</h3>
+                        <h3>{{$trabajosUrgentes}}</h3>
                         <p>Atencion Urgente</p>
                     </div>
                     <div class="icon">
@@ -44,7 +44,7 @@
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>150</h3>
+                        <h3>{{$trabajosCompletos}}</h3>
                         <p>Trabajos Completos</p>
                     </div>
                     <div class="icon">
@@ -60,7 +60,7 @@
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-warning">
                     <div class="inner">
-                        <h3>150</h3>
+                        <h3>{{$trabajosInCompletos}}</h3>
                         <p>Trabajos Pendientes</p>
                     </div>
                     <div class="icon">
@@ -76,7 +76,7 @@
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-danger">
                     <div class="inner">
-                        <h3>150</h3>
+                        <h3>{{$trabajosPagados}}</h3>
                         <p>Trabajos Pagados</p>
                     </div>
                     <div class="icon">
@@ -119,6 +119,39 @@
         </div>
     <!--Fin Tabla-->
 </div>
+<script>
+  $(document).ready(function() {
 
+            var url = "{{URL('datosDashboard')}}";
+            $.ajax({
+                url: "/home/datosDashboard",
+                type: "POST",
+                data:{ 
+                    "_token": "{{ csrf_token() }}",
+                },
+                cache: false,
+                dataType: 'json',
+                success: function(dataResult){
+                    //console.log(dataResult);
+                    var resultData = dataResult.data;
+                    var bodyData = '';
+
+                    $.each(resultData,function(index,row){
+                        datosDashboard+="<tr>"
+                        datosDashboard+="<td>"+row.creado+"</td><td>"+row.created_at+"</td><td>"+row.id_trabajos+"</td><td>"+row.nota+"</td>";
+                        datosDashboard+="</tr>";
+                        
+                    })
+                    $("#datosDashboard").append(datosDashboard);
+                }
+            });
+            
+         });
+         //
+
+       
+
+
+</script>
 
 @endsection

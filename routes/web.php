@@ -5,6 +5,7 @@ use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\OrdenTrabajoController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\DetalleController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,8 +26,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//ROLES
+//HOME
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/home/datosDashboard',[HomeController::class, 'datosDashboard']);
+
+//ROLES
 Route::get('/roles',[RolesController::class,'index']);
 Route::get('/roles',[RolesController::class,'index']);
 Route::get('/roles/nuevo',[RolesController::class,'create']);
@@ -63,19 +67,24 @@ Route::post('/trabajo/tiempoReal',[OrdenTrabajoController::class,'buscaTiempoRea
 Route::post('/trabajo/cambioPrioridad',[OrdenTrabajoController::class,'cambioPrioridadNueva']);
 
 //Detalle de trabajo
+//general
 Route::get('/trabajos/detalle/{id}',[DetalleController::class,'buscar']);
 Route::post('/trabajos/detalle',[DetalleController::class,'buscarOrden']); //ruta buscador de orden trabajo
-Route::post('/trabajos/detalle/guardarDesignacion',[DetalleController::class,'guardarDesignacion']); //ruta para guardar usuario desigando
-Route::post('/trabajos/detalle/nota',[DetalleController::class,'guardarNota']); //guardar nota
+Route::post('/trabajos/detalle/guardarDesignado',[DetalleController::class,'guardarDesignacion']); //ruta para guardar usuario desigando
+Route::post('/trabajos/detalle/guardarEstado',[DetalleController::class,'guardarEstado']); //ruta para guardar estado
+Route::post('/trabajos/detalle/guardarPrioridad',[DetalleController::class,'guardarPrioridad']); //ruta para guardar prioridad
+Route::post('/trabajos/detalle/NotaCliente',[DetalleController::class,'guardarNotaCliente']); //guardar nota de cliente
+Route::post('/trabajos/detalle/nota',[DetalleController::class,'guardarNota']); //guardar comentario
 Route::post('/trabajos/nuevo/detalle/datosTabla',[DetalleController::class,'datosTabla']); //ruta de tabla pacientes
 Route::post('/trabajos/nuevo/detalle/datosDispositivos',[DetalleController::class,'datosDispositivos']); // ruta de tabla dispositivos
-Route::post('/trabajos/nuevo/detalle/tablaNotas',[DetalleController::class,'tablaNotas']); // ruta tabla de notas agregadas
-//Route::delete('/trabajos/detalle/notas',[OrdenTrabajoController::class,'destroy']); // eliminar 
-//Route::post('/trabajos/nuevo/detalle/datosDashboard',[DetalleController::class,'datosDashboard']); //ruta de datos de dashboard
-
-Route::post('/trabajos/nuevo/detalle/datosPacientes',[DetalleController::class,'datosPacientes']); //ruta de inventarios en (dispositivos de trabajo)
-Route::get('/trabajos/nuevo/detalle/tablaInventario',[DetalleController::class,'tablaInventario']);
-
+Route::delete('/trabajos/detalle/{id}',[DetalleController::class,'eliminarNota']);// eliminar nota
+Route::post('/trabajos/nuevo/detalle/busquedaRapida',[DetalleController::class,'busquedaRapida']);//busqueda de notas 
+//dispositivos de trabajo
+Route::post('/trabajos/detalle/guardarDiagnostico',[DetalleController::class,'guardarDiagnostico']); // ruta de guardar diagnostico
+Route::post('/trabajos/nuevo/detalle/datosPacientes',[DetalleController::class,'datosPacientes']); //ruta de orden de trabajos en (dispositivos de trabajo)
+Route::post('/trabajos/nuevo/detalle/datosOtrosDispositivos',[DetalleController::class,'datosOtrosDispositivos']);//ruta orden de trabajos de otros dispositivos
+//Route::post('/trabajos/nuevo/detalle/datosInventario',[DetalleController::class,'datosInventario']); //ruta de inventario en (dispositivos de trabajo)
+Route::post('/trabajos/nuevo/detalle/modalDonante',[DetalleController::class,'buscadorDonante']);  //buscador donante
 
 
 

@@ -59,11 +59,10 @@
                                 <ul class="nav nav-pills">
                                 <li class="nav-item"><a class="nav-link active" href="#general" data-toggle="tab">General</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#dispositivosTrabajo" data-toggle="tab">Dispositivos de Trabajo</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#servicios" data-toggle="tab">Servicios</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#" data-toggle="tab">Clonacion</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#" data-toggle="tab">Archivos adjuntos</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#" data-toggle="tab">Facturacion</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#" data-toggle="tab">Historial</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#historial" data-toggle="tab">Historial</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#" data-toggle="tab">Iniciar Sesion</a></li>
                                 </ul>
                             </div><!-- /.card-header -->
@@ -79,11 +78,11 @@
                                 </div>
                                 <!--/Dispositivos de trabajo-->
 
-                                <!--Servicios-->
-                                <div class="tab-pane" id="servicios">
-                                    <p>munfo</p>
+                                <!--Historial-->
+                                <div class="tab-pane" id="historial" >
+                                    @include('trabajo.informacion.historial')
                                 </div>
-                                <!-- /Servicios -->
+                                <!-- /Historial -->
                                 </div>
                                 <!-- /.tab-content -->
                             </div><!-- /.card-body -->
@@ -97,27 +96,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 
   <script>
-     $('#btnAsignar').on('click', function () {
-
-    var url = $('#selectDesignacion').val();
-        console.log(url);
-        $.ajax({
-            url: "/trabajos/detalle/guardarDesignacion",
-            type: "POST",
-            data:{ 
-                "_token": "{{ csrf_token() }}",
-                selectDesignacion: url,
-                "nombre": "{{$orden_elegida->id}}",
-            },
-            cache: false,
-            dataType: 'json',
-            success: function(dataResult){
-            console.log(dataResult);
-
-                
-            }
-        });
-    });
   </script>              
                 
             
