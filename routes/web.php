@@ -93,6 +93,7 @@ Route::post('/autocompletarCliente',[OrdenTrabajoController::class,'autoCompleta
 //INVENTARIO
 Route::get('/inventario',[InventarioController::class,'index']);
 Route::get('/inventario/nuevo',[InventarioController::class,'create']);
+Route::get('/inventario/discosUso',[InventarioController::class,'discosUso']);
 Route::post('/inventario/nuevo',[InventarioController::class,'store']);
 Route::get('/inventario/editar/{id}',[InventarioController::class,'edit']);
 Route::post('/inventario/editar/{id}',[InventarioController::class,'update']);
@@ -105,6 +106,7 @@ Route::get('/inventario/excel',[InventarioController::class,'descargarExcel']); 
 Route::get('/inventario/buscador',[InventarioController::class,'buscador']);  //buscador en tiempo real
 
 Route::post('/inventario/busqueda' ,[InventarioController::class.'busqueda']);
+
 
 //CLIENTES
 Route::get('/clientes',[ClienteController::class,'index']);
