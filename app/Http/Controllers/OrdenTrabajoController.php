@@ -369,5 +369,24 @@ class OrdenTrabajoController extends Controller
     
         return json_encode(array('data'=>$datosTablas));
     }
+
+    public function cambioEstadoNuevo()
+    {
+
+        for ($i=0; $i < sizeof($_POST['arreglo']); $i++) { 
+            DB::table('orden_trabajos')
+                ->where('id', $_POST['arreglo'][$i])
+                ->update(['estado' => $_POST["seleccionado"]]);
+        }
+            
+        $datosTablas =  DB::table('orden_trabajos')
+        ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+        ->join('users','users.id','orden_trabajos.asignado')
+        ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+        ->orderBy('orden_trabajos.id','desc')
+        ->get();  
+    
+        return json_encode(array('data'=>$datosTablas));
+    }
 }
 

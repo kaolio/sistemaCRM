@@ -65,6 +65,7 @@ Route::post('/trabajo/ver',[OrdenTrabajoController::class,'ver']);
 Route::post('/trabajo/redireccionar',[OrdenTrabajoController::class,'redireccionar']);
 Route::post('/trabajo/tiempoReal',[OrdenTrabajoController::class,'buscaTiempoReal']);
 Route::post('/trabajo/cambioPrioridad',[OrdenTrabajoController::class,'cambioPrioridadNueva']);
+Route::post('/trabajo/cambioEstado',[OrdenTrabajoController::class,'cambioEstadoNuevo']);
 
 //Detalle de trabajo
 //general
