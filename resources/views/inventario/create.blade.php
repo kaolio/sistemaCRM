@@ -78,6 +78,21 @@
         $("#estadoCapacidad").html("<span  class='bien'><h5 class='menor'>Válido</h5></span>");              
     }
   }
+  function validarCapacidadTB(){
+    if($("#capacidadTB").val() == ""){
+      $("#estadoCapacidadTB").html("<span  class='error'><h5 class='menor'>Este campo no puede estar vacío</h5></span>"); 
+    }else{ 
+        $("#estadoCapacidadTB").html("<span  class='bien'><h5 class='menor'>Válido</h5></span>");              
+    }
+  }
+  function mostrarCapacidad(answer) {
+    document.getElementById(answer + 'Question').style.display = "block";
+    if (answer == "GB") { // ocultar el div que no esta seleccionado
+      document.getElementById('noQuestion').style.display = "none";
+    } else if (answer == "TB") {
+      document.getElementById('yesQuestion').style.display = "none";
+    }
+} 
   function validarPbc(){
     if($("#pbc").val() == ""){
       $("#estadoPbc").html("<span  class='error'><h5 class='menor'>Este campo no puede estar vacío</h5></span>"); 
@@ -120,7 +135,7 @@
             <label for="inputPassword4">Modelo <strong>*</strong></label>
             <input type="text" class="form-control" id="modelo" name="modelo" placeholder="Ingrese el modelo" autocomplete="off"
             value="{{ old('modelo') }}" onkeyup="validarModelo()" required
-            onkeypress="return ((event.charCode =45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+            onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
             <span id="estadoModelo"></span>
           </div>
         </div>
@@ -128,23 +143,22 @@
           <div class="form-group col-md-4">
             <label for="inputCity">Número de Serie <strong>*</strong></label>
             <input type="text" class="form-control" id="numero_de_serie" name="numero_de_serie" autocomplete="off"
-            placeholder="Ingrese un numero de serie" value="{{ old('numero_de_serie') }}" onkeyup="validarSerie()" pattern="[A-Za-z0-9]+" title="No debe contener caracteres especiales" required
-            onkeypress="return ((event.charCode =45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+            placeholder="Ingrese número de serie" value="{{ old('numero_de_serie') }}" onkeyup="validarSerie()" autocomplete="off" required
+            onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
             <span id="estadoSerie"></span>
           </div>
           <div class="form-group col-md-4">
             <label for="inputCity">Firmware <strong>*</strong></label>
             <input type="text" class="form-control" id="firmware" name="firmware" autocomplete="off"
             placeholder="Ingrese el firmware" value="{{ old('firmware') }}" onkeyup="validarFirmware()" required
-            onkeypress="return ((event.charCode =45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+            onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
             <span id="estadoFirmware"></span>
           </div>
           <div class="form-group col-md-4">
-            <label for="inputCity">Capacidad (GB) <strong>*</strong></label>
-
-            <input type="text" class="form-control" id="capacidad" name="capacidad" autocomplete="off" placeholder="Ingrese la capacidad en GB"
-            value="{{ old('capacidad') }}" onkeyup="validarCapacidad()" required maxlength="5" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
-            <span id="estadoCapacidad"></span>
+            <label for="inputCity">Capacidad<strong>*</strong></label>
+             <input type="text" class="form-control" id="capacidad" name="capacidad" autocomplete="off" placeholder="Ingrese capacidad en GB o TB"
+            value="{{ old('capacidad') }}" onkeyup="validarCapacidad()" required maxlength="8" onkeypress="return ((event.charCode >= 84 && event.charCode <= 84)||(event.charCode >= 116 && event.charCode <= 116)||(event.charCode >= 98 && event.charCode <= 98)||
+                              (event.charCode >= 103 && event.charCode <= 103)||(event.charCode >= 66 && event.charCode <= 66)||(event.charCode >= 71 && event.charCode <= 71)||(event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">      
           </div>
         </div>
         <div class="form-row">

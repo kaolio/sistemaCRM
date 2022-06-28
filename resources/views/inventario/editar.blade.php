@@ -68,12 +68,7 @@
     if($("#capacidad").val() == ""){
       $("#estadoCapacidad").html("<span  class='error'><h5 class='menor'>Este campo no puede estar vacío</h5></span>"); 
     }else{
-        $("#estadoCapacidad").html("<span  class='bien'><h5 class='menor'>Válido</h5></span>");
-              jQuery("#capacidad").on('input', function (evt) {
-                  // Allow only numbers.
-                  jQuery(this).val(jQuery(this).val().replace(/[^0-9]/g, ''));
-              });
-  
+        $("#estadoCapacidad").html("<span  class='bien'><h5 class='menor'>Válido</h5></span>");  
     }
   }
   function validarPbc(){
@@ -123,7 +118,7 @@
           <label for="inputPassword4">Modelo <strong>*</strong></label>
           <input type="text" class="form-control" id="modelo" name="modelo" placeholder="" value="{{$inventario->modelo}}" autocomplete="off"
                   value="{{ old('modelo') }}" onkeyup="validarModelo()" required
-                  onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+                  onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
                   <span id="estadoModelo"></span>
         </div>
       </div>
@@ -132,21 +127,24 @@
             <label for="inputCity">Número de Serie <strong>*</strong></label>
             <input type="text" class="form-control" id="numero_de_serie" name="numero_de_serie" value="{{$inventario->numero_de_serie}}" autocomplete="off"
                    value="{{ old('numero_de_serie') }}" onkeyup="validarSerie()" required 
-                   onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+                   onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
                    <span id="estadoSerie"></span>
           </div>
           <div class="form-group col-md-4">
               <label for="inputCity">Firmware <strong>*</strong></label>
               <input type="text" class="form-control" id="firmware" name="firmware" value="{{$inventario->firmware}}" autocomplete="off"
                      value="{{ old('firmware') }}" onkeyup="validarFirmware()" required 
-                     onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+                     onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
                      <span id="estadoFirmware"></span>
           </div>
             <div class="form-group col-md-4">
-              <label for="inputCity">Capacidad (GB) <strong>*</strong></label>
-              <input type="text" class="form-control" id="capacidad" name="capacidad" autocomplete="off" value="{{$inventario->capacidad}}"
-                     value="{{ old('capacidad') }}" onkeyup="validarCapacidad()" required maxlength="5"
-                     onkeypress="return ((event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+              <label for="inputCity">Capacidad<strong>*</strong></label>
+              {{-- <input type="text" class="form-control" id="capacidad" name="capacidad" autocomplete="off" value="{{$inventario->capacidad}}" placeholder="Ingrese capacidad en GB o TB"
+                     value="{{ old('capacidad') }}" onkeyup="validarCapacidad()" required maxlength="8"
+                     onkeypress="return ((event.charCode >= 84 && event.charCode <= 84)||(event.charCode >= 116 && event.charCode <= 116)||(event.charCode >= 98 && event.charCode <= 98)||(event.charCode >= 103 && event.charCode <= 103)||(event.charCode >= 66 && event.charCode <= 66)||(event.charCode >= 71 && event.charCode <= 71)||(event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))"> --}}
+              <input type="text" class="form-control" id="capacidad" name="capacidad" autocomplete="off" value="{{$inventario->capacidad}}" placeholder="Ingrese capacidad en GB o TB"
+                     value="{{ old('capacidad') }}" onkeyup="validarCapacidad()" required maxlength="8" onkeypress="return ((event.charCode >= 84 && event.charCode <= 84)||(event.charCode >= 116 && event.charCode <= 116)||(event.charCode >= 98 && event.charCode <= 98)||
+              (event.charCode >= 103 && event.charCode <= 103)||(event.charCode >= 66 && event.charCode <= 66)||(event.charCode >= 71 && event.charCode <= 71)||(event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">      
                      <span id="estadoCapacidad"></span>
           </div>
       </div>

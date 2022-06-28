@@ -105,8 +105,9 @@
         </button>
 </div>
 
-    <p class="subtitulo">Dispositivos del Paciente</p>
-    <div class="table">
+<p class="subtitulo">Dispositivos del Paciente</p>
+    <div class="card">
+    <div class="card-body">   
     <table class="table table-responsive">
         <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
             <tr>
@@ -126,7 +127,7 @@
     
                  <!-- Button trigger modal -->
            
-                   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal2">
+                   <button type="button" style="display:none" class="btn btn-success" data-toggle="modal" data-target="#exampleModal2">
                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
                              <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
                          </svg>
@@ -187,24 +188,16 @@
                  </div>
                  </div>
              </div> 
-                 
-                 
- 
- 
-    
-
-       
-
-   
-    
                            
             </tr>
         </tbody>
     </table>
      </div>
+    </div>
 
 <p class="subtitulo">Clones de Trabajo</p>
-<div class="table">
+<div class="card">
+<div class="card-body">
     <table class="table table-responsive">
         <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
             <tr>
@@ -232,51 +225,56 @@
            
           </tbody>
     </table>
-</div>     
+</div>
+</div>
 
 
 <p class="subtitulo">Donantes de Trabajo</p>
-<div class="table">
-    <table class="table table-responsive">
-        <thead  id="cabeceraDonantes1" class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
-            <tr>
-                {{-- titulos de la tabla--}}
-            </tr>
-        </thead>
-        <tbody id="buscadorDonantes1" class="table-bordered" >
-            <tr>
-                {{-- datos de la tabla inventarios --}}
-            </tr>
-           
-        </tbody>
-    </table>
-</div>     
+    <div class="card">
+    <div class="card-body">
+        <table class="table table-responsive">
+            <thead  id="cabeceraDonantes1" class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
+                <tr>
+                    {{-- titulos de la tabla--}}
+                </tr>
+            </thead>
+            <tbody id="buscadorDonantes1" class="table-bordered" >
+                <tr>
+                    {{-- datos de la tabla inventarios --}}
+                </tr>
+            
+            </tbody>
+        </table>
+    </div> 
+    </div>    
 
 
 <p class="subtitulo">Otros Dispositivos de los Clientes</p>
-<div class="table">
-    <table class="table table-responsive">
-        <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
-            <tr>
-                <th class="p-1"> &nbsp;&nbsp;&nbsp; </th>
-                <th class="p-1">Tipo</th>
-                <th class="p-1">Fabricante</th>
-                <th class="p-1">Modelo</th>
-                <th class="p-1">Serie</th>
-                <th class="p-1">Ubicación</th>
-                <th class="p-1">Nota</th>
-                <th class="p-1"></th>
-            </tr>
-          </thead>
-          <tbody class="table-bordered" id="datosOtrosDispositivos">
-              {{-- @if(count($inventario)<=0) --}}
-            <tr>
-              
-            <tr>
-               {{--  --}}
-          </tbody>
-    </table>
-</div>
+    <div class="card">
+    <div class="card-body">
+        <table class="table table-responsive">
+            <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
+                <tr>
+                    <th class="p-1"> &nbsp;&nbsp;&nbsp; </th>
+                    <th class="p-1">Tipo</th>
+                    <th class="p-1">Fabricante</th>
+                    <th class="p-1">Modelo</th>
+                    <th class="p-1">Serie</th>
+                    <th class="p-1">Ubicación</th>
+                    <th class="p-1">Nota</th>
+                    <th class="p-1"></th>
+                </tr>
+            </thead>
+            <tbody class="table-bordered" id="datosOtrosDispositivos">
+                {{-- @if(count($inventario)<=0) --}}
+                <tr>
+                
+                <tr>
+                {{--  --}}
+            </tbody>
+        </table>
+    </div>
+    </div>
 
      
     <script>
