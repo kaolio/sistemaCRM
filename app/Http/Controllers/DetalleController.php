@@ -17,7 +17,7 @@ use Psy\Command\WhereamiCommand;
 
 // use App\Http\Controllers\InventarioController;
 
-class DetalleController extends InventarioController
+class DetalleController extends InventarioController   
 {
     // use Inventario;
     function __construct()
@@ -91,8 +91,14 @@ class DetalleController extends InventarioController
                                 'clientes.pais','clientes.nota','users.name','orden_trabajos.id','orden_trabajos.informacion','orden_trabajos.datosImportantes')
                                 ->where('orden_trabajos.id','=',$id)
                                 ->first(); 
-
-        return view('trabajo.informacion.detalle',(compact('orden_elegida','usuarioDesignado','notas','recuperarDatos','prioridadTrabajo','diagnosticoDesignado')));
+        $diagnosticoCambiado = DB::table('orden_trabajos')
+                                ->select('*')
+                                ->get();
+        $recuperarDonante = DB::table('inventarios')
+                                ->select('*')
+                                ->get();
+                                
+        return view('trabajo.informacion.detalle',(compact('orden_elegida','usuarioDesignado','notas','recuperarDatos','prioridadTrabajo','diagnosticoCambiado','recuperarDonante')));
 
         }
         catch (Exception $e) {
@@ -212,6 +218,7 @@ class DetalleController extends InventarioController
         return json_encode(array('data'=>$datosPacientes));
     }
 
+    //tabla de otros disp de los clientes
     public function datosOtrosDispositivos(){
 
         $datosOtrosDispositivos =  DB::table('detalle_ordens')
@@ -239,14 +246,6 @@ class DetalleController extends InventarioController
         return json_encode(array('data'=>$datosInventario));
     }
 
-    
-    // buscador en tiemp real de lista de inventario
-    public function buscarInventario(Request $request){
-        $inventario = Inventario::where("manufactura",'like','%'.$request->texto.'%')
-        ->orWhere("modelo",'like','%'.$request->texto.'%')->get();
-        return view("trabajo/informacion/listaInventario",compact("inventario"));        
-    }
-
     public function buscadorDonante(){
         
         $recuperarDatos = DB::table('inventarios')
@@ -263,17 +262,20 @@ class DetalleController extends InventarioController
 
     public function guardarDiagnostico(){
 
-            DB::table('orden_trabajos')
+        $diagnostico = DB::table('orden_trabajos')
                     ->select('*')
-                    ->where('id','=', $_POST["nombre"])
+                    ->where('id','=',$_POST["nombre"])
+                    ->first();
+
+            DB::table('orden_trabajos')
+                    ->where('id', $diagnostico->id)
                     ->update(['diagnostico' => $_POST["selectDiagnostico"]]);
 
-        $diagnosticoDesignado = DB::table('detalle_ordens')
-                        ->select('*')
-                        ->where('diagnostico','=',$_POST["selectDiagnostico"])
+        $diagnosticoCambiado = DB::table('orden_trabajos')
+                        ->select('diagnostico')
                         ->get();
         
-                return json_encode(array('data'=>$diagnosticoDesignado));
+                return json_encode(array('data'=>$diagnosticoCambiado));
                   
     }
 

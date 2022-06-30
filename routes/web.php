@@ -88,6 +88,10 @@ Route::post('/trabajos/nuevo/detalle/modalDonante',[DetalleController::class,'bu
 //Archivos adjuntos
 Route::post('/trabajos/detalle/subir', [DetalleController::class,'subirArchivo']);//ruta para subir archivo a drive
 
+Route::post('/trabajos/nuevo/detalle/agregarDonante',[DetalleController::class,'agregarDonante']);  //buscador donante
+// Route::post('/trabajos/nuevo/detalle/agregarDonante',[DetalleController::class,'agregarDonante']);  //ver lista de donantes en dispositivos de trabajo
+// Route::post('/trabajos/nuevo/detalle/moverUbicacion',[DetalleController::class,'moverUbicacion']);  // mover ubicacion de la tabla de dispositivos del paciente
+Route::post('/trabajos/nuevo/detalle/guardarDiagnostico',[DetalleController::class,'guardarDiagnostico']);  // guardar diagnostico a los disp de los pacientes
 
 Route::post('/autocompletarCliente',[OrdenTrabajoController::class,'autoCompletar']);
 
@@ -107,6 +111,14 @@ Route::get('/inventario/excel',[InventarioController::class,'descargarExcel']); 
 Route::get('/inventario/buscador',[InventarioController::class,'buscador']);  //buscador en tiempo real
 
 Route::post('/inventario/busqueda' ,[InventarioController::class.'busqueda']);
+
+Route::post('/inventario/ver',[InventarioController::class,'ver']); //ver inventario con ajax
+Route::post('/inventario/prioridad',[InventarioController::class,'prioridad']); //filtrar dispositivos de rol
+Route::post('/inventario/ingeniero',[InventarioController::class,'ingeniero']); //filtrar por tipo
+Route::post('/inventario/estado',[InventarioController::class,'estado']); //filtrar por fabricante
+Route::post('/inventario/factor_de_forma',[InventarioController::class,'factorDeForma']); //filtrar por factor de forma
+Route::post('/inventario/redireccionar',[InventarioController::class,'redireccionar']);
+Route::post('/inventario/buscadorTiempoReal',[InventarioController::class,'buscadorTiempoReal']);
 
 
 //CLIENTES

@@ -489,7 +489,10 @@
                         
                     })
                     $("#tablaNotas").append(tablaNotas);
+                    if('#comentario'==''){
 
+                        $('#comentario').empty();
+                    }
                 }
             });
         });
