@@ -134,7 +134,7 @@
                                                                             <path d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z'/>
                                                                         </svg>
                                                                 </button>
-                                                                '<button type="button" class="btn btn-primary" id="btnBuscarDonante" name="btnBuscarDonante">XXXXXXXXX</button>'
+                                                                {{-- '<button type="button" class="btn btn-primary" id="btnBuscarDonante" name="btnBuscarDonante">XXXXXXXXX</button>' --}}
                                                                 </tbody>
                                                             </table>
                                                         </div> 
@@ -142,7 +142,7 @@
                                                 </div>
                                                 <div class="float-right">
                                                     <button type="button" class="btn btn-secondary" id="botones" data-dismiss="modal" style=" margin-left: auto;">Cancelar</button>
-                                                    {{-- <button type="button" class="btn btn-primary" id="btnBuscarDonante" name="btnBuscarDonante"><a href=""></a>Buscar</button> --}}
+                                                    <button type="button" class="btn btn-primary" id="btnBuscarDonante" name="btnBuscarDonante"><a href=""></a>Buscar</button>
                                                     {{-- <button id="btnAgregarDonante">agregar donante</button> --}}
                                                 </div>
                                     </div>{{-- @endif --}}

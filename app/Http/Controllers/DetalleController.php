@@ -8,6 +8,7 @@ use App\Models\Inventario;
 use Illuminate\Http\Request;
 use App\Models\Roles;
 use App\Models\Detalle;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -55,9 +56,11 @@ class DetalleController extends InventarioController
                     ->get(); 
         return json_encode(array('data'=>$datosTabla));
     }
+    
     public function buscar($id){ 
 
-        $diagnosticoDesignado = DB::table('orden_trabajos')
+        try {
+            $diagnosticoDesignado = DB::table('orden_trabajos')
                             ->select('diagnostico')
                             ->get();
 
@@ -97,6 +100,12 @@ class DetalleController extends InventarioController
                                 
         return view('trabajo.informacion.detalle',(compact('orden_elegida','usuarioDesignado','notas','recuperarDatos','prioridadTrabajo','diagnosticoCambiado','recuperarDonante')));
 
+        }
+        catch (Exception $e) {
+            //
+        }
+
+        
     }
 
     public function buscarOrden(){

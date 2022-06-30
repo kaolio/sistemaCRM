@@ -545,7 +545,7 @@ $.ajax({
                                     "<path d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z'/>"+
                                 "</svg>"+
                         '</button>'+
-                        '<button type="button" class="btn btn-primary" id="btnBuscarDonante" name="btnBuscarDonante">XXXXXXXXX</button>';
+                        '<button type="button" class="btn btn-primary" id="btnAddDonante" name="btnAddDonante">XXXXXXXXX</button>';
                     buscadorDonantes+="</tr>";
                     
                 })
@@ -554,6 +554,17 @@ $.ajax({
             }
         });
 });
+
+$(document).on("click", "#btnAddDonante", function() {
+        
+        
+        // if (eliminar != 0) {
+            // eliminar = eliminar-1;
+            // }
+            // $(this).parents('tr').remove();
+        console.log($(this).parents('tr').innerHTML('td'));
+          
+      });
 
 
    // ajax de lista de donantes en dispositivos de trabajos

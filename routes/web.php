@@ -95,6 +95,7 @@ Route::post('/autocompletarCliente',[OrdenTrabajoController::class,'autoCompleta
 //INVENTARIO
 Route::get('/inventario',[InventarioController::class,'index']);
 Route::get('/inventario/nuevo',[InventarioController::class,'create']);
+Route::get('/inventario/discosUso',[InventarioController::class,'discosUso']);
 Route::post('/inventario/nuevo',[InventarioController::class,'store']);
 Route::get('/inventario/editar/{id}',[InventarioController::class,'edit']);
 Route::post('/inventario/editar/{id}',[InventarioController::class,'update']);
@@ -108,7 +109,14 @@ Route::get('/inventario/buscador',[InventarioController::class,'buscador']);  //
 
 Route::post('/inventario/busqueda' ,[InventarioController::class.'busqueda']);
 
-Route::post('/inventario/verInventario',[InventarioController::class,'verInventario']); //ver inventario con ajax
+Route::post('/inventario/ver',[InventarioController::class,'ver']); //ver inventario con ajax
+Route::post('/inventario/prioridad',[InventarioController::class,'prioridad']); //filtrar dispositivos de rol
+Route::post('/inventario/ingeniero',[InventarioController::class,'ingeniero']); //filtrar por tipo
+Route::post('/inventario/estado',[InventarioController::class,'estado']); //filtrar por fabricante
+Route::post('/inventario/factor_de_forma',[InventarioController::class,'factorDeForma']); //filtrar por factor de forma
+Route::post('/inventario/redireccionar',[InventarioController::class,'redireccionar']);
+Route::post('/inventario/buscadorTiempoReal',[InventarioController::class,'buscadorTiempoReal']);
+
 
 //CLIENTES
 Route::get('/clientes',[ClienteController::class,'index']);

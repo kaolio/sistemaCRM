@@ -367,6 +367,12 @@ return [
                     'icon'    => 'fas fa-fw fa-filse',
                     'active' => ['inventario', 'inventario/editar*'],
                 ],
+                [
+                    'text' => 'Discos en Uso',
+                    'url'  => 'inventario/discosUso',
+                    'can' => 'ver-inventario',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
             ]
         ],
         [

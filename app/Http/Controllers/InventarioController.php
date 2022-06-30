@@ -4,14 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Inventario;
 use Illuminate\Http\Request;
+use App\Models\Cliente;
+use App\Models\DetalleOrden;
+use App\Models\Roles;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use PDF; // use Barryvdh\DomPDF\Facade as PDF;
 use Maatwebsite\Excel\Facades\Excel; //excel
 use App\Exports\InventarioExport;    //excel
 
 class InventarioController extends Controller
 {
-
 
     function __construct()
     {
@@ -25,40 +29,22 @@ class InventarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request )
+    public function index(Request $request)
     {
-        $busqueda=trim($request->get('busqueda'));
-        $inventario=DB::table('inventarios')
-                        ->select('id','manufactura','modelo','numero_de_serie','firmware','capacidad','pbc','ubicacion','factor_de_forma','nota','cabecera','info_de_cabecera')
-                        ->where('modelo', 'LIKE', '%'.$busqueda.'%')
-                        ->orWhere('manufactura', 'LIKE', '%'.$busqueda.'%')
-                        ->orWhere('numero_de_serie', 'LIKE', '%'.$busqueda.'%')
-                        ->orwhere('factor_de_forma', 'LIKE', '%'.$busqueda.'%')
-                        ->orderBy('id','desc')
-                        ->paginate(10);
-    //metodo facades para consultar la db //table name
+        
+        $rol = DB::table('users')
+                ->select('*')
+                ->where('id','<>','1')
+                ->get();
+        $trabajo = DB::table('inventarios')
+                    ->select('*')
+                    ->orderBy('inventarios.id','desc')
+                    ->get();
 
-        // $inventario = Inventario::all();
-        //metodo eloquent para consultar la bd
-
-        return view('inventario.index', compact('inventario','busqueda')); 
+        return view('inventario.index', compact('trabajo','rol'));
+        
     }
-    // public function buscarFactor(Request $request )
-    // {
-    //     $busquedaFactor=trim($request->get('busquedaFactor'));
-    //     $inventario=DB::table('inventarios')
-    //                     ->select('id','manufactura','modelo','numero_de_serie','firmware','capacidad','pbc','ubicacion','factor_de_forma','nota','cabecera','info_de_cabecera')
-    //                     ->where('factor_de_forma', 'LIKE', '%'.$busquedaFactor.'%')
-    //                     // ->orWhere('numero_de_serie', 'LIKE', '%'.$busqueda.'%')
-    //                     ->orderBy('id','desc')
-    //                     ->paginate(10);
-    // //metodo facades para consultar la db //table name
 
-    //     // $inventario = Inventario::all();
-    //     //metodo eloquent para consultar la bd
-
-    //     return view('inventario.index', compact('inventario','busquedaFactor')); 
-    // }
     
 
     public function descargarPDF(){
@@ -74,12 +60,13 @@ class InventarioController extends Controller
         $pdf = \PDF::loadView('/inventario/itemPdf',compact('inventario')); //bien
         return $pdf->setPaper('a4')->download('Reporte-Item-Inventario.pdf');
     }
-   
+
     public function imprimirPdf(){
         $inventario = Inventario::all();
         $pdf = \PDF::loadView('/inventario/pdf',compact('inventario'));
         return $pdf->setPaper('a4','landscape')->stream(); //mandar a imprimir la vista pdf en horizontal
     }
+
     public function imprimirItemPdf($id){
         $inventario = Inventario::find($id);
         $pdf = \PDF::loadView('/inventario/itemPdf',compact('inventario')); //imprimir la vista itemPdf
@@ -90,195 +77,13 @@ class InventarioController extends Controller
     public function descargarExcel(Request $request){
         return Excel::download(new InventarioExport, 'Reporte-Inventario-Excel.xlsx');
     }
+
     public function buscador(Request $request){
         $inventario = Inventario::where("manufactura",'like','%'.$request->texto.'%')
                                ->orWhere("factor_de_forma",'like','%'.$request->texto.'%')->get();
         return view("/inventario/paginas",compact("inventario"));        
     }
 
-
-    public function rol()
-    { //orden es el select q va recibir para que haga la funcion
-        if ($_POST["orden"] =='Todos') {
-            $datosTabla =  DB::table('inventarios')
-            ->select('*')
-            ->orderBy('id','desc')
-            ->get();  
-        }else{
-            $datosTabla =  DB::table('inventarios')
-                        ->select('*')
-                        ->where('inventarios.rol','=',$_POST["orden"])
-                        ->orderBy('inventarios.id','desc')
-                        ->get();  
-        }
-        
-        return json_encode(array('data'=>$datosTabla));
-    }
-    public function fabricante()
-    {
-        if ($_POST["orden"] =='Todos') {
-            $datosTabla =  DB::table('inventarios')
-            ->select('*')
-            ->orderBy('inventarios.id','desc')
-            ->get();  
-        }else{
-            $datosTabla =  DB::table('inventarios')
-                        ->select('*')
-                        ->where('inventarios.manufactura','=',$_POST["orden"])
-                        ->orderBy('inventarios.id','desc')
-                        ->get();  
-        }
-        
-        return json_encode(array('data'=>$datosTabla));
-    }
-    public function tipo()
-    {
-        if ($_POST["orden"] =='Todos') {
-            $datosTabla =  DB::table('inventarios')
-            ->select('*')
-            ->orderBy('inventarios.id','desc')
-            ->get();  
-        }else{
-            $datosTabla =  DB::table('inventarios')
-                        ->select('*')
-                        ->where('inventarios.tipo','=',$_POST["orden"])
-                        ->orderBy('inventarios.id','desc')
-                        ->get();  
-        }
-        
-        return json_encode(array('data'=>$datosTabla));
-    }
-    public function factor()
-    {
-        if ($_POST["orden"] =='Todos') {
-            $datosTabla =  DB::table('inventarios')
-            ->select('*')
-            ->orderBy('inventarios.id','desc')
-            ->get();  
-        }else{
-            $datosTabla =  DB::table('inventarios')
-                        ->select('*')
-                        ->where('inventarios.factor_de_forma','=',$_POST["orden"])
-                        ->orderBy('inventarios.id','desc')
-                        ->get();  
-        }
-        
-        return json_encode(array('data'=>$datosTabla));
-    }
-    // public function activo()
-    // {
-    //     if ($_POST["orden"] =='Todos') {
-    //         $datosTabla =  DB::table('orden_trabajos')
-    //         ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-    //         ->join('users','users.id','orden_trabajos.asignado')
-    //         ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-    //         ->orderBy('orden_trabajos.id','desc')
-    //         ->get();  
-    //     }else{
-    //         $datosTabla =  DB::table('orden_trabajos')
-    //         ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-    //         ->join('users','users.id','orden_trabajos.asignado')
-    //         ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-    //                     ->where('orden_trabajos.prioridad','=',$_POST["orden"])
-    //                     ->orderBy('orden_trabajos.id','desc')
-    //                     ->get();  
-    //     }
-        
-    //     return json_encode(array('data'=>$datosTabla));
-    // }
-    // public function ocupado()
-    // {
-    //     if ($_POST["orden"] =='Todos') {
-    //         $datosTabla =  DB::table('orden_trabajos')
-    //         ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-    //         ->join('users','users.id','orden_trabajos.asignado')
-    //         ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-    //         ->orderBy('orden_trabajos.id','desc')
-    //         ->get();  
-    //     }else{
-    //         $datosTabla =  DB::table('orden_trabajos')
-    //         ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-    //         ->join('users','users.id','orden_trabajos.asignado')
-    //         ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-    //                     ->where('orden_trabajos.prioridad','=',$_POST["orden"])
-    //                     ->orderBy('orden_trabajos.id','desc')
-    //                     ->get();  
-    //     }
-        
-    //     return json_encode(array('data'=>$datosTabla));
-    // }
-    // public function recursos()
-    // {
-    //     if ($_POST["orden"] =='Todos') {
-    //         $datosTabla =  DB::table('orden_trabajos')
-    //         ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-    //         ->join('users','users.id','orden_trabajos.asignado')
-    //         ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-    //         ->orderBy('orden_trabajos.id','desc')
-    //         ->get();  
-    //     }else{
-    //         $datosTabla =  DB::table('orden_trabajos')
-    //         ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-    //         ->join('users','users.id','orden_trabajos.asignado')
-    //         ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-    //                     ->where('orden_trabajos.prioridad','=',$_POST["orden"])
-    //                     ->orderBy('orden_trabajos.id','desc')
-    //                     ->get();  
-    //     }
-        
-    //     return json_encode(array('data'=>$datosTabla));
-    // }
-    public function verInventario()
-    {
-            $datosTabla =  DB::table('inventarios')
-            ->select('*')
-            ->orderBy('inventarios.id','desc')
-            ->get();  
-        
-        return json_encode(array('data'=>$datosTabla));
-    }
-    // public function redireccionar()
-    // {
-    //     if ($_POST["grado"] != "Todos") {
-    //         $datosTabla =  DB::table('inventarios')
-    //         ->select('*')
-    //         ->where('inventarios.rol','=',$_POST["grado"])
-    //         ->orderBy('inventarios.id','desc')
-    //         ->get(); 
-    //     } else {
-    //         if ($_POST["estado"] != "Todos") {
-    //             $datosTabla =  DB::table('orden_trabajos')
-    //                     ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-    //                     ->join('users','users.id','orden_trabajos.asignado')
-    //         ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-    //         ->where('orden_trabajos.estado','=',$_POST["estado"])
-    //                     ->orderBy('orden_trabajos.id','desc')
-    //                     ->get();
-    //         } else {
-    //             if ($_POST["ingeniero"] != "Todos los Ingenieros") {
-    //                 $datosTabla =  DB::table('orden_trabajos')
-    //                     ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-    //                     ->join('users','users.id','orden_trabajos.asignado')
-    //         ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-    //         ->where('orden_trabajos.asignado','=',$_POST["ingeniero"])
-    //                     ->orderBy('orden_trabajos.id','desc')
-    //                     ->get();
-    //             } else {
-    //                 $datosTabla =  DB::table('orden_trabajos')
-    //                         ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-    //                         ->join('users','users.id','orden_trabajos.asignado')
-    //         ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-    //         ->orderBy('orden_trabajos.id','desc')
-    //                         ->get(); 
-    //             }
-                
-    //         }
-            
-    //     }
-        
-        
-    //     return json_encode(array('data'=>$datosTabla));
-    // }
     /**
      * Show the form for creating a new resource.
      *
@@ -286,7 +91,8 @@ class InventarioController extends Controller
      */
     public function create()
     {
-        return view('inventario.create');
+        $cadena = Session::get('cadena');
+        return view('inventario.create',compact('cadena'));
     }
 
     /**
@@ -295,39 +101,10 @@ class InventarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-    protected function validar(Request $request)  //VALIDACIONES
+    public function store(Request $request, Roles $roles)
     {
-        $request->validate([
-        'manufactura' => 'required | unique:forms',
-        'modelo' => 'required | unique:forms',
-        'numero_de_serie' =>'required | string | min:20 | max:30',
-        'firmware' => '',
-        'capacidad' =>'required',
-        'pbc' =>'',
-        'ubicacion' => 'required',
-        'factor_de_forma' => '',
-        'nota' => '',
-        'cabecera' => '',
-        'info_de_cabecera' => ''
-        ]);
-        
-        $form = new Inventario;
-        $form->manufactura = $request->manufactura;
-    }
-
-    protected function validator(array $data)  //VALIDACIONES
-    {
-        return Validator::make($data, [
-            'id' => ['required', 'string', 'max:255'],
-            'manufactura' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'modelo' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-    }
-
-    public function store(Request $request)
-    {
-        $inventario = new Inventario();
+                               
+        $inventario = new Inventario;
 
         $inventario->manufactura = request('manufactura');
         $inventario->modelo = request('modelo');
@@ -342,8 +119,8 @@ class InventarioController extends Controller
         $inventario->info_de_cabecera = request('info_de_cabecera');
         $inventario->diagnostico = request('diagnostico');
         $inventario->rol = request('rol');
-        $inventario->tipo = "HDD";
-
+        $inventario->tipo = request('tipo');
+      
         $inventario->save();
         return redirect('inventario');
     }
@@ -351,21 +128,20 @@ class InventarioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Inventario  $inventario
+     * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
      * @return \Illuminate\Http\Response
      */
-    public function show(Inventario $inventario)
+    public function show(OrdenTrabajo $ordenTrabajo)
     {
-        // return view('inventario.index');
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Inventario  $inventario
+     * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
      * @return \Illuminate\Http\Response
      */
-    // public function edit(Inventario $inventario)
     public function edit($id)
     {
         $inventario=Inventario::findOrFail($id);
@@ -380,7 +156,7 @@ class InventarioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Inventario  $inventario
+     * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -406,7 +182,7 @@ class InventarioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Inventario  $inventario
+     * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
      * @return \Illuminate\Http\Response
      */
     public function destroy(Inventario $inventario, $id)
@@ -416,6 +192,190 @@ class InventarioController extends Controller
 
         return redirect('inventario');
     }
+    public function discosUso(){
+        return view('inventario.discosUso.discosUso');
+    }
+
+    function autoCompletar(Request $request)
+    {
+     if($request->get('query'))
+     {
+      $query = $request->get('query');
+      $data = DB::table('clientes')
+        ->where('nombreCliente', 'LIKE', "{$query}%")
+        ->get();
+      $output = '<datalist id="codigo">';
+      foreach($data as $row)
+      {
+       $output .= '
+       <option>'.$row->nombreCliente.', '.$row->calle.' '.$row->numero.', '.$row->codigoPostal.' '.$row->nombreCiudad.'</option>
+       ';
+      }
+      $output .= '</datalist>';
+      echo $output;
+     }
+    }
+
+    public function prioridad()
+    { //orden es el select q va recibir para que haga la funcion
+        if ($_POST["orden"] =='Todos') {
+            $datosTabla =  DB::table('inventarios')
+            ->select('*')
+            ->orderBy('id','desc')
+            ->get();  
+        }else{
+            $datosTabla =  DB::table('inventarios')
+                        ->select('*')
+                        ->where('inventarios.rol','=',$_POST["orden"])
+                        ->orderBy('inventarios.id','desc')
+                        ->get();  
+        }
+        
+        return json_encode(array('data'=>$datosTabla));
+    }
+
+    public function estado()
+    {
+        if ($_POST["orden"] =='Todos') {
+            $datosTabla =  DB::table('inventarios')
+            ->select('*')
+            ->orderBy('inventarios.id','desc')
+            ->get();  
+        }else{
+            $datosTabla =  DB::table('inventarios')
+                        ->select('*')
+                        ->where('inventarios.manufactura','=',$_POST["orden"])
+                        ->orderBy('inventarios.id','desc')
+                        ->get();  
+        }
+        
+        return json_encode(array('data'=>$datosTabla));
+    }
+
+    public function ingeniero()
+    {
+        if ($_POST["orden"] =='Todos') {
+            $datosTabla =  DB::table('inventarios')
+            ->select('*')
+            ->orderBy('inventarios.id','desc')
+            ->get();  
+        }else{
+            $datosTabla =  DB::table('inventarios')
+                        ->select('*')
+                        ->where('inventarios.tipo','=',$_POST["orden"])
+                        ->orderBy('inventarios.id','desc')
+                        ->get();  
+        }
+        
+        return json_encode(array('data'=>$datosTabla));
+    }
+
+    public function factorDeForma()
+    {
+        if ($_POST["orden"] =='Todos') {
+            $datosTabla =  DB::table('inventarios')
+            ->select('*')
+            ->orderBy('inventarios.id','desc')
+            ->get();  
+        }else{
+            $datosTabla =  DB::table('inventarios')
+                        ->select('*')
+                        ->where('inventarios.factor_de_forma','=',$_POST["orden"])
+                        ->orderBy('inventarios.id','desc')
+                        ->get();  
+        }
+        
+        return json_encode(array('data'=>$datosTabla));
+    }
+
+    public function ver()
+    {
+            $datosTabla =  DB::table('inventarios')
+            ->select('*')
+            ->orderBy('inventarios.id','desc')
+            ->get();  
+        
+        return json_encode(array('data'=>$datosTabla));
+    }
+
+    public function buscadorTiempoReal()
+    {
+
+            $datosTabla =  DB::table('inventarios')
+            ->select('*')
+            ->where('modelo', 'like', '%' . $_POST["value"] . '%')
+            ->orWhere('manufactura', 'like', '%' . $_POST["value"] . '%')
+            ->orWhere('factor_de_forma', 'like', '%' . $_POST["value"] . '%')
+            ->orderBy('inventarios.id','desc')
+            ->get();  
+        
+            
+        return json_encode(array('data'=>$datosTabla));
+    }
+
+    public function redireccionar()
+    {
+        if ($_POST["grado"] != "Todos") {
+            $datosTabla =  DB::table('inventarios')
+            ->select('*')
+            ->where('inventarios.rol','=',$_POST["grado"])
+            ->orderBy('inventarios.id','desc')
+            ->get(); 
+        } else {
+            if ($_POST["estado"] != "Todos") {
+                $datosTabla =  DB::table('inventarios')
+                ->select('*')
+                ->where('inventarios.manufactura','=',$_POST["estado"])
+                ->orderBy('inventarios.id','desc')
+                ->get();
+            } else {
+                if ($_POST["ingeniero"] != "Todos") { //modify
+                    $datosTabla =  DB::table('inventarios')
+                    ->select('*')
+                    ->where('inventarios.tipo','=',$_POST["ingeniero"]) //modify
+                    ->orderBy('inventarios.id','desc')
+                    ->get();
+                } else {
+                    if($_POST["factor_de_forma"] != "Todos"){
+                        $datosTabla =  DB::table('inventarios')
+                        ->select('*')
+                        ->where('inventarios.factor_de_forma','=',$_POST["factor_de_forma"])
+                        ->orderBy('inventarios.id','desc')
+                        ->get();
+                    }
+                    else{
+                                    $datosTabla =  DB::table('inventarios')
+                                    ->select('*')
+                                    ->orderBy('inventarios.id','desc')
+                                    ->get(); 
+                        }
+                }
+                
+            }
+            
+        }
+        
+        
+        return json_encode(array('data'=>$datosTabla));
+    }
+
+    public function cambioPrioridadNueva()
+    {
+
+        
+            DB::table('orden_trabajos')
+                ->where('id', $_POST['arreglo'][0])
+                ->update(['prioridad' => $_POST["seleccionado"]]);
+                
 
 
+        $datosTablas =  DB::table('orden_trabajos')
+        ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+        ->join('users','users.id','orden_trabajos.asignado')
+        ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+        ->orderBy('orden_trabajos.id','desc')
+        ->get();  
+    
+        return json_encode(array('data'=>$datosTablas));
+    }
 }
