@@ -195,6 +195,11 @@ class DetalleController extends InventarioController
         return redirect('trabajos.informacion');
     }
 
+    public function subirArchivo(Request $request){
+        
+        dd($request->file("file-upload"));
+    }
+
     public function datosPacientes(){
 
         $datosPacientes =  DB::table('detalle_ordens')

@@ -85,7 +85,8 @@ Route::post('/trabajos/nuevo/detalle/datosPacientes',[DetalleController::class,'
 Route::post('/trabajos/nuevo/detalle/datosOtrosDispositivos',[DetalleController::class,'datosOtrosDispositivos']);//ruta orden de trabajos de otros dispositivos
 //Route::post('/trabajos/nuevo/detalle/datosInventario',[DetalleController::class,'datosInventario']); //ruta de inventario en (dispositivos de trabajo)
 Route::post('/trabajos/nuevo/detalle/modalDonante',[DetalleController::class,'buscadorDonante']);  //buscador donante
-
+//Archivos adjuntos
+Route::post('/trabajos/detalle/subir', [DetalleController::class,'subirArchivo']);//ruta para subir archivo a drive
 
 
 Route::post('/autocompletarCliente',[OrdenTrabajoController::class,'autoCompletar']);
