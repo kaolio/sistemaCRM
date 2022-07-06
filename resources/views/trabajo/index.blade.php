@@ -1185,6 +1185,7 @@
         var selectedTipo = tipo.options[tipo.selectedIndex].text;
         var ver = document.getElementById("ver");
         var selectedVer = ver.options[ver.selectedIndex].text;
+        console.log(selectedTipo);
         $.ajax({
             url: "/trabajo/ingeniero",
             type: "POST",
