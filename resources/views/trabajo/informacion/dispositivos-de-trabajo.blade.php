@@ -119,15 +119,16 @@
                 <th class="p-1">Ubicación</th>
                 <th class="p-1">Diagnóstico</th>
                 <th class="p-1">Nota</th>
-                <th class="p-1"></th>
+                <th class="p-1">Acciones</th>
             </tr>
           </thead>
           <tbody class="table-bordered" id="datosPacientes">
              <tr>
+                <button id="btnPaciente">Borrar paciente</button>
     
                  <!-- Button trigger modal -->
            
-                   <button type="button" style="display:none" class="btn btn-success" data-toggle="modal" data-target="#exampleModal2">
+                   <button style="visibility: hidden" type="button" style="display:none" class="btn btn-success" data-toggle="modal" data-target="#exampleModal2">
                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
                              <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
                          </svg>
@@ -361,7 +362,7 @@ $.ajax({
                         datosPacientes+="<tr>"
                         datosPacientes+="<td>"+"<input type='checkbox' id='moverUbicacion'>"+
                             "</td>"+"<td>"+row.tipo+"</td><td>"+row.fabricante+"</td><td>"+row.modelo+"</td>"
-                        +"<td>"+row.serial+"</td><td>"+row.localizacion+"</td><td>"+row.diagnostico+"<td></td>"+
+                        +"<td>"+row.serial+"</td><td>"+row.localizacion+"</td><td>"+row.diagnostico+"</td><td>"+row.nota+"</td>"+
                         "<td>"+
                             "<button class='btn btn-icon btn-danger' type='button' id='btnDiagnostico' name='btnDiagnostico'>"+
                                 "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>"+
@@ -369,16 +370,7 @@ $.ajax({
                                     "<path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/>"+
                                 "</svg>"+
                             "</button>"+
-                            "<button class='btn btn-primary'>"+
-                                "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-arrow-left-right' viewBox='0 0 16 16'>"+
-                                    "<path fill-rule='evenodd' d='M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z'/>"+
-                                "</svg>"+
-                            "</button>"+
-                            "<button class='btn btn-primary'>"+
-                                "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-arrows-move' viewBox='0 0 16 16'>"+
-                                    "<path fill-rule='evenodd' d='M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z'/>"+
-                                "</svg>"+
-                            "</button>"+
+
                             "<button class='btn btn-success'>"+
                                  "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-download' viewBox='0 0 16 16'>"+
                                     "<path d='M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z'/>"+
@@ -444,64 +436,46 @@ $.ajax({
         "</div>"+
         "</div>"+
     "</div>"+
-    //modal
-         '<button class="btn btn-secondary">'+
-            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">'+
-                '<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>'+
-              '</svg>'+
-        '</button>'+
+    //fin modal
 
-        '<button class="btn btn-secondary">'+
+        '<button class="btn btn-icon btn-success">'+
             '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">'+
                 '<path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>'+
               '</svg>'+
         '</button>'+
-
+        '<button value='+row.id+'+ OnClick="Eliminar(this)"class="btn btn-icon btn-danger" type="button" id="deletRow" name="deletRow">'+
+            "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>"+
+                                              "<path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'/>"+
+                                              "<path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/>"+
+                                              "</svg>"+
+        '</button>'+
                         +"</td>";
-                        datosPacientes+="</tr>";
-                        
+                        datosPacientes+="</tr>";    
                     })
                     $("#datosPacientes").append(datosPacientes);
                 }
             });
             
     });
-    //
-    //     $(document).ready(function() {
-    //         var url = "{{URL('datosInventario')}}";
-    //         $.ajax({
-    //             url: "/trabajos/nuevo/detalle/datosInventario",
-    //             type: "POST",
-    //             data:{ 
-    //                 "_token": "{{ csrf_token() }}",
-    //                 "nombre": "{{$orden_elegida->id}}",
-    //             },
-    //             cache: false,
-    //             dataType: 'json',
-    //             success: function(dataResult){
-    //                 console.log(dataResult);
-    //                 var resultData = dataResult.data;
-    //                 var bodyData = '';
-    //                 $.each(resultData,function(index,row){
-    //                     datosInventario+="<tr>"
-    //                     datosInventario+="<td></td>"+"<td>"+row.tipo+"</td><td>"+row.fabricante+"</td><td>"+row.modelo+"</td>"
-    //                     +"<td>"+row.serial+"</td><td>"+row.localizacion+"</td><td>"+row.diagnostico+
-    //                     "</td>"
-    //                     "<button class='btn btn-icon btn-danger' type='button' id='deletRow' name='deletRow'>"+
-    //                                           "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>"+
-    //                                           "<path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'/>"+
-    //                                           "<path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/>"+
-    //                                           "</svg>"+
-    //                     "</button>"
-    //                     +"<td>";
-    //                     datosInventario+="</tr>";
-                        
-    //                 })
-    //                 $("#datosInventario").append(datosInventario);
-    //             }
-    //         });
-            
-    // });
+    //ELIMINAR FILA DE DISP DE PACIENTES
+
+    // $(document).on("click", ".eliminar", function() {
+    //     var id = $(this).data('id');
+    //         $(this).parents('tr').remove();
+           
+              
+    //   });
+      $(window).ready(function () {
+   
+   if ( $ ('.eliminar').length)
+   {
+       $('.eliminar').click(function () {
+          var id = $(this).data('id');
+          $(this).parents('tr').fadeOut(1000); 
+       });
+   }
+
+});
   ////////////////////
   // ajax de buscador de donante
     $('#btnBuscarDonante').on('click', function () {
@@ -662,4 +636,15 @@ $('#btnMoverUbicacion').on('click', function () {
             }
         });
     });
+
+        //guardar diagnostico de la tabla de disp del paciente
+ function Eliminar(btn){
+    var token = $("#token").val();
+    $.ajax({
+        url:"/trabajos/nuevo/detalle/"+btn.value+"",
+        headers: {'X-CSRF-TOKEN': token},
+        type:'DELETE',
+        dataType: 'json',
+    });
+ }
     </script>

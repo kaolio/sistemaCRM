@@ -105,7 +105,7 @@
 @section('content')
 
 <div class="card">
-  <div class="container">
+  <div class="container-fluid">
     <form class="m-3" action="{{ url('/inventario/nuevo') }}" method="POST">
       @csrf
       <div class="form-row">

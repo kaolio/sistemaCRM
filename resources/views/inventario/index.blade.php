@@ -20,7 +20,7 @@
 
 
 <h1 align="center"><strong>INVENTARIO</strong></h1>
-<div style="margin-top: -40px">
+<div class="container-fluid" style="margin-top: -40px">
   <div class="d-flex" style="visibility: hidden">
     <div class="p-1">
       <div class="input-group">
