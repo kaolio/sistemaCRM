@@ -65,6 +65,12 @@ Route::post('/trabajo/ver',[OrdenTrabajoController::class,'ver']);
 Route::post('/trabajo/redireccionar',[OrdenTrabajoController::class,'redireccionar']);
 Route::post('/trabajo/tiempoReal',[OrdenTrabajoController::class,'buscaTiempoReal']);
 Route::post('/trabajo/cambioPrioridad',[OrdenTrabajoController::class,'cambioPrioridadNueva']);
+Route::post('/trabajo/cambioEstado',[OrdenTrabajoController::class,'cambioEstadoNuevo']);
+Route::post('/trabajo/eliminarVarios',[OrdenTrabajoController::class,'eliminarVarios']);
+Route::post('/trabajo/imprimir',[OrdenTrabajoController::class,'variosPDF']);
+Route::get('/trabajo/pdf',[OrdenTrabajoController::class,'descargarPDF']); //ruta para descargar pdf
+Route::get('/trabajo/excel',[OrdenTrabajoController::class,'descargarExcel']); //ruta para descargar excel
+Route::get('/trabajo/imprimirIndex',[OrdenTrabajoController::class,'imprimirPDF']); //imprimir pdf
 
 //Detalle de trabajo
 //general
