@@ -6,6 +6,7 @@ use App\Http\Controllers\OrdenTrabajoController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\DetalleController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginClienteController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,8 +28,13 @@ Route::get('/', function () {
 Auth::routes();
 
 //HOME
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('/home/datosDashboard',[HomeController::class, 'datosDashboard']);
+
+//LOGIN CLIENTE
+Route::get('/login/cliente', [LoginClienteController::class, 'index']);
+Route::get('/login/cliente/{id}', [LoginClienteController::class, 'vistaCliente']);
+Route::post('/login/cliente', [LoginClienteController::class, 'start']);
 
 //ROLES
 Route::get('/roles',[RolesController::class,'index']);

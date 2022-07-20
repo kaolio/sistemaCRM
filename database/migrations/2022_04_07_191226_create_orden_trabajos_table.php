@@ -26,6 +26,7 @@ class CreateOrdenTrabajosTable extends Migration
             $table->string('diagnostico')->nullable();
             $table->string('precio')->nullable();
             $table->string('bandera')->nullable();
+            $table->string('password')->nullable();
 
             $table->timestamps();
 

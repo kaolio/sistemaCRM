@@ -25,8 +25,6 @@ class CreateClientesTable extends Migration
             $table->string('nombreCiudad')->nullable();
             $table->string('pais')->nullable();
             $table->string('idioma')->nullable();
-            $table->string('tipo')->nullable();
-            $table->string('valor')->nullable();
             $table->text('nota')->nullable();
             $table->timestamps();
         });

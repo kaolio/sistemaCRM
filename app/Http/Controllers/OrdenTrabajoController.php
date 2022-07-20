@@ -79,7 +79,10 @@ class OrdenTrabajoController extends Controller
                         ->select('id')
                         ->where('nombreCliente','=',$cliente)
                         ->first();
-                        
+        
+        $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $acceso = substr(str_shuffle($permitted_chars), 0, 16);
+
         $datoTrabajo = new OrdenTrabajo;
         $datoTrabajo->id_cliente = $identificado->id;
         $datoTrabajo->prioridad = $request->get('prioridad');
@@ -91,6 +94,7 @@ class OrdenTrabajoController extends Controller
         $datoTrabajo->creado = Auth::user()->name;
         $datoTrabajo->diagnostico = "No Actualizado";
         $datoTrabajo->bandera = "0";
+        $datoTrabajo->password = $acceso;
         $datoTrabajo->save();
         
 

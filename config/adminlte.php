@@ -322,6 +322,7 @@ return [
             'text' => 'Dashboard',
             'url'  => 'home',
             'icon' => 'fas fa-fw fa-save',
+            'can' => 'ver-trabajo',
         ],
         [
             'text'    => 'Orden de Trabajo  ',
@@ -395,7 +396,8 @@ return [
                 ],
             ]
         ],
-        ['header' => 'ADMINISTRACION'],
+        ['header' => 'ADMINISTRACION',
+        'can' => 'ver-trabajo'],
         [
             'text'    => 'Usuarios  ',
             'icon'    => 'fas fa-fw fa-user',
