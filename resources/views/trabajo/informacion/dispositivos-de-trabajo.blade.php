@@ -10,7 +10,7 @@
         font-size: 12px;
         text-align: center;
     }
-    #botones, #btnBuscarDonante{
+    #botones, #btnBuscarDonante, #btnBuscarClon{
         font-size: 14px;
         border-radius: 4px;
         padding: 5px;
@@ -34,23 +34,16 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-arrows-move" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z"/>
         </svg>
-        Mover Dispositivos Seleccionados
+        Mover Dispositivos 
     </button>
     <!-- add device --> 
-
- 
-
-
-
-
-
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel" align="center">Mover Dispositivos Seleccionados</h5>
+            <h5 class="modal-title" id="exampleModalLabel" align="center">Mover Dispositivos</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -84,7 +77,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
             </svg>
-            Eliminar dispositivos seleccionados
+            Eliminar dispositivos
         </button>
         <button class="btn btn-success" id="botones">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -112,14 +105,14 @@
         <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
             <tr>
                 <th class="p-1">&nbsp;&nbsp;&nbsp;</th>
-                <th class="p-1">Tipo</th>
-                <th class="p-1">Fabricante</th>
-                <th class="p-1">Modelo</th>
-                <th class="p-1">Serie</th>
-                <th class="p-1">Ubicación</th>
-                <th class="p-1">Diagnóstico</th>
-                <th class="p-1">Nota</th>
-                <th class="p-1"></th>
+                <th class="col-md-1 p-1">Tipo</th>
+                <th class="col-md-1 p-1">Fabricante</th>
+                <th class="col-md-1 p-1">Modelo</th>
+                <th class="col-md-1 p-1">Serie</th>
+                <th class="col-md-1 p-1">Ubicación</th>
+                <th class="col-md-1 p-1">Diagnóstico</th>
+                <th class="col-md-1 p-1" style="width: 200px">Nota</th>
+                <th class="col-md-1 p-1" style="width: 300px"></th>   
             </tr>
           </thead>
           <tbody class="table-bordered" id="datosPacientes">
@@ -196,53 +189,53 @@
     </div>
 
 <p class="subtitulo">Clones de Trabajo</p>
-<div class="card">
-<div class="card-body">
-    <table class="table table-responsive">
-        <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
-            <tr>
-                <th class="p-1"> &nbsp;&nbsp;&nbsp; </th>
-                <th class="col-md-1 p-1"> ID </th>
-                <th class="col-md-1 p-1">Tipo</th>
-                <th class="col-md-2 p-1">Fabricante</th>
-                <th class="col-md-2 p-1">Modelo</th>
-                <th class="col-md-2 p-1">Serie</th>
-                <th class="col-md-1 p-1">Ubicación</th>
-                <th class="col-md-2 p-1">Nota</th>
-                <th class="col-md-1 p-1"></th>
-            </tr>
-          </thead>
-          <tbody class="table-bordered">
-              {{-- @if(count($inventario)<=0) --}}
-                <tr>
-                  <th class="col-md-3">No hay datos disponibles</th>  
-                <tr>
-               {{-- @else    --}}
-               {{-- @foreach ($inventario as $item) --}}
-            <tr>
-             
-            </tr>
-           
-          </tbody>
-    </table>
-</div>
-</div>
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-responsive">
+                <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
+                    <tr>
+                        <th class="p-1"> &nbsp;&nbsp;&nbsp; </th>
+                        <th class="col-md-1 p-1"> ID </th>
+                        <th class="col-md-1 p-1">Tipo</th>
+                        <th class="col-md-2 p-1">Fabricante</th>
+                        <th class="col-md-2 p-1">Modelo</th>
+                        <th class="col-md-2 p-1">Serie</th>
+                        <th class="col-md-1 p-1">Ubicación</th>
+                        <th class="col-md-2 p-1">Nota</th>
+                        <th class="col-md-1 p-1"></th>
+                    </tr>
+                </thead>
+                <tbody class="table-bordered" id="clonesTrabajo">
+                    <tr>
+                    
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 
 <p class="subtitulo">Donantes de Trabajo</p>
     <div class="card">
     <div class="card-body">
         <table class="table table-responsive">
-            <thead  id="cabeceraDonantes1" class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
+            <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
                 <tr>
-                    {{-- titulos de la tabla--}}
+                    <th class="p-1"> &nbsp;&nbsp;&nbsp; </th>
+                    <th class="col-md-1 p-1"> ID </th>
+                    <th class="col-md-1 p-1">Tipo</th>
+                    <th class="col-md-2 p-1">Fabricante</th>
+                    <th class="col-md-2 p-1">Modelo</th>
+                    <th class="col-md-2 p-1">Serie</th>
+                    <th class="col-md-1 p-1">Ubicación</th>
+                    <th class="col-md-2 p-1">Nota</th>
+                    <th class="col-md-1 p-1"></th>
                 </tr>
             </thead>
-            <tbody id="buscadorDonantes1" class="table-bordered" >
+            <tbody class="table-bordered" id="donantesTrabajo">
                 <tr>
-                    {{-- datos de la tabla inventarios --}}
+                
                 </tr>
-            
             </tbody>
         </table>
     </div> 
@@ -256,86 +249,84 @@
             <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
                 <tr>
                     <th class="p-1"> &nbsp;&nbsp;&nbsp; </th>
-                    <th class="p-1">Tipo</th>
-                    <th class="p-1">Fabricante</th>
-                    <th class="p-1">Modelo</th>
-                    <th class="p-1">Serie</th>
-                    <th class="p-1">Ubicación</th>
-                    <th class="p-1">Nota</th>
-                    <th class="p-1"></th>
+                    <th class="col-md-1 p-1">Tipo</th>
+                    <th class="col-md-1 p-1">Fabricante</th>
+                    <th class="col-md-1 p-1">Modelo</th>
+                    <th class="col-md-1 p-1">Serie</th>
+                    <th class="col-md-1 p-1">Ubicación</th>
+                    <th class="col-md-1 p-1" style="width: 250px">Nota</th>
+                    <th class="col-md-1 p-1" style="width: 400px"></th>
                 </tr>
             </thead>
             <tbody class="table-bordered" id="datosOtrosDispositivos">
-                {{-- @if(count($inventario)<=0) --}}
                 <tr>
                 
                 <tr>
-                {{--  --}}
             </tbody>
         </table>
     </div>
     </div>
 
      
-    <script>
-        //lista de otros dispositivos en: dispositivos-de-trabajo/tabla otros disp. del cliente 
-        $(document).ready(function() {
+<script>
+//lista de otros dispositivos en: dispositivos-de-trabajo/tabla otros disp. del cliente 
+    $(document).ready(function() {
 
-var url = "{{URL('datosOtrosDispositivos')}}";
-$.ajax({
-    url: "/trabajos/nuevo/detalle/datosOtrosDispositivos",
-    type: "POST",
-    data:{ 
-        "_token": "{{ csrf_token() }}",
-        "nombre": "{{$orden_elegida->id}}",
-    },
-    cache: false,
-    dataType: 'json',
-    success: function(dataResult){
-        //console.log(dataResult);
-        var resultData = dataResult.data;
-        var bodyData = '';
+    var url = "{{URL('datosOtrosDispositivos')}}";
+    $.ajax({
+        url: "/trabajos/nuevo/detalle/datosOtrosDispositivos",
+        type: "POST",
+        data:{ 
+            "_token": "{{ csrf_token() }}",
+            "nombre": "{{$orden_elegida->id}}",
+        },
+        cache: false,
+        dataType: 'json',
+        success: function(dataResult){
+            //console.log(dataResult);
+            var resultData = dataResult.data;
+            var bodyData = '';
 
-        $.each(resultData,function(index,row){
-            datosOtrosDispositivos+="<tr>"
-            datosOtrosDispositivos+="<td>"+"<input type='checkbox'>"+"</td>"+"<td name='tipo[]' id=''>"+row.tipo+"</td><td name='fabricante[]' id=''>"+row.fabricante+"</td><td name='modelo[]' id=''>"+row.modelo+"</td>"
-            +"<td name='serial[]' id=''>"+row.serial+"</td><td name='localizacion[]' id=''>"+row.localizacion+"<td></td>"+
-            "<td class='eliminar'>"+  
-              
-                        "<button class='btn btn-primary'>"+
-                            "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-arrows-move' viewBox='0 0 16 16'>"+
-                                "<path fill-rule='evenodd' d='M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z'/>"+
-                            "</svg>"+
-                        "</button>"+
-                  
-                 
-                            "<button class='btn btn-success'>"+
-                                "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-pen' viewBox='0 0 16 16'>"+
-                                    "<path d='m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z'/>"+
+            $.each(resultData,function(index,row){
+                datosOtrosDispositivos+="<tr>"
+                datosOtrosDispositivos+="<td>"+"<input type='checkbox'>"+"</td>"+"<td name='tipo[]' id=''>"+row.tipo+"</td><td name='fabricante[]' id=''>"+row.fabricante+"</td><td name='modelo[]' id=''>"+row.modelo+"</td>"
+                +"<td name='serial[]' id=''>"+row.serial+"</td><td name='localizacion[]' id=''>"+row.localizacion+"<td></td>"+
+                "<td class='eliminar'>"+  
+                
+                            "<button class='btn btn-primary'>"+
+                                "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-arrows-move' viewBox='0 0 16 16'>"+
+                                    "<path fill-rule='evenodd' d='M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z'/>"+
                                 "</svg>"+
                             "</button>"+
-                
-                
-                        "<button class='btn btn-primary'>"+
-                            "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-arrow-left-right' viewBox='0 0 16 16'>"+
-                                "<path fill-rule='evenodd' d='M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z'/>"+
-                            "</svg>"+
-                        "</button>"+
                     
+                    
+                                "<button class='btn btn-success'>"+
+                                    "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-pen' viewBox='0 0 16 16'>"+
+                                        "<path d='m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z'/>"+
+                                    "</svg>"+
+                                "</button>"+
+                    
+                    
+                            "<button class='btn btn-primary'>"+
+                                "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-arrow-left-right' viewBox='0 0 16 16'>"+
+                                    "<path fill-rule='evenodd' d='M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z'/>"+
+                                "</svg>"+
+                            "</button>"+
                         
-                        "<button class='btn btn-danger' class='borrar' id='deletRow' name='deletRow'>"+
-                            "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash3' viewBox='0 0 16 16'>"+
-                                "<path d='M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z'/>"+
-                            "</svg>"+
-                        "</button>"+
-                        
-            "</td>";
-            datosOtrosDispositivos+="</tr>";
-            
-        })
-        $("#datosOtrosDispositivos").append(datosOtrosDispositivos);
-    }
-});
+                            
+                            "<button class='btn btn-danger' class='borrar' id='deletRow' name='deletRow'>"+
+                                "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash3' viewBox='0 0 16 16'>"+
+                                    "<path d='M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z'/>"+
+                                "</svg>"+
+                            "</button>"+
+                            
+                "</td>";
+                datosOtrosDispositivos+="</tr>";
+                
+            })
+            $("#datosOtrosDispositivos").append(datosOtrosDispositivos);
+        }
+    });
 
 });
 
@@ -502,8 +493,240 @@ $.ajax({
     //         });
             
     // });
-  ////////////////////
-  // ajax de buscador de donante
+
+  ////
+
+
+
+  ///
+// ajax de buscador de clones
+  $("#btnBuscarClon").on('click',function(){
+    $('#tablaClones > tbody').empty();
+        var url1 = $('#idInternoClon').val();
+        var url2 = $('#modeloClon').val();
+        var url3 = $('#serieClon').val();
+        var url4 = $('#tamañoClon').val();
+        var url5 = $('#pcbClon').val(); 
+      
+        $.ajax({
+            url: "/trabajos/nuevo/detalle/modalClon",
+            type: "POST",
+            data: {
+              "_token": "{{ csrf_token() }}",
+              idInternoClon: url1,
+                modeloClon: url2,
+                serieClon: url3,
+                tamañoClon: url4,
+                pcbClon: url5,
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (dataResult) {
+              //console.log(dataResult);
+              //console.log(dataResult.data);
+              var filas = dataResult.data.length;
+              var nuevacabecera = "<tr>"
+                        nuevacabecera+="<th>"+"ID"+"</th><th>"+"Fabricante"+"</th><th>"+"Modelo"+"</th>"
+                                          +"<th>"+"Serie"+"</th><th>"+"Tamaño"+"</th><th>"+"Ubicacion"+"<th></th>";
+                        nuevacabecera+="</tr>";
+                        $("#cabeceraClones").append(nuevacabecera)
+              for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de busquedas por id
+                var text = "";
+                  var aux1 = "";
+                  if (dataResult.data[i].id != null) {
+                    aux1 = dataResult.data[i].id;
+                  }
+                    
+                    var nuevafila= "<tr><td id='dato'>" +
+                    dataResult.data[i].id + "</td><td>" +
+                    dataResult.data[i].manufactura  + "</td><td>" +
+                    dataResult.data[i].modelo  + "</td><td>" +
+                    dataResult.data[i].numero_de_serie  + "</td><td>" +
+                    dataResult.data[i].capacidad  + "</td><td>" +
+                    dataResult.data[i].ubicacion  + "</td><td class='text-center'>" +
+                        '<button  id="btnAgregarClon" name="btnAgregarClon" type="button" class="btn btn-success">Añadir</button>'+
+                  "</td></tr>"
+                  
+                $("#buscadorClones").append(nuevafila)
+              }
+            }
+        });
+
+    });
+   /* $('#tablaClones #buscadorClones').on( 'click', '.btnAgregarClon', function (){
+        var currow = $(this).closest('tr');
+        var id = currow.find('td:eq(0)').text();
+        var state = currow.find('td:eq(13)').text();
+        console.log(state);
+       // alert(state);    
+    });
+    
+        $("#btnAgregarClon").click(function() {
+            var valores = "";
+
+            $(this).parents("tr").find("#buscadorClones").each(function() {
+            valores += $(this).html() + "\n";
+            });
+            console.log(valores);
+            //alert(valores);
+    });*/
+
+        $(document).on('click','#btnAgregarClon',function(){
+
+        var fila = $(this).parent();
+        var id = fila.siblings("td:eq(0)").text();
+
+        //console.log(id);
+
+        $.ajax({
+            url: "/trabajos/nuevo/detalle/agregarClonBuscado",
+            type: "POST",
+            data: {
+              "_token": "{{ csrf_token() }}",
+              idBuscado: id,
+              "nombre": "{{$orden_elegida->id}}",
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (dataResult) {
+             //console.log(dataResult);
+
+              var filas = dataResult.data.length;
+              for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de busquedas por id
+                var text = "";
+                  var aux1 = "";
+                  if (dataResult.data[i].id != null) {
+                    aux1 = dataResult.data[i].id;
+                  }
+                    
+                    var nuevafila= "<tr><td>" +
+                    "<div class='form-check'>"+
+                    "<input class='form-check-input' onclick='habilitarModal()' type='checkbox' value='' id='"+dataResult.data[i].id+"'>"+
+                    "</div>"+
+                  "</td><td class='text-center'>" +
+                    dataResult.data[i].id_clon + "</td><td>" +
+                    dataResult.data[i].tipo  + "</td><td>" +
+                    dataResult.data[i].manufactura  + "</td><td>" +
+                    dataResult.data[i].modelo  + "</td><td>" +
+                    dataResult.data[i].numero_serie  + "</td><td>" +
+                    dataResult.data[i].ubicacion  + "</td><td>"+"</td><td class='text-center'>" +
+                      '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data[i].id+'">'+
+                        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
+                          '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
+                          '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
+                        '</svg>'+
+                      '</button>'+
+                      '<div class="modal fade" id="exampleModal'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                        '<div class="modal-dialog" role="document">'+
+                          '<div class="modal-content">'+
+                            '<div class="modal-header">'+
+                              '<h5 class="modal-title" id="exampleModalLabel">Eliminar trabajo</h5>'+
+                              '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
+                                '<span aria-hidden="true">&times;</span>'+
+                              '</button>'+
+                            '</div>'+
+                            '<div class="modal-body">'+
+                            '¿Realmente Desea Borrar el trabajo?'+
+                            '</div>'+
+                            '<form action="{{url('/trabajo/')}}'+'/'+dataResult.data[i].id+'" method="POST" class="d-inline">'+
+                              '@csrf'+
+                            ' @method('DELETE')'+
+                            '<div class="modal-footer">'+
+                              '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
+                              '<button class="btn btn-primary" style="padding-left: 5px">'+
+                                'Aceptar'+
+                              '</button>'+
+                            '</div>'+
+                          '</form> '+
+                          '</div>'+
+                        '</div>'+
+                    ' </div> '+
+                    "</td></tr>"
+                  
+                $("#clonesTrabajo").append(nuevafila)
+              }
+            }
+        });$('#exampleModalMover').modal('hide');
+
+    });
+  //
+  $(document).ready(function() {
+
+    var url = "{{URL('datosClones')}}";
+    $.ajax({
+        url: "/trabajos/nuevo/detalle/datosClonesBuscados",
+        type: "POST",
+        data:{ 
+            "_token": "{{ csrf_token() }}",
+            "nombre": "{{$orden_elegida->id}}",
+        },
+        cache: false,
+        dataType: 'json',
+        success: function(dataResult){
+        console.log(dataResult);
+            
+        var filas = dataResult.data.length;
+              for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de busquedas por id
+                var text = "";
+                  var aux1 = "";
+                  if (dataResult.data[i].id != null) {
+                    aux1 = dataResult.data[i].id;
+                  }
+                    
+                    var nuevafila= "<tr><td>" +
+                    "<div class='form-check'>"+
+                    "<input class='form-check-input' onclick='habilitarModal()' type='checkbox' value='' id='"+dataResult.data[i].id+"'>"+
+                    "</div>"+
+                  "</td><td class='text-center'>" +
+                    dataResult.data[i].id_clon + "</td><td>" +
+                    dataResult.data[i].tipo  + "</td><td>" +
+                    dataResult.data[i].manufactura  + "</td><td>" +
+                    dataResult.data[i].modelo  + "</td><td>" +
+                    dataResult.data[i].numero_serie  + "</td><td>" +
+                    dataResult.data[i].ubicacion  + "</td><td>"+"</td><td class='text-center'>" +
+                      '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data[i].id+'">'+
+                        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
+                          '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
+                          '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
+                        '</svg>'+
+                      '</button>'+
+                      '<div class="modal fade" id="exampleModal'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                        '<div class="modal-dialog" role="document">'+
+                          '<div class="modal-content">'+
+                            '<div class="modal-header">'+
+                              '<h5 class="modal-title" id="exampleModalLabel">Eliminar trabajo</h5>'+
+                              '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
+                                '<span aria-hidden="true">&times;</span>'+
+                              '</button>'+
+                            '</div>'+
+                            '<div class="modal-body">'+
+                            '¿Realmente Desea Borrar el trabajo?'+
+                            '</div>'+
+                            '<form action="{{url('/trabajo/')}}'+'/'+dataResult.data[i].id+'" method="POST" class="d-inline">'+
+                              '@csrf'+
+                            ' @method('DELETE')'+
+                            '<div class="modal-footer">'+
+                              '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
+                              '<button class="btn btn-primary" style="padding-left: 5px">'+
+                                'Aceptar'+
+                              '</button>'+
+                            '</div>'+
+                          '</form> '+
+                          '</div>'+
+                        '</div>'+
+                    ' </div> '+
+                    "</td></tr>"
+                  
+                $("#clonesTrabajo").append(nuevafila)
+              }    
+
+            }
+        });
+
+     });
+    
+
+// ajax de buscador de donante
     $('#btnBuscarDonante').on('click', function () {
         var url1 = $('#idInternoDonante').val();
         var url2 = $('#modeloDonante').val();
@@ -527,7 +750,7 @@ $.ajax({
             cache: false,
             dataType: 'json',
             success: function(dataResult){
-            console.log(dataResult);
+            //console.log(dataResult);
                 var resultData = dataResult.data;
                 var bodyData = '';
                 $.each(resultData,function(index,row){
@@ -591,7 +814,7 @@ $(document).on("click", "#btnAddDonante", function() {
             cache: false,
             dataType: 'json',
             success: function(dataResult){
-            console.log(dataResult);
+           // console.log(dataResult);
                 var resultData = dataResult.data;
                 var bodyData = '';
                 $.each(resultData,function(index,row){

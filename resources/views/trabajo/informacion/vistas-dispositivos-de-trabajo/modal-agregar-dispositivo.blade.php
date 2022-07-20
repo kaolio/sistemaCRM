@@ -55,28 +55,48 @@
                                     <div class="clonar">
                                         <div class="input-group mt-2">
                                             <span class="input-group-text">ID Interno</span>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" id="idInternoClon">
                                         </div>
                                         <div class="input-group mt-2">
                                             <span class="input-group-text">Modelo</span>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" id="modeloClon">
                                         </div>
                                         <div class="input-group mt-2">
                                             <span class="input-group-text">Serie</span>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" id="serieClon">
                                         </div>
                                         <div class="input-group mt-2">
                                             <span class="input-group-text">Tamaño</span>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" id="tamañoClon">
                                         </div>
                                         <div class="input-group mt-2">
                                             <span class="input-group-text">PCB ID</span>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" id="pcbClon">
                                         </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" id="botones" data-dismiss="modal">Cancelar</button>
-                                        <button type="button" class="btn btn-primary" id="botones" name=""><a href=""></a>Buscar</button>
+                                        <br>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                 <div class="table">
+                                                    <table id="tablaClones" class="table table-responsive" >
+                                                        <thead  id="cabeceraClones" class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
+                                                            <tr>
+                                                                {{-- titulos de la tabla--}}
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="buscadorClones" class="table-bordered" >
+                                                            <tr>
+                                                                {{-- datos de la tabla inventarios --}}
+                                                            </tr>
+
+                                                            </tbody>
+                                                    </table>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                            <div class="float-right">
+                                                <button type="button" class="btn btn-secondary" id="botones" data-dismiss="modal">Cancelar</button>
+                                                <button type="button" class="btn btn-primary" id="btnBuscarClon" name="btnBuscarClon"><a href=""></a>Buscar</button>
+                                            </div>
                                     </div>
                                 </div>
                                 <!--/Clonar-->

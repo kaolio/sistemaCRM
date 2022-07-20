@@ -240,7 +240,7 @@ class OrdenTrabajoController extends Controller
         
         return json_encode(array('data'=>$datosTabla));
     }
-
+ 
     public function ingeniero()
     {
         if ($_POST["orden"] =='Todos los Ingenieros') {

@@ -3,11 +3,17 @@
 <style>
    .table-responsive{
    font-size: 14px;
- }
+ }  
+ #botones, #btnAsignar{
+        font-size: 14px;
+        border-radius: 4px;
+        padding: 5px;
+        box-shadow: 2px 2px 2px rgb(95, 93, 93);
+    }
 </style>
 
         
-            
+            <div class="container">
                 <!-- /.col -->
                 <div class="col-md-12">
                     <div class="card">
@@ -79,7 +85,7 @@
                                 <!--/Dispositivos de trabajo-->
 
                                 <!--Adjuntar archivo -->
-                                <div class="active tab-pane" id="adjuntarArchivo">
+                                <div class="tab-pane" id="adjuntarArchivo">
                                     @include('trabajo.informacion.adjuntarArchivo')
                                 </div>
                                 <!--/Adjuntar archivo -->
@@ -96,6 +102,8 @@
                     <!-- /.card -->
                 </div>
                 <!-- /.col -->
+            </div>
+                
 
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>

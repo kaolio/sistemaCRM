@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ClonesController;
 use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\OrdenTrabajoController;
 use App\Http\Controllers\RolesController;
@@ -90,6 +91,9 @@ Route::post('/trabajos/detalle/guardarDiagnostico',[DetalleController::class,'gu
 Route::post('/trabajos/nuevo/detalle/datosPacientes',[DetalleController::class,'datosPacientes']); //ruta de orden de trabajos en (dispositivos de trabajo)
 Route::post('/trabajos/nuevo/detalle/datosOtrosDispositivos',[DetalleController::class,'datosOtrosDispositivos']);//ruta orden de trabajos de otros dispositivos
 //Route::post('/trabajos/nuevo/detalle/datosInventario',[DetalleController::class,'datosInventario']); //ruta de inventario en (dispositivos de trabajo)
+Route::post('/trabajos/nuevo/detalle/modalClon',[DetalleController::class,'buscadorClon']);  //buscador clon
+Route::post('/trabajos/nuevo/detalle/agregarClonBuscado',[DetalleController::class,'agregarBusquedaClon']); //agregar clon buscados
+Route::post('/trabajos/nuevo/detalle/datosClonesBuscados',[DetalleController::class,'mostrarClonesBuscados']); //mostrar clones agregados
 Route::post('/trabajos/nuevo/detalle/modalDonante',[DetalleController::class,'buscadorDonante']);  //buscador donante
 //Archivos adjuntos
 Route::post('/trabajos/detalle/subir', [DetalleController::class,'subirArchivo']);//ruta para subir archivo a drive
@@ -101,10 +105,13 @@ Route::post('/trabajos/nuevo/detalle/guardarDiagnostico',[DetalleController::cla
 
 Route::post('/autocompletarCliente',[OrdenTrabajoController::class,'autoCompletar']);
 
+//CLONES
+Route::get('/inventario/discosUso',[ClonesController::class,'discosUso']);
+
+
 //INVENTARIO
 Route::get('/inventario',[InventarioController::class,'index']);
 Route::get('/inventario/nuevo',[InventarioController::class,'create']);
-Route::get('/inventario/discosUso',[InventarioController::class,'discosUso']);
 Route::post('/inventario/nuevo',[InventarioController::class,'store']);
 Route::get('/inventario/editar/{id}',[InventarioController::class,'edit']);
 Route::post('/inventario/editar/{id}',[InventarioController::class,'update']);

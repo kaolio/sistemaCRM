@@ -147,7 +147,7 @@
 <div class="d-flex">
   <div class="p-2">
     <a type="button" class="btn text-white" href="{{URL('trabajo/excel')}}" style="background: rgb(20, 141, 9)">Excel</a>
-    <a class="btn btn-primary" href="{{URL('trabajo/pdf')}}" role="button">PDF</a> 
+    <a class="btn btn-danger" href="{{URL('trabajo/pdf')}}" role="button">PDF</a> 
     <a type="button" href="{{URL('trabajo/imprimirIndex')}}" class="btn btn-primary">Imprimir</a>
   </div>
   

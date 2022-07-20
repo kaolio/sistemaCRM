@@ -192,9 +192,6 @@ class InventarioController extends Controller
 
         return redirect('inventario');
     }
-    public function discosUso(){
-        return view('inventario.discosUso.discosUso');
-    }
 
     function autoCompletar(Request $request)
     {
