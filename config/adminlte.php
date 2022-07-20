@@ -322,6 +322,7 @@ return [
             'text' => 'Dashboard',
             'url'  => 'home',
             'icon' => 'fas fa-fw fa-save',
+            'can' => 'ver-trabajo',
         ],
         [
             'text'    => 'Orden de Trabajo  ',
@@ -378,24 +379,25 @@ return [
         [
             'text'    => 'Clientes',
             'icon'    => 'fas fa-fw fa-users',
-            'can' => 'ver-cliente',
+            'can' => 'ver-clientes',
             'submenu' => [
                 [
                     'text' => 'Nuevo Cliente',
                     'url'  => 'cliente/nuevo',
-                    'can' => 'crear-inventario',
+                    'can' => 'crear-clientes',
                     'icon'    => 'fas fa-fw fa-filse',
                 ],
                 [
                     'text' => 'Ver Clientes',
                     'url'  => 'clientes',
-                    'can' => 'ver-cliente',
+                    'can' => 'ver-clientes',
                     'icon'    => 'fas fa-fw fa-filse',
                     'active' => ['clientes', 'cliente/editar*'],
                 ],
             ]
         ],
-        ['header' => 'ADMINISTRACION'],
+        ['header' => 'ADMINISTRACION',
+        'can' => 'ver-trabajo'],
         [
             'text'    => 'Usuarios  ',
             'icon'    => 'fas fa-fw fa-user',
