@@ -51,11 +51,24 @@
                 <th class="text-center">Acciones</th>
                 </tr>
             </thead>
-            <tbody class="table-bordered" id="myTable">
-                
+            <tbody class="table-bordered">
+                @foreach ($clones as $clon)
                 <tr>
-                    
+                    <th></th>
+                    <th>{{ $clon->id_clon }}</th>
+                    <td>{{ $clon->manufactura }}</td>
+                    <td>{{ $clon->modelo }}</td>
+                    <td>{{ $clon->numero_serie }}</td>
+                    <td>{{ $clon->factor_forma}}</td>
+                    <td>{{ $clon->id_trabajos}}</td>
+                    <td>{{ $clon->estado}}</td>
+                    <td>{{ $clon->ocupado_hasta}}</td>
+                    <td>{{ $clon->ubicacion}}</td>
+                    <td>
+                        
+                    </td>
                 </tr>
+                @endforeach
             </tbody> 
         </table>
     </div>

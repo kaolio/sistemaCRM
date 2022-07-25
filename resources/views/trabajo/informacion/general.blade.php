@@ -2,6 +2,7 @@
     textarea {
     resize: none;
 }
+
 </style>
 
 
@@ -17,7 +18,7 @@
                     @if ($orden_elegida->name != "Administrador")
                     <p class="text-left" style="position: relative;left:20px">&nbsp;&nbsp;<b>Ingeniero Designado:</b><span id="userDesignado">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$orden_elegida->name}}</span> </p>
                     @else
-                    <p class="text-left" style="position: relative;left:20px" >&nbsp;&nbsp;<b>Ingeniero Designado:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <p class="text-left" style="position: relative;left:20px" >&nbsp;&nbsp;<b>Ingeniero Designado:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ninguno</p>
                     @endif
                     
 
@@ -43,7 +44,7 @@
                                     <option value="Devuelto Al Cliente">Devuelto al Cliente</option>
                                     <option value="Pago Pendiente">Pago Pendiente</option>
                                     <option value="Llegada Pendiente">Llegada Pendiente</option>
-                                    <option value="Pagado Regresado Cliente">Pagado y regresado a Cliente</option>
+                                    <option value="Pagado y Regresado al Cliente">Pagado y regresado a Cliente</option>
                                  </select>
                             </div>
                         </br>
@@ -93,7 +94,7 @@
                                         </br>
                                         <!--Boton agregar-->
                                         <div class="form-group" style="position: relative;left:5px">
-                                            <button class="btn btn-success" id="submit" onSubmit="return limpiar()" disabled>Enviar Comentario</button>
+                                            <button class="btn btn-success" id="submit" onSubmit="return limpiar()" >Enviar Comentario</button>
                                         </div>
                                         <!-- /Boton agregar-->
                                         
@@ -489,7 +490,10 @@
                         
                     })
                     $("#tablaNotas").append(tablaNotas);
+                    if('#comentario'==''){
 
+                        $('#comentario').empty();
+                    }
                 }
             });
         });
@@ -537,7 +541,7 @@
             });
         });
         //
-        $(document).on('change keyup', '.required', function(e){
+      /*  $(document).on('change keyup', '.required', function(e){
         let Disabled = true;
         $(".required").each(function() {
             let value = this.value
@@ -555,7 +559,7 @@
             }else{
             $('#submit').prop("disabled", false);
             }
-    })
+    })*/
 
      
     </script>

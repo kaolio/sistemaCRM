@@ -39,6 +39,7 @@ class CreateOrdenTrabajosTable extends Migration
             ->references('id')
             ->on('users')
             ->onDelete('cascade');
+
         
             /*$table->string('infoCliente')->nullable();
             $table->string('Prioridad')->nullable();

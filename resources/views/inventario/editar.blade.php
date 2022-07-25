@@ -68,12 +68,7 @@
     if($("#capacidad").val() == ""){
       $("#estadoCapacidad").html("<span  class='error'><h5 class='menor'>Este campo no puede estar vacío</h5></span>"); 
     }else{
-        $("#estadoCapacidad").html("<span  class='bien'><h5 class='menor'>Válido</h5></span>");
-              jQuery("#capacidad").on('input', function (evt) {
-                  // Allow only numbers.
-                  jQuery(this).val(jQuery(this).val().replace(/[^0-9]/g, ''));
-              });
-  
+        $("#estadoCapacidad").html("<span  class='bien'><h5 class='menor'>Válido</h5></span>");  
     }
   }
   function validarPbc(){
@@ -106,8 +101,8 @@
                 <option value="Toshiba">Toshiba</option>
                 <option value="Samsung">Samsung</option>
                 <option value="Verbatim">Verbatim</option>
-                <option value="Wester Digital">Western Digital</option>
-                <option value="SkayNet">SkyNet</option>
+                <option value="Western Digital">Western Digital</option>
+                <option value="Skynet">Skynet</option>
                 <option value="Maxtor">Maxtor</option>
                 <option value="Adata">Adata</option>
                 <option value="Crucial">Crucial</option>
@@ -123,7 +118,7 @@
           <label for="inputPassword4">Modelo <strong>*</strong></label>
           <input type="text" class="form-control" id="modelo" name="modelo" placeholder="" value="{{$inventario->modelo}}" autocomplete="off"
                   value="{{ old('modelo') }}" onkeyup="validarModelo()" required
-                  onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+                  onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
                   <span id="estadoModelo"></span>
         </div>
       </div>
@@ -132,38 +127,64 @@
             <label for="inputCity">Número de Serie <strong>*</strong></label>
             <input type="text" class="form-control" id="numero_de_serie" name="numero_de_serie" value="{{$inventario->numero_de_serie}}" autocomplete="off"
                    value="{{ old('numero_de_serie') }}" onkeyup="validarSerie()" required 
-                   onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+                   onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
                    <span id="estadoSerie"></span>
           </div>
           <div class="form-group col-md-4">
               <label for="inputCity">Firmware <strong>*</strong></label>
               <input type="text" class="form-control" id="firmware" name="firmware" value="{{$inventario->firmware}}" autocomplete="off"
                      value="{{ old('firmware') }}" onkeyup="validarFirmware()" required 
-                     onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+                     onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
                      <span id="estadoFirmware"></span>
           </div>
             <div class="form-group col-md-4">
-              <label for="inputCity">Capacidad (GB) <strong>*</strong></label>
-              <input type="text" class="form-control" id="capacidad" name="capacidad" autocomplete="off" value="{{$inventario->capacidad}}"
-                     value="{{ old('capacidad') }}" onkeyup="validarCapacidad()" required maxlength="5"
-                     onkeypress="return ((event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+              <label for="inputCity">Capacidad<strong>*</strong></label>
+              {{-- <input type="text" class="form-control" id="capacidad" name="capacidad" autocomplete="off" value="{{$inventario->capacidad}}" placeholder="Ingrese capacidad en GB o TB"
+                     value="{{ old('capacidad') }}" onkeyup="validarCapacidad()" required maxlength="8"
+                     onkeypress="return ((event.charCode >= 84 && event.charCode <= 84)||(event.charCode >= 116 && event.charCode <= 116)||(event.charCode >= 98 && event.charCode <= 98)||(event.charCode >= 103 && event.charCode <= 103)||(event.charCode >= 66 && event.charCode <= 66)||(event.charCode >= 71 && event.charCode <= 71)||(event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))"> --}}
+              <input type="text" style="text-transform:uppercase" class="form-control" id="capacidad" name="capacidad" autocomplete="off" value="{{$inventario->capacidad}}" placeholder="GB, TB"
+                     value="{{ old('capacidad') }}" onkeyup="validarCapacidad()" required maxlength="8" onkeypress="return ((event.charCode >= 84 && event.charCode <= 84)||(event.charCode >= 116 && event.charCode <= 116)||(event.charCode >= 98 && event.charCode <= 98)||
+              (event.charCode >= 103 && event.charCode <= 103)||(event.charCode >= 66 && event.charCode <= 66)||(event.charCode >= 71 && event.charCode <= 71)||(event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">      
                      <span id="estadoCapacidad"></span>
           </div>
       </div>
       <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="inputCity">PCB <strong>*</strong></label>
-            <input type="text" class="form-control" id="pbc" name="pbc" value="{{$inventario->pbc}}" autocomplete="off"
-                   value="{{ old('pbc') }}" onkeyup="validarPbc()" required
-                   onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
-                   <span id="estadoPbc"></span>
+        <div class="form-group col-md-4" style="padding-top: 8px">
+          <div class="input-group">
+            <span class="input-group-text" style="background:rgb(41, 43, 44); color: aliceblue">Rol del Disco&nbsp;<strong>*</strong></span>
+            <select name="rol" class="form-control" class="btn-block" required>
+              <option disabled value="">Elija el Rol</option>
+              @if ($inventario->rol == $inventario_elegido->rol)
+              <option value="{{$inventario->rol}}" selected>{{$inventario->rol}}</option>                      
+            @else
+              <option value="{{$inventario->rol}}">{{$inventario->rol}}</option>      
+            @endif
+              <option value="Datos">Datos</option>
+              <option value="Paciente">Paciente</option>
+              <option value="Donante">Donante</option>
+              <option value="Clon">Clon</option>
+            </select>
+            <span id="estadoManufactura"></span>
           </div>
-          <div class="form-group col-md-4">
-              <label for="inputCity">Ubicación </label>
-              <input type="text" class="form-control" id="ubicacion" name="ubicacion" value="{{$inventario->ubicacion}}" autocomplete="off"
-              onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+        </div>
+          <div class="form-group col-md-4" style="padding-top: 8px">
+            <div class="input-group">
+              <span class="input-group-text" style="background:rgb(41, 43, 44); color: aliceblue">Tipo de Almacenamiento&nbsp;<strong>*</strong></span>
+              <select name="tipo" class="form-control" class="btn-block" required>
+                <option disabled value="">Elija el Tipo</option>
+                @if ($inventario->tipo == $inventario_elegido->tipo)
+                <option value="{{$inventario->tipo}}" selected>{{$inventario->tipo}}</option>                      
+              @else
+                <option value="{{$inventario->tipo}}">{{$inventario->tipo}}</option>      
+              @endif
+                <option value="HDD">HDD</option>
+                <option value="SSD">SSD</option>
+                <option value="Otro">Otro</option>
+              </select>
+              <span id="estadoManufactura"></span>
+            </div>
           </div>
-          <div class="form-group col-md-4" style="padding-top: 32px">
+          <div class="form-group col-md-4" style="padding-top: 8px">
             <div class="input-group">
               <span class="input-group-text" style="background:rgb(41, 43, 44); color: aliceblue">Factor de Forma &nbsp;<strong>*</strong></span>
               <select class="form-control" class="btn-block" id="factor_de_forma" name="factor_de_forma" required value="{{$inventario->factor_de_forma}}">
@@ -178,7 +199,21 @@
                   <option value="M2">M2</option>
               </select>
             </div>
-          </div>  
+          </div> 
+        </div>
+      <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="inputCity">PCB <strong>*</strong></label>
+            <input type="text" class="form-control" id="pbc" name="pbc" value="{{$inventario->pbc}}" autocomplete="off"
+                   value="{{ old('pbc') }}" onkeyup="validarPbc()" required
+                   onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+                   <span id="estadoPbc"></span>
+          </div>
+          <div class="form-group col-md-4">
+              <label for="inputCity">Ubicación </label>
+              <input type="text" class="form-control" id="ubicacion" name="ubicacion" value="{{$inventario->ubicacion}}" autocomplete="off"
+              onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+          </div> 
       </div>
       <div class="form-row">
           <div class="form-group col-md-4">
