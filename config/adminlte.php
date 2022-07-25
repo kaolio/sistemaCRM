@@ -396,6 +396,26 @@ return [
                 ],
             ]
         ],
+        [
+            'text'    => 'Productos',
+            'icon'    => 'fas fa-fw fa-barcode',
+            'can' => 'ver-productos',
+            'submenu' => [
+                [
+                    'text' => 'Nuevo Producto',
+                    'url'  => 'producto/nuevo',
+                    'can' => 'crear-productos',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
+                [
+                    'text' => 'Ver Productos',
+                    'url'  => 'productos',
+                    'can' => 'ver-productos',
+                    'icon'    => 'fas fa-fw fa-filse',
+                    'active' => ['productos', 'producto/editar*'],
+                ],
+            ]
+        ],
         ['header' => 'ADMINISTRACION',
         'can' => 'ver-trabajo'],
         [
