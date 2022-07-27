@@ -1,0 +1,12 @@
+.menor{
+    color: red;
+    font-size: medium;
+  }    
+  .error{
+      color:#cf1111;
+      font-size: medium;
+  }
+  .bien{
+       color: rgb(15, 208, 67);
+      font-size: medium;
+  }
