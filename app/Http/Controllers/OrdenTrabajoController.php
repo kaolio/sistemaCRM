@@ -205,7 +205,7 @@ class OrdenTrabajoController extends Controller
      */
     public function destroy(OrdenTrabajo $trabajo,$id)
     {
-        dd($id);
+        //dd($id);
         // OrdenTrabajo::destroy($id); 
         // return redirect('trabajos');
         $trabajo=OrdenTrabajo::findOrFail($id);

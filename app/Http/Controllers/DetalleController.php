@@ -9,6 +9,7 @@ use App\Models\Inventario;
 use Illuminate\Http\Request;
 use App\Models\Roles;
 use App\Models\Detalle;
+use App\Models\Donantes;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -323,6 +324,39 @@ class DetalleController extends InventarioController
                         ->get();
 
                         return json_encode(array('data'=>$recuperarDatos));
+    }
+
+    public function agregarBusquedaDonante(){
+
+        $inventario = DB::table('inventarios')
+                        ->select('*')
+                        ->where('id','=',$_POST["idBuscado"])
+                        ->first();
+
+        $trabajo = DB::table('orden_trabajos')
+                        ->select('id')
+                        ->where('id','=',$_POST["nombre"])
+                        ->first();
+
+
+                $donante = new Donantes();
+                $donante->id_donante =$_POST["idBuscado"];
+                $donante->tipo = $inventario->tipo;
+                $donante->manufactura = $inventario->manufactura;
+                $donante->modelo = $inventario->modelo;
+                $donante->numero_serie = $inventario->numero_de_serie;
+                $donante->id_trabajos = $_POST["nombre"];
+                $donante->id_inventarios = $_POST["idBuscado"];
+                $donante->ubicacion = $inventario->ubicacion;
+                $donante->nota = $inventario->nota;
+                $donante->save();
+
+                $donantes = DB::table('donantes')
+                            ->select('*')
+                            ->where('id_trabajos','=',$_POST["nombre"])
+                            ->get();
+
+                return json_encode(array('data'=>$donantes));
     }
 
     public function guardarDiagnostico(){
