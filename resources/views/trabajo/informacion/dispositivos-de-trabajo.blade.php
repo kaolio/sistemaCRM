@@ -327,7 +327,6 @@
             $("#datosOtrosDispositivos").append(datosOtrosDispositivos);
         }
     });
-
 });
 
 
@@ -452,50 +451,10 @@
                         datosPacientes+="</tr>";
                         
                     })
-                    $("#datosPacientes").append(datosPacientes);
-                }
-            });
-            
+                $("#datosPacientes").append(datosPacientes);
+            }
+         });
     });
-    //
-    //     $(document).ready(function() {
-    //         var url = "{{URL('datosInventario')}}";
-    //         $.ajax({
-    //             url: "/trabajos/nuevo/detalle/datosInventario",
-    //             type: "POST",
-    //             data:{ 
-    //                 "_token": "{{ csrf_token() }}",
-    //                 "nombre": "{{$orden_elegida->id}}",
-    //             },
-    //             cache: false,
-    //             dataType: 'json',
-    //             success: function(dataResult){
-    //                 console.log(dataResult);
-    //                 var resultData = dataResult.data;
-    //                 var bodyData = '';
-    //                 $.each(resultData,function(index,row){
-    //                     datosInventario+="<tr>"
-    //                     datosInventario+="<td></td>"+"<td>"+row.tipo+"</td><td>"+row.fabricante+"</td><td>"+row.modelo+"</td>"
-    //                     +"<td>"+row.serial+"</td><td>"+row.localizacion+"</td><td>"+row.diagnostico+
-    //                     "</td>"
-    //                     "<button class='btn btn-icon btn-danger' type='button' id='deletRow' name='deletRow'>"+
-    //                                           "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>"+
-    //                                           "<path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'/>"+
-    //                                           "<path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/>"+
-    //                                           "</svg>"+
-    //                     "</button>"
-    //                     +"<td>";
-    //                     datosInventario+="</tr>";
-                        
-    //                 })
-    //                 $("#datosInventario").append(datosInventario);
-    //             }
-    //         });
-            
-    // });
-
-  ////
-
 
 
   ///
@@ -523,7 +482,6 @@
             dataType: 'json',
             success: function (dataResult) {
               //console.log(dataResult);
-              //console.log(dataResult.data);
               var filas = dataResult.data.length;
               var nuevacabecera = "<tr>"
                         nuevacabecera+="<th>"+"ID"+"</th><th>"+"Fabricante"+"</th><th>"+"Modelo"+"</th>"
@@ -571,270 +529,289 @@
             //alert(valores);
     });*/
 
-        $(document).on('click','#btnAgregarClon',function(){
+        $(document).on('click','#btnAgregarClon',function(){    
 
-        var fila = $(this).parent();
-        var id = fila.siblings("td:eq(0)").text();
+            var fila = $(this).parent();
+            var id = fila.siblings("td:eq(0)").text();
+            //console.log(id);
 
-        //console.log(id);
+            $.ajax({
+                url: "/trabajos/nuevo/detalle/agregarClonBuscado",
+                type: "POST",
+                data: {
+                "_token": "{{ csrf_token() }}",
+                idBuscado: id,
+                "nombre": "{{$orden_elegida->id}}",
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (dataResult) {
+                //console.log(dataResult);
 
-        $.ajax({
-            url: "/trabajos/nuevo/detalle/agregarClonBuscado",
-            type: "POST",
-            data: {
-              "_token": "{{ csrf_token() }}",
-              idBuscado: id,
-              "nombre": "{{$orden_elegida->id}}",
-            },
-            cache: false,
-            dataType: 'json',
-            success: function (dataResult) {
-             //console.log(dataResult);
-
-              var filas = dataResult.data.length;
-              for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de busquedas por id
-                var text = "";
-                  var aux1 = "";
-                  if (dataResult.data[i].id != null) {
-                    aux1 = dataResult.data[i].id;
-                  }
+                var filas = dataResult.data.length;
+                for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de busquedas por id
+                    var text = "";
+                    var aux1 = "";
+                    if (dataResult.data[i].id != null) {
+                        aux1 = dataResult.data[i].id;
+                    }
+                        
+                        var nuevafila= "<tr><td>" +
+                        "<div class='form-check'>"+
+                        "<input class='form-check-input' onclick='habilitarModal()' type='checkbox' value='' id='"+dataResult.data[i].id+"'>"+
+                        "</div>"+
+                    "</td><td class='text-center'>" +
+                        dataResult.data[i].id_clon + "</td><td>" +
+                        dataResult.data[i].tipo  + "</td><td>" +
+                        dataResult.data[i].manufactura  + "</td><td>" +
+                        dataResult.data[i].modelo  + "</td><td>" +
+                        dataResult.data[i].numero_serie  + "</td><td>" +
+                        dataResult.data[i].ubicacion  + "</td><td>"+"</td><td class='text-center'>" +
+                        '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data[i].id+'">'+
+                            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
+                            '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
+                            '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
+                            '</svg>'+
+                        '</button>'+
+                        '<div class="modal fade" id="exampleModal'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                            '<div class="modal-dialog" role="document">'+
+                            '<div class="modal-content">'+
+                                '<div class="modal-header">'+
+                                '<h5 class="modal-title" id="exampleModalLabel">Eliminar trabajo</h5>'+
+                                '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
+                                    '<span aria-hidden="true">&times;</span>'+
+                                '</button>'+
+                                '</div>'+
+                                '<div class="modal-body">'+
+                                '¿Realmente Desea Borrar el trabajo?'+
+                                '</div>'+
+                                '<form action="{{url('/trabajo/')}}'+'/'+dataResult.data[i].id+'" method="POST" class="d-inline">'+
+                                '@csrf'+
+                                ' @method('DELETE')'+
+                                '<div class="modal-footer">'+
+                                '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
+                                '<button class="btn btn-primary" style="padding-left: 5px">'+
+                                    'Aceptar'+
+                                '</button>'+
+                                '</div>'+
+                            '</form> '+
+                            '</div>'+
+                            '</div>'+
+                        ' </div> '+
+                        "</td></tr>"
                     
-                    var nuevafila= "<tr><td>" +
-                    "<div class='form-check'>"+
-                    "<input class='form-check-input' onclick='habilitarModal()' type='checkbox' value='' id='"+dataResult.data[i].id+"'>"+
-                    "</div>"+
-                  "</td><td class='text-center'>" +
-                    dataResult.data[i].id_clon + "</td><td>" +
-                    dataResult.data[i].tipo  + "</td><td>" +
-                    dataResult.data[i].manufactura  + "</td><td>" +
-                    dataResult.data[i].modelo  + "</td><td>" +
-                    dataResult.data[i].numero_serie  + "</td><td>" +
-                    dataResult.data[i].ubicacion  + "</td><td>"+"</td><td class='text-center'>" +
-                      '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data[i].id+'">'+
-                        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
-                          '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
-                          '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
-                        '</svg>'+
-                      '</button>'+
-                      '<div class="modal fade" id="exampleModal'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
-                        '<div class="modal-dialog" role="document">'+
-                          '<div class="modal-content">'+
-                            '<div class="modal-header">'+
-                              '<h5 class="modal-title" id="exampleModalLabel">Eliminar trabajo</h5>'+
-                              '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
-                                '<span aria-hidden="true">&times;</span>'+
-                              '</button>'+
-                            '</div>'+
-                            '<div class="modal-body">'+
-                            '¿Realmente Desea Borrar el trabajo?'+
-                            '</div>'+
-                            '<form action="{{url('/trabajo/')}}'+'/'+dataResult.data[i].id+'" method="POST" class="d-inline">'+
-                              '@csrf'+
-                            ' @method('DELETE')'+
-                            '<div class="modal-footer">'+
-                              '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
-                              '<button class="btn btn-primary" style="padding-left: 5px">'+
-                                'Aceptar'+
-                              '</button>'+
-                            '</div>'+
-                          '</form> '+
-                          '</div>'+
-                        '</div>'+
-                    ' </div> '+
-                    "</td></tr>"
-                  
-                $("#clonesTrabajo").append(nuevafila)
-              }
-            }
-        });$('#exampleModalMover').modal('hide');
-
-    });
-  //
-  $(document).ready(function() {
-
-    var url = "{{URL('datosClones')}}";
-    $.ajax({
-        url: "/trabajos/nuevo/detalle/datosClonesBuscados",
-        type: "POST",
-        data:{ 
-            "_token": "{{ csrf_token() }}",
-            "nombre": "{{$orden_elegida->id}}",
-        },
-        cache: false,
-        dataType: 'json',
-        success: function(dataResult){
-        console.log(dataResult);
-            
-        var filas = dataResult.data.length;
-              for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de busquedas por id
-                var text = "";
-                  var aux1 = "";
-                  if (dataResult.data[i].id != null) {
-                    aux1 = dataResult.data[i].id;
-                  }
-                    
-                    var nuevafila= "<tr><td>" +
-                    "<div class='form-check'>"+
-                    "<input class='form-check-input' onclick='habilitarModal()' type='checkbox' value='' id='"+dataResult.data[i].id+"'>"+
-                    "</div>"+
-                  "</td><td class='text-center'>" +
-                    dataResult.data[i].id_clon + "</td><td>" +
-                    dataResult.data[i].tipo  + "</td><td>" +
-                    dataResult.data[i].manufactura  + "</td><td>" +
-                    dataResult.data[i].modelo  + "</td><td>" +
-                    dataResult.data[i].numero_serie  + "</td><td>" +
-                    dataResult.data[i].ubicacion  + "</td><td>"+"</td><td class='text-center'>" +
-                      '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data[i].id+'">'+
-                        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
-                          '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
-                          '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
-                        '</svg>'+
-                      '</button>'+
-                      '<div class="modal fade" id="exampleModal'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
-                        '<div class="modal-dialog" role="document">'+
-                          '<div class="modal-content">'+
-                            '<div class="modal-header">'+
-                              '<h5 class="modal-title" id="exampleModalLabel">Eliminar trabajo</h5>'+
-                              '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
-                                '<span aria-hidden="true">&times;</span>'+
-                              '</button>'+
-                            '</div>'+
-                            '<div class="modal-body">'+
-                            '¿Realmente Desea Borrar el trabajo?'+
-                            '</div>'+
-                            '<form action="{{url('/trabajo/')}}'+'/'+dataResult.data[i].id+'" method="POST" class="d-inline">'+
-                              '@csrf'+
-                            ' @method('DELETE')'+
-                            '<div class="modal-footer">'+
-                              '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
-                              '<button class="btn btn-primary" style="padding-left: 5px">'+
-                                'Aceptar'+
-                              '</button>'+
-                            '</div>'+
-                          '</form> '+
-                          '</div>'+
-                        '</div>'+
-                    ' </div> '+
-                    "</td></tr>"
-                  
-                $("#clonesTrabajo").append(nuevafila)
-              }    
-
-            }
+                    $("#clonesTrabajo").append(nuevafila)
+                }
+                }
+            });$('#exampleModalMover').modal('hide');
         });
 
-     });
-    
+  //
+    $(document).ready(function() {
 
-// ajax de buscador de donante
-    $('#btnBuscarDonante').on('click', function () {
-        var url1 = $('#idInternoDonante').val();
-        var url2 = $('#modeloDonante').val();
-        var url3 = $('#serieDonante').val();
-        var url4 = $('#tamañoDonante').val();
-        var url5 = $('#pcbDonante').val();
-      //  console.log(url3);
+        var url = "{{URL('datosClones')}}";
         $.ajax({
-            
-            url: "/trabajos/nuevo/detalle/modalDonante",
+            url: "/trabajos/nuevo/detalle/datosClonesBuscados",
             type: "POST",
             data:{ 
                 "_token": "{{ csrf_token() }}",
-                idInternoDonante: url1,
-                modeloDonante: url2,
-                serieDonante: url3,
-                tamañoDonante: url4,
-                pcbDonante: url5,
-                
+                "nombre": "{{$orden_elegida->id}}",
             },
             cache: false,
             dataType: 'json',
             success: function(dataResult){
             //console.log(dataResult);
-                var resultData = dataResult.data;
-                var bodyData = '';
-                $.each(resultData,function(index,row){
-                    cabeceraDonantes+="<tr>"
-                    cabeceraDonantes+="<th>"+"ID"+"</th><th>"+"Fabricante"+"</th><th>"+"Modelo"+"</th>"
-                    +"<th>"+"Serie"+"</th><th>"+"Tamaño"+"</th><th>"+"Ubicacion"+"<th></th>";
-                    cabeceraDonantes+="</tr>";
-                    buscadorDonantes+="<tr>"
-                    buscadorDonantes+="<td>"+row.id+"</td><td>"+row.manufactura+"</td><td>"+row.modelo+"</td>"
-                    +"<td>"+row.numero_de_serie+"</td><td>"+row.capacidad+"</td><td>"+row.ubicacion+
-                    "<td>"+
-                            '<button class="btn btn-success" type="button" id="btnBuscarDonante" name="btnBuscarDonante">'+
-                                "<svg xmlns='http://www.w3.org/2000/svg' width='15' height='15' fill='currentColor' class='bi bi-plus-circle' viewBox='0 0 16 16'>"+
-                                    "<path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/>"+
-                                    "<path d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z'/>"+
-                                "</svg>"+
-                        '</button>'+
-                        '<button type="button" class="btn btn-primary" id="btnAddDonante" name="btnAddDonante">XXXXXXXXX</button>';
-                    buscadorDonantes+="</tr>";
-                    
-                })
-                $("#cabeceraDonantes").append(cabeceraDonantes);
-                $("#buscadorDonantes").append(buscadorDonantes);
-            }
-        });
-});
-
-$(document).on("click", "#btnAddDonante", function() {
-        
-        
-        // if (eliminar != 0) {
-            // eliminar = eliminar-1;
-            // }
-            // $(this).parents('tr').remove();
-        console.log($(this).parents('tr').innerHTML('td'));
-          
-      });
-
-
-   // ajax de lista de donantes en dispositivos de trabajos
-   $('#btnAgregarDonante').on('click', function () {
-        var url11 = $('#idInternoDonante1').val();
-        var url21 = $('#modeloDonante1').val();
-        var url31 = $('#serieDonante1').val();
-        var url41 = $('#tamañoDonante1').val();
-        var url51 = $('#pcbDonante1').val();
-       console.log(url21);
-        $.ajax({
-            
-            url: "/trabajos/nuevo/detalle/agregarDonante",
-            type: "POST",
-            data:{ 
-                "_token": "{{ csrf_token() }}",
-                idInternoDonante1: url11,
-                modeloDonante1: url21,
-                serieDonante1: url31,
-                tamañoDonante1: url41,
-                pcbDonante1: url51,
                 
+            var filas = dataResult.data.length;
+                for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de busquedas por id
+                    var text = "";
+                    var aux1 = "";
+                    if (dataResult.data[i].id != null) {
+                        aux1 = dataResult.data[i].id;
+                    }
+                        
+                        var nuevafila= "<tr><td>" +
+                        "<div class='form-check'>"+
+                        "<input class='form-check-input' onclick='habilitarModal()' type='checkbox' value='' id='"+dataResult.data[i].id+"'>"+
+                        "</div>"+
+                    "</td><td class='text-center'>" +
+                        dataResult.data[i].id_clon + "</td><td>" +
+                        dataResult.data[i].tipo  + "</td><td>" +
+                        dataResult.data[i].manufactura  + "</td><td>" +
+                        dataResult.data[i].modelo  + "</td><td>" +
+                        dataResult.data[i].numero_serie  + "</td><td>" +
+                        dataResult.data[i].ubicacion  + "</td><td>"+"</td><td class='text-center'>" +
+                        '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data[i].id+'">'+
+                            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
+                            '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
+                            '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
+                            '</svg>'+
+                        '</button>'+
+                        '<div class="modal fade" id="exampleModal'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                            '<div class="modal-dialog" role="document">'+
+                            '<div class="modal-content">'+
+                                '<div class="modal-header">'+
+                                '<h5 class="modal-title" id="exampleModalLabel">Eliminar trabajo</h5>'+
+                                '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
+                                    '<span aria-hidden="true">&times;</span>'+
+                                '</button>'+
+                                '</div>'+
+                                '<div class="modal-body">'+
+                                '¿Realmente Desea Borrar el trabajo?'+
+                                '</div>'+
+                                '<form action="{{url('/trabajo/')}}'+'/'+dataResult.data[i].id+'" method="POST" class="d-inline">'+
+                                '@csrf'+
+                                ' @method('DELETE')'+
+                                '<div class="modal-footer">'+
+                                '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
+                                '<button class="btn btn-primary" style="padding-left: 5px">'+
+                                    'Aceptar'+
+                                '</button>'+
+                                '</div>'+
+                            '</form> '+
+                            '</div>'+
+                            '</div>'+
+                        ' </div> '+
+                        "</td></tr>"
+                    
+                    $("#clonesTrabajo").append(nuevafila)
+                } 
+                }
+            });
+        });
+    
+
+// ajax de buscador de donante
+$("#btnBuscarDonante").on('click',function(){
+    $('#tablaClones > tbody').empty();
+    var url1 = $('#idInternoDonante').val();
+        var url2 = $('#modeloDonante').val();
+        var url3 = $('#serieDonante').val();
+        var url4 = $('#tamañoDonante').val();
+        var url5 = $('#pcbDonante').val(); 
+      
+        $.ajax({
+            url: "/trabajos/nuevo/detalle/modalDonante",
+            type: "POST",
+            data: {
+              "_token": "{{ csrf_token() }}",
+              idInternoDonante: url1,
+                modeloDonante: url2,
+                serieDonante: url3,
+                tamañoDonante: url4,
+                pcbDonante: url5,
             },
             cache: false,
             dataType: 'json',
-            success: function(dataResult){
-           // console.log(dataResult);
-                var resultData = dataResult.data;
-                var bodyData = '';
-                $.each(resultData,function(index,row){
-                    cabeceraDonantes1+="<tr>"
-                    cabeceraDonantes1+="<th>"+"ID"+"</th><th>"+"Fabricante"+"</th><th>"+"Modelo"+"</th>"
-                    +"<th>"+"Serie"+"</th><th>"+"Tamaño"+"</th><th>"+"Ubicacion"+"<th></th>";
-                    cabeceraDonantes1+="</tr>";
-                    buscadorDonantes1+="<tr>"
-                    buscadorDonantes1+="<td>"+row.id+"</td><td>"+row.manufactura+"</td><td>"+row.modelo+"</td>"
-                    +"<td>"+row.numero_de_serie+"</td><td>"+row.capacidad+"</td><td>"+row.ubicacion+
-                    "<td>"                
-                    ;
-                    buscadorDonantes1+="</tr>";
+            success: function (dataResult) {
+              //console.log(dataResult);
+              var filas = dataResult.data.length;
+              var nuevacabecera = "<tr>"
+                        nuevacabecera+="<th>"+"ID"+"</th><th>"+"Fabricante"+"</th><th>"+"Modelo"+"</th>"
+                                          +"<th>"+"Serie"+"</th><th>"+"Tamaño"+"</th><th>"+"Ubicacion"+"<th></th>";
+                        nuevacabecera+="</tr>";
+                        $("#cabeceraDonantes").append(nuevacabecera)
+              for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de busquedas por id
+                var text = "";
+                  var aux1 = "";
+                  if (dataResult.data[i].id != null) {
+                    aux1 = dataResult.data[i].id;
+                  }
                     
-                })
-                $("#cabeceraDonantes1").append(cabeceraDonantes1);
-                $("#buscadorDonantes1").append(buscadorDonantes1);
+                    var nuevafila= "<tr><td id='dato'>" +
+                    dataResult.data[i].id + "</td><td>" +
+                    dataResult.data[i].manufactura  + "</td><td>" +
+                    dataResult.data[i].modelo  + "</td><td>" +
+                    dataResult.data[i].numero_de_serie  + "</td><td>" +
+                    dataResult.data[i].capacidad  + "</td><td>" +
+                    dataResult.data[i].ubicacion  + "</td><td class='text-center'>" +
+                        '<button  id="btnAgregarDonante" name="btnAgregarDonante" type="button" class="btn btn-success">Añadir</button>'+
+                  "</td></tr>"
+                  
+                $("#buscadorDonantes").append(nuevafila)
+              }
             }
         });
-});
+    });
+   // ajax de lista de donantes en dispositivos de trabajos
+   $(document).on('click','#btnAgregarDonante',function(){    
+
+        var fila = $(this).parent();
+        var id = fila.siblings("td:eq(0)").text();
+        //console.log(id);
+
+        $.ajax({
+            url: "/trabajos/nuevo/detalle/agregarDonanteBuscado",
+            type: "POST",
+            data: {
+            "_token": "{{ csrf_token() }}",
+            idBuscado: id,
+            "nombre": "{{$orden_elegida->id}}",
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (dataResult) {
+            console.log(dataResult);
+
+            var filas = dataResult.data.length;
+            for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de busquedas por id
+                var text = "";
+                var aux1 = "";
+                if (dataResult.data[i].id != null) {
+                    aux1 = dataResult.data[i].id;
+                }
+                    
+                    var nuevafila= "<tr><td>" +
+                    "<div class='form-check'>"+
+                    "<input class='form-check-input' onclick='habilitarModal()' type='checkbox' value='' id='"+dataResult.data[i].id+"'>"+
+                    "</div>"+
+                "</td><td class='text-center'>" +
+                    dataResult.data[i].id_donante + "</td><td>" +
+                    dataResult.data[i].tipo  + "</td><td>" +
+                    dataResult.data[i].manufactura  + "</td><td>" +
+                    dataResult.data[i].modelo  + "</td><td>" +
+                    dataResult.data[i].numero_serie  + "</td><td>" +
+                    dataResult.data[i].ubicacion  + "</td><td>"+"</td><td class='text-center'>" +
+                    '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data[i].id+'">'+
+                        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
+                        '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
+                        '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
+                        '</svg>'+
+                    '</button>'+
+                    '<div class="modal fade" id="exampleModal'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                        '<div class="modal-dialog" role="document">'+
+                        '<div class="modal-content">'+
+                            '<div class="modal-header">'+
+                            '<h5 class="modal-title" id="exampleModalLabel">Eliminar trabajo</h5>'+
+                            '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
+                                '<span aria-hidden="true">&times;</span>'+
+                            '</button>'+
+                            '</div>'+
+                            '<div class="modal-body">'+
+                            '¿Realmente Desea Borrar el trabajo?'+
+                            '</div>'+
+                            '<form action="{{url('/trabajo/')}}'+'/'+dataResult.data[i].id+'" method="POST" class="d-inline">'+
+                            '@csrf'+
+                            ' @method('DELETE')'+
+                            '<div class="modal-footer">'+
+                            '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
+                            '<button class="btn btn-primary" style="padding-left: 5px">'+
+                                'Aceptar'+
+                            '</button>'+
+                            '</div>'+
+                        '</form> '+
+                        '</div>'+
+                        '</div>'+
+                    ' </div> '+
+                    "</td></tr>"
+                
+                $("#clonesTrabajo").append(nuevafila)
+            }
+            }
+        });$('#exampleModalMover').modal('hide');
+
+    });
+   
 
 
 

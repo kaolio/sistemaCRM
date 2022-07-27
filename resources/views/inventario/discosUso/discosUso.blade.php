@@ -55,15 +55,15 @@
                 @foreach ($clones as $clon)
                 <tr>
                     <th></th>
-                    <th>{{ $clon->id_clon }}</th>
-                    <td>{{ $clon->manufactura }}</td>
-                    <td>{{ $clon->modelo }}</td>
-                    <td>{{ $clon->numero_serie }}</td>
-                    <td>{{ $clon->factor_forma}}</td>
-                    <td>{{ $clon->id_trabajos}}</td>
-                    <td>{{ $clon->estado}}</td>
-                    <td>{{ $clon->ocupado_hasta}}</td>
-                    <td>{{ $clon->ubicacion}}</td>
+                    <th class="text-center">{{ $clon->id_clon }}</th>
+                    <td class="text-center">{{ $clon->manufactura }}</td>
+                    <td class="text-center">{{ $clon->modelo }}</td>
+                    <td class="text-center">{{ $clon->numero_serie }}</td>
+                    <td class="text-center" style="width: 110px">{{ $clon->factor_forma}}</td>
+                    <td class="text-center" style="width: 100px">{{ $clon->id_trabajos}}</td>
+                    <td class="text-center">{{ $clon->estado}}</td>
+                    <td class="text-center">{{ $clon->ocupado_hasta}}</td>
+                    <td class="text-center">{{ $clon->ubicacion}}</td>
                     <td>
                         
                     </td>
