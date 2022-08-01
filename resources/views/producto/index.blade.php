@@ -1,16 +1,8 @@
 @extends('adminlte::page')
 @section('content')
-<h1 align="center"><strong>CLIENTES</strong></h1>
+<h1 align="center"><strong>PRODUCTOS</strong></h1>
 <div class="d-flex">
   <div class="ml-auto p-2">
-    <form class="form-inline" action="{{ url('clientes ')}}" method="GET">
-      
-      <label for="">Busqueda Rápida</label>
-      <div class="form-group mx-sm-3 mb-2">
-        <input type="" class="form-control" id="busqueda" name="busqueda" value="{{$busqueda}}" placeholder="Nombre">
-      </div>
-      <button type="submit" class="btn btn-primary mb-2">Buscar</button>
-    </form>
 </div>
 </div>
 <div class="container">
@@ -18,23 +10,17 @@
 <table class="table table-striped table-hover table-responsive">
   <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
     <tr>
-      <th>#</th>
-      <th>Nombre</th>
-      <th>VAT</th>
-      <th>Direccion</th>
-      <th>Numero</th>
-      <th>Apt</th>
-      <th>CodigoPostal</th>
-      <th>PAK</th>
-      <th>Ciudad</th>
-      <th>Pais</th>
-      <th>Idioma</th>
-      <th>Nota</th>
-      <th>Acciones</th>
+      <th class="text-center" style="width: 20%">Fabricante</th>
+      <th class="text-center" style="width: 20%">Modelo</th>
+      <th class="text-center" style="width: 20%">Numero Serial</th>
+      <th class="text-center" style="width: 20%">Ubicacion</th>
+      <th class="text-center" style="width: 10%">Precio</th>
+      <th class="text-center" style="width: 20%">Proveedor</th>
+      <th class="text-center" style="width: 20%">Fecha</th>
     </tr>
   </thead>
   <tbody>
-    @foreach ($cliente as $cliente)
+    {{--@foreach ($cliente as $cliente) 
       <tr>
         <td>{{$cliente->id}}</td>
         <td>{{$cliente->nombreCliente}}</td>
@@ -46,6 +32,9 @@
         <td>{{$cliente->pak}}</td>
         <td>{{$cliente->nombreCiudad}}</td>
         <td>{{$cliente->pais}}</td>
+        <td>{{$cliente->idioma}}</td>
+        <td>{{$cliente->idioma}}</td>
+        <td>{{$cliente->idioma}}</td>
         <td>{{$cliente->idioma}}</td>
         <td>{{$cliente->nota}}</td>
         <td>
@@ -60,7 +49,7 @@
 
           {{-- <form action="{{ url('/cliente/'.$cliente->id) }}" method="post" class="d-inline">
             @csrf
-            {{method_field('DELETE')}} --}}
+            {{method_field('DELETE')}} --}
             <button class="btn" data-toggle="modal" data-target="#exampleModal">
               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
@@ -97,12 +86,9 @@
           
         </td>  
       </tr>
-      @endforeach  
+      @endforeach  --}}
   </tbody> 
 </table>
 </div>
 </div>
-
-<script src="{{ asset('js/cliente/index.js')}}"></script>
-
 @endsection

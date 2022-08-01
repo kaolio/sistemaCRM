@@ -1,22 +1,6 @@
 @extends('adminlte::page')
 @section('content')
 
-<style>
-   .tabla-general{
-   font-size: 14px;
- }
-  .btn{
-    /* box-shadow: 2px 2px 2px rgb(95, 93, 93); */
-    transform: translateY(0px);
-  }
-  .btn:active {
-  transform: translateY(6px);
-  /* transform: translateX(6px); */
-}
-  body{
-    font-family:Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol;
- }
-</style>
 
 
 <h1 align="center"><strong>INVENTARIO</strong></h1>
@@ -120,7 +104,7 @@
 
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-
+<link rel="stylesheet" href="{{ URL::asset('estilos/style.css') }} ">
 <script>
 
   function cambiarPrioridad(){

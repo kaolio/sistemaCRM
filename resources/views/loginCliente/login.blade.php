@@ -96,7 +96,7 @@
         
         <div class="row justify-content-center">
             <div class="col-5">
-<button onclick="enviar()" class="btn btn-block btn-flat btn-primary">
+                <button onclick="enviar()" class="btn btn-block btn-flat btn-primary">
                     <span class="fas fa-sign-in-alt"></span>
                     Ingresar
                 </button>

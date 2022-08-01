@@ -8,6 +8,7 @@ use App\Http\Controllers\RolesController;
 use App\Http\Controllers\DetalleController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginClienteController;
+use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
@@ -149,6 +150,10 @@ Route::post('/cliente/nuevo/{id}',[ClienteController::class,'store']);
 Route::get('/cliente/editar/{id}',[ClienteController::class,'edit']);
 Route::put('/cliente/editar/{id}',[ClienteController::class,'update']);
 Route::delete('/cliente/{id}',[ClienteController::class,'destroy']);
+
+//PRODUCTOS
+Route::get('/productos',[ProductosController::class,'index']);
+Route::get('/producto/nuevo',[ProductosController::class,'create']);
 
 /*Puede llamar a un comando de Artisan fuera de la CLI.
 Route::get('/clear-cache', function() {
