@@ -167,7 +167,7 @@
                                                 <th class="column6 text-center">Nota</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="table-bordered">
+                                        <tbody id="datosClones" class="table-bordered">
                                             
                                             <tr>
                                         
@@ -197,7 +197,7 @@
                                                 <th class="column6 text-center">Nota</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="table-bordered">
+                                        <tbody id="datosDonantes" class="table-bordered">
                                             
                                             <tr>
                                         
@@ -427,6 +427,66 @@
          //
          $(document).ready(function() {
 
+            var url = "{{URL('datosClones')}}";
+                $.ajax({
+                    url: "/trabajos/nuevo/detalle/datosClones",
+                    type: "POST",
+                    data:{ 
+                        "_token": "{{ csrf_token() }}",
+                        "nombre": "{{$orden_elegida->id}}",
+                    },
+                    cache: false,
+                    dataType: 'json',
+                    success: function(dataResult){
+                    //console.log(dataResult);
+                        var resultData = dataResult.data;
+                        var bodyData = '';
+
+                        $.each(resultData,function(index,row){
+                            datosClones+="<tr>"
+                            datosClones+="<td>"+row.id+"</td><td>"+row.tipo+"</td><td>"+row.manufactura+"</td><td>"+row.modelo+"</td>"
+                            +"<td>"+row.numero_serie+"</td><td>"+row.ubicacion+"</td><td>"+row.nota+"</td><td>";
+                            datosClones+="</tr>";
+                            
+                        })
+                        $("#datosClones").append(datosClones);
+                    }
+                });
+
+        });
+        //
+        $(document).ready(function() {
+
+            var url = "{{URL('datosDonantes')}}";
+                $.ajax({
+                    url: "/trabajos/nuevo/detalle/datosDonantes",
+                    type: "POST",
+                    data:{ 
+                        "_token": "{{ csrf_token() }}",
+                        "nombre": "{{$orden_elegida->id}}",
+                    },
+                    cache: false,
+                    dataType: 'json',
+                    success: function(dataResult){
+                     console.log(dataResult);
+                        var resultData = dataResult.data;
+                        var bodyData = '';
+
+                        $.each(resultData,function(index,row){
+                            datosDonantes+="<tr>"
+                            datosDonantes+="<td>"+row.id+"</td><td>"+row.tipo+"</td><td>"+row.manufactura+"</td><td>"+row.modelo+"</td>"
+                            +"<td>"+row.numero_serie+"</td><td>"+row.ubicacion+"</td><td>"+row.nota+"</td><td>";
+                            datosDonantes+="</tr>";
+                            
+                        })
+                        $("#datosDonantes").append(datosDonantes);
+                    }
+                });
+
+        });
+         //
+         $(document).ready(function() {
+
                 var url = "{{URL('datosDispositivos')}}";
                 $.ajax({
                     url: "/trabajos/nuevo/detalle/datosDispositivos",
@@ -471,7 +531,7 @@
                 cache: false,
                 dataType: 'json',
                 success: function(dataResult){
-                   console.log(dataResult);
+                  // console.log(dataResult);
                     var resultData = dataResult.data;
                     var bodyData = '';
                     
