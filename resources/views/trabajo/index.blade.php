@@ -216,7 +216,7 @@
 <script src="{{ asset('js/trabajo/index.js')}}"></script>
 <link rel="stylesheet" href="{{ URL::asset('estilos/style.css') }} ">
 
-@include('trabajo.funcionesAjax')
+@include('trabajo.ajax.index.funcionesAjax')
 
 
 @endsection

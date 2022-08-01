@@ -13,7 +13,7 @@
     </form>
 </div>
 </div>
-<div class="">
+<div class="container">
   <div class="table-responsive">
 <table class="table table-striped table-hover table-responsive">
   <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
@@ -29,9 +29,6 @@
       <th>Ciudad</th>
       <th>Pais</th>
       <th>Idioma</th>
-      <th>Tipo</th>
-      <th>Valor</th>
-      <th>Nombre</th>
       <th>Nota</th>
       <th>Acciones</th>
     </tr>
@@ -49,9 +46,6 @@
         <td>{{$cliente->pak}}</td>
         <td>{{$cliente->nombreCiudad}}</td>
         <td>{{$cliente->pais}}</td>
-        <td>{{$cliente->idioma}}</td>
-        <td>{{$cliente->idioma}}</td>
-        <td>{{$cliente->idioma}}</td>
         <td>{{$cliente->idioma}}</td>
         <td>{{$cliente->nota}}</td>
         <td>
@@ -108,4 +102,7 @@
 </table>
 </div>
 </div>
+
+<script src="{{ asset('js/cliente/index.js')}}"></script>
+
 @endsection

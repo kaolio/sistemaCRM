@@ -342,12 +342,6 @@ return [
                     'icon'    => 'fas fa-fw fa-filse',
                     'active' => ['trabajos', 'trabajo/editar*'],
                 ],
-                [
-                    'text' => 'Prioridad de Trabajos',
-                    'url'  => 'trabajo/prioridad',
-                    'can' => 'prioridad-trabajo',
-                    'icon'    => 'fas fa-fw fa-filse',
-                ],
             ]
         ],
         [
