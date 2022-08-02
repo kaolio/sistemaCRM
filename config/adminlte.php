@@ -390,7 +390,7 @@ return [
                 ],
             ]
         ],
-        [
+        /*[
             'text'    => 'Productos',
             'icon'    => 'fas fa-fw fa-barcode',
             'can' => 'ver-productos',
@@ -409,7 +409,7 @@ return [
                     'active' => ['productos', 'producto/editar*'],
                 ],
             ]
-        ],
+        ],*/
         ['header' => 'ADMINISTRACION',
         'can' => 'ver-trabajo'],
         [
