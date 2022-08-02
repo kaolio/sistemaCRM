@@ -140,9 +140,10 @@
   </form>
 </div>
 </div>
-
-@endsection
-
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script src="{{ asset('js/inventario/create.js')}}"></script>
 <link rel="stylesheet" href="{{ URL::asset('estilos/style.css') }} ">
+
+<br>
+@endsection
+
