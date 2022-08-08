@@ -7,6 +7,7 @@ use App\Http\Controllers\RolesController;
 use App\Http\Controllers\DetalleController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\FacturacionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -132,6 +133,13 @@ Route::post('/cliente/nuevo/{id}',[ClienteController::class,'store']);
 Route::get('/cliente/editar/{id}',[ClienteController::class,'edit']);
 Route::put('/cliente/editar/{id}',[ClienteController::class,'update']);
 Route::delete('/cliente/{id}',[ClienteController::class,'destroy']);
+
+
+//FACTURACION
+Route::get('/facturacion',[FacturacionController::class,'index']);
+Route::get('/facturacion/asistente',[FacturacionController::class,'verAsistente']);
+Route::get('/facturacion/nuevo',[FacturacionController::class,'create']);
+Route::post('/facturacion/nuevo',[FacturacionController::class,'store']);
 
 /*Puede llamar a un comando de Artisan fuera de la CLI.
 Route::get('/clear-cache', function() {
