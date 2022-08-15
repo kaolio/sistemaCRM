@@ -46,7 +46,7 @@
                                     @csrf
                                     @method('delete')
                                     
-                                    <button type="button" class="btn btn-sm btn-danger" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
+                                    <button type="submit" class="btn btn-sm btn-danger" >
                                                 Eliminar
                                     </button>
                                 </form> 

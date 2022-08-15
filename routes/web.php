@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 Auth::routes();
@@ -53,7 +53,8 @@ Route::get('/usuario/nuevo',[UsuarioController::class,'create']);
 Route::post('/usuario/nuevo',[UsuarioController::class,'store']);
 Route::get('/usuario/editar/{id}',[UsuarioController::class,'edit']);
 Route::post('/usuario/editar/{id}',[UsuarioController::class,'update']);
-Route::post('/imagen/validar' ,[UsuarioController::class,'validar']);
+//Route::post('/imagen/validar' ,[UsuarioController::class,'validar']);
+Route::delete('/usuario/{id}',[UsuarioController::class,'destroy']);
 //Edicion foto
 Route::post('/usuario/foto', [UsuarioController::class,'updatePhoto']);
 
@@ -105,6 +106,7 @@ Route::post('/trabajos/nuevo/detalle/datosClonesBuscados',[DetalleController::cl
 Route::post('/trabajos/nuevo/detalle/modalDonante',[DetalleController::class,'buscadorDonante']);  //buscador donante
 Route::post('/trabajos/nuevo/detalle/agregarDonanteBuscado',[DetalleController::class,'agregarBusquedaDonante']); //agregar donante buscados
 Route::post('/trabajos/nuevo/detalle/datosDonantesBuscados',[DetalleController::class,'mostrarDonantesBuscados']); //mostrar donantes agregados
+Route::post('/trabajos/nuevo/detalle/moverUbicacionActual',[DetalleController::class,'moverUbicacion']);
 //Archivos adjuntos
 Route::post('/trabajos/detalle/subir', [DetalleController::class,'subirArchivo']);//ruta para subir archivo a drive
 

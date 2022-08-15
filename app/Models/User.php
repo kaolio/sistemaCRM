@@ -68,12 +68,12 @@ class User extends Authenticatable
 
     }
 
-    public function getAvatarUrl()
+   /* public function getAvatarUrl()
 {
     if ($this->photoPerfil)
         return asset('/user/imagenes'.$this->id.'.'.$this->photoPerfil);
 
     return asset('user/imagenes/default.jpg');
-}
+}*/
 
 }

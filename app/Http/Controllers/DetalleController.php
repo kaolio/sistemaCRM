@@ -409,21 +409,38 @@ class DetalleController extends InventarioController
                   
     }
 
+    public function moverUbicacion()
+    {
 
-
-//  public function new($inventario){
-//     return $this->var = $var;
-//     //  $inventario = Inventario::all();
-//      return view("trabajo/informacion/datosInventario",compact("var"));  
- 
-// https://www.zentica-global.com/es/zentica-blog/ver/tutorial-de-ejemplo-de-laravel-8-ajax-como-usar-ajax-en-laravel-6073a83a75014
-
-// public function getInve(Request $request)
-// {
-//     $inventario = Inventario::latest()->paginate(5);
-
-//     return Request::ajax() ? 
-//                  response()->json($inventario,Response::HTTP_OK) 
-//                  : abort(404);
-// }
+        for ($i=0; $i < sizeof($_POST['arreglo']); $i++) { 
+            DB::table('orden_trabajos')
+                ->where('id', $_POST['arreglo'][$i])
+                ->update(['estado' => $_POST["seleccionado"]]);
+        }
+            
+        if (Auth::user()->id != 1) {
+            $usuario = DB::table('users')
+            ->select('name')
+            ->where('id',Auth::user()->id)
+            ->first();
+            
+            $datosTablas =  DB::table('orden_trabajos')
+            ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+            ->join('users','users.id','orden_trabajos.asignado')
+            ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+            ->Where('orden_trabajos.creado',$usuario->name)
+            ->orWhere('orden_trabajos.asignado',Auth::user()->id)
+            ->orderBy('orden_trabajos.id','desc')
+            ->get();
+        }else{
+            $datosTablas =  DB::table('orden_trabajos')
+            ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+            ->join('users','users.id','orden_trabajos.asignado')
+            ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+            ->orderBy('orden_trabajos.id','desc')
+            ->get();
+        }
+    
+       // return json_encode(array('data'=>$datosTablas));
+    }
 }

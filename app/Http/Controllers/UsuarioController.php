@@ -168,9 +168,11 @@ class UsuarioController extends Controller
     {
 
         try {
-            
+            DB::table('orden_trabajos')
+                ->where('asignado', $id)
+                ->update(['asignado' => 1]);
             User::find($id)->delete();
-            return redirect()->route('usuarios.index');
+            return redirect('/usuarios');
 
         } catch (\Throwable $th) {
             return view('errors.error');
@@ -196,7 +198,7 @@ class UsuarioController extends Controller
         }
     }
 
-    public function updatePhoto(Request $request){
+   /* public function updatePhoto(Request $request){
 
             $this->validate($request, [
                 'photo' => 'required|image'
@@ -236,6 +238,6 @@ class UsuarioController extends Controller
             //$data['path'] = $user->getAvatarUrl() . '?' . uniqid();
 
             //return $data;
-        }
+        }*/
 
 }

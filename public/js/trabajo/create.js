@@ -1,5 +1,4 @@
-$(function() {
-      
+
   console.log($('#cliente').val());
   if ($('#cliente').val() != "") {
     $('#cliente').prop('readonly', true);
@@ -123,7 +122,7 @@ $(function() {
   $("#localizacion").val('');
   $("#estado").html("<span  class='mayor'><h5 class='bien'></h5></span>");
 });
-});
+
 
 function validarTabla(){ 
   
