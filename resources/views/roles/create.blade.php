@@ -8,17 +8,18 @@
                 }
 
             .card1  {
-
-                background: linear-gradient(100deg, #5f8ab6, rgb(234, 234, 236));
+                border-radius: 5px;
+                background-image: radial-gradient( circle farthest-corner at 7.2% 14%, rgba(236,242,246,1) 0%, rgba(238,250,249,1) 100.2% );
                 
             }
             .card2  {
-
-                background: linear-gradient(100deg, #6489af, rgb(234, 234, 236));
+                border-radius: 5px;
+                background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(37,145,251,0.98) 0.1%, rgba(0,7,128,1) 99.8% );
                 
             }
             .card{
-                background: linear-gradient(100deg, #6489af, rgb(253, 253, 253));
+                /* background: linear-gradient(100deg, #6489af, rgb(253, 253, 253)); */
+                background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(37,145,251,0.98) 0.1%, rgba(0,7,128,1) 99.8% );
                 position: relative;
                 width: 50%;
             }
@@ -28,6 +29,37 @@
                 color:#d7f78c;
                 font-size: medium;
             }
+.button-1 {
+  background-color: initial;
+  background-image: linear-gradient(-180deg, #00D775, #00BD68);
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size: 120%;
+  height: 44px;
+  line-height: 44px;
+  outline: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  width: 30%;
+  z-index: 9;
+  border: 0;
+}
+
+.button-1:hover {
+  background: #00bd68;
+}
                 
         </style>
             
@@ -58,7 +90,7 @@
 
         <div class="row justify-content-center">
             <div class="card" >
-                    <div class="card-header " style ="font-family:serif,new time roman;">
+                    <div class="card-header">
                       <h3 class="text-center text-white"> <b> NUEVO ROL </b> </h3>
                     </div>
                             <div class="card-body">
@@ -152,7 +184,8 @@
                                                         
                                                         </br>
                                                         <div class="text-center">
-                                                            <input type="submit" id="enviar" class="btn btn-success my-2 my-sm-0" disabled value="Agregar">
+                                                            <input type="submit" id="enviar" class="button-1" disabled value="Agregar">
+                                                            {{-- <button class="button-1" id="enviar" role="button" disabled value="Agregar">Button 35</button> --}}
                                                         </div>
                                 </form>
                             </div>

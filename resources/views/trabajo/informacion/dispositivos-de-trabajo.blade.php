@@ -10,7 +10,7 @@
         font-size: 12px;
         text-align: center;
     }
-    #botones, #btnBuscarDonante{
+    #botones, #btnBuscarDonante, #btnBuscarClon{
         font-size: 14px;
         border-radius: 4px;
         padding: 5px;
@@ -34,23 +34,16 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-arrows-move" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z"/>
         </svg>
-        Mover Dispositivos Seleccionados
+        Mover Dispositivos 
     </button>
     <!-- add device --> 
-
- 
-
-
-
-
-
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel" align="center">Mover Dispositivos Seleccionados</h5>
+            <h5 class="modal-title" id="exampleModalLabel" align="center">Mover Dispositivos</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -84,7 +77,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
             </svg>
-            Eliminar dispositivos seleccionados
+            Eliminar dispositivos
         </button>
         <button class="btn btn-success" id="botones">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -197,53 +190,53 @@
     </div>
 
 <p class="subtitulo">Clones de Trabajo</p>
-<div class="card">
-<div class="card-body">
-    <table class="table table-responsive">
-        <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
-            <tr>
-                <th class="p-1"> &nbsp;&nbsp;&nbsp; </th>
-                <th class="col-md-1 p-1"> ID </th>
-                <th class="col-md-1 p-1">Tipo</th>
-                <th class="col-md-2 p-1">Fabricante</th>
-                <th class="col-md-2 p-1">Modelo</th>
-                <th class="col-md-2 p-1">Serie</th>
-                <th class="col-md-1 p-1">Ubicación</th>
-                <th class="col-md-2 p-1">Nota</th>
-                <th class="col-md-1 p-1"></th>
-            </tr>
-          </thead>
-          <tbody class="table-bordered">
-              {{-- @if(count($inventario)<=0) --}}
-                <tr>
-                  <th class="col-md-3">No hay datos disponibles</th>  
-                <tr>
-               {{-- @else    --}}
-               {{-- @foreach ($inventario as $item) --}}
-            <tr>
-             
-            </tr>
-           
-          </tbody>
-    </table>
-</div>
-</div>
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-responsive">
+                <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
+                    <tr>
+                        <th class="p-1"> &nbsp;&nbsp;&nbsp; </th>
+                        <th class="col-md-1 p-1"> ID </th>
+                        <th class="col-md-1 p-1">Tipo</th>
+                        <th class="col-md-2 p-1">Fabricante</th>
+                        <th class="col-md-2 p-1">Modelo</th>
+                        <th class="col-md-2 p-1">Serie</th>
+                        <th class="col-md-1 p-1">Ubicación</th>
+                        <th class="col-md-2 p-1">Nota</th>
+                        <th class="col-md-1 p-1"></th>
+                    </tr>
+                </thead>
+                <tbody class="table-bordered" id="clonesTrabajo">
+                    <tr>
+                    
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 
 <p class="subtitulo">Donantes de Trabajo</p>
     <div class="card">
     <div class="card-body">
         <table class="table table-responsive">
-            <thead  id="cabeceraDonantes1" class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
+            <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
                 <tr>
-                    {{-- titulos de la tabla--}}
+                    <th class="p-1"> &nbsp;&nbsp;&nbsp; </th>
+                    <th class="col-md-1 p-1"> ID </th>
+                    <th class="col-md-1 p-1">Tipo</th>
+                    <th class="col-md-2 p-1">Fabricante</th>
+                    <th class="col-md-2 p-1">Modelo</th>
+                    <th class="col-md-2 p-1">Serie</th>
+                    <th class="col-md-1 p-1">Ubicación</th>
+                    <th class="col-md-2 p-1">Nota</th>
+                    <th class="col-md-1 p-1"></th>
                 </tr>
             </thead>
-            <tbody id="buscadorDonantes1" class="table-bordered" >
+            <tbody class="table-bordered" id="donantesTrabajo">
                 <tr>
-                    {{-- datos de la tabla inventarios --}}
+                
                 </tr>
-            
             </tbody>
         </table>
     </div> 
@@ -257,25 +250,25 @@
             <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
                 <tr>
                     <th class="p-1"> &nbsp;&nbsp;&nbsp; </th>
-                    <th class="p-1">Tipo</th>
-                    <th class="p-1">Fabricante</th>
-                    <th class="p-1">Modelo</th>
-                    <th class="p-1">Serie</th>
-                    <th class="p-1">Ubicación</th>
-                    <th class="p-1">Nota</th>
-                    <th class="p-1"></th>
+                    <th class="col-md-1 p-1">Tipo</th>
+                    <th class="col-md-1 p-1">Fabricante</th>
+                    <th class="col-md-1 p-1">Modelo</th>
+                    <th class="col-md-1 p-1">Serie</th>
+                    <th class="col-md-1 p-1">Ubicación</th>
+                    <th class="col-md-1 p-1" style="width: 250px">Nota</th>
+                    <th class="col-md-1 p-1" style="width: 400px"></th>
                 </tr>
             </thead>
             <tbody class="table-bordered" id="datosOtrosDispositivos">
-                {{-- @if(count($inventario)<=0) --}}
                 <tr>
                 
                 <tr>
-                {{--  --}}
             </tbody>
         </table>
     </div>
     </div>
+
+    @include('trabajo.ajax.detalle.dispositivosAjax')
 
      
     <script>

@@ -64,7 +64,7 @@
           <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">Total</span>
         </div>
-        <input type="text" class="form-control" id="total" name="total" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+        <input type="text" id="total" onblur="calcularTotal()" class="form-control" name="total" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
       </div>
     </div>
 </div>
@@ -75,7 +75,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">SubTotal</span>
           </div>
-          <input type="text" class="form-control" id="subtotal" name="subtotal" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+          <input id="subtotal" onblur="calcularSubtotal()" type="text" class="form-control" name="subtotal" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
         </div>
       </div>
       <div class="col-md-2">
@@ -83,7 +83,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Total con IVA</span>
           </div>
-          <input type="text" class="form-control" id="totalConIva" name="totalConIva" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+          <input type="text" id="totalConIva" onblur="calcularIva()" class="form-control" name="totalConIva" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
         </div>
       </div>
 </div>
@@ -92,13 +92,48 @@
     </div>
 </form>
 </div>
+  
+<script>
+    function calcularTotal(){
+    var precio = parseFloat(document.getElementById("precio").value);
+    var partes = parseFloat(document.getElementById("partes").value);
+    var iva = parseFloat(document.getElementById("iva").value);
+    var descuento = parseFloat(document.getElementById("descuento").value);
+    // var subtotal = parseFloat(document.getElementById("subtotal").value);
+    var iv = parseFloat(((precio+partes)/100)*iva);
+    var desc = parseFloat(((precio+partes+iv)/100)*descuento).toFixed(2);
+    // var desc = parseFloat(((precio+partes)/100)*iva)*descuento).toFixed(2);
+    var total = document.getElementById("total");
+    total.value = parseFloat((precio+partes+iv)-desc).toFixed(2);
+    console.log(total.value);
+  }
 
-<form id="form-creator">
-  <input v-model="calculate" type="text" name="text">
-  <input value="@{{ calculate }} type="text" name="text-result">
-</form>
 
+  function calcularSubtotal(){
+    var precio = parseFloat(document.getElementById("precio").value);
+    var partes = parseFloat(document.getElementById("partes").value);
 
+    var descuento = parseFloat(document.getElementById("descuento").value);
+    var desc = parseFloat(((precio+partes)/100)*descuento).toFixed(2);
+    var subtotal = document.getElementById("subtotal");
+    subtotal.value = parseFloat(precio+partes-desc).toFixed(2);
+    console.log(subtotal.value);
+  }
+  
+  function calcularIva(){
+    var precio = parseFloat(document.getElementById("precio").value);
+    var partes = parseFloat(document.getElementById("partes").value);
+    var iva = parseFloat(document.getElementById("iva").value);
+    var descuento = parseFloat(document.getElementById("descuento").value);
+    // var subtotal = parseFloat(document.getElementById("subtotal").value);
+    var iv = parseFloat(((precio+partes)/100)*iva);
+    var desc = parseFloat(((precio+partes+iv)/100)*descuento).toFixed(2);
+    
+    var totalConIva = document.getElementById("totalConIva");
+    totalConIva.value = parseFloat((precio+partes+iv)-desc).toFixed(2);
+    console.log(totalConIva.value);
+  }
+  </script>
 <p class="subtitulo">Facturas</p>
 <div class="card">
     <div class="card-body">
@@ -159,14 +194,14 @@
 </div>
     
 
-<div>
+{{-- <div>
   <input type="text" wire:model="name">
   
   Hi! My name is @php{{ $name }}@endphp
   </div>
   @php
   $name = "carlos"
-@endphp
+@endphp --}}
 
 @endsection
 

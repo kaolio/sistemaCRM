@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Clones;
 use App\Models\Nota;
 use App\Models\OrdenTrabajo;
 use App\Models\Inventario;
 use Illuminate\Http\Request;
 use App\Models\Roles;
 use App\Models\Detalle;
+use App\Models\Donantes;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use JeroenNoten\LaravelAdminLte\View\Components\Tool\Datatable;
 use Psy\Command\WhereamiCommand;
 
@@ -42,6 +45,26 @@ class DetalleController extends InventarioController
 
 
         return json_encode(array('data'=>$datosTabla));
+    }
+
+    public function datosClones(){
+
+        $datosClones = DB::table('clones')
+                ->select('*')
+                ->where('id_trabajos','=',$_POST["nombre"])
+                ->get();
+
+        return json_encode(array('data'=>$datosClones));
+    }
+
+    public function datosDonantes(){
+
+        $datosDonantes = DB::table('donantes')
+                ->select('*')
+                ->where('id_trabajos','=',$_POST["nombre"])
+                ->get();
+
+                return json_encode(array('data'=>$datosDonantes));
     }
     
 
@@ -201,6 +224,13 @@ class DetalleController extends InventarioController
         return redirect('trabajos.informacion');
     }
 
+    public function subirArchivo(Request $request){
+        
+       dd($request->file("file-upload")->store("","google"));
+       
+      // Storage::disk("google")->put("test.txt");
+    }
+
     public function datosPacientes(){
 
         $datosPacientes =  DB::table('detalle_ordens')
@@ -241,6 +271,67 @@ class DetalleController extends InventarioController
         return json_encode(array('data'=>$datosInventario));
     }
 
+    public function buscadorClon(){
+        
+        $recuperarDatosClon = DB::table('inventarios')
+                        ->select('*')
+                        ->orWhere('id','=',$_POST["idInternoClon"])
+                        ->orWhere('modelo','=',$_POST["modeloClon"])
+                        ->orWhere('numero_de_serie','=',$_POST["serieClon"])
+                        ->orWhere('capacidad','=',$_POST["tamañoClon"])
+                        ->orWhere('pbc','=',$_POST["pcbClon"])
+                        ->get();
+
+                        return json_encode(array('data'=>$recuperarDatosClon));
+    }
+
+    public function agregarBusquedaClon(){
+
+        $inventario = DB::table('inventarios')
+                        ->select('*')
+                        ->where('id','=',$_POST["idBuscado"])
+                        ->first();
+
+       $estadoElegido = DB::table('orden_trabajos')
+                        ->select('estado')
+                        ->where('id','=',$_POST["nombre"])
+                        ->first();
+
+
+                $clon = new Clones();
+                $clon->id_clon = "c-".$_POST["idBuscado"];
+                $clon->tipo = $inventario->tipo;
+                $clon->manufactura = $inventario->manufactura;
+                $clon->modelo = $inventario->modelo;
+                $clon->numero_serie = $inventario->numero_de_serie;
+                $clon->factor_forma = $inventario->factor_de_forma;
+                $clon->id_trabajos = $_POST["nombre"];
+                $clon->id_inventarios = $_POST["idBuscado"];
+                $clon->estado = $estadoElegido->estado;
+                $clon->ocupado_hasta ="";
+                $clon->ubicacion = $inventario->ubicacion;
+                $clon->nota = $inventario->nota;
+                $clon->save();
+
+                $clones = DB::table('clones')
+                            ->select('*')
+                            ->where('id_trabajos','=',$_POST["nombre"])
+                            ->get();
+
+                return json_encode(array('data'=>$clones));
+    }
+
+    public function mostrarClonesBuscados(){
+
+       $datosClones = DB::table('clones')
+                    ->select('*')
+                    ->where('id_trabajos','=',$_POST["nombre"])
+                    ->get();
+
+                    return json_encode(array('data'=>$datosClones));
+
+    }
+
     public function buscadorDonante(){
         
         $recuperarDatos = DB::table('inventarios')
@@ -254,6 +345,50 @@ class DetalleController extends InventarioController
 
                         return json_encode(array('data'=>$recuperarDatos));
     }
+
+    public function agregarBusquedaDonante(){
+
+        $inventario = DB::table('inventarios')
+                        ->select('*')
+                        ->where('id','=',$_POST["idDonanteBuscado"])
+                        ->first();
+
+         $trabajo = DB::table('orden_trabajos')
+                        ->select('*')
+                        ->where('id','=',$_POST["nombre"])
+                        ->first();
+
+
+                $donante = new Donantes();
+                $donante->id_donante = $_POST["idDonanteBuscado"];
+                $donante->tipo = $inventario->tipo;
+                $donante->manufactura = $inventario->manufactura;
+                $donante->modelo = $inventario->modelo;
+                $donante->numero_serie = $inventario->numero_de_serie;
+                $donante->ubicacion = $inventario->ubicacion;
+                $donante->nota = $inventario->nota;
+                $donante->id_trabajos = $trabajo->id;
+                $donante->id_inventarios = $_POST["idDonanteBuscado"];
+                $donante->save();
+
+                $donantes = DB::table('donantes')
+                            ->select('*')
+                            ->where('id_trabajos','=',$_POST["nombre"])
+                            ->get();
+
+                return json_encode(array('data'=>$donantes));
+    }
+
+    public function mostrarDonantesBuscados(){
+
+        $datosDonantes = DB::table('donantes')
+                     ->select('*')
+                     ->where('id_trabajos','=',$_POST["nombre"])
+                     ->get();
+ 
+                     return json_encode(array('data'=>$datosDonantes));
+ 
+     }
 
     public function guardarDiagnostico(){
 

@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ClonesController;
 use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\OrdenTrabajoController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\DetalleController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginClienteController;
+use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\FacturacionController;
 use Illuminate\Support\Facades\Route;
@@ -28,8 +31,13 @@ Route::get('/', function () {
 Auth::routes();
 
 //HOME
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('/home/datosDashboard',[HomeController::class, 'datosDashboard']);
+
+//LOGIN CLIENTE
+Route::get('/login/cliente', [LoginClienteController::class, 'index']);
+Route::get('/login/cliente/{id}', [LoginClienteController::class, 'vistaCliente']);
+Route::post('/login/cliente', [LoginClienteController::class, 'start']);
 
 //ROLES
 Route::get('/roles',[RolesController::class,'index']);
@@ -83,6 +91,8 @@ Route::post('/trabajos/detalle/guardarPrioridad',[DetalleController::class,'guar
 Route::post('/trabajos/detalle/NotaCliente',[DetalleController::class,'guardarNotaCliente']); //guardar nota de cliente
 Route::post('/trabajos/detalle/nota',[DetalleController::class,'guardarNota']); //guardar comentario
 Route::post('/trabajos/nuevo/detalle/datosTabla',[DetalleController::class,'datosTabla']); //ruta de tabla pacientes
+Route::post('/trabajos/nuevo/detalle/datosClones',[DetalleController::class,'datosClones']); //ruta tabla clones 
+Route::post('/trabajos/nuevo/detalle/datosDonantes',[DetalleController::class,'datosDonantes']); //ruta tabla donantes
 Route::post('/trabajos/nuevo/detalle/datosDispositivos',[DetalleController::class,'datosDispositivos']); // ruta de tabla dispositivos
 Route::delete('/trabajos/detalle/{id}',[DetalleController::class,'eliminarNota']);// eliminar nota
 Route::post('/trabajos/nuevo/detalle/busquedaRapida',[DetalleController::class,'busquedaRapida']);//busqueda de notas 
@@ -90,19 +100,27 @@ Route::post('/trabajos/nuevo/detalle/busquedaRapida',[DetalleController::class,'
 Route::post('/trabajos/detalle/guardarDiagnostico',[DetalleController::class,'guardarDiagnostico']); // ruta de guardar diagnostico
 Route::post('/trabajos/nuevo/detalle/datosPacientes',[DetalleController::class,'datosPacientes']); //ruta de orden de trabajos en (dispositivos de trabajo)
 Route::post('/trabajos/nuevo/detalle/datosOtrosDispositivos',[DetalleController::class,'datosOtrosDispositivos']);//ruta orden de trabajos de otros dispositivos
-//Route::post('/trabajos/nuevo/detalle/datosInventario',[DetalleController::class,'datosInventario']); //ruta de inventario en (dispositivos de trabajo)
+Route::post('/trabajos/nuevo/detalle/modalClon',[DetalleController::class,'buscadorClon']);  //buscador clon
+Route::post('/trabajos/nuevo/detalle/agregarClonBuscado',[DetalleController::class,'agregarBusquedaClon']); //agregar clon buscados
+Route::post('/trabajos/nuevo/detalle/datosClonesBuscados',[DetalleController::class,'mostrarClonesBuscados']); //mostrar clones agregados
 Route::post('/trabajos/nuevo/detalle/modalDonante',[DetalleController::class,'buscadorDonante']);  //buscador donante
+Route::post('/trabajos/nuevo/detalle/agregarDonanteBuscado',[DetalleController::class,'agregarBusquedaDonante']); //agregar donante buscados
+Route::post('/trabajos/nuevo/detalle/datosDonantesBuscados',[DetalleController::class,'mostrarDonantesBuscados']); //mostrar donantes agregados
+//Archivos adjuntos
+Route::post('/trabajos/detalle/subir', [DetalleController::class,'subirArchivo']);//ruta para subir archivo a drive
+
 Route::post('/trabajos/nuevo/detalle/agregarDonante',[DetalleController::class,'agregarDonante']);  //buscador donante
-// Route::post('/trabajos/nuevo/detalle/agregarDonante',[DetalleController::class,'agregarDonante']);  //ver lista de donantes en dispositivos de trabajo
-// Route::post('/trabajos/nuevo/detalle/moverUbicacion',[DetalleController::class,'moverUbicacion']);  // mover ubicacion de la tabla de dispositivos del paciente
 Route::post('/trabajos/nuevo/detalle/guardarDiagnostico',[DetalleController::class,'guardarDiagnostico']);  // guardar diagnostico a los disp de los pacientes
 Route::delete('/trabajos/nuevo/detalle/eliminarPaciente/id',[DetalleController::class,'eliminarPaciente']);
 Route::delete('/trabajos/detalle',[DetalleController::class,'eliminarFilaPaciente']);// eliminar registro de disp paciente
 
+//CLONES
+Route::get('/inventario/discosUso',[ClonesController::class,'discosUso']);
+
+
 //INVENTARIO
 Route::get('/inventario',[InventarioController::class,'index']);
 Route::get('/inventario/nuevo',[InventarioController::class,'create']);
-Route::get('/inventario/discosUso',[InventarioController::class,'discosUso']);
 Route::post('/inventario/nuevo',[InventarioController::class,'store']);
 Route::get('/inventario/editar/{id}',[InventarioController::class,'edit']);
 Route::post('/inventario/editar/{id}',[InventarioController::class,'update']);
@@ -140,6 +158,14 @@ Route::get('/facturacion',[FacturacionController::class,'index']);
 Route::get('/facturacion/asistente',[FacturacionController::class,'verAsistente']);
 Route::get('/facturacion/nuevo',[FacturacionController::class,'create']);
 Route::post('/facturacion/nuevo',[FacturacionController::class,'store']);
+Route::get('/facturacion/editar/{id}',[FacturacionController::class,'edit']);
+Route::post('/facturacion/editar/{id}',[FacturacionController::class,'update']);
+
+Route::post('/facturacion/verFacturas',[FacturacionController::class,'datosFacturas']); //ruta tabla de facturas
+
+//PRODUCTOS
+Route::get('/productos',[ProductosController::class,'index']);
+Route::get('/producto/nuevo',[ProductosController::class,'create']);
 
 /*Puede llamar a un comando de Artisan fuera de la CLI.
 Route::get('/clear-cache', function() {

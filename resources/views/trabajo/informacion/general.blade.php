@@ -2,6 +2,7 @@
     textarea {
     resize: none;
 }
+
 </style>
 
 
@@ -17,7 +18,7 @@
                     @if ($orden_elegida->name != "Administrador")
                     <p class="text-left" style="position: relative;left:20px">&nbsp;&nbsp;<b>Ingeniero Designado:</b><span id="userDesignado">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$orden_elegida->name}}</span> </p>
                     @else
-                    <p class="text-left" style="position: relative;left:20px" >&nbsp;&nbsp;<b>Ingeniero Designado:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <p class="text-left" style="position: relative;left:20px" >&nbsp;&nbsp;<b>Ingeniero Designado:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ninguno</p>
                     @endif
                     
 
@@ -36,14 +37,14 @@
                                     @endforeach
                                     <option value="">Recibido</option>
                                     <option value="En Proceso">En proceso</option>
-                                    <option value="esperandoPiezas">Esperando Piezas</option>
+                                    <option value="Esperando Piezas">Esperando Piezas</option>
                                     <option value="Trabajo Completo">Trabajo Completo</option>
                                     <option value="Trabajo Incompleto">Trabajo Incompleto</option>
                                     <option value="Pagado">Pagado</option>
                                     <option value="Devuelto Al Cliente">Devuelto al Cliente</option>
                                     <option value="Pago Pendiente">Pago Pendiente</option>
                                     <option value="Llegada Pendiente">Llegada Pendiente</option>
-                                    <option value="Pagado Regresado Cliente">Pagado y regresado a Cliente</option>
+                                    <option value="Pagado y Regresado al Cliente">Pagado y regresado a Cliente</option>
                                  </select>
                             </div>
                         </br>
@@ -93,7 +94,7 @@
                                         </br>
                                         <!--Boton agregar-->
                                         <div class="form-group" style="position: relative;left:5px">
-                                            <button class="btn btn-success" id="submit" onSubmit="return limpiar()" disabled>Enviar Comentario</button>
+                                            <button class="btn btn-success" id="submit" onSubmit="return limpiar()" >Enviar Comentario</button>
                                         </div>
                                         <!-- /Boton agregar-->
                                         
@@ -166,7 +167,7 @@
                                                 <th class="column6 text-center">Nota</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="table-bordered">
+                                        <tbody id="datosClones" class="table-bordered">
                                             
                                             <tr>
                                         
@@ -196,7 +197,7 @@
                                                 <th class="column6 text-center">Nota</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="table-bordered">
+                                        <tbody id="datosDonantes" class="table-bordered">
                                             
                                             <tr>
                                         
@@ -319,246 +320,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="{{ asset('js/trabajo/detalle.js')}}"></script>
+
+    @include('trabajo.ajax.detalle.generalAjax')
  
-
-
-    <script>
-
-    
-        $('#btnAsignar').on('click', function () {
-
-        var url = $('#selectDesignacion').val();
-        //console.log(url);
-            $.ajax({
-                url: "/trabajos/detalle/guardarDesignado",
-                type: "POST",
-                data:{ 
-                    "_token": "{{ csrf_token() }}",
-                    selectDesignacion: url,
-                    "nombre": "{{$orden_elegida->id}}",
-                },
-                cache: false,
-                dataType: 'json',
-                success: function(dataResult){
-                //console.log(dataResult);
-                // console.log(myJSON);
-                // console.log(typeof JSON.stringify(dataResult))  
-                $('#exampleModal01').modal('hide');
-                $('#userDesignado').html('<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+dataResult.data['name']+'</span>');
-                
-            }
-            });
-        });
-        //
-        $('#selectEstado').on('click', function () {
-
-            var url = $('#selectEstado').val();
-            console.log(url);
-                $.ajax({
-                    url: "/trabajos/detalle/guardarEstado",
-                    type: "POST",
-                    data:{ 
-                        "_token": "{{ csrf_token() }}",
-                        selectEstado: url,
-                        "nombre": "{{$orden_elegida->id}}",
-                    },
-                    cache: false,
-                    dataType: 'json',
-                    success: function(dataResult){
-                    //console.log(dataResult);
-        
-            }
-            });
-        });
-
-        //
-        $('#selectPrioridad').on('click', function () {
-
-          var url = $('#selectPrioridad').val();
-           //  console.log(url);
-            $.ajax({
-                url: "/trabajos/detalle/guardarPrioridad",
-                type: "POST",
-                data:{ 
-                    "_token": "{{ csrf_token() }}",
-                    selectPrioridad: url,
-                    "nombre": "{{$orden_elegida->id}}",
-                },
-                cache: false,
-                dataType: 'json',
-                success: function(dataResult){
-                //console.log(dataResult);
-
-            }
-            });
-        });
-        //
-        
-        $(document).ready(function() {
-
-            var url = "{{URL('datosTabla')}}";
-            $.ajax({
-                url: "/trabajos/nuevo/detalle/datosTabla",
-                type: "POST",
-                data:{ 
-                    "_token": "{{ csrf_token() }}",
-                    "nombre": "{{$orden_elegida->id}}",
-                },
-                cache: false,
-                dataType: 'json',
-                success: function(dataResult){
-                   // console.log(dataResult);
-                    var resultData = dataResult.data;
-                    var bodyData = '';
-
-                    $.each(resultData,function(index,row){
-                        datosTabla+="<tr>"
-                        datosTabla+="<td>"+row.tipo+"</td><td>"+row.fabricante+"</td><td>"+row.modelo+"</td>"
-                        +"<td>"+row.serial+"</td><td>"+row.localizacion+"</td><td>"+row.diagnostico+"</td><td>";
-                        datosTabla+="</tr>";
-                        
-                    })
-                    $("#datosTabla").append(datosTabla);
-                }
-            });
-            
-         });
-         //
-         $(document).ready(function() {
-
-                var url = "{{URL('datosDispositivos')}}";
-                $.ajax({
-                    url: "/trabajos/nuevo/detalle/datosDispositivos",
-                    type: "POST",
-                    data:{ 
-                        "_token": "{{ csrf_token() }}",
-                        "nombre": "{{$orden_elegida->id}}",
-                    },
-                    cache: false,
-                    dataType: 'json',
-                    success: function(dataResult){
-                        //console.log(dataResult);
-                        var resultData = dataResult.data;
-                        var bodyData = '';
-
-                        $.each(resultData,function(index,row){
-                            datosDispositivos+="<tr>"
-                            datosDispositivos+="<td>"+row.tipo+"</td><td>"+row.fabricante+"</td><td>"+row.modelo+"</td>"
-                            +"<td>"+row.serial+"</td><td>"+row.localizacion+"</td><td>";
-                            datosDispositivos+="</tr>";
-                            
-                        })
-                        $("#datosDispositivos").append(datosDispositivos);
-                    }
-                });
-
-        });
-        //
-
-        $('#submit').on('click', function () {
-            $('#tablaN > tbody').empty();
-            var url = $('#comentario').val();
-
-            $.ajax({
-                url: "/trabajos/detalle/nota",
-                type: "POST",
-                data:{ 
-                    "_token": "{{ csrf_token() }}",
-                    comentario: url,
-                    "nombre": "{{$orden_elegida->id}}",
-                },
-                cache: false,
-                dataType: 'json',
-                success: function(dataResult){
-                   console.log(dataResult);
-                    var resultData = dataResult.data;
-                    var bodyData = '';
-                    
-
-                    $.each(resultData,function(index,row){
-                        tablaNotas+="<tr>"
-                        tablaNotas+="<td>"+row.creado+"</td><td>"+row.created_at+"</td><td>"+row.nota+"<td>"+
-                            '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">'+
-                      '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
-                        '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
-                        '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
-                      '</svg>'+
-                    '</button>'
-                            "</td>";
-                        tablaNotas+="</tr>";
-                        
-                    })
-                    $("#tablaNotas").append(tablaNotas);
-                    if('#comentario'==''){
-
-                        $('#comentario').empty();
-                    }
-                }
-            });
-        });
-
-        //
-        $(document).ready(function(){
-            $("#busquedaRapida").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("#tablaNotas tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-            });
-        });
-        //
-
-        $('#agregarInfoCliente').on('click', function () {
-          //  $('#tablaN > tbody').empty();
-            var url = $('#infoCliente').val();
-            console.log(url);
-            $.ajax({
-                url: "/trabajos/detalle/notaCliente",
-                type: "POST",
-                data:{ 
-                    "_token": "{{ csrf_token() }}",
-                    infoCliente: url,
-                    "nombre": "{{$orden_elegida->id}}",
-                },
-                cache: false,
-                dataType: 'json',
-                success: function(dataResult){
-                   console.log(dataResult);
-                    var resultData = dataResult.data;
-                    var bodyData = '';
-                    
-
-                    $.each(resultData,function(index,row){
-                        tablaNotas+="<tr>"
-                        tablaNotas+="<td>"+row.creado+"</td><td>"+row.created_at+"</td><td>"+row.nota+"<td>"+"</td>";
-                        tablaNotas+="</tr>";
-                        
-                    })
-                    $("#tablaNotas").append(tablaNotas);
-
-                }
-            });
-        });
-        //
-        $(document).on('change keyup', '.required', function(e){
-        let Disabled = true;
-        $(".required").each(function() {
-            let value = this.value
-            if ((value)&&(value.trim() !=''))
-                {
-                Disabled = false
-                }else{
-                Disabled = true
-                return false
-                }
-        });
-        
-        if(Disabled){
-            $('#submit').prop("disabled", true);
-            }else{
-            $('#submit').prop("disabled", false);
-            }
-    })
-
-     
-    </script>

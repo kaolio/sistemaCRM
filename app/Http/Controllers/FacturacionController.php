@@ -8,12 +8,33 @@ use Illuminate\Http\Request;
 class FacturacionController extends Controller
 {
   
-
+    function __construct()
+    {
+        $this->middleware('permission:ver-facturacion|crear-facturacion|editar-facturacion|borrar-facturacion',['only'=>['index']]);
+        $this->middleware('permission:crear-facturacion',['only'=>['create','store']]);
+        $this->middleware('permission:editar-facturacion',['only'=>['edit','update']]);
+        $this->middleware('permission:borrar-facturacion',['only'=>['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function datosFacturas(){
+
+        $datosFacturas =  DB::table('facturacions')
+                    // ->join('orden_trabajos','orden_trabajos.id','=','detalle_ordens.id_trabajos')
+                    ->select('*')
+                            // 'detalle_ordens.serial','detalle_ordens.localizacion','detalle_ordens.id')
+                    // ->where('detalle_ordens.id_trabajos','=',$_POST["nombre"])
+                    // ->where('detalle_ordens.rol','<>','Paciente')
+                    ->get(); 
+        return json_encode(array('data'=>$datosFacturas));
+    }
+
+
+
     public function index()
     {
         return view('facturacion.index');
@@ -48,11 +69,16 @@ class FacturacionController extends Controller
         $facturacion->servicio = request('servicio');
         $facturacion->precio = request('precio');
         $facturacion->partes = request('partes');
-        $facturacion->iva = ((request('precio')+request('partes'))/100)*request('iva');
-        $facturacion->descuento = ((request('precio')+request('partes')+request('iva'))/100)*request('descuento');
-        $facturacion->total = (request('precio')+request('partes')+request('iva'))-request('descuento');
-        $facturacion->subtotal = request('precio')+request('partes'); //
-        $facturacion->totalConIva = (request('precio')+request('partes'))-((request('precio')+request('partes'))/100*request('descuento'));
+        $facturacion->iva = request('iva');
+        $facturacion->descuento = request('descuento');
+        $facturacion->total = request('total');
+        $facturacion->subtotal = request('subtotal');
+        $facturacion->totalConIva = request('totalConIva');
+        // $facturacion->iva = ((request('precio')+request('partes'))/100)*request('iva');
+        // $facturacion->descuento = ((request('precio')+request('partes')+request('iva'))/100)*request('descuento');
+        // $facturacion->total = (request('precio')+request('partes')+request('iva'))-request('descuento');
+        // $facturacion->subtotal = request('precio')+request('partes'); //
+        // $facturacion->totalConIva = (request('precio')+request('partes'))-((request('precio')+request('partes'))/100*request('descuento'));
       
         $facturacion->save();
         return redirect('facturacion');
