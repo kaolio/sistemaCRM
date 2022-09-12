@@ -154,13 +154,7 @@ function validarCorreo() {
             }
           }
 
-          function enviarCliente(){
-            $("#formulario").attr("action","{{url('/cliente/nuevo/1')}}");
-          }
-          function enviarOrden(){
-            $("#formulario").attr("action","{{url('/cliente/nuevo/2')}}");
-          }
- 
+         
            
 $(document).ready(function(){
   

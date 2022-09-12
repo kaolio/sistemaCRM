@@ -21,7 +21,7 @@
   </div>
   
   
-
+<div class="container">
 <div class="d-flex">
   <div class="p-2">
     <a class="btn btn-success" href="{{URL('inventario/excel')}}" style="background: rgb(20, 141, 9)" role="button">EXCEL</a>
@@ -101,10 +101,20 @@
       <li class="page-item" id="next"><a id="siguiente" class="page-link" onclick="redireccionar(2)" rel="next" aria-label="Siguiente »">›</a></li>
       </ul>
 </div>
+</div>
 
 
+<<<<<<< HEAD
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="{{ URL::asset('estilos/style.css') }} ">
 
+=======
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="{{ asset('js/inventario/index.js')}}"></script>
+<link rel="stylesheet" href="{{ URL::asset('estilos/style.css') }} ">
+@include('inventario.ajax.indexAjax')
+>>>>>>> 6578d76d161ca952bc3a125edf513750a8f30e9f
 
 @endsection

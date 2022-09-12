@@ -188,6 +188,15 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>script>
 <script src="{{ asset('js/cliente/create.js')}}"></script>
 <link rel="stylesheet" href="{{ URL::asset('estilos/style.css') }} ">
+<script>
+   function enviarCliente(){
+            $("#formulario").attr("action","{{url('/cliente/nuevo/1')}}");
+          }
+          function enviarOrden(){
+            $("#formulario").attr("action","{{url('/cliente/nuevo/2')}}");
+          }
+ 
+</script>
   
 
 @endsection
