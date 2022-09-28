@@ -90,6 +90,8 @@ Route::post('/trabajos/detalle/guardarPrioridad',[DetalleController::class,'guar
 Route::post('/trabajos/detalle/NotaCliente',[DetalleController::class,'guardarNotaCliente']); //guardar nota de cliente
 Route::post('/trabajos/detalle/nota',[DetalleController::class,'guardarNota']); //guardar comentario
 Route::post('/trabajos/nuevo/detalle/datosTabla',[DetalleController::class,'datosTabla']); //ruta de tabla pacientes
+Route::post('/trabajos/nuevo/detalle/datosClones',[DetalleController::class,'datosClones']); //ruta tabla clones 
+Route::post('/trabajos/nuevo/detalle/datosDonantes',[DetalleController::class,'datosDonantes']); //ruta tabla donantes
 Route::post('/trabajos/nuevo/detalle/datosDispositivos',[DetalleController::class,'datosDispositivos']); // ruta de tabla dispositivos
 Route::delete('/trabajos/detalle/{id}',[DetalleController::class,'eliminarNota']);// eliminar nota
 Route::post('/trabajos/nuevo/detalle/busquedaRapida',[DetalleController::class,'busquedaRapida']);//busqueda de notas 
@@ -102,6 +104,7 @@ Route::post('/trabajos/nuevo/detalle/agregarClonBuscado',[DetalleController::cla
 Route::post('/trabajos/nuevo/detalle/datosClonesBuscados',[DetalleController::class,'mostrarClonesBuscados']); //mostrar clones agregados
 Route::post('/trabajos/nuevo/detalle/modalDonante',[DetalleController::class,'buscadorDonante']);  //buscador donante
 Route::post('/trabajos/nuevo/detalle/agregarDonanteBuscado',[DetalleController::class,'agregarBusquedaDonante']); //agregar donante buscados
+Route::post('/trabajos/nuevo/detalle/datosDonantesBuscados',[DetalleController::class,'mostrarDonantesBuscados']); //mostrar donantes agregados
 //Archivos adjuntos
 Route::post('/trabajos/detalle/subir', [DetalleController::class,'subirArchivo']);//ruta para subir archivo a drive
 

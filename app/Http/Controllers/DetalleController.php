@@ -46,6 +46,26 @@ class DetalleController extends InventarioController
 
         return json_encode(array('data'=>$datosTabla));
     }
+
+    public function datosClones(){
+
+        $datosClones = DB::table('clones')
+                ->select('*')
+                ->where('id_trabajos','=',$_POST["nombre"])
+                ->get();
+
+        return json_encode(array('data'=>$datosClones));
+    }
+
+    public function datosDonantes(){
+
+        $datosDonantes = DB::table('donantes')
+                ->select('*')
+                ->where('id_trabajos','=',$_POST["nombre"])
+                ->get();
+
+                return json_encode(array('data'=>$datosDonantes));
+    }
     
 
     public function datosDispositivos(){
@@ -330,25 +350,25 @@ class DetalleController extends InventarioController
 
         $inventario = DB::table('inventarios')
                         ->select('*')
-                        ->where('id','=',$_POST["idBuscado"])
+                        ->where('id','=',$_POST["idDonanteBuscado"])
                         ->first();
 
-        $trabajo = DB::table('orden_trabajos')
-                        ->select('id')
+         $trabajo = DB::table('orden_trabajos')
+                        ->select('*')
                         ->where('id','=',$_POST["nombre"])
                         ->first();
 
 
                 $donante = new Donantes();
-                $donante->id_donante =$_POST["idBuscado"];
+                $donante->id_donante = $_POST["idDonanteBuscado"];
                 $donante->tipo = $inventario->tipo;
                 $donante->manufactura = $inventario->manufactura;
                 $donante->modelo = $inventario->modelo;
                 $donante->numero_serie = $inventario->numero_de_serie;
-                $donante->id_trabajos = $_POST["nombre"];
-                $donante->id_inventarios = $_POST["idBuscado"];
                 $donante->ubicacion = $inventario->ubicacion;
                 $donante->nota = $inventario->nota;
+                $donante->id_trabajos = $trabajo->id;
+                $donante->id_inventarios = $_POST["idDonanteBuscado"];
                 $donante->save();
 
                 $donantes = DB::table('donantes')
@@ -358,6 +378,17 @@ class DetalleController extends InventarioController
 
                 return json_encode(array('data'=>$donantes));
     }
+
+    public function mostrarDonantesBuscados(){
+
+        $datosDonantes = DB::table('donantes')
+                     ->select('*')
+                     ->where('id_trabajos','=',$_POST["nombre"])
+                     ->get();
+ 
+                     return json_encode(array('data'=>$datosDonantes));
+ 
+     }
 
     public function guardarDiagnostico(){
 
