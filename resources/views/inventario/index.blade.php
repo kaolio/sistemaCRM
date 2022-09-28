@@ -104,17 +104,11 @@
 </div>
 
 
-<<<<<<< HEAD
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-<link rel="stylesheet" href="{{ URL::asset('estilos/style.css') }} ">
-
-=======
 
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="{{ asset('js/inventario/index.js')}}"></script>
 <link rel="stylesheet" href="{{ URL::asset('estilos/style.css') }} ">
 @include('inventario.ajax.indexAjax')
->>>>>>> 6578d76d161ca952bc3a125edf513750a8f30e9f
 
 @endsection

@@ -240,7 +240,7 @@ class DetalleController extends InventarioController
                     ->where('detalle_ordens.id_trabajos','=',$_POST["nombre"])
                     ->where('detalle_ordens.rol','=','Paciente')
                     ->get();  
-        return json_encode(array('data'=>$datosPacientes));
+        return json_encode(array('data'=>$datosPacientes)); 
     }
 
     //tabla de otros disp de los clientes
