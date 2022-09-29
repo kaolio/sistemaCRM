@@ -237,7 +237,7 @@
             }
         });
     });
-    //
+    // 
     $(document).on('click','#btnAgregarClon',function(){    
 
         var fila = $(this).parent();
@@ -644,4 +644,17 @@ $("#btnBuscarDonante").on('click',function(){
         });
     });
 
+    function habilitarModal(){
+            const value =  $("input:checkbox:checked").attr('id');
+
+            const arr = value || [];
+
+            const result = arr?.length;
+
+            if(result != 0){
+            $("#moverDispositivos").prop('disabled', false);
+            }else{
+            $("#moverDispositivos").prop('disabled', true);
+            }
+        }
 </script>
