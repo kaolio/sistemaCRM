@@ -124,6 +124,7 @@
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   function buscarFinal(datos,select,cantidad){
     var res = datos * select;
@@ -140,6 +141,8 @@
   //REDIRECT PAGINATOR
 =======
 >>>>>>> 6578d76d161ca952bc3a125edf513750a8f30e9f
+=======
+>>>>>>> d338e7f838acc05c29a96b2a64fc53683000f84b
   function redireccionar(datos){
       //$("#ingeniero").val('todos');
       //$("#grado").val('todos'); 
@@ -280,6 +283,7 @@
             }
         });
   }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
   function factor(filas,select) {
@@ -352,6 +356,8 @@
                   // "</td><td class='text-center'>" +
                     dataResult.data[i].id + "</td><td>" +
 =======
+=======
+>>>>>>> d338e7f838acc05c29a96b2a64fc53683000f84b
   function redireccionar(datos){
       //$("#ingeniero").val('todos');
       //$("#grado").val('todos'); 
@@ -398,7 +404,10 @@
                 var nuevafila= "<tr><td>" +
                   // "CHECK" + "</td><td class='text-center'>" +
                   dataResult.data[i].id + "</td><td>" +
+<<<<<<< HEAD
 >>>>>>> 6578d76d161ca952bc3a125edf513750a8f30e9f
+=======
+>>>>>>> d338e7f838acc05c29a96b2a64fc53683000f84b
                   dataResult.data[i].manufactura  + "</td><td>" +
                   dataResult.data[i].modelo  + "</td><td>" +
                   dataResult.data[i].numero_de_serie  + "</td><td>" +
@@ -411,10 +420,14 @@
                   dataResult.data[i].cabecera  + "</td><td>" +
                   dataResult.data[i].info_de_cabecera  + "</td><td>" +
 <<<<<<< HEAD
+<<<<<<< HEAD
                       '<button type="button" style="padding:3px" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data[i].id+'">'+
 =======
                     '<button type="button" style="padding:3px" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data[i].id+'">'+
 >>>>>>> 6578d76d161ca952bc3a125edf513750a8f30e9f
+=======
+                    '<button type="button" style="padding:3px" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data[i].id+'">'+
+>>>>>>> d338e7f838acc05c29a96b2a64fc53683000f84b
                         '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
                           '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
                           '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
@@ -472,6 +485,7 @@
                   '</button>'+
               '</a>'+
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "</td></tr>"
                     
                   $("#myTable").append(nuevafila)
@@ -489,6 +503,8 @@
           });
       });
 =======
+=======
+>>>>>>> d338e7f838acc05c29a96b2a64fc53683000f84b
                   "</td></tr>"
                   
                 $("#myTable").append(nuevafila)
@@ -515,11 +531,15 @@
             }
         });
   }
+<<<<<<< HEAD
 >>>>>>> 6578d76d161ca952bc3a125edf513750a8f30e9f
+=======
+>>>>>>> d338e7f838acc05c29a96b2a64fc53683000f84b
 
   $(function(){
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     $("#ver").on('change',function(){
       $("#grado").val('todos'); 
@@ -534,6 +554,8 @@
             data: {
               "_token": "{{ csrf_token() }}",
 =======
+=======
+>>>>>>> d338e7f838acc05c29a96b2a64fc53683000f84b
 $("#ver").on('change',function(){
   $("#grado").val('todos'); 
   $("#estado").val('todos'); 
@@ -690,11 +712,15 @@ $("#ver").on('change',function(){
             data: {
               "_token": "{{ csrf_token() }}",
                 "value": value,
+<<<<<<< HEAD
 >>>>>>> 6578d76d161ca952bc3a125edf513750a8f30e9f
+=======
+>>>>>>> d338e7f838acc05c29a96b2a64fc53683000f84b
             },
             cache: false,
             dataType: 'json',
             success: function (dataResult) {
+<<<<<<< HEAD
 <<<<<<< HEAD
               
               var filas = dataResult.data.length;
@@ -704,6 +730,8 @@ $("#ver").on('change',function(){
                 var cantidad = dataResult.data.length;
                 var valor = factor(cantidad,selectedTipo);
 =======
+=======
+>>>>>>> d338e7f838acc05c29a96b2a64fc53683000f84b
               console.log(dataResult);
               var filas = dataResult.data.length;
               
@@ -711,7 +739,10 @@ $("#ver").on('change',function(){
                 filas = selectedVer;
                 var cantidad = dataResult.data.length;
                 var valor = factor(cantidad,selectedVer);
+<<<<<<< HEAD
 >>>>>>> 6578d76d161ca952bc3a125edf513750a8f30e9f
+=======
+>>>>>>> d338e7f838acc05c29a96b2a64fc53683000f84b
                 
                 
                 for (let index = 1; index <= 50; index++) {
@@ -725,10 +756,14 @@ $("#ver").on('change',function(){
                   }
                   
 <<<<<<< HEAD
+<<<<<<< HEAD
                    //$("#addItem").append("<li class='page-item'><a class='page-link' href='http://localhost:8000/trabajos/"+index+"'>"+index+"</a></li>");
 =======
                   //$("#addItem").append("<li class='page-item'><a class='page-link' href='http://localhost:8000/trabajos/"+index+"'>"+index+"</a></li>");
 >>>>>>> 6578d76d161ca952bc3a125edf513750a8f30e9f
+=======
+                  //$("#addItem").append("<li class='page-item'><a class='page-link' href='http://localhost:8000/trabajos/"+index+"'>"+index+"</a></li>");
+>>>>>>> d338e7f838acc05c29a96b2a64fc53683000f84b
                 }
               }else{
                 for (let index = 1; index <= 50; index++) {
@@ -736,6 +771,7 @@ $("#ver").on('change',function(){
                 }
                 $("ul li:last").before("<li id='nuevo1' class='page-item active' aria-current='page'><span class='page-link'>1</span></li>");
               }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 
@@ -815,6 +851,8 @@ $("#ver").on('change',function(){
                   '</button>'+
               '</a>'+
 =======
+=======
+>>>>>>> d338e7f838acc05c29a96b2a64fc53683000f84b
               //var filas = dataResult.data.length;
               for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de registros
                 var text = "";
@@ -893,11 +931,15 @@ $("#ver").on('change',function(){
               '</svg>'+
               '</button>'+
           '</a>'+
+<<<<<<< HEAD
 >>>>>>> 6578d76d161ca952bc3a125edf513750a8f30e9f
+=======
+>>>>>>> d338e7f838acc05c29a96b2a64fc53683000f84b
                   "</td></tr>"
                   
                 $("#myTable").append(nuevafila)
               }
+<<<<<<< HEAD
 <<<<<<< HEAD
               
                     //$("#datosTabla").append(datosTabla);
@@ -907,6 +949,11 @@ $("#ver").on('change',function(){
 
                     var bloq = factor(cantidad,selectedVer);
 >>>>>>> 6578d76d161ca952bc3a125edf513750a8f30e9f
+=======
+                    //$("#datosTabla").append(datosTabla);
+
+                    var bloq = factor(cantidad,selectedVer);
+>>>>>>> d338e7f838acc05c29a96b2a64fc53683000f84b
                 if (bloq == 0) {
                   $("#back").attr('class', 'page-item disabled');
                   $("#next").attr('class', 'page-item disabled');
@@ -914,15 +961,19 @@ $("#ver").on('change',function(){
                   $("#next").attr('class', 'page-item');
                 }
 <<<<<<< HEAD
+<<<<<<< HEAD
                 $("#siguiente").attr('onclick', 'redireccionar(2)');
 
 =======
 >>>>>>> 6578d76d161ca952bc3a125edf513750a8f30e9f
+=======
+>>>>>>> d338e7f838acc05c29a96b2a64fc53683000f84b
             }
         });
     });
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
       //BUSCADOR TIEMPO REAL EN INVENTARIO
         $("#btnBusqueda").on('click',function(){
@@ -1684,6 +1735,8 @@ $("#ver").on('change',function(){
         }
   })
 =======
+=======
+>>>>>>> d338e7f838acc05c29a96b2a64fc53683000f84b
 //FILTRAR POR TIPO
 $("#ingeniero").on('change',function(){
   $("#grado").val('todos'); 
@@ -2280,5 +2333,8 @@ $('#btnBuscar').on('click', function () {
 
 
 });
+<<<<<<< HEAD
 >>>>>>> 6578d76d161ca952bc3a125edf513750a8f30e9f
+=======
+>>>>>>> d338e7f838acc05c29a96b2a64fc53683000f84b
 </script>
