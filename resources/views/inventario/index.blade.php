@@ -104,8 +104,6 @@
 </div>
 
 
-<<<<<<< HEAD
-=======
 
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
@@ -122,7 +120,6 @@
     return res;
     console.log(res);
   }
->>>>>>> d338e7f838acc05c29a96b2a64fc53683000f84b
 
   //REDIRECT PAGINATOR
  
@@ -164,5 +161,6 @@
 </script>
 <link rel="stylesheet" href="{{ URL::asset('estilos/style.css') }} ">
 @include('inventario.ajax.indexAjax')
+
 
 @endsection
