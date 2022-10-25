@@ -51,7 +51,7 @@
                 <th class="text-center">Acciones</th>
                 </tr>
             </thead>
-            <tbody class="table-bordered">
+            <tbody id="tablaDiscosUso" class="table-bordered">
                 @foreach ($clones as $clon)
                 <tr>
                     <th></th>

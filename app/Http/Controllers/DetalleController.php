@@ -299,7 +299,7 @@ class DetalleController extends InventarioController
 
 
                 $clon = new Clones();
-                $clon->id_clon = "c-".$_POST["idBuscado"];
+                $clon->id_clon = "C-".$_POST["idBuscado"];
                 $clon->tipo = $inventario->tipo;
                 $clon->manufactura = $inventario->manufactura;
                 $clon->modelo = $inventario->modelo;
@@ -409,38 +409,18 @@ class DetalleController extends InventarioController
                   
     }
 
-    public function moverUbicacion()
-    {
+    /*public function moverUbicacion(){
+        DB::table('clones')
+                    ->join('donantes','donantes.id','=','clones.id_donantes')
+                    ->select('donantes.ubicacion','clones.ubicacion','clones.id')
+                    ->where('clones.id_donantes','=', $_POST["nombre"])
+                    ->update(['ubicacion' => $_POST["selectEstado"]]);
 
-        for ($i=0; $i < sizeof($_POST['arreglo']); $i++) { 
-            DB::table('orden_trabajos')
-                ->where('id', $_POST['arreglo'][$i])
-                ->update(['estado' => $_POST["seleccionado"]]);
-        }
-            
-        if (Auth::user()->id != 1) {
-            $usuario = DB::table('users')
-            ->select('name')
-            ->where('id',Auth::user()->id)
-            ->first();
-            
-            $datosTablas =  DB::table('orden_trabajos')
-            ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-            ->join('users','users.id','orden_trabajos.asignado')
-            ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-            ->Where('orden_trabajos.creado',$usuario->name)
-            ->orWhere('orden_trabajos.asignado',Auth::user()->id)
-            ->orderBy('orden_trabajos.id','desc')
-            ->get();
-        }else{
-            $datosTablas =  DB::table('orden_trabajos')
-            ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-            ->join('users','users.id','orden_trabajos.asignado')
-            ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-            ->orderBy('orden_trabajos.id','desc')
-            ->get();
-        }
-    
-       // return json_encode(array('data'=>$datosTablas));
-    }
+        $ubicacionMovida = DB::table('orden_trabajos')
+                    ->select('*')
+                    ->where('estado','=', $_POST["selectEstado"])
+                    ->get();
+
+                    return json_encode(array('data'=>$ubicacionMovida));
+    }*/
 }

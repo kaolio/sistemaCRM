@@ -66,7 +66,7 @@
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" id="botones" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary" id="botones">Mover</button>
+            <button type="button" class="btn btn-primary" id="btnMoverUbicacion">Mover</button>
             </div>
         </div>
         </div>
