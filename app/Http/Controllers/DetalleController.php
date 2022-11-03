@@ -409,18 +409,25 @@ class DetalleController extends InventarioController
                   
     }
 
-    /*public function moverUbicacion(){
-        DB::table('clones')
-                    ->join('donantes','donantes.id','=','clones.id_donantes')
-                    ->select('donantes.ubicacion','clones.ubicacion','clones.id')
-                    ->where('clones.id_donantes','=', $_POST["nombre"])
-                    ->update(['ubicacion' => $_POST["selectEstado"]]);
+    public function ubicacionNueva(){
 
-        $ubicacionMovida = DB::table('orden_trabajos')
+        for ($i=0; $i < sizeof($_POST['arreglo']); $i++) { 
+            DB::table('clones')
+                ->where('id', $_POST['arreglo'][$i])
+                ->update(['ubicacion' => $_POST["seleccionado"]]);
+        }
+
+               DB::table('clones')
+                    ->where('id','=', $_POST["nombre"])
+                    ->update(['ubicacion' => $_POST["nuevaUbicacion"]]);
+
+        $ubicacionMovida = DB::table('clones')
                     ->select('*')
-                    ->where('estado','=', $_POST["selectEstado"])
+                    ->where('ubicacion','=', $_POST["nuevaUbicacion"])
                     ->get();
 
                     return json_encode(array('data'=>$ubicacionMovida));
-    }*/
+    }
+
+
 }

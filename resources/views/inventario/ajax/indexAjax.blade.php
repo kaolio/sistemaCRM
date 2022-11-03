@@ -1334,31 +1334,4 @@ $(function(){
         $('#btnBuscar').prop("disabled", false);
       }
 })
-
-// Mover ubicacion 
-
-$('#btnMoverUbicacion').on('click', function () {
-
-var url = $('#selectDesignacion').val();
-//console.log(url);
-    $.ajax({
-        url: "/trabajos/detalle/guardarDesignado",
-        type: "POST",
-        data:{ 
-            "_token": "{{ csrf_token() }}",
-            selectDesignacion: url,
-            "nombre": "{{$orden_elegida->id}}",
-        },
-        cache: false,
-        dataType: 'json',
-        success: function(dataResult){
-        //console.log(dataResult);
-        // console.log(myJSON);
-        // console.log(typeof JSON.stringify(dataResult))  
-        $('#exampleModal01').modal('hide');
-        $('#userDesignado').html('<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+dataResult.data['name']+'</span>');
-        
-    }
-    });
-});
 </script>

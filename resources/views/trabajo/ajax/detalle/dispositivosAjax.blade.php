@@ -598,34 +598,35 @@ $("#btnBuscarDonante").on('click',function(){
         });
     });
     //
-    /*/mover ubicacion
+    //mover ubicacion
     $('#btnMoverUbicacion').on('click', function () {
             
-            var url = $('#moverUbicacion').val();
-        console.log(url);
+            var url = $('#nuevaUbicacion').val();
+          console.log(url);
             $.ajax({
                 url: "/trabajos/nuevo/detalle/moverUbicacion",
                 type: "POST",
                 data:{ 
                     "_token": "{{ csrf_token() }}",
-                    moverUbicacion: url,
+                    nuevaUbicacion: url,
                     "nombre": "{{$orden_elegida->id}}",
                 },
                 cache: false,
                 dataType: 'json',
                 success: function(dataResult){
-                // console.log(dataResult);
+                 console.log(dataResult);
+                $('#exampleModal').modal('hide');
 
                     
                 }
             });
-    });*/
+    });
     //
      //guardar diagnostico de la tabla de disp del paciente
      $('#btnDiagnostico').on('click', function () {
         
         var url = $('#selectDiagnostico').val();
-       console.log(url);
+       //console.log(url);
         $.ajax({
             url: "/trabajos/nuevo/detalle/guardarDiagnostico",
             type: "POST",
@@ -651,6 +652,7 @@ $("#btnBuscarDonante").on('click',function(){
             const arr = value || [];
 
             const result = arr?.length;
+            
 
             if(result != 0){
             $("#moverDispositivos").prop('disabled', false);
@@ -658,4 +660,16 @@ $("#btnBuscarDonante").on('click',function(){
             $("#moverDispositivos").prop('disabled', true);
             }
         }
+
+    //
+
+    function cambiarUbicacion(){
+    var seleccionados = $("input:checkbox:checked");
+    var arreglo = [];
+    // console.log( seleccionados);
+    $(seleccionados).each(function() {
+      arreglo.push($(this).attr('id'));
+      console.log(arreglo);
+    });
+  }
 </script>

@@ -132,6 +132,7 @@
   function cambiarEstado(){
     var seleccionados = $("input:checkbox:checked");
     var arreglo = [];
+   //  console.log(seleccionados);
     $(seleccionados).each(function() {
       arreglo.push($(this).attr('id'));
     });
@@ -1280,14 +1281,11 @@
             dataType: 'json',
             success: function (data) {
                     var myJSON = JSON.stringify(data);
-                    console.log(myJSON);
+                   //  console.log(myJSON);
               window.location.href=data['data'];
             }
           });
-      
     });
-
-  
 
   });
 

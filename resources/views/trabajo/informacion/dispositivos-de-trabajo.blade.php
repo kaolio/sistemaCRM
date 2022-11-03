@@ -53,7 +53,7 @@
                     <h5>Mover todos los dispositivos a un nuevo lugar</h5>
                     <div class="input-group md-2">
                         <span class="input-group-text">Nueva Ubicación</span>
-                        <input type="text" class="form-control">
+                        <input type="text" id="nuevaUbicacion" class="form-control">
                     </div>
                         <span class="dejar-en-blanco m-2">Dejar en blanco para no cambiar</span>
                     <br><br>
@@ -65,8 +65,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" id="botones" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary" id="btnMoverUbicacion">Mover</button>
+            <button type="button" class="btn btn-secondary" id="" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary"  onclick="cambiarUbicacion()">Mover</button>
             </div>
         </div>
         </div>
