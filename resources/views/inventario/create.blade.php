@@ -9,7 +9,7 @@
 @section('content')
 
 <div class="card">
-  <div class="container">
+  <div class="container-fluid">
     <form class="m-3" action="{{ url('/inventario/nuevo') }}" method="POST">
       @csrf
       <div class="form-row">
@@ -103,8 +103,8 @@
               </div>
             </div>
           </div>
-        <div class="form-row" style="align-items:center">
-          <div class="form-group col-md-4">
+        <div class="form-row">
+          <div class="form-group col-md-3">
             <label for="inputCity">PCB <strong>*</strong></label>
             <input type="text" class="form-control" id="pbc" name="pbc" placeholder="Ingrese la placa del disco" autocomplete="off"
             value="{{ old('pbc') }}" onkeyup="validarPbc()" required

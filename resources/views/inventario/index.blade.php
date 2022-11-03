@@ -4,7 +4,7 @@
 
 
 <h1 align="center"><strong>INVENTARIO</strong></h1>
-<div style="margin-top: -40px">
+<div class="container-fluid" style="margin-top: -40px">
   <div class="d-flex" style="visibility: hidden">
     <div class="p-1">
       <div class="input-group">
@@ -100,6 +100,8 @@
       <li class="page-item disabled" id="back"><a id="anterior" aria-hidden="true" class="page-link" onclick="" rel="next" aria-label="« Anterior">‹</a></li>
       <li class="page-item" id="next"><a id="siguiente" class="page-link" onclick="redireccionar(2)" rel="next" aria-label="Siguiente »">›</a></li>
       </ul>
+
+      {{-- @include('inventario/ajax/indexAjax.blade.php') --}}
 </div>
 </div>
 

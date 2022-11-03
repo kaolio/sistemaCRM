@@ -409,6 +409,18 @@ class DetalleController extends InventarioController
                   
     }
 
+    public function eliminarPaciente($id){
+
+      
+    $inventario=Detalle::findOrFail($id);
+    $inventario->delete();
+        //             // ->where('id','=',$_POST["nombre"])]]
+        //             ->first();
+        // $this->$paciente->delete();
+                  
+    }
+
+
     public function ubicacionNueva(){
 
         for ($i=0; $i < sizeof($_POST['arreglo']); $i++) { 

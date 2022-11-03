@@ -371,6 +371,32 @@ return [
             ]
         ],
         [
+            'text'    => 'Facturación',
+            'icon'    => 'fas fa-fw fa-file-invoice',
+            'can' => 'ver-facturacion',
+            'submenu' => [
+                [
+                    'text' => 'Crear Factura',
+                    'url'  => 'facturacion/nuevo',
+                    'can' => 'crear-facturacion',
+                    'icon'    => 'fas fa-fw fa-file-receipt',
+                ],
+                [
+                    'text' => 'Ver Facturas',
+                    'url'  => 'facturacion',
+                    'can' => 'ver-facturacion',
+                    'icon'    => 'fas fa-fw fa-filse',
+                    'active' => ['facturacion', 'facturacion/editar*'],
+                ],
+                // [
+                //     'text' => 'Discos en Uso',
+                //     'url'  => 'inventario/discosUso',
+                //     'can' => 'ver-inventario',
+                //     'icon'    => 'fas fa-fw fa-filse',
+                // ],
+            ]
+        ],
+        [
             'text'    => 'Clientes',
             'icon'    => 'fas fa-fw fa-users',
             'can' => 'ver-clientes',

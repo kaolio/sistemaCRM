@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginClienteController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\FacturacionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -112,8 +113,8 @@ Route::post('/trabajos/detalle/subir', [DetalleController::class,'subirArchivo']
 
 Route::post('/trabajos/nuevo/detalle/agregarDonante',[DetalleController::class,'agregarDonante']);  //buscador donante
 Route::post('/trabajos/nuevo/detalle/guardarDiagnostico',[DetalleController::class,'guardarDiagnostico']);  // guardar diagnostico a los disp de los pacientes
-
-Route::post('/autocompletarCliente',[OrdenTrabajoController::class,'autoCompletar']);
+Route::delete('/trabajos/nuevo/detalle/eliminarPaciente/id',[DetalleController::class,'eliminarPaciente']);
+Route::delete('/trabajos/detalle',[DetalleController::class,'eliminarFilaPaciente']);// eliminar registro de disp paciente
 
 //CLONES
 Route::get('/inventario/discosUso',[ClonesController::class,'discosUso']);
@@ -152,6 +153,17 @@ Route::post('/cliente/nuevo/{id}',[ClienteController::class,'store']);
 Route::get('/cliente/editar/{id}',[ClienteController::class,'edit']);
 Route::put('/cliente/editar/{id}',[ClienteController::class,'update']);
 Route::delete('/cliente/{id}',[ClienteController::class,'destroy']);
+
+
+//FACTURACION
+Route::get('/facturacion',[FacturacionController::class,'index']);
+Route::get('/facturacion/asistente',[FacturacionController::class,'verAsistente']);
+Route::get('/facturacion/nuevo',[FacturacionController::class,'create']);
+Route::post('/facturacion/nuevo',[FacturacionController::class,'store']);
+Route::get('/facturacion/editar/{id}',[FacturacionController::class,'edit']);
+Route::post('/facturacion/editar/{id}',[FacturacionController::class,'update']);
+
+Route::post('/facturacion/verFacturas',[FacturacionController::class,'datosFacturas']); //ruta tabla de facturas
 
 //PRODUCTOS
 Route::get('/productos',[ProductosController::class,'index']);

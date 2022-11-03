@@ -84,7 +84,7 @@
 @section('content')
 
 <div class="card">
-    <div class="container">
+    <div class="container-fluid">
     <form class="m-3" action="{{ url('/inventario/editar', $inventario->id) }}" method="post">
       @csrf
       <div class="form-row">
