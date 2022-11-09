@@ -215,11 +215,9 @@
                  </div>
    
                  <div class="form-group">
-                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a href="" class="btn btn-warning my-2 my-sm-0">Resetear</a>
+                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a href="/productos" class="btn btn-danger my-2 my-sm-0">Regresar</a>
                  
-                   <button class="btn btn-success" type="submit" onclick="enviarOrden()" >Guardar y Crear Orden</button>
-   
-                   <button class="btn btn-success my-2 my-sm-0" type="submit" onclick="enviarCliente()" >Guardar</button>
+                   <button class="btn btn-primary" type="submit" onclick="enviarOrden()" >Guardar</button>
                  </div> 
          </div>
                    
@@ -278,6 +276,9 @@
     });
 
   });
+
+
+
    </script>
 
 @endsection

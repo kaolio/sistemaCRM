@@ -172,7 +172,7 @@
               </div>
 
               <div class="form-group">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a href="" class="btn btn-warning my-2 my-sm-0">Resetear</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a href="/clientes" class="btn btn-danger my-2 my-sm-0">Regresar</a>
               
                 <button class="btn btn-success" type="submit" onclick="enviarOrden()" >Guardar y Crear Orden</button>
 
