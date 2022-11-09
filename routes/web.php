@@ -80,6 +80,7 @@ Route::post('/trabajo/imprimir',[OrdenTrabajoController::class,'variosPDF']);
 Route::get('/trabajo/pdf',[OrdenTrabajoController::class,'descargarPDF']); //ruta para descargar pdf
 Route::get('/trabajo/excel',[OrdenTrabajoController::class,'descargarExcel']); //ruta para descargar excel
 Route::get('/trabajo/imprimirIndex',[OrdenTrabajoController::class,'imprimirPDF']); //imprimir pdf
+Route::post('/trabajo/imprimirOrden',[OrdenTrabajoController::class,'imprimirOrden']); //imprimir orden especifica
 
 //Detalle de trabajo
 //general

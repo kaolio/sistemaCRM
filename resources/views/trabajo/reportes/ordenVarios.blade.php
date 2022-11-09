@@ -51,7 +51,7 @@
                 Nombre: &nbsp;&nbsp;&nbsp;&nbsp; {{$contenedor[$i][1]->nombreCliente}} <br/>
                 Direccion: &nbsp;&nbsp; {{$contenedor[$i][1]->calle}} <br/>
                 Ciudad: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   {{$contenedor[$i][1]->nombreCiudad}} <br/>
-                Contraseña: &nbsp; 44466525555 <br/>
+                Contraseña: &nbsp; {{$contenedor[$i][1]->password}} <br/>
                 Fecha: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$contenedor[$i][1]->created_at}} <br/>
                 Servicio: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Recuperacion de datos <br/> 
               
