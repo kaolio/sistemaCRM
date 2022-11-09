@@ -143,14 +143,14 @@
                          <div class="col-4">
                            <div class="input-group">
                              <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Precio</span>
-                             <input type="text" class="form-control " name="precio"id="precio"
+                             <input type="text" class="form-control " name="precio"id="precio" onblur="resultadoFinal()"
                                            onkeypress="return ((event.charCode == 44) || (event.charCode >= 48 && event.charCode <= 57))">
                            </div>
                          </div>
                          <div class="col-4">
                            <div class="input-group">
                              <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">VAT (%)</span>
-                             <input type="text" class="form-control " name="vat"id="vat"
+                             <input type="text" class="form-control " name="vat"id="vat" onblur="resultadoFinalVat()"
                                            onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
                            </div>
                          </div>
@@ -277,7 +277,19 @@
 
   });
 
+    function resultadoFinal(){
+      var precio = document.getElementById("precio").value;
+      document.getElementById("precioFin").value = precio;
+    }
 
+    function resultadoFinalVat(){
+      var precio = document.getElementById("precio").value;
+      var vat = document.getElementById("vat").value;
+
+      var res = (precio*vat)/100;
+      var suma = Number(precio) + Number(res);
+      document.getElementById("precioFin").value = suma;
+    }
 
    </script>
 
