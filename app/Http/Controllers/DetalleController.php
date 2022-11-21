@@ -423,22 +423,34 @@ class DetalleController extends InventarioController
 
     public function ubicacionNueva(){
 
+
         for ($i=0; $i < sizeof($_POST['arreglo']); $i++) { 
             DB::table('clones')
                 ->where('id', $_POST['arreglo'][$i])
                 ->update(['ubicacion' => $_POST["seleccionado"]]);
-        }
-
-               DB::table('clones')
-                    ->where('id','=', $_POST["nombre"])
-                    ->update(['ubicacion' => $_POST["nuevaUbicacion"]]);
+        };
 
         $ubicacionMovida = DB::table('clones')
-                    ->select('*')
-                    ->where('ubicacion','=', $_POST["nuevaUbicacion"])
+                    ->select('ubicacion')
                     ->get();
 
                     return json_encode(array('data'=>$ubicacionMovida));
+    }
+
+    public function eliminarVariosC(){
+
+        for ($i=0; $i < sizeof($_POST['arreglo']); $i++) { 
+            DB::table('clones')
+                ->where('id', $_POST['arreglo'][$i])
+                ->delete();
+        }
+
+        $clonesRestantes = DB::table('clones')
+                ->select('*')
+                ->get();
+            //dd($datatable);
+
+            return json_encode(array('data'=>$clonesRestantes));
     }
 
 

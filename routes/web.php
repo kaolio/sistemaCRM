@@ -108,6 +108,7 @@ Route::post('/trabajos/nuevo/detalle/modalDonante',[DetalleController::class,'bu
 Route::post('/trabajos/nuevo/detalle/agregarDonanteBuscado',[DetalleController::class,'agregarBusquedaDonante']); //agregar donante buscados
 Route::post('/trabajos/nuevo/detalle/datosDonantesBuscados',[DetalleController::class,'mostrarDonantesBuscados']); //mostrar donantes agregados
 Route::post('/trabajos/nuevo/detalle/moverUbicacion',[DetalleController::class,'ubicacionNueva']);
+Route::post('/trabajos/nuevo/detalle/eliminarVariosClones',[DetalleController::class.'eliminarVariosC']);
 //Archivos adjuntos
 Route::post('/trabajos/detalle/subir', [DetalleController::class,'subirArchivo']);//ruta para subir archivo a drive
 

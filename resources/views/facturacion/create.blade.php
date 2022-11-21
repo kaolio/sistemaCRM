@@ -14,7 +14,7 @@
 
 @section('content')
 
-<h3>Facturación</h3>
+<h3>Facturaciónkkkkk</h3>
 <div class="form">
   <form class="m-3" action="{{ url('/facturacion/nuevo') }}" method="POST">
     @csrf

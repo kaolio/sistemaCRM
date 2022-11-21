@@ -277,7 +277,8 @@
           var selectedTipo = tipo.options[tipo.selectedIndex].text;
           var prio = document.getElementById("prio");
           var selectedPrio = prio.options[prio.selectedIndex].text;
-          console.log(arreglo);
+          //console.log(arreglo);
+          console.log(selectedPrio);
           $.ajax({
               url: "/trabajo/cambioPrioridad",
               type: "POST",
