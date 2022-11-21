@@ -143,14 +143,14 @@
                          <div class="col-4">
                            <div class="input-group">
                              <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Precio</span>
-                             <input type="text" class="form-control " name="precio"id="precio"
+                             <input type="text" class="form-control " name="precio"id="precio" onblur="resultadoFinal()"
                                            onkeypress="return ((event.charCode == 44) || (event.charCode >= 48 && event.charCode <= 57))">
                            </div>
                          </div>
                          <div class="col-4">
                            <div class="input-group">
                              <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">VAT (%)</span>
-                             <input type="text" class="form-control " name="vat"id="vat"
+                             <input type="text" class="form-control " name="vat"id="vat" onblur="resultadoFinalVat()"
                                            onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
                            </div>
                          </div>
@@ -215,11 +215,9 @@
                  </div>
    
                  <div class="form-group">
-                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a href="" class="btn btn-warning my-2 my-sm-0">Resetear</a>
+                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a href="/productos" class="btn btn-danger my-2 my-sm-0">Regresar</a>
                  
-                   <button class="btn btn-success" type="submit" onclick="enviarOrden()" >Guardar y Crear Orden</button>
-   
-                   <button class="btn btn-success my-2 my-sm-0" type="submit" onclick="enviarCliente()" >Guardar</button>
+                   <button class="btn btn-primary" type="submit" onclick="enviarOrden()" >Guardar</button>
                  </div> 
          </div>
                    
@@ -278,6 +276,21 @@
     });
 
   });
+
+    function resultadoFinal(){
+      var precio = document.getElementById("precio").value;
+      document.getElementById("precioFin").value = precio;
+    }
+
+    function resultadoFinalVat(){
+      var precio = document.getElementById("precio").value;
+      var vat = document.getElementById("vat").value;
+
+      var res = (precio*vat)/100;
+      var suma = Number(precio) + Number(res);
+      document.getElementById("precioFin").value = suma;
+    }
+
    </script>
 
 @endsection

@@ -128,22 +128,46 @@ class OrdenTrabajoController extends Controller
                 ->update(['bandera' => '1']);
 
         
-        /*$contenedor = [];
+        return view('trabajo.confirmacion',compact('trabajo','cliente','acceso'));
+        //dd($cliente);
+    }
 
+
+    public function verConfirmacion(OrdenTrabajo $ordenTrabajo)
+    {
+        return redirect();
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
+     * @return \Illuminate\Http\Response
+     */
+    public function show(OrdenTrabajo $ordenTrabajo)
+    {
+        //
+    }
+
+    public function imprimirOrden()
+    {
+        
+        $contenedor = [];
+        
             $variable = [];
             $datos = DB::table('orden_trabajos')
                 ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-                ->select('clientes.nombreCliente','clientes.calle','clientes.nombreCiudad','clientes.created_at')
-                ->where('orden_trabajos.id',$trabajo->id)
+                ->select('clientes.nombreCliente','clientes.calle','clientes.nombreCiudad','clientes.created_at','orden_trabajos.password')
+                ->where('orden_trabajos.id',$_POST["orden"])
                 ->first(); 
             
-            $ident = $trabajo->id;
+            $ident = $_POST["orden"];
 
             $aux = [];
             $detalle = DB::table('orden_trabajos')
                 ->join('detalle_ordens','detalle_ordens.id_trabajos','orden_trabajos.id')
                 ->select('detalle_ordens.tipo','detalle_ordens.fabricante','detalle_ordens.modelo','detalle_ordens.serial')
-                ->where('orden_trabajos.id', $trabajo->id)
+                ->where('orden_trabajos.id', $_POST["orden"])
                 ->get(); 
             
             array_push($variable, $ident);
@@ -158,20 +182,6 @@ class OrdenTrabajoController extends Controller
             $pdf = \PDF::loadView('/trabajo/reportes/ordenVarios',compact('contenedor'));
             
             return $pdf->setPaper('carta', 'portrait')->stream('orden.pdf');
-        */
-        return redirect('trabajos');
-        //dd($cliente);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
-     * @return \Illuminate\Http\Response
-     */
-    public function show(OrdenTrabajo $ordenTrabajo)
-    {
-        //
     }
 
     /**

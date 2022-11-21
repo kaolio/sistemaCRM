@@ -14,7 +14,7 @@
         font-size: 14px;
         border-radius: 4px;
         padding: 5px;
-        box-shadow: 2px 2px 2px rgb(95, 93, 93);
+         box-shadow: 2px 2px 2px rgb(95, 93, 93);
     }
     .dejar-en-blanco{
         color: rgb(59, 57, 57);
