@@ -11,6 +11,7 @@ use App\Http\Controllers\LoginClienteController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\FacturacionController;
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -176,3 +177,5 @@ Route::get('/clear-cache', function() {
 $exitCode = Artisan::call('cache:clear');
 // return what you want
 });*/
+
+Route::get('/send-mail', [MailController::class, 'index']);

@@ -14,7 +14,7 @@
       <th class="text-center" style="width: 20%">Modelo</th>
       <th class="text-center" style="width: 20%">Numero Serial</th>
       <th class="text-center" style="width: 20%">Ubicacion</th>
-      <th class="text-center" style="width: 10%">Precio</th>
+      <th class="text-center" style="width: 10%">Precio</th> 
       <th class="text-center" style="width: 20%">Proveedor</th>
       <th class="text-center" style="width: 20%">Fecha</th>
     </tr>
