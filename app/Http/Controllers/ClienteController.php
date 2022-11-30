@@ -86,15 +86,18 @@ class ClienteController extends Controller
         $tipo = request('tipo');
         $valor = request('valor');
         $nombre = request('nombre');
-
-        for ($i=0; $i < sizeOf($tipo); $i++) { 
-            $detalle = new DetalleCliente;
-            $detalle->tipo = $tipo[$i];
-            $detalle->valor = $valor[$i];
-            $detalle->nombre = $nombre[$i];
-            $detalle->id_cliente = $cliente->id;
-            $detalle->save();
+            
+        if ($valor[0] != null) {
+            for ($i=0; $i < sizeOf($valor); $i++) { 
+                $detalle = new DetalleCliente;
+                $detalle->tipo = $tipo[$i];
+                $detalle->valor = $valor[$i];
+                $detalle->nombre = $nombre[$i];
+                $detalle->id_cliente = $cliente->id;
+                $detalle->save();
+            }
         }
+            
 
         
         if ($id == 1) {

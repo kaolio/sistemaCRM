@@ -340,7 +340,7 @@ return [
                     'url'  => 'trabajos',
                     'can' => 'ver-trabajo',
                     'icon'    => 'fas fa-fw fa-filse',
-                    'active' => ['trabajos', 'trabajo/editar*'],
+                    'active' => ['trabajos', 'trabajo/editar*','trabajos/detalle*'],
                 ],
             ]
         ],

@@ -13,18 +13,37 @@
     <h1>{{ $mailData['title'] }}</h1>
     <p>{{ $mailData['body'] }}</p>
   
-    <p>En esta parte se introducira los detalles del proceso de recuperacion que se realizaran conjuntamente el precio que conlleva el trabajo</p>
-    <p>Una buena persona es aquella que siempre desea lo mejor para los demás y actúa en consecuencia. 
-        Cuando una persona reconoce a otra como un par y la respeta, puede actuar de manera compasiva, 
-        bondadosa y humilde (ya que no se considera superior a otro ser).</p>
+    <p>A continuacion tiene el detalle de los servicios que se llevaran a cabo durante el tiempo establecido</p>
+    
+            <table  align="center" class="table table-light" id="tablaServicio">
+                <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
+                    <tr>
+                    <th class="text-center" style="width: 20%">Detalle</th>
+                    <th class="text-center" style="width: 20%">Descripcion</th>
+                    <th class="text-center" style="width: 20%" colspan="2">Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        @foreach ($datos as $datos)
+                        <tr>
+                            <td align="center">{{$datos->detalle}}</td>
+                            <td align="center">{{$datos->descripcion}}</td>  
+                            <td align="center">{{$datos->precio}}</td>
+                        </tr>
+                        @endforeach
+                        <tr>
+                            <td align="center" style='background: rgb(2, 117, 216); color: white' colspan='2'> TOTAL </td>
+                            <td align="center">{{$total}}</td>
+                        </tr>
+                </tbody>
+            </table>
      
-    <p>Thank you</p>
 
+    <p>Esta usted de acuerdo con el costo a los servicios que se presentan en la tabla</p>
+    <p>Si tiene alguna consulta comuniquese con nosotros al ############</p>
 
-    <p>Esta usted de acuerdo con los precio que se llevaran  a cabo para la</p>
-    <p>En esta parte se introducira el texto que desea que el cliente reciba para la confirmacion de la recuperacion</p>
-
-    <div class="row">
+    <div class="row" align="center">
         <div class="col-md-9 col-md-offset-9 col-xs-12" >
           <div class="btn-group" role="group">
              <button class="btn btn-default" style="background: none; border: none" type="button">
