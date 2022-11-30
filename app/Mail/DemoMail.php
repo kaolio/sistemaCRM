@@ -11,6 +11,7 @@ class DemoMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $mailData;
+    public $datos;
 
 
     /**
@@ -18,9 +19,10 @@ class DemoMail extends Mailable
      *
      * @return void
      */
-    public function __construct($mailData)
+    public function __construct($mailData, $datos)
     {
         $this->mailData = $mailData;
+        $this->datos = $datos;
     }
 
     /**
@@ -31,6 +33,6 @@ class DemoMail extends Mailable
     public function build()
     {
         return $this->subject('RECUPERACION DE DATOS')
-        ->view('emails.demoMail');
+        ->view('emails.demoMail',compact($this->datos));
     }
 }

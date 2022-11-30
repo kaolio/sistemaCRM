@@ -12,6 +12,7 @@ use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\FacturacionController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\ServicioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -87,6 +88,11 @@ Route::post('/trabajo/imprimirOrden',[OrdenTrabajoController::class,'imprimirOrd
 Route::post('/autocompletarCliente',[OrdenTrabajoController::class,'autoCompletar']);
 //Detalle de trabajo
 //general
+
+Route::post('/trabajos/nuevo/detalle/servicio',[ServicioController::class,'guardarTabla']);
+Route::post('/trabajos/nuevo/detalle/guardarServicio',[ServicioController::class,'guardar']);
+Route::post('/trabajos/nuevo/detalle/enviarServicio',[ServicioController::class,'enviar']);
+
 Route::get('/trabajos/detalle/{id}',[DetalleController::class,'buscar']);
 Route::post('/trabajos/detalle',[DetalleController::class,'buscarOrden']); //ruta buscador de orden trabajo
 Route::post('/trabajos/detalle/guardarDesignado',[DetalleController::class,'guardarDesignacion']); //ruta para guardar usuario desigando
@@ -111,7 +117,8 @@ Route::post('/trabajos/nuevo/detalle/modalDonante',[DetalleController::class,'bu
 Route::post('/trabajos/nuevo/detalle/agregarDonanteBuscado',[DetalleController::class,'agregarBusquedaDonante']); //agregar donante buscados
 Route::post('/trabajos/nuevo/detalle/datosDonantesBuscados',[DetalleController::class,'mostrarDonantesBuscados']); //mostrar donantes agregados
 Route::post('/trabajos/nuevo/detalle/moverUbicacion',[DetalleController::class,'ubicacionNueva']);
-Route::post('/trabajos/nuevo/detalle/eliminarVariosClones',[DetalleController::class.'eliminarVariosC']);
+Route::post('/trabajos/nuevo/detalle/eliminarVariosClones',[DetalleController::class,'eliminarVariosC']);
+
 //Archivos adjuntos
 Route::post('/trabajos/detalle/subir', [DetalleController::class,'subirArchivo']);//ruta para subir archivo a drive
 
