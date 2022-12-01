@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use App\Models\DetalleCliente;
+use Facade\FlareClient\Http\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -104,6 +105,9 @@ class ClienteController extends Controller
             return redirect('clientes');
         }else {
             $cadena = $request->get('nombreCliente').', '.$request->get('direccion').' '.$request->get('numero').', '.$request->get('postal').' '.$request->get('ciudad');
+
+
+            dd($cadena);
             return redirect('trabajo/nuevo')->with(compact('cadena'));
             //return Redirect::route('trabajo.create, $cadena');
         }
@@ -129,11 +133,16 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-       $cliente = Cliente::findOrFail($id);
-       $cliente_elegido = DB::table('clientes')  //recuperar el valor del select
-        ->select('*')
-        ->Where('clientes.id', '=', $id)->first();
-        return view('cliente.editar',compact('cliente','cliente_elegido'));
+
+       $cliente = DB::table('clientes')  //recuperar el valor del select
+                    ->select('*')
+                    ->Where('id', '=', $id)
+                    ->first();
+
+
+                    //dd($cliente);
+
+        return view('cliente.editar',compact('cliente'));
     }
 
     /**
@@ -145,24 +154,23 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        /*$clienteUpdate = Cliente::findOrFail($id);
-        $clienteUpdate->NombreCliente = $request->Nombre;
-        $clienteUpdate-> VATid = $request->vat;
-        $clienteUpdate->Calle = $request->calle;
-        $clienteUpdate->Numero = $request->Numero;
-        $clienteUpdate->Apt = $request->apt;
-        $clienteUpdate->CodigoPostal = $request->codigoPostal;
-        $clienteUpdate->Pak = $request->pak;
-        $clienteUpdate->NombreCiudad = $request->nombreCiudad;
-        $clienteUpdate->Pais = $request->pais;
-        $clienteUpdate->Idioma = $request->language;
-        $clienteUpdate->Tipo = $request->tipo;
-        $clienteUpdate->Valor = $request->value;
-        $clienteUpdate->NombreX = $request->na;
-        $clienteUpdate->Nota = $request->info;
-        //dd($clienteUpdate);
-        $clienteUpdate->save();
-        return redirect('clientes');*/
+        $datoCliente = Cliente::findOrFail($id);
+
+        $datoCliente->nombreCliente = $request->get('nombreCliente');
+        $datoCliente->vat = $request->get('vat');
+        $datoCliente->calle = $request->get('direccion');
+        $datoCliente->numero = $request->get('numero');
+        $datoCliente->apt = $request->get('apt');
+        $datoCliente->codigoPostal = $request->get('postal');
+        $datoCliente->pak = $request->get('pak');
+        $datoCliente->nombreCiudad = $request->get('ciudad');
+        $datoCliente->pais = $request->get('pais');
+        $datoCliente->idioma = $request->get('idioma');
+        $datoCliente->nota = $request->get('nota');
+        //dd($datoCliente);
+        $datoCliente->save();
+
+        return redirect('/clientes');
     }
 
     /**
@@ -176,5 +184,35 @@ class ClienteController extends Controller
         $cliente=Cliente::findOrFail($id);
         $cliente->delete(); 
         return redirect('clientes');
+    }
+
+    public function tablaEditar(){
+
+        $datos = DB::table('detalle_clientes')
+                    ->select('*')
+                    ->where('id_cliente','=',$_POST["id"])
+                    ->get();
+
+                   // dd($datos);
+
+             return json_encode(array('data'=>$datos));
+    }
+
+    public function eliminarEditar($id){
+
+        //dd($id);
+
+        $datos = DB::table('detalle_clientes')
+                ->select('id_cliente')
+                ->where('id',$id)
+                ->first();
+
+        $editados = DetalleCliente::findOrFail($id);
+
+        $editados->delete();
+
+
+        return redirect('/cliente/editar/'.$datos->id_cliente);
+
     }
 }
