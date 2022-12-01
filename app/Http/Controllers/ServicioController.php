@@ -91,7 +91,7 @@ class ServicioController extends Controller
         $orden = DB::table('servicios')
                     ->select('id_trabajos')
                     ->where('id',$id)
-                    ->first();
+                    ->first();  
                     
         $trabajo=Servicio::findOrFail($id);
         $trabajo->delete();
