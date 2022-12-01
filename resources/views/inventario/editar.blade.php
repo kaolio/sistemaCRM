@@ -90,7 +90,7 @@
       <div class="form-row">
         <div class="form-group col-md-6" style="padding-top: 32px">
           <div class="input-group">
-            <span class="input-group-text" style="background:rgb(41, 43, 44); color: aliceblue">Fabricante &nbsp;<strong>*</strong></span>
+            <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Fabricante &nbsp;<strong>*</strong></span>
             <select name="manufactura" class="form-control" class="btn-block" required value="{{$inventario->manufactura}}">
                 <option selected disabled value="">Elija el Fabricante</option>
                  @if ($inventario->manufactura == $inventario_elegido->manufactura)
@@ -151,7 +151,7 @@
       <div class="form-row">
         <div class="form-group col-md-4" style="padding-top: 8px">
           <div class="input-group">
-            <span class="input-group-text" style="background:rgb(41, 43, 44); color: aliceblue">Rol del Disco&nbsp;<strong>*</strong></span>
+            <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Rol del Disco&nbsp;<strong>*</strong></span>
             <select name="rol" class="form-control" class="btn-block" required>
               <option disabled value="">Elija el Rol</option>
               @if ($inventario->rol == $inventario_elegido->rol)
@@ -169,7 +169,7 @@
         </div>
           <div class="form-group col-md-4" style="padding-top: 8px">
             <div class="input-group">
-              <span class="input-group-text" style="background:rgb(41, 43, 44); color: aliceblue">Tipo de Almacenamiento&nbsp;<strong>*</strong></span>
+              <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo de Almacenamiento&nbsp;<strong>*</strong></span>
               <select name="tipo" class="form-control" class="btn-block" required>
                 <option disabled value="">Elija el Tipo</option>
                 @if ($inventario->tipo == $inventario_elegido->tipo)
@@ -186,7 +186,7 @@
           </div>
           <div class="form-group col-md-4" style="padding-top: 8px">
             <div class="input-group">
-              <span class="input-group-text" style="background:rgb(41, 43, 44); color: aliceblue">Factor de Forma &nbsp;<strong>*</strong></span>
+              <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Factor de Forma &nbsp;<strong>*</strong></span>
               <select class="form-control" class="btn-block" id="factor_de_forma" name="factor_de_forma" required value="{{$inventario->factor_de_forma}}">
                   <option selected disabled value="">Elija el Factor de Forma</option>
                   @if ($inventario->factor_de_forma == $inventario_elegido->factor_de_forma)
@@ -233,8 +233,9 @@
           <span class="mb-4"><strong>*</strong> Campos Obligatorios</span>
       </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-lg btn-dark">Actualizar</button>
-          <a href="{{url('/inventario')}}" class="btn btn-lg btn-secondary float-right">Regresar al Inventario</a>
+          <a href="{{url('/inventario')}}" class="btn btn-danger my-2 my-sm-0">Regresar</a>
+          <button type="submit" class="btn btn-success my-2 my-sm-0">Actualizar</button>
+          
         </div>
       </div>
     </form>

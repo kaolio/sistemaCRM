@@ -298,7 +298,7 @@
                                                             <button class="btn btn-primary" style="padding-left: 5px">
                                                             Aceptar
                                                             </button>
-                                                            
+                                                             
                                                         </div>
                                                         </form> 
                                                         </div>

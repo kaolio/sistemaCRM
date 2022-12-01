@@ -134,7 +134,7 @@
         <span class="mb-4"><strong>*</strong> Campos Obligatorios</span>
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-lg btn-secondary" style="background:rgb(2, 117, 216); color: aliceblue">Registrar</button>
+        <button type="submit" class="btn btn-success my-2 my-sm-0">Registrar</button>
       </div>
     </div>
   </form>

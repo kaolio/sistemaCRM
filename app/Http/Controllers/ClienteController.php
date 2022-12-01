@@ -211,8 +211,26 @@ class ClienteController extends Controller
 
         $editados->delete();
 
-
         return redirect('/cliente/editar/'.$datos->id_cliente);
 
     }
+
+    public function detallesNuevos(){
+
+        $detalle = new DetalleCliente();
+        $detalle->tipo = $_POST["tipo"];
+        $detalle->valor = $_POST["valor"];
+        $detalle->nombre = $_POST["nombre"];
+        $detalle->id_cliente = $_POST["id"];
+        $detalle->save();
+
+        $nuevosDetalles = DB::table('detalle_clientes')
+        ->select('*')
+        ->where('id_cliente','=',$_POST["id"])
+        ->get();
+
+             return json_encode(array('data'=>$nuevosDetalles));
+
+    }
+
 }

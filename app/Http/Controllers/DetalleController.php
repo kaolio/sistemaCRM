@@ -215,13 +215,18 @@ class DetalleController extends InventarioController
 
                     return json_encode(array('data'=>$prioridadDesignada));
     }
-
+ 
     public function eliminarNota($id)
     {
+        $NotaE = DB::table('notas')
+                    ->select('id_trabajos')
+                    ->where('id',$id)
+                    ->first();
+
         $nota=Nota::findOrFail($id);
         $nota->delete();
         
-        return redirect('trabajos.informacion');
+        return redirect('/trabajos/detalle/'.$NotaE->id_trabajos);
     }
 
     public function subirArchivo(Request $request){

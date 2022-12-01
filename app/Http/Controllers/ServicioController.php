@@ -99,3 +99,4 @@ class ServicioController extends Controller
         return redirect('/trabajos/detalle/'.$orden->id_trabajos);
     }
 }
+ 

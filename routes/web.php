@@ -163,6 +163,7 @@ Route::get('/cliente/nuevo',[ClienteController::class,'create']);
 Route::post('/cliente/nuevoTho',[ClienteController::class,'createTho']);
 Route::post('/cliente/nuevo/{id}',[ClienteController::class,'store']);
 Route::post('/cliente/editar/datos',[ClienteController::class,'tablaEditar']);
+Route::post('/clientes/editar/detallesNuevos',[ClienteController::class,'detallesNuevos']);
 Route::get('/cliente/editar/{id}',[ClienteController::class,'edit']);
 Route::post('/cliente/editar/{id}',[ClienteController::class,'update']);
 Route::delete('/cliente/{id}',[ClienteController::class,'destroy']);
