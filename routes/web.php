@@ -182,6 +182,7 @@ Route::post('/facturacion/verFacturas',[FacturacionController::class,'datosFactu
 //PRODUCTOS
 Route::get('/productos',[ProductosController::class,'index']);
 Route::get('/producto/nuevo',[ProductosController::class,'create']);
+Route::post('/producto/nuevo',[ProductosController::class,'store']);
 
 /*Puede llamar a un comando de Artisan fuera de la CLI.
 Route::get('/clear-cache', function() {

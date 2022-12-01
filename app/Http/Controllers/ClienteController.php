@@ -107,7 +107,6 @@ class ClienteController extends Controller
             $cadena = $request->get('nombreCliente').', '.$request->get('direccion').' '.$request->get('numero').', '.$request->get('postal').' '.$request->get('ciudad');
 
 
-            dd($cadena);
             return redirect('trabajo/nuevo')->with(compact('cadena'));
             //return Redirect::route('trabajo.create, $cadena');
         }

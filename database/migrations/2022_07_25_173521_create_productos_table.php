@@ -14,7 +14,19 @@ class CreateProductosTable extends Migration
     public function up()
     {
         Schema::create('productos', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('dispositivo')->nullable();
+            $table->string('connection')->nullable();
+            $table->string('factor')->nullable();
+            $table->string('fabricante')->nullable();
+            $table->string('modelo')->nullable();
+            $table->string('ubicacion')->nullable();
+            $table->string('distribuidora')->nullable();
+            $table->string('precio')->nullable();
+            $table->string('vat')->nullable();
+            $table->string('precio_fin')->nullable();
+            $table->string('serial')->nullable();
+            $table->date('fecha')->nullable();
             $table->timestamps();
         });
     }

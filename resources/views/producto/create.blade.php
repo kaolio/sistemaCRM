@@ -21,7 +21,8 @@
       
         <div class="card-body">
      
-               <form action="{{url('/cliente/nuevo')}}" id="formulario" method="POST">
+               <form action="{{url('/producto/nuevo')}}" id="formulario" method="POST">
+                
                  @csrf
                  <div class="card">
                      <div class="card-body">
@@ -93,7 +94,7 @@
                          <div class="col-6">
                            <div class="input-group">
                              <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Fabricante</span>
-                             <select name="manufactura" class="form-control" class="btn-block" required>
+                             <select name="fabricante" class="form-control" class="btn-block" required>
                               <option disabled selected>Elija el Fabricante</option>
                               <option value="Seagate">Seagate</option>
                               <option value="Toshiba">Toshiba</option>
@@ -114,7 +115,7 @@
                          <div class="col-6">
                            <div class="input-group">
                              <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Modelo</span>
-                           <input type="text" id="ciudad" name="ciudad" class="form-control" 
+                           <input type="text" id="modelo" name="modelo" class="form-control" 
                              required onkeyup="validarCiudad()" autocomplete="off" onkeypress="return ( (event.charCode == 45 )|| (event.charCode >= 48 && event.charCode <= 57)|| (event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209))">
                             </div>
                             <span id="estadoCiudad"></span>
@@ -133,7 +134,7 @@
                          <div class="col-6">
                            <div class="input-group">
                              <span  class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Distribuidora</span>
-                             <input type="text" id="Distribuidora" name="Distribuidora" class="form-control" 
+                             <input type="text" id="distribuidora" name="distribuidora" class="form-control" 
                              required onkeyup="validarPais()" autocomplete="off" onkeypress="return ( (event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209))">
                            </div>
                          </div>
@@ -143,21 +144,21 @@
                          <div class="col-4">
                            <div class="input-group">
                              <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Precio</span>
-                             <input type="text" class="form-control " name="precio"id="precio" onblur="resultadoFinal()"
+                             <input type="text" class="form-control " name="precio" id="precio" onblur="resultadoFinal()"
                                            onkeypress="return ((event.charCode == 44) || (event.charCode >= 48 && event.charCode <= 57))">
                            </div>
                          </div>
                          <div class="col-4">
                            <div class="input-group">
                              <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">VAT (%)</span>
-                             <input type="text" class="form-control " name="vat"id="vat" onblur="resultadoFinalVat()"
+                             <input type="text" class="form-control " name="vat" id="vat" onblur="resultadoFinalVat()"
                                            onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
                            </div>
                          </div>
                          <div class="col-4">
                            <div class="input-group">
                              <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Precio Final</span>
-                             <input type="text" class="form-control " name="precioFin"id="precioFin" readonly>
+                             <input type="text" class="form-control " name="precioFin" id="precioFin" readonly>
                            </div>
                          </div>
                        </div>
@@ -217,7 +218,7 @@
                  <div class="form-group">
                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a href="/productos" class="btn btn-danger my-2 my-sm-0">Regresar</a>
                  
-                   <button class="btn btn-primary" type="submit" onclick="enviarOrden()" >Guardar</button>
+                   <button class="btn btn-primary" type="submit" >Guardar</button>
                  </div> 
          </div>
                    
