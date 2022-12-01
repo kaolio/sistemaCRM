@@ -8,7 +8,7 @@ use App\Models\OrdenTrabajo;
 use App\Models\Inventario;
 use Illuminate\Http\Request;
 use App\Models\Roles;
-use App\Models\Detalle;
+use App\Models\Detalle; 
 use App\Models\Donantes;
 use Exception;
 use Illuminate\Support\Facades\Auth;

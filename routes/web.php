@@ -161,9 +161,11 @@ Route::get('/clientes',[ClienteController::class,'index']);
 Route::get('/cliente/nuevo',[ClienteController::class,'create']);
 Route::post('/cliente/nuevoTho',[ClienteController::class,'createTho']);
 Route::post('/cliente/nuevo/{id}',[ClienteController::class,'store']);
+Route::post('/cliente/editar/datos',[ClienteController::class,'tablaEditar']);
 Route::get('/cliente/editar/{id}',[ClienteController::class,'edit']);
-Route::put('/cliente/editar/{id}',[ClienteController::class,'update']);
+Route::post('/cliente/editar/{id}',[ClienteController::class,'update']);
 Route::delete('/cliente/{id}',[ClienteController::class,'destroy']);
+Route::delete('/eliminarDatos/{id}',[ClienteController::class,'eliminarEditar']);
 
 
 //FACTURACION

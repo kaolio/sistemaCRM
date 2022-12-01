@@ -16,7 +16,7 @@
     <div class="col-xs-10 col-sm-10 col-md-10">
         <div class="form-group">
             <label for="nombre">Nombre del cliente</label>
-        <input type="text" name="Nombre" id="nombre" class="form-control" value="{{$cliente->NombreCliente}}" required onkeyup="validarNombre()" placeholder="Nombre" tabindex="1">
+        <input type="text" name="Nombre" id="nombre" class="form-control" value="{{$cliente->nombreCliente}}" required onkeyup="validarNombre()" placeholder="Nombre" tabindex="1">
         
         </div>
     </div>
@@ -24,7 +24,7 @@
     <div class="col-xs-2 col-sm-2 col-md-2">
         <div class="form-group">
             <label for="apellido">VATID</label>
-            <input type="text" id="vat" name="vat" value="{{$cliente->VATid}}" required onkeyup="validarVat()" class="form-control" tabindex="2">
+            <input type="text" id="vat" name="vat" value="{{$cliente->vat}}" required onkeyup="validarVat()" class="form-control" tabindex="2">
             
         </div>
     </div>
@@ -38,7 +38,7 @@
       <div class="col-xs-8 col-sm-8 col-md-8">
           <div class="form-group">
               <label for="calle">Direccion</label>
-              <input type="text" name="calle" id="street" value="{{$cliente->Calle}}" required onkeyup="validarCalle()" class="form-control" placeholder="Calle"tabindex="1">
+              <input type="text" name="calle" id="street" value="{{$cliente->calle}}" required onkeyup="validarCalle()" class="form-control" placeholder="Calle"tabindex="1">
               {!! $errors->first('calle','<div class="invalid-feedback alert alert-danger">:message</div>')!!}
           </div>
       </div>
@@ -46,14 +46,14 @@
       <div class="col-xs-2 col-sm-2 col-md-2">
           <div class="form-group">
               <label for="num">Numero</label>
-              <input type="text" name="Num" id="numero" value="{{$cliente->Numero}}" required onkeyup="validarNumero()" class="form-control" tabindex="2">
+              <input type="text" name="Num" id="numero" value="{{$cliente->numero}}" required onkeyup="validarNumero()" class="form-control" tabindex="2">
           </div>
       </div>
 
       <div class="col-xs-2 col-sm-2 col-md-2">
           <div class="form-group">
               <label for="apt">Apt</label>
-              <input type="text" name="apt" value="{{$cliente->Apt}}" id="Ap" required onkeyup="validarApt()" class="form-control"tabindex="3">
+              <input type="text" name="apt" value="{{$cliente->apt}}" id="Ap" required onkeyup="validarApt()" class="form-control"tabindex="3">
           </div>
       </div>
     </div>
@@ -66,21 +66,21 @@
       <div class="col-xs-4 col-sm-4 col-md-4">
           <div class="form-group">
               <label for="CodigoP">Codigo Postal</label>
-              <input type="number" name="codP" id="Postal" value="{{$cliente->CodigoPostal}}" required onkeyup="validarCodigoPostal()" class="form-control" tabindex="1">
+              <input type="number" name="codP" id="Postal" value="{{$cliente->codigoPostal}}" required onkeyup="validarCodigoPostal()" class="form-control" tabindex="1">
           </div>
       </div>
 
       <div class="col-xs-4 col-sm-4 col-md-4">
           <div class="form-group">
               <label for="PAK">PAK</label>
-              <input type="text" name="pak" id="pak" value="{{$cliente->Pak}}" class="form-control" tabindex="2" required onkeyup="validarPak()">
+              <input type="text" name="pak" id="pak" value="{{$cliente->pak}}" class="form-control" tabindex="2" required onkeyup="validarPak()">
           </div>
       </div>
 
       <div class="col-xs-4 col-sm-4 col-md-4">
           <div class="form-group">
               <label for="apt">Nombre de la ciudad</label>
-              <input type="text" name="city" id="nameCity" value="{{$cliente->NombreCiudad}}" class="form-control"tabindex="3" required onkeyup="validarCiudad()">
+              <input type="text" name="city" id="nameCity" value="{{$cliente->nombreCiudad}}" class="form-control"tabindex="3" required onkeyup="validarCiudad()">
           </div>
       </div>
     </div>
@@ -92,7 +92,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
          <div class="form-group">
             <label for="pais">Pais</label>
-            <input type="text" name="pais"  id="country" value="{{$cliente->Pais}}" class="form-control" required onkeyup="validarPais()">
+            <input type="text" name="pais"  id="country" value="{{$cliente->pais}}" class="form-control" required onkeyup="validarPais()">
         </div>
         </div>
     </div>
@@ -107,12 +107,12 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="form-group" style="display: flex;">
             <label for="UI">Idioma </label>
-            <select name="language" class="form-control" required value="{{$cliente->Idioma}}">
+            <select name="language" class="form-control" required value="{{$cliente->idioma}}">
                 <option selected disabled value="">Seleccione el idioma</option>
-                  @if ($cliente->Idioma == $cliente_elegido->Idioma)
-                    <option value="{{$cliente_elegido->Idioma}}" selected>{{$cliente_elegido->Idioma}}</option>                      
+                  @if ($cliente->idioma == $cliente->idioma)
+                    <option value="{{$cliente->idioma}}" selected>{{$cliente->idioma}}</option>                      
                   @else
-                    <option value="{{$cliente_elegido->Idioma}}">{{$cliente_elegido->Idioma}}</option>      
+                    <option value="{{$cliente->idioma}}">{{$cliente->idioma}}</option>      
                   @endif
                 <option value="0">Seleccione el idioma</option>
                 <option value="Español">Español</option>
@@ -136,12 +136,12 @@
     <div class="col-xs-4 col-sm-4 col-md-4">
       <div class="form-group">
         <label for="Type">Tipo </label>
-        <select name="tipo" class="form-control" required value="{{$cliente->Tipo}}">
+        <select name="tipo" class="form-control" required value="{{$cliente->tipo}}">
             <option selected disabled value="">Seleccione el tipo</option>
-                  @if ($cliente->Tipo == $cliente_elegido->Tipo)
-                    <option value="{{$cliente_elegido->Tipo}}" selected>{{$cliente_elegido->Tipo}}</option>                      
+                  @if ($cliente->tipo == $cliente->tipo)
+                    <option value="{{$cliente->tipo}}" selected>{{$cliente->tipo}}</option>                      
                   @else
-                    <option value="{{$cliente_elegido->Tipo}}">{{$cliente_elegido->Tipo}}</option>      
+                    <option value="{{$cliente->tipo}}">{{$cliente->tipo}}</option>      
                   @endif
             <option value="Email">Email</option>
             <option value="Telefono">Telefono</option>
@@ -155,14 +155,14 @@
       <div class="col-xs-4 col-sm-4 col-md-4">
           <div class="form-group" >
               <label for="valor">Valor</label>
-              <input type="text" name="value" id="value" value="{{$cliente->Valor}}" class="form-control"tabindex="3" required onkeyup="validarValor()">
+              <input type="text" name="value" id="value" value="{{$cliente->valor}}" class="form-control"tabindex="3" required onkeyup="validarValor()">
           </div>
       </div>
 
       <div class="col-xs-4 col-sm-4 col-md-4">
           <div class="form-group">
               <label for="name">Nombre</label>
-              <input type="text" name="na" id="nameN" value="{{$cliente->NombreX}}" class="form-control"tabindex="3">
+              <input type="text" name="na" id="nameN" value="{{$cliente->nombre}}" class="form-control"tabindex="3">
           </div>
       </div>
       </div>
@@ -173,7 +173,7 @@
         <div class="card-body">
           <div class="form-group">
           <label style="font-size: 16px;">Nota</label>
-            <input type="text" style="height: 5em"name="info" value="{{$cliente->Nota}}" class="btn-block">
+            <input type="text" style="height: 5em"name="info" value="{{$cliente->nota}}" class="btn-block">
            </div>
         </div>
      </div>
