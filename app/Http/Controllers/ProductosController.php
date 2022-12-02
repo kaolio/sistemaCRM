@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Productos;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -17,16 +18,12 @@ class ProductosController extends Controller
     {
         $producto = DB::table('productos')
                     ->select('*')
+                    ->where('usuario',Auth::user()->id)
                     ->paginate(50);
 
         return view('producto.index',compact('producto'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('producto.create');
@@ -57,6 +54,8 @@ class ProductosController extends Controller
                 $producto->precio_fin = request('precioFin');
                 $producto->serial = $request->get('serial')[$i];
                 $producto->fecha = $request->get('fecha');
+                $producto->estado = "disponible";
+                $producto->usuario = Auth::user()->id;
                 $producto->save();
             }
             
@@ -77,6 +76,8 @@ class ProductosController extends Controller
                 $producto->precio_fin = request('precioFin');
                 $producto->serial = $request->get('serial')[$i];
                 $producto->fecha = $request->get('fecha');
+                $producto->estado = "disponible";
+                $producto->usuario = Auth::user()->id;
                 $producto->save();
             }
         }
@@ -84,4 +85,28 @@ class ProductosController extends Controller
         return redirect('/productos');
     }
 
+    public function cambiarEstado(){
+        DB::table('productos')
+        ->where('id',  $_POST["id"])
+        ->update(['estado' => $_POST["seleccionado"]]);
+
+
+        return json_encode(array('data'=>$_POST["id"]));
+    }
+
+    public function moverDisp(){
+        DB::table('productos')
+        ->where('id',  $_POST["id"])
+        ->update(['ubicacion' => $_POST["texto"]]);
+
+
+        return json_encode(array('data'=>$_POST["id"]));
+    }
+
+    public function destroy($id){
+        $producto=Productos::findOrFail($id);
+        $producto->delete();
+
+        return redirect('/productos');
+    }
 }

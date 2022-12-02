@@ -183,6 +183,10 @@ Route::post('/facturacion/verFacturas',[FacturacionController::class,'datosFactu
 Route::get('/productos',[ProductosController::class,'index']);
 Route::get('/producto/nuevo',[ProductosController::class,'create']);
 Route::post('/producto/nuevo',[ProductosController::class,'store']);
+Route::post('/producto/cambiarEstado',[ProductosController::class,'cambiarEstado']);
+Route::post('/producto/moverDispositivo',[ProductosController::class,'moverDisp']);
+Route::post('/producto/moverDispositivo',[ProductosController::class,'moverDisp']);
+Route::delete('/producto/{id}',[ProductosController::class,'destroy']);
 
 /*Puede llamar a un comando de Artisan fuera de la CLI.
 Route::get('/clear-cache', function() {

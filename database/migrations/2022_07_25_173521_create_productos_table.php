@@ -27,7 +27,16 @@ class CreateProductosTable extends Migration
             $table->string('precio_fin')->nullable();
             $table->string('serial')->nullable();
             $table->date('fecha')->nullable();
+            $table->string('estado')->nullable();
+            $table->unsignedBigInteger('usuario')->nullable();
             $table->timestamps();
+
+
+            $table->foreign('usuario')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade');
+
         });
     }
 
