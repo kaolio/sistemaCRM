@@ -6,6 +6,28 @@
   $orden = $_POST['orden'];
 ?> -->
 
+<!-- Modal -->
+<div class="modal fade" id="error" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" >
+        <h5 class="modal-title w-100 text-center">!! AVISO !!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" align="center">
+          <h5>Nro de Orden de Trabajo no existe</h5>
+          <svg xmlns="http://www.w3.org/2000/svg" width='30' height='30' fill='red' class='bi bi-trash' viewBox="0 0 512 512">
+            <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM175 175c9.4-9.4 
+            24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 
+            47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/>
+        </svg>
+          
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <h1 align="center"><strong>ORDEN DE TRABAJO</strong></h1>
@@ -14,7 +36,7 @@
     
     <div class="input-group md-2">
       <span class="input-group-text">NºOrden </span>
-      <input class="form-control required" id="orden" name="orden" autocomplete="off" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+      <input class="form-control required" id="orden" name="orden" autocomplete="off" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" >
       <button  id="btnBuscar" name="btnBuscar" disabled style="border-color: #ced4da;border-style: solid;" >
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#007BFF" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
@@ -218,5 +240,11 @@
 
 @include('trabajo.ajax.index.funcionesAjax')
 
-
+<script>
+  var msg = '{{Session::get('alert')}}';
+  var exist = '{{Session::has('alert')}}';
+  if(exist){
+    alert(msg);
+  }
+</script>
 @endsection

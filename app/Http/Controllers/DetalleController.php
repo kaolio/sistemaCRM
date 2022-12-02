@@ -11,6 +11,7 @@ use App\Models\Roles;
 use App\Models\Detalle; 
 use App\Models\Donantes;
 use Exception;
+use Google\Service\Adsense\Alert;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -82,60 +83,73 @@ class DetalleController extends InventarioController
     
     public function buscar($id){ 
 
+
         try {
-            $diagnosticoDesignado = DB::table('orden_trabajos')
+
+             $diagnosticoDesignado = DB::table('orden_trabajos')
                             ->select('diagnostico')
                             ->get();
 
-        $recuperarDatos = DB::table('inventarios')
-                        ->select('*')
+            $recuperarDatos = DB::table('inventarios')
+                            ->select('*')
+                            ->get();
+
+            $prioridadTrabajo = DB::table('orden_trabajos')
+                            ->select('*')
+                            ->Where('orden_trabajos.id', '=', $id)
+                            ->get();
+
+            $notas = DB::table('notas')
+                        ->join('orden_trabajos','orden_trabajos.id','=','notas.id_trabajos')
+                        ->select('notas.creado','notas.created_at','notas.nota','notas.id_trabajos','notas.id')
+                        ->where('notas.id_trabajos','=',$id)
                         ->get();
 
-        $prioridadTrabajo = DB::table('orden_trabajos')
-                        ->select('*')
-                        ->Where('orden_trabajos.id', '=', $id)
-                        ->get();
+            $usuarioDesignado = DB::table('users')
+                                    ->select('*')
+                                    ->where('name','<>','Administrador')
+                                    ->get();
 
-        $notas = DB::table('notas')
-                    ->join('orden_trabajos','orden_trabajos.id','=','notas.id_trabajos')
-                    ->select('notas.creado','notas.created_at','notas.nota','notas.id_trabajos','notas.id')
-                    ->where('notas.id_trabajos','=',$id)
-                    ->get();
+            $orden_elegida = DB::table('orden_trabajos')
+                                    ->join('clientes','clientes.id','=','orden_trabajos.id_cliente')
+                                    ->join('users','users.id','=','orden_trabajos.asignado')
+                                    ->select('clientes.nombreCliente','clientes.vat','clientes.calle','clientes.codigoPostal','clientes.nombreCiudad',
+                                    'clientes.pais','clientes.nota','users.name','orden_trabajos.id','orden_trabajos.informacion','orden_trabajos.datosImportantes')
+                                    ->where('orden_trabajos.id','=',$id)
+                                    ->first(); 
 
-        $usuarioDesignado = DB::table('users')
-                                ->select('*')
-                                ->where('name','<>','Administrador')
-                                ->get();
+            $diagnosticoCambiado = DB::table('orden_trabajos')
+                                    ->select('*')
+                                    ->get();
 
-        $orden_elegida = DB::table('orden_trabajos')
-                                ->join('clientes','clientes.id','=','orden_trabajos.id_cliente')
-                                ->join('users','users.id','=','orden_trabajos.asignado')
-                                ->select('clientes.nombreCliente','clientes.vat','clientes.calle','clientes.codigoPostal','clientes.nombreCiudad',
-                                'clientes.pais','clientes.nota','users.name','orden_trabajos.id','orden_trabajos.informacion','orden_trabajos.datosImportantes')
-                                ->where('orden_trabajos.id','=',$id)
-                                ->first(); 
-        $diagnosticoCambiado = DB::table('orden_trabajos')
-                                ->select('*')
-                                ->get();
-        $recuperarDonante = DB::table('inventarios')
-                                ->select('*')
-                                ->get();
+            $recuperarDonante = DB::table('inventarios')
+                                    ->select('*')
+                                    ->get();
                                 
-        return view('trabajo.informacion.detalle',(compact('orden_elegida','usuarioDesignado','notas','recuperarDatos','prioridadTrabajo','diagnosticoCambiado','recuperarDonante')));
+             return view('trabajo.informacion.detalle',(compact('orden_elegida','usuarioDesignado','notas','recuperarDatos','prioridadTrabajo','diagnosticoCambiado','recuperarDonante')));
 
-        }
-        catch (Exception $e) {
+        } catch (\Throwable $th) {
+
             //
+
         }
 
-        
     }
 
     public function buscarOrden(){
+
+        $buscado = DB::table('orden_trabajos')
+                        ->select('id')
+                        ->where('id','=',$_POST["orden"])
+                        ->exists();
+
+        $ordenes = [];
                  
         $ruta =  "/trabajos/detalle/".$_POST["orden"];
 
-        return json_encode(array('data'=>$ruta));
+        array_push($ordenes, $buscado, $ruta);
+
+        return json_encode(array('data'=>$ordenes));
     }  
 
     public function guardarNotaCliente(){

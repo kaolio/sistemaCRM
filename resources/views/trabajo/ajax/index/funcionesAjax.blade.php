@@ -1281,9 +1281,20 @@
             cache: false,
             dataType: 'json',
             success: function (data) {
-                    var myJSON = JSON.stringify(data);
-                   //  console.log(myJSON);
-              window.location.href=data['data'];
+
+                if (data.data[0]==true) {
+
+                  var myJSON = JSON.stringify(data.data[1]);
+                    // console.log(data['data'][0]);
+                 window.location.href=data['data'][1];
+
+                } else {
+                  $('#error').modal('show');
+                }
+                
+              
+              
+                   
             }
           });
     });
