@@ -186,7 +186,7 @@
                 
                 <br>
                 <div class="form-group">
-                <a href="" class="btn btn-danger my-2 my-sm-0">Cancelar</a>
+                <a href="/trabajos" class="btn btn-danger my-2 my-sm-0">Cancelar</a>
                 <button class="btn btn-primary" type="submit" >Aceptar</button>
                 </div>
             </div>
