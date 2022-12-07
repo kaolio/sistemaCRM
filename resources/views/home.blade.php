@@ -34,7 +34,7 @@
                     <div class="icon">
                         <span class="iconify" data-icon="ion:warning-outline"></span>
                     </div>
-                    <a href="#" class="small-box-footer">
+                    <a href="/home/urgente" class="small-box-footer">
                         "Mas detalles"
                         <i class="fas fa-arrow-alt-circle-right"></i>
                     </a>
@@ -50,7 +50,7 @@
                     <div class="icon">
                         <span class="iconify" data-icon="ion:checkmark-sharp"></span>
                     </div>
-                    <a href="#" class="small-box-footer">
+                    <a href="/home/completo" class="small-box-footer">
                         "Mas detalles"
                         <i class="fas fa-arrow-alt-circle-right"></i>
                     </a>
@@ -66,7 +66,7 @@
                     <div class="icon">
                         <span class="iconify" data-icon="ion:time-outline"></span>
                     </div>
-                    <a href="#" class="small-box-footer">
+                    <a href="/home/pendiente" class="small-box-footer">
                         "Mas detalles"
                         <i class="fas fa-arrow-alt-circle-right"></i>
                     </a>
@@ -74,7 +74,7 @@
             </div>
 
             <div class="col-lg-3 col-6">
-                <div class="small-box bg-danger">
+                <div class="small-box" style="background: #83b0db">
                     <div class="inner">
                         <h3>{{$trabajosPagados}}</h3>
                         <p>Trabajos Pagados</p>
@@ -82,7 +82,7 @@
                     <div class="icon">
                         <span class="iconify" data-icon="ion:cash-outline"></span>
                     </div>
-                    <a href="#" class="small-box-footer">
+                    <a href="/home/pagado" class="small-box-footer text-dark">
                         "Mas detalles"
                         <i class="fas fa-arrow-alt-circle-right"></i>
                     </a>
@@ -92,7 +92,7 @@
 
     </div>
     <!--Tabla-->
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-9">
                             <div class="card"> 
                                 <div class="card-body">

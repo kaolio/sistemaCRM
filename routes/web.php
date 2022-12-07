@@ -35,6 +35,10 @@ Auth::routes();
 //HOME
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('/home/datosDashboard',[HomeController::class, 'datosDashboard']);
+Route::get('/home/urgente',[HomeController::class, 'urgente']);
+Route::get('/home/completo',[HomeController::class, 'completo']);
+Route::get('/home/pagado',[HomeController::class, 'pagado']);
+Route::get('/home/pendiente',[HomeController::class, 'pendiente']);
 
 //LOGIN CLIENTE
 Route::get('/login/cliente', [LoginClienteController::class, 'index']);
@@ -63,7 +67,7 @@ Route::post('/usuario/foto', [UsuarioController::class,'updatePhoto']);
 
 //script
 Route::post('/usuario/nuevo/validarCorreo', [UsuarioController::class,'validarCorreo']);
-
+ 
 //ORDEN DE TRABAJO
 Route::get('/trabajos',[OrdenTrabajoController::class,'index']);
 Route::delete('/trabajo/{id}',[OrdenTrabajoController::class,'destroy']);
@@ -86,6 +90,8 @@ Route::get('/trabajo/imprimirIndex',[OrdenTrabajoController::class,'imprimirPDF'
 Route::post('/trabajo/imprimirOrden',[OrdenTrabajoController::class,'imprimirOrden']); //imprimir orden especifica
 
 Route::post('/autocompletarCliente',[OrdenTrabajoController::class,'autoCompletar']);
+Route::get('/trabajo/general',[OrdenTrabajoController::class,'general']);
+
 //Detalle de trabajo
 //general
 
