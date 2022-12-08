@@ -1,6 +1,48 @@
 @extends('adminlte::page')
 @section('content')
 
+<style>
+  .tftable {
+  font-size: 12px;
+  color: #333333;
+  width: 180%;
+  border-width: 1px;
+  border-color: transparent;
+  border-collapse: collapse;
+}
+
+.tftable th {
+  font-size: 12px;
+  background-color: transparent;
+  border-width: 1px;
+  padding: 8px;
+  border-style: solid;
+  border-color: transparent;
+  text-align: left;
+}
+
+.tftable tr {
+  background-color: transparent;
+}
+
+.tftable td {
+  font-size: 12px;
+  border-width: 1px;
+  padding: 8px;
+  border-style: solid;
+  border-color: transparent;
+}
+
+.tftable tr:hover {
+  background-color: #ffffff;
+}
+
+.tftable {
+  zoom: 50 %;
+  transform: scale(calc(/3));
+}
+
+</style>
 
 <h1 align="center" style="font-weight: 700">ORDEN DE TRABAJO</h1>
 
@@ -66,7 +108,7 @@
                      <i class="fa fa-plus"></i> </button>
                     </td>
                         <div class="table-responsive">
-                      <table class="table" id="tabla">
+                      <table class="table tftable" id="tabla">
                           <thead class="thead">
                               
                           </thead>
@@ -75,8 +117,8 @@
                               <tr id="columna-0">
                                   <td>
                                       <div class="input-group">
-                                        <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo</span>
-                                          <select name="tipo[]" id="tipo" class="form-control" class="btn-block" >
+                                        <span class="input-group-text" id="inputGroup-sizing-sm" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo</span>
+                                          <select name="tipo[]" id="tipo" class="form-control"   >
                                             <option disabled >Tipo de Dispositivo</option>
                                             <option value="HDD">HDD</option>
                                             <option value="CD/DVD">CD/DVD</option>
@@ -102,7 +144,7 @@
                                   <td>
                                       <div class="input-group">
                                         <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Rol</span>
-                                          <select name="rol[]" id="rol" class="form-control" class="btn-block" >
+                                          <select name="rol[]" id="rol" class="form-control">
                                             <option disabled>Escoja un rol</option>
                                             <option value="Paciente">Paciente</option>
                                             <option value="Alta">Datos</option>

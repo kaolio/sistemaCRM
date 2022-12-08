@@ -72,7 +72,8 @@ class OrdenTrabajoController extends Controller
      */
     public function store(Request $request, Roles $roles)
     {
-        
+
+       
         $posicion_coincidencia = strpos($request->get('cliente'), ',');
         $cliente = substr($request->get('cliente'), 0, $posicion_coincidencia);
 

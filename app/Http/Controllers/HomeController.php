@@ -99,7 +99,6 @@ class HomeController extends Controller
     }
 
     public function pendiente(){
-
         $pendiente = DB::table('orden_trabajos')
                     ->join('clientes','clientes.id','orden_trabajos.id_cliente')
                     ->select("orden_trabajos.id",'clientes.nombreCliente','orden_trabajos.created_at','orden_trabajos.estado')
