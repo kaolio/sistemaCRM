@@ -104,30 +104,19 @@
     <table class="table table-responsive">
         <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
             <tr>
-                <th class="p-1">&nbsp;&nbsp;&nbsp;</th>
-                <th class="p-1">Tipo</th>
-                <th class="p-1">Fabricante</th>
-                <th class="p-1">Modelo</th>
-                <th class="p-1">Serie</th>
-                <th class="p-1">Ubicación</th>
-                <th class="p-1">Diagnóstico</th>
-                <th class="p-1">Nota</th>
-                <th class="p-1">Acciones</th>
+                <th class="p-1" style="width: 80px">&nbsp;&nbsp;&nbsp;</th>
+                <th class="col-md-1 p-1">Tipo</th>
+                <th class="col-md-2 p-1">Fabricante</th>
+                <th class="col-md-1 p-1">Modelo</th>
+                <th class="col-md-1 p-1">Serie</th>
+                <th class="col-md-1 p-1">Ubicación</th>
+                <th class="col-md-2 p-1">Diagnóstico</th>
+                <th class="col-md-1 p-1">Nota</th>
+                <th class="col-md-2 p-1" ></th>
             </tr>
           </thead>
           <tbody class="table-bordered" id="datosPacientes">
              <tr>
-                <!--<button id="btnPaciente">Borrar paciente</button>-->
-    
-                 <!-- Button trigger modal -->
-           
-                  <!-- <button style="visibility: hidden" type="button" style="display:none" class="btn btn-success" data-toggle="modal" data-target="#exampleModal2">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
-                             <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
-                         </svg>
-                     </button>-->
-          
-             
              <!-- Modal -->
              <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
                  <div class="modal-dialog" role="document">
@@ -201,7 +190,7 @@
                         <th class="col-md-2 p-1">Fabricante</th>
                         <th class="col-md-2 p-1">Modelo</th>
                         <th class="col-md-2 p-1">Serie</th>
-                        <th class="col-md-1 p-1">Ubicación</th>
+                        <th class="col-md-2 p-1">Ubicación</th>
                         <th class="col-md-2 p-1">Nota</th>
                         <th class="col-md-1 p-1"></th>
                     </tr>
@@ -228,7 +217,7 @@
                     <th class="col-md-2 p-1">Fabricante</th>
                     <th class="col-md-2 p-1">Modelo</th>
                     <th class="col-md-2 p-1">Serie</th>
-                    <th class="col-md-1 p-1">Ubicación</th>
+                    <th class="col-md-2 p-1">Ubicación</th>
                     <th class="col-md-2 p-1">Nota</th>
                     <th class="col-md-1 p-1"></th>
                 </tr>
@@ -251,10 +240,10 @@
                 <tr>
                     <th class="p-1"> &nbsp;&nbsp;&nbsp; </th>
                     <th class="col-md-1 p-1">Tipo</th>
-                    <th class="col-md-1 p-1">Fabricante</th>
-                    <th class="col-md-1 p-1">Modelo</th>
-                    <th class="col-md-1 p-1">Serie</th>
-                    <th class="col-md-1 p-1">Ubicación</th>
+                    <th class="col-md-2 p-1">Fabricante</th>
+                    <th class="col-md-2 p-1">Modelo</th>
+                    <th class="col-md-2 p-1">Serie</th>
+                    <th class="col-md-2 p-1">Ubicación</th>
                     <th class="col-md-1 p-1" style="width: 250px">Nota</th>
                     <th class="col-md-1 p-1" style="width: 400px"></th>
                 </tr>
@@ -292,15 +281,8 @@
 
      
     <script>
-        
-    //ELIMINAR FILA DE DISP DE PACIENTES
 
-    // $(document).on("click", ".eliminar", function() {
-    //     var id = $(this).data('id');
-    //         $(this).parents('tr').remove();
-           
-              
-    //   });
+        
       $(window).ready(function () {
    
    if ( $ ('.eliminar').length)

@@ -231,5 +231,5 @@ var selected = combo.options[combo.selectedIndex].text;
         }
     });
   }
-</script>
+</script> 
 @endsection

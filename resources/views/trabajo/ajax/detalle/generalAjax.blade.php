@@ -19,6 +19,7 @@
             // console.log(myJSON);
             // console.log(typeof JSON.stringify(dataResult))  
             $('#exampleModal01').modal('hide');
+            location.reload(); 
             $('#userDesignado').html('<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+dataResult.data['name']+'</span>');
             
         }
@@ -199,6 +200,7 @@
                 dataType: 'json',
                 success: function(dataResult){
                   // console.log(dataResult);
+                  location.reload(); 
                     var resultData = dataResult.data;
                     var bodyData = '';
                     
@@ -241,11 +243,8 @@
                         tablaNotas+="</tr>";
                         
                     })
-                    $("#tablaNotas").append(tablaNotas);
-                    if('#comentario'==''){
-
-                        $('#comentario').empty();
-                    }
+                    
+                    
                 }
             });
     });

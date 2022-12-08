@@ -24,32 +24,82 @@
                     +"<td name='serial[]' id=''>"+row.serial+"</td><td name='localizacion[]' id=''>"+row.localizacion+"<td></td>"+
                     "<td class='eliminar'>"+  
                     
-                                "<button class='btn btn-primary'>"+
-                                    "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-arrows-move' viewBox='0 0 16 16'>"+
-                                        "<path fill-rule='evenodd' d='M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z'/>"+
-                                    "</svg>"+
-                                "</button>"+
-                        
-                        
-                                    "<button class='btn btn-success'>"+
+                        '<button type="button" class="btn" style="color: rgb(0, 26, 255);" data-toggle="modal" data-target="#exampleModal05">'+
+                        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-move" viewBox="0 0 16 16">'+
+                        '<path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z"/>'+
+                        '</svg>'+
+                    '</button>'+
+                    '<div class="modal fade" id="exampleModal05" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                        '<div class="modal-dialog" role="document">'+
+                        '<div class="modal-content">'+
+                            '<div class="modal-header">'+
+                            '<h5 class="modal-title" id="exampleModalLabel">Mover Ubicacion</h5>'+
+                            '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
+                                '<span aria-hidden="true">&times;</span>'+
+                            '</button>'+
+                            '</div>'+
+                            '<div class="modal-body">'+
+                            '<h5 class="modal-title w-100 text-center">Ubicacion Actual:</h5>'+
+                            '</br>'+
+                                '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Nueva Ubicacion</span>'+
+                                            '<input type="text" id="localizacion" name="localizacion" class="form-control" autocomplete="off" onkeypress="return ( (event.charCode == 45 )|| (event.charCode >= 48 && event.charCode <= 57)||(event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209))">'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                            
+                            '<div class="modal-footer">'+
+                            '<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>'+
+                            '<button class="btn btn-success" onclick="moverOtroDispositivo()" style="padding-left: 5px">'+
+                                'Aceptar'+
+                            '</button>'+
+                            '</div>'+
+                        '</form> '+
+                        '</div>'+
+                        '</div>'+
+                    ' </div> '+
+                                        
+                                    "<button class='btn btn-light-active btn-sm d-inline'> "+
                                         "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-pen' viewBox='0 0 16 16'>"+
                                             "<path d='m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z'/>"+
                                         "</svg>"+
                                     "</button>"+
-                        
-                        
-                                "<button class='btn btn-primary'>"+
-                                    "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-arrow-left-right' viewBox='0 0 16 16'>"+
-                                        "<path fill-rule='evenodd' d='M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z'/>"+
-                                    "</svg>"+
-                                "</button>"+
                             
                                 
-                                "<button class='btn btn-danger' class='borrar' id='deletRow' name='deletRow'>"+
-                                    "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash3' viewBox='0 0 16 16'>"+
-                                        "<path d='M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z'/>"+
-                                    "</svg>"+
-                                "</button>"+
+                                    '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal18'+dataResult.data[i].id+'">'+
+                        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
+                        '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
+                        '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
+                        '</svg>'+
+                    '</button>'+
+                    '<div class="modal fade" id="exampleModal18'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                        '<div class="modal-dialog" role="document">'+
+                        '<div class="modal-content">'+
+                            '<div class="modal-header">'+
+                            '<h5 class="modal-title" id="exampleModalLabel">Eliminar Otro Dispositivo</h5>'+
+                            '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
+                                '<span aria-hidden="true">&times;</span>'+
+                            '</button>'+
+                            '</div>'+
+                            '<div class="modal-body">'+
+                            '¿Realmente Desea Borrar Otro Dispositivo?'+
+                            '</div>'+
+                            '<form action="{{url('/eliminarOtrosDispositivos/')}}'+'/'+dataResult.data[i].id+'" method="POST" class="d-inline">'+
+                            '@csrf'+
+                            ' @method('DELETE')'+
+                            '<div class="modal-footer">'+
+                            '<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>'+
+                            '<button class="btn btn-primary" style="padding-left: 5px">'+
+                                'Aceptar'+
+                            '</button>'+
+                            '</div>'+
+                        '</form> '+
+                        '</div>'+
+                        '</div>'+
+                    ' </div> '+
                                 
                     "</td>";
                     datosOtrosDispositivos+="</tr>";
@@ -82,35 +132,52 @@
                         datosPacientes+="<td>"+"<input type='checkbox' id='moverUbicacion'>"+
                             "</td>"+"<td>"+row.tipo+"</td><td>"+row.fabricante+"</td><td>"+row.modelo+"</td>"
                         +"<td>"+row.serial+"</td><td>"+row.localizacion+"</td><td>"+row.diagnostico+"<td></td>"+
-                        "<td>"+
-                            "<button class='btn btn-icon btn-danger' type='button' id='btnDiagnostico' name='btnDiagnostico'>"+
-                                "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>"+
-                                    "<path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'/>"+
-                                    "<path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/>"+
-                                "</svg>"+
-                            "</button>"+
-                            "<button class='btn btn-primary'>"+
-                                "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-arrow-left-right' viewBox='0 0 16 16'>"+
-                                    "<path fill-rule='evenodd' d='M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z'/>"+
-                                "</svg>"+
-                            "</button>"+
-                            "<button class='btn btn-primary'>"+
-                                "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-arrows-move' viewBox='0 0 16 16'>"+
-                                    "<path fill-rule='evenodd' d='M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z'/>"+
-                                "</svg>"+
-                            "</button>"+
-                            "<button class='btn btn-success'>"+
-                                 "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-download' viewBox='0 0 16 16'>"+
-                                    "<path d='M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z'/>"+
-                                    "<path d='M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z'/>"+
-                                "</svg>"+
-                            "</button>"+
+                        "<td class='text-center'>"+
+
+                        '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal05">'+
+                            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-move" viewBox="0 0 16 16">'+
+                         '<path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z"/>'+
+                        '</svg>'+
+                    '</button>'+
+                    '<div class="modal fade" id="exampleModal05" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                        '<div class="modal-dialog" role="document">'+
+                        '<div class="modal-content">'+
+                            '<div class="modal-header">'+
+                            '<h5 class="modal-title" id="exampleModalLabel">Mover Ubicacion</h5>'+
+                            '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
+                                '<span aria-hidden="true">&times;</span>'+
+                            '</button>'+
+                            '</div>'+
+                            '<div class="modal-body">'+
+                            '<h5 class="modal-title w-100 text-center">Ubicacion Actual:</h5>'+
+                            '</br>'+
+                                '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Nueva Ubicacion</span>'+
+                                            '<input type="text" id="localizacion" name="localizacion" class="form-control" autocomplete="off" onkeypress="return ( (event.charCode == 45 )|| (event.charCode >= 48 && event.charCode <= 57)||(event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209))">'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                            
+                            '<div class="modal-footer">'+
+                            '<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>'+
+                            '<button class="btn btn-success" onclick="moverEsteDispositivo()" style="padding-left: 5px">'+
+                                'Aceptar'+
+                            '</button>'+
+                            '</div>'+
+                        '</form> '+
+                        '</div>'+
+                        '</div>'+
+                    ' </div> '+
                      
                             //modal
 
                             "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#exampleModal2'>"+
                                 "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-share' viewBox='0 0 16 16'>"+
-                                    "<path d='M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z'/>"+
+                                    "<path d='M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z'/>"+
+                                    "<path d='M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z'/>"+
                                 "</svg>"+
                             "</button>"+
  
@@ -165,20 +232,47 @@
         "</div>"+
     "</div>"+
     //modal
-         '<button class="btn btn-secondary">'+
-            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">'+
-                '<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>'+
-              '</svg>'+
-        '</button>'+
 
         '<button class="btn btn-secondary">'+
             '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">'+
                 '<path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>'+
               '</svg>'+
         '</button>'+
+        
+        '<button type="button" class="btn btn-icon btn-danger" data-toggle="modal" data-target="#exampleModal18'+dataResult.data[i].id+'">'+
+                        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">'+
+                        '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
+                        '<<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
+                        '</svg>'+
+                    '</button>'+
+                    '<div class="modal fade" id="exampleModal18'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                        '<div class="modal-dialog" role="document">'+
+                        '<div class="modal-content">'+
+                            '<div class="modal-header">'+
+                            '<h5 class="modal-title" id="exampleModalLabel">Eliminar Este Dispositivo</h5>'+
+                            '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
+                                '<span aria-hidden="true">&times;</span>'+
+                            '</button>'+
+                            '</div>'+
+                            '<div class="modal-body">'+
+                            '¿Realmente Desea Borrar Este Dispositivo?'+
+                            '</div>'+
+                            '<form action="{{url('/eliminarEsteDispositivo/')}}'+'/'+dataResult.data[i].id+'" method="POST" class="d-inline">'+
+                            '@csrf'+
+                            ' @method('DELETE')'+
+                            '<div class="modal-footer">'+
+                            '<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>'+
+                            '<button class="btn btn-primary" style="padding-left: 5px">'+
+                                'Aceptar'+
+                            '</button>'+
+                            '</div>'+
+                        '</form> '+
+                        '</div>'+
+                        '</div>'+
+                    ' </div> '+
 
-                        +"</td>";
-                        datosPacientes+="</tr>";
+                        "</td>";
+                        datosPacientes+"</tr>";
                         
                     })
                 $("#datosPacientes").append(datosPacientes);
@@ -278,25 +372,25 @@
                     dataResult.data[i].numero_serie  + "</td><td>" +
                     dataResult.data[i].ubicacion  + "</td><td>"+
                     dataResult.data[i].nota  +"</td><td class='text-center'>" +
-                    '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data[i].id+'">'+
+                    '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal5'+dataResult.data[i].id+'">'+
                         '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
                         '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
                         '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
                         '</svg>'+
                     '</button>'+
-                    '<div class="modal fade" id="exampleModal'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                    '<div class="modal fade" id="exampleModal5'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
                         '<div class="modal-dialog" role="document">'+
                         '<div class="modal-content">'+
                             '<div class="modal-header">'+
-                            '<h5 class="modal-title" id="exampleModalLabel">Eliminar trabajo</h5>'+
+                            '<h5 class="modal-title" id="exampleModalLabel">Eliminar Clon</h5>'+
                             '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
                                 '<span aria-hidden="true">&times;</span>'+
                             '</button>'+
                             '</div>'+
                             '<div class="modal-body">'+
-                            '¿Realmente Desea Borrar el trabajo?'+
+                            '¿Realmente Desea Borrar el Clon?'+
                             '</div>'+
-                            '<form action="{{url('/trabajo/')}}'+'/'+dataResult.data[i].id+'" method="POST" class="d-inline">'+
+                            '<form action="{{url('/eliminarClones/')}}'+'/'+dataResult.data[i].id+'" method="POST" class="d-inline">'+
                             '@csrf'+
                             ' @method('DELETE')'+
                             '<div class="modal-footer">'+
@@ -352,37 +446,37 @@
                         dataResult.data[i].numero_serie  + "</td><td>" +
                         dataResult.data[i].ubicacion  + "</td><td>"+
                         dataResult.data[i].nota  + "</td><td class='text-center'>" +
-                        '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data[i].id+'">'+
-                            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
-                            '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
-                            '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
-                            '</svg>'+
-                        '</button>'+
-                        '<div class="modal fade" id="exampleModal'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
-                            '<div class="modal-dialog" role="document">'+
-                            '<div class="modal-content">'+
-                                '<div class="modal-header">'+
-                                '<h5 class="modal-title" id="exampleModalLabel">Eliminar trabajo</h5>'+
-                                '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
-                                    '<span aria-hidden="true">&times;</span>'+
-                                '</button>'+
-                                '</div>'+
-                                '<div class="modal-body">'+
-                                '¿Realmente Desea Borrar el trabajo?'+
-                                '</div>'+
-                                '<form action="{{url('/trabajo/')}}'+'/'+dataResult.data[i].id+'" method="POST" class="d-inline">'+
-                                '@csrf'+
-                                ' @method('DELETE')'+
-                                '<div class="modal-footer">'+
-                                '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
-                                '<button class="btn btn-primary" style="padding-left: 5px">'+
-                                    'Aceptar'+
-                                '</button>'+
-                                '</div>'+
-                            '</form> '+
+                            '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal5'+dataResult.data[i].id+'">'+
+                        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
+                        '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
+                        '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
+                        '</svg>'+
+                    '</button>'+
+                    '<div class="modal fade" id="exampleModal5'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                        '<div class="modal-dialog" role="document">'+
+                        '<div class="modal-content">'+
+                            '<div class="modal-header">'+
+                            '<h5 class="modal-title" id="exampleModalLabel">Eliminar Clon</h5>'+
+                            '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
+                                '<span aria-hidden="true">&times;</span>'+
+                            '</button>'+
                             '</div>'+
+                            '<div class="modal-body">'+
+                            '¿Realmente Desea Borrar el Clon?'+
                             '</div>'+
-                        ' </div> '+
+                            '<form action="{{url('/eliminarClones/')}}'+'/'+dataResult.data[i].id+'" method="POST" class="d-inline">'+
+                            '@csrf'+
+                            ' @method('DELETE')'+
+                            '<div class="modal-footer">'+
+                            '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
+                            '<button class="btn btn-primary" style="padding-left: 5px">'+
+                                'Aceptar'+
+                            '</button>'+
+                            '</div>'+
+                        '</form> '+
+                        '</div>'+
+                        '</div>'+
+                    ' </div> '+
                         "</td></tr>"
                     
                     $("#clonesTrabajo").append(nuevafila)
@@ -484,25 +578,25 @@ $("#btnBuscarDonante").on('click',function(){
                     dataResult.data[i].numero_serie  + "</td><td>" +
                     dataResult.data[i].ubicacion  + "</td><td>"+
                     dataResult.data[i].nota  +"</td><td class='text-center'>" +
-                    '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data[i].id+'">'+
+                    '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal7'+dataResult.data[i].id+'">'+
                         '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
                         '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
                         '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
                         '</svg>'+
                     '</button>'+
-                    '<div class="modal fade" id="exampleModal'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                    '<div class="modal fade" id="exampleModal7'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
                         '<div class="modal-dialog" role="document">'+
                         '<div class="modal-content">'+
                             '<div class="modal-header">'+
-                            '<h5 class="modal-title" id="exampleModalLabel">Eliminar trabajo</h5>'+
+                            '<h5 class="modal-title" id="exampleModalLabel">Eliminar Donante</h5>'+
                             '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
                                 '<span aria-hidden="true">&times;</span>'+
                             '</button>'+
                             '</div>'+
                             '<div class="modal-body">'+
-                            '¿Realmente Desea Borrar el trabajo?'+
+                            '¿Realmente Desea Borrar el Donante?'+
                             '</div>'+
-                            '<form action="{{url('/trabajo/')}}'+'/'+dataResult.data[i].id+'" method="POST" class="d-inline">'+
+                            '<form action="{{url('/eliminarDonantes/')}}'+'/'+dataResult.data[i].id+'" method="POST" class="d-inline">'+
                             '@csrf'+
                             ' @method('DELETE')'+
                             '<div class="modal-footer">'+
@@ -559,25 +653,25 @@ $("#btnBuscarDonante").on('click',function(){
                     dataResult.data[i].numero_serie  + "</td><td>" +
                     dataResult.data[i].ubicacion  + "</td><td>"+
                     dataResult.data[i].nota  + "</td><td class='text-center'>" +
-                    '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data[i].id+'">'+
+                    '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal7'+dataResult.data[i].id+'">'+
                         '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
                         '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
                         '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
                         '</svg>'+
                     '</button>'+
-                    '<div class="modal fade" id="exampleModal'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                    '<div class="modal fade" id="exampleModal7'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
                         '<div class="modal-dialog" role="document">'+
                         '<div class="modal-content">'+
                             '<div class="modal-header">'+
-                            '<h5 class="modal-title" id="exampleModalLabel">Eliminar trabajo</h5>'+
+                            '<h5 class="modal-title" id="exampleModalLabel">Eliminar Donante</h5>'+
                             '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
                                 '<span aria-hidden="true">&times;</span>'+
                             '</button>'+
                             '</div>'+
                             '<div class="modal-body">'+
-                            '¿Realmente Desea Borrar el trabajo?'+
+                            '¿Realmente Desea Borrar el Donante?'+
                             '</div>'+
-                            '<form action="{{url('/trabajo/')}}'+'/'+dataResult.data[i].id+'" method="POST" class="d-inline">'+
+                            '<form action="{{url('/eliminarDonantes/')}}'+'/'+dataResult.data[i].id+'" method="POST" class="d-inline">'+
                             '@csrf'+
                             ' @method('DELETE')'+
                             '<div class="modal-footer">'+
@@ -639,6 +733,7 @@ $("#btnBuscarDonante").on('click',function(){
             dataType: 'json',
             success: function(dataResult){
                 $('#exampleModal2').modal('hide');
+                location.reload(); 
             //console.log(dataResult);
 
                 
@@ -695,6 +790,62 @@ $("#btnBuscarDonante").on('click',function(){
                     }
                 });
       }
+
+
+      function moverEsteDispositivo(id){
+            
+            var loc = $("#localizacion").val();
+           // console.log(location);
+            $.ajax({
+                url: "/trabajos/nuevo/detalle/moverEsteDispositivo",
+                type: "POST",
+                data: {
+                "_token": "{{ csrf_token() }}",
+                'localizacion':loc,
+                "nombre": "{{$orden_elegida->id}}",
+
+                cache: false,
+                dataType: 'json',
+                success: function (dataResult) {
+                //console.log(dataResult);
+                $('#exampleModal05').modal('hide');
+                location.reload(); 
+                /*$('#exampleModal05').on('hide', function() {
+                    location.reload();
+                    });*/
+                
+                }
+                }
+            });
+        }
+
+
+      function moverOtroDispositivo(id){
+            
+            var loc = $("#localizacion").val();
+           // console.log(location);
+            $.ajax({
+                url: "/trabajos/nuevo/detalle/moverOtroDispositivo",
+                type: "POST",
+                data: {
+                "_token": "{{ csrf_token() }}",
+                'localizacion':loc,
+                "nombre": "{{$orden_elegida->id}}",
+
+                cache: false,
+                dataType: 'json',
+                success: function (dataResult) {
+                //console.log(dataResult);
+                $('#exampleModal05').modal('hide');
+                location.reload(); 
+                /*$('#exampleModal05').on('hide', function() {
+                    location.reload();
+                    });*/
+                
+                }
+                }
+            });
+        }
 
 
     function eliminarVariosClones(){

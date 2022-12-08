@@ -108,6 +108,10 @@ Route::post('/trabajos/nuevo/detalle/datosDispositivos',[DetalleController::clas
 Route::delete('/trabajos/detalle/{id}',[DetalleController::class,'eliminarNota']);// eliminar nota
 Route::post('/trabajos/nuevo/detalle/busquedaRapida',[DetalleController::class,'busquedaRapida']);//busqueda de notas 
 //dispositivos de trabajo
+Route::delete('/eliminarEsteDispositivo/{id}',[DetalleController::class,'eliminarEsteDispositivo']);
+Route::delete('/eliminarClones/{id}',[DetalleController::class,'eliminarClon']);
+Route::delete('/eliminarDonantes/{id}',[DetalleController::class,'eliminarDonante']);
+Route::delete('/eliminarOtrosDispositivos/{id}',[DetalleController::class,'eliminarOtroDispositivo']);
 Route::post('/trabajos/detalle/guardarDiagnostico',[DetalleController::class,'guardarDiagnostico']); // ruta de guardar diagnostico
 Route::post('/trabajos/nuevo/detalle/datosPacientes',[DetalleController::class,'datosPacientes']); //ruta de orden de trabajos en (dispositivos de trabajo)
 Route::post('/trabajos/nuevo/detalle/datosOtrosDispositivos',[DetalleController::class,'datosOtrosDispositivos']);//ruta orden de trabajos de otros dispositivos
@@ -118,7 +122,9 @@ Route::post('/trabajos/nuevo/detalle/modalDonante',[DetalleController::class,'bu
 Route::post('/trabajos/nuevo/detalle/agregarDonanteBuscado',[DetalleController::class,'agregarBusquedaDonante']); //agregar donante buscados
 Route::post('/trabajos/nuevo/detalle/datosDonantesBuscados',[DetalleController::class,'mostrarDonantesBuscados']); //mostrar donantes agregados
 Route::post('/trabajos/nuevo/detalle/moverUbicacion',[DetalleController::class,'ubicacionNueva']);
-Route::post('/trabajos/nuevo/detalle/eliminarVariosClones',[DetalleController::class,'eliminarVariosC']);
+Route::post('/trabajos/nuevo/detalle/eliminarVariosClones',[DetalleController::class,'eliminarVariosC']);//eliminar varios cheks
+Route::post('/trabajos/nuevo/detalle/moverEsteDispositivo',[DetalleController::class,'moverEsteDispositivo']);
+Route::post('/trabajos/nuevo/detalle/moverOtroDispositivo',[DetalleController::class,'moverOtroDispositivo']);
 
 //Archivos adjuntos
 Route::post('/trabajos/detalle/subir', [DetalleController::class,'subirArchivo']);//ruta para subir archivo a drive
@@ -155,6 +161,7 @@ Route::post('/inventario/estado',[InventarioController::class,'estado']); //filt
 Route::post('/inventario/factor_de_forma',[InventarioController::class,'factorDeForma']); //filtrar por factor de forma
 Route::post('/inventario/redireccionar',[InventarioController::class,'redireccionar']);
 Route::post('/inventario/buscadorTiempoReal',[InventarioController::class,'buscadorTiempoReal']);
+Route::post('/inventario/moverDisco',[InventarioController::class,'moverDisco']);
 
 
 //CLIENTES

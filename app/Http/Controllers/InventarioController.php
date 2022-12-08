@@ -375,4 +375,14 @@ class InventarioController extends Controller
     
         return json_encode(array('data'=>$datosTablas));
     }
+
+    public function moverDisco(){
+
+        DB::table('inventario')
+                ->where('id', $_POST["id"])
+                ->update(['ubicacion' => $_POST["ubicacion"]]);
+
+
+         return json_encode(array('data'=>$_POST["ubicacion"]));
+    }
 }

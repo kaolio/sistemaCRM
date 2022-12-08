@@ -8,7 +8,8 @@ use App\Models\OrdenTrabajo;
 use App\Models\Inventario;
 use Illuminate\Http\Request;
 use App\Models\Roles;
-use App\Models\Detalle; 
+use App\Models\Detalle;
+use App\Models\DetalleOrden;
 use App\Models\Donantes;
 use Exception;
 use Google\Service\Adsense\Alert;
@@ -243,6 +244,61 @@ class DetalleController extends InventarioController
         return redirect('/trabajos/detalle/'.$NotaE->id_trabajos);
     }
 
+    public function eliminarEsteDispositivo($id)
+    {
+        $estedispo = DB::table('detalle_ordens')
+                    ->select('id_trabajos')
+                    ->where('id',$id)
+                    ->where('rol','=','Paciente')
+                    ->first();
+
+        $dispositivo = DetalleOrden::findOrFail($id);
+        $dispositivo -> delete();
+        
+        return redirect('/trabajos/detalle/'.$estedispo->id_trabajos);
+    }
+
+    public function eliminarClon($id)
+    {
+        $datosClon = DB::table('clones')
+                    ->select('id_trabajos')
+                    ->where('id',$id)
+                    ->first();
+
+        $clon = Clones::findOrFail($id);
+        $clon -> delete();
+        
+        return redirect('/trabajos/detalle/'.$datosClon->id_trabajos);
+    }
+
+    public function eliminarDonante($id)
+    {
+        $datoDonante = DB::table('donantes')
+                    ->select('id_trabajos')
+                    ->where('id',$id)
+                    ->first();
+
+        $donante = Donantes::findOrFail($id);
+        $donante -> delete();
+        
+        return redirect('/trabajos/detalle/'.$datoDonante->id_trabajos);
+    }
+
+    public function eliminarOtroDispositivo($id)
+    {
+        $otroDispo = DB::table('detalle_ordens')
+                    ->select('id_trabajos')
+                    ->where('id',$id)
+                    ->first();
+
+        $dispositivo = DetalleOrden::findOrFail($id);
+        $dispositivo -> delete();
+        
+        return redirect('/trabajos/detalle/'.$otroDispo->id_trabajos);
+    }
+
+
+
     public function subirArchivo(Request $request){
         
        dd($request->file("file-upload")->store("","google"));
@@ -428,17 +484,6 @@ class DetalleController extends InventarioController
                   
     }
 
-    public function eliminarPaciente($id){
-
-      
-    $inventario=Detalle::findOrFail($id);
-    $inventario->delete();
-        //             // ->where('id','=',$_POST["nombre"])]]
-        //             ->first();
-        // $this->$paciente->delete();
-                  
-    }
-
 
     public function ubicacionNueva(){
 
@@ -454,6 +499,28 @@ class DetalleController extends InventarioController
                     ->get();
 
                     return json_encode(array('data'=>$ubicacionMovida));
+    }
+
+    public function moverEsteDispositivo(){
+
+        DB::table('detalle_ordens')
+                ->where('id_trabajos', $_POST["nombre"])
+                ->where('rol','=','Paciente')
+                ->update(['localizacion' => $_POST["localizacion"]]);
+
+
+         return json_encode(array('data'=>$_POST["localizacion"]));
+    }
+
+    public function moverOtroDispositivo(){
+
+            DB::table('detalle_ordens')
+                    ->where('id_trabajos', $_POST["nombre"])
+                    ->where('rol','<>','Paciente')
+                    ->update(['localizacion' => $_POST["localizacion"]]);
+
+
+        return json_encode(array('data'=>$_POST["localizacion"]));
     }
 
     public function eliminarVariosC(){
