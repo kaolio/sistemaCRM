@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Cliente;
 use App\Models\DetalleOrden;
 use App\Models\Roles;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -71,7 +72,8 @@ class OrdenTrabajoController extends Controller
      */
     public function store(Request $request, Roles $roles)
     {
-        
+
+       
         $posicion_coincidencia = strpos($request->get('cliente'), ',');
         $cliente = substr($request->get('cliente'), 0, $posicion_coincidencia);
 
@@ -725,6 +727,48 @@ class OrdenTrabajoController extends Controller
     public function descargarExcel(Request $request){
         
         return Excel::download(new TrabajoExport, 'Reporte-Ordenes_Trabajo.xlsx');
+    }
+
+    public function general(){
+
+        $urgente = DB::table('orden_trabajos')
+                        ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                        ->select("orden_trabajos.id",'clientes.nombreCliente','orden_trabajos.created_at')
+                        ->where('prioridad','Urgente')
+                        ->get(); 
+
+        $recibido = DB::table('orden_trabajos')
+                        ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                        ->select("orden_trabajos.id",'clientes.nombreCliente','orden_trabajos.created_at')
+                        ->where('estado','Recibido')
+                        ->get(); 
+
+        $proceso = DB::table('orden_trabajos')
+                        ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                        ->select("orden_trabajos.id",'clientes.nombreCliente','orden_trabajos.created_at')
+                        ->where('estado','En Proceso')
+                        ->get(); 
+
+
+        $partes = DB::table('orden_trabajos')
+                        ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                        ->select("orden_trabajos.id",'clientes.nombreCliente','orden_trabajos.created_at')
+                        ->where('estado','Esperando Piezas')
+                        ->get(); 
+
+        $terminado = DB::table('orden_trabajos')
+                        ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                        ->select("orden_trabajos.id",'clientes.nombreCliente','orden_trabajos.created_at')
+                        ->where('estado','Trabajo Completo')
+                        ->get(); 
+        
+        $pendiente = DB::table('orden_trabajos')
+                        ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                        ->select("orden_trabajos.id",'clientes.nombreCliente','orden_trabajos.created_at')
+                        ->where('estado','Pago Pendiente')
+                        ->get(); 
+                        
+        return view('trabajo.general',compact('urgente','recibido','proceso','partes','terminado','pendiente'));
     }
 }
 

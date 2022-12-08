@@ -54,6 +54,7 @@ class ProductosController extends Controller
                 $producto->precio_fin = request('precioFin');
                 $producto->serial = $request->get('serial')[$i];
                 $producto->fecha = $request->get('fecha');
+                $producto->nota = $request->get('nota');
                 $producto->estado = "disponible";
                 $producto->usuario = Auth::user()->id;
                 $producto->save();
@@ -76,6 +77,7 @@ class ProductosController extends Controller
                 $producto->precio_fin = request('precioFin');
                 $producto->serial = $request->get('serial')[$i];
                 $producto->fecha = $request->get('fecha');
+                $producto->nota = $request->get('nota');
                 $producto->estado = "disponible";
                 $producto->usuario = Auth::user()->id;
                 $producto->save();
@@ -83,6 +85,38 @@ class ProductosController extends Controller
         }
 
         return redirect('/productos');
+    }
+
+    public function edit($id){
+        $producto = DB::table('productos')  //recuperar el valor del select
+                    ->select('*')
+                    ->Where('id', '=', $id)
+                    ->first();
+
+        return view('producto.edit',compact('producto'));            
+    }
+
+    public function update($id){
+
+        $producto = Productos::find($id);
+        $producto->dispositivo = request('dispositivo');
+        $producto->connection = request('connection');
+        $producto->factor = request('factor');
+        $producto->fabricante = request('fabricante');
+        $producto->modelo = request('modelo');
+        $producto->ubicacion = request('ubicacion');
+        $producto->distribuidora = request('distribuidora');
+        $producto->precio = request('precio');
+        $producto->vat = request('vat');
+        $producto->precio_fin = request('precioFin');
+        $producto->serial = request('serial');
+        $producto->fecha =request('fecha');
+        $producto->nota = request('nota');
+        $producto->usuario = Auth::user()->id;
+        $producto->update();
+
+        return redirect('/productos');
+
     }
 
     public function cambiarEstado(){
@@ -109,4 +143,8 @@ class ProductosController extends Controller
 
         return redirect('/productos');
     }
+
+   
+
+   
 }

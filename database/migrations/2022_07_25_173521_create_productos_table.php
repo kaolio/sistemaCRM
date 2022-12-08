@@ -28,6 +28,7 @@ class CreateProductosTable extends Migration
             $table->string('serial')->nullable();
             $table->date('fecha')->nullable();
             $table->string('estado')->nullable();
+            $table->string('nota')->nullable();
             $table->unsignedBigInteger('usuario')->nullable();
             $table->timestamps();
 

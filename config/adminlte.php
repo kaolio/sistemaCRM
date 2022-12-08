@@ -342,6 +342,12 @@ return [
                     'icon'    => 'fas fa-fw fa-filse',
                     'active' => ['trabajos', 'trabajo/editar*','trabajos/detalle*'],
                 ],
+                [
+                    'text' => 'Vista General',
+                    'url'  => 'trabajo/general',
+                    'can' => 'ver-trabajo-general',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
             ]
         ],
         [

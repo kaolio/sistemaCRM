@@ -35,19 +35,19 @@
                               <option disabled  selected>Tipo de Dispositivo</option>
                               <option value="HDD">HDD</option>
                               <option value="CD/DVD">CD/DVD</option>
-                              <option value="Unidad">Unidad Flash</option>
-                              <option value="MEMORY">Tarjeta de Memoria</option>
+                              <option value="Unidad Flash">Unidad Flash</option>
+                              <option value="Tarjeta de Memoria">Tarjeta de Memoria</option>
                               <option value="Impresora">Impresora</option>
                               <option value="Memoria">Memoria</option>
-                              <option value="cabezales">herramientas de cambio de cabezales</option>
-                              <option value="disco">herramientas de disco duro</option>
-                              <option value="desapilado">herramientas de desapilado de fuerza bruta</option>
+                              <option value="herramientas de cambio de cabezales">herramientas de cambio de cabezales</option>
+                              <option value="herramientas de disco duro">herramientas de disco duro</option>
+                              <option value="herramientas de desapilado de fuerza bruta">herramientas de desapilado de fuerza bruta</option>
                               <option value="Laptop">Laptop</option>
                               <option value="Notebook">Notebook</option>
-                              <option value="Otro">Otro(Dispositivo HDD)</option>
+                              <option value="Otro(Dispositivo HDD)">Otro(Dispositivo HDD)</option>
                               <option value="PC">PC</option>
-                              <option value="Telefono">Telefono Celular</option>
-                              <option value="Disco">Disco Blu-ray</option>
+                              <option value="Telefono Celular">Telefono Celular</option>
+                              <option value="Disco Blu-ray">Disco Blu-ray</option>
                               <option value="Tablet">Tablet</option>
                               <option value="FDD">FDD</option>
                             </select>
@@ -58,16 +58,16 @@
                              <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Conexión</span>
                              <select name="connection" id="connection" class="form-control" class="btn-block" >
                               <option disabled  selected>Tipo de Conexion</option>
-                              <option value="M2">M 2</option>
+                              <option value="M2">M2</option>
                               <option value="mSATA">mSATA</option>
                               <option value="PATA">PATA</option>
-                              <option value="PCI-Express">PCI Express</option>
+                              <option value="PCI Express">PCI Express</option>
                               <option value="SAS">SAS</option>
                               <option value="SATA">SATA</option>
-                              <option value="SATA-Express">SATA Extress</option>
-                              <option value="USB-2.0">USB 2.0</option>
-                              <option value="USB-3.0">USB 3.0</option>
-                              <option value="USB-3.1">USB 3.1</option>
+                              <option value="SATA Express">SATA Extress</option>
+                              <option value="USB 2.0">USB 2.0</option>
+                              <option value="USB 3.0">USB 3.0</option>
+                              <option value="USB 3.1">USB 3.1</option>
                               <option value="otro">Otro</option>
 
                             </select>
