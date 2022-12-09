@@ -26,7 +26,18 @@ class CreateClientesTable extends Migration
             $table->string('pais')->nullable();
             $table->string('idioma')->nullable();
             $table->text('nota')->nullable();
+            $table->unsignedBigInteger('id_user')->nullable();
             $table->timestamps();
+
+
+            $table->foreign('id_user')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade');
+
+
+
+
         });
     }
 

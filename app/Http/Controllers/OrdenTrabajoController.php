@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Cliente;
 use App\Models\DetalleOrden;
 use App\Models\Roles;
-use Carbon\Carbon;
+use PDF;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;

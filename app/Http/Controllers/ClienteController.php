@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ClienteExport;
 use App\Models\Cliente;
 use App\Models\DetalleCliente;
 use Facade\FlareClient\Http\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class ClienteController extends Controller
 {
@@ -27,12 +31,29 @@ class ClienteController extends Controller
      */
     public function index(Request $request)
     {
-        $busqueda=trim($request->get('busqueda'));
-        $cliente=DB::table('clientes')
-                        ->select('id','nombreCliente','vat','calle','numero','apt','codigoPostal','pak','nombreCiudad','pais','idioma','nota')
+        if (Auth::user()->id != 1) {
+                
+            $busqueda=trim($request->get('busqueda'));
+
+            $cliente=DB::table('clientes')
+                        ->select('*')
+                        ->where('id_user', Auth::user()->id)
                         ->where('nombreCliente', 'LIKE', '%'.$busqueda.'%')
                         ->orderBy('id','asc')
                         ->paginate(10);
+        }else{
+
+            $busqueda=trim($request->get('busqueda'));
+
+            $cliente=DB::table('clientes')
+                        ->select('*')
+                        ->where('id_user', Auth::user()->id)
+                        ->where('nombreCliente', 'LIKE', '%'.$busqueda.'%')
+                        ->orderBy('id','asc')
+                        ->paginate(10);
+
+        }
+        
         //$datoCliente['clientes']=Cliente::paginate(10);
         return view('cliente.index', compact('busqueda','cliente'));
     }
@@ -73,6 +94,7 @@ class ClienteController extends Controller
         $datoCliente->pais = $request->get('pais');
         $datoCliente->idioma = $request->get('idioma');
         $datoCliente->nota = $request->get('nota');
+        $datoCliente->id_user = Auth::user()->id;
         //dd($datoCliente);
         $datoCliente->save();
 
@@ -213,5 +235,56 @@ class ClienteController extends Controller
 
         return redirect('/cliente/editar/'.$datos->id_cliente);
 
+    }
+
+    public function descargarPDF(){
+
+        if (Auth::user()->id != 1) {
+
+            $datosTablas = DB::table('clientes')
+                        ->select('*')
+                        ->where('user_id',Auth::user()->id)
+                        ->orderBy('id','desc')
+                        ->get();
+
+        }else{
+            $datosTablas = DB::table('clientes')
+                        ->select('*')
+                        ->where('id_user',Auth::user()->id)
+                        ->orderBy('id','desc')
+                        ->get();
+        }
+
+        $pdf = \PDF::loadView('/cliente/reporte/pdf',compact('datosTablas'));
+                              //ruta del archivo        envio de la variable de la db 
+        return $pdf->setPaper('a4','landscape')->download('Reporte-Clientes.pdf');
+                                                             //nombre del pdf a descargar
+    }
+
+    public function descargarExcel(Request $request){
+        
+        return Excel::download(new ClienteExport, 'Reporte-Ordenes_Trabajo.xlsx');
+    }
+
+    public function imprimirPdf(){
+       
+        if (Auth::user()->id != 1) {
+
+            $datosTablas = DB::table('clientes')
+                        ->select('*')
+                        ->where('user_id',Auth::user()->id)
+                        ->orderBy('id','desc')
+                        ->get();
+
+        }else{
+            $datosTablas = DB::table('clientes')
+                        ->select('*')
+                        ->where('id_user',Auth::user()->id)
+                        ->orderBy('id','desc')
+                        ->get();
+        }
+        
+        $pdf = \PDF::loadView('/cliente/reporte/pdf',compact('datosTablas'));
+        return $pdf->setPaper('a4','landscape')->stream(); //mandar a imprimir la vista pdf en horizontal
     }
 }

@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect('/login');
 });
-
+  
 Auth::routes();
 
 //HOME
@@ -173,6 +173,9 @@ Route::get('/cliente/editar/{id}',[ClienteController::class,'edit']);
 Route::post('/cliente/editar/{id}',[ClienteController::class,'update']);
 Route::delete('/cliente/{id}',[ClienteController::class,'destroy']);
 Route::delete('/eliminarDatos/{id}',[ClienteController::class,'eliminarEditar']);
+Route::get('/cliente/pdf',[ClienteController::class,'descargarPDF']); //ruta para descargar pdf
+Route::get('/cliente/excel',[ClienteController::class,'descargarExcel']); //ruta para descargar excel
+Route::get('/cliente/imprimirIndex',[ClienteController::class,'imprimirPDF']); //imprimir pdf
 
 
 //FACTURACION
