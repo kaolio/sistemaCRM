@@ -250,7 +250,7 @@ class DetalleController extends InventarioController
                     ->select('id_trabajos')
                     ->where('id',$id)
                     ->where('rol','=','Paciente')
-                    ->first();
+                    ->get();
 
         $dispositivo = DetalleOrden::findOrFail($id);
         $dispositivo -> delete();
