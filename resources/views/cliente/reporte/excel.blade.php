@@ -1,17 +1,17 @@
-<style>
-  body{
-    font-family:Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol;
- }
- .tabla-general{
-   font-size: 14px;
- }
- .titulo{
-   font-size:29px;
- }
- .sub{
-   text-transform: uppercase;
- }
-</style>
+  <style>
+    body{
+      font-family:Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol;
+  }
+  .tabla-general{
+    font-size: 14px;
+  }
+  .titulo{
+    font-size:29px;
+  }
+  .sub{
+    text-transform: uppercase;
+  }
+  </style>
 {{--Inicio tabla de los discos  --}}
 
 <div class="tabla-general">
