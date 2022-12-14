@@ -34,25 +34,33 @@
 <div class="container">
   <div class="col-3">
     
-    <div class="input-group md-2">
-      <span class="input-group-text">NºOrden </span>
-      <input class="form-control required" id="orden" name="orden" autocomplete="off" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" >
-      <button  id="btnBuscar" name="btnBuscar" disabled style="border-color: #ced4da;border-style: solid;" >
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#007BFF" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
-        </svg></button>           
-  </div>
+    @can('editar orden de trabajo')
+          <div class="input-group md-2">
+        <span class="input-group-text">NºOrden </span>
+        <input class="form-control required" id="orden" name="orden" autocomplete="off" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" >
+        <button  id="btnBuscar" name="btnBuscar" disabled style="border-color: #ced4da;border-style: solid;" >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#007BFF" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+          </svg></button>           
+    </div>
+    @endcan
+    
     
   </div>
   <div class="d-flex">
     <div class="p-2">
-      <button class="btn btn-warning text-white" onclick="imprimirPDF()" disabled id="ordenImprimir">Generar Orden</button>
+      @can('imprimir orden de trabajo')
+          <button class="btn btn-warning text-white" onclick="imprimirPDF()" disabled id="ordenImprimir">Generar Orden</button>
+      @endcan
       <!-- Button trigger modal 2-->
       <button type="button" class="btn btn-primary text-white" id="modal2" disabled data-toggle="modal" data-target="#example2">Cambiar Prioridad</button>
       <!-- Button trigger modal 3-->
       <button type="button" class="btn btn-primary text-white" id="modal3" disabled  data-toggle="modal" data-target="#example3">Cambiar Estado</button>
       <!-- Button trigger modal 4-->
-      <button type="button" class="btn text-white"  style="background: red" id="modal4" disabled  data-toggle="modal" data-target="#example4">Eliminar</button>
+      @can('borrar orden de trabajo')
+          <button type="button" class="btn text-white"  style="background: red" id="modal4" disabled  data-toggle="modal" data-target="#example4">Eliminar</button>
+      @endcan
+      
     </div>
   </div>
 
@@ -168,9 +176,16 @@
 
 <div class="d-flex">
   <div class="p-2">
-    <a type="button" class="btn text-white" href="{{URL('trabajo/excel')}}" style="background: rgb(20, 141, 9)">Excel</a>
-    <a class="btn btn-danger" href="{{URL('trabajo/pdf')}}" role="button">PDF</a> 
-    <a type="button" href="{{URL('trabajo/imprimirIndex')}}" class="btn btn-primary">Imprimir</a>
+    @can('descargar lista excel')
+       <a type="button" class="btn text-white" href="{{URL('trabajo/excel')}}" style="background: rgb(20, 141, 9)">Excel</a> 
+    @endcan
+    @can('descargar lista PDF')
+        <a class="btn btn-danger" href="{{URL('trabajo/pdf')}}" role="button">PDF</a> 
+    @endcan
+    @can('imprimir lista de trabajos')
+        <a type="button" href="{{URL('trabajo/imprimirIndex')}}" class="btn btn-primary">Imprimir</a>
+    @endcan
+    
   </div>
   
   <div class="ml-auto p-2">

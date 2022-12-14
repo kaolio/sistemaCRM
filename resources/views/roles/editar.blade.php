@@ -17,7 +17,7 @@
 </style>
 <BR>
     <div class="row justify-content-center">
-        <div class="card">
+        <div class="card" style="width: 80%;">
         <div class="card-header">
             <h3 class="text-center" style ="font-family:serif,new time roman;"> <b> EDITAR ROL </b> </h3>
         </div>
@@ -152,8 +152,9 @@
                                      </br>
                                      </br>
                                      <div class="text-center">
-                                                <input type="submit" class="btn btn-success my-2 my-sm-0" value="Agregar">
-                                                <a href="{{url('roles')}}"class="btn btn-primary">Regresar</a>
+                                        <a href="{{url('roles')}}"class="btn btn-danger">Regresar</a>
+                                                <input type="submit" class="btn btn-primary my-2 my-sm-0" value="Actualizar">
+                                               
                                      </div>
                                     
                             </div>

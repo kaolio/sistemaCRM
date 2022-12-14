@@ -12,17 +12,22 @@ use PDF;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Facades\Excel; 
 
 class OrdenTrabajoController extends Controller
 {
 
     function __construct()
     {
-        $this->middleware('permission:ver-trabajo|crear-trabajo|editar-trabajo|borrar-trabajo',['only'=>['index']]);
-        $this->middleware('permission:crear-trabajo',['only'=>['create','store']]);
-        $this->middleware('permission:editar-trabajo',['only'=>['edit','update']]);
-        $this->middleware('permission:borrar-trabajo',['only'=>['destroy']]);
+        $this->middleware('permission:ver orden de trabajo|crear orden de trabajo|editar trabajo|borrar orden de trabajo|imprimir orden de trabajo|imprimir lista de trabajos|descargar lista excel|descargar lista PDF',['only'=>['index']]);
+        $this->middleware('permission:crear orden de trabajo',['only'=>['create','store']]);
+        $this->middleware('permission:editar orden de trabajo',['only'=>['edit','update']]);
+        $this->middleware('permission:borrar orden de trabajo',['only'=>['destroy']]);
+        $this->middleware('permission:imprimir orden de trabajo',['only'=>['imprimirOrden']]);
+        $this->middleware('permission:imprimir lista de trabajos',['only'=>['imprimirPdf']]);
+        $this->middleware('permission:descargar lista excel',['only'=>['descargarExcel']]);
+        $this->middleware('permission:descargar lista PDF',['only'=>['descargarPDF']]);
+
     }
     /**
      * Display a listing of the resource.
@@ -207,7 +212,7 @@ class OrdenTrabajoController extends Controller
     public function update(Request $request, $id)
     {
         
-    }
+    } 
 
     /**
      * Remove the specified resource from storage.
@@ -231,6 +236,8 @@ class OrdenTrabajoController extends Controller
      {
       $query = $request->get('query');
       $data = DB::table('clientes')
+        ->join('orden_trabajos','orden_trabajos.id_cliente','clientes.id')
+        ->where('orden_trabajos.creado',Auth::user()->name)
         ->where('nombreCliente', 'LIKE', "{$query}%")
         ->get();
       $output = '<datalist id="codigo">';

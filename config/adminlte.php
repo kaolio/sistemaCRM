@@ -327,18 +327,18 @@ return [
         [
             'text'    => 'Orden de Trabajo  ',
             'icon'    => 'fas fa-fw fa-file',
-            'can' => 'ver-trabajo',
+            'can' => 'ver orden de trabajo',
             'submenu' => [
                 [
                     'text' => 'Nueva Orden de Trabajo',
                     'url'  => 'trabajo/nuevo',
-                    'can' => 'crear-trabajo',
+                    'can' => 'crear orden de trabajo',
                     'icon'    => 'fas fa-fw fa-filse',
                 ],
                 [
                     'text' => 'Ver Ordenes de Trabajo',
                     'url'  => 'trabajos',
-                    'can' => 'ver-trabajo',
+                    'can' => 'ver orden de trabajo',
                     'icon'    => 'fas fa-fw fa-filse',
                     'active' => ['trabajos', 'trabajo/editar*','trabajos/detalle*'],
                 ],

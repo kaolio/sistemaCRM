@@ -54,19 +54,35 @@ class DatabaseSeeder extends Seeder
             'tipo' => 'usuario',
         ]);
         Permission::create([
-            'name' => 'ver-trabajo',
+            'name' => 'ver orden de trabajo',
             'tipo' => 'trabajo',
         ]);
         Permission::create([
-            'name' => 'crear-trabajo',
+            'name' => 'crear orden de trabajo',
             'tipo' => 'trabajo',
         ]);
         Permission::create([
-            'name' => 'editar-trabajo',
+            'name' => 'editar orden de trabajo',
             'tipo' => 'trabajo',
         ]);
         Permission::create([
-            'name' => 'borrar-trabajo',
+            'name' => 'borrar orden de trabajo',
+            'tipo' => 'trabajo',
+        ]);
+        Permission::create([
+            'name' => 'imprimir orden de trabajo',
+            'tipo' => 'trabajo',
+        ]);
+        Permission::create([
+            'name' => 'imprimir lista de trabajos',
+            'tipo' => 'trabajo',
+        ]);
+        Permission::create([
+            'name' => 'descargar lista excel',
+            'tipo' => 'trabajo',
+        ]);
+        Permission::create([
+            'name' => 'descargar lista PDF',
             'tipo' => 'trabajo',
         ]);
         Permission::create([
@@ -101,6 +117,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'borrar-inventario',
             'tipo' => 'inventario',
         ]);
+        
         
         $role = Role::create(['name' => 'ADMINISTRADOR']);
         $role->givePermissionTo(Permission::all());
