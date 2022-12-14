@@ -89,7 +89,7 @@
         </script>
 
         <div class="row justify-content-center">
-            <div class="card" >
+            <div class="card" style="width: 80%;" >
                     <div class="card-header">
                       <h3 class="text-center text-white"> <b> NUEVO ROL </b> </h3>
                     </div>
@@ -184,7 +184,7 @@
                                                         
                                                         </br>
                                                         <div class="text-center">
-                                                            <input type="submit" id="enviar" class="button-1" disabled value="Agregar">
+                                                            <input type="submit" id="enviar" class="button-1" disabled value="Guardar">
                                                             {{-- <button class="button-1" id="enviar" role="button" disabled value="Agregar">Button 35</button> --}}
                                                         </div>
                                 </form>

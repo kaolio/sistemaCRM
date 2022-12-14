@@ -141,6 +141,7 @@ class DetalleController extends InventarioController
 
         $buscado = DB::table('orden_trabajos')
                         ->select('id')
+                        ->where('creado',Auth::user()->name)
                         ->where('id','=',$_POST["orden"])
                         ->exists();
 
