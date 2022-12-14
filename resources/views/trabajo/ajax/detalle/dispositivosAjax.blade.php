@@ -805,11 +805,11 @@ $("#btnBuscarDonante").on('click',function(){
 
             var seleccionados = $("input:checkbox:checked");
             var arreglo = [];
-            // console.log( seleccionados);
             $(seleccionados).each(function() {
             arreglo.push($(this).attr('id'));
-           // console.log(arreglo);
+            //console.log(arreglo);
             //console.log(ubic);
+            
             });
                 $.ajax({
                 url: "/trabajos/nuevo/detalle/moverUbicacion",
