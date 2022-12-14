@@ -55,7 +55,7 @@
                                     '<div class="input-group-prepend col-10">'+
                                         '<div class="input-group">'+
                                             '<span class="input-group-text" >Ubicacion Actual</span>'+
-                                            '<input type="text" id="" name="" class="form-control" autocomplete="off" value="'+[dataResult.data[i].localizacion]+'">'+
+                                            '<input type="text" id="" name="" class="form-control" readonly autocomplete="off" value="'+[dataResult.data[i].localizacion]+'">'+
                                         '</div>'+
                                     '</div>'+
                                 '</div>'+
@@ -147,6 +147,10 @@
                 if (dataResult.data[i].id != null) {
                     aux1 = dataResult.data[i].id;
                 }
+                if (dataResult.data[i].rol == "Paciente") {
+
+                    $('#dispositivoDiagnostico').val(dataResult.data[i].fabricante );
+                }
                     
                     var nuevafila= "<tr><td>" +
                     "<div class='form-check'>"+
@@ -180,7 +184,7 @@
                                     '<div class="input-group-prepend col-10">'+
                                         '<div class="input-group">'+
                                             '<span class="input-group-text" >Ubicacion Actual</span>'+
-                                            '<input type="text" id="" name="" class="form-control" autocomplete="off" value="'+[dataResult.data[i].localizacion]+'">'+
+                                            '<input type="text" id="" name="" class="form-control" readonly autocomplete="off" value="'+[dataResult.data[i].localizacion]+'">'+
                                         '</div>'+
                                     '</div>'+
                                 '</div>'+
@@ -283,13 +287,13 @@
                         '<div class="modal-dialog" role="document">'+
                         '<div class="modal-content">'+
                             '<div class="modal-header">'+
-                            '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Este Dispositivo</h5>'+
+                            '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Dispositivo</h5>'+
                             '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
                                 '<span aria-hidden="true">&times;</span>'+
                             '</button>'+
                             '</div>'+
                             '<div class="modal-body">'+
-                            '¿Realmente Desea Borrar Este Dispositivo?'+
+                            '¿Realmente Desea Borrar Este Dispositivo a Recuperar?'+
                             '</div>'+
                             '<form action="{{url('/eliminarEsteDispositivo/')}}'+'/'+dataResult.data[i].id+'" method="POST" class="d-inline">'+
                             '@csrf'+
@@ -727,7 +731,7 @@ $("#btnBuscarDonante").on('click',function(){
         });
     });
     //
-    //mover ubicacion
+    /*/mover ubicacion
     $('#btnMoverUbicacion').on('click', function () {
             
             var url = $('#nuevaUbicacion').val();
@@ -750,7 +754,7 @@ $("#btnBuscarDonante").on('click',function(){
                 }
             });
     });
-    //
+    */
      //guardar diagnostico de la tabla de disp del paciente
      $('#btnDiagnostico').on('click', function () {
         
@@ -821,7 +825,7 @@ $("#btnBuscarDonante").on('click',function(){
                 success: function(dataResult){
                 console.log(dataResult);
                 $('#exampleModal').modal('hide');
-                                
+                location.reload();       
                     }
                 });
       }

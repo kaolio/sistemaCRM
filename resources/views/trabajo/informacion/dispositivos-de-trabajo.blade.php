@@ -99,7 +99,7 @@
         </button>
 </div>
 
-<p class="subtitulo">Dispositivos del Paciente</p>
+<p class="subtitulo">Dispositivo a Recuperar</p>
     <div class="card">
     <div class="card-body">   
     <table class="table table-responsive">
@@ -130,9 +130,12 @@
                      </div>
                      <div class="modal-body">
                          <div class="container">
-                             <p align="center">Seleccionar diagnostico para el dispositivo: <br>
-                                 Wester Digital - 0723GG45RT
-                             </p>
+                             <p align="center">Seleccionar diagnostico para el dispositivo: <br></p>
+                             <div class="input-group md-2">
+                                <span class="input-group-text">Dispositivo</span>
+                                <input type="text" id="dispositivoDiagnostico" class="form-control" readonly>
+                            </div>
+                            <br>
                              <div class="input-group md-2">
                                  <span class="input-group-text">Diagnóstico</span>
                                  <select id="selectDiagnostico" name="selectDiagnostico" class="form-control" class="btn-block">
@@ -155,19 +158,11 @@
                                      <option value="Unidad de cinta">Unidad de cinta</option>
                                  </select>                           
                              </div><br>
-                             <div class="input-group">
-                                 <div class="form-check">
-                                     <input class="form-check-input" style="width: 20px; height:18px;" type="checkbox" value="" id="flexCheckDefault">
-                                     <label class="form-check-label" for="flexCheckDefault">
-                                         &nbsp; Asignar a todos los discos en el trabajo
-                                     </label>
-                                 </div>
-                             </div>  
                          </div>
                      </div>
                      <div class="modal-footer">
                      <button type="button" class="btn btn-secondary" id="botones" data-dismiss="modal">Cancelar</button>
-                     <button type="button" class="btn btn-primary" id="btnDiagnostico" name="btnDiagnostico">Guardar</button>
+                     <button type="button" class="btn btn-success" id="btnDiagnostico" name="btnDiagnostico">Guardar</button>
                      </div>
                  </div>
                  </div>

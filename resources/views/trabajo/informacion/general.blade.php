@@ -126,7 +126,7 @@
                         <div class="card"> 
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <p class="text-left" style="position: relative;">Dispositivos Pacientes </p>
+                                        <p class="text-left" style="position: relative;">Dispositivo a Recuperar </p>
                                         <table class="table table-striped table-hover" id="tabla-pacientes">
                                             <thead class="table-primary table-striped table-bordered text-white" >
                                             <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
@@ -213,7 +213,7 @@
                          <div class="card"> 
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <p class="text-left" style="position: relative;">Otros Dispositivos de Clientes</p>
+                                    <p class="text-left" style="position: relative;">Otros Dispositivos del Cliente</p>
                                     <table class="table table-striped table-hover">
                                         <thead class="table-primary table-striped table-bordered text-white" >
                                         <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
