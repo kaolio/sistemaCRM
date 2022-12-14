@@ -376,7 +376,7 @@ return [
                 ],
             ]
         ],
-        [
+       /* [
             'text'    => 'Facturación',
             'icon'    => 'fas fa-fw fa-file-invoice',
             'can' => 'ver-facturacion',
@@ -401,7 +401,7 @@ return [
                 //     'icon'    => 'fas fa-fw fa-filse',
                 // ],
             ]
-        ],
+        ],*/
         [
             'text'    => 'Clientes',
             'icon'    => 'fas fa-fw fa-users',

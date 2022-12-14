@@ -43,30 +43,31 @@
         <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel" align="center">Mover Dispositivos</h5>
+            <h5 class="modal-title w-100 text-center" id="exampleModalLabel" align="center">Mover Dispositivos</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
             <div class="modal-body">
                 <div class="container">
-                    <h5>Mover todos los dispositivos a un nuevo lugar</h5>
+                    <h5 class="modal-title w-100 text-center">Mover todos los dispositivos a un nuevo lugar</h5>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-text">Ubicación Actual</span>
+                        <input type="text" id="ubicacionClon" class="form-control">
+                    </div>
+                        <br>
                     <div class="input-group md-2">
                         <span class="input-group-text">Nueva Ubicación</span>
                         <input type="text" id="nuevaUbic" class="form-control">
                     </div>
                         <span class="dejar-en-blanco m-2">Dejar en blanco para no cambiar</span>
-                    <br><br>
-                    <div class="input-group">
-                        <span class="input-group-text">Nueva Ubicación Temporal</span>
-                        <input type="text" class="form-control"><br>
-                    </div>
-                        <span class="dejar-en-blanco m-2">Dejar en blanco para no cambiar</span>    
+                        
                 </div>
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" id="" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary"  onclick="cambiarUbicacion()">Mover</button>
+            <button type="button" class="btn btn-success"  onclick="cambiarUbicacion()">Mover</button>
             </div>
         </div>
         </div>
@@ -249,9 +250,9 @@
                 </tr>
             </thead>
             <tbody class="table-bordered" id="datosOtrosDispositivos">
-                <tr>
+                 <tr>
                 
-                <tr>
+                <tr>   
             </tbody>
         </table>
     </div>

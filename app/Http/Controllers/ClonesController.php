@@ -56,9 +56,14 @@ class ClonesController extends Controller
      * @param  \App\Models\Clones  $clones
      * @return \Illuminate\Http\Response
      */
-    public function edit(Clones $clones)
+    public function edit(Clones $clones,$id)
     {
-        //
+       /* $clones = DB::table('clones')  //recuperar el valor del select
+                    ->select('id_trabajos')
+                    ->where('id',$id)
+                    ->first();
+
+        return redirect('/trabajos/detalle/'.$clones->id_trabajos,compact('clones'));*/
     }
 
     /**

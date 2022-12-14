@@ -142,6 +142,7 @@ Route::delete('/trabajos/detalle',[DetalleController::class,'eliminarFilaPacient
 
 //CLONES
 Route::get('/inventario/discosUso',[ClonesController::class,'discosUso']);
+//Route::get('/trabajos/detalle/{id}',[ClonesController::class,'edit']);
 
 
 //INVENTARIO

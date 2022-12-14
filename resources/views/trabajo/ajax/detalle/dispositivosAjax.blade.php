@@ -36,22 +36,29 @@
                         dataResult.data[i].localizacion  + "</td><td>" +
                               "</td><td class='text-center'>" +
 
-                            '<button type="button" class="btn" style="color: rgb(0, 26, 255);" data-toggle="modal" data-target="#exampleModal05">'+
+                            '<button type="button" class="btn" style="color: rgb(0, 26, 255);" data-toggle="modal" data-target="#exampleModal06">'+
                         '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-move" viewBox="0 0 16 16">'+
                         '<path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z"/>'+
                         '</svg>'+
                     '</button>'+
-                    '<div class="modal fade" id="exampleModal05" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                    '<div class="modal fade" id="exampleModal06" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
                         '<div class="modal-dialog" role="document">'+
                         '<div class="modal-content">'+
                             '<div class="modal-header">'+
-                            '<h5 class="modal-title" id="exampleModalLabel">Mover Ubicacion</h5>'+
+                            '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Mover Ubicacion</h5>'+
                             '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
                                 '<span aria-hidden="true">&times;</span>'+
                             '</button>'+
                             '</div>'+
                             '<div class="modal-body">'+
-                            '<h5 class="modal-title w-100 text-center">Ubicacion Actual:</h5>'+
+                            '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Ubicacion Actual</span>'+
+                                            '<input type="text" id="" name="" class="form-control" autocomplete="off" value="'+[dataResult.data[i].localizacion]+'">'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
                             '</br>'+
                                 '<div class="row justify-content-center">'+
                                     '<div class="input-group-prepend col-10">'+
@@ -62,7 +69,7 @@
                                     '</div>'+
                                 '</div>'+
                             '</div>'+
-                            
+                             
                             '<div class="modal-footer">'+
                             '<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>'+
                             '<button class="btn btn-success" onclick="moverOtroDispositivo()" style="padding-left: 5px">'+
@@ -88,7 +95,7 @@
                         '<div class="modal-dialog" role="document">'+
                         '<div class="modal-content">'+
                             '<div class="modal-header">'+
-                            '<h5 class="modal-title" id="exampleModalLabel">Eliminar Otro Dispositivo</h5>'+
+                            '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Otro Dispositivo</h5>'+
                             '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
                                 '<span aria-hidden="true">&times;</span>'+
                             '</button>'+
@@ -163,13 +170,20 @@
                         '<div class="modal-dialog" role="document">'+
                         '<div class="modal-content">'+
                             '<div class="modal-header">'+
-                            '<h5 class="modal-title" id="exampleModalLabel">Mover Ubicacion</h5>'+
+                            '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Mover Ubicacion</h5>'+
                             '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
                                 '<span aria-hidden="true">&times;</span>'+
                             '</button>'+
                             '</div>'+
                             '<div class="modal-body">'+
-                            '<h5 class="modal-title w-100 text-center">Ubicacion Actual:</h5>'+
+                            '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Ubicacion Actual</span>'+
+                                            '<input type="text" id="" name="" class="form-control" autocomplete="off" value="'+[dataResult.data[i].localizacion]+'">'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
                             '</br>'+
                                 '<div class="row justify-content-center">'+
                                     '<div class="input-group-prepend col-10">'+
@@ -269,7 +283,7 @@
                         '<div class="modal-dialog" role="document">'+
                         '<div class="modal-content">'+
                             '<div class="modal-header">'+
-                            '<h5 class="modal-title" id="exampleModalLabel">Eliminar Este Dispositivo</h5>'+
+                            '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Este Dispositivo</h5>'+
                             '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
                                 '<span aria-hidden="true">&times;</span>'+
                             '</button>'+
@@ -400,7 +414,7 @@
                         '<div class="modal-dialog" role="document">'+
                         '<div class="modal-content">'+
                             '<div class="modal-header">'+
-                            '<h5 class="modal-title" id="exampleModalLabel">Eliminar Clon</h5>'+
+                            '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Clon</h5>'+
                             '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
                                 '<span aria-hidden="true">&times;</span>'+
                             '</button>'+
@@ -443,7 +457,8 @@
             dataType: 'json',
             success: function(dataResult){
             //console.log(dataResult);
-                
+            
+
             var filas = dataResult.data.length;
                 for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de busquedas por id
                     var text = "";
@@ -451,6 +466,8 @@
                     if (dataResult.data[i].id != null) {
                         aux1 = dataResult.data[i].id;
                     }
+                    $('#ubicacionClon').val(dataResult.data[i].ubicacion );
+
                         
                         var nuevafila= "<tr><td>" +
                         "<div class='form-check'>"+
@@ -474,7 +491,7 @@
                         '<div class="modal-dialog" role="document">'+
                         '<div class="modal-content">'+
                             '<div class="modal-header">'+
-                            '<h5 class="modal-title" id="exampleModalLabel">Eliminar Clon</h5>'+
+                            '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Clon</h5>'+
                             '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
                                 '<span aria-hidden="true">&times;</span>'+
                             '</button>'+
@@ -606,7 +623,7 @@ $("#btnBuscarDonante").on('click',function(){
                         '<div class="modal-dialog" role="document">'+
                         '<div class="modal-content">'+
                             '<div class="modal-header">'+
-                            '<h5 class="modal-title" id="exampleModalLabel">Eliminar Donante</h5>'+
+                            '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Donante</h5>'+
                             '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
                                 '<span aria-hidden="true">&times;</span>'+
                             '</button>'+
@@ -681,7 +698,7 @@ $("#btnBuscarDonante").on('click',function(){
                         '<div class="modal-dialog" role="document">'+
                         '<div class="modal-content">'+
                             '<div class="modal-header">'+
-                            '<h5 class="modal-title" id="exampleModalLabel">Eliminar Donante</h5>'+
+                            '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Donante</h5>'+
                             '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
                                 '<span aria-hidden="true">&times;</span>'+
                             '</button>'+
@@ -788,7 +805,7 @@ $("#btnBuscarDonante").on('click',function(){
             $(seleccionados).each(function() {
             arreglo.push($(this).attr('id'));
            // console.log(arreglo);
-            console.log(ubic);
+            //console.log(ubic);
             });
                 $.ajax({
                 url: "/trabajos/nuevo/detalle/moverUbicacion",
@@ -918,7 +935,7 @@ $("#btnBuscarDonante").on('click',function(){
                             '<div class="modal-dialog" role="document">'+
                             '<div class="modal-content">'+
                                 '<div class="modal-header">'+
-                                '<h5 class="modal-title" id="exampleModalLabel">Eliminar trabajo</h5>'+
+                                '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar trabajo</h5>'+
                                 '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
                                     '<span aria-hidden="true">&times;</span>'+
                                 '</button>'+
