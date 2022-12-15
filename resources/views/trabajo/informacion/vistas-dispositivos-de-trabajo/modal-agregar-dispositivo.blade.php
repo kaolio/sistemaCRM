@@ -6,6 +6,7 @@
     Agregar dispositivo
 </button>
 <!-- Modal -->
+
 <div class="modal fade-md" id="exampleModalMover" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelMover" aria-hidden="true">
     <div class="modal-dialog " role="document">
     <div class="modal-content">
@@ -92,7 +93,7 @@
                                             </div>
                                         </div>
                                             <div class="float-right">
-                                                <button type="button" class="btn btn-secondary" id="botones" data-dismiss="modal">Cancelar</button>
+                                                <button type="button" class="btn btn-danger" id="botones" data-dismiss="modal">Cancelar</button>
                                                 <button type="button" class="btn btn-primary" id="btnBuscarClon" name="btnBuscarClon"><a href=""></a>Buscar</button>
                                             </div>
                                     </div>
@@ -152,7 +153,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="float-right">
-                                                    <button type="button" class="btn btn-secondary" id="botones" data-dismiss="modal" style=" margin-left: auto;">Cancelar</button>
+                                                    <button type="button" class="btn btn-danger" id="botones" data-dismiss="modal" style=" margin-left: auto;">Cancelar</button>
                                                     <button type="button" class="btn btn-primary" id="btnBuscarDonante" name="btnBuscarDonante"><a href=""></a>Buscar</button>
                                                 </div>
                                     </div>{{-- @endif --}}

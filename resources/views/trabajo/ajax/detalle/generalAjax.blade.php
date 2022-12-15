@@ -230,7 +230,7 @@
                               '@csrf'+
                             ' @method('DELETE')'+
                             '<div class="modal-footer">'+
-                              '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
+                              '<button type="button" class="btn btn-danger" data-dismiss="modal">Rechazar</button>'+
                               '<button class="btn btn-primary" style="padding-left: 5px">'+
                                 'Aceptar'+
                               '</button>'+

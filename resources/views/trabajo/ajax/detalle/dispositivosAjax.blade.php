@@ -71,8 +71,8 @@
                             '</div>'+
                              
                             '<div class="modal-footer">'+
-                            '<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>'+
-                            '<button class="btn btn-success" onclick="moverOtroDispositivo()" style="padding-left: 5px">'+
+                            '<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>'+
+                            '<button class="btn btn-primary" onclick="moverOtroDispositivo()" style="padding-left: 5px">'+
                                 'Aceptar'+
                             '</button>'+
                             '</div>'+
@@ -107,7 +107,7 @@
                             '@csrf'+
                             ' @method('DELETE')'+
                             '<div class="modal-footer">'+
-                            '<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>'+
+                            '<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>'+
                             '<button class="btn btn-primary" style="padding-left: 5px">'+
                                 'Aceptar'+
                             '</button>'+
@@ -200,8 +200,8 @@
                             '</div>'+
                             
                             '<div class="modal-footer">'+
-                            '<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>'+
-                            '<button class="btn btn-success" onclick="moverEsteDispositivo()" style="padding-left: 5px">'+
+                            '<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>'+
+                            '<button class="btn btn-primary" onclick="moverEsteDispositivo()" style="padding-left: 5px">'+
                                 'Aceptar'+
                             '</button>'+
                             '</div>'+
@@ -263,7 +263,7 @@
                 "</div>"+
             "</div>"+
             "<div class='modal-footer'>"+
-            "<button type='button' class='btn btn-secondary' id='botones' data-dismiss='modal'>Cancelar</button>"+
+            "<button type='button' class='btn btn-danger' id='botones' data-dismiss='modal'>Cancelar</button>"+
             '<button type="button" class="btn btn-primary" id="btnDiagnostico" name="btnDiagnostico">Guardar</button>'+
             "</div>"+
         "</div>"+
@@ -299,7 +299,7 @@
                             '@csrf'+
                             ' @method('DELETE')'+
                             '<div class="modal-footer">'+
-                            '<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>'+
+                            '<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>'+
                             '<button class="btn btn-primary" style="padding-left: 5px">'+
                                 'Aceptar'+
                             '</button>'+
@@ -430,7 +430,7 @@
                             '@csrf'+
                             ' @method('DELETE')'+
                             '<div class="modal-footer">'+
-                            '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
+                            '<button type="button" class="btn btn-danger" data-dismiss="modal">Rechazar</button>'+
                             '<button class="btn btn-primary" style="padding-left: 5px">'+
                                 'Aceptar'+
                             '</button>'+
@@ -507,7 +507,7 @@
                             '@csrf'+
                             ' @method('DELETE')'+
                             '<div class="modal-footer">'+
-                            '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
+                            '<button type="button" class="btn btn-danger" data-dismiss="modal">Rechazar</button>'+
                             '<button class="btn btn-primary" style="padding-left: 5px">'+
                                 'Aceptar'+
                             '</button>'+
@@ -639,7 +639,7 @@ $("#btnBuscarDonante").on('click',function(){
                             '@csrf'+
                             ' @method('DELETE')'+
                             '<div class="modal-footer">'+
-                            '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
+                            '<button type="button" class="btn btn-danger" data-dismiss="modal">Rechazar</button>'+
                             '<button class="btn btn-primary" style="padding-left: 5px">'+
                                 'Aceptar'+
                             '</button>'+
@@ -714,7 +714,7 @@ $("#btnBuscarDonante").on('click',function(){
                             '@csrf'+
                             ' @method('DELETE')'+
                             '<div class="modal-footer">'+
-                            '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
+                            '<button type="button" class="btn btn-danger" data-dismiss="modal">Rechazar</button>'+
                             '<button class="btn btn-primary" style="padding-left: 5px">'+
                                 'Aceptar'+
                             '</button>'+
@@ -782,7 +782,7 @@ $("#btnBuscarDonante").on('click',function(){
 
     function habilitarModal(){
             const value =  $("input:checkbox:checked").attr('id');
-
+            console.log(value);
             const arr = value || [];
 
             const result = arr?.length;
@@ -951,7 +951,7 @@ $("#btnBuscarDonante").on('click',function(){
                                 '@csrf'+
                                 ' @method('DELETE')'+
                                 '<div class="modal-footer">'+
-                                '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
+                                '<button type="button" class="btn btn-danger" data-dismiss="modal">Rechazar</button>'+
                                 '<button class="btn btn-primary" style="padding-left: 5px">'+
                                     'Aceptar'+
                                 '</button>'+
