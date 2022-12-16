@@ -26,7 +26,7 @@
                         
                         var nuevafila= "<tr><td>" +
                         "<div class='form-check'>"+
-                        "<input class='form-check-input' onclick='habilitarModal()' type='checkbox' value='' id='"+dataResult.data[i].id+"'>"+
+                        "<input class='form-check-input' onclick='habilitarModal()' type='checkbox' value='otros' id='"+dataResult.data[i].id+"'>"+
                         "</div>"+
                              "</td><td class='text-center'>" +
                         dataResult.data[i].tipo  + "</td><td>" +
@@ -154,7 +154,7 @@
                     
                     var nuevafila= "<tr><td>" +
                     "<div class='form-check'>"+
-                    "<input class='form-check-input' onclick='habilitarModal()' type='checkbox' value='' id='"+dataResult.data[i].id+"'>"+
+                    "<input class='form-check-input' onclick='habilitarModal()' type='checkbox' value='dispositivo' id='"+dataResult.data[i].id+"'>"+
                     "</div>"+
                 "</td><td class='text-center'>" +
                     dataResult.data[i].tipo  + "</td><td>" +
@@ -339,6 +339,7 @@
             cache: false,
             dataType: 'json',
             success: function (dataResult) {
+                $("#cabeceraClones").empty();
               //console.log(dataResult);
               var filas = dataResult.data.length;
               var nuevacabecera = "<tr>"
@@ -470,12 +471,12 @@
                     if (dataResult.data[i].id != null) {
                         aux1 = dataResult.data[i].id;
                     }
-                    $('#ubicacionClon').val(dataResult.data[i].ubicacion );
+                    //$('#ubicacionClon').val(dataResult.data[i].ubicacion );
 
                         
                         var nuevafila= "<tr><td>" +
                         "<div class='form-check'>"+
-                        "<input class='form-check-input' onclick='habilitarModal()' type='checkbox' value='' id='"+dataResult.data[i].id+"'>"+
+                        "<input class='form-check-input' onclick='habilitarModal()' type='checkbox' value='clon' id='"+dataResult.data[i].id+"'>"+
                         "</div>"+
                     "</td><td class='text-center'>" +
                         dataResult.data[i].id_clon + "</td><td>" +
@@ -607,7 +608,7 @@ $("#btnBuscarDonante").on('click',function(){
                     
                     var nuevafila= "<tr><td>" +
                     "<div class='form-check'>"+
-                    "<input class='form-check-input' onclick='habilitarModal()' type='checkbox' value='' id='"+dataResult.data[i].id+"'>"+
+                    "<input class='form-check-input' onclick='habilitarModal()' type='checkbox' value='otros' id='"+dataResult.data[i].id+"'>"+
                     "</div>"+
                 "</td><td class='text-center'>" +
                     dataResult.data[i].id_donante + "</td><td>" +
@@ -682,7 +683,7 @@ $("#btnBuscarDonante").on('click',function(){
                     
                     var nuevafila= "<tr><td>" +
                     "<div class='form-check'>"+
-                    "<input class='form-check-input' onclick='habilitarModal()' type='checkbox' value='' id='"+dataResult.data[i].id+"'>"+
+                    "<input class='form-check-input' onclick='habilitarModal()' type='checkbox' value='donante' id='"+dataResult.data[i].id+"'>"+
                     "</div>"+
                 "</td><td class='text-center'>" +
                     dataResult.data[i].id_donante + "</td><td>" +
@@ -782,13 +783,47 @@ $("#btnBuscarDonante").on('click',function(){
 
     function habilitarModal(){
             const value =  $("input:checkbox:checked").attr('id');
-            console.log(value);
+            const tipo =  $("input:checkbox:checked").attr('value');
+            //console.log(tipo);
             const arr = value || [];
 
             const result = arr?.length;
             
-
+            var seleccionados = $("input:checkbox:checked");
+            var arreglo = [];
+                $(seleccionados).each(function() {
+                arreglo.push($(this).attr('value'));
+                });
+            
+                //console.log(arreglo.length);
             if(result != 0){
+                
+                $.ajax({
+                url: "/trabajos/nuevo/detalle/obtenerValores",
+                type: "POST",
+                data:{ 
+                    "_token": "{{ csrf_token() }}",
+                    'value':value,
+                    'tipo': tipo,
+                    "id": "{{$orden_elegida->id}}",
+                },
+                cache: false,
+                dataType: 'json',
+                success: function(dataResult){
+                    //console.log(dataResult);
+                    if (arreglo.length == 1) {
+                        if (dataResult.data[0].localizacion) {
+                            $("#ubicacionClon").val(dataResult.data[0].localizacion);
+                        }else{
+                            $("#ubicacionClon").val(dataResult.data[0].ubicacion);
+                        }
+                    } else {
+                        $("#ubicacionClon").val(arreglo);
+                    }
+                    
+                }
+
+                });
             $("#moverDispositivos").prop('disabled', false);
             $("#eliminarDispositivos").prop('disabled', false);
             }else{
@@ -801,33 +836,62 @@ $("#btnBuscarDonante").on('click',function(){
 
     function cambiarUbicacion(){
 
-            var ubic = $('#nuevaUbic').val();
+            var texto = $('#nuevaUbic').val();
 
             var seleccionados = $("input:checkbox:checked");
-            var arreglo = [];
-            $(seleccionados).each(function() {
-            arreglo.push($(this).attr('id'));
-            //console.log(arreglo);
-            //console.log(ubic);
-            
-            });
+            var dispositivo = [];
+            var clon = [];
+            var donante = [];
+            var otros = [];
+                $(seleccionados).each(function() {
+                    if ($(this).attr('value') == 'dispositivo') {
+                        dispositivo.push($(this).attr('id'));
+                    } else {
+                        if ($(this).attr('value') == 'clon') {
+                            clon.push($(this).attr('id'));
+                        } else {
+                            if ($(this).attr('value') == 'donante') {
+                                donante.push($(this).attr('id'));
+                            } else {
+                                otros.push($(this).attr('id'));
+                            }
+                        }
+                    }
+                });
+
+                if (dispositivo.length != 1) {
+                    dispositivo.push("vacio");
+                }
+                if (clon.length != 1) {
+                    clon.push("vacio");
+                }
+                if (donante.length != 1) {
+                    donante.push("vacio");
+                }
+                if (otros.length != 1) {
+                    otros.push("vacio");
+                }
+
                 $.ajax({
                 url: "/trabajos/nuevo/detalle/moverUbicacion",
                 type: "POST",
                 data:{ 
-                "_token": "{{ csrf_token() }}",
-                'arreglo':arreglo,
-                'seleccionado': ubic,
-                "nombre": "{{$orden_elegida->id}}",
-                    },
+                    "_token": "{{ csrf_token() }}",
+                    'dispositivo':dispositivo,
+                    'clon':clon,
+                    'donante':donante,
+                    'otros':otros,
+                    'texto': texto,
+                    "id": "{{$orden_elegida->id}}",
+                },
                 cache: false,
                 dataType: 'json',
                 success: function(dataResult){
-                console.log(dataResult);
-                $('#exampleModal').modal('hide');
-                location.reload();       
-                    }
-                });
+                    console.log(dataResult);
+                    $('#moverDispo').modal('hide');
+                    //location.reload();       
+                }
+            });
       }
 
 

@@ -133,6 +133,7 @@ Route::post('/trabajos/nuevo/detalle/moverEsteDispositivo',[DetalleController::c
 Route::post('/trabajos/nuevo/detalle/moverOtroDispositivo',[DetalleController::class,'moverOtroDispositivo']);
 Route::post('/trabajos/nuevo/detalle/guardarNuevoDispositivo',[DetalleController::class,'guardarNuevoDispositivo']);
 
+Route::post('/trabajos/nuevo/detalle/obtenerValores',[DetalleController::class,'obtenerValores']);
 //Archivos adjuntos
 Route::post('/trabajos/detalle/subir', [DetalleController::class,'subirArchivo']);//ruta para subir archivo a drive
 
@@ -140,6 +141,7 @@ Route::post('/trabajos/nuevo/detalle/agregarDonante',[DetalleController::class,'
 Route::post('/trabajos/nuevo/detalle/guardarDiagnostico',[DetalleController::class,'guardarDiagnostico']);  // guardar diagnostico a los disp de los pacientes
 Route::delete('/trabajos/nuevo/detalle/eliminarPaciente/id',[DetalleController::class,'eliminarPaciente']);
 Route::delete('/trabajos/detalle',[DetalleController::class,'eliminarFilaPaciente']);// eliminar registro de disp paciente
+
 
 //CLONES
 Route::get('/inventario/discosUso',[ClonesController::class,'discosUso']);
@@ -171,7 +173,7 @@ Route::post('/inventario/redireccionar',[InventarioController::class,'redireccio
 Route::post('/inventario/buscadorTiempoReal',[InventarioController::class,'buscadorTiempoReal']);
 Route::post('/inventario/moverDisco',[InventarioController::class,'moverDisco']);
 
-
+ 
 //CLIENTES
 Route::get('/clientes',[ClienteController::class,'index']);
 Route::get('/cliente/nuevo',[ClienteController::class,'create']);
