@@ -227,6 +227,15 @@
 
                     </div>
                 </div>
+
+                <div class="card" >
+                  <div class="card-body">
+                    <label style="font-size: 16px;">Nota</label>
+                    <br>
+                    <textarea class="embed-responsive form-control " style="resize: none;padding-left: 20px;padding-top: 20px" autocomplete="off" name="nota" id="nota" cols="140" rows="4"></textarea>
+
+                  </div>
+              </div>
                 
                 <br>
                 <div class="form-group">

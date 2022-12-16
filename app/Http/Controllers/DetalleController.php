@@ -311,7 +311,7 @@ class DetalleController extends InventarioController
 
         $datosPacientes =  DB::table('detalle_ordens')
                     ->join('orden_trabajos','orden_trabajos.id','=','detalle_ordens.id_trabajos')
-                    ->select('orden_trabajos.diagnostico','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
+                    ->select('orden_trabajos.diagnostico','orden_trabajos.nota','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
                             'detalle_ordens.serial','detalle_ordens.localizacion','detalle_ordens.id')
                     ->where('detalle_ordens.id_trabajos','=',$_POST["nombre"])
                     ->where('detalle_ordens.rol','=','Dispositivo a Recuperar')
@@ -324,7 +324,7 @@ class DetalleController extends InventarioController
 
         $datosOtrosDispositivos =  DB::table('detalle_ordens')
                     ->join('orden_trabajos','orden_trabajos.id','=','detalle_ordens.id_trabajos')
-                    ->select('orden_trabajos.diagnostico','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
+                    ->select('orden_trabajos.diagnostico','orden_trabajos.nota','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
                             'detalle_ordens.serial','detalle_ordens.localizacion','detalle_ordens.id')
                     ->where('detalle_ordens.id_trabajos','=',$_POST["nombre"])
                     ->where('detalle_ordens.rol','<>','Dispositivo a Recuperar')
@@ -529,15 +529,20 @@ class DetalleController extends InventarioController
 
     }
 
-    public function moverEsteDispositivo(){
+    public function moverDispositivoRecuperar(){
 
         DB::table('detalle_ordens')
-                ->where('id_trabajos', $_POST["nombre"])
+                ->where('id_trabajos', $_POST["id"])
+                ->where('id', $_POST["detalle"])
                 ->where('rol','=','Dispositivo a Recuperar')
-                ->update(['localizacion' => $_POST["localizacion"]]);
+                ->update(['localizacion' => $_POST["loc"]]);
 
+        $detalle = DB::table('detalle_ordens')
+                        ->select('*')
+                        ->where('id',$_POST["detalle"])
+                        ->get();
 
-         return json_encode(array('data'=>$_POST["localizacion"]));
+         return json_encode(array('data'=>$detalle));
     }
 
     public function moverOtroDispositivo(){

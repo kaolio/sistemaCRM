@@ -1,5 +1,6 @@
 <script>
 
+
     //lista de otros dispositivos en: dispositivos-de-trabajo/tabla otros disp. del cliente 
     $(document).ready(function() {
 
@@ -80,11 +81,12 @@
                         '</div>'+
                         '</div>'+
                     ' </div> '+            
-                            "<button class='btn btn-light-active btn-sm d-inline'> "+
-                                 "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-pen' viewBox='0 0 16 16'>"+
-                                 "<path d='m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z'/>"+
-                                 "</svg>"+
-                            "</button>"+
+                            '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal5'+dataResult.data[i].id+'">'+
+                        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
+                        '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
+                        '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
+                        '</svg>'+
+                    '</button>'+
                          '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal09'+dataResult.data[i].id+'">'+
                         '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
                         '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
@@ -125,8 +127,16 @@
         });
     });
     //
+
+    $(document).ready(function() {
+
+        cargaDispositivos();
+
+    })
+
      //AJAX DE LA TABLA DE dispositivos/dispositivos de pacientes
-     $(document).ready(function() {
+     function cargaDispositivos() {
+    
             var url = "{{URL('datosPacientes')}}";
             
             $.ajax({
@@ -139,6 +149,7 @@
                 cache: false,
                 dataType: 'json',
                 success: function(dataResult){
+                    $("#datosPacientes").empty();
                    // console.log(dataResult);
                    var filas = dataResult.data.length;
             for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de busquedas por id
@@ -147,12 +158,8 @@
                 if (dataResult.data[i].id != null) {
                     aux1 = dataResult.data[i].id;
                 }
-                if (dataResult.data[i].rol == "Paciente") {
-
-                    $('#dispositivoDiagnostico').val(dataResult.data[i].fabricante );
-                }
                     
-                    var nuevafila= "<tr><td>" +
+                    var nuevafila= "<tr><td class='text-center'>" +
                     "<div class='form-check'>"+
                     "<input class='form-check-input' onclick='habilitarModal()' type='checkbox' value='dispositivo' id='"+dataResult.data[i].id+"'>"+
                     "</div>"+
@@ -162,19 +169,19 @@
                     dataResult.data[i].modelo  + "</td><td>" +
                     dataResult.data[i].serial  + "</td><td>" +
                     dataResult.data[i].localizacion  + "</td><td>"+
-                    dataResult.data[i].diagnostico  + "</td><td>" +
-                          "</td><td class='text-center'>" +
-
-                   '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal05">'+
-                            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-move" viewBox="0 0 16 16">'+
+                    dataResult.data[i].diagnostico  + "</td><td >" +
+                    dataResult.data[i].nota +
+                    "</td><td class='text-center' style='width: 20%'>" +
+                   '<button type="button" class="btn" data-toggle="modal" data-target="#dispositivoMover'+dataResult.data[i].id+'">'+
+                            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(0, 26, 255)" class="bi bi-arrows-move" viewBox="0 0 16 16">'+
                          '<path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z"/>'+
                         '</svg>'+
                     '</button>'+
-                    '<div class="modal fade" id="exampleModal05" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                    '<div class="modal fade" id="dispositivoMover'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
                         '<div class="modal-dialog" role="document">'+
                         '<div class="modal-content">'+
                             '<div class="modal-header">'+
-                            '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Mover Ubicacion</h5>'+
+                            '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Cambiar de Ubicacion</h5>'+
                             '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
                                 '<span aria-hidden="true">&times;</span>'+
                             '</button>'+
@@ -184,7 +191,7 @@
                                     '<div class="input-group-prepend col-10">'+
                                         '<div class="input-group">'+
                                             '<span class="input-group-text" >Ubicacion Actual</span>'+
-                                            '<input type="text" id="" name="" class="form-control" readonly autocomplete="off" value="'+[dataResult.data[i].localizacion]+'">'+
+                                            '<input type="text" id="" name="" class="form-control text-center" readonly autocomplete="off" value="'+[dataResult.data[i].localizacion]+'">'+
                                         '</div>'+
                                     '</div>'+
                                 '</div>'+
@@ -193,7 +200,7 @@
                                     '<div class="input-group-prepend col-10">'+
                                         '<div class="input-group">'+
                                             '<span class="input-group-text" >Nueva Ubicacion</span>'+
-                                            '<input type="text" id="localizacion" name="localizacion" class="form-control" autocomplete="off" onkeypress="return ( (event.charCode == 45 )|| (event.charCode >= 48 && event.charCode <= 57)||(event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209))">'+
+                                            '<input type="text" id="nuevaUbicacion" name="nuevaUbicacion" class="form-control" autocomplete="off" onkeypress="return ( (event.charCode == 45 )|| (event.charCode >= 48 && event.charCode <= 57)||(event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209))">'+
                                         '</div>'+
                                     '</div>'+
                                 '</div>'+
@@ -201,7 +208,7 @@
                             
                             '<div class="modal-footer">'+
                             '<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>'+
-                            '<button class="btn btn-primary" onclick="moverEsteDispositivo()" style="padding-left: 5px">'+
+                            '<button class="btn btn-primary" onclick="moverDispositivoRecuperar('+dataResult.data[i].id+')" style="padding-left: 5px">'+
                                 'Aceptar'+
                             '</button>'+
                             '</div>'+
@@ -212,55 +219,60 @@
                      
                             //modal
 
-                            "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#exampleModal2'>"+
-                                "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-share' viewBox='0 0 16 16'>"+
+                            "<button type='button' class='btn' data-toggle='modal' data-target='#dispositivoDiagnostico"+dataResult.data[i].id+"'>"+
+                                "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='rgb(21, 255, 0)' class='bi bi-share' viewBox='0 0 16 16'>"+
                                     "<path d='M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z'/>"+
                                     "<path d='M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z'/>"+
                                 "</svg>"+
                             "</button>"+
  
-    "<div class='modal fade' id='exampleModal2' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel2' aria-hidden='true'>"+
+    "<div class='modal fade' id='dispositivoDiagnostico"+dataResult.data[i].id+"' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel2' aria-hidden='true'>"+
         "<div class='modal-dialog' role='document'>"+
             "<div class='modal-content'>"+
             "<div class='modal-header'>"+
-                "<h5 class='modal-title' id='exampleModalLabel2' align='center'>Diagnóstico</h5>"+
+                "<h5 class='modal-title  w-100 text-center' id='exampleModalLabel2'>Diagnóstico</h5>"+
                 "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>"+
                 "<span aria-hidden='true'>&times;</span>"+
             "</button>"+
             "</div>"+
             "<div class='modal-body'>"+
-                "<div class='container'>"+
-                    "<p align='center'>Seleccionar diagnostico para el dispositivo: <br>"+
-                    "</p>"+
-                    "<div class='input-group md-2'>"+
-                        "<span class='input-group-text'>Diagnóstico</span>"+
-                        "<select id='selectDiagnostico' name='selectDiagnostico' class='form-control' class='btn-block'>"+
-                            "<option value=''>No Establecido</option>"+
-                            "<option value='Cabezal'>Cabezal</option>"+
-                            "<option value='PCB'>PCB</option>"+
-                            "<option value='Motor'>Motor</option>"+
-                            "<option value='Lógico'>Lógico</option>"+
-                            "<option value='Sectores malos'>Sectores malos</option>"+
-                            "<option value='Firmware'>Firmware</option>"+
-                            "<option value='Ransomware'>Ransomware</option>"+
-                            "<option value='CD/DVD'>CD/DVD</option>"+
-                            "<option value='Disco flexible'>Disco flexible</option>"+
-                            "<option value='NAND lógico'>NAND Logico</option>"+
-                            "<option value='NAND electrónico'>NAND Electronico</option>"+
-                            "<option value='SSD lógico'>SSD Lógico</option>"+
-                            "<option value='SDD firmware'>SDD Firmware</option>"+
-                            "<option value='Teléfono móvil lógico'>Teléfono movil lógico</option>"+
-                            "<option value='Teléfono móvil electrónico'>Teléfono movil electrónico</option>"+
-                            "<option value='Unidad de cinta'>Unidad de cinta</option>"+
-                        "</select>"+                           
-                    "</div><br>"+
-                    "<div class='input-group'>"+
-                        "<div class='form-check'>"+
-                            "<input class='form-check-input' style='width: 20px; height:18px;' type='checkbox' value=' id='flexCheckDefault'>"+
-                            "<label class='form-check-label' for='flexCheckDefault'>  Asignar a todos los discos en el trabajo</label>"+
-                        "</div>"+
-                    "</div>"+  
-                "</div>"+
+                '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Diagnostico</span>'+
+                                            '<input type="text" id="" name="" class="form-control text-center" readonly autocomplete="off" value="'+[dataResult.data[i].diagnostico]+'">'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</br>'+
+                '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Estado de Diagnostico</span>'+
+                                            "<select id='selectDiagnostico' name='selectDiagnostico' class='form-control' class='btn-block'>"+
+                                                "<option selected disabled>Seleccione un Estado</option>"+
+                                                "<option value='Cabezal'>Cabezal</option>"+
+                                                "<option value='PCB'>PCB</option>"+
+                                                "<option value='Motor'>Motor</option>"+
+                                                "<option value='Lógico'>Lógico</option>"+
+                                                "<option value='Sectores malos'>Sectores malos</option>"+
+                                                "<option value='Firmware'>Firmware</option>"+
+                                                "<option value='Ransomware'>Ransomware</option>"+
+                                                "<option value='CD/DVD'>CD/DVD</option>"+
+                                                "<option value='Disco flexible'>Disco flexible</option>"+
+                                                "<option value='NAND lógico'>NAND Logico</option>"+
+                                                "<option value='NAND electrónico'>NAND Electronico</option>"+
+                                                "<option value='SSD lógico'>SSD Lógico</option>"+
+                                                "<option value='SDD firmware'>SDD Firmware</option>"+
+                                                "<option value='Teléfono móvil lógico'>Teléfono movil lógico</option>"+
+                                                "<option value='Teléfono móvil electrónico'>Teléfono movil electrónico</option>"+
+                                                "<option value='Unidad de cinta'>Unidad de cinta</option>"+
+                                            "</select>"+ 
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</br>'+
+                
             "</div>"+
             "<div class='modal-footer'>"+
             "<button type='button' class='btn btn-danger' id='botones' data-dismiss='modal'>Cancelar</button>"+
@@ -269,21 +281,19 @@
         "</div>"+
         "</div>"+
     "</div>"+
-    //modal
-
-        '<button class="btn btn-secondary">'+
-            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">'+
+            '<button type="button" class="btn" data-toggle="modal" data-target="#dispositivoEditar'+dataResult.data[i].id+'">'+
+                '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(168, 166, 14)" class="bi bi-trash" viewBox="0 0 16 16">'+
                 '<path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>'+
               '</svg>'+
-        '</button>'+
+            '</button>'+
         
-        '<button type="button" class="btn btn-icon btn-danger" data-toggle="modal" data-target="#exampleModal18'+dataResult.data[i].id+'">'+
-                        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">'+
+        '<button type="button" class="btn" data-toggle="modal" data-target="#dispositivoEliminar'+dataResult.data[i].id+'">'+
+                        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
                         '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
-                        '<<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
+                        '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
                         '</svg>'+
                     '</button>'+
-                    '<div class="modal fade" id="exampleModal18'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                    '<div class="modal fade" id="dispositivoEliminar'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
                         '<div class="modal-dialog" role="document">'+
                         '<div class="modal-content">'+
                             '<div class="modal-header">'+
@@ -314,7 +324,7 @@
             } 
             }
          });
-    });
+    };
     //
     // ajax de buscador de clones
   $("#btnBuscarClon").on('click',function(){
@@ -772,7 +782,7 @@ $("#btnBuscarDonante").on('click',function(){
             cache: false,
             dataType: 'json',
             success: function(dataResult){
-                $('#exampleModal2').modal('hide');
+                $('#dispositivoDiagnostico').modal('hide');
                 location.reload(); 
             //console.log(dataResult);
 
@@ -889,64 +899,38 @@ $("#btnBuscarDonante").on('click',function(){
                 success: function(dataResult){
                     console.log(dataResult);
                     $('#moverDispo').modal('hide');
-                    //location.reload();       
+                    
                 }
             });
       }
 
 
-      function moverEsteDispositivo(id){
+      function moverDispositivoRecuperar(detalle){
             
-            var loc = $("#localizacion").val();
-           // console.log(location);
+            var loc = $("#nuevaUbicacion").val();
+            //console.log(det);
             $.ajax({
-                url: "/trabajos/nuevo/detalle/moverEsteDispositivo",
+                url: "/trabajos/nuevo/detalle/moverDispositivoRecuperar",
                 type: "POST",
                 data: {
                 "_token": "{{ csrf_token() }}",
-                'localizacion':loc,
-                "nombre": "{{$orden_elegida->id}}",
-
+                'loc':loc,
+                "id": "{{$orden_elegida->id}}",
+                "detalle": detalle,
+                },
                 cache: false,
                 dataType: 'json',
                 success: function (dataResult) {
-                console.log(dataResult);
-                $('#exampleModal05').modal('hide');
-                location.reload(); 
+                    console.log(dataResult);
+                    cargaDispositivos();
+                    $('#dispositivoMover'+detalle).modal('hide');
+                //location.reload(); 
                 /*$('#exampleModal05').on('hide', function() {
                     location.reload();
                     });*/
                 
                 }
-                }
-            });
-        }
-
-
-      function moverOtroDispositivo(id){
-            
-            var loc = $("#localizacion").val();
-           // console.log(location);
-            $.ajax({
-                url: "/trabajos/nuevo/detalle/moverOtroDispositivo",
-                type: "POST",
-                data: {
-                "_token": "{{ csrf_token() }}",
-                'localizacion':loc,
-                "nombre": "{{$orden_elegida->id}}",
-
-                cache: false,
-                dataType: 'json',
-                success: function (dataResult) {
-                //console.log(dataResult);
-                $('#exampleModal05').modal('hide');
-                location.reload(); 
-                /*$('#exampleModal05').on('hide', function() {
-                    location.reload();
-                    });*/
                 
-                }
-                }
             });
         }
 
