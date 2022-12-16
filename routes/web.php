@@ -129,7 +129,7 @@ Route::post('/trabajos/nuevo/detalle/agregarDonanteBuscado',[DetalleController::
 Route::post('/trabajos/nuevo/detalle/datosDonantesBuscados',[DetalleController::class,'mostrarDonantesBuscados']); //mostrar donantes agregados
 Route::post('/trabajos/nuevo/detalle/moverUbicacion',[DetalleController::class,'ubicacionNueva']);
 Route::post('/trabajos/nuevo/detalle/eliminarVariosClones',[DetalleController::class,'eliminarVariosC']);//eliminar varios cheks
-Route::post('/trabajos/nuevo/detalle/moverEsteDispositivo',[DetalleController::class,'moverEsteDispositivo']);
+Route::post('/trabajos/nuevo/detalle/moverDispositivoRecuperar',[DetalleController::class,'moverDispositivoRecuperar']);
 Route::post('/trabajos/nuevo/detalle/moverOtroDispositivo',[DetalleController::class,'moverOtroDispositivo']);
 Route::post('/trabajos/nuevo/detalle/guardarNuevoDispositivo',[DetalleController::class,'guardarNuevoDispositivo']);
 

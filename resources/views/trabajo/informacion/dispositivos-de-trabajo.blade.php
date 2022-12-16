@@ -106,14 +106,14 @@
         <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
             <tr>
                 <th class="p-1" style="width: 80px">&nbsp;&nbsp;&nbsp;</th>
-                <th class="col-md-1 p-1">Tipo</th>
-                <th class="col-md-2 p-1">Fabricante</th>
-                <th class="col-md-1 p-1">Modelo</th>
-                <th class="col-md-1 p-1">Serie</th>
-                <th class="col-md-1 p-1">Ubicación</th>
-                <th class="col-md-2 p-1">Diagnóstico</th>
-                <th class="col-md-1 p-1">Nota</th>
-                <th class="col-md-2 p-1" ></th>
+                <th class="col-md-1 p-1 text-center">Tipo</th>
+                <th class="col-md-2 p-1 text-center" >Fabricante</th>
+                <th class="col-md-1 p-1 text-center" >Modelo</th>
+                <th class="col-md-1 p-1 text-center" >Serie</th>
+                <th class="col-md-1 p-1 text-center" >Ubicación</th>
+                <th class="col-md-2 p-1 text-center" >Diagnóstico</th>
+                <th class="col-md-1 p-1 text-center" >Nota</th>
+                <th class="col-md-2 p-1 text-center" ></th>
             </tr>
           </thead>
           <tbody class="table-bordered" id="datosPacientes">
@@ -139,7 +139,7 @@
                              <div class="input-group md-2">
                                  <span class="input-group-text">Diagnóstico</span>
                                  <select id="selectDiagnostico" name="selectDiagnostico" class="form-control" class="btn-block">
-                                     <option value="">No Establecido</option>
+                                     <option disabled selected>No Establecido</option>
                                      <option value="Cabezal">Cabezal</option>
                                      <option value="PCB">PCB</option>
                                      <option value="Motor">Motor</option>
@@ -181,14 +181,14 @@
                 <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
                     <tr>
                         <th class="p-1"> &nbsp;&nbsp;&nbsp; </th>
-                        <th class="col-md-1 p-1"> ID </th>
-                        <th class="col-md-1 p-1">Tipo</th>
-                        <th class="col-md-2 p-1">Fabricante</th>
-                        <th class="col-md-2 p-1">Modelo</th>
-                        <th class="col-md-2 p-1">Serie</th>
-                        <th class="col-md-2 p-1">Ubicación</th>
-                        <th class="col-md-2 p-1">Nota</th>
-                        <th class="col-md-1 p-1"></th>
+                        <th class="col-md-1 p-1 text-center"> ID </th>
+                        <th class="col-md-1 p-1 text-center">Tipo</th>
+                        <th class="col-md-2 p-1 text-center">Fabricante</th>
+                        <th class="col-md-2 p-1 text-center">Modelo</th>
+                        <th class="col-md-2 p-1 text-center">Serie</th>
+                        <th class="col-md-2 p-1 text-center">Ubicación</th>
+                        <th class="col-md-2 p-1 text-center">Nota</th>
+                        <th class="col-md-1 p-1 text-center"></th>
                     </tr>
                 </thead>
                 <tbody class="table-bordered" id="clonesTrabajo">
@@ -208,14 +208,14 @@
             <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
                 <tr>
                     <th class="p-1"> &nbsp;&nbsp;&nbsp; </th>
-                    <th class="col-md-1 p-1"> ID </th>
-                    <th class="col-md-1 p-1">Tipo</th>
-                    <th class="col-md-2 p-1">Fabricante</th>
-                    <th class="col-md-2 p-1">Modelo</th>
-                    <th class="col-md-2 p-1">Serie</th>
-                    <th class="col-md-2 p-1">Ubicación</th>
-                    <th class="col-md-2 p-1">Nota</th>
-                    <th class="col-md-1 p-1"></th>
+                    <th class="col-md-1 p-1 text-center"> ID </th>
+                    <th class="col-md-1 p-1 text-center">Tipo</th>
+                    <th class="col-md-2 p-1 text-center">Fabricante</th>
+                    <th class="col-md-2 p-1 text-center">Modelo</th>
+                    <th class="col-md-2 p-1 text-center">Serie</th>
+                    <th class="col-md-2 p-1 text-center">Ubicación</th>
+                    <th class="col-md-2 p-1 text-center">Nota</th>
+                    <th class="col-md-1 p-1 text-center"></th>
                 </tr>
             </thead>
             <tbody class="table-bordered" id="donantesTrabajo">
@@ -235,13 +235,13 @@
             <thead  class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
                 <tr>
                     <th class="p-1"> &nbsp;&nbsp;&nbsp; </th>
-                    <th class="col-md-1 p-1">Tipo</th>
-                    <th class="col-md-2 p-1">Fabricante</th>
-                    <th class="col-md-2 p-1">Modelo</th>
-                    <th class="col-md-2 p-1">Serie</th>
-                    <th class="col-md-2 p-1">Ubicación</th>
-                    <th class="col-md-1 p-1" style="width: 250px">Nota</th>
-                    <th class="col-md-1 p-1" style="width: 400px"></th>
+                    <th class="col-md-1 p-1 text-center">Tipo</th>
+                    <th class="col-md-2 p-1 text-center">Fabricante</th>
+                    <th class="col-md-2 p-1 text-center">Modelo</th>
+                    <th class="col-md-2 p-1 text-center">Serie</th>
+                    <th class="col-md-2 p-1 text-center">Ubicación</th>
+                    <th class="col-md-1 p-1 text-center" style="width: 250px">Nota</th>
+                    <th class="col-md-1 p-1 text-center" style="width: 400px"></th>
                 </tr>
             </thead>
             <tbody class="table-bordered" id="datosOtrosDispositivos">
