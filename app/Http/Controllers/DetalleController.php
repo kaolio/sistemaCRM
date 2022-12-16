@@ -614,8 +614,6 @@ class DetalleController extends InventarioController
                 return json_encode(array('data'=>$valores));
             }else {
                 if ($_POST['tipo'] == 'donante') {
-                    
-                    if ($_POST['tipo'] == 'clon') {
 
                         $valores = DB::table('donantes')
                                 ->select('ubicacion')
@@ -636,7 +634,7 @@ class DetalleController extends InventarioController
                         return json_encode(array('data'=>$valores));
                 
                     }
-                }
+                
             }
         }
     }
