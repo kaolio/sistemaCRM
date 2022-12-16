@@ -6,7 +6,6 @@
     }
     .btn{
         padding: 7px 8px;
-        border-radius: 25px;
         font-size: 12px;
         text-align: center;
     }

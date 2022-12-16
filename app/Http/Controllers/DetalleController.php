@@ -524,6 +524,28 @@ class DetalleController extends InventarioController
         return json_encode(array('data'=>$_POST["localizacion"]));
     }
 
+    public function guardarNuevoDispositivo(){
+
+        
+            try {
+                $detalle = new DetalleOrden();
+                $detalle->tipo = $_POST["tipo"];
+                $detalle->rol = $_POST["rol"];
+                $detalle->fabricante = $_POST["fabrica"];
+                $detalle->modelo = $_POST["modelo"];
+                $detalle->serial = $_POST["serial"];
+                $detalle->localizacion =$_POST["localizacion"];
+                $detalle->id_trabajos = $_POST["nombre"];
+                $detalle->save();
+
+                return json_encode(array('data'=>true));
+            } catch (\Throwable $th) {
+                return json_encode(array('data'=>false));
+            }
+            
+  
+    }
+
     public function eliminarVariosC(){
 
         for ($i=0; $i < sizeof($_POST['arreglo']); $i++) { 

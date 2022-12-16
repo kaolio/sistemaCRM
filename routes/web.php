@@ -131,6 +131,7 @@ Route::post('/trabajos/nuevo/detalle/moverUbicacion',[DetalleController::class,'
 Route::post('/trabajos/nuevo/detalle/eliminarVariosClones',[DetalleController::class,'eliminarVariosC']);//eliminar varios cheks
 Route::post('/trabajos/nuevo/detalle/moverEsteDispositivo',[DetalleController::class,'moverEsteDispositivo']);
 Route::post('/trabajos/nuevo/detalle/moverOtroDispositivo',[DetalleController::class,'moverOtroDispositivo']);
+Route::post('/trabajos/nuevo/detalle/guardarNuevoDispositivo',[DetalleController::class,'guardarNuevoDispositivo']);
 
 //Archivos adjuntos
 Route::post('/trabajos/detalle/subir', [DetalleController::class,'subirArchivo']);//ruta para subir archivo a drive

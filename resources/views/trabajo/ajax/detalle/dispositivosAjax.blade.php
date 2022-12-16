@@ -846,7 +846,7 @@ $("#btnBuscarDonante").on('click',function(){
                 cache: false,
                 dataType: 'json',
                 success: function (dataResult) {
-                //console.log(dataResult);
+                console.log(dataResult);
                 $('#exampleModal05').modal('hide');
                 location.reload(); 
                 /*$('#exampleModal05').on('hide', function() {
