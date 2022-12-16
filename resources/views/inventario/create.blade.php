@@ -72,7 +72,7 @@
               <select name="rol" class="form-control" class="btn-block" required>
                 <option value="">Elija el Rol</option>
                 <option value="Datos">Datos</option>
-                <option value="Paciente">Paciente</option>
+                <option value="Dispositivo a Recuperar">Dispositivo a Recuperar</option>
                 <option value="Donante">Donante</option>
                 <option value="Clon">Clon</option>
               </select>

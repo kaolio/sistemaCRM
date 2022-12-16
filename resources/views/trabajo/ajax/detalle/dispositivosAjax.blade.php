@@ -147,7 +147,7 @@
                 if (dataResult.data[i].id != null) {
                     aux1 = dataResult.data[i].id;
                 }
-                if (dataResult.data[i].rol == "Paciente") {
+                if (dataResult.data[i].rol == "Dispositivo a Recuperar") {
 
                     $('#dispositivoDiagnostico').val(dataResult.data[i].fabricante );
                 }

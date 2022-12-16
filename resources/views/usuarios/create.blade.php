@@ -135,7 +135,166 @@
 
     </script>
     
-    <BR>
+
+
+<br>
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="text-center  "style ="font-family:serif,new time roman;" > <b> NUEVO USUARIO </b> </h4>
+    </div>
+    <div class="card-body">
+
+        <form action="{{ url('usuario/nuevo')}}" method="post">
+            {{csrf_field()}}
+
+            <div class="row justify-content-center">
+                <div class="col-5">
+                    <div class="input-group">
+                        <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Nombre</span>
+                        <input class="form-control " type="text" name="name" id="name" 
+                            placeholder="Nombre Completo" value="{{ old('name') }}" onkeyup="validarNombre()"
+                            autocomplete="off" 
+                            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32)) ">
+                    </div>
+                    <span id="estadoName"></span>
+                </div>
+                <div class="col-5">
+                    <div class="input-group">
+                        <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Correo Electronico</span>
+                        <input class="form-control " type="text" name="email" id="email"  autocomplete="off" 
+                        Placeholder="example@gmail.com" value="{{ old('email') }}" onblur="validarCorreo()">
+                    </div>
+                    <span id="estadoEmail"></span>
+                </div>
+            </div>
+            
+             <br>
+            <div class="row justify-content-center">
+                    <div class="col-5">
+                        <div class="input-group">
+                            <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Ciudad / Provincia / C.P CIF</span>
+                            <input type="text" id="ciudad" name="ciudad" class="form-control" 
+                            required onkeyup="validarDireccion()" Placeholder="Ciudad / Provincia" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46))">
+                        </div>
+                    <span></span>
+                    </div>
+                    <div class="col-5">
+                        <div class="input-group">
+                        <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Telefono</span>
+                        <input type="text" id="telefono" name="telefono" class="form-control" 
+                        required onkeyup="validarDireccion()" Placeholder="Telefono" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46))">
+                        </div>
+                        <span></span>
+                    </div>
+            </div>
+             <br>
+            <div class="row justify-content-center">
+                <div class="col-5">
+                    <div class="input-group">
+                        <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Razon Social</span>
+                        <input type="text" id="razonSocial" name="razonSocial" class="form-control" 
+                        required onkeyup="validarDireccion()" Placeholder="Razon Social" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46))">
+                    </div>
+                <span></span>
+                </div>
+                <div class="col-5">
+                    <div class="input-group">
+                    <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Direccion Social</span>
+                    <input type="text" id="direccionSocial" name="direccionSocial" class="form-control" 
+                    required onkeyup="validarDireccion()"Placeholder="Direccion Social" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46))">
+                    </div>
+                    <span></span>
+                </div>
+            </div>
+             <br>
+            <div class="row justify-content-center">
+                <div class="col-5">
+                    <div class="input-group">
+                        <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Nombre Comercial</span>
+                        <input type="text" id="nombreComercial" name="nombreComercial" class="form-control" 
+                        required onkeyup="validarDireccion()" Placeholder="Nombre Comercial" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46))">
+                    </div>
+                <span></span>
+                </div>
+                <div class="col-5">
+                    <div class="input-group">
+                    <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Direccion Comercial</span>
+                    <input type="text" id="direccionComercial" name="direccionComercial" class="form-control" 
+                    required onkeyup="validarDireccion()" Placeholder="Direccion Comercial" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46))">
+                    </div>
+                    <span></span>
+                </div>
+            </div>
+             <br>
+            <div class="row justify-content-center">
+                <div class="col-5">
+                    <div class="input-group">
+                        <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Contraseña</span>
+                            <input class="form-control " type="password" name="password" id="password"   
+                            Placeholder="Escriba una contraseña" value="{{ old('password') }}"  autocomplete="off"
+                            onkeyup="validarContraseña()"
+                            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)) ">
+                    </div>
+                    <span id="estadoPassword"></span>
+                </div>
+                <div class="col-5">
+                    <div class="input-group">
+                    <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Horario Comercial</span>
+                    <input type="text" id="horarioComercial" name="horarioComercial" class="form-control" 
+                    required onkeyup="validarDireccion()" Placeholder="Horario Comercial" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46))">
+                    </div>
+                    <span></span>
+                </div>
+            </div>
+             <br>
+            <div class="row justify-content-center">
+                <div class="col-5">
+                    <div class="input-group">
+                        <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Confirmar Contraseña</span>
+                        <input class="form-control " type="password" name="confirm-password" id="confirm-password" 
+                        Placeholder="Vuelva a escribir la contraseña" value="{{ old('confirm-password') }}"
+                        onkeyup="validarConfirmarContraseña()"
+                        onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)) ">
+                    </div>
+                    <span id="estadoConfirmarContraseña"></span>
+                </div>
+                <div class="col-5">
+                    <div class="input-group">
+                    <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Persona de Contacto</span>
+                    <input type="text" id="personaContacto" name="personaContacto" class="form-control" 
+                    required onkeyup="validarDireccion()" Placeholder="Persona Contacto" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46))">
+                    </div>
+                </div>
+           </div>
+          <br>
+            <div class="row justify-content-center">
+                <div class="col-5">
+                    <div class="input-group">
+                        <span  class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Seleccione un Rol</span>
+                        <select name="roles" id="roles" onblur="validarRoles()" onchange="validarRoles()"
+                        class="form-control" >
+                        <option selected value="Elige un Rol" disabled>Elige un Rol</option>
+                                @foreach ($roles as $rol)
+                                <option   value="{{$rol}}">
+                                    {{$rol}}</option>
+                                 @endforeach
+                        </select>               
+                    </div>
+                    <span id="estadoRol"></span>
+                </div>
+            </div>
+                </br>
+                 </br>
+    <div class="text-center">
+        <button class="btn btn-success "  id="sig" name="sig" >Agregar</button>
+    </div>
+
+        </form>
+    </div> 
+  </div>
+
+    {{--<BR>
         <div class="row justify-content-center">
                 <div class="col-8">
                 <div class="card">
@@ -205,9 +364,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>--}}
         
-    
 
+    
 
 @endsection

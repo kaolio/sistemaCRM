@@ -5,13 +5,13 @@
     </svg>
     Agregar dispositivo
 </button>
-<!-- Modal -->
+<!-- Modal --> 
 
 <div class="modal fade-md" id="exampleModalMover" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelMover" aria-hidden="true">
     <div class="modal-dialog " role="document">
     <div class="modal-content">
         <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabelMover">Agregar Nuevo Dispositivo</h5>
+        <h5 class="modal-title w-100 text-center" id="exampleModalLabelMover">Agregar Nuevo Dispositivo</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -24,24 +24,24 @@
                             <li class="nav-item col-md-6">
                                 <a class="nav-link" href="#clonar" data-toggle="tab">
                                     <div class="input-group">
-                                        <div class="input-group-text" id="btnGroupAddon">
+                                        <div class="input-group-text" id="btnGroupAddon" style=" background:rgb(29, 145, 195); color: aliceblue">
                                             <div class="custom-control custom-checkbox">
                                                 <input class="form-check-input" type="radio" name="radioNoLabel1" id="radioNoLabel1" value="" aria-label="...">
                                             </div>
                                         </div>
-                                        <span class="input-group-text form-control">Clonar</span>
+                                        <span class="input-group-text form-control" style=" background:rgb(29, 145, 195); color: aliceblue">Clonar</span>
                                     </div> 
                                 </a>
                             </li>
                             <li class="nav-item col-md-6">
                                 <a class="nav-link" href="#donar" data-toggle="tab">
                                     <div class=" input-group">
-                                        <div class="input-group-text" id="btnGroupAddon">
+                                        <div class="input-group-text" id="btnGroupAddon" style=" background:rgb(29, 145, 195); color: aliceblue">
                                             <div class="custom-control custom-checkbox">
                                                 <input class="form-check-input" type="radio" name="radioNoLabel2" id="radioNoLabel2" value="" aria-label="...">
                                             </div>
                                         </div>
-                                        <span class="input-group-text form-control">Donar</span>
+                                        <span class="input-group-text form-control" style=" background:rgb(29, 145, 195); color: aliceblue">Donar</span>
                                     </div>
                                 </a>
                             </li>
@@ -53,23 +53,23 @@
                                 <div class="active tab-pane" id="clonar">
                                     <div class="clonar">
                                         <div class="input-group mt-2">
-                                            <span class="input-group-text">ID Interno</span>
+                                            <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">ID Interno</span>
                                             <input type="text" class="form-control" id="idInternoClon">
                                         </div>
                                         <div class="input-group mt-2">
-                                            <span class="input-group-text">Modelo</span>
+                                            <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Modelo</span>
                                             <input type="text" class="form-control" id="modeloClon">
                                         </div>
                                         <div class="input-group mt-2">
-                                            <span class="input-group-text">Serie</span>
+                                            <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Serie</span>
                                             <input type="text" class="form-control" id="serieClon">
                                         </div>
                                         <div class="input-group mt-2">
-                                            <span class="input-group-text">Tamaño</span>
+                                            <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tamaño</span>
                                             <input type="text" class="form-control" id="tamañoClon">
                                         </div>
                                         <div class="input-group mt-2">
-                                            <span class="input-group-text">PCB ID</span>
+                                            <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">PCB ID</span>
                                             <input type="text" class="form-control" id="pcbClon">
                                         </div>
                                         <br>
@@ -104,32 +104,32 @@
                                 <div class="tab-pane" id="donar">
                                     <div class="donar">
                                         <div class="input-group mt-2">
-                                            <span class="input-group-text">Donar para </span>
-                                            <select name="selectDonante" id="selectDonante" class="form-control" class="btn-block">
+                                            <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Donar para </span>
+                                            <select name="selectDonante" id="selectDonante" class="form-controlrgb(29, 145, 195)" class="btn-block">
                                                 <option value="">Elija la opción</option>
-                                                <option value="Paciente">Paciente</option>
+                                                <option value="Dispositivo a Recuperar">Dispositivo a Recuperar</option>
                                                 <option value="Datos">Datos</option>
                                                 <option value="Donante">Donante</option>
                                               </select>
                                         </div>
                                             <div class="input-group mt-2">
-                                                <span class="input-group-text" >ID Interno</span>
+                                                <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">ID Interno</span>
                                                 <input type="text" class="form-control" id="idInternoDonante">
                                             </div>
                                                 <div class="input-group mt-2">
-                                                    <span class="input-group-text" >Modelo</span>
+                                                    <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Modelo</span>
                                                     <input type="text" class="form-control" id="modeloDonante">
                                                 </div>
                                             <div class="input-group mt-2">
-                                                <span class="input-group-text" >Serie</span>
+                                                <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Serie</span>
                                                 <input type="text" class="form-control" id="serieDonante">
                                             </div>
                                             <div class="input-group mt-2">
-                                                <span class="input-group-text" >Tamaño</span>
+                                                <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tamaño</span>
                                                 <input type="text" class="form-control" id="tamañoDonante">
                                             </div>
                                             <div class="input-group mt-2">
-                                                <span class="input-group-text" >PCB ID</span>
+                                                <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">PCB ID</span>
                                                 <input type="text" class="form-control" id="pcbDonante">
                                             </div>
 

@@ -4,7 +4,7 @@
     </svg>
     Agregar nuevo dispositivo del cliente
 </button>
-
+ 
 <div class="modal fade-md" id="exampleModalNuevoDis" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelMover" aria-hidden="true">
     <div class="modal-dialog " role="document">
     <div class="modal-content">
