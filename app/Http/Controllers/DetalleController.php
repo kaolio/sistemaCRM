@@ -489,7 +489,7 @@ class DetalleController extends InventarioController
     public function ubicacionNueva(){
 
 
-        if (sizeof($_POST["dispositivo"]) != 0) {
+        if ($_POST["dispositivo"][0] != 'vacio') {
             for ($i=0; $i < sizeof($_POST['dispositivo']); $i++) { 
                     DB::table('detalle_ordens')
                     ->where('id', $_POST['dispositivo'][$i])
@@ -497,7 +497,7 @@ class DetalleController extends InventarioController
                     ->update(['localizacion' => $_POST["texto"]]);
             };
         }  
-        if (sizeof($_POST["clon"]) != 0) {
+        if ($_POST["clon"][0] != 'vacio') {
             for ($i=0; $i < sizeof($_POST['clon']); $i++) { 
                 DB::table('clones')
                 ->where('id', $_POST['clon'][$i])
@@ -505,7 +505,7 @@ class DetalleController extends InventarioController
                 ->update(['ubicacion' => $_POST["texto"]]);
             };  
         }
-        if (sizeof($_POST["donante"]) != 0) {
+        if ($_POST["donante"][0] != 'vacio') {
             for ($i=0; $i < sizeof($_POST['donante']); $i++) { 
                 DB::table('donantes')
                 ->where('id', $_POST['donante'][$i])
@@ -513,7 +513,7 @@ class DetalleController extends InventarioController
                 ->update(['ubicacion' => $_POST["texto"]]);
             };     
         }
-        if (sizeof($_POST["otros"]) != 0) {
+        if ($_POST["otros"][0] != 'vacio') {
             for ($i=0; $i < sizeof($_POST['otros']); $i++) { 
                 DB::table('detalle_ordens')
                 ->where('id', $_POST['otros'][$i])

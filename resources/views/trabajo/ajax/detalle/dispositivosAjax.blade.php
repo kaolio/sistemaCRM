@@ -859,7 +859,18 @@ $("#btnBuscarDonante").on('click',function(){
                     }
                 });
 
-                console.log(sizeof(clon));
+                if (dispositivo.length != 1) {
+                    dispositivo.push("vacio");
+                }
+                if (clon.length != 1) {
+                    clon.push("vacio");
+                }
+                if (donante.length != 1) {
+                    donante.push("vacio");
+                }
+                if (otros.length != 1) {
+                    otros.push("vacio");
+                }
 
                 $.ajax({
                 url: "/trabajos/nuevo/detalle/moverUbicacion",
