@@ -42,7 +42,7 @@ class DetalleController extends InventarioController
                     ->select('orden_trabajos.diagnostico','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
                             'detalle_ordens.serial','detalle_ordens.localizacion','detalle_ordens.id')
                     ->where('detalle_ordens.id_trabajos','=',$_POST["nombre"])
-                    ->where('detalle_ordens.rol','=','Paciente')
+                    ->where('detalle_ordens.rol','=','Dispositivo a Recuperar')
                     ->get(); 
 
 
@@ -77,7 +77,7 @@ class DetalleController extends InventarioController
                     ->select('orden_trabajos.diagnostico','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
                             'detalle_ordens.serial','detalle_ordens.localizacion','detalle_ordens.id')
                     ->where('detalle_ordens.id_trabajos','=',$_POST["nombre"])
-                    ->where('detalle_ordens.rol','<>','Paciente')
+                    ->where('detalle_ordens.rol','<>','Dispositivo a Recuperar')
                     ->get(); 
         return json_encode(array('data'=>$datosTabla));
     }
@@ -250,7 +250,7 @@ class DetalleController extends InventarioController
         $estedispo = DB::table('detalle_ordens')
                     ->select('id_trabajos')
                     ->where('id',$id)
-                    ->where('rol','=','Paciente')
+                    ->where('rol','=','Dispositivo a Recuperar')
                     ->get();
 
         $dispositivo = DetalleOrden::findOrFail($id);
@@ -314,7 +314,7 @@ class DetalleController extends InventarioController
                     ->select('orden_trabajos.diagnostico','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
                             'detalle_ordens.serial','detalle_ordens.localizacion','detalle_ordens.id')
                     ->where('detalle_ordens.id_trabajos','=',$_POST["nombre"])
-                    ->where('detalle_ordens.rol','=','Paciente')
+                    ->where('detalle_ordens.rol','=','Dispositivo a Recuperar')
                     ->get();  
         return json_encode(array('data'=>$datosPacientes)); 
     }
@@ -327,7 +327,7 @@ class DetalleController extends InventarioController
                     ->select('orden_trabajos.diagnostico','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
                             'detalle_ordens.serial','detalle_ordens.localizacion','detalle_ordens.id')
                     ->where('detalle_ordens.id_trabajos','=',$_POST["nombre"])
-                    ->where('detalle_ordens.rol','<>','Paciente')
+                    ->where('detalle_ordens.rol','<>','Dispositivo a Recuperar')
                     ->get(); 
         return json_encode(array('data'=>$datosOtrosDispositivos));
     }
@@ -506,7 +506,7 @@ class DetalleController extends InventarioController
 
         DB::table('detalle_ordens')
                 ->where('id_trabajos', $_POST["nombre"])
-                ->where('rol','=','Paciente')
+                ->where('rol','=','Dispositivo a Recuperar')
                 ->update(['localizacion' => $_POST["localizacion"]]);
 
 
@@ -517,7 +517,7 @@ class DetalleController extends InventarioController
 
             DB::table('detalle_ordens')
                     ->where('id_trabajos', $_POST["nombre"])
-                    ->where('rol','<>','Paciente')
+                    ->where('rol','<>','Dispositivo a Recuperar')
                     ->update(['localizacion' => $_POST["localizacion"]]);
 
 

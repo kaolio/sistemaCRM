@@ -121,6 +121,8 @@
                                           <select name="tipo[]" id="tipo" class="form-control"   >
                                             <option disabled >Tipo de Dispositivo</option>
                                             <option value="HDD">HDD</option>
+                                            <option value="SSD">SSD</option>
+                                            <option value="MS">M2</option>
                                             <option value="CD/DVD">CD/DVD</option>
                                             <option value="Unidad">Unidad Flash</option>
                                             <option value="MEMORY">Tarjeta de Memoria</option>
@@ -146,9 +148,9 @@
                                         <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Rol</span>
                                           <select name="rol[]" id="rol" class="form-control">
                                             <option disabled>Escoja un rol</option>
-                                            <option value="Paciente">Paciente</option>
-                                            <option value="Alta">Datos</option>
-                                            <option value="Urgente">Donante</option>
+                                            <option value="Dispositivo a Recuperar">Dispositivo a Recuperar</option>
+                                            <option value="Datos">Datos</option>
+                                            <option value="Donante">Donante</option>
                                           </select>
                                       </div>
                                   </td>
