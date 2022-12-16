@@ -489,17 +489,44 @@ class DetalleController extends InventarioController
     public function ubicacionNueva(){
 
 
-        for ($i=0; $i < sizeof($_POST['arreglo']); $i++) { 
-            DB::table('clones')
-                ->where('id', $_POST['arreglo'][$i])
-                ->update(['ubicacion' => $_POST["seleccionado"]]);
-        };
+        if (sizeof($_POST["dispositivo"]) != 0) {
+            for ($i=0; $i < sizeof($_POST['dispositivo']); $i++) { 
+                    DB::table('detalle_ordens')
+                    ->where('id', $_POST['dispositivo'][$i])
+                    ->where('id_trabajos', $_POST['id'])
+                    ->update(['localizacion' => $_POST["texto"]]);
+            };
+        }  
+        if (sizeof($_POST["clon"]) != 0) {
+            for ($i=0; $i < sizeof($_POST['clon']); $i++) { 
+                DB::table('clones')
+                ->where('id', $_POST['clon'][$i])
+                ->where('id_trabajos', $_POST['id'])
+                ->update(['ubicacion' => $_POST["texto"]]);
+            };  
+        }
+        if (sizeof($_POST["donante"]) != 0) {
+            for ($i=0; $i < sizeof($_POST['donante']); $i++) { 
+                DB::table('donantes')
+                ->where('id', $_POST['donante'][$i])
+                ->where('id_trabajos', $_POST['id'])
+                ->update(['ubicacion' => $_POST["texto"]]);
+            };     
+        }
+        if (sizeof($_POST["otros"]) != 0) {
+            for ($i=0; $i < sizeof($_POST['otros']); $i++) { 
+                DB::table('detalle_ordens')
+                ->where('id', $_POST['otros'][$i])
+                ->where('id_trabajos', $_POST['id'])
+                ->where('rol','<>','Recuperacion de Datos')
+                ->update(['localizacion' => $_POST["texto"]]);
+            };     
+        }
+                
+            
 
-        $ubicacionMovida = DB::table('clones')
-                    ->select('ubicacion')
-                    ->get();
+        return json_encode(array('data'=>sizeof($_POST["clon"])));
 
-                    return json_encode(array('data'=>$ubicacionMovida));
     }
 
     public function moverEsteDispositivo(){
@@ -538,6 +565,58 @@ class DetalleController extends InventarioController
             //dd($datatable);
 
             return json_encode(array('data'=>$clonesRestantes));
+    }
+
+
+
+    public function obtenerValores()
+    {
+        if ($_POST['tipo'] == 'dispositivo') {
+
+            $valores = DB::table('detalle_ordens')
+                    ->select('localizacion')
+                    ->where('id_trabajos',$_POST['id'])
+                    ->where('id',$_POST['value'])
+                    ->get();
+            
+            return json_encode(array('data'=>$valores));
+        }else{
+            if ($_POST['tipo'] == 'clon') {
+
+                $valores = DB::table('clones')
+                        ->select('ubicacion')
+                        ->where('id_trabajos',$_POST['id'])
+                        ->where('id',$_POST['value'])
+                        ->get();
+                
+                return json_encode(array('data'=>$valores));
+            }else {
+                if ($_POST['tipo'] == 'donante') {
+                    
+                    if ($_POST['tipo'] == 'clon') {
+
+                        $valores = DB::table('donantes')
+                                ->select('ubicacion')
+                                ->where('id_trabajos',$_POST['id'])
+                                ->where('id',$_POST['value'])
+                                ->get();
+                        
+                        return json_encode(array('data'=>$valores));
+                }else{
+
+                        $valores = DB::table('detalle_ordens')
+                                ->select('localizacion')
+                                ->where('id_trabajos',$_POST['id'])
+                                ->where('id',$_POST['value'])
+                                ->where('rol','<>','Dispositivo a Recuperar')
+                                ->get();
+                        
+                        return json_encode(array('data'=>$valores));
+                
+                    }
+                }
+            }
+        }
     }
 
 

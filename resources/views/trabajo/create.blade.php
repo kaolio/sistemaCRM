@@ -147,8 +147,8 @@
                                           <select name="rol[]" id="rol" class="form-control">
                                             <option disabled>Escoja un rol</option>
                                             <option value="Paciente">Paciente</option>
-                                            <option value="Alta">Datos</option>
-                                            <option value="Urgente">Donante</option>
+                                            <option value="Datos">Datos</option>
+                                            <option value="Donante">Donante</option>
                                           </select>
                                       </div>
                                   </td>
