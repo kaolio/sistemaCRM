@@ -33,13 +33,14 @@
                              <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Dispositivo</span>
                              <select name="dispositivo" id="dispositivo" class="form-control" class="btn-block" >
                               <option disabled  selected>Tipo de Dispositivo</option>
-                              
                               <option value="HDD" {{ $producto->dispositivo == 'HDD' ? 'selected' : '' }}>HDD</option>
+                              <option value="SSD" {{ $producto->dispositivo == 'SSD' ? 'selected' : '' }}>SSD</option>
+                              <option value="M2" {{ $producto->dispositivo == 'M2' ? 'selected' : '' }}>M2</option>
                               <option value="CD/DVD"{{ $producto->dispositivo == 'CD/DVD' ? 'selected' : '' }}>CD/DVD</option>
                               <option value="Unidad Flash"{{ $producto->dispositivo == 'Unidad Flash' ? 'selected' : '' }}>Unidad Flash</option>
                               <option value="Tarjeta de Memoria"{{ $producto->dispositivo == 'Tarjeta de Memoria' ? 'selected' : '' }}>Tarjeta de Memoria</option>
                               <option value="Impresora"{{ $producto->dispositivo == 'Impresora' ? 'selected' : '' }}>Impresora</option>
-                              <option value="Impresora"{{ $producto->dispositivo == 'Impresora' ? 'selected' : '' }}>Memoria</option>
+                              <option value="Memoria"{{ $producto->dispositivo == 'Memoria' ? 'selected' : '' }}>Memoria</option>
                               <option value="herramientas de cambio de cabezales"{{ $producto->dispositivo == 'herramientas de cambio de cabezales' ? 'selected' : '' }}>herramientas de cambio de cabezales</option>
                               <option value="herramientas de disco duro"{{ $producto->dispositivo == 'herramientas de disco duro' ? 'selected' : '' }}>herramientas de disco duro</option>
                               <option value="herramientas de desapilado de fuerza bruta"{{ $producto->dispositivo == 'herramientas de desapilado de fuerza bruta' ? 'selected' : '' }}>herramientas de desapilado de fuerza bruta</option>

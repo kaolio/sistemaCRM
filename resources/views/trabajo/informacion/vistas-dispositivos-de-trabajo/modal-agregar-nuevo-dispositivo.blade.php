@@ -24,7 +24,7 @@
                                         <div class="input-group mt-2">
                                             <span class="input-group-text" id="inputGroup-sizing-sm" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo</span>
                                             <select name="tipo" id="tipo" class="form-control"   >
-                                                <option disabled >Tipo de Dispositivo</option>
+                                                <option disabled selected >Tipo de Dispositivo</option>
                                                 <option value="HDD">HDD</option>
                                                 <option value="SSD">SSD</option>
                                                 <option value="MS">M2</option>
@@ -50,9 +50,9 @@
                                             <div class="input-group mt-2">
                                                 <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Rol</span>
                                                     <select name="rol" id="rol" class="form-control">
-                                                        <option disabled>Escoja un rol</option>
+                                                        <option disabled selected>Escoja un rol</option>
                                                         <option value="Dispositivo a Recuperar">Dispositivo a Recuperar</option>
-                                                        <option value="Daros">Datos</option>
+                                                        <option value="Datos">Datos</option>
                                                         <option value="Donante">Donante</option>
                                                     </select>
                                             </div>
@@ -93,7 +93,6 @@
     </div>
     </div>
 </div>
-
 <script src="{{ asset('js/trabajo/create.js')}}"></script>
 <script>
     $('#btnGuardarNuevoDispositivo').on('click', function () {
@@ -120,8 +119,8 @@
                 cache: false,
                 dataType: 'json',
                 success: function(dataResult){
-                 console.log(dataResult);
-                          
+                 //console.log(dataResult);
+                 cargaDispositivos();       
                     
                 }
             });$('#exampleModalNuevoDis').modal('hide');

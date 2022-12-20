@@ -98,7 +98,7 @@
             Liberar seleccionados
         </button>
 </div>
-
+<br>
 <p class="subtitulo">Dispositivo a Recuperar</p>
     <div class="card">
     <div class="card-body">   
@@ -118,56 +118,7 @@
           </thead>
           <tbody class="table-bordered" id="datosPacientes">
              <tr>
-             <!-- Modal -->
-             <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-                 <div class="modal-dialog" role="document">
-                 <div class="modal-content">
-                     <div class="modal-header">
-                     <h5 class="modal-title" id="exampleModalLabel2" align="center">Diagnóstico</h5>
-                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                         <span aria-hidden="true">&times;</span>
-                     </button>
-                     </div>
-                     <div class="modal-body">
-                         <div class="container">
-                             <p align="center">Seleccionar diagnostico para el dispositivo: <br></p>
-                             <div class="input-group md-2">
-                                <span class="input-group-text">Dispositivo</span>
-                                <input type="text" id="dispositivoDiagnostico" class="form-control" readonly>
-                            </div>
-                            <br>
-                             <div class="input-group md-2">
-                                 <span class="input-group-text">Diagnóstico</span>
-                                 <select id="selectDiagnostico" name="selectDiagnostico" class="form-control" class="btn-block">
-                                     <option disabled selected>No Establecido</option>
-                                     <option value="Cabezal">Cabezal</option>
-                                     <option value="PCB">PCB</option>
-                                     <option value="Motor">Motor</option>
-                                     <option value="Lógico">Lógico</option>
-                                     <option value="Sectores malos">Sectores malos</option>
-                                     <option value="Firmware">Firmware</option>
-                                     <option value="Ransomware">Ransomware</option>
-                                     <option value="CD/DVD">CD/DVD</option>
-                                     <option value="Disco flexible">Disco flexible</option>
-                                     <option value="NAND lógico">NAND Logico</option>
-                                     <option value="NAND electrónico">NAND Electronico</option>
-                                     <option value="SSD lógico">SSD Lógico</option>
-                                     <option value="SDD firmware">SDD Firmware</option>
-                                     <option value="Teléfono móvil lógico">Teléfono movil lógico</option>
-                                     <option value="Teléfono móvil electrónico">Teléfono movil electrónico</option>
-                                     <option value="Unidad de cinta">Unidad de cinta</option>
-                                 </select>                           
-                             </div><br>
-                         </div>
-                     </div>
-                     <div class="modal-footer">
-                     <button type="button" class="btn btn-secondary" id="botones" data-dismiss="modal">Cancelar</button>
-                     <button type="button" class="btn btn-success" id="btnDiagnostico" name="btnDiagnostico">Guardar</button>
-                     </div>
-                 </div>
-                 </div>
-             </div> 
-                           
+                
             </tr>
         </tbody>
     </table>
