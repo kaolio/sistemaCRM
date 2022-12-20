@@ -2,7 +2,7 @@
 
 
     //lista de otros dispositivos en: dispositivos-de-trabajo/tabla otros disp. del cliente 
-    $(document).ready(function() {
+    function cargarOtros() {
 
         var url = "{{URL('datosOtrosDispositivos')}}";
         $.ajax({
@@ -16,14 +16,9 @@
             dataType: 'json',
             success: function(dataResult){
                 //console.log(dataResult);
-
+                $("#datosOtrosDispositivos").empty();
                 var filas = dataResult.data.length;
                 for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de busquedas por id
-                    var text = "";
-                    var aux1 = "";
-                    if (dataResult.data[i].id != null) {
-                        aux1 = dataResult.data[i].id;
-                    }
                         
                         var nuevafila= "<tr><td>" +
                         "<div class='form-check'>"+
@@ -35,28 +30,98 @@
                         dataResult.data[i].modelo  + "</td><td>" +
                         dataResult.data[i].serial  + "</td><td>" +
                         dataResult.data[i].localizacion  + "</td><td>" +
-                              "</td><td class='text-center'>" +
+                        dataResult.data[i].nota   +"</td><td class='text-center' style='width: 20%'>" +
+                        '<button type="button" class="btn" data-toggle="modal" data-target="#dispositivoMoverOtros'+dataResult.data[i].id+'">'+
+                                    '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(0, 26, 255)" class="bi bi-arrows-move" viewBox="0 0 16 16">'+
+                                '<path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z"/>'+
+                                '</svg>'+
+                            '</button>'+
+                            '<div class="modal fade" id="dispositivoMoverOtros'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                                '<div class="modal-dialog" role="document">'+
+                                '<div class="modal-content">'+
+                                    '<div class="modal-header">'+
+                                    '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Cambiar de Ubicacion</h5>'+
+                                    '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
+                                        '<span aria-hidden="true">&times;</span>'+
+                                    '</button>'+
+                                    '</div>'+
+                                    '<div class="modal-body">'+
+                                    '<div class="row justify-content-center">'+
+                                            '<div class="input-group-prepend col-10">'+
+                                                '<div class="input-group">'+
+                                                    '<span class="input-group-text" >Ubicacion Actual</span>'+
+                                                    '<input type="text" id="" name="" class="form-control text-center" readonly autocomplete="off" value="'+[dataResult.data[i].localizacion]+'">'+
+                                                '</div>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</br>'+
+                                        '<div class="row justify-content-center">'+
+                                            '<div class="input-group-prepend col-10">'+
+                                                '<div class="input-group">'+
+                                                    '<span class="input-group-text" >Nueva Ubicacion</span>'+
+                                                    '<input type="text" id="nuevaUbicacionOtros'+dataResult.data[i].id+'" name="nuevaUbicacionOtros" class="form-control" autocomplete="off" onkeypress="return ( (event.charCode == 45 )|| (event.charCode >= 48 && event.charCode <= 57)||(event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209))">'+
+                                                '</div>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>'+
+                                    
+                                    '<div class="modal-footer">'+
+                                    '<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>'+
+                                    '<button class="btn btn-primary" onclick="moverDispositivOtro('+dataResult.data[i].id+')">'+
+                                        'Guardar'+
+                                    '</button>'+
+                                    '</div>'+
+                                '</form> '+
+                                '</div>'+
+                                '</div>'+
+                            ' </div> '+  
 
-                            '<button type="button" class="btn" style="color: rgb(0, 26, 255);" data-toggle="modal" data-target="#exampleModal06">'+
-                        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-move" viewBox="0 0 16 16">'+
-                        '<path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z"/>'+
-                        '</svg>'+
-                    '</button>'+
-                    '<div class="modal fade" id="exampleModal06" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+            '<button type="button" class="btn" data-toggle="modal" data-target="#dispositivoEditarOtro'+dataResult.data[i].id+'">'+
+                '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(168, 166, 14)" class="bi bi-trash" viewBox="0 0 16 16">'+
+                '<path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>'+
+              '</svg>'+
+            '</button>'+
+            '<div class="modal fade" id="dispositivoEditarOtro'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
                         '<div class="modal-dialog" role="document">'+
                         '<div class="modal-content">'+
                             '<div class="modal-header">'+
-                            '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Mover Ubicacion</h5>'+
+                            '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Editar Dispositivo</h5>'+
                             '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
                                 '<span aria-hidden="true">&times;</span>'+
                             '</button>'+
                             '</div>'+
                             '<div class="modal-body">'+
-                            '<div class="row justify-content-center">'+
+                                '<div class="row justify-content-center">'+
                                     '<div class="input-group-prepend col-10">'+
                                         '<div class="input-group">'+
-                                            '<span class="input-group-text" >Ubicacion Actual</span>'+
-                                            '<input type="text" id="" name="" class="form-control" readonly autocomplete="off" value="'+[dataResult.data[i].localizacion]+'">'+
+                                            '<span class="input-group-text" >Tipo</span>'+
+                                            '<input type="text" id="" name="" class="form-control text-center" readonly autocomplete="off" value="'+[dataResult.data[i].tipo]+'">'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            "<select id='editSelectDiagnosticOtro"+dataResult.data[i].id+"' name='editSelectDiagnosticOtro' class='form-control' class='btn-block'>"+
+                                                "<option selected disabled>Tipo de Dispositivo</option>"+
+                                                '<option value="HDD">HDD</option>'+
+                                                '<option value="SSD">SSD</option>'+
+                                                '<option value="MS">M2</option>'+
+                                                '<option value="CD/DVD">CD/DVD</option>'+
+                                                '<option value="Unidad">Unidad Flash</option>'+
+                                                '<option value="MEMORY">Tarjeta de Memoria</option>'+
+                                                '<option value="Impresora">Impresora</option>'+
+                                                '<option value="Memoria">Memoria</option>'+
+                                                '<option value="cabezales">herramientas de cambio de cabezales</option>'+
+                                                '<option value="disco">herramientas de disco duro</option>'+
+                                                '<option value="desapilado">herramientas de desapilado de fuerza bruta</option>'+
+                                                '<option value="Laptop">Laptop</option>'+
+                                                '<option value="Notebook">Notebook</option>'+
+                                                '<option value="Otro">Otro(Dispositivo HDD)</option>'+
+                                                '<option value="PC">PC</option>'+
+                                                '<option value="Telefono">Telefono Celular</option>'+
+                                                '<option value="Disco">Disco Blu-ray</option>'+
+                                                '<option value="Tablet">Tablet</option>'+
+                                                '<option value="FDD">FDD</option>'+
+                                            "</select>"+ 
                                         '</div>'+
                                     '</div>'+
                                 '</div>'+
@@ -64,73 +129,111 @@
                                 '<div class="row justify-content-center">'+
                                     '<div class="input-group-prepend col-10">'+
                                         '<div class="input-group">'+
-                                            '<span class="input-group-text" >Nueva Ubicacion</span>'+
-                                            '<input type="text" id="localizacion" name="localizacion" class="form-control" autocomplete="off" onkeypress="return ( (event.charCode == 45 )|| (event.charCode >= 48 && event.charCode <= 57)||(event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209))">'+
+                                            '<span class="input-group-text" >Rol</span>'+
+                                            '<input type="text" id="" name="" class="form-control text-center" readonly autocomplete="off" value="'+[dataResult.data[i].rol]+'">'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            "<select id='rolDiagnosticoOtro"+dataResult.data[i].id+"' name='rolDiagnosticoOtro' class='form-control' class='btn-block'>"+
+                                                "<option selected disabled>Escoja un Rol</option>"+
+                                                '<option value="Dispositivo a Recuperar">Dispositivo a Recuperar</option>'+
+                                                '<option value="Datos">Datos</option>'+
+                                                '<option value="Donante">Donante</option>'+
+                                            "</select>"+ 
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</br>'+
+                                '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Fabricante</span>'+
+                                            '<input type="text" id="editFabricanteOtro'+dataResult.data[i].id+'" name="editFabricanteOtro" class="form-control" autocomplete="off" value="'+[dataResult.data[i].fabricante]+'">'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</br>'+
+                                '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Modelo</span>'+
+                                            '<input type="text" id="editModelOtro'+dataResult.data[i].id+'" name="editModelOtro" class="form-control" autocomplete="off" value="'+[dataResult.data[i].modelo]+'">'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</br>'+
+                            '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Serial</span>'+
+                                            '<input type="text" id="editSerialOtro'+dataResult.data[i].id+'" name="editSerialOtro" class="form-control" autocomplete="off" value="'+[dataResult.data[i].serial]+'">'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</br>'+
+                                '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Localizacion</span>'+
+                                            '<input type="text" id="editLocalizacionOtro'+dataResult.data[i].id+'" name="editLocalizacionOtro" class="form-control" autocomplete="off" value="'+[dataResult.data[i].localizacion]+'">'+
                                         '</div>'+
                                     '</div>'+
                                 '</div>'+
                             '</div>'+
-                             
+                            
                             '<div class="modal-footer">'+
                             '<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>'+
-                            '<button class="btn btn-primary" onclick="moverOtroDispositivo()" style="padding-left: 5px">'+
-                                'Aceptar'+
-                            '</button>'+
-                            '</div>'+
-                        '</form> '+
-                        '</div>'+
-                        '</div>'+
-                    ' </div> '+            
-                            '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal5'+dataResult.data[i].id+'">'+
-                        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
-                        '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
-                        '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
-                        '</svg>'+
-                    '</button>'+
-                         '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal09'+dataResult.data[i].id+'">'+
-                        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
-                        '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
-                        '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
-                        '</svg>'+
-                    '</button>'+
-                    '<div class="modal fade" id="exampleModal09'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
-                        '<div class="modal-dialog" role="document">'+
-                        '<div class="modal-content">'+
-                            '<div class="modal-header">'+
-                            '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Otro Dispositivo</h5>'+
-                            '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
-                                '<span aria-hidden="true">&times;</span>'+
-                            '</button>'+
-                            '</div>'+
-                            '<div class="modal-body">'+
-                            '¿Realmente Desea Borrar Otro Dispositivo?'+
-                            '</div>'+
-                            '<form action="{{url('/eliminarOtrosDispositivos/')}}'+'/'+dataResult.data[i].id+'" method="POST" class="d-inline">'+
-                            '@csrf'+
-                            ' @method('DELETE')'+
-                            '<div class="modal-footer">'+
-                            '<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>'+
-                            '<button class="btn btn-primary" style="padding-left: 5px">'+
-                                'Aceptar'+
+                            '<button class="btn btn-primary" onclick="actualizarDispositivOtro('+dataResult.data[i].id+')" >'+
+                                'Actualizar'+
                             '</button>'+
                             '</div>'+
                         '</form> '+
                         '</div>'+
                         '</div>'+
                     ' </div> '+
-                        "</td></tr>"
+
+                    '<button type="button" class="btn" data-toggle="modal" data-target="#dispositivoEliminarOtro'+dataResult.data[i].id+'">'+
+                        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
+                        '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
+                        '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
+                        '</svg>'+
+                    '</button>'+
+                    '<div class="modal fade" id="dispositivoEliminarOtro'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                        '<div class="modal-dialog" role="document">'+
+                        '<div class="modal-content">'+
+                            '<div class="modal-header">'+
+                            '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Dispositivo</h5>'+
+                            '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
+                                '<span aria-hidden="true">&times;</span>'+
+                            '</button>'+
+                            '</div>'+
+                            '<div class="modal-body">'+
+                            '¿Realmente Desea Borrar Este Dispositivo a Recuperar?'+
+                            '</div>'+
+                            '<div class="modal-footer">'+
+                            '<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>'+
+                            '<button class="btn btn-primary" onclick="eliminarDispositivoRecuperarOtro('+dataResult.data[i].id+')" style="padding-left: 5px">'+
+                                'Aceptar'+
+                            '</button>'+
+                            '</div>'+
+                        '</div>'+
+                        '</div>'+
+                    ' </div> '+
+                    "</td></tr>"
                     
                      $("#datosOtrosDispositivos").append(nuevafila)
                     } 
                 
             }
         });
-    });
+    }
     //
 
     $(document).ready(function() {
 
         cargaDispositivos();
+        cargarOtros();
 
     })
 
@@ -153,12 +256,7 @@
                    // console.log(dataResult);
                    var filas = dataResult.data.length;
             for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de busquedas por id
-                var text = "";
-                var aux1 = "";
-                if (dataResult.data[i].id != null) {
-                    aux1 = dataResult.data[i].id;
-                }
-                    
+                
                     var nuevafila= "<tr><td class='text-center'>" +
                     "<div class='form-check'>"+
                     "<input class='form-check-input' onclick='habilitarModal()' type='checkbox' value='dispositivo' id='"+dataResult.data[i].id+"'>"+
@@ -200,7 +298,7 @@
                                     '<div class="input-group-prepend col-10">'+
                                         '<div class="input-group">'+
                                             '<span class="input-group-text" >Nueva Ubicacion</span>'+
-                                            '<input type="text" id="nuevaUbicacion" name="nuevaUbicacion" class="form-control" autocomplete="off" onkeypress="return ( (event.charCode == 45 )|| (event.charCode >= 48 && event.charCode <= 57)||(event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209))">'+
+                                            '<input type="text" id="nuevaUbicacion'+dataResult.data[i].id+'" name="nuevaUbicacion'+dataResult.data[i].id+'" class="form-control" autocomplete="off" onkeypress="return ( (event.charCode == 45 )|| (event.charCode >= 48 && event.charCode <= 57)||(event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209))">'+
                                         '</div>'+
                                     '</div>'+
                                 '</div>'+
@@ -208,8 +306,8 @@
                             
                             '<div class="modal-footer">'+
                             '<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>'+
-                            '<button class="btn btn-primary" onclick="moverDispositivoRecuperar('+dataResult.data[i].id+')" style="padding-left: 5px">'+
-                                'Aceptar'+
+                            '<button class="btn btn-primary" onclick="moverDispositivoRecuperar('+dataResult.data[i].id+')">'+
+                                'Guardar'+
                             '</button>'+
                             '</div>'+
                         '</form> '+
@@ -249,7 +347,7 @@
                                     '<div class="input-group-prepend col-10">'+
                                         '<div class="input-group">'+
                                             '<span class="input-group-text" >Estado de Diagnostico</span>'+
-                                            "<select id='selectDiagnostico' name='selectDiagnostico' class='form-control' class='btn-block'>"+
+                                            "<select id='selectDiagnostico"+dataResult.data[i].id+"' name='selectDiagnostico"+dataResult.data[i].id+"' class='form-control' class='btn-block'>"+
                                                 "<option selected disabled>Seleccione un Estado</option>"+
                                                 "<option value='Cabezal'>Cabezal</option>"+
                                                 "<option value='PCB'>PCB</option>"+
@@ -276,7 +374,7 @@
             "</div>"+
             "<div class='modal-footer'>"+
             "<button type='button' class='btn btn-danger' id='botones' data-dismiss='modal'>Cancelar</button>"+
-            '<button type="button" class="btn btn-primary" id="btnDiagnostico" name="btnDiagnostico">Guardar</button>'+
+            '<button type="button" class="btn btn-primary" onclick="cambiarDiagnosticoRecuperacion('+dataResult.data[i].id+')">Guardar</button>'+
             "</div>"+
         "</div>"+
         "</div>"+
@@ -286,6 +384,117 @@
                 '<path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>'+
               '</svg>'+
             '</button>'+
+            '<div class="modal fade" id="dispositivoEditar'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                        '<div class="modal-dialog" role="document">'+
+                        '<div class="modal-content">'+
+                            '<div class="modal-header">'+
+                            '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Editar Dispositivo</h5>'+
+                            '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
+                                '<span aria-hidden="true">&times;</span>'+
+                            '</button>'+
+                            '</div>'+
+                            '<div class="modal-body">'+
+                                '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Tipo</span>'+
+                                            '<input type="text" id="" name="" class="form-control text-center" readonly autocomplete="off" value="'+[dataResult.data[i].tipo]+'">'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            "<select id='editSelectDiagnostico"+dataResult.data[i].id+"' name='editSelectDiagnostico' class='form-control' class='btn-block'>"+
+                                                "<option selected disabled>Tipo de Dispositivo</option>"+
+                                                '<option value="HDD">HDD</option>'+
+                                                '<option value="SSD">SSD</option>'+
+                                                '<option value="MS">M2</option>'+
+                                                '<option value="CD/DVD">CD/DVD</option>'+
+                                                '<option value="Unidad">Unidad Flash</option>'+
+                                                '<option value="MEMORY">Tarjeta de Memoria</option>'+
+                                                '<option value="Impresora">Impresora</option>'+
+                                                '<option value="Memoria">Memoria</option>'+
+                                                '<option value="cabezales">herramientas de cambio de cabezales</option>'+
+                                                '<option value="disco">herramientas de disco duro</option>'+
+                                                '<option value="desapilado">herramientas de desapilado de fuerza bruta</option>'+
+                                                '<option value="Laptop">Laptop</option>'+
+                                                '<option value="Notebook">Notebook</option>'+
+                                                '<option value="Otro">Otro(Dispositivo HDD)</option>'+
+                                                '<option value="PC">PC</option>'+
+                                                '<option value="Telefono">Telefono Celular</option>'+
+                                                '<option value="Disco">Disco Blu-ray</option>'+
+                                                '<option value="Tablet">Tablet</option>'+
+                                                '<option value="FDD">FDD</option>'+
+                                            "</select>"+ 
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</br>'+
+                                '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Rol</span>'+
+                                            '<input type="text" id="" name="" class="form-control text-center" readonly autocomplete="off" value="'+[dataResult.data[i].rol]+'">'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            "<select id='rolDiagnostico"+dataResult.data[i].id+"' name='rolDiagnostico' class='form-control' class='btn-block'>"+
+                                                "<option selected disabled>Escoja un Rol</option>"+
+                                                '<option value="Dispositivo a Recuperar">Dispositivo a Recuperar</option>'+
+                                                '<option value="Datos">Datos</option>'+
+                                                '<option value="Donante">Donante</option>'+
+                                            "</select>"+ 
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</br>'+
+                                '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Fabricante</span>'+
+                                            '<input type="text" id="editFabricante'+dataResult.data[i].id+'" name="editFabricante" class="form-control" autocomplete="off" value="'+[dataResult.data[i].fabricante]+'">'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</br>'+
+                                '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Modelo</span>'+
+                                            '<input type="text" id="editModelo'+dataResult.data[i].id+'" name="editModelo" class="form-control" autocomplete="off" value="'+[dataResult.data[i].modelo]+'">'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</br>'+
+                            '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Serial</span>'+
+                                            '<input type="text" id="editSerial'+dataResult.data[i].id+'" name="editSerial" class="form-control" autocomplete="off" value="'+[dataResult.data[i].serial]+'">'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</br>'+
+                                '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Localizacion</span>'+
+                                            '<input type="text" id="editLocalizacion'+dataResult.data[i].id+'" name="editLocalizacion" class="form-control" autocomplete="off" value="'+[dataResult.data[i].localizacion]+'">'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                            
+                            '<div class="modal-footer">'+
+                            '<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>'+
+                            '<button class="btn btn-primary" onclick="actualizarDispositivo('+dataResult.data[i].id+')" >'+
+                                'Actualizar'+
+                            '</button>'+
+                            '</div>'+
+                        '</form> '+
+                        '</div>'+
+                        '</div>'+
+                    ' </div> '+
         
         '<button type="button" class="btn" data-toggle="modal" data-target="#dispositivoEliminar'+dataResult.data[i].id+'">'+
                         '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
@@ -305,16 +514,12 @@
                             '<div class="modal-body">'+
                             '¿Realmente Desea Borrar Este Dispositivo a Recuperar?'+
                             '</div>'+
-                            '<form action="{{url('/eliminarEsteDispositivo/')}}'+'/'+dataResult.data[i].id+'" method="POST" class="d-inline">'+
-                            '@csrf'+
-                            ' @method('DELETE')'+
                             '<div class="modal-footer">'+
                             '<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>'+
-                            '<button class="btn btn-primary" style="padding-left: 5px">'+
+                            '<button class="btn btn-primary" onclick="eliminarDispositivoRecuperar('+dataResult.data[i].id+')" style="padding-left: 5px">'+
                                 'Aceptar'+
                             '</button>'+
                             '</div>'+
-                        '</form> '+
                         '</div>'+
                         '</div>'+
                     ' </div> '+
@@ -358,11 +563,6 @@
                         nuevacabecera+="</tr>";
                         $("#cabeceraClones").append(nuevacabecera)
               for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de busquedas por id
-                var text = "";
-                  var aux1 = "";
-                  if (dataResult.data[i].id != null) {
-                    aux1 = dataResult.data[i].id;
-                  }
                     
                     var nuevafila= "<tr><td id='dato'>" +
                     dataResult.data[i].id + "</td><td>" +
@@ -401,11 +601,6 @@
 
             var filas = dataResult.data.length;
             for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de busquedas por id
-                var text = "";
-                var aux1 = "";
-                if (dataResult.data[i].id != null) {
-                    aux1 = dataResult.data[i].id;
-                }
                     
                     var nuevafila= "<tr><td>" +
                     "<div class='form-check'>"+
@@ -476,14 +671,8 @@
 
             var filas = dataResult.data.length;
                 for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de busquedas por id
-                    var text = "";
-                    var aux1 = "";
-                    if (dataResult.data[i].id != null) {
-                        aux1 = dataResult.data[i].id;
-                    }
-                    //$('#ubicacionClon').val(dataResult.data[i].ubicacion );
-
-                        
+                   
+                      
                         var nuevafila= "<tr><td>" +
                         "<div class='form-check'>"+
                         "<input class='form-check-input' onclick='habilitarModal()' type='checkbox' value='clon' id='"+dataResult.data[i].id+"'>"+
@@ -566,11 +755,7 @@ $("#btnBuscarDonante").on('click',function(){
                         nuevacabecera+="</tr>";
                         $("#cabeceraDonantes").append(nuevacabecera)
               for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de busquedas por id
-                var text = "";
-                  var aux1 = "";
-                  if (dataResult.data[i].id != null) {
-                    aux1 = dataResult.data[i].id;
-                  }
+               
                     
                     var nuevafila= "<tr><td id='dato'>" +
                     dataResult.data[i].id + "</td><td>" +
@@ -610,11 +795,7 @@ $("#btnBuscarDonante").on('click',function(){
 
         var filas = dataResult.data.length;
             for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de busquedas por id
-                var text = "";
-                var aux1 = "";
-                if (dataResult.data[i].id != null) {
-                    aux1 = dataResult.data[i].id;
-                }
+               
                     
                     var nuevafila= "<tr><td>" +
                     "<div class='form-check'>"+
@@ -685,11 +866,7 @@ $("#btnBuscarDonante").on('click',function(){
             
         var filas = dataResult.data.length;
             for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de busquedas por id
-                var text = "";
-                var aux1 = "";
-                if (dataResult.data[i].id != null) {
-                    aux1 = dataResult.data[i].id;
-                }
+                
                     
                     var nuevafila= "<tr><td>" +
                     "<div class='form-check'>"+
@@ -767,29 +944,7 @@ $("#btnBuscarDonante").on('click',function(){
     });
     */
      //guardar diagnostico de la tabla de disp del paciente
-     $('#btnDiagnostico').on('click', function () {
-        
-        var url = $('#selectDiagnostico').val();
-       //console.log(url);
-        $.ajax({
-            url: "/trabajos/nuevo/detalle/guardarDiagnostico",
-            type: "POST",
-            data:{ 
-                "_token": "{{ csrf_token() }}",
-                selectDiagnostico: url,
-                "nombre": "{{$orden_elegida->id}}",
-            },
-            cache: false,
-            dataType: 'json',
-            success: function(dataResult){
-                $('#dispositivoDiagnostico').modal('hide');
-                location.reload(); 
-            //console.log(dataResult);
-
-                
-            }
-        });
-    });
+     
 
     function habilitarModal(){
             const value =  $("input:checkbox:checked").attr('id');
@@ -907,7 +1062,7 @@ $("#btnBuscarDonante").on('click',function(){
 
       function moverDispositivoRecuperar(detalle){
             
-            var loc = $("#nuevaUbicacion").val();
+            var loc = $("#nuevaUbicacion"+detalle).val();
             //console.log(det);
             $.ajax({
                 url: "/trabajos/nuevo/detalle/moverDispositivoRecuperar",
@@ -933,6 +1088,93 @@ $("#btnBuscarDonante").on('click',function(){
                 
             });
         }
+        function cambiarDiagnosticoRecuperacion(id_diagnostico){
+            
+            var loc = $("#nuevaUbicacion").val();
+            var seleccionado = document.getElementById('selectDiagnostico'+id_diagnostico).value;
+            //console.log(seleccionado);
+            $.ajax({
+                url: "/trabajos/nuevo/detalle/guardarDiagnosticoRecuperacion",
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "id": "{{$orden_elegida->id}}",
+                    "seleccionado": seleccionado,
+                    "id_diagnostico": id_diagnostico,
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (dataResult) {
+                    console.log(dataResult);
+                    cargaDispositivos();
+                    $('#dispositivoDiagnostico'+id_diagnostico).modal('hide');
+               
+                }
+                
+            });
+        }
+
+
+        function actualizarDispositivo(id_detalle){
+            
+            var tipo = $("#editSelectDiagnostico"+id_detalle).val();
+            var rol = $("#rolDiagnostico"+id_detalle).val();
+            var fabricante = $("#editFabricante"+id_detalle).val();
+            var modelo = $("#editModelo"+id_detalle).val();
+            var serial = $("#editSerial"+id_detalle).val();
+            var localizacion = $("#editLocalizacion"+id_detalle).val();
+
+            //console.log(tipo,rol,fabricante,modelo,serial,localizacion);
+
+            $.ajax({
+                url: "/trabajos/nuevo/detalle/actualizarDispositivo",
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "id": "{{$orden_elegida->id}}",
+                    "id_detalle": id_detalle,
+                    "tipo": tipo,
+                    "rol": rol,
+                    "fabricante": fabricante,
+                    "modelo": modelo,
+                    "serial": serial,
+                    "localizacion": localizacion,
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (dataResult) {
+                    //console.log(dataResult);
+                    cargaDispositivos();
+                    $('#dispositivoEditar'+id_detalle).modal('hide');
+               
+                }
+                
+            });
+        }
+
+        function eliminarDispositivoRecuperar(id_detalle){
+
+            //console.log(tipo,rol,fabricante,modelo,serial,localizacion);
+
+            $.ajax({
+                url: "/trabajos/nuevo/detalle/eliminarDispositivoRecuperar",
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "id_detalle": id_detalle,
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (dataResult) {
+                    //console.log(dataResult);
+                    cargaDispositivos();
+                    $('#dispositivoEliminar'+id_detalle).modal('hide');
+               
+                }
+                
+            });
+        }
+
 
 
     function eliminarVariosClones(){
@@ -959,12 +1201,8 @@ $("#btnBuscarDonante").on('click',function(){
 
                     var filas = dataResult.data.length;
                 for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de busquedas por id
-                    var text = "";
-                    var aux1 = "";
-                    if (dataResult.data[i].id != null) {
-                        aux1 = dataResult.data[i].id;
-                    }
-                        
+                   
+                    
                         var nuevafila= "<tr><td>" +
                         "<div class='form-check'>"+
                         "<input class='form-check-input' onclick='habilitarModal()' type='checkbox' value='' id='"+dataResult.data[i].id+"'>"+

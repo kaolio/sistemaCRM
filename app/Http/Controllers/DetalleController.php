@@ -39,7 +39,7 @@ class DetalleController extends InventarioController
 
         $datosTabla =  DB::table('detalle_ordens')
                     ->join('orden_trabajos','orden_trabajos.id','=','detalle_ordens.id_trabajos')
-                    ->select('orden_trabajos.diagnostico','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
+                    ->select('detalle_ordens.diagnostico','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
                             'detalle_ordens.serial','detalle_ordens.localizacion','detalle_ordens.id')
                     ->where('detalle_ordens.id_trabajos','=',$_POST["nombre"])
                     ->where('detalle_ordens.rol','=','Dispositivo a Recuperar')
@@ -74,7 +74,7 @@ class DetalleController extends InventarioController
 
         $datosTabla =  DB::table('detalle_ordens')
                     ->join('orden_trabajos','orden_trabajos.id','=','detalle_ordens.id_trabajos')
-                    ->select('orden_trabajos.diagnostico','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
+                    ->select('detalle_ordens.diagnostico','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
                             'detalle_ordens.serial','detalle_ordens.localizacion','detalle_ordens.id')
                     ->where('detalle_ordens.id_trabajos','=',$_POST["nombre"])
                     ->where('detalle_ordens.rol','<>','Dispositivo a Recuperar')
@@ -252,18 +252,13 @@ class DetalleController extends InventarioController
         return redirect('/trabajos/detalle/'.$NotaE->id_trabajos);
     }
 
-    public function eliminarEsteDispositivo($id)
+    public function eliminarDispositivoRecuperar()
     {
-        $estedispo = DB::table('detalle_ordens')
-                    ->select('id_trabajos')
-                    ->where('id',$id)
-                    ->where('rol','=','Dispositivo a Recuperar')
-                    ->get();
 
-        $dispositivo = DetalleOrden::findOrFail($id);
+        $dispositivo = DetalleOrden::findOrFail($_POST["id_detalle"]);
         $dispositivo -> delete();
         
-        return redirect('/trabajos/detalle/'.$estedispo->id_trabajos);
+        return json_encode(array('data'=>true)); 
     }
 
     public function eliminarClon($id)
@@ -318,7 +313,7 @@ class DetalleController extends InventarioController
 
         $datosPacientes =  DB::table('detalle_ordens')
                     ->join('orden_trabajos','orden_trabajos.id','=','detalle_ordens.id_trabajos')
-                    ->select('orden_trabajos.diagnostico','orden_trabajos.nota','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
+                    ->select('detalle_ordens.diagnostico','orden_trabajos.nota','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
                             'detalle_ordens.serial','detalle_ordens.localizacion','detalle_ordens.id')
                     ->where('detalle_ordens.id_trabajos','=',$_POST["nombre"])
                     ->where('detalle_ordens.rol','=','Dispositivo a Recuperar')
@@ -331,7 +326,7 @@ class DetalleController extends InventarioController
 
         $datosOtrosDispositivos =  DB::table('detalle_ordens')
                     ->join('orden_trabajos','orden_trabajos.id','=','detalle_ordens.id_trabajos')
-                    ->select('orden_trabajos.diagnostico','orden_trabajos.nota','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
+                    ->select('detalle_ordens.diagnostico','orden_trabajos.nota','detalle_ordens.tipo','detalle_ordens.rol','detalle_ordens.fabricante','detalle_ordens.modelo',
                             'detalle_ordens.serial','detalle_ordens.localizacion','detalle_ordens.id')
                     ->where('detalle_ordens.id_trabajos','=',$_POST["nombre"])
                     ->where('detalle_ordens.rol','<>','Dispositivo a Recuperar')
@@ -473,22 +468,15 @@ class DetalleController extends InventarioController
  
      }
 
-    public function guardarDiagnostico(){
+    public function guardarDiagnosticoRecuperacion(){
 
-        $diagnostico = DB::table('orden_trabajos')
-                    ->select('*')
-                    ->where('id','=',$_POST["nombre"])
-                    ->first();
+        DB::table('detalle_ordens')
+                    ->where('id_trabajos', $_POST["id"])
+                    ->where('id', $_POST["id_diagnostico"])
+                    ->update(['diagnostico' => $_POST["seleccionado"]]);
 
-            DB::table('orden_trabajos')
-                    ->where('id', $diagnostico->id)
-                    ->update(['diagnostico' => $_POST["selectDiagnostico"]]);
-
-        $diagnosticoCambiado = DB::table('orden_trabajos')
-                        ->select('diagnostico')
-                        ->get();
         
-                return json_encode(array('data'=>$diagnosticoCambiado));
+                return json_encode(array('data'=>true));
                   
     }
 
@@ -601,6 +589,33 @@ class DetalleController extends InventarioController
             return json_encode(array('data'=>$clonesRestantes));
     }
 
+    public function actualizarDispositivo(){
+
+        $tipos = DB::table('detalle_ordens')
+                        ->select('tipo','rol')
+                        ->where('id_trabajos', $_POST["id"])
+                        ->where('id', $_POST["id_detalle"])
+                        ->first();
+
+        $detalle = DetalleOrden::find($_POST["id_detalle"]);
+        if ($_POST["tipo"] != null) {
+            $detalle->tipo = $_POST["tipo"];
+        } else {
+            $detalle->tipo = $tipos->tipo;
+        }
+        if ($_POST["rol"] != null) {
+            $detalle->rol = $_POST["rol"];
+        } else {
+            $detalle->rol = $tipos->rol;
+        }
+        $detalle->fabricante = $_POST["fabricante"];
+        $detalle->modelo = $_POST["modelo"];
+        $detalle->serial = $_POST["serial"];
+        $detalle->localizacion = $_POST["localizacion"];
+        $detalle->update();
+
+        return json_encode(array('data'=>true));
+    }
 
 
     public function obtenerValores()

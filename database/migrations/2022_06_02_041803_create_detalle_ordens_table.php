@@ -22,6 +22,7 @@ class CreateDetalleOrdensTable extends Migration
             $table->string('modelo')->nullable();
             $table->string('serial')->nullable();
             $table->string('localizacion')->nullable();
+            $table->string('diagnostico')->nullable();
             $table->unsignedBigInteger('id_trabajos')->nullable();
             $table->timestamps();
 

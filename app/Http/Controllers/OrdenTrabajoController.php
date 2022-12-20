@@ -127,6 +127,7 @@ class OrdenTrabajoController extends Controller
             $detalle->modelo = $modelo[$i];
             $detalle->serial = $serial[$i];
             $detalle->localizacion = $localizacion[$i];
+            $detalle->diagnostico = "No Actualizado";
             $detalle->id_trabajos = $trabajo->id;
             $detalle->save();
         }

@@ -98,7 +98,7 @@
             Liberar seleccionados
         </button>
 </div>
-
+<br>
 <p class="subtitulo">Dispositivo a Recuperar</p>
     <div class="card">
     <div class="card-body">   
@@ -118,6 +118,7 @@
           </thead>
           <tbody class="table-bordered" id="datosPacientes">
              <tr>
+<<<<<<< HEAD
              <!-- Modal -->
              <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
                  <div class="modal-dialog" role="document">
@@ -168,6 +169,9 @@
                  </div>
              </div> 
                            
+=======
+                
+>>>>>>> 6fbcf682cd657ee5beadf6f01f8f818d2d91b09f
             </tr>
         </tbody>
     </table>
