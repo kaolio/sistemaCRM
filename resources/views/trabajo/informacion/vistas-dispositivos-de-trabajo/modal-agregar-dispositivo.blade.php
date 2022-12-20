@@ -29,7 +29,7 @@
                                                 <input class="form-check-input" type="radio" name="radioNoLabel1" id="radioNoLabel1" value="" aria-label="...">
                                             </div>
                                         </div>
-                                        <span class="input-group-text form-control" style=" background:rgb(29, 145, 195); color: aliceblue">Clonar</span>
+                                        <span class="input-group-text form-control" style=" background:rgb(29, 145, 195); color: aliceblue">Disco a Volcar</span>
                                     </div> 
                                 </a>
                             </li>
@@ -41,7 +41,7 @@
                                                 <input class="form-check-input" type="radio" name="radioNoLabel2" id="radioNoLabel2" value="" aria-label="...">
                                             </div>
                                         </div>
-                                        <span class="input-group-text form-control" style=" background:rgb(29, 145, 195); color: aliceblue">Donar</span>
+                                        <span class="input-group-text form-control" style=" background:rgb(29, 145, 195); color: aliceblue">Disco Donante</span>
                                     </div>
                                 </a>
                             </li>

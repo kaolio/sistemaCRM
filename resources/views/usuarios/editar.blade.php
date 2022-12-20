@@ -9,7 +9,166 @@
     <title>Document</title>
 </head>
 
+<BR>
 
+<div class="card">
+    <div class="card-header">
+        <h4 class="text-center  "style ="font-family:serif,new time roman;" > <b> EDITAR USUARIO </b> </h4>
+    </div>
+    <div class="card-body">
+
+        <form action="{{ url('usuario/editar/'.$user->id)}}" method="post">
+            {{csrf_field()}}
+
+            <div class="row justify-content-center">
+                <div class="col-5">
+                    <div class="input-group">
+                        <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Nombre</span>
+                        <input class="form-control" type="text" name="name" id="name" 
+                        placeholder="Nombre Completo" value="{{ $user->name }}" onblur="comprobarName()"
+                        onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32)) ">
+                    </div>
+                    <span id="estadoName"></span>
+                </div>
+                <div class="col-5">
+                    <div class="input-group">
+                        <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Correo Electronico</span>
+                        <input class="form-control" type="text" name="email" id="email"  
+                        Placeholder="example@gmail.com" value="{{ $user->email }}" onkeyup="comprobarEmail()">
+                    </div>
+                    <span id="estadoEmail"></span>
+                </div>
+            </div>
+            
+             <br>
+            <div class="row justify-content-center">
+                    <div class="col-5">
+                        <div class="input-group">
+                            <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Ciudad / Provincia / C.P CIF</span>
+                            <input type="text" id="ciudad" name="ciudad" class="form-control" 
+                            required onblur="comprobarName()" value="{{ $user->ciudad }}" Placeholder="Ciudad / Provincia" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46))">
+                        </div>
+                    <span></span>
+                    </div>
+                    <div class="col-5">
+                        <div class="input-group">
+                        <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Telefono</span>
+                        <input type="text" id="telefono" name="telefono" class="form-control" 
+                        required onblur="comprobarName()" value="{{ $user->telefono }}" Placeholder="Telefono" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) )">
+                        </div>
+                        <span></span>
+                    </div>
+            </div>
+             <br>
+            <div class="row justify-content-center">
+                <div class="col-5">
+                    <div class="input-group">
+                        <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Razon Social</span>
+                        <input type="text" id="razonSocial" name="razonSocial" class="form-control" 
+                        required onkeyup="validarDireccion()" value="{{ $user->razonSocial }}" Placeholder="Razon Social" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46))">
+                    </div>
+                <span></span>
+                </div>
+                <div class="col-5">
+                    <div class="input-group">
+                    <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Direccion Social</span>
+                    <input type="text" id="direccionSocial" name="direccionSocial" class="form-control" 
+                    required onkeyup="validarDireccion()" value="{{ $user->direccionSocial }}" Placeholder="Direccion Social" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46))">
+                    </div>
+                    <span></span>
+                </div>
+            </div>
+             <br>
+            <div class="row justify-content-center">
+                <div class="col-5">
+                    <div class="input-group">
+                        <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Nombre Comercial</span>
+                        <input type="text" id="nombreComercial" name="nombreComercial" class="form-control" 
+                        required onkeyup="validarDireccion()" value="{{ $user->nombreComercial }}" Placeholder="Nombre Comercial" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46))">
+                    </div>
+                <span></span>
+                </div>
+                <div class="col-5">
+                    <div class="input-group">
+                    <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Direccion Comercial</span>
+                    <input type="text" id="direccionComercial" name="direccionComercial" class="form-control" 
+                    required onkeyup="validarDireccion()" value="{{ $user->direccionComercial }}" Placeholder="Direccion Comercial" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46))">
+                    </div>
+                    <span></span>
+                </div>
+            </div>
+             <br>
+            <div class="row justify-content-center">
+                <div class="col-5">
+                    <div class="input-group">
+                        <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Contraseña</span>
+                            <input class="form-control " type="text" name="password" id="password"  
+                            Placeholder="Ingrese el nombre del password"  onkeyup="comprobarPassword()">
+                    </div>
+                    <span id="estadoPassword"></span>
+                </div>
+                <div class="col-5">
+                    <div class="input-group">
+                    <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Horario Comercial</span>
+                    <input type="text" id="horarioComercial" name="horarioComercial" class="form-control" 
+                    required onkeyup="validarDireccion()" value="{{ $user->horarioComercial }}" Placeholder="Horario Comercial" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46))">
+                    </div>
+                    <span></span>
+                </div>
+            </div>
+             <br>
+            <div class="row justify-content-center">
+                <div class="col-5">
+                    <div class="input-group">
+                        <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Confirmar Contraseña</span>
+                        <input class="form-control" type="text" name="confirm-password" id="confirm-password" 
+                        Placeholder="vuelva a ingresar la contraseña">
+                    </div>
+                    <span id="estadoConfirmarContraseña"></span>
+                </div>
+                <div class="col-5">
+                    <div class="input-group">
+                    <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Persona de Contacto</span>
+                    <input type="text" id="personaContacto" name="personaContacto" class="form-control" 
+                    required onkeyup="validarDireccion()" value="{{ $user->personaContacto }}" Placeholder="Persona Contacto" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46))">
+                    </div>
+                </div>
+           </div>
+          <br>
+          @if (Auth::user()->id != 1)
+            <div class="row justify-content-center">
+                <div class="col-5">
+                    <div class="input-group">
+                        <span  class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Seleccione un Rol</span>
+                        <select name="roles" id="roles" onblur="validarRoles()" onchange="validarRoles()"
+                        class="form-control" >
+                        <option selected value="Elige un Rol" disabled>Elige un Rol</option>
+                            @foreach ($roles as $rol)
+                            @if ($userRole == $rol)
+                            <option value="{{$rol}}" selected>{{$rol}}</option>
+                            @else
+                            <option value="{{$rol}}">{{$rol}}</option>
+                            @endif
+                            @endforeach
+                        </select>               
+                    </div>
+                    <span id="estadoRol"></span>
+                </div>
+            </div>
+            @endif
+                </br>
+                 </br>
+                <div class="text-center">
+                    <a href="{{url('/usuarios')}}"class="btn btn-danger">Cancelar</a>
+                    <input type="submit" class="btn btn-primary my-2 my-sm-0" value="Actualizar">
+                </div>
+
+        </form>
+    </div> 
+  </div>
+
+
+{{--
     <BR>
 
         <div class="row justify-content-center">
@@ -77,7 +236,7 @@
         </div>
     </div>
             </div>
-        </div>
+        </div>--}}
     
         </html>
 @endsection

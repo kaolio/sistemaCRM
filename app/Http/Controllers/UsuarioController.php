@@ -144,6 +144,14 @@ class UsuarioController extends Controller
             $user = User::find($id);
             $user->name = request('name');
             $user->email = request('email');
+            $user->ciudad = request('ciudad');
+            $user->telefono = request('telefono');
+            $user->razonSocial = request('razonSocial');
+            $user->direccionSocial = request('direccionSocial');
+            $user->nombreComercial = request('nombreComercial');
+            $user->direccionComercial = request('direccionComercial');
+            $user->horarioComercial = request('horarioComercial');
+            $user->personaContacto = request('personaContacto');
             $user->update();
     
             //DB::table('model_has_roles')

@@ -92,7 +92,7 @@ function validarCorreo() {
                           "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
                           "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ingrese de 3 a 50 caracteres</h5></span>");
                 } else {
-                    if ($("#direccion").val().length > 50) {
+                    if ($("#direccion").val().length > 150) {
                         $("#estadoDireccion").html(
                             "<span  class='menor'><h5 class='menor'>&nbsp;&nbsp;Ingrese menos de 50 caracteres</h5></span>");
                     } else {

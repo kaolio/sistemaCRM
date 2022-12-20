@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 @section('content')
-<h2 align="center"><strong>DISCOS CLONADOS EN USO</strong></h2>
+<h2 align="center"><strong>DISCOS VOLCADOS EN USO</strong></h2>
 <br>
 <div class="container">
     <button type="button" class="btn btn-primary" id="botones" data-toggle="modal" data-target="#exampleModal">

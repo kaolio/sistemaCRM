@@ -205,31 +205,38 @@ class DetalleController extends InventarioController
 
     public function guardarEstado(){
 
+        try {
+            
             DB::table('orden_trabajos')
                     ->where('id','=', $_POST["nombre"])
                     ->update(['estado' => $_POST["selectEstado"]]);
 
-        $estadoDesigando = DB::table('orden_trabajos')
-                    ->select('*')
-                    ->where('estado','=', $_POST["selectEstado"])
-                    ->get();
+                    return json_encode(array('data'=>true));
 
-                    return json_encode(array('data'=>$estadoDesigando));
+        } catch (\Throwable $th) {
+            
+                 return json_encode(array('data'=>false));
+        }
 
     }
 
     public function guardarPrioridad(){
 
-             DB::table('orden_trabajos')
+        try {
+            
+            DB::table('orden_trabajos')
                     ->where('id','=', $_POST["nombre"])
                     ->update(['prioridad' => $_POST["selectPrioridad"]]);
 
-        $prioridadDesignada = DB::table('orden_trabajos')
-                    ->select('*')
-                    ->where('prioridad','=',$_POST["selectPrioridad"])
-                    ->get();
+        
 
-                    return json_encode(array('data'=>$prioridadDesignada));
+                    return json_encode(array('data'=>true));
+
+        } catch (\Throwable $th) {
+            
+               return json_encode(array('data'=>false));
+        }
+             
     }
  
     public function eliminarNota($id)

@@ -174,7 +174,7 @@
      </div>
     </div>
 
-<p class="subtitulo">Clones de Trabajo</p>
+<p class="subtitulo">Disco Volcado</p>
     <div class="card">
         <div class="card-body">
             <table class="table table-responsive">
@@ -201,7 +201,7 @@
     </div>
 
 
-<p class="subtitulo">Donantes de Trabajo</p>
+<p class="subtitulo">Donante de Trabajo</p>
     <div class="card">
     <div class="card-body">
         <table class="table table-responsive">
@@ -228,7 +228,7 @@
     </div>    
 
 
-<p class="subtitulo">Otros Dispositivos de los Clientes</p>
+<p class="subtitulo">Otros Dispositivos del Cliente</p>
     <div class="card">
     <div class="card-body">
         <table class="table table-responsive">

@@ -26,7 +26,7 @@
         });
     });
     //
-    $('#selectEstado').on('click', function () {
+    $('#selectEstado').on('change', function () {
 
     var url = $('#selectEstado').val();
     //console.log(url);
@@ -41,13 +41,22 @@
             cache: false,
             dataType: 'json',
             success: function(dataResult){
-            //console.log(dataResult);
-
+           // console.log(dataResult);
+                
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Estado Cambiado!!',
+            showConfirmButton: false,
+            timer: 1500
+            })
          }
          });
     });
+
+    
     //
-    $('#selectPrioridad').on('click', function () {
+    $('#selectPrioridad').on('change', function () {
 
     var url = $('#selectPrioridad').val();
     //  console.log(url);
@@ -63,6 +72,13 @@
             dataType: 'json',
             success: function(dataResult){
             //console.log(dataResult);
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Prioridad Cambiada!!',
+            showConfirmButton: false,
+            timer: 1500
+            })
 
           }
         });

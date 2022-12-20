@@ -416,44 +416,7 @@ $(document).ready(function(){
                 '</button>'+
             '</a>'+
 
-            '<button type="button" class="btn" style="color: rgb(0, 26, 255);" data-toggle="modal" data-target="#exampleModal05">'+
-                        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-move" viewBox="0 0 16 16">'+
-                        '<path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z"/>'+
-                        '</svg>'+
-                    '</button>'+
-                    '<div class="modal fade" id="exampleModal05" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
-                        '<div class="modal-dialog" role="document">'+
-                        '<div class="modal-content">'+
-                            '<div class="modal-header">'+
-                            '<h5 class="modal-title" id="exampleModalLabel">Mover Ubicacion</h5>'+
-                            '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
-                                '<span aria-hidden="true">&times;</span>'+
-                            '</button>'+
-                            '</div>'+
-                            '<div class="modal-body">'+
-                            '<h5 class="modal-title w-100 text-center">Ubicacion Actual:</h5>'+
-                            '</br>'+
-                                '<div class="row justify-content-center">'+
-                                    '<div class="input-group-prepend col-10">'+
-                                        '<div class="input-group">'+
-                                            '<span class="input-group-text" >Nueva Ubicacion</span>'+
-                                            '<input type="text" id="ubicacion" name="ubicacion" class="form-control" autocomplete="off" onkeypress="return ( (event.charCode == 45 )|| (event.charCode >= 48 && event.charCode <= 57)||(event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209))">'+
-                                        '</div>'+
-                                    '</div>'+
-                                '</div>'+
-                            '</div>'+
-                            
-                            '<div class="modal-footer">'+
-                            '<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>'+
-                            '<button class="btn btn-success" onclick="moverDisco()" style="padding-left: 5px">'+
-                                'Aceptar'+
-                            '</button>'+
-                            '</div>'+
-                        '</form> '+
-                        '</div>'+
-                        '</div>'+
-                    ' </div> '+
-
+            
                   "</td></tr>"
                   
                 $("#myTable").append(nuevafila)

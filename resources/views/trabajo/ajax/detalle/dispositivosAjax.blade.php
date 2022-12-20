@@ -325,7 +325,7 @@
             }
          });
     };
-    //
+    // 
     // ajax de buscador de clones
   $("#btnBuscarClon").on('click',function(){
     $('#tablaClones > tbody').empty();

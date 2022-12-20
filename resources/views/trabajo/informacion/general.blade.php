@@ -153,7 +153,7 @@
                          <div class="card"> 
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <p class="text-left" style="position: relative;">Clon de Trabajo </p>
+                                    <p class="text-left" style="position: relative;">Disco Volcado </p>
                                     <table class="table table-striped table-hover">
                                         <thead class="table-primary table-striped table-bordered text-white" >
                                         <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
@@ -316,6 +316,7 @@
           
     </div>
     <!--/General-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>

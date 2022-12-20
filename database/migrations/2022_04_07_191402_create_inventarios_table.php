@@ -30,6 +30,7 @@ class CreateInventariosTable extends Migration
             $table->String('diagnostico')->nullable();
             $table->String('rol')->nullable();
             $table->String('tipo')->nullable();
+            $table->String('estado')->nullable();
             $table->timestamps();
         });
     }

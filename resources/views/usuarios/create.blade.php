@@ -135,7 +135,7 @@
 
     </script>
     
-
+ 
 
 <br>
 
@@ -183,7 +183,7 @@
                         <div class="input-group">
                         <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Telefono</span>
                         <input type="text" id="telefono" name="telefono" class="form-control" 
-                        required onkeyup="validarDireccion()" Placeholder="Telefono" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46))">
+                        required onkeyup="validarDireccion()" Placeholder="Telefono" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) )">
                         </div>
                         <span></span>
                     </div>
@@ -287,7 +287,7 @@
                 </br>
                  </br>
     <div class="text-center">
-        <button class="btn btn-success "  id="sig" name="sig" >Agregar</button>
+        <button class="btn btn-success "  id="sig" name="sig" >Guardar</button>
     </div>
 
         </form>
