@@ -135,7 +135,7 @@
                                     '</div>'+
                                     '<div class="input-group-prepend col-10">'+
                                         '<div class="input-group">'+
-                                            "<select id='rolDiagnosticoOtro"+dataResult.data[i].id+"' name='rolDiagnosticoOtro' class='form-control' class='btn-block'>"+
+                                            "<select id='rolDiagnosticOtro"+dataResult.data[i].id+"' name='rolDiagnosticOtro' class='form-control' class='btn-block'>"+
                                                 "<option selected disabled>Escoja un Rol</option>"+
                                                 '<option value="Dispositivo a Recuperar">Dispositivo a Recuperar</option>'+
                                                 '<option value="Datos">Datos</option>'+
@@ -209,7 +209,7 @@
                             '</button>'+
                             '</div>'+
                             '<div class="modal-body">'+
-                            '¿Realmente Desea Borrar Este Dispositivo a Recuperar?'+
+                            '¿Realmente Desea Borrar Este Dispositivo?'+
                             '</div>'+
                             '<div class="modal-footer">'+
                             '<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>'+
@@ -1088,6 +1088,30 @@ $("#btnBuscarDonante").on('click',function(){
                 
             });
         }
+        function moverDispositivOtro(detalle){
+            
+            var loc = $("#nuevaUbicacionOtros"+detalle).val();
+            //console.log(det);
+            $.ajax({
+                url: "/trabajos/nuevo/detalle/moverOtroDispositivo",
+                type: "POST",
+                data: {
+                "_token": "{{ csrf_token() }}",
+                'loc':loc,
+                "detalle": detalle,
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (dataResult) {
+                    console.log(dataResult);
+                    cargarOtros();
+                    $('#dispositivoMoverOtros'+detalle).modal('hide');
+                
+                }
+                
+            });
+        }
+
         function cambiarDiagnosticoRecuperacion(id_diagnostico){
             
             var loc = $("#nuevaUbicacion").val();
@@ -1152,6 +1176,42 @@ $("#btnBuscarDonante").on('click',function(){
             });
         }
 
+        function actualizarDispositivOtro(id_detalle){
+            
+            var tipo = $("#editSelectDiagnosticOtro"+id_detalle).val();
+            var rol = $("#rolDiagnosticOtro"+id_detalle).val();
+            var fabricante = $("#editFabricanteOtro"+id_detalle).val();
+            var modelo = $("#editModelOtro"+id_detalle).val();
+            var serial = $("#editSerialOtro"+id_detalle).val();
+            var localizacion = $("#editLocalizacionOtro"+id_detalle).val();
+
+            //console.log(tipo,rol,fabricante,modelo,serial,localizacion);
+
+            $.ajax({
+                url: "/trabajos/nuevo/detalle/actualizarOtroDispositivo",
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "id_detalle": id_detalle,
+                    "tipo": tipo,
+                    "rol": rol,
+                    "fabricante": fabricante,
+                    "modelo": modelo,
+                    "serial": serial,
+                    "localizacion": localizacion,
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (dataResult) {
+                    //console.log(dataResult);
+                    cargarOtros();
+                    $('#dispositivoEditarOtro'+id_detalle).modal('hide');
+               
+                }
+                
+            });
+        }
+
         function eliminarDispositivoRecuperar(id_detalle){
 
             //console.log(tipo,rol,fabricante,modelo,serial,localizacion);
@@ -1175,7 +1235,28 @@ $("#btnBuscarDonante").on('click',function(){
             });
         }
 
+        function eliminarDispositivoRecuperarOtro(id_detalle){
 
+            //console.log(tipo,rol,fabricante,modelo,serial,localizacion);
+
+            $.ajax({
+                url: "/trabajos/nuevo/detalle/eliminarOtroDispositivo",
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "id_detalle": id_detalle,
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (dataResult) {
+                    //console.log(dataResult);
+                    cargarOtros();
+                    $('#dispositivoEliminarOtro'+id_detalle).modal('hide');
+               
+                }
+                
+            });
+        }
 
     function eliminarVariosClones(){
 

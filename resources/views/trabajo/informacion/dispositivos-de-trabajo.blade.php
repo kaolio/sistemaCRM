@@ -191,7 +191,7 @@
                     <th class="col-md-2 p-1 text-center">Modelo</th>
                     <th class="col-md-2 p-1 text-center">Serie</th>
                     <th class="col-md-2 p-1 text-center">Ubicación</th>
-                    <th class="col-md-1 p-1 text-center" style="width: 250px">Nota</th>
+                    <th class="col-md-1 p-1 text-center" >Nota</th>
                     <th class="col-md-1 p-1 text-center" style="width: 400px"></th>
                 </tr>
             </thead>

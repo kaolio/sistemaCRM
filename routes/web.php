@@ -129,11 +129,13 @@ Route::post('/trabajos/nuevo/detalle/datosDonantesBuscados',[DetalleController::
 Route::post('/trabajos/nuevo/detalle/moverUbicacion',[DetalleController::class,'ubicacionNueva']);
 Route::post('/trabajos/nuevo/detalle/eliminarVariosClones',[DetalleController::class,'eliminarVariosC']);//eliminar varios cheks
 Route::post('/trabajos/nuevo/detalle/moverDispositivoRecuperar',[DetalleController::class,'moverDispositivoRecuperar']);
-Route::post('/trabajos/nuevo/detalle/moverOtroDispositivo',[DetalleController::class,'moverOtroDispositivo']);
+Route::post('/trabajos/nuevo/detalle/moverOtroDispositivo',[DetalleController::class,'moverDispositivOtro']);
 Route::post('/trabajos/nuevo/detalle/guardarNuevoDispositivo',[DetalleController::class,'guardarNuevoDispositivo']);
 Route::post('/trabajos/nuevo/detalle/actualizarDispositivo',[DetalleController::class,'actualizarDispositivo']);
+Route::post('/trabajos/nuevo/detalle/actualizarOtroDispositivo',[DetalleController::class,'actualizarDispositivOtro']);
 Route::post('/trabajos/nuevo/detalle/obtenerValores',[DetalleController::class,'obtenerValores']);
 Route::post('/trabajos/nuevo/detalle/eliminarDispositivoRecuperar',[DetalleController::class,'eliminarDispositivoRecuperar']);
+Route::post('/trabajos/nuevo/detalle/eliminarOtroDispositivo',[DetalleController::class,'eliminarDispositivOtro']);
 //Archivos adjuntos
 Route::post('/trabajos/detalle/subir', [DetalleController::class,'subirArchivo']);//ruta para subir archivo a drive
 

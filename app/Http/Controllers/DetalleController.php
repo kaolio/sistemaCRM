@@ -254,6 +254,15 @@ class DetalleController extends InventarioController
         return json_encode(array('data'=>true)); 
     }
 
+    public function eliminarDispositivOtro()
+    {
+
+        $dispositivo = DetalleOrden::findOrFail($_POST["id_detalle"]);
+        $dispositivo -> delete();
+        
+        return json_encode(array('data'=>true)); 
+    }
+
     public function eliminarClon($id)
     {
         $datosClon = DB::table('clones')
@@ -525,23 +534,18 @@ class DetalleController extends InventarioController
                 ->where('rol','=','Dispositivo a Recuperar')
                 ->update(['localizacion' => $_POST["loc"]]);
 
-        $detalle = DB::table('detalle_ordens')
-                        ->select('*')
-                        ->where('id',$_POST["detalle"])
-                        ->get();
 
-         return json_encode(array('data'=>$detalle));
+         return json_encode(array('data'=>true));
     }
 
-    public function moverOtroDispositivo(){
+    public function moverDispositivOtro(){
 
             DB::table('detalle_ordens')
-                    ->where('id_trabajos', $_POST["nombre"])
-                    ->where('rol','<>','Dispositivo a Recuperar')
-                    ->update(['localizacion' => $_POST["localizacion"]]);
+                    ->where('id', $_POST["detalle"])
+                    ->update(['localizacion' => $_POST["loc"]]);
 
+         return json_encode(array('data'=>true));
 
-        return json_encode(array('data'=>$_POST["localizacion"]));
     }
 
     public function guardarNuevoDispositivo(){
@@ -610,6 +614,32 @@ class DetalleController extends InventarioController
         return json_encode(array('data'=>true));
     }
 
+    public function actualizarDispositivOtro(){
+
+        $tipos = DB::table('detalle_ordens')
+                        ->select('tipo','rol')
+                        ->where('id', $_POST["id_detalle"])
+                        ->first();
+
+        $detalle = DetalleOrden::find($_POST["id_detalle"]);
+        if ($_POST["tipo"] != null) {
+            $detalle->tipo = $_POST["tipo"];
+        } else {
+            $detalle->tipo = $tipos->tipo;
+        }
+        if ($_POST["rol"] != null) {
+            $detalle->rol = $_POST["rol"];
+        } else {
+            $detalle->rol = $tipos->rol;
+        }
+        $detalle->fabricante = $_POST["fabricante"];
+        $detalle->modelo = $_POST["modelo"];
+        $detalle->serial = $_POST["serial"];
+        $detalle->localizacion = $_POST["localizacion"];
+        $detalle->update();
+
+        return json_encode(array('data'=>true));
+    }
 
     public function obtenerValores()
     {
