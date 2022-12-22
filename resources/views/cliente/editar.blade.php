@@ -16,7 +16,7 @@
                     <div class="row">
                       <div class="col-9">
                         <label for="nombre" style="justify-content-center;">Nombre del cliente</label>
-                        <input type="text" name="nombreCliente" id="nombreCliente" required value="{{$cliente->nombreCliente}}" class="form-control" onkeyup="validarNombre()" placeholder="Nombre" tabindex="1" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)) ">
+                        <input type="text" name="nombreCliente" id="nombreCliente" required value="{{$cliente->nombreCliente}}" class="form-control" onkeyup="validarNombre()" placeholder="Nombre" tabindex="1" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209)) ">
                         <span id="estadoNombre"></span>
                       </div>
                       <div class="col-3">
@@ -34,7 +34,7 @@
                         <div class="input-group">
                           <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Dirección</span>
                         <input type="text" id="direccion" name="direccion" class="form-control" 
-                          required  value="{{$cliente->calle}}" onkeyup="validarDireccion()" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46))">
+                          required  value="{{$cliente->calle}}" onkeyup="validarDireccion()" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46) || (event.charCode == 241) || (event.charCode == 209))">
                         </div>
                         <span id="estadoDireccion"></span>
                       </div>
@@ -59,7 +59,7 @@
                         <div class="input-group">
                           <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Codigo Postal</span>
                         <input type="text" id="postal" name="postal" class="form-control" 
-                          required value="{{$cliente->codigoPostal}}" onkeyup="" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
+                          required value="{{$cliente->codigoPostal}}" onkeyup="" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 44) || (event.charCode == 46) || (event.charCode == 35) || (event.charCode == 47) || (event.charCode == 45) || (event.charCode == 124) || (event.charCode == 42))">
                         </div>
                       </div>
                       <div class="col-3">
@@ -187,7 +187,7 @@
 
               <div class="form-group">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
-                <a href="/clientes" class="btn btn-danger my-2 my-sm-0">Regresar</a>
+                <a href="/clientes" class="btn btn-danger my-2 my-sm-0">Cancelar</a>
 
                 <button class="btn btn-success my-2 my-sm-0" type="submit" >Actualizar</button>
               </div> 
