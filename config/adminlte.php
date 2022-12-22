@@ -322,7 +322,7 @@ return [
             'text' => 'Dashboard',
             'url'  => 'home',
             'icon' => 'fas fa-fw fa-save',
-            'can' => 'ver-trabajo',
+            'can' => 'ver-rol',
         ],
         [
             'text'    => 'Orden de Trabajo  ',

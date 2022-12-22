@@ -67,7 +67,10 @@
                            </div>
                             <span id="estadoCliente"></span>
                             <br>
-                            <a href="{{ url('/cliente/nuevo')}}" class="card-link">Nuevo Cliente</a> 
+                            @can('crear-cliente')
+                                <a href="{{ url('/cliente/nuevo')}}" class="card-link">Nuevo Cliente</a>
+                            @endcan
+                             
                           </div>
                       </div>
                       </div>
@@ -158,7 +161,7 @@
                                     <div class="input-group">
                                       <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Fabricante</span>
                                         <input type="text" class="form-control" name="fabricante[]"id="fabricante" onkeyup="mayus(this);" 
-                                        onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))">
+                                        onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))">
                                     </div>
                                     <span id="estadoFabricante"></span>
                                       
@@ -167,7 +170,7 @@
                                     <div class="input-group">
                                       <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Modelo</span>
                                         <input type="text" class="form-control" onkeyup="mayus(this);" name="modelo[]"id="modelo" 
-                                        onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 45) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32))" >
+                                        onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 45) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))" >
                                     </div>
                                     <span id="estadoModelo"></span>
                                   </td>
@@ -175,7 +178,7 @@
                                     <div class="input-group">
                                       <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Serial</span>
                                         <input type="text" class="form-control " name="serial[]"id="serial" onkeyup="mayus(this);" 
-                                        onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 45) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32))" >
+                                        onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 45) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))" >
                                     </div>
                   
                                   </td>
@@ -183,7 +186,7 @@
                                     <div class="input-group">
                                       <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Localizacion</span>
                                         <input type="text" class="form-control " name="localizacion[]"id="localizacion" onkeyup="mayus(this);" 
-                                        onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 45) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32))" >
+                                        onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 45) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))" >
                                     </div>
                   
                                   </td>

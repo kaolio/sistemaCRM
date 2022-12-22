@@ -39,7 +39,7 @@
             <label for="inputPassword4">Modelo <strong>*</strong></label>
             <input type="text" class="form-control" id="modelo" name="modelo" placeholder="Ingrese el modelo" autocomplete="off"
             value="{{ old('modelo') }}" onkeyup="validarModelo()" required
-            onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+            onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))">
             <span id="estadoModelo"></span>
           </div>
         </div>
@@ -48,14 +48,14 @@
             <label for="inputCity">Número de Serie <strong>*</strong></label>
             <input type="text" class="form-control" id="numero_de_serie" name="numero_de_serie" autocomplete="off"
             placeholder="Ingrese número de serie" value="{{ old('numero_de_serie') }}" onkeyup="validarSerie()" autocomplete="off" required
-            onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+            onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))">
             <span id="estadoSerie"></span>
           </div>
           <div class="form-group col-md-4">
             <label for="inputCity">Firmware <strong>*</strong></label>
             <input type="text" class="form-control" id="firmware" name="firmware" autocomplete="off"
             placeholder="Ingrese el firmware" value="{{ old('firmware') }}" onkeyup="validarFirmware()" required
-            onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+            onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))">
             <span id="estadoFirmware"></span>
           </div>
           <div class="form-group col-md-4">
@@ -74,7 +74,6 @@
                 <option value="Datos">Datos</option>
                 <option value="Disco a Volcar">Disco A Volcar</option>
                 <option value="Donante">Donante</option>
-                <option value="Dispositivo a Recuperar">Dispositivo a Recuperar</option>
               </select>
               <span id="estadoManufactura"></span>
             </div>
@@ -108,13 +107,13 @@
             <label for="inputCity">PCB <strong>*</strong></label>
             <input type="text" class="form-control" id="pbc" name="pbc" placeholder="Ingrese la placa del disco" autocomplete="off"
             value="{{ old('pbc') }}" onkeyup="validarPbc()" required
-            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))">
             <span id="estadoPbc"></span>
           </div>
           <div class="form-group col-md-4">
             <label for="inputCity">Ubicación</label>
               <input type="text" class="form-control" id="ubicacion" name="ubicacion" placeholder="Ingrese la ubicación" autocomplete="off"
-              onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+              onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))">
             </div>
           </div>
       <div class="form-row">
@@ -124,12 +123,12 @@
         </div>
         <div class="form-group col-md-4">
           <label for="inputCity">Cabezal</label>
-          <input type="text" class="form-control" id="cabecera" name="cabecera" autocomplete="off" placeholder="Ingrese el cabezal del disco" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+          <input type="text" class="form-control" id="cabecera" name="cabecera" autocomplete="off" placeholder="Ingrese el cabezal del disco" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))">
         </div>
         <div class="form-group col-md-4">
           <label for="inputCity">Información del Cabezal</label>
           <input type="text" class="form-control" id="info_de_cabecera" name="info_de_cabecera" autocomplete="off"
-          placeholder="Ingrese información acerca del cabezal" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+          placeholder="Ingrese información acerca del cabezal" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))">
         </div>
         <span class="mb-4"><strong>*</strong> Campos Obligatorios</span>
       </div>

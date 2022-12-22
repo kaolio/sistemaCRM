@@ -358,10 +358,14 @@ class DetalleController extends InventarioController
                         ->orWhere('numero_de_serie','=',$_POST["serieClon"])
                         ->orWhere('capacidad','=',$_POST["tamañoClon"])
                         ->orWhere('pbc','=',$_POST["pcbClon"])
+                        ->having('estado','=','Disponible')
                         ->get();
+                
+                            return json_encode(array('data'=>$recuperarDatosClon));
 
-                        return json_encode(array('data'=>$recuperarDatosClon));
-    }
+
+                    
+    } 
 
     public function agregarBusquedaClon(){
 
@@ -391,6 +395,10 @@ class DetalleController extends InventarioController
                 $clon->nota = $inventario->nota;
                 $clon->save();
 
+                DB::table('inventarios')
+                        ->where('id', $inventario->id)
+                        ->update(['estado' => 'Ocupado']);
+
                 $clones = DB::table('clones')
                             ->select('*')
                             ->where('id_trabajos','=',$_POST["nombre"])
@@ -419,6 +427,7 @@ class DetalleController extends InventarioController
                         ->orWhere('numero_de_serie','=',$_POST["serieDonante"])
                         ->orWhere('capacidad','=',$_POST["tamañoDonante"])
                         ->orWhere('pbc','=',$_POST["pcbDonante"])
+                        ->having('estado','=','Disponible')
                         ->get();
 
                         return json_encode(array('data'=>$recuperarDatos));
@@ -448,6 +457,10 @@ class DetalleController extends InventarioController
                 $donante->id_trabajos = $trabajo->id;
                 $donante->id_inventarios = $_POST["idDonanteBuscado"];
                 $donante->save();
+
+                DB::table('inventarios')
+                        ->where('id', $inventario->id)
+                        ->update(['estado' => 'Ocupado']);
 
                 $donantes = DB::table('donantes')
                             ->select('*')

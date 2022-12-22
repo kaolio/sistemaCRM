@@ -120,6 +120,7 @@ class InventarioController extends Controller
         $inventario->diagnostico = request('diagnostico');
         $inventario->rol = request('rol');
         $inventario->tipo = request('tipo');
+        $inventario->estado = "Disponible";
       
         $inventario->save();
         return redirect('inventario');

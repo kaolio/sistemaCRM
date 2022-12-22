@@ -556,7 +556,7 @@
             success: function (dataResult) {
                 $("#cabeceraClones").empty();
               //console.log(dataResult);
-              var filas = dataResult.data.length;
+              var filas = dataResult.data.length; 
               var nuevacabecera = "<tr>"
                         nuevacabecera+="<th>"+"ID"+"</th><th>"+"Fabricante"+"</th><th>"+"Modelo"+"</th>"
                                           +"<th>"+"Serie"+"</th><th>"+"Tamaño"+"</th><th>"+"Ubicacion"+"<th></th>";
@@ -747,6 +747,7 @@ $("#btnBuscarDonante").on('click',function(){
             cache: false,
             dataType: 'json',
             success: function (dataResult) {
+                $("#cabeceraDonantes").empty();
               //console.log(dataResult);
               var filas = dataResult.data.length;
               var nuevacabecera = "<tr>"

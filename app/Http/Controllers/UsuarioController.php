@@ -146,6 +146,8 @@ class UsuarioController extends Controller
             $user->email = request('email');
             $user->ciudad = request('ciudad');
             $user->telefono = request('telefono');
+            $user->provincia = request('provincia');
+            $user->codigoPostal = request('codigoPostal');
             $user->razonSocial = request('razonSocial');
             $user->direccionSocial = request('direccionSocial');
             $user->nombreComercial = request('nombreComercial');

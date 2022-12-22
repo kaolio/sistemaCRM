@@ -19,7 +19,8 @@
    }
    
   </style>
-<div class="card">
+  @can('administrador')
+      <div class="card">
     
     <div class="card-body">
 
@@ -119,6 +120,8 @@
         </div>
     <!--Fin Tabla-->
 </div>
+  @endcan
+
 <script>
   $(document).ready(function() {
 
