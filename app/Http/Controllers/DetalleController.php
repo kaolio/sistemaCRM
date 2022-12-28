@@ -270,31 +270,15 @@ class DetalleController extends InventarioController
         return json_encode(array('data'=>true)); 
     }
 
-    public function eliminarClon($id)
+    public function eliminarDispositivoDonante()
     {
-        $datosClon = DB::table('clones')
-                    ->select('id_trabajos')
-                    ->where('id',$id)
-                    ->first();
 
-        $clon = Clones::findOrFail($id);
-        $clon -> delete();
+        $dispositivo = Donantes::findOrFail($_POST["id_donante"]);
+        $dispositivo -> delete();
         
-        return redirect('/trabajos/detalle/'.$datosClon->id_trabajos);
+        return json_encode(array('data'=>true)); 
     }
 
-    public function eliminarDonante($id)
-    {
-        $datoDonante = DB::table('donantes')
-                    ->select('id_trabajos')
-                    ->where('id',$id)
-                    ->first();
-
-        $donante = Donantes::findOrFail($id);
-        $donante -> delete();
-        
-        return redirect('/trabajos/detalle/'.$datoDonante->id_trabajos);
-    }
 
     public function eliminarOtroDispositivo($id)
     {
@@ -407,12 +391,7 @@ class DetalleController extends InventarioController
                         ->where('id', $inventario->id)
                         ->update(['estado' => 'Ocupado']);
 
-                $clones = DB::table('clones')
-                            ->select('*')
-                            ->where('id_trabajos','=',$_POST["nombre"])
-                            ->get();
-
-                return json_encode(array('data'=>$clones));
+                return json_encode(array('data'=>true));
     }
 
     public function mostrarClonesBuscados(){
@@ -471,12 +450,7 @@ class DetalleController extends InventarioController
                         ->where('id', $inventario->id)
                         ->update(['estado' => 'Ocupado']);
 
-                $donantes = DB::table('donantes')
-                            ->select('*')
-                            ->where('id_trabajos','=',$_POST["nombre"])
-                            ->get();
-
-                return json_encode(array('data'=>$donantes));
+                return json_encode(array('data'=>true));
     }
 
     public function mostrarDonantesBuscados(){
