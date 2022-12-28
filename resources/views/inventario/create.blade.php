@@ -72,7 +72,7 @@
               <select name="rol" class="form-control" class="btn-block" required>
                 <option value="">Elija el Rol</option>
                 <option value="Datos">Datos</option>
-                <option value="Disco a Volcar">Disco A Volcar</option>
+                <option value="Disco Para Volcado">Disco Para Volcado</option>
                 <option value="Donante">Donante</option>
               </select>
               <span id="estadoManufactura"></span>
@@ -115,6 +115,10 @@
               <input type="text" class="form-control" id="ubicacion" name="ubicacion" placeholder="Ingrese la ubicación" autocomplete="off"
               onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))">
             </div>
+            <div class="form-group col-md-4">
+              <label for="inputCity">Fecha de Disco</label>
+                <input type="date" class="form-control" id="fechaDisco" name="fechaDisco" placeholder="Ingrese la ubicación" autocomplete="off">
+              </div>
           </div>
       <div class="form-row">
         <div class="form-group col-md-4">

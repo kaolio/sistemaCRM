@@ -163,7 +163,7 @@
                     <div class="input-group">
                         <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Correo Electronico</span>
                         <input class="form-control " type="text" name="email" id="email"  autocomplete="off" 
-                        Placeholder="example@gmail.com" value="{{ old('email') }}" onblur="validarCorreo()" onkeypress="return ((event.charCode == 241)|| (event.charCode == 209)) " >
+                        Placeholder="example@gmail.com" value="{{ old('email') }}" onblur="validarCorreo()"  >
                     </div>
                     <span id="estadoEmail"></span>
                 </div>

@@ -18,8 +18,8 @@
           <th class="column6 text-center">Acciones &nbsp;&nbsp;&nbsp;</th>
         </tr>
       </thead>
-      <tbody class="table-bordered" id="myTable">
-        
+      <tbody class="table-bordered" id="myTable"> 
+
           <tr>
             
           </tr>

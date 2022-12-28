@@ -23,6 +23,7 @@ class CreateInventariosTable extends Migration
             $table->String('capacidad')->nullable(); 
             $table->String('pbc')->nullable();
             $table->String('ubicacion')->nullable();
+            $table->String('fechaDisco')->nullable();
             $table->String('factor_de_forma')->nullable();
             $table->String('nota')->nullable();
             $table->String('cabecera')->nullable();

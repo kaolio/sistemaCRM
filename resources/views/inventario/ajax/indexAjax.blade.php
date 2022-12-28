@@ -1005,7 +1005,7 @@ $(function(){
   });
 
 
-//FILTRAR ROL DEL DISPOSITIVO
+//FILTRAR ROL DEL DISPOSITIVO 
   $("#grado").on('change',function(){
     $("#estado").val('todos');
     $("#ingeniero").val('todos');
@@ -1060,6 +1060,7 @@ $(function(){
                 }else{
                   text = " ";
                 }
+
               var nuevafila= "<tr><td>" +
                 dataResult.data[i].id + "</td><td>" +
                 dataResult.data[i].manufactura  + "</td><td>" +
