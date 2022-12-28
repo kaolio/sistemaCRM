@@ -114,8 +114,6 @@ Route::post('/trabajos/nuevo/detalle/datosDispositivos',[DetalleController::clas
 Route::delete('/trabajos/detalle/{id}',[DetalleController::class,'eliminarNota']);// eliminar nota
 Route::post('/trabajos/nuevo/detalle/busquedaRapida',[DetalleController::class,'busquedaRapida']);//busqueda de notas 
 //dispositivos de trabajo
-Route::delete('/eliminarClones/{id}',[DetalleController::class,'eliminarClon']);
-Route::delete('/eliminarDonantes/{id}',[DetalleController::class,'eliminarDonante']);
 Route::delete('/eliminarOtrosDispositivos/{id}',[DetalleController::class,'eliminarOtroDispositivo']);
 //Route::post('/trabajos/detalle/guardarDiagnostico',[DetalleController::class,'guardarDiagnostico']); // ruta de guardar diagnostico
 Route::post('/trabajos/nuevo/detalle/datosPacientes',[DetalleController::class,'datosPacientes']); //ruta de orden de trabajos en (dispositivos de trabajo)
@@ -136,6 +134,8 @@ Route::post('/trabajos/nuevo/detalle/actualizarOtroDispositivo',[DetalleControll
 Route::post('/trabajos/nuevo/detalle/obtenerValores',[DetalleController::class,'obtenerValores']);
 Route::post('/trabajos/nuevo/detalle/eliminarDispositivoRecuperar',[DetalleController::class,'eliminarDispositivoRecuperar']);
 Route::post('/trabajos/nuevo/detalle/eliminarOtroDispositivo',[DetalleController::class,'eliminarDispositivOtro']);
+Route::post('/trabajos/nuevo/detalle/eliminarClones',[DetalleController::class,'eliminarDispositivoClon']);
+Route::post('/trabajos/nuevo/detalle/eliminarDonantes',[DetalleController::class,'eliminarDispositivoDonante']);
 //Archivos adjuntos
 Route::post('/trabajos/detalle/subir', [DetalleController::class,'subirArchivo']);//ruta para subir archivo a drive
 
