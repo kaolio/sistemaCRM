@@ -1,5 +1,13 @@
 <script>
 
+    $(document).ready(function() {
+
+        cargaDispositivos();
+        cargarClones();
+        cargarDonantes();
+        cargarOtros();
+
+    });
 
     //lista de otros dispositivos en: dispositivos-de-trabajo/tabla otros disp. del cliente 
     function cargarOtros() {
@@ -230,12 +238,7 @@
     }
     //
 
-    $(document).ready(function() {
-
-        cargaDispositivos();
-        cargarOtros();
-
-    })
+    
 
      //AJAX DE LA TABLA DE dispositivos/dispositivos de pacientes
      function cargaDispositivos() {
@@ -653,7 +656,7 @@
         });$('#exampleModalMover').modal('hide');
     });
     //
-    $(document).ready(function() {
+    function cargarClones(){
 
         var url = "{{URL('datosClones')}}";
         $.ajax({
@@ -722,7 +725,7 @@
                     } 
                 }
             });
-    });
+    }
     //
     // ajax de buscador de donante
 $("#btnBuscarDonante").on('click',function(){
@@ -850,7 +853,7 @@ $("#btnBuscarDonante").on('click',function(){
 
     });
     //
-    $(document).ready(function() {
+    function cargarDonantes(){
 
     var url = "{{URL('datosDonantes')}}";
     $.ajax({
@@ -918,7 +921,7 @@ $("#btnBuscarDonante").on('click',function(){
             } 
             }
         });
-    });
+    }
     //
     /*/mover ubicacion
     $('#btnMoverUbicacion').on('click', function () {
