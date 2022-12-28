@@ -128,7 +128,6 @@
             success: function(dataResult){
             //console.log(dataResult);
                 var resultData = dataResult.data;
-                var bodyData = '';
 
                 $.each(resultData,function(index,row){
                     datosClones+="<tr>"

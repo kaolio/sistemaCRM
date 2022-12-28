@@ -214,6 +214,10 @@
               <input type="text" class="form-control" id="ubicacion" name="ubicacion" value="{{$inventario->ubicacion}}" autocomplete="off"
               onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))">
           </div> 
+          <div class="form-group col-md-4">
+            <label for="inputCity">Fecha de Disco</label>
+              <input type="date" class="form-control" id="fechaDisco" name="fechaDisco"  value="{{$inventario->fechaDisco}}" autocomplete="off">
+            </div>
       </div>
       <div class="form-row">
           <div class="form-group col-md-4">
@@ -232,6 +236,7 @@
           </div>
           <span class="mb-4"><strong>*</strong> Campos Obligatorios</span>
       </div>
+      <br>
         <div class="form-group">
           <a href="{{url('/inventario')}}" class="btn btn-danger my-2 my-sm-0">Regresar</a>
           <button type="submit" class="btn btn-success my-2 my-sm-0">Actualizar</button>

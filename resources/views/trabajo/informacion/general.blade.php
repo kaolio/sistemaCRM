@@ -169,10 +169,6 @@
                                         </thead>
                                         <tbody id="datosClones" class="table-bordered">
                                             
-                                            <tr>
-                                        
-                                            
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -199,10 +195,7 @@
                                         </thead>
                                         <tbody id="datosDonantes" class="table-bordered">
                                             
-                                            <tr>
-                                        
-                                            
-                                            </tr>
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -228,10 +221,6 @@
                                         </thead>
                                         <tbody id="datosDispositivos" class="table-bordered">
                                             
-                                            <tr>
-                                        
-                                            
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

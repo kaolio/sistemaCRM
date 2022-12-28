@@ -113,6 +113,7 @@ class InventarioController extends Controller
         $inventario->capacidad = request('capacidad');
         $inventario->pbc = request('pbc');
         $inventario->ubicacion = request('ubicacion');
+        $inventario->fechaDisco = request('fechaDisco');
         $inventario->factor_de_forma = request('factor_de_forma');
         $inventario->nota = request('nota');
         $inventario->cabecera = request('cabecera');
