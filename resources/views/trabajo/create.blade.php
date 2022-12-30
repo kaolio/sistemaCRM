@@ -45,8 +45,9 @@
                                 <select name="prioridad" class="form-control" class="btn-block" required>
                                   <option disabled>Escoja la prioridad</option>
                                   <option value="Normal">Normal</option>
-                                  <option value="Alta">Alta</option>
+                                  <option value="Prioritario">Prioritario</option>
                                   <option value="Urgente">Urgente</option>
+                                  <option value="Inmediato">Inmediato</option>
                                 </select>
                             </div>
                           </div>
