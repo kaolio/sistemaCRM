@@ -2,45 +2,7 @@
 @section('content')
 
 <style>
-  .tftable {
-  font-size: 12px;
-  color: #333333;
-  width: 180%;
-  border-width: 1px;
-  border-color: transparent;
-  border-collapse: collapse;
-}
-
-.tftable th {
-  font-size: 12px;
-  background-color: transparent;
-  border-width: 1px;
-  padding: 8px;
-  border-style: solid;
-  border-color: transparent;
-  text-align: left;
-}
-
-.tftable tr {
-  background-color: transparent;
-}
-
-.tftable td {
-  font-size: 12px;
-  border-width: 1px;
-  padding: 8px;
-  border-style: solid;
-  border-color: transparent;
-}
-
-.tftable tr:hover {
-  background-color: #ffffff;
-}
-
-.tftable {
-  zoom: 50 %;
-  transform: scale(calc(/3));
-}
+ 
 
 </style>
 
@@ -117,12 +79,12 @@
                           </thead>
                           <tbody id="tabla">
                               <span id="estadoBoton"></span>
-                              <tr id="columna-0">
+                              <tr>
                                   <td>
                                       <div class="input-group">
                                         <span class="input-group-text" id="inputGroup-sizing-sm" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo</span>
                                           <select name="tipo[]" id="tipo" class="form-control"   >
-                                            <option disabled >Tipo de Dispositivo</option>
+                                            <option disabled selected >Tipo de Dispositivo</option>
                                             <option value="HDD">HDD</option>
                                             <option value="SSD">SSD</option>
                                             <option value="MS">M2</option>
@@ -150,7 +112,7 @@
                                       <div class="input-group">
                                         <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Rol</span>
                                           <select name="rol[]" id="rol" class="form-control">
-                                            <option disabled>Escoja un rol</option>
+                                            <option disabled selected>Escoja un rol</option>
                                             <option value="Dispositivo a Recuperar">Dispositivo a Recuperar</option>
                                             <option value="Datos">Datos</option>
                                             <option value="Donante">Donante</option>
@@ -166,38 +128,52 @@
                                     <span id="estadoFabricante"></span>
                                       
                                   </td>
-                                  <td>
-                                    <div class="input-group">
-                                      <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Modelo</span>
-                                        <input type="text" class="form-control" onkeyup="mayus(this);" name="modelo[]"id="modelo" 
-                                        onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 45) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))" >
-                                    </div>
-                                    <span id="estadoModelo"></span>
-                                  </td>
-                                  <td>
-                                    <div class="input-group">
-                                      <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Serial</span>
-                                        <input type="text" class="form-control " name="serial[]"id="serial" onkeyup="mayus(this);" 
-                                        onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 45) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))" >
-                                    </div>
-                  
-                                  </td>
-                                  <td>
-                                    <div class="input-group">
-                                      <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Localizacion</span>
-                                        <input type="text" class="form-control " name="localizacion[]"id="localizacion" onkeyup="mayus(this);" 
-                                        onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 45) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))" >
-                                    </div>
-                  
-                                  </td>
-                                  <td class='borrar'>
-                                    <button class='btn btn-icon btn-danger' type='button' id='deletRow' name='deletRow'>
-                                    <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>
-                                    <path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'/>
-                                    <path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/>
-                                    </svg>
-                                    </button>
-                                  </td>
+                                  
+                              </tr>
+                              <tr>
+                                <td>
+                                  <div class="input-group">
+                                    <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Modelo</span>
+                                      <input type="text" class="form-control" onkeyup="mayus(this);" name="modelo[]"id="modelo" 
+                                      onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 45) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))" >
+                                  </div>
+                                  <span id="estadoModelo"></span>
+                                </td>
+                                <td>
+                                  <div class="input-group">
+                                    <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Serial</span>
+                                      <input type="text" class="form-control " name="serial[]"id="serial" onkeyup="mayus(this);" 
+                                      onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 45) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))" >
+                                  </div>
+                
+                                </td>
+                                <td>
+                                  <div class="input-group">
+                                    <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Capacidad</span>
+                                      <input type="text" class="form-control " name="capacidad[]"id="capacidad" onkeyup="mayus(this);" placeholder="GB, TB, PB"
+                                      onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 45) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))" >
+                                  </div>
+                
+                                </td>
+                               
+                              </tr>
+                              <tr>
+                                <td>
+                                  <div class="input-group">
+                                    <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Localizacion</span>
+                                      <input type="text" class="form-control " name="localizacion[]"id="localizacion" onkeyup="mayus(this);" 
+                                      onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 45) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))" >
+                                  </div>
+                
+                                </td>
+                                <td class='borrar'>
+                                  <button class='btn btn-icon btn-danger' type='button' id='deletRow' name='deletRow'>
+                                  <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>
+                                  <path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'/>
+                                  <path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/>
+                                  </svg>
+                                  </button>
+                                </td>
                               </tr>
                   
                           </tbody>

@@ -279,18 +279,13 @@ class DetalleController extends InventarioController
         return json_encode(array('data'=>true)); 
     }
 
-
-    public function eliminarOtroDispositivo($id)
+    public function eliminarDispositivoClon()
     {
-        $otroDispo = DB::table('detalle_ordens')
-                    ->select('id_trabajos')
-                    ->where('id',$id)
-                    ->first();
 
-        $dispositivo = DetalleOrden::findOrFail($id);
+        $dispositivo = Clones::findOrFail($_POST["id_clon"]);
         $dispositivo -> delete();
         
-        return redirect('/trabajos/detalle/'.$otroDispo->id_trabajos);
+        return json_encode(array('data'=>true)); 
     }
 
 

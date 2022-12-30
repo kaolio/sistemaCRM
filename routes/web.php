@@ -113,7 +113,7 @@ Route::post('/trabajos/nuevo/detalle/datosDonantes',[DetalleController::class,'d
 Route::post('/trabajos/nuevo/detalle/datosDispositivos',[DetalleController::class,'datosDispositivos']); // ruta de tabla dispositivos
 Route::delete('/trabajos/detalle/{id}',[DetalleController::class,'eliminarNota']);// eliminar nota
 Route::post('/trabajos/nuevo/detalle/busquedaRapida',[DetalleController::class,'busquedaRapida']);//busqueda de notas 
-//dispositivos de trabajo
+//dispositivos de trabajo 
 Route::delete('/eliminarOtrosDispositivos/{id}',[DetalleController::class,'eliminarOtroDispositivo']);
 //Route::post('/trabajos/detalle/guardarDiagnostico',[DetalleController::class,'guardarDiagnostico']); // ruta de guardar diagnostico
 Route::post('/trabajos/nuevo/detalle/datosPacientes',[DetalleController::class,'datosPacientes']); //ruta de orden de trabajos en (dispositivos de trabajo)
