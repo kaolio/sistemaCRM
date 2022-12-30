@@ -114,7 +114,7 @@ class DetalleController extends InventarioController
             $orden_elegida = DB::table('orden_trabajos')
                                     ->join('clientes','clientes.id','=','orden_trabajos.id_cliente')
                                     ->join('users','users.id','=','orden_trabajos.asignado')
-                                    ->select('clientes.nombreCliente','clientes.vat','clientes.calle','clientes.codigoPostal','clientes.nombreCiudad',
+                                    ->select('clientes.nombreCliente','clientes.cif','clientes.calle','clientes.codigoPostal','clientes.provincia',
                                     'clientes.pais','clientes.nota','users.name','orden_trabajos.id','orden_trabajos.informacion','orden_trabajos.datosImportantes')
                                     ->where('orden_trabajos.id','=',$id)
                                     ->first(); 

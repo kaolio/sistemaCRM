@@ -34,6 +34,7 @@
 <body>
   <h2 align="center">REPORTE DE DISCO</h2>
     {{-- <img src="{{public_path('imagenes/logo.jpg')}}" class="text-align-left " width="200px "> --}}
+    <br>
     <div  style="position: absolute; top: 40 px;left: 250px; margin-botom:20px;">
             Sitio Web: &nbsp;&nbsp; www.irecovery.com <br/>
             E-mail: &nbsp;&nbsp;&nbsp; usuario@irecovery.com <br>

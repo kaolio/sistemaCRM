@@ -39,6 +39,8 @@ class ClienteController extends Controller
                         ->select('*')
                         ->where('id_user', Auth::user()->id)
                         ->where('nombreCliente', 'LIKE', '%'.$busqueda.'%')
+                        ->orWhere('cif', 'LIKE', '%'.$busqueda.'%')
+                        ->orWhere('telefono', 'LIKE', '%'.$busqueda.'%')
                         ->orderBy('id','asc')
                         ->paginate(10);
         }else{
@@ -49,6 +51,8 @@ class ClienteController extends Controller
                         ->select('*')
                         ->where('id_user', Auth::user()->id)
                         ->where('nombreCliente', 'LIKE', '%'.$busqueda.'%')
+                        ->orWhere('cif', 'LIKE', '%'.$busqueda.'%')
+                        ->orWhere('telefono', 'LIKE', '%'.$busqueda.'%')
                         ->orderBy('id','asc')
                         ->paginate(10);
 
@@ -84,13 +88,13 @@ class ClienteController extends Controller
     {
         $datoCliente = new Cliente;
         $datoCliente->nombreCliente = $request->get('nombreCliente');
-        $datoCliente->vat = $request->get('vat');
+        $datoCliente->cif = $request->get('cif');
         $datoCliente->calle = $request->get('direccion');
         $datoCliente->numero = $request->get('numero');
-        $datoCliente->apt = $request->get('apt');
+        $datoCliente->telefono = $request->get('telefono');
         $datoCliente->codigoPostal = $request->get('postal');
-        $datoCliente->pak = $request->get('pak');
-        $datoCliente->nombreCiudad = $request->get('ciudad');
+        $datoCliente->poblacion = $request->get('poblacion');
+        $datoCliente->provincia = $request->get('provincia');
         $datoCliente->pais = $request->get('pais');
         $datoCliente->idioma = $request->get('idioma');
         $datoCliente->nota = $request->get('nota');
@@ -178,13 +182,13 @@ class ClienteController extends Controller
         $datoCliente = Cliente::findOrFail($id);
 
         $datoCliente->nombreCliente = $request->get('nombreCliente');
-        $datoCliente->vat = $request->get('vat');
+        $datoCliente->cif = $request->get('cif');
         $datoCliente->calle = $request->get('direccion');
         $datoCliente->numero = $request->get('numero');
-        $datoCliente->apt = $request->get('apt');
+        $datoCliente->telefono = $request->get('telefono');
         $datoCliente->codigoPostal = $request->get('postal');
-        $datoCliente->pak = $request->get('pak');
-        $datoCliente->nombreCiudad = $request->get('ciudad');
+        $datoCliente->poblacion = $request->get('poblacion');
+        $datoCliente->provincia = $request->get('provincia');
         $datoCliente->pais = $request->get('pais');
         $datoCliente->idioma = $request->get('idioma');
         $datoCliente->nota = $request->get('nota');

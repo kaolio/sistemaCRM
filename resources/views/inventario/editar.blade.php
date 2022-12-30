@@ -239,7 +239,7 @@
       <br>
         <div class="form-group">
           <a href="{{url('/inventario')}}" class="btn btn-danger my-2 my-sm-0">Regresar</a>
-          <button type="submit" class="btn btn-success my-2 my-sm-0">Actualizar</button>
+          <button type="submit" class="btn btn-PRIMARY my-2 my-sm-0">Actualizar</button>
           
         </div>
       </div>

@@ -48,7 +48,7 @@
                 <select name="grado" id="grado" class="form-control">
                   <option value="todos">Todos</option>
                   <option value="Dispositivo a Recuperar">Dispositivo a Recuperar</option>
-                  <option value="Disco a Volcar">Disco a Volcar</option>
+                  <option value="Disco Para Volcado">Disco Para Volcado</option>
                   <option value="Donante">Donante</option>
                   <option value="Datos">Datos</option>
                 </select>

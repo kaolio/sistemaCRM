@@ -1,5 +1,6 @@
 @extends('adminlte::page')
 @section('content')
+
 <style>
    .table-responsive{
    font-size: 14px;

@@ -32,36 +32,36 @@
   <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
     <tr>
       <th class="text-center">Nombre</th>
-      <th class="text-center">VAT</th>
       <th class="text-center">Direccion</th>
+      <th class="text-center">CIF</th>
       <th class="text-center">Numero</th>
-      <th class="text-center">Apt</th>
       <th class="text-center">CodigoPostal</th>
-      <th class="text-center">PAK</th>
-      <th class="text-center">Ciudad</th>
+      <th class="text-center">Poblacion</th>
+      <th class="text-center">Provincia</th>
       <th class="text-center">Pais</th>
       <th class="text-center">Idioma</th>
+      <th class="text-center">Fecha</th>
       <th class="text-center">Nota</th>
-      <th class="text-center" style="width: 15%">Acciones</th>
+      <th class="text-center" style="width: 10%">Acciones</th>
     </tr>
   </thead>
   <tbody>
     @foreach ($cliente as $cliente)
       <tr>
         <td >{{$cliente->nombreCliente}}</td>
-        <td class="text-center">{{$cliente->vat}}</td>
         <td class="text-center">{{$cliente->calle}}</td>
+        <td class="text-center">{{$cliente->cif}}</td>
         <td class="text-center">{{$cliente->numero}}</td>
-        <td class="text-center">{{$cliente->apt}}</td>
         <td class="text-center">{{$cliente->codigoPostal}}</td>
-        <td class="text-center">{{$cliente->pak}}</td>
-        <td class="text-center">{{$cliente->nombreCiudad}}</td>
+        <td class="text-center">{{$cliente->poblacion}}</td>
+        <td class="text-center">{{$cliente->provincia}}</td>
         <td class="text-center">{{$cliente->pais}}</td>
         <td class="text-center">{{$cliente->idioma}}</td>
+        <td class="text-center">{{$cliente->created_at}}</td>
         <td class="text-center">{{$cliente->nota}}</td>
         <td style="width: 10%">
 
-          <div style="text-align: center;width:150px">
+          <div style="text-align: center;width:90px">
             
             {{-- EDITAR --}}
           <a href="{{ url('/cliente/editar/'.$cliente->id)}}">
@@ -90,12 +90,12 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Eliminar Cliente</h5>
+                  <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Cliente</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-title w-100 text-center">
                   ¿Realmente Desea Borrar el Cliente?
                 </div>
                 <form action="{{url('/producto/'.$cliente->id)}}" method="POST">

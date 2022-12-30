@@ -31,6 +31,7 @@ class User extends Authenticatable
         'telefono',
         'provincia',
         'codigoPostal',
+        'cif',
         'razonSocial',
         'direccionSocial',
         'nombreComercial',

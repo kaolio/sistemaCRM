@@ -103,15 +103,6 @@
                                 <!--Donar-->
                                 <div class="tab-pane" id="donar">
                                     <div class="donar">
-                                        <div class="input-group mt-2">
-                                            <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Donar para </span>
-                                            <select name="selectDonante" id="selectDonante" class="form-controlrgb(29, 145, 195)" class="btn-block">
-                                                <option value="">Elija la opción</option>
-                                                <option value="Dispositivo a Recuperar">Dispositivo a Recuperar</option>
-                                                <option value="Datos">Datos</option>
-                                                <option value="Donante">Donante</option>
-                                              </select>
-                                        </div>
                                             <div class="input-group mt-2">
                                                 <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">ID Interno</span>
                                                 <input type="text" class="form-control" id="idInternoDonante">

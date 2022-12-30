@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('telefono')->nullable();
             $table->string('provincia')->nullable();
             $table->string('codigoPostal')->nullable();
+            $table->string('cif')->nullable();
             $table->string('razonSocial')->nullable();
             $table->string('direccionSocial')->nullable();
             $table->string('nombreComercial')->nullable();

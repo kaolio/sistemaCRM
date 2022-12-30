@@ -198,13 +198,20 @@
                     </div>
                 <span></span>
                 </div>
-                <div class="col-5">
+                <div class="col-3">
                     <div class="input-group">
-                    <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Codigo Postal CIF</span>
+                    <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Codigo Postal</span>
                     <input type="text" id="codigoPostal" name="codigoPostal" class="form-control" 
                     required onkeyup="validarDireccion()" Placeholder="Codigo Postal" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 44) || (event.charCode == 46) || (event.charCode == 35) || (event.charCode == 47) || (event.charCode == 45) || (event.charCode == 124) || (event.charCode == 42))">
                     </div>
                     <span></span>
+                </div>
+                <div class="col-2">
+                    <div class="input-group">
+                         <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">CIF</span>
+                          <input type="text" id="cif" name="cif" class="form-control" Placeholder="CIF" onkeyup="mayus(this);"
+                              required onkeyup="" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57))">
+                    </div>
                 </div>
         </div>
          <br>
