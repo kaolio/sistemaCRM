@@ -117,6 +117,7 @@ class OrdenTrabajoController extends Controller
         $fabricante = request('fabricante');
         $modelo = request('modelo');
         $serial = request('serial');
+        $capacidad = request('capacidad');
         $localizacion = request('localizacion');
 
         for ($i=0; $i < sizeOf($tipo); $i++) { 
@@ -126,6 +127,7 @@ class OrdenTrabajoController extends Controller
             $detalle->fabricante = $fabricante[$i];
             $detalle->modelo = $modelo[$i];
             $detalle->serial = $serial[$i];
+            $detalle->capacidad = $capacidad[$i];
             $detalle->localizacion = $localizacion[$i];
             $detalle->diagnostico = "No Actualizado";
             $detalle->id_trabajos = $trabajo->id;
