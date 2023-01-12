@@ -53,6 +53,13 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         ],
 
+        'imagenes' => [
+            'driver' => 'local',
+            'root' => public_path().'/caso',
+            'url' => env('APP_URL').'/public',
+            'visibility' => 'public',
+        ],
+
         'google' => [
             'driver' => 'google',
             'clientId' => env('GOOGLE_DRIVE_CLIENT_ID'),

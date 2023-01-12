@@ -2,7 +2,10 @@
 @section('content')
 
 <style>
- 
+  .boton{
+    position: absolute;
+    right: 2%;
+  }
 
 </style>
 
@@ -13,7 +16,7 @@
   <div class="card-body">
     <body>
       
-        <form action="{{url('/trabajo/nuevo')}}" method="POST">
+        <form action="{{url('/trabajo/nuevo')}}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class='container-fluid'>
                 <div class="card">
@@ -206,6 +209,7 @@
                       <textarea class="embed-responsive form-control " style="resize: none;padding-left: 20px;padding-top: 20px" autocomplete="off" name="dato" id="dato" cols="140" rows="4"></textarea>
 
                     </div>
+                    
                 </div>
 
                 <div class="card" >
@@ -213,8 +217,16 @@
                     <label style="font-size: 16px;">Nota</label>
                     <br>
                     <textarea class="embed-responsive form-control " style="resize: none;padding-left: 20px;padding-top: 20px" autocomplete="off" name="nota" id="nota" cols="140" rows="4"></textarea>
-
                   </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <label>Imagen:</label>
+                  <input type="file" class="form-control" name="imagen[]" multiple id="imagen" maxlength="256" placeholder="Imagen">
+                  <br>
+                  <div class="row" id="resto_form" style="margin-left: 1%"></div>
+                </div>
               </div>
                 
                 <br>
@@ -228,8 +240,85 @@
   </div>
 </div>
 
+
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 
 <script src="{{ asset('js/trabajo/create.js')}}"></script>
 <link rel="stylesheet" href="{{ URL::asset('estilos/style.css') }} ">
+<script>
+
+if ($('#cliente').val() != "") {
+    $('#cliente').prop('readonly', true);
+  }
+
+  $('#cliente').keyup(function() {
+      var query = $(this).val();
+      console.log(query);
+      if (query != '') {
+          $.ajax({
+              url: '/autocompletarCliente',
+              type: 'POST',
+              data: {
+                "_token": "{{ csrf_token() }}",
+                  query: query,
+              },
+              success: function(data) {
+                  $('#codigoDatalist').fadeIn();
+                  $('#codigoDatalist').html(data);
+              }
+          
+          });
+      }
+  });
+
+
+
+
+  var contador = 0;
+  function readURL(input) {
+    //console.log( numero);
+    
+    
+    for (let i = 0; i < input.files.length; i++) {
+      
+      $('#resto_form').append('<div  id="resto_form'+contador+'" class="card anuncio" style="width: 350px; height: 140px; background: transparent">'
+                      +'<span class="boton"  onclick="eliminarImagen('+contador+')">'
+                      +'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" class="bi bi-trash" viewBox="0 0 448 512"><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm88 200H296c13.3 0 24 10.7 24 24s-10.7 24-24 24H152c-13.3 0-24-10.7-24-24s10.7-24 24-24z"/></svg>'
+                      +'</span>'
+                      +'</div>&nbsp;&nbsp;&nbsp;&nbsp;');
+
+      //$('#resto_form'+contador).append('<div id="img'+contador+'" class="card" style="width: 350px"></div>');
+
+      
+      $('#resto_form'+contador).append(`<img id="img`+contador+`" width="350px" height="140px" align="left">`); //Asignamos el src dinámicamente a un img dinámico también
+      addImg(input.files[i],contador);
+      //reader.readAsDataURL(input.files[0]);
+      //reader.readAsDataURL(input.files[i]);
+      contador = contador+1;
+    }
+
+  }
+
+  function addImg(input,cont) {
+      console.log(input.files);
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        // Asignamos el atributo src a la tag de imagen
+        //$('#imagenmuestra').attr('src', e.target.result);
+        var result = e.target.result;
+        $('#img'+cont).attr('src', e.target.result);
+      };
+      reader.readAsDataURL(input);
+  }
+
+  // El listener va asignado al input
+  $("#imagen").change(function() {
+    readURL(this);
+  });
+
+  function eliminarImagen(cont) {
+    $('#resto_form'+cont).remove();
+  }
+</script>
+
 @endsection

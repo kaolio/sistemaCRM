@@ -7,11 +7,14 @@ use App\Models\OrdenTrabajo;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
 use App\Models\DetalleOrden;
+use App\Models\Imagen;
 use App\Models\Roles;
 use PDF;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel; 
 
 class OrdenTrabajoController extends Controller
@@ -77,7 +80,6 @@ class OrdenTrabajoController extends Controller
      */
     public function store(Request $request, Roles $roles)
     {
-
        
         $posicion_coincidencia = strpos($request->get('cliente'), ',');
         $cliente = substr($request->get('cliente'), 0, $posicion_coincidencia);
@@ -105,7 +107,6 @@ class OrdenTrabajoController extends Controller
         $datoTrabajo->password = $acceso;
         $datoTrabajo->save();
         
-
         $trabajo = DB::table('orden_trabajos')
                 ->select('id')
                 ->where('bandera','=',"0")
@@ -133,6 +134,20 @@ class OrdenTrabajoController extends Controller
             $detalle->id_trabajos = $trabajo->id;
             $detalle->save();
         }
+
+        $file = $request->file('imagen');
+
+        for ($i=0; $i < sizeof($file) ; $i++) { 
+            $nombre =  time()."_".$file[$i]->getClientOriginalName();//obtenemos el nombre del archivo
+
+            $ima = new Imagen();
+            $ima->nombre = $nombre;
+            $ima->id_trabajo = $trabajo->id;
+            $ima->save();
+            
+            Storage::disk('imagenes')->put($nombre, File::get($file[$i]));//indicamos que queremos guardar un nuevo archivo en el disco local
+        } 
+
 
         DB::table('orden_trabajos')
                 ->where('id', $trabajo->id)
@@ -248,7 +263,7 @@ class OrdenTrabajoController extends Controller
       foreach($data as $row)
       {
        $output .= '
-       <option>'.$row->nombreCliente.', '.$row->calle.' '.$row->numero.', '.$row->codigoPostal.' '.$row->nombreCiudad.'</option>
+       <option>'.$row->nombreCliente.', '.$row->calle.' '.$row->numero.', '.$row->codigoPostal.' '.$row->pais.'</option>
        ';
       }
       $output .= '</datalist>';

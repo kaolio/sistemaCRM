@@ -1,4 +1,6 @@
 <script>
+
+
     function eliminarVarios(){
     var seleccionados = $("input:checkbox:checked");
     var arreglo = [];
