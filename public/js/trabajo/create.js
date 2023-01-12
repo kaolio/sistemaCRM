@@ -1,28 +1,6 @@
 
   //console.log($('#cliente').val());
-  if ($('#cliente').val() != "") {
-    $('#cliente').prop('readonly', true);
-  }
-
-  $('#cliente').keyup(function() {
-      var query = $(this).val();
-      if (query != '') {
-          var _token = $('input[name="_token"]').val();
-          $.ajax({
-              url: '/autocompletarCliente',
-              method: 'POST',
-              data: {
-                  query: query,
-                  _token: _token,
-              },
-              success: function(data) {
-                  $('#codigoDatalist').fadeIn();
-                  $('#codigoDatalist').html(data);
-              }
-          
-          });
-      }
-  });
+  
 
   var eliminar = 0;
   var numeroID = 0;
