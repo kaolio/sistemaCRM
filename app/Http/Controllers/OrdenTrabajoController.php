@@ -80,81 +80,110 @@ class OrdenTrabajoController extends Controller
      */
     public function store(Request $request, Roles $roles)
     {
-       
-        $posicion_coincidencia = strpos($request->get('cliente'), ',');
-        $cliente = substr($request->get('cliente'), 0, $posicion_coincidencia);
-
-        $identificado = DB::table('clientes')
-                        ->select('id')
-                        ->where('nombreCliente','=',$cliente)
-                        ->first();
+       try {
         
-        $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $acceso = substr(str_shuffle($permitted_chars), 0, 16);
+            $posicion_coincidencia = strpos($request->get('cliente'), ',');
 
-        $datoTrabajo = new OrdenTrabajo;
-        $datoTrabajo->id_cliente = $identificado->id;
-        $datoTrabajo->prioridad = $request->get('prioridad');
-        $datoTrabajo->tiempoEstimado = $request->get('tiempoEstimado');
-        $datoTrabajo->estado = "Recibido";
-        $datoTrabajo->informacion = $request->get('informacion');
-        $datoTrabajo->datosImportantes = $request->get('dato');
-        $datoTrabajo->nota = $request->get('nota');
-        $datoTrabajo->asignado = '1';
-        $datoTrabajo->creado = Auth::user()->name;
-        $datoTrabajo->diagnostico = "No Actualizado";
-        $datoTrabajo->bandera = "0";
-        $datoTrabajo->password = $acceso;
-        $datoTrabajo->save();
-        
-        $trabajo = DB::table('orden_trabajos')
+            if ($posicion_coincidencia == false) {
+
+                $datoCliente = new Cliente;
+                $datoCliente->nombreCliente = $request->get('cliente');
+                $datoCliente->calle = Auth::user()->direccionSocial;
+                $datoCliente->numero = Auth::user()->telefono;
+                $datoCliente->correo =  Auth::user()->email;
+                $datoCliente->telefono = Auth::user()->telefono;
+                $datoCliente->codigoPostal = Auth::user()->codigoPostal;
+                $datoCliente->provincia = Auth::user()->provincia;
+                $datoCliente->pais = Auth::user()->ciudad;
+                $datoCliente->id_user = Auth::user()->id;
+                $datoCliente->save();
+
+
+                $identificado = DB::table('clientes')
                 ->select('id')
-                ->where('bandera','=',"0")
+                ->where('nombreCliente','=',$request->get('cliente'))
                 ->first();
 
+            }else{
+                $cliente = substr($request->get('cliente'), 0, $posicion_coincidencia);
 
-        $tipo = request('tipo');
-        $rol = request('rol');
-        $fabricante = request('fabricante');
-        $modelo = request('modelo');
-        $serial = request('serial');
-        $capacidad = request('capacidad');
-        $localizacion = request('localizacion');
-
-        for ($i=0; $i < sizeOf($tipo); $i++) { 
-            $detalle = new DetalleOrden();
-            $detalle->tipo = $tipo[$i];
-            $detalle->rol = $rol[$i];
-            $detalle->fabricante = $fabricante[$i];
-            $detalle->modelo = $modelo[$i];
-            $detalle->serial = $serial[$i];
-            $detalle->capacidad = $capacidad[$i];
-            $detalle->localizacion = $localizacion[$i];
-            $detalle->diagnostico = "No Actualizado";
-            $detalle->id_trabajos = $trabajo->id;
-            $detalle->save();
-        }
-
-        $file = $request->file('imagen');
-
-        for ($i=0; $i < sizeof($file) ; $i++) { 
-            $nombre =  time()."_".$file[$i]->getClientOriginalName();//obtenemos el nombre del archivo
-
-            $ima = new Imagen();
-            $ima->nombre = $nombre;
-            $ima->id_trabajo = $trabajo->id;
-            $ima->save();
+                $identificado = DB::table('clientes')
+                                ->select('id')
+                                ->where('nombreCliente','=',$cliente)
+                                ->first();
+            }
             
-            Storage::disk('imagenes')->put($nombre, File::get($file[$i]));//indicamos que queremos guardar un nuevo archivo en el disco local
-        } 
+            $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $acceso = substr(str_shuffle($permitted_chars), 0, 16);
+
+            $datoTrabajo = new OrdenTrabajo;
+            $datoTrabajo->id_cliente = $identificado->id;
+            $datoTrabajo->prioridad = $request->get('prioridad');
+            $datoTrabajo->tiempoEstimado = $request->get('tiempoEstimado');
+            $datoTrabajo->estado = "Recibido";
+            $datoTrabajo->informacion = $request->get('informacion');
+            $datoTrabajo->datosImportantes = $request->get('dato');
+            $datoTrabajo->nota = $request->get('nota');
+            $datoTrabajo->asignado = '1';
+            $datoTrabajo->creado = Auth::user()->name;
+            $datoTrabajo->diagnostico = "No Actualizado";
+            $datoTrabajo->bandera = "0";
+            $datoTrabajo->password = $acceso;
+            $datoTrabajo->save();
+            
+            $trabajo = DB::table('orden_trabajos')
+                    ->select('id')
+                    ->where('bandera','=',"0")
+                    ->first();
 
 
-        DB::table('orden_trabajos')
-                ->where('id', $trabajo->id)
-                ->update(['bandera' => '1']);
+            $tipo = request('tipo');
+            $rol = request('rol');
+            $fabricante = request('fabricante');
+            $modelo = request('modelo');
+            $serial = request('serial');
+            $capacidad = request('capacidad');
+            $localizacion = request('localizacion');
 
+            for ($i=0; $i < sizeOf($tipo); $i++) { 
+                $detalle = new DetalleOrden();
+                $detalle->tipo = $tipo[$i];
+                $detalle->rol = $rol[$i];
+                $detalle->fabricante = $fabricante[$i];
+                $detalle->modelo = $modelo[$i];
+                $detalle->serial = $serial[$i];
+                $detalle->capacidad = $capacidad[$i];
+                $detalle->localizacion = $localizacion[$i];
+                $detalle->diagnostico = "No Actualizado";
+                $detalle->id_trabajos = $trabajo->id;
+                $detalle->save();
+            }
+
+            $file = $request->file('imagen');
+
+            for ($i=0; $i < sizeof($file) ; $i++) { 
+                $nombre =  time()."_".$file[$i]->getClientOriginalName();//obtenemos el nombre del archivo
+
+                $ima = new Imagen();
+                $ima->nombre = $nombre;
+                $ima->id_trabajo = $trabajo->id;
+                $ima->save();
+                
+                Storage::disk('imagenes')->put($nombre, File::get($file[$i]));//indicamos que queremos guardar un nuevo archivo en el disco local
+            } 
+
+
+            DB::table('orden_trabajos')
+                    ->where('id', $trabajo->id)
+                    ->update(['bandera' => '1']);
+
+            
+            return view('trabajo.confirmacion',compact('trabajo','cliente','acceso'));
+
+       } catch (\Throwable $th) {
+            return view('errors.error');
+       }
         
-        return view('trabajo.confirmacion',compact('trabajo','cliente','acceso'));
         //dd($cliente);
     }
 
