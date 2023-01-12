@@ -51,6 +51,25 @@
                     </div>
                     <br>
                     <div class="row">
+                      <div class="col-7">
+                          <div class="input-group">
+                             <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Correo Electrónico</span>
+                               <input type="text" id="valor" name="valor" class="form-control" 
+                                 required value="{{$cliente->correo}}" onkeyup="validarCorreo()"autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46) || (event.charCode == 241) || (event.charCode == 209) || (event.charCode == 64))">
+                          </div>
+                        <span id="estado"></span>
+                      </div>
+                      <div class="col-3">
+                        <div class="input-group">
+                          <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Telefono</span>
+                             <input type="text" id="telefono" name="telefono" class="form-control" 
+                                 required value="{{$cliente->telefono}}" onkeyup="validarTelefono()" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
+                        </div>
+                         <span id="estadoTelefono"></span>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
                       <div class="col-3">
                         <div class="input-group">
                           <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Codigo Postal</span>
@@ -104,74 +123,6 @@
                   </div> 
                 </div>
 
-                <div class="card">
-                  <div class="card-body">
-                    <h5><strong>DETALLE</strong></h5>
-              
-                    <div class="row">
-                      <div class="col-4">
-                        <div class="input-group">
-                          <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo</span>
-                            <select name="tipo[]" id="tipo" class="form-control country" required>
-                              <option value="correo">Correo Electrónico</option>
-                              <option value="telefono">Telefono</option>
-                              <option value="celular">Celular</option>
-                              <option value="skype">Skype</option>
-                            </select>
-                        </div>
-                      </div>
-                      <div class="col-4">
-                        <div class="input-group">
-                          <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Valor</span>
-                            <input type="text" class="form-control" onkeyup="validarCorreo()" name="valor[]"id="valor">
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="input-group">
-                          <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Nombre</span>
-                            <input type="text" class="form-control " name="nombre[]"id="nombre"
-                            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))">
-                        </div>
-                      </div>
-                      <div class="col-1">
-                          <button class='btn btn-icon btn-success' type='button' id='guardar' name='guardar'>
-                              <svg xmlns="http://www.w3.org/2000/svg" width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox="0 0 448 512">
-                                  <path d="M433.941 129.941l-83.882-83.882A48 48 0 0 0 316.118 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h352c26.51 0 
-                                  48-21.49 48-48V163.882a48 48 0 0 0-14.059-33.941zM272 80v80H144V80h128zm122 352H54a6 6 0 0 1-6-6V86a6 6 0 0 1 6-6h42v104c0 13.255 
-                                  10.745 24 24 24h176c13.255 0 24-10.745 24-24V83.882l78.243 78.243a6 6 0 0 1 1.757 4.243V426a6 6 0 0 1-6 6zM224 232c-48.523 0-88 39.477-88 
-                                  88s39.477 88 88 88 88-39.477 88-88-39.477-88-88-88zm0 128c-22.056 0-40-17.944-40-40s17.944-40 40-40 40 17.944 40 40-17.944 40-40 40z"/>
-                              </svg>
-                              </button>
-                      </div>
-                      
-                    </div>
-                    
-                  </div>
-              
-                </div>
-              
-                <div class="card">
-                  <div class="card-body">
-                      <table class="table table-light" id="tablaEditar">
-                          <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
-                              <tr>
-                                <th class="text-center" style="width: 20%">Tipo</th>
-                                <th class="text-center" style="width: 20%">Valor</th>
-                                <th class="text-center" style="width: 20%" colspan="2">Nombre</th>
-                                <th class="text-center" style="width: 5%" colspan="2"></th>
-                              </tr>
-                            </thead>
-                          <tbody class="table-bordered" id="datosEditados">
-                              <tr>
-                              
-                              <tr>
-                          </tbody>
-                      </table>
-                  </div>
-                   
-                  
-                </div>
-
 
                 <label style="font-size: 16px;">Nota</label>
                 <br>
@@ -197,147 +148,5 @@
 
 <script src="{{ asset('js/cliente/create.js')}}"></script>
 <link rel="stylesheet" href="{{ URL::asset('estilos/style.css') }} ">
-<script>
-
-$(document).ready(function() {
-
-$.ajax({
-    url: "/cliente/editar/datos",
-    type: "POST",
-    data:{ 
-        "_token": "{{ csrf_token() }}",
-        "id": "{{$cliente->id}}",
-    },
-    cache: false,
-    dataType: 'json',
-    success: function(dataResult){
-    //console.log(dataResult);
-        
-    var filas = dataResult.data.length;
-        
-          for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de busquedas por id
-                 
-                  var nuevafila= "<tr><td class='text-center'>" +
-                  dataResult.data[i].tipo + "</td><td class='text-center'>" +
-                  dataResult.data[i].valor  + "</td><td class='text-center' >" +
-                  dataResult.data[i].nombre  + "</td><td>"+ "</td><td class='text-center'>" +
-                  '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data[i].id+'">'+
-                        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
-                          '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
-                          '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
-                        '</svg>'+
-                      '</button>'+
-                      '<div class="modal fade" id="exampleModal'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
-                        '<div class="modal-dialog" role="document">'+
-                          '<div class="modal-content">'+
-                            '<div class="modal-header">'+
-                              '<h5 class="modal-title" id="exampleModalLabel">Eliminar trabajo</h5>'+
-                              '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
-                                '<span aria-hidden="true">&times;</span>'+
-                              '</button>'+
-                            '</div>'+
-                            '<div class="modal-body">'+
-                            '¿Realmente Desea Borrar el trabajo?'+
-                            '</div>'+
-                            '<form action="{{url('/eliminarDatos/')}}'+'/'+dataResult.data[i].id+'" method="POST" class="d-inline">'+
-                              '@csrf'+
-                            ' @method('DELETE')'+
-                            '<div class="modal-footer">'+
-                              '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
-                              '<button class="btn btn-primary" style="padding-left: 5px">'+
-                                'Aceptar'+
-                              '</button>'+
-                            '</div>'+
-                          '</form> '+
-                          '</div>'+
-                        '</div>'+
-                    ' </div> '+
-                    "</td></tr>"
-              
-              $("#datosEditados").append(nuevafila)
-          }
-      
-        }
-    });
-});
-//
-
-$("#guardar").on('click',function(){
-            var url1 = $('#tipo').val();
-            var url2 = $('#valor').val();
-            var url3 = $('#nombre').val();
-
-           // console.log(url1);
-
-            $('#tipo').val('');
-            $('#valor').val('');
-            $('#nombre').val('');
-            
-                $.ajax({
-                    url: "/clientes/editar/detallesNuevos",
-                    type: "POST",
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        "id": "{{$cliente->id}}",
-                        tipo: url1,
-                        valor: url2,
-                        nombre: url3,
-                    },
-                    cache: false,
-                    dataType: 'json',
-                    success: function (dataResult) {
-                        console.log(dataResult);
-                        $('#tablaEditar > tbody').empty();
-                        var filas = dataResult.data.length;
-
-                     
-                            for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de busquedas por id
-                                
-                                    
-                                var nuevafila= "<tr><td class='text-center'>" +
-                                  dataResult.data[i].tipo + "</td><td class='text-center'>" +
-                                  dataResult.data[i].valor  + "</td><td class='text-center' >" +
-                                  dataResult.data[i].nombre  + "</td><td>"+ "</td><td class='text-center'>" +
-                                  '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data[i].id+'">'+
-                                        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
-                                          '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
-                                          '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
-                                        '</svg>'+
-                                      '</button>'+
-                                      '<div class="modal fade" id="exampleModal'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
-                                        '<div class="modal-dialog" role="document">'+
-                                          '<div class="modal-content">'+
-                                            '<div class="modal-header">'+
-                                              '<h5 class="modal-title" id="exampleModalLabel">Eliminar trabajo</h5>'+
-                                              '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
-                                                '<span aria-hidden="true">&times;</span>'+
-                                              '</button>'+
-                                            '</div>'+
-                                            '<div class="modal-body">'+
-                                            '¿Realmente Desea Borrar el trabajo?'+
-                                            '</div>'+
-                                            '<form action="{{url('/eliminarDatos/')}}'+'/'+dataResult.data[i].id+'" method="POST" class="d-inline">'+
-                                              '@csrf'+
-                                            ' @method('DELETE')'+
-                                            '<div class="modal-footer">'+
-                                              '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
-                                              '<button class="btn btn-primary" style="padding-left: 5px">'+
-                                                'Aceptar'+
-                                              '</button>'+
-                                            '</div>'+
-                                          '</form> '+
-                                          '</div>'+
-                                        '</div>'+
-                                    ' </div> '+
-                                    "</td></tr>"
-                                    
-                                    $("#datosEditados").append(nuevafila);
-                                }
-                
-                    }
-                });
-    });
-
-</script>
 
 @endsection

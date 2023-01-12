@@ -19,12 +19,14 @@ class CreateClientesTable extends Migration
             $table->string('cif')->nullable();
             $table->string('calle')->nullable();
             $table->string('numero')->nullable();
+            $table->string('correo')->nullable();
             $table->string('telefono')->nullable();
             $table->string('codigoPostal')->nullable();
             $table->string('poblacion')->nullable();
             $table->string('provincia')->nullable();
             $table->string('pais')->nullable();
             $table->string('idioma')->nullable();
+            $table->string('referencia')->nullable();
             $table->text('nota')->nullable();
             $table->unsignedBigInteger('id_user')->nullable();
             $table->timestamps();

@@ -91,12 +91,14 @@ class ClienteController extends Controller
         $datoCliente->cif = $request->get('cif');
         $datoCliente->calle = $request->get('direccion');
         $datoCliente->numero = $request->get('numero');
+        $datoCliente->correo = $request->get('valor');
         $datoCliente->telefono = $request->get('telefono');
         $datoCliente->codigoPostal = $request->get('postal');
         $datoCliente->poblacion = $request->get('poblacion');
         $datoCliente->provincia = $request->get('provincia');
         $datoCliente->pais = $request->get('pais');
         $datoCliente->idioma = $request->get('idioma');
+        $datoCliente->referencia = $request->get('referencia');
         $datoCliente->nota = $request->get('nota');
         $datoCliente->id_user = Auth::user()->id;
         //dd($datoCliente);
@@ -108,23 +110,6 @@ class ClienteController extends Controller
                 ->where('calle','=',$request->get('direccion'))
                 ->where('codigoPostal','=',$request->get('postal'))
                 ->first();
-
-
-        $tipo = request('tipo');
-        $valor = request('valor');
-        $nombre = request('nombre');
-            
-        if ($valor[0] != null) {
-            for ($i=0; $i < sizeOf($valor); $i++) { 
-                $detalle = new DetalleCliente;
-                $detalle->tipo = $tipo[$i];
-                $detalle->valor = $valor[$i];
-                $detalle->nombre = $nombre[$i];
-                $detalle->id_cliente = $cliente->id;
-                $detalle->save();
-            }
-        }
-            
 
         
         if ($id == 1) {
@@ -185,12 +170,14 @@ class ClienteController extends Controller
         $datoCliente->cif = $request->get('cif');
         $datoCliente->calle = $request->get('direccion');
         $datoCliente->numero = $request->get('numero');
+        $datoCliente->correo = $request->get('valor');
         $datoCliente->telefono = $request->get('telefono');
         $datoCliente->codigoPostal = $request->get('postal');
         $datoCliente->poblacion = $request->get('poblacion');
         $datoCliente->provincia = $request->get('provincia');
         $datoCliente->pais = $request->get('pais');
         $datoCliente->idioma = $request->get('idioma');
+        $datoCliente->referencia = $request->get('referencia');
         $datoCliente->nota = $request->get('nota');
         //dd($datoCliente);
         $datoCliente->save();
@@ -209,53 +196,6 @@ class ClienteController extends Controller
         $cliente=Cliente::findOrFail($id);
         $cliente->delete(); 
         return redirect('clientes');
-    }
-
-    public function tablaEditar(){
-
-        $datos = DB::table('detalle_clientes')
-                    ->select('*')
-                    ->where('id_cliente','=',$_POST["id"])
-                    ->get();
-
-                   // dd($datos);
-
-             return json_encode(array('data'=>$datos));
-    }
-
-    public function eliminarEditar($id){
-
-        //dd($id);
-
-        $datos = DB::table('detalle_clientes')
-                ->select('id_cliente')
-                ->where('id',$id)
-                ->first();
-
-        $editados = DetalleCliente::findOrFail($id);
-
-        $editados->delete();
-
-        return redirect('/cliente/editar/'.$datos->id_cliente);
-
-    }
-
-    public function detallesNuevos(){
-
-        $detalle = new DetalleCliente();
-        $detalle->tipo = $_POST["tipo"];
-        $detalle->valor = $_POST["valor"];
-        $detalle->nombre = $_POST["nombre"];
-        $detalle->id_cliente = $_POST["id"];
-        $detalle->save();
-
-        $nuevosDetalles = DB::table('detalle_clientes')
-        ->select('*')
-        ->where('id_cliente','=',$_POST["id"])
-        ->get();
-
-             return json_encode(array('data'=>$nuevosDetalles));
-
     }
 
     public function descargarPDF(){
