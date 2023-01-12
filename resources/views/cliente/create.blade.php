@@ -51,6 +51,25 @@
                     </div>
                     <br>
                     <div class="row">
+                      <div class="col-7">
+                          <div class="input-group">
+                             <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Correo Electrónico</span>
+                               <input type="text" id="valor" name="valor" class="form-control" 
+                                 required onkeyup="validarCorreo()"autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46) || (event.charCode == 241) || (event.charCode == 209) || (event.charCode == 64))">
+                          </div>
+                        <span id="estado"></span>
+                      </div>
+                      <div class="col-3">
+                        <div class="input-group">
+                          <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Telefono</span>
+                             <input type="text" id="telefono" name="telefono" class="form-control" 
+                                 required onkeyup="validarTelefono()" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
+                        </div>
+                         <span id="estadoTelefono"></span>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
                       <div class="col-3">
                         <div class="input-group">
                           <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Codigo Postal</span>
@@ -76,7 +95,7 @@
                     </div>
                     <br>
                     <div class="row">
-                      <div class="col-5">
+                      <div class="col-4">
                         <div class="input-group">
                           <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Pais</span>
                         <input type="text" id="pais" name="pais" class="form-control" 
@@ -84,7 +103,7 @@
                         </div>
                         <span id="estadoPais"></span>
                       </div>
-                      <div class="col-5">
+                      <div class="col-4">
                         <div class="input-group">
                           <span  class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Idioma</span>
                           <select name="idioma" id="idioma"class="form-control" >
@@ -95,68 +114,19 @@
                           </select>
                         </div>
                       </div>
+                      <div class="col-4">
+                        <div class="input-group">
+                          <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Referencia</span>
+                        <input type="text" id="pais" name="referencia" class="form-control" 
+                          required autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209) || (event.charCode == 35) || (event.charCode == 47) || (event.charCode == 45) || (event.charCode == 124) || (event.charCode == 42))">
+                        </div>
+                        <span id="estadoPais"></span>
+                      </div>
                     </div>
                   </div> 
                 </div> 
 
-                <div class="card">
-                  <div class="card-body">
-                    <h5><strong>DETALLE</strong></h5>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<td class="btn-block"><button type="button" id="adicional" name="adicional" class="btn btn-primary" style="border-radius: 50%;">
-                     <i class="fa fa-plus"></i> </button>
-                    </td>
-                        <div class="table-responsive">
-                      <table class="table" id="tabla">
-                          <thead class="thead">
-                              
-                          </thead>
-                          <tbody id="tabla">
-                              <span id="estadoBoton"></span>
-                              <tr id="columna-0">
-                                  <td>
-                                      <div class="input-group">
-                                        <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo</span>
-                                          <select name="tipo[]" id="tipo" class="form-control country"  required>
-                                            <option value="correo">Correo Electrónico</option>
-                                            <option value="telefono">Telefono</option>
-                                            <option value="celular">Celular</option>
-                                            <option value="skype">Skype</option>
-                                          </select>
-                                      </div>
-                                  </td>
-                                  <td>
-                                    <div class="input-group">
-                                      <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Valor</span>
-                                        <input type="text" class="form-control" onkeyup="validarCorreo()" name="valor[]"id="valor"  onkeypress="return ((event.charCode == 241) || (event.charCode == 209)) ">
-                                    </div>
-                                    <span id="estado"></span>
-                                  </td>
-                                  <td>
-                                    <div class="input-group">
-                                      <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Nombre</span>
-                                        <input type="text" class="form-control " name="nombre[]"id="nombre"
-                                        onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))">
-                                    </div>
-                                  </td>
-                                  <td class='borrar'>
-                                      <button class='btn btn-icon btn-danger' type='button' id='deletRow' name='deletRow'>
-                                      <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>
-                                      <path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'/>
-                                      <path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/>
-                                      </svg>
-                                      </button>
-                                    </td>
-                              </tr>
-                  
-                          </tbody>
-                      </table>
-                      <div class="div text-center">
-                        <span id="estadoTabla"></span>
-                      </div>
-                  </div>
-                  </div>
-                  
-                </div>
+                
 
 
                 <label style="font-size: 16px;">Nota</label>

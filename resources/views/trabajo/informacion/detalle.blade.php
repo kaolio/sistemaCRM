@@ -34,7 +34,7 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                                 <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel2" align="center">Asignar Trabajo a Usuario:</h5>
+                                                <h5 class="modal-title w-100 text-center" id="exampleModalLabel2" align="center">Asignar Orden de Trabajo a Usuario:</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -53,8 +53,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" id="botones" data-dismiss="modal">Cancelar</button>
-                                                <button type="button" class="btn btn-success" id="btnAsignar" name="btnAsignar">Guardar</button>
+                                                <button type="button" class="btn btn-danger" id="botones" data-dismiss="modal">Cancelar</button>
+                                                <button type="button" class="btn btn-primary" id="btnAsignar" name="btnAsignar">Guardar</button>
                                                 </div>
                                             </div>
                                     </div>

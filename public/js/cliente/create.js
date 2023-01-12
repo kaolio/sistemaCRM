@@ -19,14 +19,14 @@ function validarCorreo() {
         }
   function validarTelefono() {
     $("#estadoTabla").html("<span  class='mayor'><h5 class='menor'></h5></span>");
-            if($("#valor").val() == ""){
-                $("#estado").html("<span  class='menor'><h5 class='menor'> </h5></span>");
+            if($("#telefono").val() == ""){
+                $("#estadoTelefono").html("<span  class='menor'><h5 class='menor'> </h5></span>");
                }else{
                 var regex = /^[8-9]{1}[0-9]{8}$/;
-                if (!regex.test($("#valor").val())) {
-                    $("#estado").html("<span  class='menor'><h5 class='menor'>&nbsp;&nbsp;Telefono incorrecto</h5></span>");
+                if (!regex.test($("#telefono").val())) {
+                    $("#estadoTelefono").html("<span  class='menor'><h5 class='menor'>&nbsp;&nbsp;Telefono incorrecto</h5></span>");
                 } else {
-                    $("#estado").html("<span  class='mayor'><h5 class='bien'>&nbsp;&nbsp;Telefono valido</h5></span>");
+                    $("#estadoTelefono").html("<span  class='mayor'><h5 class='bien'>&nbsp;&nbsp;Telefono valido</h5></span>");
                 }      
            }
         }
@@ -153,6 +153,26 @@ function validarCorreo() {
                 } 
             }
           }
+          function validarReferencia(){
+            if($("#referencia").val() == ""){
+              $("#estadoreferencia").html("<span  class='error'><h5 class='menor'></h5></span>");
+            }else{
+                if ($("#referencia").val().length < 3) {
+                    $("#estadoreferencia").html(
+                        "<span  class='menor'><h5 class='menor'>"+
+                          "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ingrese de 3 a 50 caracteres</h5></span>");
+                } else {
+                    if ($("#referencia").val().length > 50) {
+                        $("#estadoreferencia").html(
+                            "<span  class='menor'><h5 class='menor'>&nbsp;&nbsp;Ingrese menos de 50 caracteres</h5></span>");
+                    } else {
+                        
+                            $("#estadoreferencia").html("<span  class='bien'><h5 class='bien'>"+
+                              "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Válido </h5></span>");
+                    }
+                } 
+            }
+          }
 
          
            
@@ -179,10 +199,10 @@ $(document).ready(function(){
         if (selectedTipo == 'Telefono') {
             $("#valor").val('');
             $("#nombre").val('');
-            $('#valor').get(0).type = 'text';
-            $("#valor").attr("onkeyup","validarTelefono()");
-            $("#valor").attr("placeholder","");
-            $("#valor").attr("onkeypress","return ((event.charCode >= 48 && event.charCode <= 57))")
+            $('#telefono').get(0).type = 'text';
+            $("#telefono").attr("onkeyup","validarTelefono()");
+            $("#telefono").attr("placeholder","");
+            $("#telefono").attr("onkeypress","return ((event.charCode >= 48 && event.charCode <= 57))")
             $("#estado").html("<span  class='mayor'><h5 class='bien'></h5></span>");
         } else {
           if (selectedTipo == 'Celular') {

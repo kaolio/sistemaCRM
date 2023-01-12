@@ -72,7 +72,7 @@
 
                 <div class="card">
                   <div class="card-body">
-                    <h4><strong>Dispositivos</strong></h4>
+                    <h5><strong>DISPOSITIVOS</strong></h5>
                     &nbsp;&nbsp;&nbsp;&nbsp;<td class="btn-block"><button type="button" id="adicional" name="adicional" class="btn btn-primary" style="border-radius: 50%;">
                      <i class="fa fa-plus"></i> </button>
                     </td>

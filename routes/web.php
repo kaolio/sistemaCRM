@@ -181,12 +181,9 @@ Route::get('/clientes',[ClienteController::class,'index']);
 Route::get('/cliente/nuevo',[ClienteController::class,'create']);
 Route::post('/cliente/nuevoTho',[ClienteController::class,'createTho']);
 Route::post('/cliente/nuevo/{id}',[ClienteController::class,'store']);
-Route::post('/cliente/editar/datos',[ClienteController::class,'tablaEditar']);
-Route::post('/clientes/editar/detallesNuevos',[ClienteController::class,'detallesNuevos']);
 Route::get('/cliente/editar/{id}',[ClienteController::class,'edit']);
 Route::post('/cliente/editar/{id}',[ClienteController::class,'update']);
 Route::delete('/cliente/{id}',[ClienteController::class,'destroy']);
-Route::delete('/eliminarDatos/{id}',[ClienteController::class,'eliminarEditar']);
 Route::get('/cliente/pdf',[ClienteController::class,'descargarPDF']); //ruta para descargar pdf
 Route::get('/cliente/excel',[ClienteController::class,'descargarExcel']); //ruta para descargar excel
 Route::get('/cliente/imprimirIndex',[ClienteController::class,'imprimirPDF']); //imprimir pdf
