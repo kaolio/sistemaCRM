@@ -19,7 +19,6 @@
   position: relative;
   width: 200px;
   height: 50px;
-  border-radius: 25px;
   background: linear-gradient(40deg,#3574a8,#7873f5);
   box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
   display: flex;
@@ -264,9 +263,8 @@ input:focus + label {
 
               <div class="card">
                 <div class="card-body">
-                  <label>Imagen:</label>
-                  <div class="file-input">
-                    <input type="file" class="file" name="imagen[]" multiple id="imagen" maxlength="256" >
+                  <div class="file-input" align="center">
+                    <input type="file" accept="image/*" class="file" name="imagen[]" multiple id="imagen" maxlength="256" >
                     <label for="imagen">
                       Seleccionar Imagen &nbsp;
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17" fill="white"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 
@@ -368,6 +366,7 @@ if ($('#cliente').val() != "") {
   });
 
   function eliminarImagen(cont) {
+    //var archivo2 = $('#imagen').prop("files");
     $('#resto_form'+cont).remove();
   }
 </script>
