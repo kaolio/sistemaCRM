@@ -126,8 +126,12 @@ class DetalleController extends InventarioController
             $recuperarDonante = DB::table('inventarios')
                                     ->select('*')
                                     ->get();
+
+            $imagenes = DB::table('imagens')
+                                    ->select('*')
+                                    ->get();
                                 
-             return view('trabajo.informacion.detalle',(compact('orden_elegida','usuarioDesignado','notas','recuperarDatos','prioridadTrabajo','diagnosticoCambiado','recuperarDonante')));
+             return view('trabajo.informacion.detalle',(compact('orden_elegida','usuarioDesignado','notas','recuperarDatos','prioridadTrabajo','diagnosticoCambiado','recuperarDonante','imagenes')));
 
         } catch (\Throwable $th) {
 
