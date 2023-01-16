@@ -102,6 +102,7 @@ Route::delete('/detalleServicio/{id}',[ServicioController::class,'destroy']);
 
 Route::get('/trabajos/detalle/{id}',[DetalleController::class,'buscar']);
 Route::post('/trabajos/detalle',[DetalleController::class,'buscarOrden']); //ruta buscador de orden trabajo
+Route::post('/trabajos/detalle/mostrarPrecio',[DetalleController::class,'mostrarPrecio']);
 Route::post('/trabajos/detalle/guardarDesignado',[DetalleController::class,'guardarDesignacion']); //ruta para guardar usuario desigando
 Route::post('/trabajos/detalle/guardarEstado',[DetalleController::class,'guardarEstado']); //ruta para guardar estado
 Route::post('/trabajos/detalle/guardarPrioridad',[DetalleController::class,'guardarPrioridad']); //ruta para guardar prioridad

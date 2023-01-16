@@ -183,6 +183,15 @@ class DetalleController extends InventarioController
                   
     }
 
+    public function mostrarPrecio(){
+        
+        $precio = DB::table('servicios')
+                ->where('id_trabajos','=',$_POST["nombre"])
+                ->sum("precio");
+
+                return json_encode(array('data'=>$precio));
+    }
+
      public function guardarDesignacion(){
 
         $ordenTrabajo = DB::table('orden_trabajos')
