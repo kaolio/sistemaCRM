@@ -84,6 +84,7 @@ class OrdenTrabajoController extends Controller
         
             $posicion_coincidencia = strpos($request->get('cliente'), ',');
 
+            
             if ($posicion_coincidencia == false) {
 
                 $datoCliente = new Cliente;
@@ -98,11 +99,11 @@ class OrdenTrabajoController extends Controller
                 $datoCliente->id_user = Auth::user()->id;
                 $datoCliente->save();
 
-
                 $identificado = DB::table('clientes')
                 ->select('id')
                 ->where('nombreCliente','=',$request->get('cliente'))
                 ->first();
+
 
             }else{
                 $cliente = substr($request->get('cliente'), 0, $posicion_coincidencia);
@@ -111,10 +112,12 @@ class OrdenTrabajoController extends Controller
                                 ->select('id')
                                 ->where('nombreCliente','=',$cliente)
                                 ->first();
+
             }
             
             $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $acceso = substr(str_shuffle($permitted_chars), 0, 16);
+
 
             $datoTrabajo = new OrdenTrabajo;
             $datoTrabajo->id_cliente = $identificado->id;
@@ -135,7 +138,6 @@ class OrdenTrabajoController extends Controller
                     ->select('id')
                     ->where('bandera','=',"0")
                     ->first();
-
 
             $tipo = request('tipo');
             $rol = request('rol');
@@ -159,8 +161,9 @@ class OrdenTrabajoController extends Controller
                 $detalle->save();
             }
 
-            $file = $request->file('imagen');
 
+            $file = $request->file('imagen');
+        
             for ($i=0; $i < sizeof($file) ; $i++) { 
                 $nombre =  time()."_".$file[$i]->getClientOriginalName();//obtenemos el nombre del archivo
 
@@ -177,11 +180,11 @@ class OrdenTrabajoController extends Controller
                     ->where('id', $trabajo->id)
                     ->update(['bandera' => '1']);
 
-            
+                
             return view('trabajo.confirmacion',compact('trabajo','cliente','acceso'));
 
        } catch (\Throwable $th) {
-            return view('errors.error');
+            return view('errors.errorCreacionPartner');
        }
         
         //dd($cliente);
@@ -694,7 +697,7 @@ class OrdenTrabajoController extends Controller
             $variable = [];
             $datos = DB::table('orden_trabajos')
                 ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-                ->select('clientes.nombreCliente','clientes.calle','clientes.nombreCiudad','clientes.created_at')
+                ->select('clientes.nombreCliente','clientes.calle','clientes.provincia','clientes.created_at')
                 ->where('orden_trabajos.id',$_POST['arreglo'][$i])
                 ->first(); 
             

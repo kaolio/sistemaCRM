@@ -849,7 +849,7 @@ $("#btnBuscarDonante").on('click',function(){
                 cache: false,
                 dataType: 'json',
                 success: function(dataResult){
-                    //console.log(dataResult);
+                    console.log(dataResult);
                     if (arreglo.length == 1) {
                         if (dataResult.data[0].localizacion) {
                             $("#ubicacionClon").val(dataResult.data[0].localizacion);

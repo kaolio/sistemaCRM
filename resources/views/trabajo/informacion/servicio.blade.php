@@ -220,7 +220,7 @@
                     cache: false,
                     dataType: 'json',
                     success: function (dataResult) {
-                        console.log(dataResult);
+                        //console.log(dataResult);
                         $('#tablaServicio > tbody').empty();
                         var filas = dataResult.data.length;
 
@@ -282,6 +282,8 @@
                                 count + "</td></tr>"
                         
                         $("#serviciosGuardados").append(nueva) ;
+
+                        $('#precioUnico').val(count);
                     }
                 });
     });

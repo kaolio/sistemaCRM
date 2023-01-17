@@ -26,7 +26,8 @@
                         <div class="card-body">
                             <div class="input-group">
                                 <span class="input-group-text">Precio</span>
-                                 <input class="form-control" type="text" name="precio">
+                                 <input class="form-control" type="text" name="precioUnico" id="precioUnico" disabled >
+                                    
                             </div>
                         </br>
                             <div class="input-group">
@@ -313,4 +314,29 @@
     <script src="{{ asset('js/trabajo/detalle.js')}}"></script>
 
     @include('trabajo.ajax.detalle.generalAjax')
+    <script>
+        $(document).ready(function() {
+
+            precio();
+
+        });
+
+        function precio(){
+
+                $.ajax({
+                url: "/trabajos/detalle/mostrarPrecio",
+                type: "POST",
+                data: {
+                "_token": "{{ csrf_token() }}",
+                "nombre": "{{$orden_elegida->id}}",
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (dataResult) {
+                    $("#precioUnico").val(dataResult.data);
+                
+                }
+            });
+        }
+    </script>
  
