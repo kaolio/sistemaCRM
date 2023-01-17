@@ -85,27 +85,7 @@ class OrdenTrabajoController extends Controller
             $posicion_coincidencia = strpos($request->get('cliente'), ',');
 
             
-            if ($posicion_coincidencia == false) {
-
-                $datoCliente = new Cliente;
-                $datoCliente->nombreCliente = $request->get('cliente');
-                $datoCliente->calle = Auth::user()->direccionSocial;
-                $datoCliente->numero = Auth::user()->telefono;
-                $datoCliente->correo =  Auth::user()->email;
-                $datoCliente->telefono = Auth::user()->telefono;
-                $datoCliente->codigoPostal = Auth::user()->codigoPostal;
-                $datoCliente->provincia = Auth::user()->provincia;
-                $datoCliente->pais = Auth::user()->ciudad;
-                $datoCliente->id_user = Auth::user()->id;
-                $datoCliente->save();
-
-                $identificado = DB::table('clientes')
-                ->select('id')
-                ->where('nombreCliente','=',$request->get('cliente'))
-                ->first();
-
-
-            }else{
+        
                 $cliente = substr($request->get('cliente'), 0, $posicion_coincidencia);
 
                 $identificado = DB::table('clientes')
@@ -113,7 +93,6 @@ class OrdenTrabajoController extends Controller
                                 ->where('nombreCliente','=',$cliente)
                                 ->first();
 
-            }
             
             $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $acceso = substr(str_shuffle($permitted_chars), 0, 16);
@@ -286,11 +265,20 @@ class OrdenTrabajoController extends Controller
      if($request->get('query'))
      {
       $query = $request->get('query');
-      $data = DB::table('clientes')
-        ->join('orden_trabajos','orden_trabajos.id_cliente','clientes.id')
-        ->where('orden_trabajos.creado',Auth::user()->name)
-        ->where('nombreCliente', 'LIKE', "{$query}%")
-        ->get();
+      
+      if (Auth::user()->id == 1) {
+            $data = DB::table('clientes')
+                ->where('nombreCliente', 'LIKE', "{$query}%")
+                ->get();
+      } else {
+           $data = DB::table('clientes')
+                ->where('id_user',Auth::user()->id)
+                ->where('nombreCliente', 'LIKE', "{$query}%")
+                ->get(); 
+      }
+      
+      
+
       $output = '<datalist id="codigo">';
       foreach($data as $row)
       {

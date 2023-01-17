@@ -13,7 +13,10 @@
     </div>
     <div class="card-footer"> 
         <button id="bton" class="btn btn-warning text-white">Imprimir Orden</button>
+        @can('editar orden de trabajo')
         <a type="button" class="btn btn-primary text-white" href="{{url('/trabajos/detalle/'.$trabajo->id)}}">Ir a Orden de Trabajo</a>
+        @endcan
+        <a type="button" class="btn btn-primary text-white" href="{{url('/trabajos')}}">Ver Ordenes de Trabajo</a>
     </div>
 </div>
 
