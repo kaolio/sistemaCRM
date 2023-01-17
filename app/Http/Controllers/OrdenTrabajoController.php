@@ -142,17 +142,21 @@ class OrdenTrabajoController extends Controller
 
 
             $file = $request->file('imagen');
-        
-            for ($i=0; $i < sizeof($file) ; $i++) { 
-                $nombre =  time()."_".$file[$i]->getClientOriginalName();//obtenemos el nombre del archivo
 
-                $ima = new Imagen();
-                $ima->nombre = $nombre;
-                $ima->id_trabajo = $trabajo->id;
-                $ima->save();
-                
-                Storage::disk('imagenes')->put($nombre, File::get($file[$i]));//indicamos que queremos guardar un nuevo archivo en el disco local
-            } 
+            if ($file != null) {
+                for ($i=0; $i < sizeof($file) ; $i++) { 
+                    $nombre =  time()."_".$file[$i]->getClientOriginalName();//obtenemos el nombre del archivo
+
+                    $ima = new Imagen();
+                    $ima->nombre = $nombre;
+                    $ima->id_trabajo = $trabajo->id;
+                    $ima->save();
+                    
+                    Storage::disk('imagenes')->put($nombre, File::get($file[$i]));//indicamos que queremos guardar un nuevo archivo en el disco local
+                } 
+            }
+        
+           
 
 
             DB::table('orden_trabajos')
