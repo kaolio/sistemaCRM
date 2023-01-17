@@ -330,7 +330,7 @@ if ($('#cliente').val() != "") {
     
     for (let i = 0; i < input.files.length; i++) {
       
-      $('#resto_form').append('<div  id="resto_form'+contador+'" class="card anuncio" style="width: 350px; height: 140px; background: transparent">'
+      $('#resto_form').append('<div  id="resto_form'+contador+'" class="card" style="width: 350px; height: 140px; background: transparent">'
                       +'<span class="boton"  onclick="eliminarImagen('+contador+')">'
                       +'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" class="bi bi-trash" viewBox="0 0 448 512"><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm88 200H296c13.3 0 24 10.7 24 24s-10.7 24-24 24H152c-13.3 0-24-10.7-24-24s10.7-24 24-24z"/></svg>'
                       +'</span>'
