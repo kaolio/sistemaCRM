@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -77,6 +78,23 @@ class UsuarioController extends Controller
 
             $user = User::create($input);
             $user->assignRole($request->input('roles'));
+
+            $identificado = DB::table('users')
+                ->select('id')
+                ->where('name','=',$request->get('name'))
+                ->first();
+
+                $datoCliente = new Cliente();
+                $datoCliente->nombreCliente = $request->get('name');
+                $datoCliente->calle = $request->get('direccionSocial');
+                $datoCliente->numero = $request->get('telefono');
+                $datoCliente->correo =  $request->get('email');
+                $datoCliente->telefono = $request->get('telefono');
+                $datoCliente->codigoPostal = $request->get('codigoPostal');
+                $datoCliente->provincia = $request->get('provincia');
+                $datoCliente->pais = $request->get('ciudad');
+                $datoCliente->id_user = $identificado->id;
+                $datoCliente->save();
 
             return redirect('usuarios');
 

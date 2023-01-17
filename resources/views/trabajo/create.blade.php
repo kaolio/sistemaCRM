@@ -61,7 +61,8 @@ input:focus + label {
           @csrf
           <div class='container-fluid'>
                 <div class="card">
-                    <div class="card-body">
+                  @if (Auth::user()->can('crear-cliente'))
+                      <div class="card-body">
                       <div class="row justify-content-center">
                           <div class="col-11 ">
                             <label class="card-title" style="height: 2rem;">Informacion del Cliente</label>
@@ -80,6 +81,23 @@ input:focus + label {
                           </div>
                       </div>
                       </div>
+                  @else
+                  <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-11 ">
+                          <label class="card-title" style="height: 2rem;">Informacion del Cliente</label>
+                          <div class="input-group">
+                            <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Cliente <span style="color: #cf1111">*</span></span>
+                           <input type="text" id="cliente" value="{{Auth::user()->name}}, {{Auth::user()->direccionSocial}} {{Auth::user()->telefono}}, {{Auth::user()->codigoPostal}} {{Auth::user()->provincia}}" name="cliente" class="form-control" autocomplete="off" list="codigo" required onkeyup="" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209))">
+                           
+                         </div>
+                           
+                        </div>
+                    </div>
+                    </div>
+                  @endif
+                      
+                    
 
                       <div class="row justify-content-center">
                           
@@ -330,7 +348,7 @@ if ($('#cliente').val() != "") {
     
     for (let i = 0; i < input.files.length; i++) {
       
-      $('#resto_form').append('<div  id="resto_form'+contador+'" class="card anuncio" style="width: 350px; height: 140px; background: transparent">'
+      $('#resto_form').append('<div  id="resto_form'+contador+'" class="card" style="width: 350px; height: 140px; background: transparent">'
                       +'<span class="boton"  onclick="eliminarImagen('+contador+')">'
                       +'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" class="bi bi-trash" viewBox="0 0 448 512"><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm88 200H296c13.3 0 24 10.7 24 24s-10.7 24-24 24H152c-13.3 0-24-10.7-24-24s10.7-24 24-24z"/></svg>'
                       +'</span>'

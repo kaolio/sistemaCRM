@@ -129,6 +129,7 @@ class DetalleController extends InventarioController
 
             $imagenes = DB::table('imagens')
                                     ->select('*')
+                                    ->where('id_trabajo','=',$id)
                                     ->get();
                                 
              return view('trabajo.informacion.detalle',(compact('orden_elegida','usuarioDesignado','notas','recuperarDatos','prioridadTrabajo','diagnosticoCambiado','recuperarDonante','imagenes')));
