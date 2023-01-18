@@ -155,8 +155,6 @@ class OrdenTrabajoController extends Controller
                     Storage::disk('imagenes')->put($nombre, File::get($file[$i]));//indicamos que queremos guardar un nuevo archivo en el disco local
                 } 
             }
-        
-           
 
 
             DB::table('orden_trabajos')
