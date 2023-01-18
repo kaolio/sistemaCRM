@@ -678,7 +678,7 @@
     //
     // ajax de buscador de donante
 $("#btnBuscarDonante").on('click',function(){
-    $('#tablaClones > tbody').empty();
+    $('#tablaDonantes > tbody').empty();
     var url1 = $('#idInternoDonante').val();
         var url2 = $('#modeloDonante').val();
         var url3 = $('#serieDonante').val();

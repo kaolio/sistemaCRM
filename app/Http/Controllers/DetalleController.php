@@ -295,19 +295,35 @@ class DetalleController extends InventarioController
     }
 
     public function eliminarDispositivoDonante()
-    {
+    {       
+        $dispositivo = DB::table('donantes')
+                    ->select('id_inventarios')
+                    ->where('id','=', $_POST["id_donante"])
+                    ->first();
 
         $dispositivo = Donantes::findOrFail($_POST["id_donante"]);
         $dispositivo -> delete();
+
+                   DB::table('inventarios')
+                        ->where('id',$dispositivo->id_inventarios)
+                        ->update(['estado' => 'Disponible']);
         
         return json_encode(array('data'=>true)); 
     }
 
     public function eliminarDispositivoClon()
     {
+        $dispositivo = DB::table('clones')
+                    ->select('id_inventarios')
+                    ->where('id','=', $_POST["id_clon"])
+                    ->first();
 
         $dispositivo = Clones::findOrFail($_POST["id_clon"]);
         $dispositivo -> delete();
+
+                DB::table('inventarios')
+                        ->where('id',$dispositivo->id_inventarios)
+                        ->update(['estado' => 'Disponible']);
         
         return json_encode(array('data'=>true)); 
     }

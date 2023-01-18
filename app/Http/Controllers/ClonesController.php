@@ -94,9 +94,9 @@ class ClonesController extends Controller
         $clones = Clones::findOrFail($id);
         $clones->delete();
 
-        DB::table('inventarios')
-            ->where('id',$dispositivo->id_inventarios)
-            ->update(['estado' => 'Disponible']);
+                DB::table('inventarios')
+                    ->where('id',$dispositivo->id_inventarios)
+                    ->update(['estado' => 'Disponible']);
 
         return redirect('/inventario/discosUso');
     }

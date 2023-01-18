@@ -22,7 +22,7 @@
                         <div class="card-body p-1" id="card">
                             <ul class="nav nav-pills">
                             <li class="nav-item col-md-6">
-                                <a class="nav-link" href="#clonar" data-toggle="tab">
+                                <a class="nav-link" href="#clonar" data-toggle="tab" id="searchClon">
                                     <div class="input-group">
                                         <div class="input-group-text" id="btnGroupAddon" style=" background:rgb(29, 145, 195); color: aliceblue">
                                             <div class="custom-control custom-checkbox">
@@ -34,7 +34,7 @@
                                 </a>
                             </li>
                             <li class="nav-item col-md-6">
-                                <a class="nav-link" href="#donar" data-toggle="tab">
+                                <a class="nav-link" href="#donar" data-toggle="tab" id="searchDonante">
                                     <div class=" input-group">
                                         <div class="input-group-text" id="btnGroupAddon" style=" background:rgb(29, 145, 195); color: aliceblue">
                                             <div class="custom-control custom-checkbox">
@@ -47,7 +47,7 @@
                             </li>
                             </ul>
                         </div><!-- /.card-header -->
-                        <div class="card-body">
+                        <div class="card-body" id="buscadores">
                             <div class="tab-content">
                                 <!--Clonar-->
                                 <div class="active tab-pane" id="clonar">
@@ -128,7 +128,7 @@
                                                 <div class="card">
                                                     <div class="card-body">
                                                          <div class="table">
-                                                            <table class="table table-responsive">
+                                                            <table id="tablaDonantes" class="table table-responsive">
                                                                 <thead  id="cabeceraDonantes" class="table-bordered" style="background:rgb(2, 117, 216); color: aliceblue">
                                                                     <tr>
 
@@ -159,3 +159,20 @@
     </div>
     </div>
 </div>
+
+<script>
+
+$( document ).ready(function() {
+
+    $('#buscadores').hide();
+
+    $( "#searchClon" ).click(function() {
+        $('#buscadores').show(); 
+    });
+
+    $( "#searchDonante" ).click(function() {
+        $('#buscadores').show(); 
+    });
+});
+
+</script>
