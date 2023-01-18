@@ -1,7 +1,8 @@
 @extends('adminlte::page')
 @section('content')
-<h2 align="center"><strong>DISCOS VOLCADOS EN USO</strong></h2>
+<h2 align="center"><strong>DISCOS VOLCADOS</strong></h2>
 <br>
+<!--
 <div class="container">
     <button disabled type="button" class="btn btn-primary" id="moverDiscosClonados" data-toggle="modal" data-target="#exampleModal">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-arrows-move" viewBox="0 0 16 16">
@@ -31,8 +32,8 @@
         </div>
     </div>
     </div>
-</div>
-
+</div>-->
+<br>
 <div class="container">
     <div class="tabla-general" >
         <table class="table table-striped table-hover table-responsive" id="Table">
@@ -46,7 +47,7 @@
                 <th class="text-center">Factor de Forma</th>
                 <th class="text-center">Orden de Trabajo</th>
                 <th class="text-center">Estado</th>
-                <th class="text-center">Ocupado Hasta</th>
+                <th class="text-center">Fecha de Volcado</th>
                 <th class="text-center">Ubicacion</th>
                 <th class="text-center">Acciones</th>
                 </tr>
@@ -54,7 +55,7 @@
             <tbody id="tablaDiscosUso" class="table-bordered">
                 @foreach ($clones as $clon)
                 <tr>
-                    <th><input type="checkbox"></th>
+                    <th></th>
                     <th class="text-center">{{ $clon->id_clon }}</th>
                     <td class="text-center">{{ $clon->manufactura }}</td>
                     <td class="text-center">{{ $clon->modelo }}</td>
@@ -62,7 +63,7 @@
                     <td class="text-center" style="width: 110px">{{ $clon->factor_forma}}</td>
                     <td class="text-center" style="width: 100px">{{ $clon->id_trabajos}}</td>
                     <td class="text-center">{{ $clon->estado}}</td>
-                    <td class="text-center">{{ $clon->ocupado_hasta}}</td>
+                    <td class="text-center">{{ $clon->created_at}}</td>
                     <td class="text-center">{{ $clon->ubicacion}}</td>
                     <td>
                         
