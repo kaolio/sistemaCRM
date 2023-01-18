@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
- @for ($i = 0; $i < count($contenedor); $i++)
 <style>
     hr {
         height: 1px;
@@ -21,11 +20,14 @@
          font-size: 12px;
       }
 </style>
+
+ @for ($i = 0; $i < count($contenedor); $i++)
+
 <body>
 
    
 
-          <img src="{{public_path('imagenes/logo.jpg')}}" class="text-align-left " width="200px ">
+          <img src="{{public_path('imagenes/logo_hdd.jpg')}}" class="text-align-left " width="200px ">
           <div  style="position: absolute; top: 30 px;left: 500px" >
                   Sitio Web: &nbsp;&nbsp; www.irecovery.com <br/>
                   E-mail: &nbsp;&nbsp;&nbsp; usuario@irecovery.com
@@ -50,8 +52,7 @@
               <br/>
                 Nombre: &nbsp;&nbsp;&nbsp;&nbsp; {{$contenedor[$i][1]->nombreCliente}} <br/>
                 Direccion: &nbsp;&nbsp; {{$contenedor[$i][1]->calle}} <br/>
-                Provincia: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   {{$contenedor[$i][1]->provincia}} <br/>
-                Contraseña: &nbsp; {{$contenedor[$i][1]->password}} <br/>
+                Ciudad: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   {{$contenedor[$i][1]->provincia}} <br/>
                 Fecha: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$contenedor[$i][1]->created_at}} <br/>
                 Servicio: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Recuperacion de datos <br/> 
               

@@ -198,7 +198,7 @@ class OrdenTrabajoController extends Controller
             $variable = [];
             $datos = DB::table('orden_trabajos')
                 ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-                ->select('clientes.nombreCliente','clientes.calle','clientes.nombreCiudad','clientes.created_at','orden_trabajos.password')
+                ->select('clientes.nombreCliente','clientes.calle','clientes.provincia','clientes.created_at','orden_trabajos.password')
                 ->where('orden_trabajos.id',$_POST["orden"])
                 ->first(); 
             
@@ -711,6 +711,7 @@ class OrdenTrabajoController extends Controller
             array_push($contenedor, $variable);
         }
 
+        //return json_encode(array('data'=>$contenedor));
             $pdf = \PDF::loadView('/trabajo/reportes/ordenVarios',compact('contenedor'));
             
             return $pdf->setPaper('carta', 'portrait')->stream('orden.pdf');

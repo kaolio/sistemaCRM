@@ -25,20 +25,25 @@
     $(seleccionados).each(function() {
       arreglo.push($(this).attr('id'));
     });
+    
         $("#grado").val('todos'); 
         $("#estado").val('todos'); 
         $("#ingeniero").val('todos');
-
+        $.ajaxSetup({
+          headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         $.ajax({
               url: "/trabajo/imprimir",
               type: "POST",
               data: {
-                "_token": "{{ csrf_token() }}",
                 'arreglo':arreglo,
               },
               cache: false,
               dataType: 'json',
               success: function (dataResult) {
+                console.log(dataResult);
               }
           });
 
