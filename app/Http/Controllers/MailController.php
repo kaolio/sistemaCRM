@@ -17,7 +17,7 @@ class MailController extends Controller
             'body' => 'Estimado/a: '
         ];
         
-        Mail::to('alexcalle64@gmail.com')->send(new DemoMail($mailData));
+        //Mail::to('alexcalle64@gmail.com')->send(new DemoMail($mailData));
            
         dd("Email is sent successfully.");
     }
