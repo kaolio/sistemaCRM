@@ -823,7 +823,7 @@ $("#btnBuscarDonante").on('click',function(){
     function habilitarModal(){
             const value =  $("input:checkbox:checked").attr('id');
             const tipo =  $("input:checkbox:checked").attr('value');
-            //console.log(tipo);
+            console.log(tipo);
             const arr = value || [];
 
             const result = arr?.length;

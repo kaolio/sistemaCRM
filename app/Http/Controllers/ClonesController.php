@@ -84,10 +84,23 @@ class ClonesController extends Controller
      * @param  \App\Models\Clones  $clones
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Clones $clones)
+    public function destroy($id)
     {
-        //
+        $dispositivo = DB::table('clones')
+                ->select('id_inventarios')
+                ->where('id','=', $id)
+                ->first();
+
+        $clones = Clones::findOrFail($id);
+        $clones->delete();
+
+        DB::table('inventarios')
+            ->where('id',$dispositivo->id_inventarios)
+            ->update(['estado' => 'Disponible']);
+
+        return redirect('/inventario/discosUso');
     }
+
 
     public function discosUso(){
 
