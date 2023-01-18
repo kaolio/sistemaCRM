@@ -283,6 +283,7 @@
                                 count + "</td></tr>"
                         
                         $("#serviciosGuardados").append(nueva) ;
+                        $('#precioUnico').val(count);
                 }
             });
     }
