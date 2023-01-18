@@ -144,11 +144,21 @@ class DetalleController extends InventarioController
 
     public function buscarOrden(){
 
-        $buscado = DB::table('orden_trabajos')
+        if (Auth::user()->id == 1) {
+
+            $buscado = DB::table('orden_trabajos')
+                        ->select('id')
+                        ->where('id','=',$_POST["orden"])
+                        ->exists();
+
+        } else {
+            
+            $buscado = DB::table('orden_trabajos')
                         ->select('id')
                         ->where('creado',Auth::user()->name)
                         ->where('id','=',$_POST["orden"])
                         ->exists();
+        }
 
         $ordenes = [];
                  
