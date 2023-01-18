@@ -27,7 +27,7 @@
 
    
 
-          <img src="{{public_path('imagenes/logo.jpg')}}" class="text-align-left " width="200px ">
+          <img src="{{public_path('imagenes/logo_hdd.jpg')}}" class="text-align-left " width="200px ">
           <div  style="position: absolute; top: 30 px;left: 500px" >
                   Sitio Web: &nbsp;&nbsp; www.irecovery.com <br/>
                   E-mail: &nbsp;&nbsp;&nbsp; usuario@irecovery.com
