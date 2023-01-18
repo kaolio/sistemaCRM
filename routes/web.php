@@ -98,7 +98,7 @@ Route::get('/trabajo/general',[OrdenTrabajoController::class,'general']);
 Route::post('/trabajos/nuevo/detalle/servicio',[ServicioController::class,'guardarTabla']);
 Route::post('/trabajos/nuevo/detalle/guardarServicio',[ServicioController::class,'guardar']);
 Route::post('/trabajos/nuevo/detalle/enviarServicio',[ServicioController::class,'enviar']);
-Route::delete('/detalleServicio/{id}',[ServicioController::class,'destroy']);
+Route::post('/detalleServicio/eliminar',[ServicioController::class,'destroy']);
 
 Route::get('/trabajos/detalle/{id}',[DetalleController::class,'buscar']);
 Route::post('/trabajos/detalle',[DetalleController::class,'buscarOrden']); //ruta buscador de orden trabajo

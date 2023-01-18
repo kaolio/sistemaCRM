@@ -58,20 +58,19 @@ class ServicioController extends Controller
                 ->where('orden_trabajos.id',$_POST["id"])
                 ->first();
 
-        $cliente = DB::table('detalle_clientes')
-                ->select('detalle_clientes.valor')
-                ->where('detalle_clientes.id',$datos->id)
-                ->where('detalle_clientes.tipo','correo')
+        $cliente = DB::table('clientes')
+                ->select('correo')
+                ->where('id',$datos->id)
                 ->first();
         
             $servicio = DB::table('servicios')
                 ->select('*')
-                ->where('id_trabajos',$datos->id)
+                ->where('id_trabajos',$_POST["id"])
                 ->get();
         
             $total = DB::table('servicios')
                     ->select('precio')
-                    ->where('id_trabajos',$datos->id)
+                    ->where('id_trabajos',$_POST["id"])
                     ->get()->sum('precio');
 
             $mailData = [
@@ -80,23 +79,19 @@ class ServicioController extends Controller
                     ];
 
                     
-            Mail::to($cliente->valor)->send(new DemoMail($mailData,$servicio,$total));
+            Mail::to($cliente->correo)->send(new DemoMail($mailData,$servicio,$total));
             return json_encode(array('data'));
         
         
     }
 
-    public function destroy($id){
-
-        $orden = DB::table('servicios')
-                    ->select('id_trabajos')
-                    ->where('id',$id)
-                    ->first();  
+    public function destroy(){
+ 
                     
-        $trabajo=Servicio::findOrFail($id);
+        $trabajo=Servicio::findOrFail($_POST["id"]);
         $trabajo->delete();
 
-        return redirect('/trabajos/detalle/'.$orden->id_trabajos);
+        return json_encode(array('data'=>true));
     }
 }
  
