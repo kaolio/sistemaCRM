@@ -61,7 +61,7 @@ input:focus + label {
           @csrf
           <div class='container-fluid'>
                 <div class="card">
-                  @if (Auth::user()->can('crear-cliente'))
+                  @if (Auth::user()->can('crear-clientes'))
                       <div class="card-body">
                       <div class="row justify-content-center">
                           <div class="col-11 ">
