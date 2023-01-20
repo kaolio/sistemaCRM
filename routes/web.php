@@ -149,6 +149,8 @@ Route::delete('/trabajos/detalle',[DetalleController::class,'eliminarFilaPacient
 //CLONES
 Route::get('/inventario/discosUso',[ClonesController::class,'discosUso']);
 Route::delete('/discosUso/{id}',[ClonesController::class,'destroy']);
+Route::post('/inventario/discosUso/obtenerValores',[ClonesController::class,'obtenerValores']);
+Route::post('/inventario/discosUso/moverUbicacion',[ClonesController::class,'ubicacionNuevaVolcados']);
 //Route::get('/trabajos/detalle/{id}',[ClonesController::class,'edit']);
 
 
@@ -212,7 +214,7 @@ Route::post('/producto/moverDispositivo',[ProductosController::class,'moverDisp'
 Route::post('/producto/moverDispositivo',[ProductosController::class,'moverDisp']);
 Route::delete('/producto/{id}',[ProductosController::class,'destroy']);
 
-
+ 
 
 /*Puede llamar a un comando de Artisan fuera de la CLI.
 Route::get('/clear-cache', function() {

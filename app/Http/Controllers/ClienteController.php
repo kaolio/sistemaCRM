@@ -38,9 +38,11 @@ class ClienteController extends Controller
             $cliente=DB::table('clientes')
                         ->select('*')
                         ->where('id_user', Auth::user()->id)
-                        ->where('nombreCliente', 'LIKE', '%'.$busqueda.'%')
-                        ->orWhere('cif', 'LIKE', '%'.$busqueda.'%')
-                        ->orWhere('telefono', 'LIKE', '%'.$busqueda.'%')
+                        ->where(function($q)use ($busqueda) {
+                            $q->where('nombreCliente', 'LIKE', '%'.$busqueda.'%')
+                            ->orWhere('cif', 'LIKE', '%'.$busqueda.'%')
+                            ->orWhere('telefono', 'LIKE', '%'.$busqueda.'%');
+                        })
                         ->orderBy('id','asc')
                         ->paginate(10);
         }else{
@@ -49,9 +51,7 @@ class ClienteController extends Controller
 
             $cliente=DB::table('clientes')
                         ->select('*')
-                        ->where('id_user', Auth::user()->id)
                         ->where('nombreCliente', 'LIKE', '%'.$busqueda.'%')
-                        ->orWhere('cif', 'LIKE', '%'.$busqueda.'%')
                         ->orWhere('telefono', 'LIKE', '%'.$busqueda.'%')
                         ->orderBy('id','asc')
                         ->paginate(10);

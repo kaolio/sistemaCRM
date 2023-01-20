@@ -111,6 +111,35 @@ class ClonesController extends Controller
         return view('inventario.discosUso.discosUso',compact('clones'));
         
     }
+    public function obtenerValores()
+    {
+        if ($_POST['tipo'] == 'volcado') {
 
+            $valores = DB::table('clones')
+                    ->select('ubicacion')
+                    ->where('id_inventarios',$_POST['id'])
+                    ->where('id',$_POST['value'])
+                    ->get();
+            
+            return json_encode(array('data'=>$valores));
+        }
+    }
+
+    public function ubicacionNuevaVolcados(){
+
+
+        if ($_POST["volcado"][0] != 'vacio') {
+            for ($i=0; $i < sizeof($_POST['volcado']); $i++) { 
+                    DB::table('clones')
+                    ->where('id', $_POST['volcado'][$i])
+                    ->where('id_inventarios', $_POST['id'])
+                    ->update(['ubicacion' => $_POST["texto"]]);
+            };
+        }  
+      
+        return json_encode(array('data'=>sizeof($_POST["volcado"])));
+
+    }
+ 
    
 }
