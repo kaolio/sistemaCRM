@@ -29,11 +29,11 @@
                                         </th>
                                         <td>
                                             @if ($rol->name != 'ADMINISTRADOR')
-                                                @can('editar-rol')
+                                                @can('editar rol')
                                                     <a class="btn btn-sm btn-primary float-left"  href="{{ url('roles/editar/'.$rol->id) }}">Editar</a> 
                                                 @endcan
                                                 <a class="float-left">&nbsp;&nbsp;</a>
-                                                @can('borrar-rol')
+                                                @can('borrar rol')
                                                     <form action="{{ url('/roles/'.$rol->id) }}" method="post">
                                                         @csrf
                                                         @method('delete')

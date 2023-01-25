@@ -36,12 +36,12 @@
                             @endif
                         </td>
                         <td>
-                            @can('editar-usuario')
+                            @can('editar usuario')
                             <a class="btn btn-sm btn-primary float-left"  href="{{ url('usuario/editar/'.$usuario->id) }}">Editar</a>
                             @endcan
                             <a class="float-left">&nbsp;&nbsp;</a>
                             @if ($usuario->name != 'Administrador')
-                            @can('borrar-usuario')
+                            @can('borrar usuario')
                                 <form action="{{ url('/usuario/'.$usuario->id) }}" method="post">
                                     @csrf
                                     @method('delete')

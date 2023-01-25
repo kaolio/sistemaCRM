@@ -22,35 +22,39 @@ class DatabaseSeeder extends Seeder
 
         // \App\Models\User::factory(10)->create();
         Permission::create([
-            'name' => 'ver-rol',
+            'name' => 'dashboard',
+            'tipo' => 'dashboard',
+        ]);
+        Permission::create([
+            'name' => 'lista de roles',
             'tipo' => 'rol',
         ]);
         Permission::create([
-            'name' => 'crear-rol',
+            'name' => 'crear rol',
             'tipo' => 'rol',
         ]);
         Permission::create([
-            'name' => 'editar-rol',
+            'name' => 'editar rol',
             'tipo' => 'rol',
         ]);
         Permission::create([
-            'name' => 'borrar-rol',
+            'name' => 'borrar rol',
             'tipo' => 'rol',
         ]);
         Permission::create([
-            'name' => 'ver-usuario',
+            'name' => 'lista de usuarios',
             'tipo' => 'usuario',
         ]);
         Permission::create([
-            'name' => 'crear-usuario',
+            'name' => 'crear usuario',
             'tipo' => 'usuario',
         ]);
         Permission::create([
-            'name' => 'editar-usuario',
+            'name' => 'editar usuario',
             'tipo' => 'usuario',
         ]);
         Permission::create([
-            'name' => 'borrar-usuario',
+            'name' => 'borrar usuario',
             'tipo' => 'usuario',
         ]);
         Permission::create([

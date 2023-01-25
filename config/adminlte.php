@@ -322,7 +322,7 @@ return [
             'text' => 'Dashboard',
             'url'  => 'home',
             'icon' => 'fas fa-fw fa-save',
-            'can' => 'ver-rol',
+            'can' => 'dashboard',
         ],
         [
             'text'    => 'Orden de Trabajo  ',
@@ -443,24 +443,24 @@ return [
             ]
         ],
         ['header' => 'ADMINISTRACION',
-        'can' => 'ver-trabajo'],
+        ],
         [
             'text'    => 'Usuarios  ',
             'icon'    => 'fas fa-fw fa-user',
-            'can' => 'ver-usuario',
+            'can' => 'lista de usuarios',
             'submenu' => [
                 
                 [
                     'text' => 'Nuevo Usuario  ',
                     'url'  => 'usuario/nuevo',
                     'icon'    => 'fas fa-fw fa-filse',
-                    'can' => 'crear-usuario',
+                    'can' => 'crear usuario',
                 ],
                 [
                     'text' => 'Ver Todos los Usuarios  ',
                     'url'  => 'usuarios',
                     'icon'    => 'fas fa-fw fa-filse',
-                    'can' => 'ver-usuario',
+                    'can' => 'lista de usuarios',
                     'active' => ['usuarios', 'usuario/editar*'],
                 ],
             ]
@@ -468,21 +468,21 @@ return [
         [
             'text'    => 'Roles  ',
             'icon'    => 'fas fa-fw fa-pen-square',
-            'can' => 'ver-rol',
+            'can' => 'lista de roles',
             'submenu' => [
                 
                 [
                     'text' => 'Nuevo Rol  ',
                     'url'  => 'roles/nuevo',
                     'icon'    => 'fas fa-fw fa-filse',
-                    'can' => 'crear-rol',
+                    'can' => 'crear rol',
 
                 ],
                 [
                     'text' => 'Ver Todos los Roles  ',
                     'url'  => 'roles',
                     'icon'    => 'fas fa-fw fa-filse',
-                    'can' => 'ver-rol',
+                    'can' => 'lista de roles',
                     'active' => ['roles', 'roles/editar*'],
                 ],
             ]
