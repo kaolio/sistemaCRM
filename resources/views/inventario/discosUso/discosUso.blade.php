@@ -2,7 +2,7 @@
 @section('content')
 <h2 align="center"><strong>DISCOS VOLCADOS</strong></h2>
 <br>
-
+{{--
 <div class="container">
     <button disabled type="button" class="btn btn-primary" id="moverDiscosClonados" data-toggle="modal" data-target="#moverModal">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-arrows-move" viewBox="0 0 16 16">
@@ -95,7 +95,7 @@
         </div>
     </div>
     </div>
-</div>-->
+</div>-->--}}
 <br>
 <div class="container">
     <div class="tabla-general" >
@@ -177,6 +177,7 @@
 
 @endsection
 <script src="{{ asset('js/inventario/discosUso.js')}}"></script>
+{{--
 <script>
     function habilitarModal(){
             const value =  $("input:checkbox:checked").attr('id');
@@ -259,4 +260,4 @@
                 });
             }
 
-</script>
+</script>--}}

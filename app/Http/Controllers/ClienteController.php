@@ -147,7 +147,7 @@ class ClienteController extends Controller
        $cliente = DB::table('clientes')  //recuperar el valor del select
                     ->select('*')
                     ->Where('id', '=', $id)
-                    ->get();
+                    ->first();
 
 
                     //dd($cliente);

@@ -14,6 +14,7 @@
     <tr>
       <th class="text-center" style="width: 15%">Fabricante</th>
       <th class="text-center" style="width: 15%">Modelo</th>
+      <th class="text-center" style="width: 15%">Estado</th>
       <th class="text-center" >Numero Serial</th>
       <th class="text-center" >Ubicacion</th>
       <th class="text-center" style="width: 10%">Precio VAT</th> 
@@ -37,11 +38,12 @@
       
         <td class="text-center" >{{$productos->fabricante}}</td>
         <td class="text-center" >{{$productos->modelo}}</td>
+        <td class="text-center" >{{$productos->estado}}</td>
         <td class="text-center" >{{$productos->serial}}</td>
         <td class="text-center" >{{$productos->ubicacion}}</td>
         <td class="text-center" >{{$productos->precio_fin}}</td>
         <td class="text-center" >{{$productos->distribuidora}}</td>
-        <td class="text-center" >{{$productos->fecha}}</td>
+        <td class="text-center" >{{$productos->created_at}}</td>
         <td class="text-center" >
 
           <div style="text-align: right;width:200px">
@@ -207,7 +209,7 @@ var selected = combo.options[combo.selectedIndex].text;
         cache: false,
         dataType: 'json',
         success: function (dataResult) {
-          c//onsole.log(dataResult.data);
+          //onsole.log(dataResult.data);
           $('#estado'+dataResult.data).modal('hide');
           location.href="/productos";
         }

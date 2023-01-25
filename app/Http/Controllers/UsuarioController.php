@@ -156,36 +156,55 @@ class UsuarioController extends Controller
             $input = $request->all();
             if (!empty($input['password'])) {
                 $input['password'] = Hash::make($input['password']);
+
+                $user = User::find($id);
+                $user->name = request('name');
+                $user->email = request('email');
+                $user->password = $input['password'];
+                $user->ciudad = request('ciudad');
+                $user->telefono = request('telefono');
+                $user->provincia = request('provincia');
+                $user->codigoPostal = request('codigoPostal');
+                $user->cif = request('cif');
+                $user->razonSocial = request('razonSocial');
+                $user->direccionSocial = request('direccionSocial');
+                $user->nombreComercial = request('nombreComercial');
+                $user->direccionComercial = request('direccionComercial');
+                $user->horarioComercial = request('horarioComercial');
+                $user->personaContacto = request('personaContacto');
+
+                $user->update();
+
             } else {
+
                 $input = Arr::except($input, array('password'));
+                $user = User::find($id);
+                $user->name = request('name');
+                $user->email = request('email');
+                $user->ciudad = request('ciudad');
+                $user->telefono = request('telefono');
+                $user->provincia = request('provincia');
+                $user->codigoPostal = request('codigoPostal');
+                $user->cif = request('cif');
+                $user->razonSocial = request('razonSocial');
+                $user->direccionSocial = request('direccionSocial');
+                $user->nombreComercial = request('nombreComercial');
+                $user->direccionComercial = request('direccionComercial');
+                $user->horarioComercial = request('horarioComercial');
+                $user->personaContacto = request('personaContacto');
+    
+                $user->update();
             }
             
-    
-            $user = User::find($id);
-            $user->name = request('name');
-            $user->email = request('email');
-            $user->password = $input['password'];
-            $user->ciudad = request('ciudad');
-            $user->telefono = request('telefono');
-            $user->provincia = request('provincia');
-            $user->codigoPostal = request('codigoPostal');
-            $user->cif = request('cif');
-            $user->razonSocial = request('razonSocial');
-            $user->direccionSocial = request('direccionSocial');
-            $user->nombreComercial = request('nombreComercial');
-            $user->direccionComercial = request('direccionComercial');
-            $user->horarioComercial = request('horarioComercial');
-            $user->personaContacto = request('personaContacto');
+            //dd($input);
 
-            
+           
 
-            $user->update();
-             //dd($user);
-            //DB::table('model_has_roles')
-              //  ->where('model_id',$id)->delete();
+            //dd($user);
+        DB::table('model_has_roles')
+            ->where('model_id',$id)->delete();
     
             $user->assignRole($request->input('roles'));
-    
             return redirect('usuarios');
         } catch (\Throwable $th) {
             return view('errors.error');
