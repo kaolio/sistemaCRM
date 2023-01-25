@@ -356,7 +356,7 @@
                                 
                                         <label form="confirm-password">Confirmar Contraseña</label>
                                         <input class="form-control " type="password" name="confirm-password" id="confirm-password" 
-                                                Placeholder="Vuelva a escribir la contraseña" value="{{ old('confirm-password') }}"
+                                                Placeholder="Vuelva a escribir la contraseña" value="{{ old('confirm-password') }}" 
                                                 onkeyup="validarConfirmarContraseña()"
                                                 onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)) ">
                                                 <span id="estadoConfirmarContraseña"></span>
