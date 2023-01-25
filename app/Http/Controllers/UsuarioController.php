@@ -129,6 +129,8 @@ class UsuarioController extends Controller
             $roles = Role::pluck('name','name')->all();
             $userRole = $user->roles->pluck('name','name')->all();
 
+            //dd($user);
+
             foreach ($userRole as $value) {
                 $userRole = $value;
             }
@@ -162,6 +164,7 @@ class UsuarioController extends Controller
             $user = User::find($id);
             $user->name = request('name');
             $user->email = request('email');
+            $user->password = $input['password'];
             $user->ciudad = request('ciudad');
             $user->telefono = request('telefono');
             $user->provincia = request('provincia');
@@ -173,8 +176,11 @@ class UsuarioController extends Controller
             $user->direccionComercial = request('direccionComercial');
             $user->horarioComercial = request('horarioComercial');
             $user->personaContacto = request('personaContacto');
+
+            
+
             $user->update();
-    
+             //dd($user);
             //DB::table('model_has_roles')
               //  ->where('model_id',$id)->delete();
     

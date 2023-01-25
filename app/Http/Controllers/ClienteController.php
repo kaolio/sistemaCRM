@@ -147,7 +147,7 @@ class ClienteController extends Controller
        $cliente = DB::table('clientes')  //recuperar el valor del select
                     ->select('*')
                     ->Where('id', '=', $id)
-                    ->first();
+                    ->get();
 
 
                     //dd($cliente);
@@ -179,7 +179,9 @@ class ClienteController extends Controller
         $datoCliente->idioma = $request->get('idioma');
         $datoCliente->referencia = $request->get('referencia');
         $datoCliente->nota = $request->get('nota');
-        //dd($datoCliente);
+
+       // dd($datoCliente);
+
         $datoCliente->save();
 
         return redirect('/clientes');
