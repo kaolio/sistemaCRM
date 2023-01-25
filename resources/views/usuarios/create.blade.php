@@ -133,7 +133,22 @@
 
         setInterval(saludos, 1000);
 
+        function validarTelefono() {
+            $("#estadoTabla").html("<span  class='mayor'><h5 class='menor'></h5></span>");
+                    if($("#telefono").val() == ""){
+                        $("#estadoTelefono").html("<span  class='menor'><h5 class='menor'> </h5></span>");
+                    }else{
+                        var regex = /^[8-9]{1}[0-9]{8}$/;
+                        if (!regex.test($("#telefono").val())) {
+                            $("#estadoTelefono").html("<span  class='menor'><h5 class='menor'>&nbsp;&nbsp;Telefono incorrecto</h5></span>");
+                        } else {
+                            $("#estadoTelefono").html("<span  class='mayor'><h5 class='bien'>&nbsp;&nbsp;Telefono valido</h5></span>");
+                        }      
+                }
+                }
+
     </script>
+    <link rel="stylesheet" href="{{ URL::asset('estilos/style.css') }} ">
     
  
 
@@ -183,9 +198,9 @@
                         <div class="input-group">
                         <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Telefono</span>
                         <input type="text" id="telefono" name="telefono" class="form-control" 
-                        required onkeyup="validarDireccion()" Placeholder="Telefono" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) )">
+                        required onkeyup="validarTelefono()" Placeholder="Telefono" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) )">
                         </div>
-                        <span></span>
+                        <span id="estadoTelefono"></span>
                     </div>
             </div>
              <br>

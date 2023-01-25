@@ -9,6 +9,77 @@
     <title>Document</title>
 </head>
 
+<style>
+        
+    .menor{
+            color:#ff3333;
+            font-size: medium;
+        }
+    .mayor{
+            color:#29a01e;
+            font-size: medium;
+        }
+</style>
+<link rel="stylesheet" href="{{ URL::asset('estilos/style.css') }} ">
+<script>
+
+            function validarTelefono() {
+                $("#estadoTabla").html("<span  class='mayor'><h5 class='menor'></h5></span>");
+                        if($("#telefono").val() == ""){
+                            $("#estadoTelefono").html("<span  class='menor'><h5 class='menor'> </h5></span>");
+                        }else{
+                            var regex = /^[8-9]{1}[0-9]{8}$/;
+                            if (!regex.test($("#telefono").val())) {
+                                $("#estadoTelefono").html("<span  class='menor'><h5 class='menor'>&nbsp;&nbsp;Telefono incorrecto</h5></span>");
+                            } else {
+                                $("#estadoTelefono").html("<span  class='mayor'><h5 class='bien'>&nbsp;&nbsp;Telefono valido</h5></span>");
+                            }      
+                    }
+                    }
+
+          function validarContraseña(){
+                    validarConfirmarContraseña();
+                    if($("#password").val() == ""){
+                        $("#estadoPassword").html("<span  class='menor'><h5 class='menor'> </h5></span>");
+                    }else{
+                            if ($("#password").val().length < 6) {
+                                $("#estadoPassword").html(
+                                    "<span  class='menor'><h5 class='menor'>&nbsp;&nbsp;Su contraseña debe tener al menos 6 caracteres</h5></span>");
+                            } else {
+                                if ($("#password").val().length > 15) {
+                                    $("#estadoPassword").html(
+                                        "<span  class='menor'><h5 class='menor'>&nbsp;&nbsp;Su contraseña debe tener como maximo 15 caracteres</h5></span>");
+                                } else {
+                                        $("#estadoPassword").html("<span  class='menor'><h5 class='menor'> </h5></span>");
+                                }
+                            } 
+                }
+            }
+
+
+            function validarConfirmarContraseña(){
+            if($("#confirm-password").val() == ""){
+                $("#estadoConfirmarContraseña").html("<span  class='menor'><h5 class='menor'> </h5></span>");
+               }else{
+                    if ($("#confirm-password").val().length < 6) {
+                        $("#estadoConfirmarContraseña").html("<span  class='menor'><h5 class='menor'>&nbsp;&nbsp;Su contraseña debe tener al menos 6 caracteres</h5></span>");
+                    } else {
+                        if ($("#confirm-password").val().length > 15) {
+                            $("#estadoConfirmarContraseña").html( "<span  class='menor'><h5 class='menor'>&nbsp;&nbsp;Su contraseña debe tener como maximo 15 caracteres</h5></span>");
+                        } else {
+                            if ($("#confirm-password").val() == $("#password").val()) {
+                                $("#estadoConfirmarContraseña").html("<span  class='menor'><h5 class='menor'> </h5></span>");
+                            } else {
+                                $("#estadoConfirmarContraseña").html("<span  class='menor'><h5 class='menor'>&nbsp;&nbsp;Verifique la contraseña nuevamente</h5></span>");
+                            }
+                            
+                        }
+                    } 
+           }
+        }
+
+</script>
+
 <BR>
 
 <div class="card">
@@ -54,9 +125,9 @@
                         <div class="input-group">
                         <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Telefono</span>
                         <input type="text" id="telefono" name="telefono" class="form-control" 
-                        required onblur="comprobarName()" value="{{ $user->telefono }}" Placeholder="Telefono" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) )">
+                        required onkeyup="validarTelefono()" value="{{ $user->telefono }}" Placeholder="Telefono" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) )">
                         </div>
-                        <span></span>
+                        <span id="estadoTelefono"></span>
                     </div>
             </div>
              <br>
@@ -129,7 +200,7 @@
                     <div class="input-group">
                         <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Contraseña</span>
                             <input class="form-control " type="text" name="password" id="password"  
-                            Placeholder="Ingrese el nombre del password"  onkeyup="comprobarPassword()">
+                            Placeholder="Ingrese el nombre del password"  onkeyup="validarContraseña()">
                     </div>
                     <span id="estadoPassword"></span>
                 </div>
@@ -147,7 +218,7 @@
                 <div class="col-5">
                     <div class="input-group">
                         <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Confirmar Contraseña</span>
-                        <input class="form-control" type="text" name="confirm-password" id="confirm-password" 
+                        <input class="form-control" type="text" name="confirm-password" id="confirm-password" onkeyup="validarConfirmarContraseña()"
                         Placeholder="vuelva a ingresar la contraseña">
                     </div>
                     <span id="estadoConfirmarContraseña"></span>
@@ -161,7 +232,7 @@
                 </div>
            </div>
           <br>
-          @if (Auth::user()->id != 1)
+          @if (Auth::user()->id == 1)
             <div class="row justify-content-center">
                 <div class="col-5">
                     <div class="input-group">

@@ -71,9 +71,13 @@
                                 <textarea type="text" style="height: 80px " name="informacionTrabajo" class="form-control" readonly>{{$orden_elegida->informacion}}</textarea>
                             </br>
                             <p style="height:20px;">Datos Importantes</p>
-                               <textarea type="text" style="height: 80px" name="datosimportantes" class="form-control" readonly>{{$orden_elegida->datosImportantes}}</textarea>
+                               <textarea type="text" style="height: 80px" name="datosimportantes" class="form-control" readonly>{{$orden_elegida->datosImportantes}}</textarea> 
                             
                             </br>
+                        <p style="height:20px;">Nota de Orden de Trabajo</p>
+                           <textarea type="text" style="height: 80px" name="datosimportantes" class="form-control" readonly>{{$orden_elegida->notaOrden}}</textarea> 
+                        
+                        </br>
                             <p style="height:20px;">Nota de Cliente</p>
                                 <textarea type="text" style="height: 80px" id="infoCliente" name="infoCliente" class="form-control" required></textarea>
                              </br>

@@ -206,13 +206,13 @@
             <label for="inputCity">PCB <strong>*</strong></label>
             <input type="text" class="form-control" id="pbc" name="pbc" value="{{$inventario->pbc}}" autocomplete="off"
                    value="{{ old('pbc') }}" onkeyup="validarPbc()" required
-                   onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))">
+                   onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
                    <span id="estadoPbc"></span>
           </div>
           <div class="form-group col-md-4">
               <label for="inputCity">Ubicación </label>
               <input type="text" class="form-control" id="ubicacion" name="ubicacion" value="{{$inventario->ubicacion}}" autocomplete="off"
-              onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))">
+              onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
           </div> 
           <div class="form-group col-md-4">
             <label for="inputCity">Fecha de Disco</label>
@@ -227,12 +227,12 @@
           <div class="form-group col-md-4">
               <label for="inputCity">Cabezal</label>
               <input type="text" class="form-control" id="cabecera" name="cabecera" value="{{$inventario->cabecera}}" autocomplete="off"
-              onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))">
+              onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
           </div>
             <div class="form-group col-md-4">
               <label for="inputCity">Información del Cabezal</label>
               <input type="text" class="form-control" id="info_de_cabecera" name="info_de_cabecera" value="{{$inventario->info_de_cabecera}}" autocomplete="off"
-              onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))">
+              onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
           </div>
           <span class="mb-4"><strong>*</strong> Campos Obligatorios</span>
       </div>
