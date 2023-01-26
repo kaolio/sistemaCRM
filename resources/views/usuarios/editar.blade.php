@@ -232,7 +232,6 @@
                 </div>
            </div>
           <br>
-          @if (Auth::user()->id == 1)
             <div class="row justify-content-center">
                 <div class="col-5">
                     <div class="input-group">
@@ -252,7 +251,6 @@
                     <span id="estadoRol"></span>
                 </div>
             </div>
-            @endif
                 </br>
                  </br>
                 <div class="text-center">

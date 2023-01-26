@@ -202,22 +202,12 @@ class ClienteController extends Controller
 
     public function descargarPDF(){
 
-        if (Auth::user()->id != 1) {
-
+       
             $datosTablas = DB::table('clientes')
                         ->select('*')
-                        ->where('user_id',Auth::user()->id)
                         ->orderBy('id','desc')
                         ->get();
-
-        }else{
-            $datosTablas = DB::table('clientes')
-                        ->select('*')
-                        ->where('id_user',Auth::user()->id)
-                        ->orderBy('id','desc')
-                        ->get();
-        }
-
+        
         $pdf = \PDF::loadView('/cliente/reporte/pdf',compact('datosTablas'));
                               //ruta del archivo        envio de la variable de la db 
         return $pdf->setPaper('a4','landscape')->download('Reporte-Clientes.pdf');
@@ -231,21 +221,11 @@ class ClienteController extends Controller
 
     public function imprimirPdf(){
        
-        if (Auth::user()->id != 1) {
-
+        
             $datosTablas = DB::table('clientes')
                         ->select('*')
-                        ->where('user_id',Auth::user()->id)
                         ->orderBy('id','desc')
                         ->get();
-
-        }else{
-            $datosTablas = DB::table('clientes')
-                        ->select('*')
-                        ->where('id_user',Auth::user()->id)
-                        ->orderBy('id','desc')
-                        ->get();
-        }
         
         $pdf = \PDF::loadView('/cliente/reporte/pdf',compact('datosTablas'));
         return $pdf->setPaper('a4','landscape')->stream(); //mandar a imprimir la vista pdf en horizontal
