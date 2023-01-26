@@ -198,7 +198,7 @@
                         <div class="input-group">
                         <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Telefono</span>
                         <input type="text" id="telefono" name="telefono" class="form-control" 
-                        required onkeyup="validarTelefono()" Placeholder="Telefono" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) )">
+                        required  Placeholder="Telefono" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) )">
                         </div>
                         <span id="estadoTelefono"></span>
                     </div>
