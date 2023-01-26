@@ -61,7 +61,7 @@ input:focus + label {
           @csrf
           <div class='container-fluid'>
                 <div class="card">
-                  @if (Auth::user()->can('crear-clientes'))
+                  @if (Auth::user()->can('crear cliente'))
                       <div class="card-body">
                       <div class="row justify-content-center">
                           <div class="col-11 ">
@@ -74,7 +74,7 @@ input:focus + label {
                            </div>
                             <span id="estadoCliente"></span>
                             <br>
-                            @can('crear-cliente')
+                            @can('crear cliente')
                                 <a href="{{ url('/cliente/nuevo')}}" class="card-link">Nuevo Cliente</a>
                             @endcan
                              
