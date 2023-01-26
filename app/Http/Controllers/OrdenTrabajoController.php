@@ -33,7 +33,7 @@ class OrdenTrabajoController extends Controller
 
     }
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource. 
      *
      * @return \Illuminate\Http\Response
      */
@@ -268,7 +268,7 @@ class OrdenTrabajoController extends Controller
      {
       $query = $request->get('query');
       
-      if (Auth::user()->id == 1) {
+      /*if (Auth::user()->id == 1) {
             $data = DB::table('clientes')
                 ->where('nombreCliente', 'LIKE', "{$query}%")
                 ->get();
@@ -277,8 +277,10 @@ class OrdenTrabajoController extends Controller
                 ->where('id_user',Auth::user()->id)
                 ->where('nombreCliente', 'LIKE', "{$query}%")
                 ->get(); 
-      }
-      
+      }*/
+      $data = DB::table('clientes')
+                ->where('nombreCliente', 'LIKE', "{$query}%")
+                ->get();
       
 
       $output = '<datalist id="codigo">';
