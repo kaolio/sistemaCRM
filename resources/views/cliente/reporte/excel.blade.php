@@ -29,18 +29,15 @@
         <tr>
         </tr>
         <tr>
-            <th class="text-center">Nombre</th>
-            <th class="text-center">VAT</th>
-            <th class="text-center">Direccion</th>
-            <th class="text-center">Numero</th>
-            <th class="text-center">Apt</th>
-            <th class="text-center">CodigoPostal</th>
-            <th class="text-center">PAK</th>
-            <th class="text-center">Ciudad</th>
-            <th class="text-center">Pais</th>
-            <th class="text-center">Idioma</th>
-            <th class="text-center">Nota</th>
-            <th class="text-center">Fecha</th>
+          <th class="text-center">Nombre</th>
+          <th class="text-center">E-mail</th>
+          <th class="text-center">Telefono</th>
+          <th class="text-center">Direccion</th>
+          <th class="text-center">CodigoPostal</th>
+          <th class="text-center">Provincia</th>
+          <th class="text-center">Pais</th>
+          <th class="text-center">Referencia</th>
+          <th class="text-center">Fecha</th>
         </tr>
         </thead>
         <tbody class="table-bordered">
@@ -51,17 +48,14 @@
              @else   
              @foreach ($cliente as $cliente)
           <tr>
-            <td >{{$cliente->nombreCliente}}</td>
-                <td class="text-center">{{$cliente->vat}}</td>
+                 <td >{{$cliente->nombreCliente}}</td>
+                <td class="text-center">{{$cliente->correo}}</td>
+                <td class="text-center">{{$cliente->telefono}}</td>
                 <td class="text-center">{{$cliente->calle}}</td>
-                <td class="text-center">{{$cliente->numero}}</td>
-                <td class="text-center">{{$cliente->apt}}</td>
                 <td class="text-center">{{$cliente->codigoPostal}}</td>
-                <td class="text-center">{{$cliente->pak}}</td>
-                <td class="text-center">{{$cliente->nombreCiudad}}</td>
+                <td class="text-center">{{$cliente->provincia}}</td>
                 <td class="text-center">{{$cliente->pais}}</td>
-                <td class="text-center">{{$cliente->idioma}}</td>
-                <td class="text-center">{{$cliente->nota}}</td>
+                <td class="text-center">{{$cliente->referencia}}</td>
                 <td class="text-center">{{ $cliente->created_at}}</td>
 
           </tr>

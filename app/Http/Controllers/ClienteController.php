@@ -31,7 +31,7 @@ class ClienteController extends Controller
      */
     public function index(Request $request)
     {
-        if (Auth::user()->id != 1) {
+      /* if (Auth::user()->id != 1) {
                 
             $busqueda=trim($request->get('busqueda'));
 
@@ -56,7 +56,16 @@ class ClienteController extends Controller
                         ->orderBy('id','asc')
                         ->paginate(10);
 
-        }
+        }*/
+
+        $busqueda=trim($request->get('busqueda'));
+
+            $cliente=DB::table('clientes')
+                        ->select('*')
+                        ->where('nombreCliente', 'LIKE', '%'.$busqueda.'%')
+                        ->orWhere('telefono', 'LIKE', '%'.$busqueda.'%')
+                        ->orderBy('id','asc')
+                        ->paginate(10);
         
         //$datoCliente['clientes']=Cliente::paginate(10);
         return view('cliente.index', compact('busqueda','cliente'));
