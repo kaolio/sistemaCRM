@@ -7,9 +7,19 @@
   <br>
   <div class="d-flex">
     <div class="p-2">
-      <a type="button" class="btn text-white" href="{{URL('cliente/excel')}}" style="background: rgb(20, 141, 9)">Excel</a>
-      <a class="btn btn-danger" href="{{URL('cliente/pdf')}}" role="button">PDF</a> 
-      <a type="button" href="{{URL('cliente/imprimirIndex')}}" class="btn btn-primary">Imprimir</a>
+      
+      @can('lista de clientes excel')
+          <a type="button" class="btn text-white" href="{{URL('cliente/excel')}}" style="background: rgb(20, 141, 9)">Excel</a>
+      @endcan
+      @can('lista de clientes PDF')
+          <a class="btn btn-danger" href="{{URL('cliente/pdf')}}" role="button">PDF</a>
+      @endcan
+      @can('imprimir lista de clientes')
+          <a type="button" href="{{URL('cliente/imprimirIndex')}}" class="btn btn-primary">Imprimir</a>
+      @endcan
+      
+       
+      
     </div>
     
     <div class="ml-auto p-2">
@@ -63,7 +73,8 @@
 
           <div style="text-align: center;width:90px">
             
-            {{-- EDITAR --}}
+          @can('editar cliente')
+                {{-- EDITAR --}}
           <a href="{{ url('/cliente/editar/'.$cliente->id)}}">
             <button class="btn btn-light-active btn-sm d-inline"  >
               <svg xmlns="http://www.w3.org/2000/svg" fill="rgb(168, 166, 14)" viewBox="0 0 16 16" width="18" height="20">
@@ -73,8 +84,10 @@
               </svg>
             </button>
           </a> 
-
-          {{-- ELIMINAR --}}
+          @endcan
+          
+          @can('borrar cliente')
+            {{-- ELIMINAR --}}
             <button class="btn d-inline" style="color: red"  data-toggle="modal" data-target="#eliminar{{$cliente->id}}">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
@@ -82,7 +95,9 @@
               </svg>
             </button>
 
-          </div>
+          </div>  
+          @endcan
+          
 
 
           {{-- ELIMINAR --}}

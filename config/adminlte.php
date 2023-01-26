@@ -351,27 +351,47 @@ return [
             ]
         ],
         [
+            'text'    => 'Clientes',
+            'icon'    => 'fas fa-fw fa-users',
+            'can' => 'lista de clientes',
+            'submenu' => [
+                [
+                    'text' => 'Nuevo Cliente',
+                    'url'  => 'cliente/nuevo',
+                    'can' => 'crear cliente',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
+                [
+                    'text' => 'Ver Clientes',
+                    'url'  => 'clientes',
+                    'can' => 'lista de clientes',
+                    'icon'    => 'fas fa-fw fa-filse',
+                    'active' => ['clientes', 'cliente/editar*'],
+                ],
+            ]
+        ],
+        [
             'text'    => 'Inventario',
             'icon'    => 'fas fa-fw fa-boxes',
-            'can' => 'ver-inventario',
+            'can' => 'lista de inventario',
             'submenu' => [
                 [
                     'text' => 'Nuevo Disco',
                     'url'  => 'inventario/nuevo',
-                    'can' => 'crear-inventario',
+                    'can' => 'crear inventario',
                     'icon'    => 'fas fa-fw fa-filse',
                 ],
                 [
                     'text' => 'Ver Inventario',
                     'url'  => 'inventario',
-                    'can' => 'ver-inventario',
+                    'can' => 'lista de inventario',
                     'icon'    => 'fas fa-fw fa-filse',
                     'active' => ['inventario', 'inventario/editar*'],
                 ],
                 [
                     'text' => 'Discos en Uso',
                     'url'  => 'inventario/discosUso',
-                    'can' => 'ver-inventario',
+                    'can' => 'lista de discos volcados',
                     'icon'    => 'fas fa-fw fa-filse',
                 ],
             ]
@@ -403,47 +423,27 @@ return [
             ]
         ],*/
         [
-            'text'    => 'Clientes',
-            'icon'    => 'fas fa-fw fa-users',
-            'can' => 'ver-clientes',
-            'submenu' => [
-                [
-                    'text' => 'Nuevo Cliente',
-                    'url'  => 'cliente/nuevo',
-                    'can' => 'crear-clientes',
-                    'icon'    => 'fas fa-fw fa-filse',
-                ],
-                [
-                    'text' => 'Ver Clientes',
-                    'url'  => 'clientes',
-                    'can' => 'ver-clientes',
-                    'icon'    => 'fas fa-fw fa-filse',
-                    'active' => ['clientes', 'cliente/editar*'],
-                ],
-            ]
-        ],
-        [
             'text'    => 'Productos',
             'icon'    => 'fas fa-fw fa-barcode',
-            'can' => 'ver-productos',
+            'can' => 'lista de productos',
             'submenu' => [
                 [
                     'text' => 'Nuevo Producto',
                     'url'  => 'producto/nuevo',
-                    'can' => 'crear-productos',
+                    'can' => 'crear producto',
                     'icon'    => 'fas fa-fw fa-filse',
                 ],
                 [
                     'text' => 'Ver Productos',
                     'url'  => 'productos',
-                    'can' => 'ver-productos',
+                    'can' => 'lista de productos',
                     'icon'    => 'fas fa-fw fa-filse',
                     'active' => ['productos', 'producto/editar*'],
                 ],
             ]
         ],
         ['header' => 'ADMINISTRACION',
-        ],
+        'can' => ['lista de usuarios','lista de roles'],],
         [
             'text'    => 'Usuarios  ',
             'icon'    => 'fas fa-fw fa-user',

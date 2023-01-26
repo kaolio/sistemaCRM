@@ -19,10 +19,10 @@ class ClienteController extends Controller
 
     function __construct()
     {
-        $this->middleware('permission:ver-clientes|crear-clientes|editar-clientes|borrar-clientes',['only'=>['index']]);
-        $this->middleware('permission:crear-clientes',['only'=>['create','store']]);
-        $this->middleware('permission:editar-clientes',['only'=>['edit','update']]);
-        $this->middleware('permission:borrar-clientes',['only'=>['destroy']]);
+        $this->middleware('permission:lista de clientes|crear cliente|editar cliente|borrar cliente',['only'=>['index']]);
+        $this->middleware('permission:crear cliente',['only'=>['create','store']]);
+        $this->middleware('permission:editar cliente',['only'=>['edit','update']]);
+        $this->middleware('permission:borrar cliente',['only'=>['destroy']]);
     }
     /**
      * Display a listing of the resource.

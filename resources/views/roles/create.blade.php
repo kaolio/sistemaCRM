@@ -172,7 +172,7 @@
                                                                     <div class="card1">
                                                                         <div class="card-header">
                                                                             @foreach ($permission as $value)
-                                                                                @if ($value->tipo == 'clientes' )
+                                                                                @if ($value->tipo == 'cliente' )
                                                                                     <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
                                                                                 @endif
                                                                             @endforeach 
@@ -182,6 +182,17 @@
                                                             </div>
                                                             <br/>
                                                             <div class="row justify-content-center">
+                                                                <div class="col-5">
+                                                                    <div class="card1">
+                                                                        <div class="card-header">
+                                                                            @foreach ($permission as $value)
+                                                                                @if ($value->tipo == 'producto' )
+                                                                                    <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
+                                                                                @endif
+                                                                            @endforeach 
+                                                                        </div>
+                                                                   </div>
+                                                                </div>
                                                                 <div class="col-5">
                                                                     <div class="card1">
                                                                         <div class="card-header">

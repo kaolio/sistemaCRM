@@ -82,46 +82,93 @@ class DatabaseSeeder extends Seeder
             'tipo' => 'trabajo',
         ]);
         Permission::create([
-            'name' => 'descargar lista excel',
+            'name' => 'lista de trabajos excel',
             'tipo' => 'trabajo',
         ]);
         Permission::create([
-            'name' => 'descargar lista PDF',
+            'name' => 'lista de trabajos PDF',
             'tipo' => 'trabajo',
         ]);
         Permission::create([
-            'name' => 'ver-clientes',
-            'tipo' => 'clientes',
+            'name' => 'lista de clientes',
+            'tipo' => 'cliente',
         ]);
         Permission::create([
-            'name' => 'crear-clientes',
-            'tipo' => 'clientes',
+            'name' => 'crear cliente',
+            'tipo' => 'cliente',
         ]);
         Permission::create([
-            'name' => 'editar-clientes',
-            'tipo' => 'clientes',
+            'name' => 'editar cliente',
+            'tipo' => 'cliente',
         ]);
         Permission::create([
-            'name' => 'borrar-clientes',
-            'tipo' => 'clientes',
+            'name' => 'borrar cliente',
+            'tipo' => 'cliente',
         ]);
         Permission::create([
-            'name' => 'ver-inventario',
+            'name' => 'imprimir lista de clientes',
+            'tipo' => 'cliente',
+        ]);
+        Permission::create([
+            'name' => 'lista de clientes excel',
+            'tipo' => 'cliente',
+        ]);
+        Permission::create([
+            'name' => 'lista de clientes PDF',
+            'tipo' => 'cliente',
+        ]);
+        Permission::create([
+            'name' => 'lista de inventario',
             'tipo' => 'inventario',
         ]);
         Permission::create([
-            'name' => 'crear-inventario',
+            'name' => 'crear inventario',
             'tipo' => 'inventario',
         ]);
         Permission::create([
-            'name' => 'editar-inventario',
+            'name' => 'editar inventario',
             'tipo' => 'inventario',
         ]);
         Permission::create([
-            'name' => 'borrar-inventario',
+            'name' => 'borrar inventario',
             'tipo' => 'inventario',
         ]);
-        
+        Permission::create([
+            'name' => 'imprimir lista de inventario',
+            'tipo' => 'inventario',
+        ]);
+        Permission::create([
+            'name' => 'lista de inventario excel',
+            'tipo' => 'inventario',
+        ]);
+        Permission::create([
+            'name' => 'lista de inventario PDF',
+            'tipo' => 'inventario',
+        ]);
+        Permission::create([
+            'name' => 'lista de productos',
+            'tipo' => 'producto',
+        ]);
+        Permission::create([
+            'name' => 'crear producto',
+            'tipo' => 'producto',
+        ]);
+        Permission::create([
+            'name' => 'editar producto',
+            'tipo' => 'producto',
+        ]);
+        Permission::create([
+            'name' => 'borrar producto',
+            'tipo' => 'producto',
+        ]);
+        Permission::create([
+            'name' => 'cambiar estado',
+            'tipo' => 'producto',
+        ]);
+        Permission::create([
+            'name' => 'mover producto',
+            'tipo' => 'producto',
+        ]);
         
         $role = Role::create(['name' => 'ADMINISTRADOR']);
         $role->givePermissionTo(Permission::all());

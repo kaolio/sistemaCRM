@@ -24,9 +24,16 @@
 <div class="container">
 <div class="d-flex">
   <div class="p-2">
-    <a class="btn btn-success" href="{{URL('inventario/excel')}}" style="background: rgb(20, 141, 9)" role="button">EXCEL</a>
-    <a class="btn btn-danger" href="{{URL('inventario/pdf')}}" style="background: #AF1512" role="button">PDF</a> 
-    <a class="btn text-white" href="{{URL('inventario/imprimirInventario')}}" style="background:#0F3078" role="button">IMPRIMIR</a>
+    
+    @can('lista de inventario excel')
+        <a class="btn btn-success" href="{{URL('inventario/excel')}}" style="background: rgb(20, 141, 9)" role="button">EXCEL</a>
+    @endcan
+    @can('lista de inventario PDF')
+        <a class="btn btn-danger" href="{{URL('inventario/pdf')}}" style="background: #AF1512" role="button">PDF</a> 
+    @endcan
+    @can('imprimir lista de inventario')
+        <a class="btn text-white" href="{{URL('inventario/imprimirInventario')}}" style="background:#0F3078" role="button">IMPRIMIR</a>
+    @endcan
   </div>
   
   <div class="ml-auto p-2">

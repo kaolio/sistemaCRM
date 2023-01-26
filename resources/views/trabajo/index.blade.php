@@ -52,12 +52,15 @@
       @can('imprimir orden de trabajo')
           <button class="btn btn-warning text-white" onclick="imprimirPDF()" disabled id="ordenImprimir">Generar Orden</button>
       @endcan
-      <!-- Button trigger modal 2-->
-      <button type="button" class="btn btn-primary text-white" id="modal2" disabled data-toggle="modal" data-target="#example2">Cambiar Prioridad</button>
-      <!-- Button trigger modal 3-->
-      <button type="button" class="btn btn-primary text-white" id="modal3" disabled  data-toggle="modal" data-target="#example3">Cambiar Estado</button>
-      <!-- Button trigger modal 4-->
+      
+      @can('editar orden de trabajo')
+          <!-- Button trigger modal 2-->
+          <button type="button" class="btn btn-primary text-white" id="modal2" disabled data-toggle="modal" data-target="#example2">Cambiar Prioridad</button>
+          <!-- Button trigger modal 3-->
+          <button type="button" class="btn btn-primary text-white" id="modal3" disabled  data-toggle="modal" data-target="#example3">Cambiar Estado</button>      
+      @endcan
       @can('borrar orden de trabajo')
+          <!-- Button trigger modal 4-->
           <button type="button" class="btn text-white"  style="background: red" id="modal4" disabled  data-toggle="modal" data-target="#example4">Eliminar</button>
       @endcan
       
@@ -176,10 +179,10 @@
 
 <div class="d-flex">
   <div class="p-2">
-    @can('descargar lista excel')
+    @can('lista de trabajos excel')
        <a type="button" class="btn text-white" href="{{URL('trabajo/excel')}}" style="background: rgb(20, 141, 9)">Excel</a> 
     @endcan
-    @can('descargar lista PDF')
+    @can('lista de trabajos PDF')
         <a class="btn btn-danger" href="{{URL('trabajo/pdf')}}" role="button">PDF</a> 
     @endcan
     @can('imprimir lista de trabajos')

@@ -48,7 +48,8 @@
 
           <div style="text-align: right;width:200px">
 
-            {{-- ESTADO --}}
+            @can('cambiar estado')
+               {{-- ESTADO --}}
             <button class="btn d-inline" style="color: rgb(255, 102, 0)"  data-toggle="modal" data-target="#estado{{$productos->id}}">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" fill="currentColor" viewBox="0 0 384 512">
                 <path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM80 
@@ -56,19 +57,23 @@
                 96H288c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V256c0-17.7 14.3-32 32-32zm0 32v64H288V256H96zM240 416h64c8.8 0 16 7.2 16 16s-7.2 
                 16-16 16H240c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/>
               </svg>
-            </button>
-
-            {{-- MOVER --}}
-            <button class="btn d-inline" style="color: rgb(0, 26, 255); "  data-toggle="modal" data-target="#mover{{$productos->id}}">
+            </button> 
+            @endcan
+            
+            @can('mover producto')
+              {{-- MOVER --}}
+               <button class="btn d-inline" style="color: rgb(0, 26, 255); "  data-toggle="modal" data-target="#mover{{$productos->id}}">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 512 512">
                 <path d="M278.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-64 64c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l9.4-9.4V224H109.3l9.4-9.4c12.5-12.5 12.5-32.8 
                 0-45.3s-32.8-12.5-45.3 0l-64 64c-12.5 12.5-12.5 32.8 0 45.3l64 64c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-9.4-9.4H224V402.7l-9.4-9.4c-12.5-12.5-32.8-12.5-45.3 
                 0s-12.5 32.8 0 45.3l64 64c12.5 12.5 32.8 12.5 45.3 0l64-64c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-9.4 9.4V288H402.7l-9.4 9.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 
                 12.5 45.3 0l64-64c12.5-12.5 12.5-32.8 0-45.3l-64-64c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l9.4 9.4H288V109.3l9.4 9.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-64-64z"/>
               </svg>
-            </button>
-
-            {{-- EDITAR --}}
+            </button> 
+            @endcan
+          
+          @can('editar producto')
+               {{-- EDITAR --}}
           <a href="{{ url('/producto/editar/'.$productos->id)}}">
             <button class="btn btn-light-active btn-sm d-inline"  >
               <svg xmlns="http://www.w3.org/2000/svg" fill="rgb(168, 166, 14)" viewBox="0 0 16 16" width="18" height="20">
@@ -78,8 +83,10 @@
               </svg>
             </button>
           </a> 
-
-          {{-- ELIMINAR --}}
+          @endcan
+           
+          @can('eliminar producto')
+            {{-- ELIMINAR --}}
             <button class="btn d-inline" style="color: red"  data-toggle="modal" data-target="#eliminar{{$productos->id}}">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
@@ -87,7 +94,9 @@
               </svg>
             </button>
 
-            </div>
+            </div>  
+          @endcan
+          
 
 
             {{-- ESTADO --}}
