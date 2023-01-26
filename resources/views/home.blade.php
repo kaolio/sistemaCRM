@@ -19,7 +19,7 @@
    }
    
   </style>
-  @can('administrador')
+  @can('dashboard')
       <div class="card">
     
     <div class="card-body">

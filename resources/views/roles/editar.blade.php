@@ -37,6 +37,33 @@
                                
                                      <label form="confirm-password">Permisos para este Rol</label>
                                      <br>
+                                     <div class="row justify-content-center">
+                                        <div class="col-5">
+                                            <div class="card1">
+                                                <div class="card-header">
+                                                    @foreach ($permission as $value)
+                                                    @foreach ($rolePermission as $item)
+                                                    @if ($value->tipo == 'dashboard' )
+                                                    @if ($item == $value->id)
+                                                        <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}" checked> {{$value->name}}</span></label><br>
+                                                    @endif
+                                                    @endif
+                                                    @endforeach
+                                                    @if ($value->tipo == 'dashboard' )
+                                                    @if (!in_array($value->id, $rolePermission))
+                                                        <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
+                                                    @endif
+                                                    @endif
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div class="col-5">
+                                            
+                                        </div>
+                                    </div>
+                                    <br/> 
                                             <div class="row justify-content-center">
                                                 <div class="col-5">
                                                     <div class="card1">
@@ -108,13 +135,13 @@
                                                         <div class="card-header">
                                                         @foreach ($permission as $value)
                                                         @foreach ($rolePermission as $item)
-                                                        @if ($value->tipo == 'clientes' )
+                                                        @if ($value->tipo == 'cliente' )
                                                             @if ($item == $value->id)
                                                                 <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}" checked> {{$value->name}}</span></label><br>
                                                             @endif
                                                             @endif
                                                         @endforeach
-                                                        @if ($value->tipo == 'clientes' )
+                                                        @if ($value->tipo == 'cliente' )
                                                             @if (!in_array($value->id, $rolePermission))
                                                                 <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
                                                             @endif
@@ -126,6 +153,26 @@
                                             </div>
                                             <br/>   
                                             <div class="row justify-content-center">
+                                                <div class="col-5">
+                                                    <div class="card1">
+                                                        <div class="card-header">
+                                                        @foreach ($permission as $value)
+                                                        @foreach ($rolePermission as $item)
+                                                        @if ($value->tipo == 'producto' )
+                                                            @if ($item == $value->id)
+                                                                <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}" checked> {{$value->name}}</span></label><br>
+                                                            @endif
+                                                            @endif
+                                                        @endforeach
+                                                        @if ($value->tipo == 'producto' )
+                                                            @if (!in_array($value->id, $rolePermission))
+                                                                <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
+                                                            @endif
+                                                            @endif
+                                                        @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="col-5">
                                                     <div class="card1">
                                                         <div class="card-header">
