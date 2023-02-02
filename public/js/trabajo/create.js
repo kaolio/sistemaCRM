@@ -21,6 +21,7 @@
             var modelo = document.getElementById("modelo").value;
             var serial = document.getElementById("serial").value;
             var capacidad = document.getElementById("capacidad").value;
+            var tipoDaño = document.getElementById("tipoDaño").value;
             var localizacion = document.getElementById("localizacion").value;
 
             
@@ -73,6 +74,12 @@
                                       "<td>"+
                                         "<div class='input-group'>"+
                                         "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Localizacion</span>"+
+                                        "<input type='text' class='form-control' name='malFuncionamiento[]'id='malFuncionamiento' readonly value='"+malFuncionamiento+"'>"+
+                                        "</div>"+
+                                      "</td>"+
+                                      "<td>"+
+                                        "<div class='input-group'>"+
+                                        "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Localizacion</span>"+
                                         "<input type='text' class='form-control' name='localizacion[]'id='localizacion' readonly value='"+localizacion+"'>"+
                                         "</div>"+
                                       "</td>"+
@@ -91,7 +98,8 @@
                                       $("#fabricante").val('');    
                                       $("#modelo").val('');  
                                       $("#serial").val(''); 
-                                      $("#capacidad").val(''); 
+                                      $("#capacidad").val('');
+                                      $("#malFuncionamiento").val('Tipo de Mal Funcionamiento'); 
                                       $("#localizacion").val('');                           
     
                                       $("#stateRow").html("<span  class='bien text-center'><h5 ></h5></span>");
@@ -127,6 +135,7 @@
   $("#modelo").val('');
   $("#serial").val('');
   $("#capacidad").val('');
+  $("#malFuncionamiento").val('Tipo de Mal Funcionamiento'); 
   $("#localizacion").val('');
   $("#estado").html("<span  class='mayor'><h5 class='bien'></h5></span>");
 });

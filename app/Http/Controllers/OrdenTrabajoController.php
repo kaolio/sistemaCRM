@@ -124,6 +124,7 @@ class OrdenTrabajoController extends Controller
             $modelo = request('modelo');
             $serial = request('serial');
             $capacidad = request('capacidad');
+            $malFuncionamiento= request('malFuncionamiento');
             $localizacion = request('localizacion');
 
             for ($i=0; $i < sizeOf($tipo); $i++) { 
@@ -135,6 +136,7 @@ class OrdenTrabajoController extends Controller
                 $detalle->serial = $serial[$i];
                 $detalle->capacidad = $capacidad[$i];
                 $detalle->localizacion = $localizacion[$i];
+                $detalle->malFuncionamiento = $malFuncionamiento[$i];
                 $detalle->diagnostico = "No Actualizado";
                 $detalle->id_trabajos = $trabajo->id;
                 $detalle->save();
