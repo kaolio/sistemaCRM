@@ -22,15 +22,12 @@ class CreateDetalleOrdensTable extends Migration
             $table->string('modelo')->nullable();
             $table->string('serial')->nullable();
             $table->string('capacidad')->nullable();
+            $table->string('mal_funcionamiento')->nullable();
             $table->string('localizacion')->nullable();
             $table->string('diagnostico')->nullable();
             $table->unsignedBigInteger('id_trabajos')->nullable();
             $table->timestamps();
 
-            $table->foreign('id_trabajos')
-            ->references('id')
-            ->on('orden_trabajos')
-            ->onDelete('cascade');
         });
     }
 
