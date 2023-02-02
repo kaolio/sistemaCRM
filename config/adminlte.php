@@ -487,7 +487,26 @@ return [
                 ],
             ]
         ],
+        ['header' => 'SISTEMA',
         ],
+        [
+            'text'    => 'Configuracion  ',
+            'icon'    => 'fas fa-fw fa-pen-square',
+            'can' => 'ver-rol',
+            'submenu' => [
+                
+                [
+                    'text' => 'Ajustes',
+                    'url'  => 'configuraciones',
+                    'icon'    => 'fas fa-fw fa-filse',
+                    'can' => 'ver-opciones',
+    
+                ],
+            ]
+        ],
+
+        ],
+        
 
     /*
     |--------------------------------------------------------------------------

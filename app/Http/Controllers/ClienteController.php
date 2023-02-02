@@ -62,6 +62,7 @@ class ClienteController extends Controller
 
             $cliente=DB::table('clientes')
                         ->select('*')
+                        ->selectRaw('DATE(created_at) AS Fecha')
                         ->where('nombreCliente', 'LIKE', '%'.$busqueda.'%')
                         ->orWhere('telefono', 'LIKE', '%'.$busqueda.'%')
                         ->orderBy('id','asc')

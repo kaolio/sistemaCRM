@@ -43,7 +43,7 @@
                       </div>
                       <div class="col-3">
                         <div class="input-group">
-                          <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Número</span>
+                          <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Tel. Movil</span>
                         <input type="text" id="numero" name="numero" class="form-control" 
                           required onkeyup="" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
                         </div>
@@ -113,14 +113,6 @@
                             <option value="chino">Chino</option>
                           </select>
                         </div>
-                      </div>
-                      <div class="col-4">
-                        <div class="input-group">
-                          <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Referencia</span>
-                        <input type="text" id="pais" name="referencia" class="form-control" 
-                          required autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209) || (event.charCode == 35) || (event.charCode == 47) || (event.charCode == 45) || (event.charCode == 124) || (event.charCode == 42) || (event.charCode >= 48 && event.charCode <= 57))">
-                        </div>
-                        <span id=""></span>
                       </div>
                     </div>
                   </div> 
