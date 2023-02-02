@@ -108,7 +108,6 @@ class ClienteController extends Controller
         $datoCliente->provincia = $request->get('provincia');
         $datoCliente->pais = $request->get('pais');
         $datoCliente->idioma = $request->get('idioma');
-        $datoCliente->referencia = $request->get('referencia');
         $datoCliente->nota = $request->get('nota');
         $datoCliente->id_user = Auth::user()->id;
         //dd($datoCliente);
@@ -187,7 +186,6 @@ class ClienteController extends Controller
         $datoCliente->provincia = $request->get('provincia');
         $datoCliente->pais = $request->get('pais');
         $datoCliente->idioma = $request->get('idioma');
-        $datoCliente->referencia = $request->get('referencia');
         $datoCliente->nota = $request->get('nota');
 
        // dd($datoCliente);
