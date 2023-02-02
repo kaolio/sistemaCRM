@@ -93,7 +93,7 @@
                        </div>
                        <br>
                        <div class="row">
-                         <div class="col-6">
+                         <div class="col-5">
                            <div class="input-group">
                              <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Fabricante</span>
                              <select name="fabricante" class="form-control" class="btn-block" required>
@@ -114,7 +114,7 @@
                             </select>
                            </div>
                          </div>
-                         <div class="col-6">
+                         <div class="col-4">
                            <div class="input-group">
                              <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Modelo</span>
                            <input type="text" id="modelo" name="modelo" class="form-control" 
@@ -122,6 +122,36 @@
                             </div>
                             <span id="estadoCiudad"></span>
                          </div>
+                         <div class="col-3">
+                          <div class="input-group">
+                            <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Rol</span>
+                            <select name="rol" id="rol" class="form-control" class="btn-block" >
+                             <option disabled  selected>Tipo</option>
+                             <option value="Disco para Volcado">Disco para Volcado</option>
+                             <option value="Otro">Otro</option>
+                           </select>
+                          </div>
+                        </div>
+                       </div>
+                       <br>
+                       <div class="row">
+                        <div class="col-4">
+                          <div class="input-group">
+                            <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Capacidad</span>
+                          <input type="text" id="modelo" name="modelo" class="form-control" placeholder="GB, TB"
+                            required autocomplete="off" onkeyup="validarCapacidad()" onkeypress="return ((event.charCode >= 84 && event.charCode <= 84)||(event.charCode >= 116 && event.charCode <= 116)||(event.charCode >= 98 && event.charCode <= 98)||
+                            (event.charCode >= 103 && event.charCode <= 103)||(event.charCode >= 66 && event.charCode <= 66)||(event.charCode >= 71 && event.charCode <= 71)||(event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+                           </div>
+                           <span id="estadoCiudad"></span>
+                        </div>
+                        <div class="col-4">
+                          <div class="input-group">
+                            <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Firmware</span>
+                          <input type="text" id="modelo" name="modelo" class="form-control" 
+                            required onkeyup="validarCiudad()" autocomplete="off" onkeypress="return ( (event.charCode == 45 )|| (event.charCode >= 48 && event.charCode <= 57)|| (event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209))">
+                           </div>
+                           <span id="estadoCiudad"></span>
+                        </div>
                        </div>
                        <br>
                        <div class="row">
@@ -294,6 +324,13 @@
       document.getElementById("precioFin").value = suma;
     }
 
+    function validarCapacidad(){
+    if($("#capacidad").val() == ""){
+      $("#estadoCapacidad").html("<span  class='error'><h5 class=''>Este campo no puede estar vacío</h5></span>"); 
+    }else{ 
+        $("#estadoCapacidad").html("<span  class='bien'><h5 class=''>Válido</h5></span>");              
+    }
+  }
    </script>
 
 @endsection

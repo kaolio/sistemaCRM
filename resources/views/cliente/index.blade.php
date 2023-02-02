@@ -41,15 +41,15 @@
 <table class="table table-striped table-hover table-responsive">
   <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
     <tr>
+      <th class="text-center">#</th>
       <th class="text-center">Nombre</th>
       <th class="text-center">Direccion</th>
       <th class="text-center">CIF</th>
-      <th class="text-center">Numero</th>
+      <th class="text-center">Tel. Movil</th>
       <th class="text-center">CodigoPostal</th>
       <th class="text-center">Poblacion</th>
       <th class="text-center">Provincia</th>
       <th class="text-center">Pais</th>
-      <th class="text-center">Idioma</th>
       <th class="text-center">Fecha</th>
       <th class="text-center">Nota</th>
       <th class="text-center" style="width: 10%">Acciones</th>
@@ -58,6 +58,7 @@
   <tbody>
     @foreach ($cliente as $cliente)
       <tr>
+        <td class="text-center">{{$cliente->id}}</td>
         <td >{{$cliente->nombreCliente}}</td>
         <td class="text-center">{{$cliente->calle}}</td>
         <td class="text-center">{{$cliente->cif}}</td>
@@ -66,8 +67,7 @@
         <td class="text-center">{{$cliente->poblacion}}</td>
         <td class="text-center">{{$cliente->provincia}}</td>
         <td class="text-center">{{$cliente->pais}}</td>
-        <td class="text-center">{{$cliente->idioma}}</td>
-        <td class="text-center">{{$cliente->created_at}}</td>
+        <td class="text-center">{{  \Carbon\Carbon::parse($cliente->created_at)->format('d-m-Y')}}</td>
         <td class="text-center">{{$cliente->nota}}</td>
         <td style="width: 10%">
 

@@ -22,7 +22,7 @@ function validarCorreo() {
             if($("#telefono").val() == ""){
                 $("#estadoTelefono").html("<span  class='menor'><h5 class='menor'> </h5></span>");
                }else{
-                var regex = /^[8-9]{1}[0-9]{8}$/;
+                var regex = /^[6-9]{1}[0-9]{8}$/;
                 if (!regex.test($("#telefono").val())) {
                     $("#estadoTelefono").html("<span  class='menor'><h5 class='menor'>&nbsp;&nbsp;Telefono incorrecto</h5></span>");
                 } else {

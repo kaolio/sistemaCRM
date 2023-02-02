@@ -125,7 +125,7 @@
                         <div class="input-group">
                         <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Telefono</span>
                         <input type="text" id="telefono" name="telefono" class="form-control" 
-                        required onkeyup="validarTelefono()" value="{{ $user->telefono }}" Placeholder="Telefono" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) )">
+                        required  value="{{ $user->telefono }}" Placeholder="Telefono" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) )">
                         </div>
                         <span id="estadoTelefono"></span>
                     </div>
@@ -232,7 +232,6 @@
                 </div>
            </div>
           <br>
-          @if (Auth::user()->id == 1)
             <div class="row justify-content-center">
                 <div class="col-5">
                     <div class="input-group">
@@ -252,7 +251,6 @@
                     <span id="estadoRol"></span>
                 </div>
             </div>
-            @endif
                 </br>
                  </br>
                 <div class="text-center">

@@ -15,7 +15,7 @@
       }
       body {
          /* el tamaño por defecto es 14px */
-         font-size: 16px;
+         font-size: 14px;
         }
         h2{
           font-family:Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol;
@@ -26,7 +26,6 @@
     {{-- <img src="{{public_path('imagenes/logo.jpg')}}" class="text-align-left " width="200px "> --}}
     <div  style="position: absolute; top: 40 px;left: 400px; margin-botom:20px;">
             Sitio Web: &nbsp;&nbsp; www.irecovery.com <br/>
-            E-mail: &nbsp;&nbsp;&nbsp; usuario@irecovery.com <br>
     </div>
     <br><br>
     <hr>
@@ -50,16 +49,13 @@
            
             <tr style="text-align:center;background:rgb(2, 117, 216); color: aliceblue">
                 <th class="text-center">Nombre</th>
-                <th class="text-center">VAT</th>
+                <th class="text-center">E-mail</th>
+                <th class="text-center">Telefono</th>
                 <th class="text-center">Direccion</th>
-                <th class="text-center">Numero</th>
-                <th class="text-center">Apt</th>
                 <th class="text-center">CodigoPostal</th>
-                <th class="text-center">PAK</th>
-                <th class="text-center">Ciudad</th>
+                <th class="text-center">Provincia</th>
                 <th class="text-center">Pais</th>
-                <th class="text-center">Idioma</th>
-                <th class="text-center">Nota</th>
+                <th class="text-center">Referencia</th>
                 <th class="text-center">Fecha</th>
             </tr>
             
@@ -67,16 +63,13 @@
               <!-- @foreach($datosTablas as $cliente) -->
             <tr>
                 <td >{{$cliente->nombreCliente}}</td>
-                <td class="text-center">{{$cliente->vat}}</td>
+                <td class="text-center">{{$cliente->correo}}</td>
+                <td class="text-center">{{$cliente->telefono}}</td>
                 <td class="text-center">{{$cliente->calle}}</td>
-                <td class="text-center">{{$cliente->numero}}</td>
-                <td class="text-center">{{$cliente->apt}}</td>
                 <td class="text-center">{{$cliente->codigoPostal}}</td>
-                <td class="text-center">{{$cliente->pak}}</td>
-                <td class="text-center">{{$cliente->nombreCiudad}}</td>
+                <td class="text-center">{{$cliente->provincia}}</td>
                 <td class="text-center">{{$cliente->pais}}</td>
-                <td class="text-center">{{$cliente->idioma}}</td>
-                <td class="text-center">{{$cliente->nota}}</td>
+                <td class="text-center">{{$cliente->referencia}}</td>
                 <td class="text-center">{{ $cliente->created_at}}</td>
             </tr>
             <!-- @endforeach -->

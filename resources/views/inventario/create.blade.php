@@ -72,7 +72,6 @@
               <select name="rol" class="form-control" class="btn-block" required>
                 <option value="">Elija el Rol</option>
                 <option value="Datos">Datos</option>
-                <option value="Disco Para Volcado">Disco Para Volcado</option>
                 <option value="Donante">Donante</option>
               </select>
               <span id="estadoManufactura"></span>

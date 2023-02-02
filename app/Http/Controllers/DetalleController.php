@@ -331,8 +331,18 @@ class DetalleController extends InventarioController
 
 
     public function subirArchivo(Request $request){
+
+        try {
+
+            dd($request->file("file-upload")->store("","google"));
+
+        } catch (\Throwable $th) {
+
+            return view('errors.errorDrive');
+
+        }
         
-       dd($request->file("file-upload")->store("","google"));
+       
        
       // Storage::disk("google")->put("test.txt");
     }

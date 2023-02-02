@@ -31,7 +31,7 @@ class ClienteController extends Controller
      */
     public function index(Request $request)
     {
-        if (Auth::user()->id != 1) {
+      /* if (Auth::user()->id != 1) {
                 
             $busqueda=trim($request->get('busqueda'));
 
@@ -56,7 +56,17 @@ class ClienteController extends Controller
                         ->orderBy('id','asc')
                         ->paginate(10);
 
-        }
+        }*/
+
+        $busqueda=trim($request->get('busqueda'));
+
+            $cliente=DB::table('clientes')
+                        ->select('*')
+                        ->selectRaw('DATE(created_at) AS Fecha')
+                        ->where('nombreCliente', 'LIKE', '%'.$busqueda.'%')
+                        ->orWhere('telefono', 'LIKE', '%'.$busqueda.'%')
+                        ->orderBy('id','asc')
+                        ->paginate(10);
         
         //$datoCliente['clientes']=Cliente::paginate(10);
         return view('cliente.index', compact('busqueda','cliente'));
@@ -98,7 +108,6 @@ class ClienteController extends Controller
         $datoCliente->provincia = $request->get('provincia');
         $datoCliente->pais = $request->get('pais');
         $datoCliente->idioma = $request->get('idioma');
-        $datoCliente->referencia = $request->get('referencia');
         $datoCliente->nota = $request->get('nota');
         $datoCliente->id_user = Auth::user()->id;
         //dd($datoCliente);
@@ -177,7 +186,6 @@ class ClienteController extends Controller
         $datoCliente->provincia = $request->get('provincia');
         $datoCliente->pais = $request->get('pais');
         $datoCliente->idioma = $request->get('idioma');
-        $datoCliente->referencia = $request->get('referencia');
         $datoCliente->nota = $request->get('nota');
 
        // dd($datoCliente);
@@ -202,22 +210,12 @@ class ClienteController extends Controller
 
     public function descargarPDF(){
 
-        if (Auth::user()->id != 1) {
-
+       
             $datosTablas = DB::table('clientes')
                         ->select('*')
-                        ->where('user_id',Auth::user()->id)
                         ->orderBy('id','desc')
                         ->get();
-
-        }else{
-            $datosTablas = DB::table('clientes')
-                        ->select('*')
-                        ->where('id_user',Auth::user()->id)
-                        ->orderBy('id','desc')
-                        ->get();
-        }
-
+        
         $pdf = \PDF::loadView('/cliente/reporte/pdf',compact('datosTablas'));
                               //ruta del archivo        envio de la variable de la db 
         return $pdf->setPaper('a4','landscape')->download('Reporte-Clientes.pdf');
@@ -231,21 +229,11 @@ class ClienteController extends Controller
 
     public function imprimirPdf(){
        
-        if (Auth::user()->id != 1) {
-
+        
             $datosTablas = DB::table('clientes')
                         ->select('*')
-                        ->where('user_id',Auth::user()->id)
                         ->orderBy('id','desc')
                         ->get();
-
-        }else{
-            $datosTablas = DB::table('clientes')
-                        ->select('*')
-                        ->where('id_user',Auth::user()->id)
-                        ->orderBy('id','desc')
-                        ->get();
-        }
         
         $pdf = \PDF::loadView('/cliente/reporte/pdf',compact('datosTablas'));
         return $pdf->setPaper('a4','landscape')->stream(); //mandar a imprimir la vista pdf en horizontal

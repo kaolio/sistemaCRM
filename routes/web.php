@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ClonesController;
+use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\OrdenTrabajoController;
 use App\Http\Controllers\RolesController;
@@ -213,6 +214,9 @@ Route::post('/producto/cambiarEstado',[ProductosController::class,'cambiarEstado
 Route::post('/producto/moverDispositivo',[ProductosController::class,'moverDisp']);
 Route::post('/producto/moverDispositivo',[ProductosController::class,'moverDisp']);
 Route::delete('/producto/{id}',[ProductosController::class,'destroy']);
+
+//CONFIGURACION
+Route::get('/configuraciones',[ConfiguracionController::class,'index']);
 
  
 

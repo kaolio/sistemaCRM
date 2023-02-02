@@ -26,7 +26,6 @@ class CreateClientesTable extends Migration
             $table->string('provincia')->nullable();
             $table->string('pais')->nullable();
             $table->string('idioma')->nullable();
-            $table->string('referencia')->nullable();
             $table->text('nota')->nullable();
             $table->unsignedBigInteger('id_user')->nullable();
             $table->timestamps();
