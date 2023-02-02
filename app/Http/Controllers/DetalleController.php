@@ -652,7 +652,7 @@ class DetalleController extends InventarioController
 
         return json_encode(array('data'=>true));
     }
-
+ 
     public function actualizarDispositivOtro(){
 
         $tipos = DB::table('detalle_ordens')

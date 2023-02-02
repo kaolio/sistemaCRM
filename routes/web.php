@@ -7,12 +7,14 @@ use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\OrdenTrabajoController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\DetalleController;
+use App\Http\Controllers\DispositivoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginClienteController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\FacturacionController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\PrioridadController;
 use App\Http\Controllers\ServicioController;
 use Illuminate\Support\Facades\Route;
 
@@ -218,6 +220,17 @@ Route::delete('/producto/{id}',[ProductosController::class,'destroy']);
 //CONFIGURACION
 Route::get('/configuraciones',[ConfiguracionController::class,'index']);
 
+//PRIORIDAD
+Route::post('/configuracion/nuevaPrioridad',[PrioridadController::class,'nuevaPrioridad']);
+Route::post('/configuracion/datosPrioridad',[PrioridadController::class,'datosPrioridad']);
+Route::post('/configuracion/actualizarPrioridad',[PrioridadController::class,'actualizarPrioridad']);
+Route::post('/configuracion/eliminarPrioridad',[PrioridadController::class,'eliminar']);
+
+//DISPOSITIVO
+Route::post('/configuracion/nuevoDispositivo',[DispositivoController::class,'nuevoDispositivo']);
+Route::post('/configuracion/datosDispositivo',[DispositivoController::class,'datosDispositivo']);
+Route::post('/configuracion/actualizarDispositivo',[DispositivoController::class,'actualizarDispositivo']);
+Route::post('/configuracion/eliminarDispositivo',[DispositivoController::class,'eliminarDispositivo']);
  
 
 /*Puede llamar a un comando de Artisan fuera de la CLI.
