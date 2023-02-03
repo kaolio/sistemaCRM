@@ -16,6 +16,7 @@ class CreateMalFuncionamientosTable extends Migration
         Schema::create('mal_funcionamientos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('mal_funcionamiento')->nullable();
+            $table->string('mal_funcio_precio')->nullable();
             $table->timestamps();
         });
     }

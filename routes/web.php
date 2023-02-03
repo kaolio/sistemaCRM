@@ -8,12 +8,15 @@ use App\Http\Controllers\OrdenTrabajoController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\DetalleController;
 use App\Http\Controllers\DispositivoController;
+use App\Http\Controllers\FabricanteController;
+use App\Http\Controllers\FactorFormaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginClienteController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\FacturacionController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\MalFuncionamientoController;
 use App\Http\Controllers\PrioridadController;
 use App\Http\Controllers\ServicioController;
 use Illuminate\Support\Facades\Route;
@@ -231,12 +234,30 @@ Route::post('/configuracion/nuevoDispositivo',[DispositivoController::class,'nue
 Route::post('/configuracion/datosDispositivo',[DispositivoController::class,'datosDispositivo']);
 Route::post('/configuracion/actualizarDispositivo',[DispositivoController::class,'actualizarDispositivo']);
 Route::post('/configuracion/eliminarDispositivo',[DispositivoController::class,'eliminarDispositivo']);
+
+//FABRICANTE
+Route::post('/configuracion/nuevoFabricante',[FabricanteController::class,'nuevoFabricante']);
+Route::post('/configuracion/datosFabricante',[FabricanteController::class,'datosFabricante']);
+Route::post('/configuracion/actualizarFabricante',[FabricanteController::class,'actualizarFabricante']);
+Route::post('/configuracion/eliminarFabricante',[FabricanteController::class,'eliminarFabricante']);
+
+//TIPO DE DAÑO
+Route::post('/configuracion/nuevoTipoDaño',[MalFuncionamientoController::class,'nuevoTipoDaño']);
+Route::post('/configuracion/datosTipoDaño',[MalFuncionamientoController::class,'datosTipoDaño']);
+Route::post('/configuracion/actualizarTipoDaño',[MalFuncionamientoController::class,'actualizarTipoDaño']);
+Route::post('/configuracion/eliminarTipoDaño',[MalFuncionamientoController::class,'eliminarTipoDaño']);
+
+//FACTOR DE FORMA
+Route::post('/configuracion/nuevoFactor',[FactorFormaController::class,'nuevoFactor']);
+Route::post('/configuracion/datosFactor',[FactorFormaController::class,'datosFactor']);
+Route::post('/configuracion/actualizarFactor',[FactorFormaController::class,'actualizarFactor']);
+Route::post('/configuracion/eliminarFactor',[FactorFormaController::class,'eliminarFactor']);
  
 
 /*Puede llamar a un comando de Artisan fuera de la CLI.
 Route::get('/clear-cache', function() {
 $exitCode = Artisan::call('cache:clear');
 // return what you want
-});*/
+});*/  
 
 Route::get('/send-mail', [MailController::class, 'index']);

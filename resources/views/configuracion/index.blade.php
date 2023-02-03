@@ -23,9 +23,9 @@
                                  <ul class="nav nav-pills">
                                  <li class="nav-item"><a class="nav-link active" href="#ordenTrabajo" data-toggle="tab">Prioridad</a></li>
                                  <li class="nav-item"><a class="nav-link" href="#dispositivo" data-toggle="tab">Dispositivo</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="#venta" data-toggle="tab">Fabricante</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="#imagenes" data-toggle="tab">Daño</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="#adjuntarArchivo" data-toggle="tab">Factor de Forma</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="#fabricante" data-toggle="tab">Fabricante</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="#tipoDaño" data-toggle="tab">Tipo de Daño</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="#factorForma" data-toggle="tab">Factor de Forma</a></li>
                                  <li class="nav-item"><a class="nav-link" href="#historial" data-toggle="tab">Conexion</a></li>
                                  <li class="nav-item"><a class="nav-link" href="#" data-toggle="tab">Iniciar Sesion</a></li>
                                  </ul>
@@ -43,19 +43,21 @@
                                  <!--/Dispositivos de trabajo-->
                                 
                                   <!--venta-->
-                                  <div class="tab-pane" id="venta">
-                                    
+                                  <div class="tab-pane" id="fabricante">
+                                    @include('configuracion/fabricante')
                                  </div>
                                  <!-- /venta -->
  
                                  <!--Facturacion-->
-                                 <div class="tab-pane" id="imagenes">
+                                 <div class="tab-pane" id="tipoDaño">
+                                    @include('configuracion/tipoDaño')
                                  </div>
                                  <!-- /Facturacion -->
                                 
  
                                  <!--Adjuntar archivo -->
-                                 <div class="tab-pane" id="adjuntarArchivo">
+                                 <div class="tab-pane" id="factorForma">
+                                    @include('configuracion/factorForma')
                                  </div>
                                  <!--/Adjuntar archivo -->
  
