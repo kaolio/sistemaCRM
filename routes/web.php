@@ -95,6 +95,7 @@ Route::get('/trabajo/excel',[OrdenTrabajoController::class,'descargarExcel']); /
 Route::get('/trabajo/imprimirIndex',[OrdenTrabajoController::class,'imprimirPDF']); //imprimir pdf
 Route::post('/trabajo/imprimirOrden',[OrdenTrabajoController::class,'imprimirOrden']); //imprimir orden especifica
 
+Route::post('/trabajo/nuevo/buscarClientes',[OrdenTrabajoController::class,'buscarClientes']);
 Route::post('/autocompletarCliente',[OrdenTrabajoController::class,'autoCompletar']);
 Route::get('/trabajo/general',[OrdenTrabajoController::class,'general']);
 

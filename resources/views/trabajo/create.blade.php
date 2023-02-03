@@ -68,7 +68,7 @@ input:focus + label {
                             <label class="card-title" style="height: 2rem;">Informacion del Cliente</label>
                             <div class="input-group">
                               <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Cliente <span style="color: #cf1111">*</span></span>
-                             <input type="text" id="cliente" value="{{$cadena}}" name="cliente" class="form-control" autocomplete="off" list="codigo" required onkeyup="" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209))">
+                             <input type="text" id="cliente" value="{{$cadena}}" name="cliente" class="form-control" autocomplete="off" list="codigo" readonly onkeyup="" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209))">
                              <datalist id="codigoDatalist" >
                             </datalist>
                             <!-- Button trigger modal -->
@@ -284,64 +284,57 @@ input:focus + label {
                         </button>
                       </div>
                       <div class="modal-body">
-                        <form action="">
-                            <div class="input-group mt-2 col-12">
-                              <span class="input-group-text" >Tipo</span>
-                              <select name="tipoVolcado[]" id="tipoVolcado" class="form-control">
-                                <option disabled selected>Escoja un Dispositivo</option>
-                              </select>
+                          <div class="row justify-content-center">
+                            <div class="input-group mt-2 col-11">
+                                <span class="input-group-text" >Nombre</span>
+                                <input type="text" class="form-control" id="buscarNombreCliente" name="buscarNombreCliente">
+                            </div>
                           </div>
-                            <div class="input-group mt-2 col-12">
-                                <span class="input-group-text">Fabricante</span>
-                                <select name="fabricanteVolcado[]" id="fabricanteVolcado" class="form-control">
-                                  <option disabled selected>Escoja un Fabricante</option>
-                                </select>
+                            
+                            <div class="row justify-content-center">
+                              <div class="input-group mt-2 col-11">
+                                <span class="input-group-text" >Correo</span>
+                                <input type="text" class="form-control" id="buscarCorreo" name="buscarCorreo">
                             </div>
-                            <div class="input-group mt-2 col-12">
-                                <span class="input-group-text" >Modelo</span>
-                                <input type="text" class="form-control" id="modeloVolcado" name="modeloVolcado">
                             </div>
-                            <div class="input-group mt-2 col-12">
-                              <span class="input-group-text">Capacidad</span>
-                              <input type="text" class="form-control " name="capacidadVolcado[]"id="capacidadVolcado" onkeyup="mayus(this);" placeholder="GB, TB, PB"
-                              onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 45) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))" >
-                            </div>
-                            <div class="input-group mt-2 col-12">
-                                <span class="input-group-text" >Factor de Forma</span>
-                                <select name="factorVolcado[]" id="factorVolcado" class="form-control">
-                                  <option disabled selected>Escoja un Factor de Forma</option>
-                                </select>
-                            </div>
-                            <div class="input-group mt-2 col-12">
-                                <span class="input-group-text" >Serie</span>
-                                <input type="text" class="form-control" id="serieVolcado">
-                            </div>
-                            <div class="input-group mt-2 col-12">
-                              <span class="input-group-text" >Precio Compra</span>
-                              <input type="text" class="form-control" id="compraVolcado">
-                              <select name="compraMonedaVolcado[]" id="compraMonedaVolcado" class="form-control">
-                                <option disabled selected>Tipo de Moneda</option>
-                              </select>
+                            
+                            <div class="row justify-content-center">
+                              <div class="input-group mt-2 col-5">
+                              <span class="input-group-text" >CIF</span>
+                              <input type="text" class="form-control" id="buscarCif" name="buscarCif"
+                              onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                           </div>
-                          <div class="input-group mt-2 col-12">
-                            <span class="input-group-text">Precio Venta</span>
-                            <input type="text" class="form-control" id="ventaVolcado">
-                            <select name="ventaMonedaVolcado[]" id="ventaMonedaVolcado" class="form-control">
-                              <option disabled selected>Tipo de Moneda</option>
-                            </select>
+                          <div class="input-group mt-2 col-6">
+                            <span class="input-group-text">Telefono</span>
+                            <input type="text" class="form-control" id="buscarTelefono" name="buscarTelefono"
+                            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                         </div>
+                            </div>
                             <br>
-                        </form>
+                            
+                            <div class="text-center">
+                              <button class="btn btn-success" onclick="buscarClientes()">Buscar</button>
+                            </div>
+                            <br>
+                            <div class="row justify-content-center" id="tablaBuscar" style="display:none;">
+                              <div class="card col-11">
+                                <div class="card-body">
+                                  <h5 class="card-title">Title</h5>
+                                  <p class="card-text" >Content</p>
+                                  <div id="coincidencias"></div>
+                                </div>
+                              </div>
+                            </div>
+
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary">Guardar</button>
+                        
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <!-- Modal -->
+                <!-- Modal VOLCADO-->
                 <div class="modal fade" id="volcado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -355,13 +348,13 @@ input:focus + label {
                         <form action="">
                             <div class="input-group mt-2 col-12">
                               <span class="input-group-text" >Tipo</span>
-                              <select name="tipoVolcado[]" id="tipoVolcado" class="form-control">
+                              <select name="tipoVolcado" id="tipoVolcado" class="form-control">
                                 <option disabled selected>Escoja un Dispositivo</option>
                               </select>
                           </div>
                             <div class="input-group mt-2 col-12">
                                 <span class="input-group-text">Fabricante</span>
-                                <select name="fabricanteVolcado[]" id="fabricanteVolcado" class="form-control">
+                                <select name="fabricanteVolcado" id="fabricanteVolcado" class="form-control">
                                   <option disabled selected>Escoja un Fabricante</option>
                                 </select>
                             </div>
@@ -376,25 +369,25 @@ input:focus + label {
                             </div>
                             <div class="input-group mt-2 col-12">
                                 <span class="input-group-text" >Factor de Forma</span>
-                                <select name="factorVolcado[]" id="factorVolcado" class="form-control">
+                                <select name="factorVolcado" id="factorVolcado" class="form-control">
                                   <option disabled selected>Escoja un Factor de Forma</option>
                                 </select>
                             </div>
                             <div class="input-group mt-2 col-12">
                                 <span class="input-group-text" >Serie</span>
-                                <input type="text" class="form-control" id="serieVolcado">
+                                <input type="text" class="form-control" id="serieVolcado" name="serieVolcado">
                             </div>
                             <div class="input-group mt-2 col-12">
                               <span class="input-group-text" >Precio Compra</span>
                               <input type="text" class="form-control" id="compraVolcado">
-                              <select name="compraMonedaVolcado[]" id="compraMonedaVolcado" class="form-control">
+                              <select name="compraMonedaVolcado" id="compraMonedaVolcado" class="form-control">
                                 <option disabled selected>Tipo de Moneda</option>
                               </select>
                           </div>
                           <div class="input-group mt-2 col-12">
                             <span class="input-group-text">Precio Venta</span>
                             <input type="text" class="form-control" id="ventaVolcado">
-                            <select name="ventaMonedaVolcado[]" id="ventaMonedaVolcado" class="form-control">
+                            <select name="ventaMonedaVolcado" id="ventaMonedaVolcado" class="form-control">
                               <option disabled selected>Tipo de Moneda</option>
                             </select>
                         </div>
@@ -546,6 +539,50 @@ if ($('#cliente').val() != "") {
     //var archivo2 = $('#imagen').prop("files");
     $('#resto_form'+cont).remove();
   }
+
+
+  function buscarClientes(){
+    var nombre =$('#buscarNombreCliente').val();
+    var correo =$('#buscarCorreo').val();
+    var cif =$('#buscarCif').val();
+    var telefono =$('#buscarTelefono').val();
+    
+    console.log(nombre,correo,cif,telefono);
+
+    $.ajax({
+            type: "POST",
+            url: "/trabajo/nuevo/buscarClientes",
+            data: {
+              "_token": "{{ csrf_token() }}",
+                nombre: nombre,
+                correo: correo,
+                cif: cif,
+                telefono: telefono,
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                $('#tablaBuscar').show();
+                data.data.forEach(element => 
+                  $('#coincidencias').append("<div class='card' style='background: #257ee4' onclick='llenarCampoCliente("+element+")'>"+
+                                              "<div class='card-body'>"+
+                                              "<span class='text-white'>nombre: <b>"+element.nombreCliente+"</b></span><br>"+
+                                              "<span class='text-white'>correo:&nbsp;&nbsp;&nbsp;&nbsp;<b>"+element.correo+"</b></span><br>"+
+                                              "<span class='text-white'>Telefono: <b>"+element.telefono+"</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cif: <b>"+element.cif+"</b></span><br>"+
+                                              "</div>"+
+                                              "</div><br>")  
+                );
+                
+            }
+          });
+  }
+
+  function llenarCampoCliente(a){
+    var json = JSON.parse(a);
+    console.log(json);
+  }
+
 </script>
 
 @endsection
