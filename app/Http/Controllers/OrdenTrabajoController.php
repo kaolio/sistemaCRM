@@ -61,6 +61,36 @@ class OrdenTrabajoController extends Controller
         return view("/trabajo/paginas",compact("trabajo"));        
     }
 
+    public function buscarClientes(){
+
+        $nombre = $_POST["nombre"];
+        $correo = $_POST["correo"];
+        $cif = $_POST["cif"];
+        $telefono = $_POST["telefono"];
+
+        if($nombre == ''){
+            $nombre = "vacio";
+        }
+        if($correo == ''){
+            $correo = "vacio";
+        }
+        if($cif == ''){
+            $cif = "0";
+        }
+        if($telefono == ''){
+            $telefono = "00";
+        }
+
+        $cliente = DB::table('clientes')
+                ->select('*')
+                ->where('nombreCliente', 'like', '%' . $nombre . '%')
+                      ->orWhere('correo', 'like', '%' . $correo . '%')
+                      ->orWhere('cif', 'like', '%' . $cif . '%')
+                      ->orWhere('telefono', 'like', '%' . $telefono . '%')
+                ->get();
+        return json_encode(array('data'=>$cliente));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
