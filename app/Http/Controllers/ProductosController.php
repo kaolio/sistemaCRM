@@ -34,7 +34,23 @@ class ProductosController extends Controller
 
     public function create()
     {
-        return view('producto.create');
+            $fabricante = DB::table('fabricantes')
+                    ->select('*')
+                    ->get();
+
+            $factor = DB::table('factor_formas')
+                    ->select('*')
+                    ->get();
+
+            $dispositivo = DB::table('dispositivos')
+                    ->select('*')
+                    ->get();
+
+            $conexion = DB::table('tipo_conexions')
+                    ->select('*')
+                    ->get();
+
+        return view('producto.create',compact('fabricante','factor','dispositivo','conexion'));
     }
 
     public function store(Request $request)

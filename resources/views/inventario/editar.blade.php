@@ -156,7 +156,7 @@
             </select>
             <span id="estadoManufactura"></span>
           </div>
-        </div>
+        </div>   
           <div class="form-group col-md-4" style="padding-top: 8px">
             <div class="input-group">
               <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo&nbsp;<strong>*</strong></span>
