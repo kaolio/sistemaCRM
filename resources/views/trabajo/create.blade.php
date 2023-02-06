@@ -111,12 +111,11 @@ input:focus + label {
                           <div class="col-5">
                             <div class="input-group">
                               <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Prioridad<span style="color: #cf1111">*</span></span>
-                                <select name="prioridad" class="form-control" class="btn-block" required>
-                                  <option disabled>Escoja la prioridad</option>
-                                  <option value="Normal">Normal</option>
-                                  <option value="Prioritario">Prioritario</option>
-                                  <option value="Urgente">Urgente</option>
-                                  <option value="Inmediato">Inmediato</option>
+                                <select name="prioridad" id="prioridad" class="form-control" onchange="tiempoEstimadoSeleccionado()" class="btn-block" required>
+                                  <option selected disabled>Escoja la Prioridad</option>
+                                  @foreach ($prioridad as $prioridad)
+                                              <option value="{{$prioridad->nombre_prioridad}}">{{$prioridad->nombre_prioridad}}</option>
+                                        @endforeach
                                 </select>
                             </div>
                           </div>
@@ -124,8 +123,8 @@ input:focus + label {
                           <div class="col-5">
                             <div class="input-group">
                                <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Tiempo Estimado<span style="color: #cf1111">*</span></span>
-                              <input type="text" id="tiempo" name="tiempoEstimado" class="form-control" 
-                                placeholder="Ingrese un tiempo estimado" required onkeyup="validarTiempo()" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
+                              <input type="text" id="tiempoEstimado" name="tiempoEstimado" class="form-control" readonly
+                                placeholder="Seleccione una Prioridad" onkeyup="validarTiempo()" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">
                                 
                             </div>
                            <span id="estadoTiempo"></span>
@@ -155,26 +154,9 @@ input:focus + label {
                                         <span class="input-group-text" id="inputGroup-sizing-sm" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo</span>
                                           <select name="tipo[]" id="tipo" class="form-control"  required >
                                             <option disabled selected >Tipo de Dispositivo</option>
-                                            <option value="HDD">HDD</option>
-                                            <option value="SSD">SSD</option>
-                                            <option value="MS">M2</option>
-                                            <option value="CD/DVD">CD/DVD</option>
-                                            <option value="Unidad">Unidad Flash</option>
-                                            <option value="MEMORY">Tarjeta de Memoria</option>
-                                            <option value="Impresora">Impresora</option>
-                                            <option value="Memoria">Memoria</option>
-                                            <option value="cabezales">herramientas de cambio de cabezales</option>
-                                            <option value="disco">herramientas de disco duro</option>
-                                            <option value="desapilado">herramientas de desapilado de fuerza bruta</option>
-                                            <option value="Laptop">Laptop</option>
-                                            <option value="Notebook">Notebook</option>
-                                            <option value="Otro">Otro(Dispositivo HDD)</option>
-                                            <option value="PC">PC</option>
-                                            <option value="Telefono">Telefono Celular</option>
-                                            <option value="Disco">Disco Blu-ray</option>
-                                            <option value="Tablet">Tablet</option>
-                                            <option value="FDD">FDD</option>
-
+                                            @foreach ($dispositivo as $dispositivo)
+                                              <option value="{{$dispositivo->nombre_dispositivo}}">{{$dispositivo->nombre_dispositivo}}</option>
+                                            @endforeach
                                           </select>
                                       </div>
                                   </td>
@@ -192,8 +174,12 @@ input:focus + label {
                                   <td>
                                     <div class="input-group">
                                       <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Fabricante</span>
-                                        <input type="text" class="form-control" name="fabricante[]"id="fabricante" onkeyup="mayus(this);" 
-                                        onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))">
+                                      <select name="fabricante[]" id="fabricante" class="form-control"  required >
+                                        <option disabled selected >Seleccione un Fabricante</option>
+                                        @foreach ($fabricante as $fabricante)
+                                          <option value="{{$fabricante->nombre_fabricante}}">{{$fabricante->nombre_fabricante}}</option>
+                                        @endforeach
+                                      </select>
                                     </div>
                                     <span id="estadoFabricante"></span>
                                       
@@ -233,6 +219,9 @@ input:focus + label {
                                     <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo de Daño</span>
                                     <select name="malFuncionamiento[]" id="malFuncionamiento" class="form-control">
                                       <option disabled selected>Tipo de Mal Funcionamiento</option>
+                                      @foreach ($malFuncionamiento as $malFuncionamiento)
+                                          <option value="{{$malFuncionamiento->mal_funcionamiento}}">{{$malFuncionamiento->mal_funcionamiento}}</option>
+                                        @endforeach
                                     </select>
                                   </div>
                 
@@ -600,6 +589,25 @@ if ($('#cliente').val() != "") {
     $('#tablaBuscar').hide();
   }
 
+  function tiempoEstimadoSeleccionado() {
+
+    var prioridad = document.getElementById("prioridad").value;
+    
+    $.ajax({
+            type: "POST",
+            url: "/trabajo/nuevo/tiempoEstimado",
+            data: {
+              "_token": "{{ csrf_token() }}",
+              prioridad: prioridad,
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+              //console.log(data);
+              $('#tiempoEstimado').val(data.data.tiempo_estimado);
+            }
+          });
+  }
 </script>
 
 @endsection

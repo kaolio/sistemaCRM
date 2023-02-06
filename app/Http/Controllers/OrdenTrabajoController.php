@@ -98,8 +98,25 @@ class OrdenTrabajoController extends Controller
      */
     public function create()
     {
+        $fabricante = DB::table('fabricantes')
+        ->select('*')
+        ->get();
+
+        $dispositivo = DB::table('dispositivos')
+                ->select('*')
+                ->get();
+
+        $malFuncionamiento = DB::table('mal_funcionamientos')
+                ->select('*')
+                ->get();
+
+        $prioridad = DB::table('prioridads')
+                ->select('*')
+                ->get();
+
+
         $cadena = Session::get('cadena');
-        return view('trabajo.create',compact('cadena'));
+        return view('trabajo.create',compact('cadena','fabricante','dispositivo','malFuncionamiento','prioridad'));
     }
 
     /**
@@ -203,6 +220,17 @@ class OrdenTrabajoController extends Controller
         //dd($cliente);
     }
 
+    public function tiempoEstimado()
+    {
+        $prioridad = $_POST["prioridad"];
+
+        $datos = DB::table('prioridads')
+        ->select('tiempo_estimado')
+        ->where('nombre_prioridad', $prioridad)
+        ->first();
+
+        return json_encode(array('data'=>$datos));
+    }
 
     public function verConfirmacion(OrdenTrabajo $ordenTrabajo)
     {

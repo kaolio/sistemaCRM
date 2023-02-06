@@ -98,6 +98,7 @@ Route::get('/trabajo/imprimirIndex',[OrdenTrabajoController::class,'imprimirPDF'
 Route::post('/trabajo/imprimirOrden',[OrdenTrabajoController::class,'imprimirOrden']); //imprimir orden especifica
 
 Route::post('/trabajo/nuevo/buscarClientes',[OrdenTrabajoController::class,'buscarClientes']);
+Route::post('/trabajo/nuevo/tiempoEstimado',[OrdenTrabajoController::class,'tiempoEstimado']);
 Route::post('/autocompletarCliente',[OrdenTrabajoController::class,'autoCompletar']);
 Route::get('/trabajo/general',[OrdenTrabajoController::class,'general']);
 
