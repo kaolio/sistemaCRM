@@ -22,7 +22,7 @@
         <div class="card-body">
      
                <form action="{{url('/producto/nuevo')}}" id="formulario" method="POST">
-                
+                 
                  @csrf
                  <div class="card">
                      <div class="card-body">
@@ -33,25 +33,9 @@
                              <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Dispositivo</span>
                              <select name="dispositivo" id="dispositivo" class="form-control" class="btn-block" >
                               <option disabled  selected>Tipo de Dispositivo</option>
-                              <option value="HDD">HDD</option>
-                              <option value="SSD">SSD</option>
-                              <option value="M2">M2</option>
-                              <option value="CD/DVD">CD/DVD</option>
-                              <option value="Unidad Flash">Unidad Flash</option>
-                              <option value="Tarjeta de Memoria">Tarjeta de Memoria</option>
-                              <option value="Impresora">Impresora</option>
-                              <option value="Memoria">Memoria</option>
-                              <option value="herramientas de cambio de cabezales">herramientas de cambio de cabezales</option>
-                              <option value="herramientas de disco duro">herramientas de disco duro</option>
-                              <option value="herramientas de desapilado de fuerza bruta">herramientas de desapilado de fuerza bruta</option>
-                              <option value="Laptop">Laptop</option>
-                              <option value="Notebook">Notebook</option>
-                              <option value="Otro(Dispositivo HDD)">Otro(Dispositivo HDD)</option>
-                              <option value="PC">PC</option>
-                              <option value="Telefono Celular">Telefono Celular</option>
-                              <option value="Disco Blu-ray">Disco Blu-ray</option>
-                              <option value="Tablet">Tablet</option>
-                              <option value="FDD">FDD</option>
+                              @foreach ($dispositivo as $dispositivos)
+                                 <option value="{{$dispositivos->nombre_dispositivo}}">{{$dispositivos->nombre_dispositivo}}</option>
+                              @endforeach
                             </select>
                            </div>
                          </div>
@@ -60,17 +44,9 @@
                              <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Conexión</span>
                              <select name="connection" id="connection" class="form-control" class="btn-block" >
                               <option disabled  selected>Tipo de Conexion</option>
-                              <option value="M2">M2</option>
-                              <option value="mSATA">mSATA</option>
-                              <option value="PATA">PATA</option>
-                              <option value="PCI Express">PCI Express</option>
-                              <option value="SAS">SAS</option>
-                              <option value="SATA">SATA</option>
-                              <option value="SATA Express">SATA Extress</option>
-                              <option value="USB 2.0">USB 2.0</option>
-                              <option value="USB 3.0">USB 3.0</option>
-                              <option value="USB 3.1">USB 3.1</option>
-                              <option value="otro">Otro</option>
+                              @foreach ($conexion as $conexiones)
+                                 <option value="{{$conexiones->nombre_conexion}}">{{$conexiones->nombre_conexion}}</option>
+                              @endforeach
 
                             </select>
                            </div>
@@ -80,13 +56,9 @@
                              <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Factor de Forma</span>
                              <select name="factor" id="factor" class="form-control" class="btn-block" >
                               <option disabled  selected>Tipo</option>
-                              <option value="1.0">1.0"</option>
-                              <option value="1.3">1.3"</option>
-                              <option value="1.8">1.8"</option>
-                              <option value="2.5">2.5"</option>
-                              <option value="3.5">3.5"</option>
-                              <option value="5.25">5.25"</option>
-                              <option value="otro">Otro</option>
+                              @foreach ($factor as $factores)
+                                  <option value="{{$factores->nombre_factor}}">{{$factores->nombre_factor}}</option>
+                              @endforeach
                             </select>
                            </div>
                          </div>
@@ -98,19 +70,9 @@
                              <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Fabricante</span>
                              <select name="fabricante" class="form-control" class="btn-block" required>
                               <option disabled selected>Elija el Fabricante</option>
-                              <option value="Seagate">Seagate</option>
-                              <option value="Toshiba">Toshiba</option>
-                              <option value="Samsung">Samsung</option>
-                              <option value="Verbatim">Verbatim</option>
-                              <option value="Wester Digital">Western Digital</option>
-                              <option value="SkayNet">SkyNet</option>
-                              <option value="Maxtor">Maxtor</option>
-                              <option value="Adata">Adata</option>
-                              <option value="Crucial">Crucial</option>
-                              <option value="Kingston">Kingston</option>
-                              <option value="Sony">Sony</option>
-                              <option value="Hitachi">Hitachi</option>
-                              <option value="Asus">Asus</option>
+                              @foreach ($fabricante as $fabricantes)
+                                <option value="{{$fabricantes->nombre_fabricante}}">{{$fabricantes->nombre_fabricante}}</option>
+                              @endforeach
                             </select>
                            </div>
                          </div>

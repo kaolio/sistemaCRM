@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Prioridad extends Model
+class TipoMoneda extends Model
 {
     use HasFactory;
-
 }

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dispositivo;
+use App\Models\TipoConexion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class DispositivoController extends Controller
+class TipoConexionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +42,10 @@ class DispositivoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Dispositivo  $dispositivo
+     * @param  \App\Models\TipoConexion  $tipoConexion
      * @return \Illuminate\Http\Response
      */
-    public function show(Dispositivo $dispositivo)
+    public function show(TipoConexion $tipoConexion)
     {
         //
     }
@@ -53,10 +53,10 @@ class DispositivoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Dispositivo  $dispositivo
+     * @param  \App\Models\TipoConexion  $tipoConexion
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dispositivo $dispositivo)
+    public function edit(TipoConexion $tipoConexion)
     {
         //
     }
@@ -65,10 +65,10 @@ class DispositivoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Dispositivo  $dispositivo
+     * @param  \App\Models\TipoConexion  $tipoConexion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dispositivo $dispositivo)
+    public function update(Request $request, TipoConexion $tipoConexion)
     {
         //
     }
@@ -76,20 +76,20 @@ class DispositivoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Dispositivo  $dispositivo
+     * @param  \App\Models\TipoConexion  $tipoConexion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dispositivo $dispositivo)
+    public function destroy(TipoConexion $tipoConexion)
     {
         //
     }
 
-    public function nuevoDispositivo()
+    public function nuevoConexion()
     {
 
-        $dispositivo = new Dispositivo();
-        $dispositivo->nombre_dispositivo = $_POST["dispositivo"];
-        $dispositivo->save();
+        $conexion = new TipoConexion();
+        $conexion->nombre_conexion = $_POST["nombreConexion"];
+        $conexion->save();
 
 
 
@@ -97,31 +97,30 @@ class DispositivoController extends Controller
 
     }
 
-    public function datosDispositivo(){
+    public function datosConexion(){
         
-        $datos = DB::table('dispositivos')
+        $datos = DB::table('tipo_conexions')
                 ->select('*')
                 ->get();
 
         return json_encode(array('data'=>$datos));
     }
 
-    public function actualizarDispositivo(){
+    public function actualizarConexion(){
 
-        $datoDispositivo = Dispositivo::find($_POST["id_dispositivo"]);
-        $datoDispositivo->nombre_dispositivo = $_POST["dispositivo"];
-        $datoDispositivo->update();
+        $datoConexion = TipoConexion::find($_POST["id_conexion"]);
+        $datoConexion->nombre_conexion = $_POST["conexion"];
+        $datoConexion->update();
 
         return json_encode(array('data'=>true));
     }
 
-    public function eliminarDispositivo(){
+    public function eliminarConexion(){
  
                     
-        $dispositivo=Dispositivo::findOrFail($_POST["id"]);
-        $dispositivo->delete();
+        $factor=TipoConexion::findOrFail($_POST["id"]);
+        $factor->delete();
 
         return json_encode(array('data'=>true));
     }
 }
- 

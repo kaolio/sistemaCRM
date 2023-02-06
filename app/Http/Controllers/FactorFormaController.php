@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dispositivo;
+use App\Models\FactorForma;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class DispositivoController extends Controller
+class FactorFormaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +42,10 @@ class DispositivoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Dispositivo  $dispositivo
+     * @param  \App\Models\FactorForma  $factorForma
      * @return \Illuminate\Http\Response
      */
-    public function show(Dispositivo $dispositivo)
+    public function show(FactorForma $factorForma)
     {
         //
     }
@@ -53,10 +53,10 @@ class DispositivoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Dispositivo  $dispositivo
+     * @param  \App\Models\FactorForma  $factorForma
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dispositivo $dispositivo)
+    public function edit(FactorForma $factorForma)
     {
         //
     }
@@ -65,10 +65,10 @@ class DispositivoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Dispositivo  $dispositivo
+     * @param  \App\Models\FactorForma  $factorForma
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dispositivo $dispositivo)
+    public function update(Request $request, FactorForma $factorForma)
     {
         //
     }
@@ -76,20 +76,20 @@ class DispositivoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Dispositivo  $dispositivo
+     * @param  \App\Models\FactorForma  $factorForma
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dispositivo $dispositivo)
+    public function destroy(FactorForma $factorForma)
     {
         //
     }
 
-    public function nuevoDispositivo()
+    public function nuevoFactor()
     {
 
-        $dispositivo = new Dispositivo();
-        $dispositivo->nombre_dispositivo = $_POST["dispositivo"];
-        $dispositivo->save();
+        $factor = new FactorForma();
+        $factor->nombre_factor = $_POST["nombreFactor"];
+        $factor->save();
 
 
 
@@ -97,31 +97,30 @@ class DispositivoController extends Controller
 
     }
 
-    public function datosDispositivo(){
+    public function datosFactor(){
         
-        $datos = DB::table('dispositivos')
+        $datos = DB::table('factor_formas')
                 ->select('*')
                 ->get();
 
         return json_encode(array('data'=>$datos));
     }
 
-    public function actualizarDispositivo(){
+    public function actualizarFactor(){
 
-        $datoDispositivo = Dispositivo::find($_POST["id_dispositivo"]);
-        $datoDispositivo->nombre_dispositivo = $_POST["dispositivo"];
-        $datoDispositivo->update();
+        $datoFactor = FactorForma::find($_POST["id_factor"]);
+        $datoFactor->nombre_factor = $_POST["factorForma"];
+        $datoFactor->update();
 
         return json_encode(array('data'=>true));
     }
 
-    public function eliminarDispositivo(){
+    public function eliminarFactor(){
  
                     
-        $dispositivo=Dispositivo::findOrFail($_POST["id"]);
-        $dispositivo->delete();
+        $factor=FactorForma::findOrFail($_POST["id"]);
+        $factor->delete();
 
         return json_encode(array('data'=>true));
     }
 }
- 

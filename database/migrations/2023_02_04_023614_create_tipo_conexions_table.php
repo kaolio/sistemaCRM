@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePrioridadsTable extends Migration
+class CreateTipoConexionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreatePrioridadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('prioridads', function (Blueprint $table) {
+        Schema::create('tipo_conexions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre_prioridad')->nullable();
-            $table->string('tiempo_estimado')->nullable();
-            $table->string('prioridad_precio')->nullable();
+            $table->string('nombre_conexion')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreatePrioridadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prioridads');
+        Schema::dropIfExists('tipo_conexions');
     }
 }

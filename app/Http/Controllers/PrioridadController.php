@@ -88,8 +88,9 @@ class PrioridadController extends Controller
     {
 
         $prioridad = new Prioridad();
-        $prioridad->prioridad = $_POST["prioridad"];
+        $prioridad->nombre_prioridad = $_POST["prioridad"];
         $prioridad->tiempo_estimado = $_POST["tiempoEstimado"];
+        $prioridad->prioridad_precio = $_POST["precioPrioridad"];
         $prioridad->save();
 
 
@@ -110,8 +111,9 @@ class PrioridadController extends Controller
     public function actualizarPrioridad(){
 
         $datoPrioridad = Prioridad::find($_POST["id_prioridad"]);
-        $datoPrioridad->prioridad = $_POST["prioridad"];
+        $datoPrioridad->nombre_prioridad = $_POST["prioridad"];
         $datoPrioridad->tiempo_estimado = $_POST["tiempoEstimado"];
+        $datoPrioridad->prioridad_precio = $_POST["precioPrioridad"];
         $datoPrioridad->update();
 
         return json_encode(array('data'=>true));

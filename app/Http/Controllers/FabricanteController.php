@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dispositivo;
+use App\Models\Fabricante;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class DispositivoController extends Controller
+class FabricanteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +42,10 @@ class DispositivoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Dispositivo  $dispositivo
+     * @param  \App\Models\Fabricante  $fabricante
      * @return \Illuminate\Http\Response
      */
-    public function show(Dispositivo $dispositivo)
+    public function show(Fabricante $fabricante)
     {
         //
     }
@@ -53,10 +53,10 @@ class DispositivoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Dispositivo  $dispositivo
+     * @param  \App\Models\Fabricante  $fabricante
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dispositivo $dispositivo)
+    public function edit(Fabricante $fabricante)
     {
         //
     }
@@ -65,10 +65,10 @@ class DispositivoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Dispositivo  $dispositivo
+     * @param  \App\Models\Fabricante  $fabricante
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dispositivo $dispositivo)
+    public function update(Request $request, Fabricante $fabricante)
     {
         //
     }
@@ -76,19 +76,19 @@ class DispositivoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Dispositivo  $dispositivo
+     * @param  \App\Models\Fabricante  $fabricante
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dispositivo $dispositivo)
+    public function destroy(Fabricante $fabricante)
     {
         //
     }
 
-    public function nuevoDispositivo()
+    public function nuevoFabricante()
     {
 
-        $dispositivo = new Dispositivo();
-        $dispositivo->nombre_dispositivo = $_POST["dispositivo"];
+        $dispositivo = new Fabricante();
+        $dispositivo->nombre_fabricante = $_POST["fabricante"];
         $dispositivo->save();
 
 
@@ -97,31 +97,30 @@ class DispositivoController extends Controller
 
     }
 
-    public function datosDispositivo(){
+    public function datosFabricante(){
         
-        $datos = DB::table('dispositivos')
+        $datos = DB::table('fabricantes')
                 ->select('*')
                 ->get();
 
         return json_encode(array('data'=>$datos));
     }
 
-    public function actualizarDispositivo(){
+    public function actualizarFabricante(){
 
-        $datoDispositivo = Dispositivo::find($_POST["id_dispositivo"]);
-        $datoDispositivo->nombre_dispositivo = $_POST["dispositivo"];
-        $datoDispositivo->update();
+        $datoFabricante = Fabricante::find($_POST["id_fabricante"]);
+        $datoFabricante->nombre_fabricante = $_POST["fabricante"];
+        $datoFabricante->update();
 
         return json_encode(array('data'=>true));
     }
 
-    public function eliminarDispositivo(){
+    public function eliminarFabricante(){
  
                     
-        $dispositivo=Dispositivo::findOrFail($_POST["id"]);
-        $dispositivo->delete();
+        $fabricante=Fabricante::findOrFail($_POST["id"]);
+        $fabricante->delete();
 
         return json_encode(array('data'=>true));
     }
 }
- 

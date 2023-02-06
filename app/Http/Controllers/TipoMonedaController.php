@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dispositivo;
+use App\Models\TipoMoneda;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class DispositivoController extends Controller
+class TipoMonedaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +42,10 @@ class DispositivoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Dispositivo  $dispositivo
+     * @param  \App\Models\TipoMoneda  $tipoMoneda
      * @return \Illuminate\Http\Response
      */
-    public function show(Dispositivo $dispositivo)
+    public function show(TipoMoneda $tipoMoneda)
     {
         //
     }
@@ -53,10 +53,10 @@ class DispositivoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Dispositivo  $dispositivo
+     * @param  \App\Models\TipoMoneda  $tipoMoneda
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dispositivo $dispositivo)
+    public function edit(TipoMoneda $tipoMoneda)
     {
         //
     }
@@ -65,10 +65,10 @@ class DispositivoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Dispositivo  $dispositivo
+     * @param  \App\Models\TipoMoneda  $tipoMoneda
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dispositivo $dispositivo)
+    public function update(Request $request, TipoMoneda $tipoMoneda)
     {
         //
     }
@@ -76,20 +76,21 @@ class DispositivoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Dispositivo  $dispositivo
+     * @param  \App\Models\TipoMoneda  $tipoMoneda
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dispositivo $dispositivo)
+    public function destroy(TipoMoneda $tipoMoneda)
     {
         //
     }
 
-    public function nuevoDispositivo()
+    public function nuevoValor()
     {
 
-        $dispositivo = new Dispositivo();
-        $dispositivo->nombre_dispositivo = $_POST["dispositivo"];
-        $dispositivo->save();
+        $daño = new TipoMoneda();
+        $daño->nombre_moneda = $_POST["nombreMoneda"];
+        $daño->valor_moneda = $_POST["valorMoneda"];
+        $daño->save();
 
 
 
@@ -97,31 +98,31 @@ class DispositivoController extends Controller
 
     }
 
-    public function datosDispositivo(){
+    public function datosValores(){
         
-        $datos = DB::table('dispositivos')
+        $datos = DB::table('tipo_monedas')
                 ->select('*')
                 ->get();
 
         return json_encode(array('data'=>$datos));
     }
 
-    public function actualizarDispositivo(){
+    public function actualizarValor(){
 
-        $datoDispositivo = Dispositivo::find($_POST["id_dispositivo"]);
-        $datoDispositivo->nombre_dispositivo = $_POST["dispositivo"];
-        $datoDispositivo->update();
+        $datoMoneda = TipoMoneda::find($_POST["id_moneda"]);
+        $datoMoneda->nombre_moneda = $_POST["moneda"];
+        $datoMoneda->valor_moneda = $_POST["valor"];
+        $datoMoneda->update();
 
         return json_encode(array('data'=>true));
     }
 
-    public function eliminarDispositivo(){
+    public function eliminarValor(){
  
                     
-        $dispositivo=Dispositivo::findOrFail($_POST["id"]);
-        $dispositivo->delete();
+        $trabajo=TipoMoneda::findOrFail($_POST["id"]);
+        $trabajo->delete();
 
         return json_encode(array('data'=>true));
     }
 }
- 
