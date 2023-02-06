@@ -22,7 +22,7 @@
         <div class="card-body">
      
                <form action="{{url('/producto/nuevo')}}" id="formulario" method="POST">
-                
+                 
                  @csrf
                  <div class="card">
                      <div class="card-body">
