@@ -94,7 +94,7 @@
             <select name="manufactura" class="form-control" class="btn-block" required>
                 <option selected disabled value="">Elija el Fabricante</option>
                 @foreach ($fabricante as $fabricantes)
-                   @if ($fabricantes->nombre_fabricante == $inventario_elegido->manufactura)
+                   @if ($fabricantes->nombre_fabricante == $inventario_elegido->fabricante)
                   <option value="{{$fabricantes->nombre_fabricante}}" selected>{{$fabricantes->nombre_fabricante}}</option>
                   @else
                   <option value="{{$fabricantes->nombre_fabricante}}">{{$fabricantes->nombre_fabricante}}</option>
@@ -156,7 +156,7 @@
             </select>
             <span id="estadoManufactura"></span>
           </div>
-        </div>   
+        </div>    
           <div class="form-group col-md-4" style="padding-top: 8px">
             <div class="input-group">
               <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo&nbsp;<strong>*</strong></span>
@@ -165,9 +165,9 @@
                 @foreach ($dispositivo as $dispositivos)
                     @if ($dispositivos->nombre_dispositivo == $inventario_elegido->tipo)
                 <option value="{{$dispositivos->nombre_dispositivo}}" selected>{{$dispositivos->nombre_dispositivo}}</option>                      
-              @else
-                <option value="{{$dispositivos->nombre_dispositivo}}">{{$dispositivos->nombre_dispositivo}}</option>      
-              @endif
+                  @else
+                    <option value="{{$dispositivos->nombre_dispositivo}}">{{$dispositivos->nombre_dispositivo}}</option>      
+                  @endif
                 @endforeach
                 
               </select>

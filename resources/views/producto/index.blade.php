@@ -17,7 +17,7 @@
       <th class="text-center" style="width: 15%">Estado</th>
       <th class="text-center" >Numero Serial</th>
       <th class="text-center" >Ubicacion</th>
-      <th class="text-center" style="width: 10%">Precio VAT</th> 
+      <th class="text-center" style="width: 10%">Precio Compra</th> 
       <th class="text-center" >Proveedor</th>
       <th class="text-center" style="width: 15%">Fecha</th>
       <th class="text-center" >Acciones</th>
@@ -41,7 +41,7 @@
         <td class="text-center" >{{$productos->estado}}</td>
         <td class="text-center" >{{$productos->serial}}</td>
         <td class="text-center" >{{$productos->ubicacion}}</td>
-        <td class="text-center" >{{$productos->precio_fin}}</td>
+        <td class="text-center" >{{$productos->precio_compra}}</td>
         <td class="text-center" >{{$productos->distribuidora}}</td>
         <td class="text-center" >{{$productos->created_at}}</td>
         <td class="text-center" >

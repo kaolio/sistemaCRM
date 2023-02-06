@@ -15,7 +15,6 @@
                 <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Valor</span>
                 <input type="text" class="form-control " name="valorMoneda" id="valorMoneda"
                 onkeypress="return ((event.charCode >= 48 && event.charCode <= 57)||(event.charCode == 44)||(event.charCode == 46))">
-                <span class="input-group-text" id="basic-addon1" >€/$</span>
             </div>
         </div>
         
