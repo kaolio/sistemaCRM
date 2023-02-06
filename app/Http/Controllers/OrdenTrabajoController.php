@@ -75,10 +75,10 @@ class OrdenTrabajoController extends Controller
             $correo = "vacio";
         }
         if($cif == ''){
-            $cif = "0";
+            $cif = "0000";
         }
         if($telefono == ''){
-            $telefono = "00";
+            $telefono = "0000";
         }
 
         $cliente = DB::table('clientes')
