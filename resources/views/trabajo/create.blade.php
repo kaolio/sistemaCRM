@@ -560,19 +560,26 @@ if ($('#cliente').val() != "") {
             cache: false,
             dataType: 'json',
             success: function (data) {
-                //console.log(data);
-                $('#coincidencias').remove();
-                $('#campoUsado').append("<div id='coincidencias'></div>");
-                $('#tablaBuscar').show();
-                data.data.forEach(element => 
-                  $('#coincidencias').append("<div class='card'  style='background: #257ee4' onclick='llenarCampoCliente("+JSON.stringify(element.nombreCliente)+","+JSON.stringify(element.calle)+","+JSON.stringify(element.numero)+","+JSON.stringify(element.codigoPostal)+","+JSON.stringify(element.pais)+")'>"+
-                                              "<div class='card-body' type='button'>"+
-                                              "<span class='text-white'>nombre: <b>"+element.nombreCliente+"</b></span><br>"+
-                                              "<span class='text-white'>correo:&nbsp;&nbsp;&nbsp;&nbsp;<b>"+element.correo+"</b></span><br>"+
-                                              "<span class='text-white'>Telefono: <b>"+element.telefono+"</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cif: <b>"+element.cif+"</b></span><br>"+
-                                              "</div>"+
-                                              "</div><br>")  
-                );
+                //console.log(data.data.length);
+                if (data.data.length != 0) {
+                  $('#coincidencias').remove();
+                  $('#campoUsado').append("<div id='coincidencias'></div>");
+                  $('#tablaBuscar').show();
+                  data.data.forEach(element => 
+                    $('#coincidencias').append("<div class='card'  style='background: #257ee4' onclick='llenarCampoCliente("+JSON.stringify(element.nombreCliente)+","+JSON.stringify(element.calle)+","+JSON.stringify(element.numero)+","+JSON.stringify(element.codigoPostal)+","+JSON.stringify(element.pais)+")'>"+
+                                                "<div class='card-body' type='button'>"+
+                                                "<span class='text-white'>nombre: <b>"+element.nombreCliente+"</b></span><br>"+
+                                                "<span class='text-white'>correo:&nbsp;&nbsp;&nbsp;&nbsp;<b>"+element.correo+"</b></span><br>"+
+                                                "<span class='text-white'>Telefono: <b>"+element.telefono+"</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cif: <b>"+element.cif+"</b></span><br>"+
+                                                "</div>"+
+                                                "</div><br>")  
+                  );
+                }else{
+                  $('#coincidencias').remove();
+                  $('#campoUsado').append("<div id='coincidencias'></div>");
+                  $('#tablaBuscar').hide();
+                }
+                
                 
             }
           });
