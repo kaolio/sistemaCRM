@@ -318,9 +318,7 @@ input:focus + label {
                             <br>
                             <div class="row justify-content-center" id="tablaBuscar" style="display:none;">
                               <div class="card col-11">
-                                <div class="card-body">
-                                  <h5 class="card-title">Title</h5>
-                                  <p class="card-text" >Content</p>
+                                <div class="card-body" id="campoUsado">
                                   <div id="coincidencias"></div>
                                 </div>
                               </div>
@@ -562,11 +560,13 @@ if ($('#cliente').val() != "") {
             cache: false,
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                //console.log(data);
+                $('#coincidencias').remove();
+                $('#campoUsado').append("<div id='coincidencias'></div>");
                 $('#tablaBuscar').show();
                 data.data.forEach(element => 
-                  $('#coincidencias').append("<div class='card' style='background: #257ee4' onclick='llenarCampoCliente("+element+")'>"+
-                                              "<div class='card-body'>"+
+                  $('#coincidencias').append("<div class='card'  style='background: #257ee4' onclick='llenarCampoCliente("+JSON.stringify(element.nombreCliente)+","+JSON.stringify(element.calle)+","+JSON.stringify(element.numero)+","+JSON.stringify(element.codigoPostal)+","+JSON.stringify(element.pais)+")'>"+
+                                              "<div class='card-body' type='button'>"+
                                               "<span class='text-white'>nombre: <b>"+element.nombreCliente+"</b></span><br>"+
                                               "<span class='text-white'>correo:&nbsp;&nbsp;&nbsp;&nbsp;<b>"+element.correo+"</b></span><br>"+
                                               "<span class='text-white'>Telefono: <b>"+element.telefono+"</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cif: <b>"+element.cif+"</b></span><br>"+
@@ -578,9 +578,19 @@ if ($('#cliente').val() != "") {
           });
   }
 
-  function llenarCampoCliente(a){
-    var json = JSON.parse(a);
-    console.log(json);
+  function llenarCampoCliente(a,b,c,d,e){
+    //var json = JSON.parse(a);
+    console.log(a,b,c,d,e);
+    $('#cliente').val();
+    $('#cliente').val(a+", "+b+", "+c+", "+d+", "+e);
+    $('#busquedaCliente').modal('hide');
+    $('#coincidencias').remove();
+    $('#campoUsado').append("<div id='coincidencias'></div>");
+    $('#buscarNombreCliente').val('');
+    $('#buscarCorreo').val('');
+    $('#buscarCif').val('');
+    $('#buscarTelefono').val('');
+    $('#tablaBuscar').hide();
   }
 
 </script>
