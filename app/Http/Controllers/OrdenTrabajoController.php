@@ -102,7 +102,15 @@ class OrdenTrabajoController extends Controller
         ->select('*')
         ->get();
 
+        $fabricantes = DB::table('fabricantes')
+        ->select('*')
+        ->get();
+
         $dispositivo = DB::table('dispositivos')
+                ->select('*')
+                ->get();
+
+        $dispositivos = DB::table('dispositivos')
                 ->select('*')
                 ->get();
 
@@ -114,9 +122,13 @@ class OrdenTrabajoController extends Controller
                 ->select('*')
                 ->get();
 
+        $factor = DB::table('factor_formas')
+                ->select('*')
+                ->get();
+
 
         $cadena = Session::get('cadena');
-        return view('trabajo.create',compact('cadena','fabricante','dispositivo','malFuncionamiento','prioridad'));
+        return view('trabajo.create',compact('cadena','fabricante','fabricantes','dispositivo','dispositivos','malFuncionamiento','prioridad','factor'));
     }
 
     /**

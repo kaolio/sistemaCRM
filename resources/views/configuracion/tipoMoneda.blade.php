@@ -14,8 +14,7 @@
             <div class="input-group">
                 <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Valor</span>
                 <input type="text" class="form-control " name="valorMoneda" id="valorMoneda"
-                onkeypress="return ((event.charCode >= 48 && event.charCode <= 57)||(event.charCode == 44)||(event.charCode == 46))">
-                <span class="input-group-text" id="basic-addon1" >€/$</span>
+                onkeypress="return ((event.charCode >= 48 && event.charCode <= 57)||(event.charCode == 46))">
             </div>
         </div>
         
@@ -131,20 +130,19 @@
                             '<div class="modal-body">'+
                             '</br>'+
                                 '<div class="row justify-content-center">'+
-                                    '<div class="input-group-prepend col-10">'+
+                                    '<div class="input-group-prepend col-8">'+
                                         '<div class="input-group">'+
                                             '<span class="input-group-text" >Moneda</span>'+
-                                            '<input type="text" id="editNombreMoneda'+dataResult.data[i].id+'" name="editNombreMoneda" class="form-control" autocomplete="off" value="'+[dataResult.data[i].nombre_moneda]+'">'+
+                                            '<input type="text" id="editNombreMoneda'+dataResult.data[i].id+'" name="editNombreMoneda" class="form-control text-center" autocomplete="off" value="'+[dataResult.data[i].nombre_moneda]+'">'+
                                         '</div>'+
                                     '</div>'+
                                 '</div>'+
                             '</br>'+
                             '<div class="row justify-content-center">'+
-                                    '<div class="input-group-prepend col-10">'+
+                                    '<div class="input-group-prepend col-8">'+
                                         '<div class="input-group">'+
                                             '<span class="input-group-text" >Valor</span>'+
-                                            '<input type="text" id="editValorMoneda'+dataResult.data[i].id+'" name="editValorMoneda" class="form-control" autocomplete="off" value="'+[dataResult.data[i].valor_moneda]+'">'+
-                                            '<span class="input-group-text" id="basic-addon1" >€</span>'+
+                                            '<input type="text" id="editValorMoneda'+dataResult.data[i].id+'" name="editValorMoneda" class="form-control text-center" autocomplete="off" value="'+[dataResult.data[i].valor_moneda]+'">'+
                                         '</div>'+
                                     '</div>'+
                                 '</div>'+

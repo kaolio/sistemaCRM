@@ -112,7 +112,7 @@ input:focus + label {
                             <div class="input-group">
                               <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Prioridad<span style="color: #cf1111">*</span></span>
                                 <select name="prioridad" id="prioridad" class="form-control" onchange="tiempoEstimadoSeleccionado()" class="btn-block" required>
-                                  <option selected disabled>Escoja la Prioridad</option>
+                                  <option selected disabled value="">Escoja la Prioridad</option>
                                   @foreach ($prioridad as $prioridad)
                                               <option value="{{$prioridad->nombre_prioridad}}">{{$prioridad->nombre_prioridad}}</option>
                                         @endforeach
@@ -153,7 +153,7 @@ input:focus + label {
                                       <div class="input-group">
                                         <span class="input-group-text" id="inputGroup-sizing-sm" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo</span>
                                           <select name="tipo[]" id="tipo" class="form-control"  required >
-                                            <option disabled selected >Tipo de Dispositivo</option>
+                                            <option disabled selected value="">Tipo de Dispositivo</option>
                                             @foreach ($dispositivo as $dispositivo)
                                               <option value="{{$dispositivo->nombre_dispositivo}}">{{$dispositivo->nombre_dispositivo}}</option>
                                             @endforeach
@@ -164,7 +164,7 @@ input:focus + label {
                                       <div class="input-group">
                                         <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Rol</span>
                                           <select name="rol[]" id="rol" class="form-control">
-                                            <option disabled selected>Escoja un rol</option>
+                                            <option disabled selected value="">Escoja un rol</option>
                                             <option value="Dispositivo a Recuperar">Dispositivo a Recuperar</option>
                                             <option value="Datos">Datos</option>
                                             <option value="Donante">Donante</option>
@@ -175,7 +175,7 @@ input:focus + label {
                                     <div class="input-group">
                                       <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Fabricante</span>
                                       <select name="fabricante[]" id="fabricante" class="form-control"  required >
-                                        <option disabled selected >Seleccione un Fabricante</option>
+                                        <option disabled selected value="">Seleccione un Fabricante</option>
                                         @foreach ($fabricante as $fabricante)
                                           <option value="{{$fabricante->nombre_fabricante}}">{{$fabricante->nombre_fabricante}}</option>
                                         @endforeach
@@ -218,7 +218,7 @@ input:focus + label {
                                   <div class="input-group">
                                     <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo de Daño</span>
                                     <select name="malFuncionamiento[]" id="malFuncionamiento" class="form-control">
-                                      <option disabled selected>Tipo de Mal Funcionamiento</option>
+                                      <option disabled selected value="">Tipo de Mal Funcionamiento</option>
                                       @foreach ($malFuncionamiento as $malFuncionamiento)
                                           <option value="{{$malFuncionamiento->mal_funcionamiento}}">{{$malFuncionamiento->mal_funcionamiento}}</option>
                                         @endforeach
@@ -260,136 +260,7 @@ input:focus + label {
                   </div>
                   
                 </div>
-
-
-                <!-- Modal BUSQUEDA CLIENTE -->
-                <div class="modal fade" id="busquedaCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Buscar Cliente</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                          <div class="row justify-content-center">
-                            <div class="input-group mt-2 col-11">
-                                <span class="input-group-text" >Nombre</span>
-                                <input type="text" class="form-control" id="buscarNombreCliente" name="buscarNombreCliente">
-                            </div>
-                          </div>
-                            
-                            <div class="row justify-content-center">
-                              <div class="input-group mt-2 col-11">
-                                <span class="input-group-text" >Correo</span>
-                                <input type="text" class="form-control" id="buscarCorreo" name="buscarCorreo">
-                            </div>
-                            </div>
-                            
-                            <div class="row justify-content-center">
-                              <div class="input-group mt-2 col-5">
-                              <span class="input-group-text" >CIF</span>
-                              <input type="text" class="form-control" id="buscarCif" name="buscarCif"
-                              onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
-                          </div>
-                          <div class="input-group mt-2 col-6">
-                            <span class="input-group-text">Telefono</span>
-                            <input type="text" class="form-control" id="buscarTelefono" name="buscarTelefono"
-                            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
-                        </div>
-                            </div>
-                            <br>
-                            
-                            <div class="text-center">
-                              <button class="btn btn-success" onclick="buscarClientes()">Buscar</button>
-                            </div>
-                            <br>
-                            <div class="row justify-content-center" id="tablaBuscar" style="display:none;">
-                              <div class="card col-11">
-                                <div class="card-body" id="campoUsado">
-                                  <div id="coincidencias"></div>
-                                </div>
-                              </div>
-                            </div>
-
-                      </div>
-                      <div class="modal-footer">
-                        
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Modal VOLCADO-->
-                <div class="modal fade" id="volcado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Añadir Disco Volcado</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        <form action="">
-                            <div class="input-group mt-2 col-12">
-                              <span class="input-group-text" >Tipo</span>
-                              <select name="tipoVolcado" id="tipoVolcado" class="form-control">
-                                <option disabled selected>Escoja un Dispositivo</option>
-                              </select>
-                          </div>
-                            <div class="input-group mt-2 col-12">
-                                <span class="input-group-text">Fabricante</span>
-                                <select name="fabricanteVolcado" id="fabricanteVolcado" class="form-control">
-                                  <option disabled selected>Escoja un Fabricante</option>
-                                </select>
-                            </div>
-                            <div class="input-group mt-2 col-12">
-                                <span class="input-group-text" >Modelo</span>
-                                <input type="text" class="form-control" id="modeloVolcado" name="modeloVolcado">
-                            </div>
-                            <div class="input-group mt-2 col-12">
-                              <span class="input-group-text">Capacidad</span>
-                              <input type="text" class="form-control " name="capacidadVolcado[]"id="capacidadVolcado" onkeyup="mayus(this);" placeholder="GB, TB, PB"
-                              onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 45) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))" >
-                            </div>
-                            <div class="input-group mt-2 col-12">
-                                <span class="input-group-text" >Factor de Forma</span>
-                                <select name="factorVolcado" id="factorVolcado" class="form-control">
-                                  <option disabled selected>Escoja un Factor de Forma</option>
-                                </select>
-                            </div>
-                            <div class="input-group mt-2 col-12">
-                                <span class="input-group-text" >Serie</span>
-                                <input type="text" class="form-control" id="serieVolcado" name="serieVolcado">
-                            </div>
-                            <div class="input-group mt-2 col-12">
-                              <span class="input-group-text" >Precio Compra</span>
-                              <input type="text" class="form-control" id="compraVolcado">
-                              <select name="compraMonedaVolcado" id="compraMonedaVolcado" class="form-control">
-                                <option disabled selected>Tipo de Moneda</option>
-                              </select>
-                          </div>
-                          <div class="input-group mt-2 col-12">
-                            <span class="input-group-text">Precio Venta</span>
-                            <input type="text" class="form-control" id="ventaVolcado">
-                            <select name="ventaMonedaVolcado" id="ventaMonedaVolcado" class="form-control">
-                              <option disabled selected>Tipo de Moneda</option>
-                            </select>
-                        </div>
-                            <br>
-                        </form>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary">Guardar</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-               
-  
+      
                
                 <div class="card">
                     <div class="card-body">
@@ -445,6 +316,134 @@ input:focus + label {
   </body>
   </div>
 </div>
+
+
+                <!-- Modal BUSQUEDA CLIENTE -->
+                <div class="modal fade" id="busquedaCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Buscar Cliente</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                          <div class="row justify-content-center">
+                            <div class="input-group mt-2 col-11">
+                                <span class="input-group-text" >Nombre</span>
+                                <input type="text" class="form-control" id="buscarNombreCliente" name="buscarNombreCliente">
+                            </div>
+                          </div>
+                            
+                            <div class="row justify-content-center">
+                              <div class="input-group mt-2 col-11">
+                                <span class="input-group-text" >Correo</span>
+                                <input type="text" class="form-control" id="buscarCorreo" name="buscarCorreo">
+                            </div>
+                            </div>
+                            
+                            <div class="row justify-content-center">
+                              <div class="input-group mt-2 col-5">
+                              <span class="input-group-text" >CIF</span>
+                              <input type="text" class="form-control" id="buscarCif" name="buscarCif"
+                              onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+                          </div>
+                          <div class="input-group mt-2 col-6">
+                            <span class="input-group-text">Telefono</span>
+                            <input type="text" class="form-control" id="buscarTelefono" name="buscarTelefono"
+                            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+                        </div>
+                            </div>
+                            <br>
+                            
+                            <div class="text-center">
+                              <button type="button" class="btn btn-success" onclick="buscarClientes()">Buscar</button>
+                            </div>
+                            <br>
+                            <div class="row justify-content-center" id="tablaBuscar" style="display:none;">
+                              <div class="card col-11">
+                                <div class="card-body" id="campoUsado">
+                                  <div id="coincidencias"></div>
+                                </div>
+                              </div>
+                            </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Modal VOLCADO-->
+                <div class="modal fade" id="volcado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Añadir Disco Volcado</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form action="">
+                            <div class="input-group mt-2 col-12">
+                              <span class="input-group-text" >Tipo</span>
+                              <select name="tipoVolcado" id="tipoVolcado" class="form-control">
+                                <option disabled selected value="">Tipo de Dispositivo</option>
+                                @foreach ($dispositivos as $dispositivo)
+                                  <option value="{{$dispositivo->nombre_dispositivo}}">{{$dispositivo->nombre_dispositivo}}</option>
+                                @endforeach
+                              </select>
+                          </div>
+                            <div class="input-group mt-2 col-12">
+                                <span class="input-group-text">Fabricante</span>
+                                <select name="fabricanteVolcado" id="fabricanteVolcado" class="form-control">
+                                  <option disabled selected value="">Seleccione un Fabricante</option>
+                                        @foreach ($fabricantes as $fabricante)
+                                          <option value="{{$fabricante->nombre_fabricante}}">{{$fabricante->nombre_fabricante}}</option>
+                                        @endforeach
+                                </select>
+                            </div>
+                            <div class="input-group mt-2 col-12">
+                                <span class="input-group-text" >Modelo</span>
+                                <input type="text" class="form-control" id="modeloVolcado" name="modeloVolcado">
+                            </div>
+                            <div class="input-group mt-2 col-12">
+                              <span class="input-group-text">Capacidad</span>
+                              <input type="text" class="form-control " name="capacidadVolcado[]"id="capacidadVolcado" onkeyup="mayus(this);" placeholder="GB, TB, PB"
+                              onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 45) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))" >
+                            </div>
+                            <div class="input-group mt-2 col-12">
+                                <span class="input-group-text" >Factor de Forma</span>
+                                <select name="factorVolcado" id="factorVolcado" class="form-control">
+                                  <option disabled selected>Escoja un Factor de Forma</option>
+                                  @foreach ($factor as $factor)
+                                  <option value="{{$factor->nombre_factor}}">{{$factor->nombre_factor}}</option>
+                                @endforeach
+                                </select>
+                            </div>
+                            <div class="input-group mt-2 col-12">
+                                <span class="input-group-text" >Serie</span>
+                                <input type="text" class="form-control" id="serieVolcado" name="serieVolcado">
+                            </div>
+                            <div class="input-group mt-2 col-12">
+                              <span class="input-group-text" >Precio Compra</span>
+                              <input type="text" class="form-control" name="compraMonedaVolcado" id="compraMonedaVolcado">
+                          </div>
+                          <div class="input-group mt-2 col-12">
+                            <span class="input-group-text">Precio Venta</span>
+                            <input type="text" class="form-control" id="ventaMonedaVolcado" name="ventaMonedaVolcado">
+                        </div>
+                            <br>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary">Guardar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
