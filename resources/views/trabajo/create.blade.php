@@ -560,7 +560,7 @@ if ($('#cliente').val() != "") {
             cache: false,
             dataType: 'json',
             success: function (data) {
-                //console.log(data.data.length);
+                console.log(data.data.length);
                 if (data.data.length != 0) {
                   $('#coincidencias').remove();
                   $('#campoUsado').append("<div id='coincidencias'></div>");
