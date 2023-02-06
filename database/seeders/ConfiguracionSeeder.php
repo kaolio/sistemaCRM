@@ -176,5 +176,79 @@ class ConfiguracionSeeder extends Seeder
             'mal_funcionamiento' => 'Logico',
             'mal_funcio_precio' => '3500',
         ]);
+
+        //FACTOR DE FORMA
+        DB::table('factor_formas')->insert([
+            'nombre_factor' => '1.0 Pulgadas',
+        ]);
+
+        DB::table('factor_formas')->insert([
+            'nombre_factor' => '1.3 Pulgadas',
+        ]);
+
+        DB::table('factor_formas')->insert([
+            'nombre_factor' => '1.8 Pulgadas',
+        ]);
+
+        DB::table('factor_formas')->insert([
+            'nombre_factor' => '2.0 Pulgadas',
+        ]);
+
+        DB::table('factor_formas')->insert([
+            'nombre_factor' => '2.5 Pulgadas',
+        ]);
+
+        DB::table('factor_formas')->insert([
+            'nombre_factor' => '3.5 Pulgadas',
+        ]);
+
+        DB::table('factor_formas')->insert([
+            'nombre_factor' => '5.25 Pulgadas',
+        ]);
+
+        DB::table('factor_formas')->insert([
+            'nombre_factor' => 'M2',
+        ]);
+
+        //TIPO DE CONEXION
+        DB::table('tipo_conexions')->insert([
+            'nombre_conexion' => 'M2',
+        ]);
+
+        DB::table('tipo_conexions')->insert([
+            'nombre_conexion' => 'mSATA',
+        ]);
+
+        DB::table('tipo_conexions')->insert([
+            'nombre_conexion' => 'PATA',
+        ]);
+
+        DB::table('tipo_conexions')->insert([
+            'nombre_conexion' => 'PCI Express',
+        ]);
+
+        DB::table('tipo_conexions')->insert([
+            'nombre_conexion' => 'SAS',
+        ]);
+
+        DB::table('tipo_conexions')->insert([
+            'nombre_conexion' => 'SATA',
+        ]);
+
+        DB::table('tipo_conexions')->insert([
+            'nombre_conexion' => 'SATA Express',
+        ]);
+
+        DB::table('tipo_conexions')->insert([
+            'nombre_conexion' => 'USB 2.0',
+        ]);
+
+        DB::table('tipo_conexions')->insert([
+            'nombre_conexion' => 'USB 3.0',
+        ]);
+
+        DB::table('tipo_conexions')->insert([
+            'nombre_conexion' => 'USB 3.1',
+        ]);
     }
 }

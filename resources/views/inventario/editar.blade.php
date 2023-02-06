@@ -91,25 +91,16 @@
         <div class="form-group col-md-6" style="padding-top: 32px">
           <div class="input-group">
             <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Fabricante &nbsp;<strong>*</strong></span>
-            <select name="manufactura" class="form-control" class="btn-block" required value="{{$inventario->manufactura}}">
+            <select name="manufactura" class="form-control" class="btn-block" required>
                 <option selected disabled value="">Elija el Fabricante</option>
-                 @if ($inventario->manufactura == $inventario_elegido->manufactura)
-                 <option value="{{$inventario->manufactura}}" selected>{{$inventario->manufactura}}</option>
-                 @else
-                 <option value="{{$inventario->manufactura}}">{{$inventario->manufactura}}</option>
-                 @endif
-                <option value="Toshiba">Toshiba</option>
-                <option value="Samsung">Samsung</option>
-                <option value="Verbatim">Verbatim</option>
-                <option value="Western Digital">Western Digital</option>
-                <option value="Skynet">Skynet</option>
-                <option value="Maxtor">Maxtor</option>
-                <option value="Adata">Adata</option>
-                <option value="Crucial">Crucial</option>
-                <option value="Kingston">Kingston</option>
-                <option value="Sony">Sony</option>
-                <option value="Hitachi">Hitachi</option>
-                <option value="Asus">Asus</option>
+                @foreach ($fabricante as $fabricantes)
+                   @if ($fabricantes->nombre_fabricante == $inventario_elegido->manufactura)
+                  <option value="{{$fabricantes->nombre_fabricante}}" selected>{{$fabricantes->nombre_fabricante}}</option>
+                  @else
+                  <option value="{{$fabricantes->nombre_fabricante}}">{{$fabricantes->nombre_fabricante}}</option>
+                  @endif 
+                @endforeach
+                 
             </select>
             <span id="estadoManufactura"></span>
           </div>
@@ -168,17 +159,17 @@
         </div>
           <div class="form-group col-md-4" style="padding-top: 8px">
             <div class="input-group">
-              <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo de Almacenamiento&nbsp;<strong>*</strong></span>
+              <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo&nbsp;<strong>*</strong></span>
               <select name="tipo" class="form-control" class="btn-block" required>
-                <option disabled value="">Elija el Tipo</option>
-                @if ($inventario->tipo == $inventario_elegido->tipo)
-                <option value="{{$inventario->tipo}}" selected>{{$inventario->tipo}}</option>                      
+                <option disabled value="">Elija el Dispositivo</option>
+                @foreach ($dispositivo as $dispositivos)
+                    @if ($dispositivos->nombre_dispositivo == $inventario_elegido->tipo)
+                <option value="{{$dispositivos->nombre_dispositivo}}" selected>{{$dispositivos->nombre_dispositivo}}</option>                      
               @else
-                <option value="{{$inventario->tipo}}">{{$inventario->tipo}}</option>      
+                <option value="{{$dispositivos->nombre_dispositivo}}">{{$dispositivos->nombre_dispositivo}}</option>      
               @endif
-                <option value="HDD">HDD</option>
-                <option value="SSD">SSD</option>
-                <option value="Otro">Otro</option>
+                @endforeach
+                
               </select>
               <span id="estadoManufactura"></span>
             </div>
@@ -188,14 +179,13 @@
               <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Factor de Forma &nbsp;<strong>*</strong></span>
               <select class="form-control" class="btn-block" id="factor_de_forma" name="factor_de_forma" required value="{{$inventario->factor_de_forma}}">
                   <option selected disabled value="">Elija el Factor de Forma</option>
-                  @if ($inventario->factor_de_forma == $inventario_elegido->factor_de_forma)
-                    <option value="{{$inventario->factor_de_forma}}" selected>{{$inventario->factor_de_forma}}</option>                      
-                  @else
-                    <option value="{{$inventario->factor_de_forma}}">{{$inventario->factor_de_forma}}</option>      
-                  @endif
-                  <option value="3.5 pulgadas">3.5 pulgadas</option>
-                  <option value="3.5 pulgadas">2.5 pulgadas</option>
-                  <option value="M2">M2</option>
+                  @foreach ($factor as $factores)
+                     @if ($factores->nombre_factor == $inventario_elegido->factor_de_forma)
+                     <option value="{{$factores->nombre_factor}}" selected>{{$factores->nombre_factor}}</option>                      
+                    @else
+                      <option value="{{$factores->nombre_factor}}">{{$factores->nombre_factor}}</option>      
+                    @endif  
+                  @endforeach
               </select>
             </div>
           </div> 

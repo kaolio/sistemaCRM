@@ -26,45 +26,52 @@
                                  <li class="nav-item"><a class="nav-link" href="#fabricante" data-toggle="tab">Fabricante</a></li>
                                  <li class="nav-item"><a class="nav-link" href="#tipoDaño" data-toggle="tab">Tipo de Daño</a></li>
                                  <li class="nav-item"><a class="nav-link" href="#factorForma" data-toggle="tab">Factor de Forma</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="#historial" data-toggle="tab">Conexion</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="#" data-toggle="tab">Iniciar Sesion</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="#tipoConexion" data-toggle="tab">Tipo de Conexion</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="#tipoMoneda" data-toggle="tab">Tipo de Moneda</a></li>
                                  </ul>
                              </div><!-- /.card-header -->
                              <div class="card-body">
                                  <div class="tab-content">
-                                 <!--General-->
-                                    @include('configuracion/prioridad')
-                                 <!--/General-->
-                                 
-                                 <!--Dispositivos de trabajo-->
-                                 <div class="tab-pane" id="dispositivo">
-                                    @include('configuracion/dispositivo')
-                                 </div>
-                                 <!--/Dispositivos de trabajo-->
-                                
-                                  <!--venta-->
-                                  <div class="tab-pane" id="fabricante">
-                                    @include('configuracion/fabricante')
-                                 </div>
-                                 <!-- /venta -->
- 
-                                 <!--Facturacion-->
-                                 <div class="tab-pane" id="tipoDaño">
-                                    @include('configuracion/tipoDaño')
-                                 </div>
-                                 <!-- /Facturacion -->
-                                
- 
-                                 <!--Adjuntar archivo -->
-                                 <div class="tab-pane" id="factorForma">
-                                    @include('configuracion/factorForma')
-                                 </div>
-                                 <!--/Adjuntar archivo -->
- 
-                                 <!--Historial-->
-                                 <div class="tab-pane" id="historial" >
-                                 </div>
-                                 <!-- /Historial -->
+                                        <!--General-->
+                                            @include('configuracion/prioridad')
+                                        <!--/General-->
+                                        
+                                        <!--Dispositivos de trabajo-->
+                                        <div class="tab-pane" id="dispositivo">
+                                            @include('configuracion/dispositivo')
+                                        </div>
+                                        <!--/Dispositivos de trabajo-->
+                                        
+                                        <!--venta-->
+                                        <div class="tab-pane" id="fabricante">
+                                            @include('configuracion/fabricante')
+                                        </div>
+                                        <!-- /venta -->
+        
+                                        <!--Facturacion-->
+                                        <div class="tab-pane" id="tipoDaño">
+                                            @include('configuracion/tipoDaño')
+                                        </div>
+                                        <!-- /Facturacion -->
+                                        
+        
+                                        <!--Adjuntar archivo -->
+                                        <div class="tab-pane" id="factorForma">
+                                            @include('configuracion/factorForma')
+                                        </div>
+                                        <!--/Adjuntar archivo -->
+
+                                         <!-- tipoConexion -->
+                                        <div class="tab-pane" id="tipoConexion">
+                                            @include('configuracion/tipoConexion')
+                                        </div>
+                                         <!-- /tipoConexion -->
+
+                                        <!--Historial-->
+                                        <div class="tab-pane" id="tipoMoneda">
+                                            @include('configuracion/tipoMoneda')
+                                        </div>
+                                        <!-- /Historial -->
                                  </div>
                                  <!-- /.tab-content -->
                              </div><!-- /.card-body -->

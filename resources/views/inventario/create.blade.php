@@ -17,20 +17,10 @@
           <div class="input-group">
             <span class="input-group-text" style="background:rgb(2, 117, 216); color: aliceblue">Fabricante&nbsp;<strong>*</strong></span>
             <select name="manufactura" class="form-control" class="btn-block" required>
-              <option value="">Elija el Fabricante</option>
-              <option value="Seagate">Seagate</option>
-              <option value="Toshiba">Toshiba</option>
-              <option value="Samsung">Samsung</option>
-              <option value="Verbatim">Verbatim</option>
-              <option value="Wester Digital">Western Digital</option>
-              <option value="SkayNet">SkyNet</option>
-              <option value="Maxtor">Maxtor</option>
-              <option value="Adata">Adata</option>
-              <option value="Crucial">Crucial</option>
-              <option value="Kingston">Kingston</option>
-              <option value="Sony">Sony</option>
-              <option value="Hitachi">Hitachi</option>
-              <option value="Asus">Asus</option>
+              <option selected value="Elige un Rol" disabled>Elige un Fabricante</option>
+                @foreach ($fabricante as $fabricantes)
+                 <option value="{{$fabricantes->nombre_fabricante}}">{{$fabricantes->nombre_fabricante}}</option>
+                 @endforeach
             </select>
             <span id="estadoManufactura"></span>
           </div>
@@ -64,11 +54,11 @@
             value="{{ old('capacidad') }}" onkeyup="validarCapacidad()" required maxlength="8" onkeypress="return ((event.charCode >= 84 && event.charCode <= 84)||(event.charCode >= 116 && event.charCode <= 116)||(event.charCode >= 98 && event.charCode <= 98)||
                               (event.charCode >= 103 && event.charCode <= 103)||(event.charCode >= 66 && event.charCode <= 66)||(event.charCode >= 71 && event.charCode <= 71)||(event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">      
           </div>
-        </div>
+        </div> 
         <div class="form-row">
           <div class="form-group col-md-4" style="padding-top: 8px">
             <div class="input-group">
-              <span class="input-group-text" style="background:rgb(2, 117, 216); color: aliceblue">Rol del Disco&nbsp;<strong>*</strong></span>
+              <span class="input-group-text" style="background:rgb(2, 117, 216); color: aliceblue">Rol &nbsp;<strong>*</strong></span>
               <select name="rol" class="form-control" class="btn-block" required>
                 <option value="">Elija el Rol</option>
                 <option value="Datos">Datos</option>
@@ -79,12 +69,12 @@
           </div>
             <div class="form-group col-md-4" style="padding-top: 8px">
               <div class="input-group">
-                <span class="input-group-text" style="background:rgb(2, 117, 216); color: aliceblue">Tipo de Almacenamiento&nbsp;<strong>*</strong></span>
+                <span class="input-group-text" style="background:rgb(2, 117, 216); color: aliceblue">Tipo&nbsp;<strong>*</strong></span>
                 <select name="tipo" class="form-control" class="btn-block" required>
-                  <option value="">Elija el Tipo</option>
-                  <option value="HDD">HDD</option>
-                  <option value="SSD">SSD</option>
-                  <option value="Otro">Otro</option>
+                  <option selected value="Elige un Rol" disabled>Elige un Dispositivo</option>
+                    @foreach ($dispositivo as $dispositivos)
+                    <option value="{{$dispositivos->nombre_dispositivo}}">{{$dispositivos->nombre_dispositivo}}</option>
+                    @endforeach
                 </select>
                 <span id="estadoManufactura"></span>
               </div>
@@ -93,10 +83,10 @@
               <div class="input-group">
                 <span class="input-group-text" style="background:rgb(2, 117, 216); color: aliceblue">Factor de Forma &nbsp;<strong>*</strong></span>
                 <select class="form-control" class="btn-block" id="factor_de_forma" name="factor_de_forma" required>
-                  <option value="">Elija el Factor de Forma</option>
-                  <option value="3.5 pulgadas ">3.5 pulgadas</option>
-                  <option value="2.5 pulgadas">2.5 pulgadas</option>
-                  <option value="M2">M2</option>
+                  <option selected value="Elige un Rol" disabled>Elige un Factor de Forma</option>
+                    @foreach ($factor as $factores)
+                     <option value="{{$factores->nombre_factor}}">{{$factores->nombre_factor}}</option>
+                     @endforeach
                 </select>
               </div>
             </div>

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FactorForma;
+use App\Models\TipoConexion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class FactorFormaController extends Controller
+class TipoConexionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +42,10 @@ class FactorFormaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\FactorForma  $factorForma
+     * @param  \App\Models\TipoConexion  $tipoConexion
      * @return \Illuminate\Http\Response
      */
-    public function show(FactorForma $factorForma)
+    public function show(TipoConexion $tipoConexion)
     {
         //
     }
@@ -53,10 +53,10 @@ class FactorFormaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\FactorForma  $factorForma
+     * @param  \App\Models\TipoConexion  $tipoConexion
      * @return \Illuminate\Http\Response
      */
-    public function edit(FactorForma $factorForma)
+    public function edit(TipoConexion $tipoConexion)
     {
         //
     }
@@ -65,10 +65,10 @@ class FactorFormaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\FactorForma  $factorForma
+     * @param  \App\Models\TipoConexion  $tipoConexion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FactorForma $factorForma)
+    public function update(Request $request, TipoConexion $tipoConexion)
     {
         //
     }
@@ -76,20 +76,20 @@ class FactorFormaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\FactorForma  $factorForma
+     * @param  \App\Models\TipoConexion  $tipoConexion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FactorForma $factorForma)
+    public function destroy(TipoConexion $tipoConexion)
     {
         //
     }
 
-    public function nuevoFactor()
+    public function nuevoConexion()
     {
 
-        $factor = new FactorForma();
-        $factor->nombre_factor = $_POST["nombreFactor"];
-        $factor->save();
+        $conexion = new TipoConexion();
+        $conexion->nombre_conexion = $_POST["nombreConexion"];
+        $conexion->save();
 
 
 
@@ -97,28 +97,28 @@ class FactorFormaController extends Controller
 
     }
 
-    public function datosFactor(){
+    public function datosConexion(){
         
-        $datos = DB::table('factor_formas')
+        $datos = DB::table('tipo_conexions')
                 ->select('*')
                 ->get();
 
         return json_encode(array('data'=>$datos));
     }
 
-    public function actualizarFactor(){
+    public function actualizarConexion(){
 
-        $datoFactor = FactorForma::find($_POST["id_factor"]);
-        $datoFactor->nombre_factor = $_POST["factorForma"];
-        $datoFactor->update();
+        $datoConexion = TipoConexion::find($_POST["id_conexion"]);
+        $datoConexion->nombre_conexion = $_POST["conexion"];
+        $datoConexion->update();
 
         return json_encode(array('data'=>true));
     }
 
-    public function eliminarFactor(){
+    public function eliminarConexion(){
  
                     
-        $factor=FactorForma::findOrFail($_POST["id"]);
+        $factor=TipoConexion::findOrFail($_POST["id"]);
         $factor->delete();
 
         return json_encode(array('data'=>true));

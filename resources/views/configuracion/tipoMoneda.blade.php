@@ -5,17 +5,17 @@
       <div class="row justify-content-center">
         <div class="col-4">
             <div class="input-group">
-                <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo de Daño</span>
-                <input type="text" class="form-control " name="nombreDaño"id="nombreDaño"
+                <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Moneda</span>
+                <input type="text" class="form-control " name="nombreMoneda"id="nombreMoneda"
                 onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode >= 48 && event.charCode <= 57))">
             </div>
         </div>
         <div class="col-3">
             <div class="input-group">
-                <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Precio</span>
-                <input type="text" class="form-control " name="precioTipoDaño" id="precioTipoDaño"
+                <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Valor</span>
+                <input type="text" class="form-control " name="valorMoneda" id="valorMoneda"
                 onkeypress="return ((event.charCode >= 48 && event.charCode <= 57)||(event.charCode == 44)||(event.charCode == 46))">
-                <span class="input-group-text" id="basic-addon1" >€</span>
+                <span class="input-group-text" id="basic-addon1" >€/$</span>
             </div>
         </div>
         
@@ -37,15 +37,15 @@
 
   <div class="card">
     <div class="card-body">
-        <table class="table table-light" id="tablaTipoDaño">
+        <table class="table table-light" id="tablaValores">
             <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
                 <tr>
-                  <th class="text-center" style="width: 20%">Tipo de Daño</th>
-                  <th class="text-center" style="width: 30%">Precio</th>
+                  <th class="text-center" style="width: 20%">Tipo de Moneda</th>
+                  <th class="text-center" style="width: 30%">Valor</th>
                   <th class="text-center" style="width: 10%"></th>
                 </tr>
               </thead>
-            <tbody class="table-bordered" id="tipoDañoGuardadas">
+            <tbody class="table-bordered" id="valoresGuardadas">
                 <tr>
                 
                 <tr>
@@ -61,35 +61,35 @@
 <script>
 
     $(document).ready(function () {
-        datosTipoDaño();
+        datosValores();
     });
 
         $("#guardarDaño").on('click',function(){
-            var url1 = $('#nombreDaño').val();
-            var url2 = $('#precioTipoDaño').val();
+            var url1 = $('#nombreMoneda').val();
+            var url2 = $('#valorMoneda').val();
 
            // console.log(url1);
                 $.ajax({
-                    url: "/configuracion/nuevoTipoDaño",
+                    url: "/configuracion/nuevoValor",
                     type: "POST",
                     data: {
                         "_token": "{{ csrf_token() }}",
-                        nombreDaño: url1,
-                        precioTipoDaño: url2,
+                        nombreMoneda: url1,
+                        valorMoneda: url2,
                     },
                     cache: false,
                     dataType: 'json',
                     success: function (dataResult) {
                        // console.log(dataResult);
-                       datosTipoDaño();
+                       datosValores();
                     }
                 });
         });
 
 
-        function datosTipoDaño(){
+        function datosValores(){
         $.ajax({
-                url: "/configuracion/datosTipoDaño",
+                url: "/configuracion/datosValores",
                 type: "POST",
                 data:{ 
                     "_token": "{{ csrf_token() }}",
@@ -98,7 +98,7 @@
                 dataType: 'json',
                 success: function(dataResult){
                 //console.log(dataResult);
-                $('#tablaTipoDaño > tbody').empty();
+                $('#tablaValores > tbody').empty();
                 var filas = dataResult.data.length;
                 var count = 0;
 
@@ -111,15 +111,15 @@
                         }
                             
                             var nuevafila= "<tr><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
-                            dataResult.data[i].mal_funcionamiento + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
-                            dataResult.data[i].mal_funcio_precio  + 
+                            dataResult.data[i].nombre_moneda + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
+                            dataResult.data[i].valor_moneda  + 
                             "</td><td class='text-center' style='width: 3%;background: rgb(209, 244, 255)' >" +
-                                '<button type="button" class="btn" data-toggle="modal" data-target="#tipoDañoEditar'+dataResult.data[i].id+'">'+
+                                '<button type="button" class="btn" data-toggle="modal" data-target="#monedaEditar'+dataResult.data[i].id+'">'+
                 '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(168, 166, 14)" class="bi bi-trash" viewBox="0 0 16 16">'+
                 '<path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>'+
               '</svg>'+
             '</button>'+
-            '<div class="modal fade" id="tipoDañoEditar'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+            '<div class="modal fade" id="monedaEditar'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
                         '<div class="modal-dialog" role="document">'+
                         '<div class="modal-content">'+
                             '<div class="modal-header">'+
@@ -133,8 +133,8 @@
                                 '<div class="row justify-content-center">'+
                                     '<div class="input-group-prepend col-10">'+
                                         '<div class="input-group">'+
-                                            '<span class="input-group-text" >Prioridad</span>'+
-                                            '<input type="text" id="editDaño'+dataResult.data[i].id+'" name="editDaño" class="form-control" autocomplete="off" value="'+[dataResult.data[i].mal_funcionamiento]+'">'+
+                                            '<span class="input-group-text" >Moneda</span>'+
+                                            '<input type="text" id="editNombreMoneda'+dataResult.data[i].id+'" name="editNombreMoneda" class="form-control" autocomplete="off" value="'+[dataResult.data[i].nombre_moneda]+'">'+
                                         '</div>'+
                                     '</div>'+
                                 '</div>'+
@@ -142,8 +142,8 @@
                             '<div class="row justify-content-center">'+
                                     '<div class="input-group-prepend col-10">'+
                                         '<div class="input-group">'+
-                                            '<span class="input-group-text" >Precio</span>'+
-                                            '<input type="text" id="editPrecioDaño'+dataResult.data[i].id+'" name="editPrecioDaño" class="form-control" autocomplete="off" value="'+[dataResult.data[i].mal_funcio_precio]+'">'+
+                                            '<span class="input-group-text" >Valor</span>'+
+                                            '<input type="text" id="editValorMoneda'+dataResult.data[i].id+'" name="editValorMoneda" class="form-control" autocomplete="off" value="'+[dataResult.data[i].valor_moneda]+'">'+
                                             '<span class="input-group-text" id="basic-addon1" >€</span>'+
                                         '</div>'+
                                     '</div>'+
@@ -152,7 +152,7 @@
                             
                             '<div class="modal-footer">'+
                             '<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>'+
-                            '<button class="btn btn-primary" onclick="actualizarDaño('+dataResult.data[i].id+')" >'+
+                            '<button class="btn btn-primary" onclick="actualizarMon('+dataResult.data[i].id+')" >'+
                                 'Actualizar'+
                             '</button>'+
                             '</div>'+
@@ -160,27 +160,27 @@
                         '</div>'+
                         '</div>'+
                     ' </div> '+
-                        '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModalTipoDaño'+dataResult.data[i].id+'">'+
+                        '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModalMoneda'+dataResult.data[i].id+'">'+
                             '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
                             '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
                             '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
                             '</svg>'+
                         '</button>'+
-                        '<div class="modal fade" id="exampleModalTipoDaño'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                        '<div class="modal fade" id="exampleModalMoneda'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
                             '<div class="modal-dialog" role="document">'+
                             '<div class="modal-content">'+
                                 '<div class="modal-header">'+
-                                '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Tipo de Daño</h5>'+
+                                '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Tipo de Moneda</h5>'+
                                 '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
                                     '<span aria-hidden="true">&times;</span>'+
                                 '</button>'+
                                 '</div>'+
                                 '<div class="modal-body">'+
-                                '¿Realmente Desea Borrar el Tipo de Daño?'+
+                                '¿Realmente Desea Borrar el Tipo de Moneda?'+
                                 '</div>'+
                                 '<div class="modal-footer">'+
                                 '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
-                                '<button class="btn btn-primary" onclick="eliminarDaño('+dataResult.data[i].id+')">'+
+                                '<button class="btn btn-primary" onclick="eliminarMon('+dataResult.data[i].id+')">'+
                                     'Aceptar'+
                                 '</button>'+
                                 '</div>'+
@@ -189,7 +189,7 @@
                         ' </div> '+
                         "</td></tr>"
                         
-                        $("#tipoDañoGuardadas").append(nuevafila);
+                        $("#valoresGuardadas").append(nuevafila);
                     }
                     
                     }
@@ -197,37 +197,37 @@
     }
 
 
-    function actualizarDaño(id_daño){
+    function actualizarMon(id_moneda){
             
-            var daño = $("#editDaño"+id_daño).val();
-            var precioDaño = $("#editPrecioDaño"+id_daño).val();
+            var moneda = $("#editNombreMoneda"+id_moneda).val();
+            var valor = $("#editValorMoneda"+id_moneda).val();
 
             //console.log(tipo,rol,fabricante,modelo,serial,localizacion);
 
             $.ajax({
-                url: "/configuracion/actualizarTipoDaño",
+                url: "/configuracion/actualizarValor",
                 type: "POST",
                 data: {
                     "_token": "{{ csrf_token() }}",
-                    "id_daño": id_daño,
-                    "daño": daño,
-                    "precioDaño": precioDaño,
+                    "id_moneda": id_moneda,
+                    "moneda": moneda,
+                    "valor": valor,
                 },
                 cache: false,
                 dataType: 'json',
                 success: function (dataResult) {
                     //console.log(dataResult);
-                    datosTipoDaño();
-                    $('#tipoDañoEditar'+id_daño).modal('hide');
+                    datosValores();
+                    $('#monedaEditar'+id_moneda).modal('hide');
                
                 }
                 
             });
         }
 
-        function eliminarDaño(id){
+        function eliminarMon(id){
              $.ajax({
-                    url: "/configuracion/eliminarTipoDaño",
+                    url: "/configuracion/eliminarValor",
                     type: "POST",
                     data: {
                         "_token": "{{ csrf_token() }}",
@@ -237,8 +237,8 @@
                     dataType: 'json',
                     success: function (dataResult) {
                         //console.log(dataResult);
-                        datosTipoDaño();
-                        $('#exampleModalTipoDaño'+id).modal('hide')
+                        datosValores();
+                        $('#exampleModalMoneda'+id).modal('hide')
                     }
                 });
           }

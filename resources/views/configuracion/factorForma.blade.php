@@ -149,13 +149,13 @@
                             '<div class="modal-dialog" role="document">'+
                             '<div class="modal-content">'+
                                 '<div class="modal-header">'+
-                                '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Dispositivo</h5>'+
+                                '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Factor de Forma</h5>'+
                                 '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
                                     '<span aria-hidden="true">&times;</span>'+
                                 '</button>'+
                                 '</div>'+
                                 '<div class="modal-body">'+
-                                '¿Realmente Desea Borrar el Dispositivo?'+
+                                '¿Realmente Desea Borrar el Factor de Forma?'+
                                 '</div>'+
                                 '<div class="modal-footer">'+
                                 '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+

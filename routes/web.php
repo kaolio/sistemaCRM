@@ -19,6 +19,8 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\MalFuncionamientoController;
 use App\Http\Controllers\PrioridadController;
 use App\Http\Controllers\ServicioController;
+use App\Http\Controllers\TipoConexionController;
+use App\Http\Controllers\TipoMonedaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -253,6 +255,18 @@ Route::post('/configuracion/nuevoFactor',[FactorFormaController::class,'nuevoFac
 Route::post('/configuracion/datosFactor',[FactorFormaController::class,'datosFactor']);
 Route::post('/configuracion/actualizarFactor',[FactorFormaController::class,'actualizarFactor']);
 Route::post('/configuracion/eliminarFactor',[FactorFormaController::class,'eliminarFactor']);
+
+//TIPO DE CONEXION
+Route::post('/configuracion/nuevoConexion',[TipoConexionController::class,'nuevoConexion']);
+Route::post('/configuracion/datosConexion',[TipoConexionController::class,'datosConexion']);
+Route::post('/configuracion/actualizarConexion',[TipoConexionController::class,'actualizarConexion']);
+Route::post('/configuracion/eliminarConexion',[TipoConexionController::class,'eliminarConexion']);
+
+//TIPO DE MONEDA
+Route::post('/configuracion/nuevoValor',[TipoMonedaController::class,'nuevoValor']);
+Route::post('/configuracion/datosValores',[TipoMonedaController::class,'datosValores']);
+Route::post('/configuracion/actualizarValor',[TipoMonedaController::class,'actualizarValor']);
+Route::post('/configuracion/eliminarValor',[TipoMonedaController::class,'eliminarValor']);
  
 
 /*Puede llamar a un comando de Artisan fuera de la CLI.

@@ -91,8 +91,20 @@ class InventarioController extends Controller
      */
     public function create()
     {
+        $fabricante = DB::table('fabricantes')
+                ->select('*')
+                ->get();
+
+        $factor = DB::table('factor_formas')
+                ->select('*')
+                ->get();
+
+        $dispositivo = DB::table('dispositivos')
+                ->select('*')
+                ->get();
+
         $cadena = Session::get('cadena');
-        return view('inventario.create',compact('cadena'));
+        return view('inventario.create',compact('cadena','fabricante','factor','dispositivo'));
     }
 
     /**
@@ -146,12 +158,34 @@ class InventarioController extends Controller
      */
     public function edit($id)
     {
-        $inventario=Inventario::findOrFail($id);
-        $inventario_elegido = DB::table('inventarios')  //recuperar el valor del select
-        ->select('*')
-        ->Where('inventarios.id', '=', $id)->first();
-        // return $inventario;
-        return view('inventario.editar',compact('inventario', 'inventario_elegido'));
+        try {
+
+            $fabricante = DB::table('fabricantes')
+                    ->select('*')
+                    ->get();
+
+            $factor = DB::table('factor_formas')
+                    ->select('*')
+                    ->get();
+
+            $dispositivo = DB::table('dispositivos')
+                    ->select('*')
+                    ->get();
+
+            $inventario=Inventario::findOrFail($id);
+
+            $inventario_elegido = DB::table('inventarios')  //recuperar el valor del select
+                    ->select('*')
+                    ->Where('inventarios.id', '=', $id)
+                    ->first();
+            // return $inventario;
+            return view('inventario.editar',compact('inventario', 'inventario_elegido','fabricante','factor','dispositivo'));
+
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        
     }
 
     /**

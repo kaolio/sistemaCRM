@@ -96,12 +96,37 @@ class ProductosController extends Controller
     }
 
     public function edit($id){
-        $producto = DB::table('productos')  //recuperar el valor del select
+
+        try {
+
+            $fabricante = DB::table('fabricantes')
+                    ->select('*')
+                    ->get();
+
+            $factor = DB::table('factor_formas')
+                    ->select('*')
+                    ->get();
+
+            $dispositivo = DB::table('dispositivos')
+                    ->select('*')
+                    ->get();
+
+            $conexion = DB::table('tipo_conexions')
+                    ->select('*')
+                    ->get();
+            
+            $producto = DB::table('productos')  //recuperar el valor del select
                     ->select('*')
                     ->Where('id', '=', $id)
                     ->first();
 
-        return view('producto.edit',compact('producto'));            
+        return view('producto.edit',compact('producto'.'fabricante','factor','dispositivo','conexion'));
+
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+                    
     }
 
     public function update($id){

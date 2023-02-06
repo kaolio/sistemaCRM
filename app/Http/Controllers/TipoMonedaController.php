@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FactorForma;
+use App\Models\TipoMoneda;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class FactorFormaController extends Controller
+class TipoMonedaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +42,10 @@ class FactorFormaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\FactorForma  $factorForma
+     * @param  \App\Models\TipoMoneda  $tipoMoneda
      * @return \Illuminate\Http\Response
      */
-    public function show(FactorForma $factorForma)
+    public function show(TipoMoneda $tipoMoneda)
     {
         //
     }
@@ -53,10 +53,10 @@ class FactorFormaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\FactorForma  $factorForma
+     * @param  \App\Models\TipoMoneda  $tipoMoneda
      * @return \Illuminate\Http\Response
      */
-    public function edit(FactorForma $factorForma)
+    public function edit(TipoMoneda $tipoMoneda)
     {
         //
     }
@@ -65,10 +65,10 @@ class FactorFormaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\FactorForma  $factorForma
+     * @param  \App\Models\TipoMoneda  $tipoMoneda
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FactorForma $factorForma)
+    public function update(Request $request, TipoMoneda $tipoMoneda)
     {
         //
     }
@@ -76,20 +76,21 @@ class FactorFormaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\FactorForma  $factorForma
+     * @param  \App\Models\TipoMoneda  $tipoMoneda
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FactorForma $factorForma)
+    public function destroy(TipoMoneda $tipoMoneda)
     {
         //
     }
 
-    public function nuevoFactor()
+    public function nuevoValor()
     {
 
-        $factor = new FactorForma();
-        $factor->nombre_factor = $_POST["nombreFactor"];
-        $factor->save();
+        $daño = new TipoMoneda();
+        $daño->nombre_moneda = $_POST["nombreMoneda"];
+        $daño->valor_moneda = $_POST["valorMoneda"];
+        $daño->save();
 
 
 
@@ -97,29 +98,30 @@ class FactorFormaController extends Controller
 
     }
 
-    public function datosFactor(){
+    public function datosValores(){
         
-        $datos = DB::table('factor_formas')
+        $datos = DB::table('tipo_monedas')
                 ->select('*')
                 ->get();
 
         return json_encode(array('data'=>$datos));
     }
 
-    public function actualizarFactor(){
+    public function actualizarValor(){
 
-        $datoFactor = FactorForma::find($_POST["id_factor"]);
-        $datoFactor->nombre_factor = $_POST["factorForma"];
-        $datoFactor->update();
+        $datoMoneda = TipoMoneda::find($_POST["id_moneda"]);
+        $datoMoneda->nombre_moneda = $_POST["moneda"];
+        $datoMoneda->valor_moneda = $_POST["valor"];
+        $datoMoneda->update();
 
         return json_encode(array('data'=>true));
     }
 
-    public function eliminarFactor(){
+    public function eliminarValor(){
  
                     
-        $factor=FactorForma::findOrFail($_POST["id"]);
-        $factor->delete();
+        $trabajo=TipoMoneda::findOrFail($_POST["id"]);
+        $trabajo->delete();
 
         return json_encode(array('data'=>true));
     }
