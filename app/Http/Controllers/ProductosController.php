@@ -68,14 +68,15 @@ class ProductosController extends Controller
                 $producto = new Productos();
                 $producto->dispositivo = $request->get('dispositivo');
                 $producto->connection = $request->get('connection');
-                $producto->factor = $request->get('factor');
                 $producto->fabricante = request('fabricante');
                 $producto->modelo = request('modelo');
+                $producto->capacidad_producto = $request->get('capacidad');
+                $producto->factor = $request->get('factor');
+                $producto->rol = $request->get('rol');
                 $producto->ubicacion = $request->get('ubicacion');
                 $producto->distribuidora = request('distribuidora');
-                $producto->precio = $request->get('precio');
-                $producto->vat = $request->get('vat');
-                $producto->precio_fin = request('precioFin');
+                $producto->precio_compra= $request->get('precioCompra');
+                $producto->precio_venta = $request->get('precioVenta');
                 $producto->serial = $request->get('serial')[$i];
                 $producto->fecha = $request->get('fecha');
                 $producto->nota = $request->get('nota');
@@ -91,14 +92,15 @@ class ProductosController extends Controller
                 $producto = new Productos();
                 $producto->dispositivo = $request->get('dispositivo');
                 $producto->connection = $request->get('connection');
-                $producto->factor = $request->get('factor');
                 $producto->fabricante = request('fabricante');
                 $producto->modelo = request('modelo');
+                $producto->capacidad_producto = $request->get('capacidad');
+                $producto->factor = $request->get('factor');
+                $producto->rol = $request->get('rol');
                 $producto->ubicacion = $request->get('ubicacion');
                 $producto->distribuidora = request('distribuidora');
-                $producto->precio = $request->get('precio');
-                $producto->vat = $request->get('vat');
-                $producto->precio_fin = request('precioFin');
+                $producto->precio_compra= $request->get('precioCompra');
+                $producto->precio_venta = $request->get('precioVenta');
                 $producto->serial = $request->get('serial')[$i];
                 $producto->fecha = $request->get('fecha');
                 $producto->nota = $request->get('nota');
@@ -130,13 +132,15 @@ class ProductosController extends Controller
             $conexion = DB::table('tipo_conexions')
                     ->select('*')
                     ->get();
+
+            $producto=Productos::findOrFail($id);
             
-            $producto = DB::table('productos')  //recuperar el valor del select
+            $producto_elegido = DB::table('productos')  //recuperar el valor del select
                     ->select('*')
-                    ->Where('id', '=', $id)
+                    ->Where('productos.id', '=', $id)
                     ->first();
 
-        return view('producto.edit',compact('producto'.'fabricante','factor','dispositivo','conexion'));
+        return view('producto.edit',compact('producto','producto_elegido','fabricante','factor','dispositivo','conexion'));
 
         } catch (\Throwable $th) {
             //throw $th;
@@ -150,14 +154,15 @@ class ProductosController extends Controller
         $producto = Productos::find($id);
         $producto->dispositivo = request('dispositivo');
         $producto->connection = request('connection');
-        $producto->factor = request('factor');
         $producto->fabricante = request('fabricante');
         $producto->modelo = request('modelo');
+        $producto->capacidad_producto = request('capacidad');
+        $producto->factor = request('factor');
+        $producto->rol = request('rol');
         $producto->ubicacion = request('ubicacion');
         $producto->distribuidora = request('distribuidora');
-        $producto->precio = request('precio');
-        $producto->vat = request('vat');
-        $producto->precio_fin = request('precioFin');
+        $producto->precio_compra = request('precioCompra');
+        $producto->precio_venta = request('precioVenta');
         $producto->serial = request('serial');
         $producto->fecha =request('fecha');
         $producto->nota = request('nota');
