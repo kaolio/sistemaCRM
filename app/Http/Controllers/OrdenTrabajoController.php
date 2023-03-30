@@ -139,7 +139,7 @@ class OrdenTrabajoController extends Controller
      */
     public function store(Request $request, Roles $roles)
     {
-       //try {
+       try {
         
             $posicion_coincidencia = strpos($request->get('cliente'), ',');
 
@@ -226,9 +226,9 @@ class OrdenTrabajoController extends Controller
                 
             return view('trabajo.confirmacion',compact('trabajo','cliente','acceso'));
 
-       //} catch (\Throwable $th) {
-         //   return view('errors.errorCreacionPartner');
-       //}
+       } catch (\Throwable $th) {
+            return view('errors.errorCreacionPartner');
+       }
         
         //dd($cliente);
     }
