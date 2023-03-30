@@ -147,9 +147,10 @@ Route::post('/trabajos/nuevo/detalle/eliminarDispositivoRecuperar',[DetalleContr
 Route::post('/trabajos/nuevo/detalle/eliminarOtroDispositivo',[DetalleController::class,'eliminarDispositivOtro']);
 Route::post('/trabajos/nuevo/detalle/eliminarClones',[DetalleController::class,'eliminarDispositivoClon']);
 Route::post('/trabajos/nuevo/detalle/eliminarDonantes',[DetalleController::class,'eliminarDispositivoDonante']);
-//Archivos adjuntos
-Route::post('/trabajos/detalle/subir', [DetalleController::class,'subirArchivo']);//ruta para subir archivo a drive
-
+Route::post('/trabajos/detalle/subirHtml/{id}',[DetalleController::class,'subirArchivo']);//ruta para subir archivo a drive
+Route::get('/trabajos/detalle/fileList/{id}',[DetalleController::class,'verFileList']);//FILE LIST
+Route::get('/trabajos/detalle/fileList/descargar/{id}',[DetalleController::class,'descargarFileList']);//FILE LIST DONWLOAD
+Route::delete('/trabajos/detalle/fileList/eliminar/{id}',[DetalleController::class,'eliminarFileList']);//FILE LIST DELETE
 Route::post('/trabajos/nuevo/detalle/agregarDonante',[DetalleController::class,'agregarDonante']);  //buscador donante
 Route::post('/trabajos/nuevo/detalle/guardarDiagnosticoRecuperacion',[DetalleController::class,'guardarDiagnosticoRecuperacion']);  // guardar diagnostico a los disp de los pacientes
 Route::delete('/trabajos/nuevo/detalle/eliminarPaciente/id',[DetalleController::class,'eliminarPaciente']);

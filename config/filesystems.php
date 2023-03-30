@@ -60,6 +60,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'archivos' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/archivos'),
+            'url' => env('APP_URL') . '/storage',
+            'visibility' => 'public',
+        ],
+
         'google' => [
             'driver' => 'google',
             'clientId' => env('GOOGLE_DRIVE_CLIENT_ID'),

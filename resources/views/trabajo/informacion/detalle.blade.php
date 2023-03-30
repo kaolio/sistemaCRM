@@ -22,11 +22,8 @@
                             <h3><b>{{$orden_elegida->id}} - {{$orden_elegida->nombreCliente}}</b></h3>
                             <button class="btn btn-warning" id="botones"data-toggle="modal" data-target="#exampleModal01">Asignar un Usuario</button>
                             <button class="btn btn-primary" id="botones">Formulario de Admision</button>
-                            <button class="btn btn-primary" id="botones">Ir a Lista de archivos</button>
+                            <button class="btn btn-primary" id="botones"data-toggle="modal" data-target="#ListaDeArchivos{{$orden_elegida->id}}">Ir a Lista de archivos</button>
                             <button class="btn btn-warning" id="botones">Desbloquear Acceso de cliente</button>
-                            <button class="btn btn-warning" id="botones">Actualizar Lista de archivos</button>
-                            <button class="btn btn-warning" id="botones">Cambiar Cliente</button>
-                            <button class="btn btn-primary" id="botones">Generar Factura</button>
                         </div>
 
                              <!-- Modal asignar ingeniero-->
@@ -60,6 +57,83 @@
                                     </div>
                                 </div>
                              {{-- Fin modal ingeniero --}}
+                             <!-- LISTA DE ARCHIVOS-->
+                             <div class="modal fade" id="ListaDeArchivos{{$orden_elegida->id}}" tabindex="-1" role="dialog" aria-labelledby="ListaDeArchivos{{$orden_elegida->id}}" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title w-100 text-center" id="ListaDeArchivos{{$orden_elegida->id}}" align="center">Lista de Archivos</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="container">
+                                                    <div class="input-group md-2">
+                                                        
+                                                        @if ($orden_elegida->lista_archivo == 'NO')
+                                                            
+                                                            <p>No Hay Lista de Archivos</p>
+
+                                                        @else
+                                                            
+
+                                                        <div class="row justify-content-center w-100 text-center">
+                                                            <div class="col-4">
+                                                                <button class=" btn btn-primary">
+                                                                    <a class="text-white" href="/trabajos/detalle/fileList/{{$orden_elegida->id}}" target="_blank" rel="noopener noreferrer">Ver Lista de Archivos</a>
+                                                                </button>
+                                                            </div>
+                                                            <div class="col-3">
+                                                                <button class="btn btn-warning">
+                                                                    <a class="text-white" href="/trabajos/detalle/fileList/descargar/{{$orden_elegida->id}}" >Descargar</a>
+                                                                </button>
+                                                            </div>
+                                                            <div class="col-3">
+                                                                <button class="btn btn-danger"  data-toggle="modal" data-target="#eliminarFile{{$orden_elegida->id}}">
+                                                                    Eliminar
+                                                                </button>
+                                                            </div>
+                                                            
+                                                
+                                                            {{-- ELIMINAR --}}
+                                                            <div class="modal fade" id="eliminarFile{{$orden_elegida->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Lista de Archivos</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-title w-100 text-center">
+                                                                    ¿Realmente Desea Borrar la Lista de Archivos?
+                                                                </div>
+                                                                <form action="{{url('/trabajos/detalle/fileList/eliminar/'.$orden_elegida->id)}}" method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>
+                                                                    <button class="btn btn-success" >Aceptar</button>
+                                                                </div>
+                                                                </form> 
+                                                                </div>
+                                                            </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        @endif
+                                                        
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                         {{-- Fin modal ingeniero --}}
                     </div>
                     <div class="card">
                             <div class="card-header" id="card">

@@ -12,6 +12,7 @@ use App\Models\Detalle;
 use App\Models\DetalleOrden;
 use App\Models\Donantes;
 use Exception;
+use Facade\FlareClient\Stacktrace\File;
 use Google\Service\Adsense\Alert;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -115,7 +116,7 @@ class DetalleController extends InventarioController
                                     ->join('clientes','clientes.id','=','orden_trabajos.id_cliente')
                                     ->join('users','users.id','=','orden_trabajos.asignado')
                                     ->select('clientes.nombreCliente','clientes.cif','clientes.calle','clientes.codigoPostal','clientes.provincia',
-                                    'clientes.pais','clientes.nota','users.name','orden_trabajos.id','orden_trabajos.informacion','orden_trabajos.datosImportantes','orden_trabajos.nota as notaOrden')
+                                    'clientes.pais','clientes.nota','users.name','orden_trabajos.id','orden_trabajos.informacion','orden_trabajos.datosImportantes','orden_trabajos.lista_archivo','orden_trabajos.nota as notaOrden')
                                     ->where('orden_trabajos.id','=',$id)
                                     ->first(); 
 
@@ -330,21 +331,49 @@ class DetalleController extends InventarioController
 
 
 
-    public function subirArchivo(Request $request){
-
-        try {
-
-            dd($request->file("file-upload")->store("","google"));
-
-        } catch (\Throwable $th) {
-
-            return view('errors.errorDrive');
-
-        }
+    public function subirArchivo(Request $request,$id){
+       
         
-       
-       
-      // Storage::disk("google")->put("test.txt");
+        $file = $request->file('file-upload');
+
+
+            //return Storage::disk('archivos')->get($id.'.html'); PARA OBTENER DEL ALMACEN ARCHIVOS Y MOSTRARLO
+
+            if ($file != null) {
+                DB::table('orden_trabajos')
+                        ->where('id',$id)
+                        ->update(['lista_archivo' => 'SI']);
+
+                $request->file('file-upload')->storeAs('public/archivos', $id.'.html');
+                //$request->file('file-upload')->move(base_path('resources/views/otros'), $id.'.blade.php');
+            } 
+
+                 
+        return redirect('/trabajos/detalle/'.$id);
+        //return view('otros/1');
+    
+    }
+
+    public function verFileList($id)
+    {
+        //return view('otros.'.$id);
+        return Storage::disk('archivos')->get($id.'.html');
+    }
+
+    public function descargarFileList($id)
+    {
+        
+        return Storage::download('public/archivos/'.$id.'.html');
+    }
+
+    public function eliminarFileList($id)
+    {
+        DB::table('orden_trabajos')
+                        ->where('id',$id)
+                        ->update(['lista_archivo' => 'NO']);
+         Storage::delete('public/archivos/'.$id.'.html');
+
+        return redirect('/trabajos/detalle/'.$id);
     }
 
     public function datosPacientes(){

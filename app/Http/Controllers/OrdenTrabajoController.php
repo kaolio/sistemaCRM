@@ -139,7 +139,7 @@ class OrdenTrabajoController extends Controller
      */
     public function store(Request $request, Roles $roles)
     {
-       try {
+       //try {
         
             $posicion_coincidencia = strpos($request->get('cliente'), ',');
 
@@ -170,6 +170,7 @@ class OrdenTrabajoController extends Controller
             $datoTrabajo->diagnostico = "No Actualizado";
             $datoTrabajo->bandera = "0";
             $datoTrabajo->password = $acceso;
+            $datoTrabajo->lista_archivo = 'NO';
             $datoTrabajo->save();
             
             $trabajo = DB::table('orden_trabajos')
@@ -195,9 +196,9 @@ class OrdenTrabajoController extends Controller
                 $detalle->serial = $serial[$i];
                 $detalle->capacidad = $capacidad[$i];
                 $detalle->localizacion = $localizacion[$i];
-                $detalle->malFuncionamiento = $malFuncionamiento[$i];
+                $detalle->mal_funcionamiento = $malFuncionamiento[$i];
                 $detalle->diagnostico = "No Actualizado";
-                $detalle->id_trabajos = $trabajo->id;
+                $detalle->id_trabajos = $datoTrabajo->id;
                 $detalle->save();
             }
 
@@ -210,7 +211,7 @@ class OrdenTrabajoController extends Controller
 
                     $ima = new Imagen();
                     $ima->nombre = $nombre;
-                    $ima->id_trabajo = $trabajo->id;
+                    $ima->id_trabajo = $datoTrabajo->id;
                     $ima->save();
                     
                     Storage::disk('imagenes')->put($nombre, File::get($file[$i]));//indicamos que queremos guardar un nuevo archivo en el disco local
@@ -218,16 +219,16 @@ class OrdenTrabajoController extends Controller
             }
 
 
-            DB::table('orden_trabajos')
+            /*DB::table('orden_trabajos')
                     ->where('id', $trabajo->id)
-                    ->update(['bandera' => '1']);
+                    ->update(['bandera' => '1']);*/
 
                 
             return view('trabajo.confirmacion',compact('trabajo','cliente','acceso'));
 
-       } catch (\Throwable $th) {
-            return view('errors.errorCreacionPartner');
-       }
+       //} catch (\Throwable $th) {
+         //   return view('errors.errorCreacionPartner');
+       //}
         
         //dd($cliente);
     }

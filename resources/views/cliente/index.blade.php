@@ -123,7 +123,7 @@
               </form> 
               </div>
             </div>
-
+          </div>
         </td>  
       </tr>
       @endforeach  

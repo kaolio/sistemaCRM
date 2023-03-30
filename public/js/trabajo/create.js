@@ -21,7 +21,7 @@
             var modelo = document.getElementById("modelo").value;
             var serial = document.getElementById("serial").value;
             var capacidad = document.getElementById("capacidad").value;
-            var tipoDaño = document.getElementById("tipoDaño").value;
+            var malFuncionamiento = document.getElementById("malFuncionamiento").value;
             var localizacion = document.getElementById("localizacion").value;
 
             
