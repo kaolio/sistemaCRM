@@ -379,16 +379,18 @@ input:focus + label {
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Añadir Disco Volcado</h5>
+                        <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Añadir Disco para Volcado</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
                       <div class="modal-body">
-                        <form action="">
+                        <div class="container">
+                          
+                        
                             <div class="input-group mt-2 col-12">
                               <span class="input-group-text" >Tipo</span>
-                              <select name="tipoVolcado" id="tipoVolcado" class="form-control">
+                              <select name="tipoVolcadoPrueba" id="tipoVolcadoPrueba" class="form-control">
                                 <option disabled selected value="">Tipo de Dispositivo</option>
                                 @foreach ($dispositivos as $dispositivo)
                                   <option value="{{$dispositivo->nombre_dispositivo}}">{{$dispositivo->nombre_dispositivo}}</option>
@@ -397,7 +399,7 @@ input:focus + label {
                           </div>
                             <div class="input-group mt-2 col-12">
                                 <span class="input-group-text">Fabricante</span>
-                                <select name="fabricanteVolcado" id="fabricanteVolcado" class="form-control">
+                                <select name="fabricanteVolcadoPrueba" id="fabricanteVolcadoPrueba" class="form-control">
                                   <option disabled selected value="">Seleccione un Fabricante</option>
                                         @foreach ($fabricantes as $fabricante)
                                           <option value="{{$fabricante->nombre_fabricante}}">{{$fabricante->nombre_fabricante}}</option>
@@ -406,44 +408,52 @@ input:focus + label {
                             </div>
                             <div class="input-group mt-2 col-12">
                                 <span class="input-group-text" >Modelo</span>
-                                <input type="text" class="form-control" id="modeloVolcado" name="modeloVolcado">
+                                <input type="text" class="form-control" id="modeloVolcadoPrueba" name="modeloVolcadoPrueba">
                             </div>
                             <div class="input-group mt-2 col-12">
                               <span class="input-group-text">Capacidad</span>
-                              <input type="text" class="form-control " name="capacidadVolcado[]"id="capacidadVolcado" onkeyup="mayus(this);" placeholder="GB, TB, PB"
+                              <input type="text" class="form-control " name="capacidadVolcadoPrueba"id="capacidadVolcadoPrueba" onkeyup="mayus(this);" placeholder="GB, TB, PB"
                               onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 45) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))" >
                             </div>
                             <div class="input-group mt-2 col-12">
+                              <span class="input-group-text" >Tipo de Conexión</span>
+                              <select name="conexionVolcadoPrueba" id="conexionVolcadoPrueba" class="form-control">
+                                <option disabled selected value="">Tipo de Conexion</option>
+                                @foreach ($conexion as $conexiones)
+                                  <option value="{{$conexiones->nombre_conexion}}">{{$conexiones->nombre_conexion}}</option>
+                                @endforeach
+                              </select>
+                          </div>
+                            <div class="input-group mt-2 col-12">
                                 <span class="input-group-text" >Factor de Forma</span>
-                                <select name="factorVolcado" id="factorVolcado" class="form-control">
-                                  <option disabled selected>Escoja un Factor de Forma</option>
+                                <select name="factorVolcadoPrueba" id="factorVolcadoPrueba" class="form-control">
+                                  <option disabled selected value="">Escoja un Factor de Forma</option>
                                   @foreach ($factor as $factor)
                                   <option value="{{$factor->nombre_factor}}">{{$factor->nombre_factor}}</option>
-                                @endforeach
+                                  @endforeach
                                 </select>
                             </div>
                             <div class="input-group mt-2 col-12">
-                                <span class="input-group-text" >Serie</span>
-                                <input type="text" class="form-control" id="serieVolcado" name="serieVolcado">
+                                <span class="input-group-text" >Serial</span>
+                                <input type="text" class="form-control" id="serieVolcadoPrueba" name="serieVolcadoPrueba">
                             </div>
                             <div class="input-group mt-2 col-12">
                               <span class="input-group-text" >Precio Compra</span>
-                              <input type="text" class="form-control" name="compraMonedaVolcado" id="compraMonedaVolcado">
+                              <input type="text" class="form-control" name="compraMonedaVolcadoPrueba" id="compraMonedaVolcadoPrueba">
                           </div>
                           <div class="input-group mt-2 col-12">
                             <span class="input-group-text">Precio Venta</span>
-                            <input type="text" class="form-control" id="ventaMonedaVolcado" name="ventaMonedaVolcado">
+                            <input type="text" class="form-control" id="ventaMonedaVolcadoPrueba" name="ventaMonedaVolcadoPrueba">
                         </div>
                             <br>
-                        </form>
-                      </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary">Guardar</button>
+                        <button type="button" class="btn btn-primary" onclick="guardarDiscoVolcado()">Guardar</button>
                       </div>
                     </div>
+                    </div>
                   </div>
-                </div>
+                </div> 
 
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>

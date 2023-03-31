@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Cliente;
 use App\Models\DetalleOrden;
 use App\Models\Imagen;
+use App\Models\Productos;
 use App\Models\Roles;
 use PDF;
 use Illuminate\Support\Facades\Auth;
@@ -126,9 +127,14 @@ class OrdenTrabajoController extends Controller
                 ->select('*')
                 ->get();
 
+        $conexion = DB::table('tipo_conexions')
+                ->select('*')
+                ->get();
+
+
 
         $cadena = Session::get('cadena');
-        return view('trabajo.create',compact('cadena','fabricante','fabricantes','dispositivo','dispositivos','malFuncionamiento','prioridad','factor'));
+        return view('trabajo.create',compact('cadena','fabricante','fabricantes','dispositivo','dispositivos','malFuncionamiento','prioridad','factor', 'conexion'));
     }
 
     /**
@@ -139,6 +145,7 @@ class OrdenTrabajoController extends Controller
      */
     public function store(Request $request, Roles $roles)
     {
+
        try {
         
             $posicion_coincidencia = strpos($request->get('cliente'), ',');
@@ -173,10 +180,7 @@ class OrdenTrabajoController extends Controller
             $datoTrabajo->lista_archivo = 'NO';
             $datoTrabajo->save();
             
-            $trabajo = DB::table('orden_trabajos')
-                    ->select('id')
-                    ->where('bandera','=',"0")
-                    ->first();
+            $trabajo = $datoTrabajo->id;
 
             $tipo = request('tipo');
             $rol = request('rol');
@@ -202,6 +206,39 @@ class OrdenTrabajoController extends Controller
                 $detalle->save();
             }
 
+            
+
+            $tipoVolcado = request('tipoVolcado');
+            $fabricanteVolcado = request('fabricanteVolcado');
+            $factorVolcado = request('factorVolcado');
+            $modeloVolcado = request('modeloVolcado');
+            $serieVolcado = request('serieVolcado');
+            $conexionVolcado = request('conexionVolcado');
+            $capacidadVolcado = request('capacidadVolcado');
+            $compraMonedaVolcado= request('compraMonedaVolcado');
+            $ventaMonedaVolcado = request('ventaMonedaVolcado');
+
+            if ($tipoVolcado != null && $fabricanteVolcado != null && $factorVolcado != null && $modeloVolcado != null && $serieVolcado != null && $capacidadVolcado != null && $compraMonedaVolcado != null && $ventaMonedaVolcado != null) {
+                
+                $productoss = new Productos();
+                $productoss->dispositivo = $tipoVolcado;
+                $productoss->connection = $conexionVolcado;
+                $productoss->fabricante = $fabricanteVolcado;
+                $productoss->modelo = $modeloVolcado;
+                $productoss->capacidad_producto = $capacidadVolcado;
+                $productoss->factor =  $factorVolcado;
+                $productoss->rol = 'Disco para Volcado';
+                $productoss->distribuidora = 'Obtenido de '.$cliente ;
+                $productoss->precio_compra= $compraMonedaVolcado;
+                $productoss->precio_venta =  $ventaMonedaVolcado;
+                $productoss->serial = $serieVolcado;
+                $productoss->estado = "disponible";
+                $productoss->usuario = Auth::user()->id;
+                dd('ARREGLAR NO DA SAVE BUSCA EN GOOGLE FERNANDO');
+                $productoss->save();
+                
+                
+            }
 
             $file = $request->file('imagen');
 
@@ -217,11 +254,6 @@ class OrdenTrabajoController extends Controller
                     Storage::disk('imagenes')->put($nombre, File::get($file[$i]));//indicamos que queremos guardar un nuevo archivo en el disco local
                 } 
             }
-
-
-            /*DB::table('orden_trabajos')
-                    ->where('id', $trabajo->id)
-                    ->update(['bandera' => '1']);*/
 
                 
             return view('trabajo.confirmacion',compact('trabajo','cliente','acceso'));
