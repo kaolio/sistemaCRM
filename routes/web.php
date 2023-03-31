@@ -15,12 +15,14 @@ use App\Http\Controllers\LoginClienteController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\FacturacionController;
+use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\MalFuncionamientoController;
 use App\Http\Controllers\PrioridadController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\TipoConexionController;
 use App\Http\Controllers\TipoMonedaController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -147,10 +149,6 @@ Route::post('/trabajos/nuevo/detalle/eliminarDispositivoRecuperar',[DetalleContr
 Route::post('/trabajos/nuevo/detalle/eliminarOtroDispositivo',[DetalleController::class,'eliminarDispositivOtro']);
 Route::post('/trabajos/nuevo/detalle/eliminarClones',[DetalleController::class,'eliminarDispositivoClon']);
 Route::post('/trabajos/nuevo/detalle/eliminarDonantes',[DetalleController::class,'eliminarDispositivoDonante']);
-Route::post('/trabajos/detalle/subirHtml/{id}',[DetalleController::class,'subirArchivo']);//ruta para subir archivo a drive
-Route::get('/trabajos/detalle/fileList/{id}',[DetalleController::class,'verFileList']);//FILE LIST
-Route::get('/trabajos/detalle/fileList/descargar/{id}',[DetalleController::class,'descargarFileList']);//FILE LIST DONWLOAD
-Route::delete('/trabajos/detalle/fileList/eliminar/{id}',[DetalleController::class,'eliminarFileList']);//FILE LIST DELETE
 Route::post('/trabajos/nuevo/detalle/agregarDonante',[DetalleController::class,'agregarDonante']);  //buscador donante
 Route::post('/trabajos/nuevo/detalle/guardarDiagnosticoRecuperacion',[DetalleController::class,'guardarDiagnosticoRecuperacion']);  // guardar diagnostico a los disp de los pacientes
 Route::delete('/trabajos/nuevo/detalle/eliminarPaciente/id',[DetalleController::class,'eliminarPaciente']);
@@ -204,15 +202,20 @@ Route::get('/cliente/excel',[ClienteController::class,'descargarExcel']); //ruta
 Route::get('/cliente/imprimirIndex',[ClienteController::class,'imprimirPDF']); //imprimir pdf
 
 
-//FACTURACION
+/*//FACTURACION
 Route::get('/facturacion',[FacturacionController::class,'index']);
 Route::get('/facturacion/asistente',[FacturacionController::class,'verAsistente']);
 Route::get('/facturacion/nuevo',[FacturacionController::class,'create']);
 Route::post('/facturacion/nuevo',[FacturacionController::class,'store']);
 Route::get('/facturacion/editar/{id}',[FacturacionController::class,'edit']);
-Route::post('/facturacion/editar/{id}',[FacturacionController::class,'update']);
+Route::post('/facturacion/editar/{id}',[FacturacionController::class,'update']);*/
+//Route::post('/facturacion/verFacturas',[FacturacionController::class,'datosFacturas']); //ruta tabla de facturas
 
-Route::post('/facturacion/verFacturas',[FacturacionController::class,'datosFacturas']); //ruta tabla de facturas
+//filelist
+Route::post('/subirHtml/{id}',[ImagenController::class,'subirArchivo']);//ruta para subir archivo a drive
+Route::get('/trabajos/detalle/fileList/{id}',[ImagenController::class,'verFileList']);//FILE LIST
+Route::get('/trabajos/detalle/fileList/descargar/{id}',[ImagenController::class,'descargarFileList']);//FILE LIST DONWLOAD
+Route::delete('/trabajos/detalle/fileList/eliminar/{id}',[ImagenController::class,'eliminarFileList']);//FILE LIST DELETE
 
 //PRODUCTOS
 Route::get('/productos',[ProductosController::class,'index']);
@@ -278,3 +281,7 @@ $exitCode = Artisan::call('cache:clear');
 });*/  
 
 Route::get('/send-mail', [MailController::class, 'index']);
+
+//Route::get('storage_link', function(){
+  //  Artisan::call('storage:link');
+//});

@@ -4,82 +4,54 @@ namespace App\Http\Controllers;
 
 use App\Models\Imagen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ImagenController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function subirArchivo(Request $request,$id){
+       
+        
+        $file = $request->file('file-upload');
+
+
+            //return Storage::disk('archivos')->get($id.'.html'); PARA OBTENER DEL ALMACEN ARCHIVOS Y MOSTRARLO
+
+            if ($file != null) {
+                DB::table('orden_trabajos')
+                        ->where('id',$id)
+                        ->update(['lista_archivo' => 'SI']);
+
+                $request->file('file-upload')->storeAs('public/archivos', $id.'.html');
+                //$request->file('file-upload')->move(base_path('resources/views/otros'), $id.'.blade.php');
+            } 
+
+                 
+        return redirect('/trabajos/detalle/'.$id);
+        //return view('otros/1');
+    
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function verFileList($id)
     {
-        //
+        //return view('otros.'.$id);
+        return Storage::disk('archivos')->get($id.'.html');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function descargarFileList($id)
     {
-        //
+        
+        return Storage::download('public/archivos/'.$id.'.html');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Imagen  $imagen
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Imagen $imagen)
+    public function eliminarFileList($id)
     {
-        //
+        DB::table('orden_trabajos')
+                        ->where('id',$id)
+                        ->update(['lista_archivo' => 'NO']);
+         Storage::delete('public/archivos/'.$id.'.html');
+
+        return redirect('/trabajos/detalle/'.$id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Imagen  $imagen
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Imagen $imagen)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Imagen  $imagen
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Imagen $imagen)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Imagen  $imagen
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Imagen $imagen)
-    {
-        //
-    }
 }

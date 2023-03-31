@@ -10,7 +10,7 @@
     <div class="text-center">
         <img src="{{asset('imagenes/upload.png')}}" class="img-fluid" width="400px " style="text-align: center;">
         
-        <form action="{{url('/trabajos/detalle/subirHtml/'.$orden_elegida->id)}}" method="POST" enctype="multipart/form-data">
+        <form action="{{url('/subirHtml/'.$orden_elegida->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="text-center">
                     <div class="subir">
