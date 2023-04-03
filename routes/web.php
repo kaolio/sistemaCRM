@@ -212,7 +212,7 @@ Route::post('/facturacion/editar/{id}',[FacturacionController::class,'update']);
 //Route::post('/facturacion/verFacturas',[FacturacionController::class,'datosFacturas']); //ruta tabla de facturas
 
 //filelist
-Route::post('/subirHtml/{id}',[ImagenController::class,'subirArchivo']);//ruta para subir archivo a drive
+Route::put('/subirHtml/{id}',[ImagenController::class,'subirArchivo']);//ruta para subir archivo a drive
 Route::get('/trabajos/detalle/fileList/{id}',[ImagenController::class,'verFileList']);//FILE LIST
 Route::get('/trabajos/detalle/fileList/descargar/{id}',[ImagenController::class,'descargarFileList']);//FILE LIST DONWLOAD
 Route::delete('/trabajos/detalle/fileList/eliminar/{id}',[ImagenController::class,'eliminarFileList']);//FILE LIST DELETE
