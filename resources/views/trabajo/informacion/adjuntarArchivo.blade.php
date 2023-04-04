@@ -10,7 +10,7 @@
     <div class="text-center">
         <img src="{{asset('imagenes/upload.png')}}" class="img-fluid" width="400px " style="text-align: center;">
         
-        <form action="{{url('/subirHtml/'.$orden_elegida->id)}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('elMilagro',$orden_elegida->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="text-center">
                     <div class="subir">
@@ -19,7 +19,7 @@
                                 <span>
                                 <label for="file-upload"  style="cursor:pointer; background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);" class="subir">
                                 <i class="fas fa-cloud-upload-alt"></i> Cargar archivo</label>
-                                <input id="file-upload" name="file-upload" onchange='cambiar()' type="file" style='display: none;'/>
+                                <input id="file-upload" name="file-upload" onchange='cambiar()'  type="file" style='display: none;'/>
                                 <span class="input-group-text"  style=" background:rgb(29, 145, 195);display: none; color: aliceblue"></span>
                                 <input type="text"  class="form-control required"  disabled  id="info" > &nbsp;<br>
                                 <button class="btn btn-sm btn-success" type="submit" id="subirArchivo" name="subirArchivo">Subir Archivo</button>
