@@ -141,8 +141,8 @@
                                 <li class="nav-item"><a class="nav-link active" href="#general" data-toggle="tab">General</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#dispositivosTrabajo" data-toggle="tab">Dispositivos de Trabajo</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#servicio" data-toggle="tab">Detalle Servicio</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#imagenes" data-toggle="tab">Imagenes</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#adjuntarArchivo" data-toggle="tab">Archivos adjuntos</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#imagenes" data-toggle="tab">Imagenes</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#historial" data-toggle="tab">Historial</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#" data-toggle="tab">Iniciar Sesion</a></li>
                                 </ul>
@@ -165,18 +165,17 @@
                                 </div>
                                 <!-- /servicio -->
 
-                                <!--Facturacion-->
-                                <div class="tab-pane" id="imagenes">
-                                    @include('trabajo/informacion/imagenes')
-                                </div>
-                                <!-- /Facturacion -->
-                               
-
                                 <!--Adjuntar archivo -->
                                 <div class="tab-pane" id="adjuntarArchivo">
                                     @include('trabajo.informacion.adjuntarArchivo')
                                 </div>
                                 <!--/Adjuntar archivo -->
+
+                                <!--Facturacion-->
+                                <div class="tab-pane" id="imagenes">
+                                    @include('trabajo/informacion/imagenes')
+                                </div>
+                                <!-- /Facturacion -->
 
                                 <!--Historial-->
                                 <div class="tab-pane" id="historial" >

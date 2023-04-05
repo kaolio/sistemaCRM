@@ -250,7 +250,6 @@ class OrdenTrabajoController extends Controller
                     $ima->nombre = $nombre;
                     $ima->id_trabajo = $datoTrabajo->id;
                     $ima->save();
-                    
                     Storage::disk('imagenes')->put($nombre, File::get($file[$i]));//indicamos que queremos guardar un nuevo archivo en el disco local
                 } 
             }

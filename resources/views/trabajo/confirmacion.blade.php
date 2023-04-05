@@ -7,14 +7,14 @@
         <h4><b>Nueva orden de trabajo</b></h4>
     </div>
     <div class="card-body">
-        <h5><b>Numero de Orden: </b>{{$trabajo->id}}</h5>
+        <h5><b>Numero de Orden: </b>{{$trabajo}}</h5>
         <h5><b>Cliente: </b>{{$cliente}}</h5>
         <h5><b>Contraseña: </b>{{$acceso}}</h5>
     </div>
     <div class="card-footer"> 
         <button id="bton" class="btn btn-warning text-white">Imprimir Orden</button>
         @can('editar orden de trabajo')
-        <a type="button" class="btn btn-primary text-white" href="{{url('/trabajos/detalle/'.$trabajo->id)}}">Ir a Orden de Trabajo</a>
+        <a type="button" class="btn btn-primary text-white" href="{{url('/trabajos/detalle/'.$trabajo)}}">Ir a Orden de Trabajo</a>
         @endcan
         <a type="button" class="btn btn-primary text-white" href="{{url('/trabajos')}}">Ver Ordenes de Trabajo</a>
     </div>
@@ -30,7 +30,7 @@
             type: "POST",
             data:{ 
                 "_token": "{{ csrf_token() }}",
-                "orden": "{{$trabajo->id}}",
+                "orden": "{{$trabajo}}",
             },
             cache: false,
             dataType: 'json',
