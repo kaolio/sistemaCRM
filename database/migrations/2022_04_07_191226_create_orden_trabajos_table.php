@@ -29,6 +29,7 @@ class CreateOrdenTrabajosTable extends Migration
             $table->string('bandera')->nullable();
             $table->string('password')->nullable();
             $table->string('lista_archivo')->nullable();
+            $table->string('nombre_archivo')->nullable();
 
             $table->timestamps();
 

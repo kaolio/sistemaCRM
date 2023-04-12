@@ -81,12 +81,12 @@
                                                         <div class="row justify-content-center w-100 text-center">
                                                             <div class="col-4">
                                                                 <button class=" btn btn-primary">
-                                                                    <a class="text-white" href="/trabajos/detalle/fileList/{{$orden_elegida->id}}" target="_blank" rel="noopener noreferrer">Ver Lista de Archivos</a>
+                                                                    <a class="text-white" href="/trabajos/detalle/fileList/{{$orden_elegida->nombre_archivo}}" target="_blank" rel="noopener noreferrer">Ver Lista de Archivos</a>
                                                                 </button>
                                                             </div>
                                                             <div class="col-3">
                                                                 <button class="btn btn-warning">
-                                                                    <a class="text-white" href="/trabajos/detalle/fileList/descargar/{{$orden_elegida->id}}" >Descargar</a>
+                                                                    <a class="text-white" href="/trabajos/detalle/fileList/descargar/{{$orden_elegida->nombre_archivo}}" >Descargar</a>
                                                                 </button>
                                                             </div>
                                                             <div class="col-3">

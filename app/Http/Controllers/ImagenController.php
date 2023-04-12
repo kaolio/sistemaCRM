@@ -14,15 +14,26 @@ class ImagenController extends Controller
         
         $file = $request->file('file-upload');
 
-
             //return Storage::disk('archivos')->get($id.'.html'); PARA OBTENER DEL ALMACEN ARCHIVOS Y MOSTRARLO
 
+            $archivo = DB::table('orden_trabajos')
+                        ->select('nombre_archivo')
+                        ->where('id',$id)
+                        ->first();
+            
+            Storage::delete('public/archivos/'.$archivo->nombre_archivo.'.html');
+
             if ($file != null) {
+
+                $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ%&';
+                $nombre = substr(str_shuffle($permitted_chars), 0, 20);
+
                 DB::table('orden_trabajos')
                         ->where('id',$id)
-                        ->update(['lista_archivo' => 'SI']);
+                        ->update(['lista_archivo' => 'SI',
+                                  'nombre_archivo' => $nombre]);
 
-                $request->file('file-upload')->storeAs('public/archivos', $id.'.html');
+                $request->file('file-upload')->storeAs('public/archivos', $nombre.'.html');
                 //$request->file('file-upload')->move(base_path('resources/views/otros'), $id.'.blade.php');
             } 
 
@@ -34,24 +45,35 @@ class ImagenController extends Controller
 
     public function verFileList($id)
     {
-        //return view('otros.'.$id);
-        return Storage::disk('archivos')->get($id.'.html');
+        try {
+            return Storage::disk('archivos')->get($id.'.html');
+        } catch (\Throwable $th) {
+            return view('errors.archivo');
+        }
+       
     }
 
     public function descargarFileList($id)
     {
-        
+       
+
         return Storage::download('public/archivos/'.$id.'.html');
     }
 
     public function eliminarFileList($id)
     {
+        $archivo = DB::table('orden_trabajos')
+                        ->select('nombre_archivo')
+                        ->where('id',$id)
+                        ->first();
+
         DB::table('orden_trabajos')
                         ->where('id',$id)
                         ->update(['lista_archivo' => 'NO']);
-         Storage::delete('public/archivos/'.$id.'.html');
+            
+        Storage::delete('public/archivos/'.$archivo->nombre_archivo.'.html');
 
         return redirect('/trabajos/detalle/'.$id);
-    }
+    } 
 
 }
