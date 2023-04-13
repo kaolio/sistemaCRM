@@ -543,7 +543,7 @@ if ($('#cliente').val() != "") {
     var cif =$('#buscarCif').val();
     var telefono =$('#buscarTelefono').val();
     
-    console.log(nombre,correo,cif,telefono);
+    //console.log(nombre,correo,cif,telefono);
 
     $.ajax({
             type: "POST",
@@ -558,7 +558,7 @@ if ($('#cliente').val() != "") {
             cache: false,
             dataType: 'json',
             success: function (data) {
-                console.log(data.data.length);
+                //console.log(data.data.length);
                 if (data.data.length != 0) {
                   $('#coincidencias').remove();
                   $('#campoUsado').append("<div id='coincidencias'></div>");
@@ -575,7 +575,8 @@ if ($('#cliente').val() != "") {
                 }else{
                   $('#coincidencias').remove();
                   $('#campoUsado').append("<div id='coincidencias'></div>");
-                  $('#tablaBuscar').hide();
+                  $('#tablaBuscar').show();
+                  $('#coincidencias').append('<div class="text-center">Cliente No Registrado</div>');
                 }
                 
                 

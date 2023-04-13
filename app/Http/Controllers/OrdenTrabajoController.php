@@ -10,6 +10,7 @@ use App\Models\DetalleOrden;
 use App\Models\Imagen;
 use App\Models\Productos;
 use App\Models\Roles;
+use App\Models\Servicio;
 use PDF;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -179,7 +180,14 @@ class OrdenTrabajoController extends Controller
             $datoTrabajo->password = $acceso;
             $datoTrabajo->lista_archivo = 'NO';
             $datoTrabajo->save();
+            $servicio = new Servicio();
             
+            $servicio->detalle = "Tiempo de Diagnostico ".$request->get('prioridad');
+            $servicio->descripcion = $request->get('tiempoEstimado');
+            $servicio->precio = $servicio->obtenerPrecioPrioridad($request->get('prioridad'));
+            $servicio->id_trabajos = $datoTrabajo->id;
+            $servicio->save();
+
             $trabajo = $datoTrabajo->id;
 
             $tipo = request('tipo');
@@ -204,6 +212,13 @@ class OrdenTrabajoController extends Controller
                 $detalle->diagnostico = "No Actualizado";
                 $detalle->id_trabajos = $datoTrabajo->id;
                 $detalle->save();
+
+                $servicio = new Servicio();
+                $servicio->detalle = "Daño ".$malFuncionamiento[$i];
+                $servicio->descripcion = "Daño que Presenta el Dispositivo";
+                $servicio->precio = $servicio->obtenerPrecioFuncionamiento($malFuncionamiento[$i]);
+                $servicio->id_trabajos = $datoTrabajo->id;
+                $servicio->save();
             }
 
             
@@ -237,8 +252,6 @@ class OrdenTrabajoController extends Controller
                     $productoss->usuario = Auth::user()->id;
                     $productoss->save();
                 }
-                
-                
                 
             }
 
