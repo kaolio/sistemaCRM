@@ -220,22 +220,24 @@ class OrdenTrabajoController extends Controller
 
             if ($tipoVolcado != null && $fabricanteVolcado != null && $factorVolcado != null && $modeloVolcado != null && $serieVolcado != null && $capacidadVolcado != null && $compraMonedaVolcado != null && $ventaMonedaVolcado != null) {
                 
-                $productoss = new Productos();
-                $productoss->dispositivo = $tipoVolcado;
-                $productoss->connection = $conexionVolcado;
-                $productoss->fabricante = $fabricanteVolcado;
-                $productoss->modelo = $modeloVolcado;
-                $productoss->capacidad_producto = $capacidadVolcado;
-                $productoss->factor =  $factorVolcado;
-                $productoss->rol = 'Disco para Volcado';
-                $productoss->distribuidora = 'Obtenido de '.$cliente ;
-                $productoss->precio_compra= $compraMonedaVolcado;
-                $productoss->precio_venta =  $ventaMonedaVolcado;
-                $productoss->serial = $serieVolcado;
-                $productoss->estado = "disponible";
-                $productoss->usuario = Auth::user()->id;
-                dd('ARREGLAR NO DA SAVE BUSCA EN GOOGLE FERNANDO');
-                $productoss->save();
+                for ($i=0; $i < sizeOf($tipoVolcado); $i++) { 
+                    $productoss = new Productos();
+                    $productoss->dispositivo = $tipoVolcado[$i];
+                    $productoss->connection = $conexionVolcado[$i];
+                    $productoss->fabricante = $fabricanteVolcado[$i];
+                    $productoss->modelo = $modeloVolcado[$i];
+                    $productoss->capacidad_producto = $capacidadVolcado[$i];
+                    $productoss->factor =  $factorVolcado[$i];
+                    $productoss->rol = 'Disco para Volcado';
+                    $productoss->distribuidora = 'Obtenido de '.$cliente ;
+                    $productoss->precio_compra= $compraMonedaVolcado[$i];
+                    $productoss->precio_venta =  $ventaMonedaVolcado[$i];
+                    $productoss->serial = $serieVolcado[$i];
+                    $productoss->estado = "disponible";
+                    $productoss->usuario = Auth::user()->id;
+                    $productoss->save();
+                }
+                
                 
                 
             }
