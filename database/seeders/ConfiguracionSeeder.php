@@ -250,5 +250,38 @@ class ConfiguracionSeeder extends Seeder
         DB::table('tipo_conexions')->insert([
             'nombre_conexion' => 'USB 3.1',
         ]);
+        
+        //ESTADO
+
+        DB::table('estados')->insert([
+            'nombre_estado' => 'Recibido',
+        ]);
+        DB::table('estados')->insert([
+            'nombre_estado' => 'En Proceso',
+        ]);
+        DB::table('estados')->insert([
+            'nombre_estado' => 'Esperando Piezas',
+        ]);
+        DB::table('estados')->insert([
+            'nombre_estado' => 'Trabajo Completo',
+        ]);
+        DB::table('estados')->insert([
+            'nombre_estado' => 'Trabajo Incompleto',
+        ]);
+        DB::table('estados')->insert([
+            'nombre_estado' => 'Pagado',
+        ]);
+        DB::table('estados')->insert([
+            'nombre_estado' => 'Devuelto al Cliente',
+        ]);
+        DB::table('estados')->insert([
+            'nombre_estado' => 'Pago Pendiente',
+        ]);
+        DB::table('estados')->insert([
+            'nombre_estado' => 'Llegada Pendiente',
+        ]);
+        DB::table('estados')->insert([
+            'nombre_estado' => 'Pagado y regresado a Cliente',
+        ]);
     }
 }
