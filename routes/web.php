@@ -285,3 +285,7 @@ Route::get('/send-mail', [MailController::class, 'index']);
 //Route::get('storage_link', function(){
   //  Artisan::call('storage:link');
 //});
+
+Route::get('/foo', function () {
+  Artisan::call('storage:link');
+});
