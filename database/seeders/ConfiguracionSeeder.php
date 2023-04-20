@@ -18,26 +18,26 @@ class ConfiguracionSeeder extends Seeder
         //PRIORIDAD
         DB::table('prioridads')->insert([
             'nombre_prioridad' => 'Normal',
-            'tiempo_estimado' => '72 Horas',
-            'prioridad_precio' => '1500',
+            'tiempo_estimado' => '5 - 12 Dias',
+            'prioridad_precio' => '380',
         ]);
 
         DB::table('prioridads')->insert([
             'nombre_prioridad' => 'Prioritario',
-            'tiempo_estimado' => '24 Horas',
-            'prioridad_precio' => '2000',
+            'tiempo_estimado' => '3 - 5 Dias',
+            'prioridad_precio' => '120',
         ]);
 
         DB::table('prioridads')->insert([
             'nombre_prioridad' => 'Urgente',
-            'tiempo_estimado' => '12 Horas',
-            'prioridad_precio' => '2500',
+            'tiempo_estimado' => '48 - 72h',
+            'prioridad_precio' => '150',
         ]);
 
         DB::table('prioridads')->insert([
             'nombre_prioridad' => 'Inmediato',
-            'tiempo_estimado' => '8 Horas',
-            'prioridad_precio' => '3000',
+            'tiempo_estimado' => '24h',
+            'prioridad_precio' => '250',
         ]);
 
         //DISPOSITIVO
