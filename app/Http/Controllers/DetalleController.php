@@ -254,30 +254,27 @@ class DetalleController extends InventarioController
 
             $pri = DB::table('prioridads')
                     ->select('*')
-                    ->where('nombre_prioridad',$ant->prioridad)
-                    ->get();
-            $text = 'Tiempo de Diagnostico '.$ant->prioridad;
+                    ->where('nombre_prioridad',$_POST["selectPrioridad"])
+                    ->first();
 
+            $text = 'Tiempo de Diagnostico '.$ant->prioridad;
 
             $serv = DB::table('servicios')
                     ->select('id')
                     ->where('detalle',$text)
-                    ->get();
-
+                    ->where('id_trabajos',$_POST["nombre"])
+                    ->first();
+                    
             DB::table('orden_trabajos')
                     ->where('id','=', $_POST["nombre"])
                     ->update(['prioridad' => $_POST["selectPrioridad"]]);
-
+            
+            
             DB::table('servicios')
-                    ->where('id','=', $serv->id)
-                    ->update(['detalle' => 'Tiempo de Diagnostico '.$_POST["selectPrioridad"]]);
-            DB::table('servicios')
-                    ->where('id','=', $serv->id)
-                    ->update(['descripcion' => $pri->tiempo_estimado]);
-            DB::table('servicios')
-                    ->where('id','=', $serv->id)
-                    ->update(['precio' => $pri->precio]);
-                              
+                    ->where('id','=', intval($serv->id))
+                    ->update(['detalle' => 'Tiempo de Diagnostico '.$_POST["selectPrioridad"],
+                              'descripcion' => $pri->tiempo_estimado,
+                              'precio' => $pri->prioridad_precio]);
         
                     return json_encode(array('data'=>true));
 
@@ -409,7 +406,7 @@ class DetalleController extends InventarioController
                         ->having('rol','=','Disco Para Volcado')
                         ->get();
                 
-                            return json_encode(array('data'=>$recuperarDatosClon));
+        return json_encode(array('data'=>$recuperarDatosClon));
                     
     } 
 
