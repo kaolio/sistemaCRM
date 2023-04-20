@@ -71,7 +71,7 @@
             cache: false,
             dataType: 'json',
             success: function(dataResult){
-            console.log(dataResult);
+            //console.log(dataResult);
             Swal.fire({
             position: 'center',
             icon: 'success',
@@ -79,6 +79,8 @@
             showConfirmButton: false,
             timer: 1500
             })
+
+            verServicio();
 
           }
         });
