@@ -88,10 +88,14 @@ class DetalleController extends InventarioController
                             ->select('*')
                             ->get();
 
-            $prioridadTrabajo = DB::table('orden_trabajos')
+            $estados = DB::table('estados')
                             ->select('*')
-                            ->Where('orden_trabajos.id', '=', $id)
                             ->get();
+            
+            $prioridad = DB::table('prioridads')
+                            ->select('*')
+                            ->get();
+            
 
             $notas = DB::table('notas')
                         ->join('orden_trabajos','orden_trabajos.id','=','notas.id_trabajos')
@@ -108,7 +112,7 @@ class DetalleController extends InventarioController
                                     ->join('clientes','clientes.id','=','orden_trabajos.id_cliente')
                                     ->join('users','users.id','=','orden_trabajos.asignado')
                                     ->select('clientes.nombreCliente','clientes.cif','clientes.calle','clientes.codigoPostal','clientes.provincia',
-                                    'clientes.pais','clientes.nota','users.name','orden_trabajos.id','orden_trabajos.informacion','orden_trabajos.datosImportantes','orden_trabajos.nombre_archivo','orden_trabajos.lista_archivo','orden_trabajos.nota as notaOrden')
+                                    'clientes.pais','clientes.nota','users.name','orden_trabajos.id','orden_trabajos.informacion','orden_trabajos.estado','orden_trabajos.prioridad','orden_trabajos.datosImportantes','orden_trabajos.nombre_archivo','orden_trabajos.password','orden_trabajos.lista_archivo','orden_trabajos.nota as notaOrden')
                                     ->where('orden_trabajos.id','=',$id)
                                     ->first(); 
 
@@ -125,7 +129,7 @@ class DetalleController extends InventarioController
                                     ->where('id_trabajo','=',$id)
                                     ->get();
                                 
-             return view('trabajo.informacion.detalle',(compact('orden_elegida','usuarioDesignado','notas','recuperarDatos','prioridadTrabajo','diagnosticoCambiado','recuperarDonante','imagenes')));
+             return view('trabajo.informacion.detalle',compact('orden_elegida','usuarioDesignado','notas','recuperarDatos','diagnosticoCambiado','recuperarDonante','imagenes','estados','prioridad'));
 
         } catch (\Throwable $th) {
 
@@ -224,9 +228,11 @@ class DetalleController extends InventarioController
 
         try {
             
+
             DB::table('orden_trabajos')
                     ->where('id','=', $_POST["nombre"])
                     ->update(['estado' => $_POST["selectEstado"]]);
+
 
                     return json_encode(array('data'=>true));
 
@@ -240,13 +246,39 @@ class DetalleController extends InventarioController
     public function guardarPrioridad(){
 
         try {
-            
+
+            $ant = DB::table('orden_trabajos')
+                    ->select('prioridad')
+                    ->where('id',$_POST["nombre"])
+                    ->first();
+
+            $pri = DB::table('prioridads')
+                    ->select('*')
+                    ->where('nombre_prioridad',$ant->prioridad)
+                    ->get();
+            $text = 'Tiempo de Diagnostico '.$ant->prioridad;
+
+
+            $serv = DB::table('servicios')
+                    ->select('id')
+                    ->where('detalle',$text)
+                    ->get();
+
             DB::table('orden_trabajos')
                     ->where('id','=', $_POST["nombre"])
                     ->update(['prioridad' => $_POST["selectPrioridad"]]);
 
+            DB::table('servicios')
+                    ->where('id','=', $serv->id)
+                    ->update(['detalle' => 'Tiempo de Diagnostico '.$_POST["selectPrioridad"]]);
+            DB::table('servicios')
+                    ->where('id','=', $serv->id)
+                    ->update(['descripcion' => $pri->tiempo_estimado]);
+            DB::table('servicios')
+                    ->where('id','=', $serv->id)
+                    ->update(['precio' => $pri->precio]);
+                              
         
-
                     return json_encode(array('data'=>true));
 
         } catch (\Throwable $th) {

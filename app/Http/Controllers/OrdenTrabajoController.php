@@ -52,7 +52,11 @@ class OrdenTrabajoController extends Controller
                     ->orderBy('orden_trabajos.id','desc')
                     ->get();
 
-        return view('trabajo.index', compact('trabajo','rol'));
+        $prioridad = DB::table('prioridads')
+                ->select('nombre_prioridad')
+                ->get();            
+
+        return view('trabajo.index', compact('trabajo','rol','prioridad'));
         
     }
 
@@ -428,8 +432,8 @@ class OrdenTrabajoController extends Controller
                 ->join('clientes','clientes.id','orden_trabajos.id_cliente')
                 ->join('users','users.id','orden_trabajos.asignado')
                 ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-                ->where('orden_trabajos.creado',$usuario->name)
-                ->orWhere('orden_trabajos.asignado',Auth::user()->id)
+                //->where('orden_trabajos.creado',$usuario->name)
+                //->orWhere('orden_trabajos.asignado',Auth::user()->id)
                 ->orderBy('orden_trabajos.id','desc')
                 ->get();  
             }else{
@@ -438,10 +442,10 @@ class OrdenTrabajoController extends Controller
                 ->join('users','users.id','orden_trabajos.asignado')
                 ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
                 ->where('orden_trabajos.prioridad','=',$_POST["orden"])
-                ->where(function($q) use($usuario) {
+                /*->where(function($q) use($usuario) {
                     $q->where('orden_trabajos.creado',$usuario->name)
                       ->orWhere('orden_trabajos.asignado',Auth::user()->id);
-                })
+                })*/
                 ->orderBy('orden_trabajos.id','desc')
                 ->get();
 
@@ -462,10 +466,10 @@ class OrdenTrabajoController extends Controller
                 ->join('users','users.id','orden_trabajos.asignado')
                 ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
                 ->where('orden_trabajos.prioridad','=',$_POST["orden"])
-                ->where(function($q) use($usuario) {
+                /*->where(function($q) use($usuario) {
                     $q->where('orden_trabajos.creado',$usuario->name)
                       ->orWhere('orden_trabajos.asignado',Auth::user()->id);
-                })
+                })*/
                 ->orderBy('orden_trabajos.id','desc')
                 ->get();
             }
@@ -488,8 +492,8 @@ class OrdenTrabajoController extends Controller
                 ->join('clientes','clientes.id','orden_trabajos.id_cliente')
                 ->join('users','users.id','orden_trabajos.asignado')
                 ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-                ->where('orden_trabajos.creado',$usuario->name)
-                ->orWhere('orden_trabajos.asignado',Auth::user()->id)
+                //->where('orden_trabajos.creado',$usuario->name)
+                //->orWhere('orden_trabajos.asignado',Auth::user()->id)
                 ->orderBy('orden_trabajos.id','desc')
                 ->get();  
             }else{
@@ -498,10 +502,10 @@ class OrdenTrabajoController extends Controller
                 ->join('users','users.id','orden_trabajos.asignado')
                 ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
                 ->where('orden_trabajos.estado','=',$_POST["orden"])
-                ->where(function($q) use($usuario) {
+                /*->where(function($q) use($usuario) {
                     $q->where('orden_trabajos.creado',$usuario->name)
                       ->orWhere('orden_trabajos.asignado',Auth::user()->id);
-                })
+                })*/
                 ->orderBy('orden_trabajos.id','desc')
                 ->get();
 
@@ -522,10 +526,10 @@ class OrdenTrabajoController extends Controller
                 ->join('users','users.id','orden_trabajos.asignado')
                 ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
                 ->where('orden_trabajos.estado','=',$_POST["orden"])
-                ->where(function($q) use($usuario) {
+                /*->where(function($q) use($usuario) {
                     $q->where('orden_trabajos.creado',$usuario->name)
                       ->orWhere('orden_trabajos.asignado',Auth::user()->id);
-                })
+                })*/
                 ->orderBy('orden_trabajos.id','desc')
                 ->get();
             }
@@ -549,8 +553,8 @@ class OrdenTrabajoController extends Controller
                 ->join('clientes','clientes.id','orden_trabajos.id_cliente')
                 ->join('users','users.id','orden_trabajos.asignado')
                 ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-                ->where('orden_trabajos.creado',$usuario->name)
-                ->orWhere('orden_trabajos.asignado',Auth::user()->id)
+                //->where('orden_trabajos.creado',$usuario->name)
+                //->orWhere('orden_trabajos.asignado',Auth::user()->id)
                 ->orderBy('orden_trabajos.id','desc')
                 ->get();  
             }else{
@@ -604,8 +608,8 @@ class OrdenTrabajoController extends Controller
             ->join('clientes','clientes.id','orden_trabajos.id_cliente')
             ->join('users','users.id','orden_trabajos.asignado')
             ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-            ->Where('orden_trabajos.creado',$usuario->name)
-            ->orWhere('orden_trabajos.asignado',Auth::user()->id)
+            //->Where('orden_trabajos.creado',$usuario->name)
+            //->orWhere('orden_trabajos.asignado',Auth::user()->id)
             ->orderBy('orden_trabajos.id','desc')
             ->get();
         }else{

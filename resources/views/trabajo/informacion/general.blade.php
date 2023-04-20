@@ -4,7 +4,7 @@
 }
 
 </style>
-
+ 
 
     <!--General-->
     <div class="active tab-pane" id="general">
@@ -14,7 +14,7 @@
                 <div class="card">
                 </br>
                     <p class="text-left" style="position: relative;left:20px">&nbsp;&nbsp;<b>Servicios:</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Recuperacion de Datos </p>
-                    <p class="text-left" style="position: relative;left:20px">&nbsp;&nbsp;<b>Contraseña de Archivo:</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+                    <p class="text-left" style="position: relative;left:20px">&nbsp;&nbsp;<b>Contraseña de Cliente:</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$orden_elegida->password}}</p>
                     @if ($orden_elegida->name != "Administrador")
                     <p class="text-left" style="position: relative;left:20px">&nbsp;&nbsp;<b>Ingeniero Designado:</b><span id="userDesignado">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$orden_elegida->name}}</span> </p>
                     @else
@@ -33,31 +33,27 @@
                             <div class="input-group">
                                 <span class="input-group-text">Estado</span>
                                  <select id="selectEstado" name="priority" class="form-control" class="btn-block" required>
-                                    @foreach($prioridadTrabajo as $estado)
-                                    <option  value="{{$estado->estado}}"> {{$estado->estado}}</option>
+                                    @foreach($estados as $estado)
+                                        @if ($estado->nombre_estado == $orden_elegida->estado)
+                                             <option selected value="{{$estado->nombre_estado}}"> {{$estado->nombre_estado}}</option>
+                                        @else
+                                        <option value="{{$estado->nombre_estado}}"> {{$estado->nombre_estado}}</option>
+                                        @endif
+                                   
                                     @endforeach
-                                    <option value="">Recibido</option>
-                                    <option value="En Proceso">En proceso</option>
-                                    <option value="Esperando Piezas">Esperando Piezas</option>
-                                    <option value="Trabajo Completo">Trabajo Completo</option>
-                                    <option value="Trabajo Incompleto">Trabajo Incompleto</option>
-                                    <option value="Pagado">Pagado</option>
-                                    <option value="Devuelto Al Cliente">Devuelto al Cliente</option>
-                                    <option value="Pago Pendiente">Pago Pendiente</option>
-                                    <option value="Llegada Pendiente">Llegada Pendiente</option>
-                                    <option value="Pagado y Regresado al Cliente">Pagado y regresado a Cliente</option>
                                  </select>
                             </div>
                         </br>
                             <div class="input-group">
                                 <span class="input-group-text">Prioridad</span>
                                  <select id="selectPrioridad" name="prioridad" class="form-control" class="btn-block" required>
-                                    @foreach ($prioridadTrabajo as $prioridad)
-                                    <option  value="{{$prioridad->prioridad}}"> {{$prioridad->prioridad}}</option>
+                                    @foreach ($prioridad as $prioridad)
+                                        @if ($prioridad->nombre_prioridad == $orden_elegida->prioridad)
+                                             <option selected value="{{$prioridad->nombre_prioridad}}"> {{$prioridad->nombre_prioridad}}</option>
+                                        @else
+                                        <option value="{{$prioridad->nombre_prioridad}}"> {{$prioridad->nombre_prioridad}}</option>
+                                        @endif
                                     @endforeach
-                                    <option value="Normal">Normal</option>
-                                    <option value="Alta">Alta</option>
-                                    <option value="Urgente">Urgente</option>
                                  </select>
                             </div>
                         </div>
