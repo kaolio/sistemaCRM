@@ -225,6 +225,16 @@
           </div>
           <span class="mb-4"><strong>*</strong> Campos Obligatorios</span>
       </div>
+      <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="inputCity">Precio de Compra</label>
+            <input type="text" class="form-control" id="precio" name="precio" value="{{$inventario->precio}}" autocomplete="off"
+            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
+        </div>
+       
+    </div>
+    <br><br>
+     <span class="mb-4"><strong>*</strong> Campos Obligatorios</span>
       <br>
         <div class="form-group">
           <a href="{{url('/inventario')}}" class="btn btn-danger my-2 my-sm-0">Regresar</a>

@@ -26,6 +26,7 @@ class CreateInventariosTable extends Migration
             $table->String('fechaDisco')->nullable();
             $table->String('factor_de_forma')->nullable();
             $table->String('nota')->nullable();
+            $table->String('precio')->nullable();
             $table->String('cabecera')->nullable();
             $table->String('info_de_cabecera')->nullable();
             $table->String('diagnostico')->nullable();

@@ -750,7 +750,8 @@ $("#btnBuscarDonante").on('click',function(){
         });
         
         $('#exampleModalMover').modal('hide');
-
+        $("#cabeceraDonantes").empty();
+        $('#tablaDonantes > tbody').empty();
     });
     //
     function cargarDonantes(){

@@ -403,7 +403,7 @@ class DetalleController extends InventarioController
                         ->orWhere('capacidad','=',$_POST["tamañoClon"])
                         ->orWhere('pbc','=',$_POST["pcbClon"])
                         ->having('estado','=','Disponible')
-                        ->having('rol','=','Disco Para Volcado')
+                        ->having('rol','=','Datos')
                         ->get();
                 
         return json_encode(array('data'=>$recuperarDatosClon));
