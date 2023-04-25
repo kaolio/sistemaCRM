@@ -250,10 +250,10 @@ Route::post('/configuracion/actualizarFabricante',[FabricanteController::class,'
 Route::post('/configuracion/eliminarFabricante',[FabricanteController::class,'eliminarFabricante']);
 
 //TIPO DE DAÑO
-Route::post('/configuracion/nuevoTipoDaño',[MalFuncionamientoController::class,'nuevoTipoDaño']);
-Route::post('/configuracion/datosTipoDaño',[MalFuncionamientoController::class,'datosTipoDaño']);
-Route::post('/configuracion/actualizarTipoDaño',[MalFuncionamientoController::class,'actualizarTipoDaño']);
-Route::post('/configuracion/eliminarTipoDaño',[MalFuncionamientoController::class,'eliminarTipoDaño']);
+Route::post('/configuracion/nuevoTipoDano',[MalFuncionamientoController::class,'nuevoTipoDaño']);
+Route::post('/configuracion/datosTipoDano',[MalFuncionamientoController::class,'datosTipoDaño']);
+Route::post('/configuracion/actualizarTipoDano',[MalFuncionamientoController::class,'actualizarTipoDaño']);
+Route::post('/configuracion/eliminarTipoDano',[MalFuncionamientoController::class,'eliminarTipoDaño']);
 
 //FACTOR DE FORMA
 Route::post('/configuracion/nuevoFactor',[FactorFormaController::class,'nuevoFactor']);

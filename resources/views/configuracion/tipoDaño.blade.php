@@ -70,7 +70,7 @@
 
            // console.log(url1);
                 $.ajax({
-                    url: "/configuracion/nuevoTipoDaño",
+                    url: "/configuracion/nuevoTipoDano",
                     type: "POST",
                     data: {
                         "_token": "{{ csrf_token() }}",
@@ -89,7 +89,7 @@
 
         function datosTipoDaño(){
         $.ajax({
-                url: "/configuracion/datosTipoDaño",
+                url: "/configuracion/datosTipoDano",
                 type: "POST",
                 data:{ 
                     "_token": "{{ csrf_token() }}",
@@ -205,7 +205,7 @@
             //console.log(tipo,rol,fabricante,modelo,serial,localizacion);
 
             $.ajax({
-                url: "/configuracion/actualizarTipoDaño",
+                url: "/configuracion/actualizarTipoDano",
                 type: "POST",
                 data: {
                     "_token": "{{ csrf_token() }}",
@@ -227,7 +227,7 @@
 
         function eliminarDaño(id){
              $.ajax({
-                    url: "/configuracion/eliminarTipoDaño",
+                    url: "/configuracion/eliminarTipoDano",
                     type: "POST",
                     data: {
                         "_token": "{{ csrf_token() }}",
