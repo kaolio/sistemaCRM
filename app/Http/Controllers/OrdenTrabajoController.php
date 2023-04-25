@@ -6,6 +6,7 @@ use App\Exports\TrabajoExport;
 use App\Models\OrdenTrabajo;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use App\Models\Clones;
 use App\Models\DetalleOrden;
 use App\Models\Imagen;
 use App\Models\Productos;
@@ -234,27 +235,27 @@ class OrdenTrabajoController extends Controller
             $serieVolcado = request('serieVolcado');
             $conexionVolcado = request('conexionVolcado');
             $capacidadVolcado = request('capacidadVolcado');
-            $compraMonedaVolcado= request('compraMonedaVolcado');
-            $ventaMonedaVolcado = request('ventaMonedaVolcado');
 
-            if ($tipoVolcado != null && $fabricanteVolcado != null && $factorVolcado != null && $modeloVolcado != null && $serieVolcado != null && $capacidadVolcado != null && $compraMonedaVolcado != null && $ventaMonedaVolcado != null) {
+            if ($tipoVolcado != null && $fabricanteVolcado != null && $factorVolcado != null && $modeloVolcado != null && $serieVolcado != null && $capacidadVolcado != null) {
                 
                 for ($i=0; $i < sizeOf($tipoVolcado); $i++) { 
-                    $productoss = new Productos();
-                    $productoss->dispositivo = $tipoVolcado[$i];
-                    $productoss->connection = $conexionVolcado[$i];
-                    $productoss->fabricante = $fabricanteVolcado[$i];
-                    $productoss->modelo = $modeloVolcado[$i];
-                    $productoss->capacidad_producto = $capacidadVolcado[$i];
-                    $productoss->factor =  $factorVolcado[$i];
-                    $productoss->rol = 'Disco para Volcado';
-                    $productoss->distribuidora = 'Obtenido de '.$cliente ;
-                    $productoss->precio_compra= $compraMonedaVolcado[$i];
-                    $productoss->precio_venta =  $ventaMonedaVolcado[$i];
-                    $productoss->serial = $serieVolcado[$i];
-                    $productoss->estado = "disponible";
-                    $productoss->usuario = Auth::user()->id;
-                    $productoss->save();
+
+                    $clon = new Clones();
+                    $clon->tipo = $tipoVolcado[$i];
+                    $clon->manufactura = $fabricanteVolcado[$i];
+                    $clon->modelo = $modeloVolcado[$i];
+                    $clon->numero_serie = $serieVolcado[$i];
+                    $clon->factor_forma = $factorVolcado[$i];
+                    $clon->id_trabajos = $datoTrabajo->id;
+                    $clon->estado = 'Ocupado';
+                    $clon->ubicacion = 'Sin Especificar';
+                    $clon->nota = 'tipo de conexión '.$conexionVolcado[$i];
+                    $clon->save();
+
+                    DB::table('clones')
+                        ->where('id', $clon->id)
+                        ->update(['id_clon' =>'C-'.$clon->id]);
+                
                 }
                 
             }

@@ -437,14 +437,6 @@ input:focus + label {
                                 <span class="input-group-text" >Serial</span>
                                 <input type="text" class="form-control" id="serieVolcadoPrueba" name="serieVolcadoPrueba">
                             </div>
-                            <div class="input-group mt-2 col-12">
-                              <span class="input-group-text" >Precio Compra</span>
-                              <input type="text" class="form-control" name="compraMonedaVolcadoPrueba" id="compraMonedaVolcadoPrueba">
-                          </div>
-                          <div class="input-group mt-2 col-12">
-                            <span class="input-group-text">Precio Venta</span>
-                            <input type="text" class="form-control" id="ventaMonedaVolcadoPrueba" name="ventaMonedaVolcadoPrueba">
-                        </div>
                             <br>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
