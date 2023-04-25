@@ -157,8 +157,6 @@
           var serie = document.getElementById("serieVolcadoPrueba").value;
           var capacidad = document.getElementById("capacidadVolcadoPrueba").value;
           var conexion = document.getElementById("conexionVolcadoPrueba").value;
-          var compra = document.getElementById("compraMonedaVolcadoPrueba").value;
-          var venta = document.getElementById("ventaMonedaVolcadoPrueba").value;
 
           
           $("#tabla>tbody").append("<tr id='"+numeroID+"'>"+
@@ -214,17 +212,6 @@
                                       "</div>"+
                                     "</td>"+
                                     "<td>"+
-                                      "<div class='input-group'>"+
-                                      "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Precio Compra</span>"+
-                                      "<input type='text' class='form-control' name='compraMonedaVolcado[]'id='compraMonedaVolcado' readonly value='"+compra+"'>"+
-                                      "</div>"+
-                                    "</td>"+
-                                    "<td>"+
-                                      "<div class='input-group'>"+
-                                      "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Precio Venta</span>"+
-                                      "<input type='text' class='form-control' name='ventaMonedaVolcado[]'id='ventaMonedaVolcado' readonly value='"+venta+"'>"+
-                                      "</div>"+
-                                    "</td>"+
                                     "<td class='eliminar'>"+
                                       "<button class='btn btn-icon btn-danger' type='button' id='deletRow' name='deletRow'>"+
                                       "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>"+
@@ -242,8 +229,6 @@
                                       $("#serieVolcadoPrueba").val(''); 
                                       $("#capacidadVolcadoPrueba").val('');
                                       $("#conexionVolcadoPrueba").val(''); 
-                                      $("#compraMonedaVolcadoPrueba").val('');
-                                      $("#ventaMonedaVolcadoPrueba").val(''); 
 
                                     $('#volcado').modal('hide');
 
