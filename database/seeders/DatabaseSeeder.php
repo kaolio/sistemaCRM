@@ -62,6 +62,10 @@ class DatabaseSeeder extends Seeder
             'tipo' => 'trabajo',
         ]);
         Permission::create([
+            'name' => 'ver orden de trabajo(Personal)',
+            'tipo' => 'trabajo',
+        ]);
+        Permission::create([
             'name' => 'crear orden de trabajo',
             'tipo' => 'trabajo',
         ]);

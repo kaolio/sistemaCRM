@@ -79,6 +79,7 @@ Route::post('/usuario/foto', [UsuarioController::class,'updatePhoto']);
 Route::post('/usuario/nuevo/validarCorreo', [UsuarioController::class,'validarCorreo']);
  
 //ORDEN DE TRABAJO
+Route::get('/trabajos/ver',[OrdenTrabajoController::class,'ver']);
 Route::get('/trabajos',[OrdenTrabajoController::class,'index']);
 Route::delete('/trabajo/{id}',[OrdenTrabajoController::class,'destroy']);
 Route::get('/trabajo/nuevo',[OrdenTrabajoController::class,'create'])->name('orden');
