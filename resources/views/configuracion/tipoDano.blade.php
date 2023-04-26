@@ -1,4 +1,4 @@
-<div class="active tab-pane" id="tipoDaño">
+<div class="active tab-pane" id="tipoDano">
 
     <div class="card">
     <div class="card-body">

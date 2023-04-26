@@ -49,8 +49,8 @@
                                         <!-- /venta -->
         
                                         <!--Facturacion-->
-                                        <div class="tab-pane" id="tipoDaño">
-                                            @include('configuracion/tipoDaño')
+                                        <div class="tab-pane" id="tipoDano">
+                                            @include('configuracion/tipoDano')
                                         </div>
                                         <!-- /Facturacion -->
                                         

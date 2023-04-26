@@ -153,11 +153,8 @@
  
 
 <br>
-
+<h1 align="center" style="font-weight: 700"> NUEVO USUARIO</h1>
 <div class="card">
-    <div class="card-header">
-        <h4 class="text-center  "style ="font-family:serif,new time roman;" > <b> NUEVO USUARIO </b> </h4>
-    </div>
     <div class="card-body">
 
         <form action="{{ url('usuario/nuevo')}}" method="post">
@@ -243,7 +240,7 @@
                     <div class="input-group">
                     <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Direccion Social</span>
                     <input type="text" id="direccionSocial" name="direccionSocial" class="form-control" 
-                    required onkeyup="validarDireccion()"Placeholder="Direccion Social" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46) || (event.charCode == 241)|| (event.charCode == 209))">
+                    required onkeyup="validarDireccion()"Placeholder="Direccion Social" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) ||(event.charCode == 35) || (event.charCode == 46) || (event.charCode == 241)|| (event.charCode == 209))">
                     </div>
                     <span></span>
                 </div>
@@ -262,7 +259,7 @@
                     <div class="input-group">
                     <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Direccion Comercial</span>
                     <input type="text" id="direccionComercial" name="direccionComercial" class="form-control" 
-                    required onkeyup="validarDireccion()" Placeholder="Direccion Comercial" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46) || (event.charCode == 241)|| (event.charCode == 209))">
+                    required onkeyup="validarDireccion()" Placeholder="Direccion Comercial" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 35) || (event.charCode == 46) || (event.charCode == 241)|| (event.charCode == 209))">
                     </div>
                     <span></span>
                 </div>
