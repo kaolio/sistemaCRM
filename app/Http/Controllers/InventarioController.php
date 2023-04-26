@@ -128,6 +128,7 @@ class InventarioController extends Controller
         $inventario->fechaDisco = request('fechaDisco');
         $inventario->factor_de_forma = request('factor_de_forma');
         $inventario->nota = request('nota');
+        $inventario->precio = request('precio');
         $inventario->cabecera = request('cabecera');
         $inventario->info_de_cabecera = request('info_de_cabecera');
         $inventario->diagnostico = request('diagnostico');
@@ -145,7 +146,7 @@ class InventarioController extends Controller
      * @param  \App\Models\OrdenTrabajo  $ordenTrabajo
      * @return \Illuminate\Http\Response
      */
-    public function show(OrdenTrabajo $ordenTrabajo)
+    public function show()
     {
         //
     }
@@ -208,6 +209,7 @@ class InventarioController extends Controller
         $inventario->ubicacion = request('ubicacion');
         $inventario->factor_de_forma = request('factor_de_forma');
         $inventario->nota = request('nota');
+        $inventario->precio = request('precio');
         $inventario->cabecera = request('cabecera');
         $inventario->info_de_cabecera = request('info_de_cabecera');
         $inventario->save();

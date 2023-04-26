@@ -24,7 +24,7 @@
                                  <li class="nav-item"><a class="nav-link active" href="#ordenTrabajo" data-toggle="tab">Prioridad</a></li>
                                  <li class="nav-item"><a class="nav-link" href="#dispositivo" data-toggle="tab">Dispositivo</a></li>
                                  <li class="nav-item"><a class="nav-link" href="#fabricante" data-toggle="tab">Fabricante</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="#tipoDaño" data-toggle="tab">Tipo de Daño</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="#tipoDano" data-toggle="tab">Tipo de Daño</a></li>
                                  <li class="nav-item"><a class="nav-link" href="#factorForma" data-toggle="tab">Factor de Forma</a></li>
                                  <li class="nav-item"><a class="nav-link" href="#tipoConexion" data-toggle="tab">Tipo de Conexion</a></li>
                                  {{--<li class="nav-item"><a class="nav-link" href="#tipoMoneda" data-toggle="tab">Tipo de Moneda</a></li>--}}

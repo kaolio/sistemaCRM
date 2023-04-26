@@ -327,7 +327,7 @@ return [
         [
             'text'    => 'Orden de Trabajo  ',
             'icon'    => 'fas fa-fw fa-file',
-            'can' => 'ver orden de trabajo',
+            'can' => ['ver orden de trabajo','ver orden de trabajo(Personal)'],
             'submenu' => [
                 [
                     'text' => 'Nueva Orden de Trabajo',
@@ -338,7 +338,7 @@ return [
                 [
                     'text' => 'Ver Ordenes de Trabajo',
                     'url'  => 'trabajos',
-                    'can' => 'ver orden de trabajo',
+                    'can' => ['ver orden de trabajo','ver orden de trabajo(Personal)'],
                     'icon'    => 'fas fa-fw fa-filse',
                     'active' => ['trabajos', 'trabajo/editar*','trabajos/detalle*'],
                 ],
@@ -488,18 +488,18 @@ return [
             ]
         ],
         ['header' => 'SISTEMA',
-        ],
+        'can' => ['Configuracion'],],
         [
             'text'    => 'Configuracion  ',
             'icon'    => 'fas fa-fw fa-pen-square',
-            'can' => 'ver-rol',
+            'can' => 'Configuracion',
             'submenu' => [
                 
                 [
                     'text' => 'Ajustes',
                     'url'  => 'configuraciones',
                     'icon'    => 'fas fa-fw fa-filse',
-                    'can' => 'ver-opciones',
+                    'can' => 'Configuracion',
     
                 ],
             ]
