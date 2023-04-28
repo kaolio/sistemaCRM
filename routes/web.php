@@ -218,6 +218,10 @@ Route::get('/trabajos/detalle/fileList/{id}',[ImagenController::class,'verFileLi
 Route::get('/trabajos/detalle/fileList/descargar/{id}',[ImagenController::class,'descargarFileList']);//FILE LIST DONWLOAD
 Route::delete('/trabajos/detalle/fileList/eliminar/{id}',[ImagenController::class,'eliminarFileList']);//FILE LIST DELETE
 
+//IMAGEN
+Route::post('/subirImagen/{id}',[ImagenController::class,'subirImagen'])->name('Imagen');//ruta para subir archivo a drive
+Route::delete('/trabajos/detalle/fileImage/eliminar/{id}',[ImagenController::class,'eliminarFileImage']);//FILE LIST DELETE
+
 //PRODUCTOS
 Route::get('/productos',[ProductosController::class,'index']);
 Route::get('/producto/nuevo',[ProductosController::class,'create']);
