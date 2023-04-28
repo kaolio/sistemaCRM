@@ -471,7 +471,7 @@ class OrdenTrabajoController extends Controller
                         ->orderBy('orden_trabajos.id','desc')
                         ->get();
 
-                } else {
+                } else {  
                     $datosTabla =  DB::table('orden_trabajos')
                         ->join('clientes','clientes.id','orden_trabajos.id_cliente')
                         ->join('users','users.id','orden_trabajos.asignado')

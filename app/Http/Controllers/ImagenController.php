@@ -76,4 +76,47 @@ class ImagenController extends Controller
         return redirect('/trabajos/detalle/'.$id);
     } 
 
+    public function subirImagen(Request $request,$id){
+       
+        
+        $file = $request->file('file-upload-image');
+
+        //dd($file);
+            //return Storage::disk('archivos')->get($id.'.html'); PARA OBTENER DEL ALMACEN ARCHIVOS Y MOSTRARLO
+            $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ%&';
+            $nombre = substr(str_shuffle($permitted_chars), 0, 10);
+            
+            
+            if ($file != null) {
+
+                $ima = new Imagen();
+                $ima->nombre = $id."-".$nombre;
+                $ima->id_trabajo = $id;
+                $ima->save();
+
+                $request->file('file-upload-image')->storeAs('public/caso/', $id."-".$nombre.'.jpg');
+                //$request->file('file-upload')->move(base_path('resources/views/otros'), $id.'.blade.php');
+            } 
+
+                 
+        return redirect('/trabajos/detalle/'.$id);
+        //return view('otros/1');
+    
+    }
+
+    public function eliminarFileImage($id)
+    {
+        $archivo = DB::table('imagens')
+                        ->select('nombre','id_trabajo')
+                        ->where('id',$id)
+                        ->first();
+            
+        Storage::delete('public/caso/'.$archivo->nombre.'.jpg');
+
+        $trabajo=Imagen::findOrFail($id);
+        $trabajo->delete();
+
+        return redirect('/trabajos/detalle/'.$archivo->id_trabajo);
+    } 
+
 }
