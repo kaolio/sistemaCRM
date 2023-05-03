@@ -110,6 +110,7 @@ Route::get('/trabajo/general',[OrdenTrabajoController::class,'general']);
 
 Route::post('/trabajos/nuevo/detalle/servicio',[ServicioController::class,'guardarTabla']);
 Route::post('/trabajos/nuevo/detalle/guardarServicio',[ServicioController::class,'guardar']);
+Route::post('/trabajos/nuevo/detalle/editarServicio',[ServicioController::class,'edit']);
 Route::post('/trabajos/nuevo/detalle/enviarServicio',[ServicioController::class,'enviar']);
 Route::post('/detalleServicio/eliminar',[ServicioController::class,'destroy']);
 
