@@ -48,7 +48,7 @@
                 <tr>
                   <th class="text-center" style="width: 20%">Detalle</th>
                   <th class="text-center" style="width: 20%">Descripcion</th>
-                  <th class="text-center" style="width: 20%" colspan="2">Precio</th>
+                  <th class="text-center" style="width: 20%" colspan="3">Precio</th>
                 </tr>
               </thead>
             <tbody class="table-bordered" id="serviciosGuardados">
@@ -168,11 +168,12 @@
                                     var nuevafila= "<tr><td class='text-center' style= 'background: rgb(209, 244, 255)' >" +
                                     dataResult.data[i].detalle + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
                                     dataResult.data[i].descripcion  + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
-                                    dataResult.data[i].precio  + "</td><td class='text-center' style='width: 3%;background: rgb(209, 244, 255)' >" +
+                                    dataResult.data[i].precio  + 
+                        "</td><td class='text-center' style='width: 3%;background: rgb(209, 244, 255)' >" +
                       '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModals'+dataResult.data[i].id+'">'+
-                        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
-                          '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
-                          '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
+                        '<svg xmlns="http://www.w3.org/2000/svg" fill="rgb(168, 166, 14)" viewBox="0 0 16 16" width="18" height="20">'+
+                          '<path fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 '+
+                          '0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"></path>'+
                         '</svg>'+
                       '</button>'+
                       '<div class="modal fade" id="exampleModals'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
@@ -196,6 +197,60 @@
                           '</div>'+
                         '</div>'+
                     ' </div> '+
+                        "</td><td class='text-center' style='width: 3%;background: rgb(209, 244, 255)' >" +
+                      '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModals'+dataResult.data[i].id+'">'+
+                        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
+                          '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
+                          '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
+                        '</svg>'+
+                      '</button>'+
+                      '<div class="modal fade" id="exampleModals'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                        '<div class="modal-dialog" role="document">'+
+                          '<div class="modal-content">'+
+                            '<div class="modal-header">'+
+                              '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Editar Detalle del Servicio</h5>'+
+                              '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
+                                '<span aria-hidden="true">&times;</span>'+
+                              '</button>'+
+                            '</div>'+
+                            '<div class="modal-body">'+
+                              '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Detalle</span>'+
+                                            '<input type="text" id="editDetalle'+dataResult.data[i].id+'" name="editDetalle" class="form-control" autocomplete="off" >'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</br>'+
+                            '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Descripcion</span>'+
+                                            '<input type="text" id="editDescripcion'+dataResult.data[i].id+'" name="editDescripcion" class="form-control" autocomplete="off" >'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</br>'+
+                            '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Precio</span>'+
+                                            '<input type="text" id="editPrecio'+dataResult.data[i].id+'" name="editPrecio" class="form-control" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))" >'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</br>'+
+                            '</div>'+
+                            '<div class="modal-footer">'+
+                              '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
+                              '<button class="btn btn-primary" onclick="eliminarServicio('+dataResult.data[i].id+')">'+
+                                'Aceptar'+
+                              '</button>'+
+                            '</div>'+
+                          '</div>'+
+                        '</div>'+
+                    ' </div> '+
                     "</td></tr>"
                     
                     $("#serviciosGuardados").append(nuevafila);
@@ -203,7 +258,7 @@
                 
                 var nueva= "<tr><td class='text-center text-white' style='background: rgb(2, 117, 216)' colspan='2'>"+
                                 "TOTAL" +
-                                "</td><td class='text-center' colspan='2' style= 'background: rgb(209, 244, 255)'>" +
+                                "</td><td class='text-center' colspan='3' style= 'background: rgb(209, 244, 255)'>" +
                                 count + "</td></tr>"
                         
                         $("#serviciosGuardados").append(nueva) ;
@@ -246,6 +301,60 @@
                         dataResult.data[i].precio  + 
                         "</td><td class='text-center' style='width: 3%;background: rgb(209, 244, 255)' >" +
                       '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModals'+dataResult.data[i].id+'">'+
+                        '<svg xmlns="http://www.w3.org/2000/svg" fill="rgb(168, 166, 14)" viewBox="0 0 16 16" width="18" height="20">'+
+                          '<path fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 '+
+                          '0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"></path>'+
+                        '</svg>'+
+                      '</button>'+
+                      '<div class="modal fade" id="exampleModals'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                        '<div class="modal-dialog" role="document">'+
+                          '<div class="modal-content">'+
+                            '<div class="modal-header">'+
+                              '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Editar Detalle del Servicio</h5>'+
+                              '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
+                                '<span aria-hidden="true">&times;</span>'+
+                              '</button>'+
+                            '</div>'+
+                            '<div class="modal-body">'+
+                              '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Detalle</span>'+
+                                            '<input type="text" id="editDetalle'+dataResult.data[i].id+'" name="editDetalle" class="form-control" autocomplete="off" >'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</br>'+
+                            '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Descripcion</span>'+
+                                            '<input type="text" id="editDescripcion'+dataResult.data[i].id+'" name="editDescripcion" class="form-control" autocomplete="off" >'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</br>'+
+                            '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Precio</span>'+
+                                            '<input type="text" id="editPrecio'+dataResult.data[i].id+'" name="editPrecio" class="form-control" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</br>'+
+                            '</div>'+
+                            '<div class="modal-footer">'+
+                              '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
+                              '<button class="btn btn-primary" onclick="guardarEditservicio('+dataResult.data[i].id+')">'+
+                                'Aceptar'+
+                              '</button>'+
+                            '</div>'+
+                          '</div>'+
+                        '</div>'+
+                    ' </div> '+
+                        "</td><td class='text-center' style='width: 3%;background: rgb(209, 244, 255)' >" +
+                      '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModals'+dataResult.data[i].id+'">'+
                         '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
                           '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
                           '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
@@ -277,9 +386,11 @@
                     $("#serviciosGuardados").append(nuevafila);
                 }
                 
+
+
                 var nueva= "<tr><td class='text-center text-white' style='background: rgb(2, 117, 216)' colspan='2'>"+
                                 "TOTAL" +
-                                "</td><td class='text-center' colspan='2' style= 'background: rgb(209, 244, 255)'>" +
+                                "</td><td class='text-center' colspan='3' style= 'background: rgb(209, 244, 255)'>" +
                                 count + "</td></tr>"
                         
                         $("#serviciosGuardados").append(nueva) ;
@@ -327,4 +438,35 @@
                     }
                 });
     }
+
+    function guardarEditservicio(id){
+
+
+      var url1 = $('#editDetalle'+id).val();
+      var url2 = $('#editDescripcion'+id).val();
+      var url3 = $('#editPrecio'+id).val();
+
+      console.log(url1,url2,url3);
+
+      $('#editDetalle').val('');
+      $('#editDescripcion').val('');
+      $('#editPrecio').val('');
+
+      $.ajax({
+          url: "/trabajos/nuevo/detalle/guardarServicio",
+          type: "POST",
+          data: {
+              "_token": "{{ csrf_token() }}",
+              "id": id,
+          },
+          cache: false,
+          dataType: 'json',
+          success: function (dataResult) {
+              //console.log(dataResult);
+              verServicio();
+              $('#exampleModals'+id).modal('hide')
+          }
+      });
+    }
+    
   </script>
