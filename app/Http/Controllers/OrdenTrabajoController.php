@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use Maatwebsite\Excel\Facades\Excel; 
+use Maatwebsite\Excel\Facades\Excel;
+use Spatie\Permission\Models\Role;
 
 class OrdenTrabajoController extends Controller
 {
@@ -29,7 +30,7 @@ class OrdenTrabajoController extends Controller
         $this->middleware('permission:crear orden de trabajo',['only'=>['create','store']]);
         $this->middleware('permission:editar orden de trabajo',['only'=>['edit','update']]);
         $this->middleware('permission:borrar orden de trabajo',['only'=>['destroy']]);
-        $this->middleware('permission:imprimir orden de trabajo',['only'=>['imprimirOrden']]);
+        $this->middleware('permission:imprimir orden de trabajo',['only'=>['variosPDF']]);
         $this->middleware('permission:imprimir lista de trabajos',['only'=>['imprimirPdf']]);
         $this->middleware('permission:descargar lista excel',['only'=>['descargarExcel']]);
         $this->middleware('permission:descargar lista PDF',['only'=>['descargarPDF']]);
@@ -264,18 +265,25 @@ class OrdenTrabajoController extends Controller
 
             if ($file != null) {
                 for ($i=0; $i < sizeof($file) ; $i++) { 
-                    $nombre =  time()."_".$file[$i]->getClientOriginalName();//obtenemos el nombre del archivo
+                    //$nombre =  time()."_".$file[$i]->getClientOriginalName();//obtenemos el nombre del archivo
+                    $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ%&';
+                    $nombre = substr(str_shuffle($permitted_chars), 0, 10);
 
                     $ima = new Imagen();
-                    $ima->nombre = $nombre;
+                    $ima->nombre = $datoTrabajo->id."-".$nombre;
                     $ima->id_trabajo = $datoTrabajo->id;
                     $ima->save();
-                    Storage::disk('imagenes')->put($nombre, File::get($file[$i]));//indicamos que queremos guardar un nuevo archivo en el disco local
+                    //storage::disk('imagenes')->put($nombre, File::get($file[$i]));//indicamos que queremos guardar un nuevo archivo en el disco local
+                    $request->file('imagen')->move(base_path('public/imagenes-caso/'),  $datoTrabajo->id."-".$nombre.'.jpg');
                 } 
             }
 
-                
-            return view('trabajo.confirmacion',compact('trabajo','cliente','acceso'));
+            $rols = DB::table('model_has_roles')
+                    ->select('role_id')
+                    ->where('model_id',Auth::user()->id)
+                    ->first();
+            $rol = Role::findById($rols->role_id)->name ;
+            return view('trabajo.confirmacion',compact('trabajo','cliente','acceso','rol'));
 
        } catch (\Throwable $th) {
             return view('errors.errorCreacionPartner');
@@ -312,7 +320,7 @@ class OrdenTrabajoController extends Controller
         //
     }
 
-    public function imprimirOrden()
+    public function imprimirOrden($id)
     {
         
         $contenedor = [];
@@ -321,16 +329,16 @@ class OrdenTrabajoController extends Controller
             $datos = DB::table('orden_trabajos')
                 ->join('clientes','clientes.id','orden_trabajos.id_cliente')
                 ->select('clientes.nombreCliente','clientes.calle','clientes.provincia','clientes.created_at','orden_trabajos.password')
-                ->where('orden_trabajos.id',$_POST["orden"])
+                ->where('orden_trabajos.id',$id)
                 ->first(); 
             
-            $ident = $_POST["orden"];
+            $ident = $id;
 
             $aux = [];
             $detalle = DB::table('orden_trabajos')
                 ->join('detalle_ordens','detalle_ordens.id_trabajos','orden_trabajos.id')
                 ->select('detalle_ordens.tipo','detalle_ordens.fabricante','detalle_ordens.modelo','detalle_ordens.serial')
-                ->where('orden_trabajos.id', $_POST["orden"])
+                ->where('orden_trabajos.id', $id)
                 ->get(); 
             
             array_push($variable, $ident);
@@ -341,7 +349,6 @@ class OrdenTrabajoController extends Controller
             array_push($variable, $aux);
             array_push($contenedor, $variable);
             
-
             $pdf = \PDF::loadView('/trabajo/reportes/ordenVarios',compact('contenedor'));
             
             return $pdf->setPaper('carta', 'portrait')->stream('orden.pdf');

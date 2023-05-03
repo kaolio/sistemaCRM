@@ -173,6 +173,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'mover producto',
             'tipo' => 'producto',
         ]);
+        Permission::create([
+            'name' => 'configuracion del sistema',
+            'tipo' => 'configuracion',
+        ]);
         
         $role = Role::create(['name' => 'ADMINISTRADOR']);
         $role->givePermissionTo(Permission::all());

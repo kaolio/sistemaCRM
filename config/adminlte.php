@@ -323,6 +323,7 @@ return [
             'url'  => 'home',
             'icon' => 'fas fa-fw fa-save',
             'can' => 'dashboard',
+            'active' => ['home/*'],
         ],
         [
             'text'    => 'Orden de Trabajo  ',
@@ -488,18 +489,18 @@ return [
             ]
         ],
         ['header' => 'SISTEMA',
-        'can' => ['Configuracion'],],
+        'can' => ['configuracion del sistema'],],
         [
             'text'    => 'Configuracion  ',
             'icon'    => 'fas fa-fw fa-pen-square',
-            'can' => 'Configuracion',
+            'can' => 'configuracion del sistema',
             'submenu' => [
                 
                 [
                     'text' => 'Ajustes',
                     'url'  => 'configuraciones',
                     'icon'    => 'fas fa-fw fa-filse',
-                    'can' => 'Configuracion',
+                    'can' => 'configuracion del sistema',
     
                 ],
             ]

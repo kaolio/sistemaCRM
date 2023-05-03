@@ -27,7 +27,7 @@
                         <div class="input-group">
                           <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">CIF</span>
                         <input type="text" id="cif" name="cif" class="form-control" onkeyup="mayus(this);"
-                          required value="{{$cliente->cif}}" onkeyup="" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57))">
+                           value="{{$cliente->cif}}" onkeyup="" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57))">
                         </div>
                       </div>
                     </div>
@@ -114,8 +114,6 @@
                           @endif
                             <option value="español">Español</option>
                             <option value="ingles">Ingles</option>
-                            <option value="frances">Frances</option>
-                            <option value="chino">Chino</option>
                           </select>
                         </div>
                       </div>

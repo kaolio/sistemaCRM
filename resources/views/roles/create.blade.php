@@ -206,6 +206,22 @@
                                                                 </div>
                                                             </div>
                                                         </br> 
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-5">
+                                                                <div class="card1" >
+                                                                    <div class="card-header">
+                                                                        @foreach ($permission as $value)
+                                                                            @if ($value->tipo == 'configuracion' )
+                                                                                <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
+                                                                            @endif
+                                                                            @endforeach 
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <br/>
+                                                                <div class="col-5">
+                                                                </div>
+                                                        </div>
                                                             </div>
                                                         </div>
 

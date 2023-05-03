@@ -23,7 +23,10 @@
         
         <div class="card-body">
                 @foreach ($pagado as $pagado)
-                    <a href="/trabajos/detalle/{{$pagado->id}}" >
+                    @can('editar orden de trabajo')
+                        <a href="/trabajos/detalle/{{$pagado->id}}" > 
+                    @endcan
+                   
                         &nbsp;
                         <div class="card" style="display: inline-block;background: #83b0db;">
                             <div class="card-body" >
