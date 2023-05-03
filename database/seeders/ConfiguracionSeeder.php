@@ -19,7 +19,7 @@ class ConfiguracionSeeder extends Seeder
         DB::table('prioridads')->insert([
             'nombre_prioridad' => 'Normal',
             'tiempo_estimado' => '5 - 12 Dias',
-            'prioridad_precio' => '380',
+            'prioridad_precio' => '0',
         ]);
 
         DB::table('prioridads')->insert([
@@ -168,13 +168,18 @@ class ConfiguracionSeeder extends Seeder
 
         //TIPO DE DAÑO
         DB::table('mal_funcionamientos')->insert([
-            'mal_funcionamiento' => 'Fisico',
-            'mal_funcio_precio' => '2500',
+            'mal_funcionamiento' => 'HDD Fisico hasta 2TB',
+            'mal_funcio_precio' => '380',
         ]);
 
         DB::table('mal_funcionamientos')->insert([
-            'mal_funcionamiento' => 'Logico',
-            'mal_funcio_precio' => '3500',
+            'mal_funcionamiento' => 'Logico hasta 2TB',
+            'mal_funcio_precio' => '220',
+        ]);
+
+        DB::table('mal_funcionamientos')->insert([
+            'mal_funcionamiento' => 'HDD Fisico 3TB a 6TB',
+            'mal_funcio_precio' => '490',
         ]);
 
         //FACTOR DE FORMA
