@@ -3,7 +3,6 @@
 <h1 align="center" style="font-weight: 700">REGISTRAR NUEVO CLIENTE</h1>
 
 
-
 <body>
  <div class="card">
    
@@ -18,7 +17,7 @@
                     <div class="row">
                         <div class="col-7">
                             <div class="input-group">
-                              <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Nombre y Apellidos</span>
+                              <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Nombre y Apellidos&nbsp;<strong style="color: red">*</strong></span>
                               <input type="text" name="nombreCliente" id="nombreCliente" required value="{{ old('Nombre') }}" class="form-control" onkeyup="validarNombre()" placeholder="Nombre y Apellidos" tabindex="1" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209)) ">
                             </div>
                           <span id="estadoNombre"></span>
@@ -27,7 +26,7 @@
                           <div class="input-group">
                                <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">CIF</span>
                                 <input type="text" id="cif" name="cif" class="form-control" onkeyup="mayus(this);"
-                                    required onkeyup="" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57))">
+                                     onkeyup="" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57))">
                           </div>
                       </div>
                     </div>
@@ -35,9 +34,9 @@
                     <div class="row">
                       <div class="col-7">
                           <div class="input-group">
-                             <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Dirección</span>
-                               <input type="text" id="direccion" name="direccion" class="form-control" 
-                                 required onkeyup="validarDireccion()" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46) || (event.charCode == 241) || (event.charCode == 209))">
+                             <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Dirección&nbsp;<strong style="color: red">*</strong></span>
+                               <input type="text" id="direccion" name="direccion" class="form-control" placeholder="Direccion"
+                                 required onkeyup="validarDireccion()" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 35) || (event.charCode == 46) || (event.charCode == 44) || (event.charCode == 45) || (event.charCode == 58) || (event.charCode == 241) || (event.charCode == 209))">
                           </div>
                         <span id="estadoDireccion"></span>
                       </div>
@@ -45,7 +44,7 @@
                         <div class="input-group">
                           <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Tel. Movil</span>
                         <input type="text" id="numero" name="numero" class="form-control" 
-                          required onkeyup="" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
+                           onkeyup="" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
                         </div>
                       </div>
                     </div>
@@ -53,7 +52,7 @@
                     <div class="row">
                       <div class="col-7">
                           <div class="input-group">
-                             <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Correo Electrónico</span>
+                             <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Correo Electrónico&nbsp;<strong style="color: red">*</strong></span>
                                <input type="text" id="valor" name="valor" class="form-control" 
                                  required onkeyup="validarCorreo()"autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46) || (event.charCode == 241) || (event.charCode == 209) || (event.charCode == 64))">
                           </div>
@@ -63,7 +62,7 @@
                         <div class="input-group">
                           <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Telefono</span>
                              <input type="text" id="telefono" name="telefono" class="form-control" 
-                                 required autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
+                                  autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
                         </div>
                          <span id="estadoTelefono"></span>
                       </div>
@@ -72,8 +71,8 @@
                     <div class="row">
                       <div class="col-3">
                         <div class="input-group">
-                          <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Codigo Postal</span>
-                        <input type="text" id="postal" name="postal" class="form-control" 
+                          <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Codigo Postal&nbsp;<strong style="color: red">*</strong></span>
+                        <input type="text" id="postal" name="postal" class="form-control" placeholder="#"
                           required onkeyup="" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 44) || (event.charCode == 46) || (event.charCode == 35) || (event.charCode == 47) || (event.charCode == 45) || (event.charCode == 124) || (event.charCode == 42))">
                         </div>
                       </div>
@@ -81,14 +80,14 @@
                         <div class="input-group">
                           <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Poblacion</span>
                         <input type="text" id="poblacion" name="poblacion" class="form-control" 
-                          required onkeyup="" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32) || (event.charCode == 46) || (event.charCode == 241) || (event.charCode == 209))">
+                           onkeyup="" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32) || (event.charCode == 35) || (event.charCode == 46) || (event.charCode == 44) || (event.charCode == 45) || (event.charCode == 58) || (event.charCode == 46) || (event.charCode == 241) || (event.charCode == 209))">
                         </div>
                       </div>
                       <div class="col-4">
                         <div class="input-group">
                           <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Provincia</span>
                         <input type="text" id="provincia" name="provincia" class="form-control" 
-                          required  autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209)||(event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 44) || (event.charCode == 46) || (event.charCode == 35) || (event.charCode == 47) || (event.charCode == 45) || (event.charCode == 124) || (event.charCode == 42))">
+                            autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209)||(event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 44) || (event.charCode == 46) || (event.charCode == 35) || (event.charCode == 47) || (event.charCode == 45) || (event.charCode == 58) || (event.charCode == 124) || (event.charCode == 42))">
                          </div>
                          <span id="estadoCiudad"></span>
                       </div>
@@ -99,9 +98,11 @@
                         <div class="input-group">
                           <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Pais</span>
                         <input type="text" id="pais" name="pais" class="form-control" 
-                          required onkeyup="validarPais()" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209))">
+                           onkeyup="validarPais()" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209))">
                         </div>
                         <span id="estadoPais"></span>
+                        <br>
+                        <span class="mb-4"><strong style="color: red">*</strong> Campos Obligatorios</span>
                       </div>
                       <div class="col-4">
                         <div class="input-group">
@@ -109,8 +110,6 @@
                           <select name="idioma" id="idioma"class="form-control" >
                             <option value="español">Español</option>
                             <option value="ingles">Ingles</option>
-                            <option value="frances">Frances</option>
-                            <option value="chino">Chino</option>
                           </select>
                         </div>
                       </div>

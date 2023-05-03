@@ -28,10 +28,11 @@
    
 
           <img src="{{public_path('imagenes/logo_hdd.jpg')}}" class="text-align-left " width="200px ">
-          <div  style="position: absolute; top: 30 px;left: 500px" >
+          <div  style="position: absolute; top: 15 px;left: 500px" >
                   Sitio Web: &nbsp;&nbsp; www.irecovery.com <br/>
                   E-mail: &nbsp;&nbsp;&nbsp; usuario@irecovery.com
           </div>
+          <br>
           <hr>
 
           <div style="position: absolute; left: 50px" >

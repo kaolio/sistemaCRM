@@ -25,9 +25,9 @@
                       </div>
                       <div class="col-3">
                         <div class="input-group">
-                          <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">VAT ID</span>
+                          <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">CIF</span>
                         <input type="text" id="cif" name="cif" class="form-control" onkeyup="mayus(this);"
-                          required value="{{$cliente->cif}}" onkeyup="" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57))">
+                           value="{{$cliente->cif}}" onkeyup="" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57))">
                         </div>
                       </div>
                     </div>
@@ -37,7 +37,7 @@
                         <div class="input-group">
                           <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Dirección</span>
                         <input type="text" id="direccion" name="direccion" class="form-control" 
-                          required  value="{{$cliente->calle}}" onkeyup="validarDireccion()" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46) || (event.charCode == 241) || (event.charCode == 209))">
+                          required  value="{{$cliente->calle}}" onkeyup="validarDireccion()" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) ||  (event.charCode == 35) || (event.charCode == 46) || (event.charCode == 44) || (event.charCode == 45) || (event.charCode == 58) || (event.charCode == 46) || (event.charCode == 241) || (event.charCode == 209))">
                         </div>
                         <span id="estadoDireccion"></span>
                       </div>
@@ -45,7 +45,7 @@
                         <div class="input-group">
                           <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Número</span>
                         <input type="text" id="numero" name="numero" class="form-control" 
-                          required value="{{$cliente->numero}}" onkeyup="" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
+                           value="{{$cliente->numero}}" onkeyup="" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
                         </div>
                       </div>
                     </div>
@@ -63,7 +63,7 @@
                         <div class="input-group">
                           <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Telefono</span>
                              <input type="text" id="telefono" name="telefono" class="form-control" 
-                                 required value="{{$cliente->telefono}}"  autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
+                                  value="{{$cliente->telefono}}"  autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
                         </div>
                          <span id="estadoTelefono"></span>
                       </div>
@@ -114,8 +114,6 @@
                           @endif
                             <option value="español">Español</option>
                             <option value="ingles">Ingles</option>
-                            <option value="frances">Frances</option>
-                            <option value="chino">Chino</option>
                           </select>
                         </div>
                       </div>

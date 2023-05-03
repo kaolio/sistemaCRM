@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Nota;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
 class HomeController extends Controller
 {
@@ -27,35 +29,85 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $trabajosUrgentes = DB::table('orden_trabajos')
-                        ->select('*')
-                        ->where('prioridad','=','Urgente')
-                        ->count();
+        $rols = DB::table('model_has_roles')
+                    ->select('role_id')
+                    ->where('model_id',Auth::user()->id)
+                    ->first();
+            $rol = Role::findById($rols->role_id)->name ;
+        if (Role::findById(Auth::user()->id)->name != 'ADMINISTRADOR') {
+            
+            $trabajosUrgentes = DB::table('orden_trabajos')
+                            ->select('*')
+                            ->where('prioridad','=','Urgente')
+                            ->where('creado','=',Auth::user()->name)
+                            ->count();
 
-        $trabajosCompletos = DB::table('orden_trabajos')
-                        ->select('*')
-                        ->where('estado','=','Trabajo Completo')
-                        ->count();
+            $trabajosCompletos = DB::table('orden_trabajos')
+                            ->select('*')
+                            ->where('estado','=','Trabajo Completo')
+                            ->where('creado','=',Auth::user()->name)
+                            ->count();
 
-        $trabajosInCompletos = DB::table('orden_trabajos')
-                        ->select('*')
-                        ->where('estado','<>','Pagado y Regresado al Cliente')
-                        ->where('estado','<>','Trabajo Completo')
-                        ->where('estado','<>','Devuelto al Cliente')
-                        ->count();
+            $trabajosInCompletos = DB::table('orden_trabajos')
+                            ->select('*')
+                            ->where('estado','<>','Pagado y Regresado al Cliente')
+                            ->where('estado','<>','Trabajo Completo')
+                            ->where('estado','<>','Devuelto al Cliente')
+                            ->where('creado','=',Auth::user()->name)
+                            ->count();
 
-        $trabajosPagados = DB::table('orden_trabajos')
-                        ->select('*')
-                        ->where('estado','=','Pagado y Regresado al Cliente')
-                        ->count();
+            $trabajosPagados = DB::table('orden_trabajos')
+                            ->select('*')
+                            ->where('estado','=','Pagado y Regresado al Cliente')
+                            ->where('creado','=',Auth::user()->name)
+                            ->count();
 
-                       // dd($trabajosUrgentes);
+                        // dd($trabajosUrgentes);
 
-        $datosDashboard = DB::table('notas')
-                        ->select('*')
-                        ->get();
+            $datosDashboard = DB::table('notas')
+                            ->join('orden_trabajos','orden_trabajos.id','notas.id_trabajos')
+                            ->select('*')
+                            ->where('orden_trabajos.creado','=',Auth::user()->name)
+                            ->paginate(20);
 
-        return view('home',compact('datosDashboard','trabajosUrgentes','trabajosCompletos','trabajosInCompletos','trabajosPagados'));
+            return view('home',compact('datosDashboard','trabajosUrgentes','trabajosCompletos','trabajosInCompletos','trabajosPagados','rol'));
+            
+            
+        } else {
+            
+            $trabajosUrgentes = DB::table('orden_trabajos')
+                            ->select('*')
+                            ->where('prioridad','=','Urgente')
+                            ->count();
+
+            $trabajosCompletos = DB::table('orden_trabajos')
+                            ->select('*')
+                            ->where('estado','=','Trabajo Completo')
+                            ->count();
+
+            $trabajosInCompletos = DB::table('orden_trabajos')
+                            ->select('*')
+                            ->where('estado','<>','Pagado y Regresado al Cliente')
+                            ->where('estado','<>','Trabajo Completo')
+                            ->where('estado','<>','Devuelto al Cliente')
+                            ->count();
+
+            $trabajosPagados = DB::table('orden_trabajos')
+                            ->select('*')
+                            ->where('estado','=','Pagado y Regresado al Cliente')
+                            ->count();
+
+                        // dd($trabajosUrgentes);
+
+            $datosDashboard = DB::table('notas')
+                            ->select('*')
+                            ->get();
+
+            return view('home',compact('datosDashboard','trabajosUrgentes','trabajosCompletos','trabajosInCompletos','trabajosPagados','rol'));
+
+        }
+        
+        
     }
 
     public function datosDashboard(){

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Imagen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class ImagenController extends Controller
@@ -94,8 +95,9 @@ class ImagenController extends Controller
                 $ima->id_trabajo = $id;
                 $ima->save();
 
-                $request->file('file-upload-image')->storeAs('public/caso/', $id."-".$nombre.'.jpg');
+                //$request->file('file-upload-image')->storeAs('public/caso/', $id."-".$nombre.'.jpg');
                 //$request->file('file-upload')->move(base_path('resources/views/otros'), $id.'.blade.php');
+                $request->file('file-upload-image')->move(base_path('public/imagenes-caso/'),  $id."-".$nombre.'.jpg');
             } 
 
                  
@@ -111,7 +113,8 @@ class ImagenController extends Controller
                         ->where('id',$id)
                         ->first();
             
-        Storage::delete('public/caso/'.$archivo->nombre.'.jpg');
+         File::delete('imagenes-caso/'.$archivo->nombre.'.jpg');
+        //Storage::delete('public/caso/'.$archivo->nombre.'.jpg');
 
         $trabajo=Imagen::findOrFail($id);
         $trabajo->delete();

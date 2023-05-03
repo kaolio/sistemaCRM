@@ -23,7 +23,9 @@
         
         <div class="card-body">
                 @foreach ($pendiente as $pendiente)
-                    <a href="/trabajos/detalle/{{$pendiente->id}}" >
+                    @can('editar orden de trabajo')
+                      <a href="/trabajos/detalle/{{$pendiente->id}}" >  
+                    @endcan
                         &nbsp;
                         <div class="card" style="display: inline-block;background: #ebc04185;">
                             <div class="card-header" align="center" style="background: #ffc10785">

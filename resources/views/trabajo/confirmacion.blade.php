@@ -12,33 +12,24 @@
         <h5><b>Contraseña: </b>{{$acceso}}</h5>
     </div>
     <div class="card-footer"> 
-        <button id="bton" class="btn btn-warning text-white">Imprimir Orden</button>
+        @can('imprimir orden de trabajo')
+        <a role="button" class="btn btn-warning text-white" href="{{URL('/trabajo/imprimirOrden/'.$trabajo)}}">Imprimir Orden</a>
+        @endcan
         @can('editar orden de trabajo')
         <a type="button" class="btn btn-primary text-white" href="{{url('/trabajos/detalle/'.$trabajo)}}">Ir a Orden de Trabajo</a>
         @endcan
+        
+        @can('ver orden de trabajo')
         <a type="button" class="btn btn-primary text-white" href="{{url('/trabajos')}}">Ver Ordenes de Trabajo</a>
+        @endcan
+        @if ($rol != 'ADMINISTRADOR')
+            @can('ver orden de trabajo(Personal)')
+                <a type="button" class="btn btn-primary text-white" href="{{url('/trabajos')}}">Ver Ordenes de Trabajo</a>
+            @endcan 
+        @endif
+        
     </div>
 </div>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-<script>
-
-    $('#bton').on('click', function () {
-        $.ajax({
-            url: "/trabajo/imprimirOrden",
-            type: "POST",
-            data:{ 
-                "_token": "{{ csrf_token() }}",
-                "orden": "{{$trabajo}}",
-            },
-            cache: false,
-            dataType: 'json',
-            success: function(dataResult){
-            }
-        });
-    });
-
-</script>
 
 @endsection
