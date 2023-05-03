@@ -292,5 +292,10 @@ Route::get('/send-mail', [MailController::class, 'index']);
 //});
 
 Route::get('/foo', function () {
-  Artisan::call('storage:link');
+  Artisan::call('optimize:clear');
+});
+
+Route::get('/cmd/{command}', function($command)
+{
+  Artisan::call($command); dd(Artisan::output());
 });
