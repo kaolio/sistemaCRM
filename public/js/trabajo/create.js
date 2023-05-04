@@ -140,10 +140,6 @@
   $("#estado").html("<span  class='mayor'><h5 class='bien'></h5></span>");
 });
 
-  function validar() {  
-
-  }
-
  function guardarDiscoVolcado() {
 
     eliminar = eliminar+1;

@@ -186,12 +186,38 @@
                               '</button>'+
                             '</div>'+
                             '<div class="modal-body">'+
-                            '¿Realmente Desea Borrar el detalle del servicio?'+
+                              '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Detalle</span>'+
+                                            '<input type="text" id="editDetalle'+dataResult.data[i].id+'" value="'+dataResult.data[i].detalle+'" name="editDetalle" class="form-control" autocomplete="off" >'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</br>'+
+                            '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Descripcion</span>'+
+                                            '<input type="text" id="editDescripcion'+dataResult.data[i].id+'" value="'+dataResult.data[i].descripcion+'" name="editDescripcion" class="form-control" autocomplete="off" >'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</br>'+
+                            '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Precio</span>'+
+                                            '<input type="text" id="editPrecio'+dataResult.data[i].id+'" value="'+dataResult.data[i].precio+'" name="editPrecio" class="form-control" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))" >'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</br>'+
                             '</div>'+
                             '<div class="modal-footer">'+
                               '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
-                              '<button class="btn btn-primary" onclick="eliminarServicio('+dataResult.data[i].id+')">'+
-                                'Aceptar'+
+                              '<button class="btn btn-primary" onclick="guardarEditServicio('+dataResult.data[i].id+')">'+
+                                'Actualizar'+
                               '</button>'+
                             '</div>'+
                           '</div>'+
@@ -214,33 +240,7 @@
                               '</button>'+
                             '</div>'+
                             '<div class="modal-body">'+
-                              '<div class="row justify-content-center">'+
-                                    '<div class="input-group-prepend col-10">'+
-                                        '<div class="input-group">'+
-                                            '<span class="input-group-text" >Detalle</span>'+
-                                            '<input type="text" id="editDetalle'+dataResult.data[i].id+'" name="editDetalle" class="form-control" autocomplete="off" >'+
-                                        '</div>'+
-                                    '</div>'+
-                                '</div>'+
-                            '</br>'+
-                            '<div class="row justify-content-center">'+
-                                    '<div class="input-group-prepend col-10">'+
-                                        '<div class="input-group">'+
-                                            '<span class="input-group-text" >Descripcion</span>'+
-                                            '<input type="text" id="editDescripcion'+dataResult.data[i].id+'" name="editDescripcion" class="form-control" autocomplete="off" >'+
-                                        '</div>'+
-                                    '</div>'+
-                                '</div>'+
-                            '</br>'+
-                            '<div class="row justify-content-center">'+
-                                    '<div class="input-group-prepend col-10">'+
-                                        '<div class="input-group">'+
-                                            '<span class="input-group-text" >Precio</span>'+
-                                            '<input type="text" id="editPrecio'+dataResult.data[i].id+'" name="editPrecio" class="form-control" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))" >'+
-                                        '</div>'+
-                                    '</div>'+
-                                '</div>'+
-                            '</br>'+
+                              '¿Realmente Desea Borrar el detalle del servicio?'+
                             '</div>'+
                             '<div class="modal-footer">'+
                               '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
@@ -320,7 +320,7 @@
                                     '<div class="input-group-prepend col-10">'+
                                         '<div class="input-group">'+
                                             '<span class="input-group-text" >Detalle</span>'+
-                                            '<input type="text" id="editDetalle'+dataResult.data[i].id+'" name="editDetalle" class="form-control" autocomplete="off" >'+
+                                            '<input type="text" id="editDetalle'+dataResult.data[i].id+'" value="'+dataResult.data[i].detalle+'" name="editDetalle" class="form-control" autocomplete="off" >'+
                                         '</div>'+
                                     '</div>'+
                                 '</div>'+
@@ -329,7 +329,7 @@
                                     '<div class="input-group-prepend col-10">'+
                                         '<div class="input-group">'+
                                             '<span class="input-group-text" >Descripcion</span>'+
-                                            '<input type="text" id="editDescripcion'+dataResult.data[i].id+'" name="editDescripcion" class="form-control" autocomplete="off" >'+
+                                            '<input type="text" id="editDescripcion'+dataResult.data[i].id+'" value="'+dataResult.data[i].descripcion+'" name="editDescripcion" class="form-control" autocomplete="off" >'+
                                         '</div>'+
                                     '</div>'+
                                 '</div>'+
@@ -338,7 +338,7 @@
                                     '<div class="input-group-prepend col-10">'+
                                         '<div class="input-group">'+
                                             '<span class="input-group-text" >Precio</span>'+
-                                            '<input type="text" id="editPrecio'+dataResult.data[i].id+'" name="editPrecio" class="form-control" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">'+
+                                            '<input type="text" id="editPrecio'+dataResult.data[i].id+'" value="'+dataResult.data[i].precio+'" name="editPrecio" class="form-control" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">'+
                                         '</div>'+
                                     '</div>'+
                                 '</div>'+
@@ -346,8 +346,8 @@
                             '</div>'+
                             '<div class="modal-footer">'+
                               '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
-                              '<button class="btn btn-primary" onclick="guardarEditservicio('+dataResult.data[i].id+')">'+
-                                'Aceptar'+
+                              '<button class="btn btn-primary" onclick="guardarEditServicio('+dataResult.data[i].id+')">'+
+                                'Actualizar'+
                               '</button>'+
                             '</div>'+
                           '</div>'+
@@ -439,32 +439,48 @@
                 });
     }
 
-    function guardarEditservicio(id){
+    function guardarEditServicio(id){
 
 
       var url1 = $('#editDetalle'+id).val();
       var url2 = $('#editDescripcion'+id).val();
       var url3 = $('#editPrecio'+id).val();
 
-      console.log(url1,url2,url3);
-
-      $('#editDetalle').val('');
-      $('#editDescripcion').val('');
-      $('#editPrecio').val('');
-
       $.ajax({
-          url: "/trabajos/nuevo/detalle/guardarServicio",
+          url: "/trabajos/nuevo/detalle/editarServicio",
           type: "POST",
           data: {
               "_token": "{{ csrf_token() }}",
               "id": id,
+              detalle: url1,
+              descripcion: url2,
+              precio: url3,
           },
           cache: false,
           dataType: 'json',
           success: function (dataResult) {
-              //console.log(dataResult);
-              verServicio();
-              $('#exampleModals'+id).modal('hide')
+             // console.log(dataResult.data);
+              if (dataResult.data == true) {
+                verServicio();
+                $('#exampleModals'+id).modal('hide')
+                  Swal.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: 'Servicio Actualizado!!',
+                  showConfirmButton: false,
+                  timer: 1500
+                })  
+              } else {
+                $('#exampleModals'+id).modal('hide')
+                  Swal.fire({
+                  position: 'center',
+                  icon: 'error',
+                  title: 'Ah ocurrido un Problema!!',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+              }
+              
           }
       });
     }

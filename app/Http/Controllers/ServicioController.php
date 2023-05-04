@@ -38,6 +38,23 @@ class ServicioController extends Controller
 
     }
 
+    public function edit()
+    {
+        try {
+            $servicio = Servicio::find($_POST["id"]);
+            $servicio->detalle = $_POST["detalle"];
+            $servicio->descripcion = $_POST["descripcion"];
+            $servicio->precio = $_POST["precio"];
+            $servicio->save();
+
+            return json_encode(array('data'=>true));
+        } catch (\Throwable $th) {
+            return json_encode(array('data'=>false));
+        }
+        
+
+    }
+
     public function guardarTabla(){
 
         $nuevo = DB::table('servicios')
