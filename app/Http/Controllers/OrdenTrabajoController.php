@@ -266,7 +266,7 @@ class OrdenTrabajoController extends Controller
             if ($file != null) {
                 for ($i=0; $i < sizeof($file) ; $i++) { 
                     //$nombre =  time()."_".$file[$i]->getClientOriginalName();//obtenemos el nombre del archivo
-                    $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ%&';
+                    $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
                     $nombre = substr(str_shuffle($permitted_chars), 0, 10);
 
                     $ima = new Imagen();
