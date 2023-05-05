@@ -15,7 +15,7 @@
       <div class="form-row">
         <div class="form-group col-md-6" style="padding-top: 32px">
           <div class="input-group">
-            <span class="input-group-text" style="background:rgb(2, 117, 216); color: aliceblue">Fabricante&nbsp;<strong>*</strong></span>
+            <span class="input-group-text" style="background:rgb(2, 117, 216); color: aliceblue">Fabricante&nbsp;<strong style="color: red">*</strong></span>
             <select name="manufactura" class="form-control" class="btn-block" required>
               <option selected value="Elige un Rol" disabled>Elige un Fabricante</option>
                 @foreach ($fabricante as $fabricantes)
@@ -26,7 +26,7 @@
           </div>
         </div>
         <div class="form-group col-md-6 pb-17">
-            <label for="inputPassword4">Modelo <strong>*</strong></label>
+            <label for="inputPassword4">Modelo <strong style="color: red">*</strong></label>
             <input type="text" class="form-control" id="modelo" name="modelo" placeholder="Ingrese el modelo" autocomplete="off"
             value="{{ old('modelo') }}" onkeyup="validarModelo()" required
             onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))">
@@ -35,24 +35,47 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-4">
-            <label for="inputCity">Número de Serie <strong>*</strong></label>
+            <label for="inputCity">Número de Serie <strong style="color: red">*</strong></label>
             <input type="text" class="form-control" id="numero_de_serie" name="numero_de_serie" autocomplete="off"
             placeholder="Ingrese número de serie" value="{{ old('numero_de_serie') }}" onkeyup="validarSerie()" autocomplete="off" required
             onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))">
             <span id="estadoSerie"></span>
           </div>
           <div class="form-group col-md-4">
-            <label for="inputCity">Firmware <strong>*</strong></label>
+            <label for="inputCity">Firmware <strong style="color: red">*</strong></label>
             <input type="text" class="form-control" id="firmware" name="firmware" autocomplete="off"
             placeholder="Ingrese el firmware" value="{{ old('firmware') }}" onkeyup="validarFirmware()" required
             onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 47))">
             <span id="estadoFirmware"></span>
           </div>
           <div class="form-group col-md-4">
-            <label for="inputCity">Capacidad<strong>*</strong></label>
+            <label for="inputCity">Capacidad<strong style="color: red">*</strong></label>
              <input type="text" style="text-transform:uppercase" class="form-control" id="capacidad" name="capacidad" autocomplete="off" placeholder="GB, TB" 
             value="{{ old('capacidad') }}" onkeyup="validarCapacidad()" required maxlength="8" onkeypress="return ((event.charCode >= 84 && event.charCode <= 84)||(event.charCode >= 116 && event.charCode <= 116)||(event.charCode >= 98 && event.charCode <= 98)||
                               (event.charCode >= 103 && event.charCode <= 103)||(event.charCode >= 66 && event.charCode <= 66)||(event.charCode >= 71 && event.charCode <= 71)||(event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">      
+          </div>
+        </div> 
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="inputCity">Part Number </label>
+            <input type="text" class="form-control" id="partNumber" name="partNumber" autocomplete="off"
+            placeholder="Part Number" value="{{ old('partNumber') }}" onkeyup="validarSerie()" autocomplete="off" 
+            onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))">
+            <span id="estadoSerie"></span>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputCity">Date Code </label>
+            <input type="text" class="form-control" id="dateCode" name="dateCode" autocomplete="off"
+            placeholder="Date Code" value="{{ old('dateCode') }}" onkeyup="validarFirmware()" 
+            onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 47))">
+            <span id="estadoFirmware"></span>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputCity">Site Code </label>
+            <input type="text" class="form-control" id="siteCode" name="siteCode" autocomplete="off"
+            placeholder="Site Code" value="{{ old('siteCode') }}" onkeyup="validarFirmware()"
+            onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 47))">
+            <span id="estadoFirmware"></span>
           </div>
         </div> 
         <div class="form-row">
@@ -92,23 +115,47 @@
             </div>
           </div>
         <div class="form-row">
-          <div class="form-group col-md-3">
-            <label for="inputCity">PCB <strong>*</strong></label>
-            <input type="text" class="form-control" id="pbc" name="pbc" placeholder="Ingrese la placa del disco" autocomplete="off"
-            value="{{ old('pbc') }}" onkeyup="validarPbc()" required
-            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
-            <span id="estadoPbc"></span>
-          </div>
           <div class="form-group col-md-4">
-            <label for="inputCity">Ubicación</label>
-              <input type="text" class="form-control" id="ubicacion" name="ubicacion" placeholder="Ingrese la ubicación" autocomplete="off"
-              onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209)|| (event.charCode == 45))">
+            <label for="inputCity">Product Of <strong style="color: red">*</strong></label>
+              <input type="text" class="form-control" id="productOf" name="productOf" placeholder="Product Of" autocomplete="off"
+              onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
             </div>
             <div class="form-group col-md-4">
-              <label for="inputCity">Fecha de Disco</label>
-                <input type="date" class="form-control" id="fechaDisco" name="fechaDisco" placeholder="Ingrese la ubicación" autocomplete="off">
-              </div>
+              <label for="inputCity">PCB Sticker <strong style="color: red">*</strong></label>
+              <input type="text" class="form-control" id="pbc" name="pbc" placeholder="Ingrese PCB Sticker" autocomplete="off"
+              value="{{ old('pbc') }}" onkeyup="validarPbc()" 
+              onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
+              <span id="estadoPbc"></span>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputCity">PCB Revision <strong style="color: red">*</strong></label>
+              <input type="text" class="form-control" id="pcbRevision" name="pcbRevision" placeholder=" PCB Revision" autocomplete="off"
+              value="{{ old('pcbRevision') }}" onkeyup="validarPbc()" 
+              onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
+              <span id="estadoPbc"></span>
+            </div>
           </div>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="inputCity">Phisycal Heads </label>
+          <input type="text" class="form-control" id="phisycalHeads" name="phisycalHeads" autocomplete="off"
+          placeholder="Phisycal Heads" value="{{ old('phisycalHeads') }}" 
+          onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 47))">
+          <span id="estadoFirmware"></span>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputCity">PrempType </label>
+          <input type="text" class="form-control" id="prempType" name="prempType" autocomplete="off"
+          placeholder="PrempType" value="{{ old('prempType') }}"  
+          onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 47))">
+          <span id="estadoFirmware"></span>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputCity">Ubicación</label>
+            <input type="text" class="form-control" id="ubicacion" name="ubicacion" placeholder="Ingrese la ubicación" autocomplete="off"
+            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209)|| (event.charCode == 45))">
+          </div>
+      </div>
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="inputCity">Nota</label>
@@ -130,7 +177,7 @@
           <textarea class="form-control" id="precio" name="precio" rows="1" cols="20" placeholder="Precio de Compra" autocomplete="off"></textarea>
         </div>
       </div>
-      <span class="mb-4"><strong>*</strong> Campos Obligatorios</span>
+      <span class="mb-4"><strong style="color: red">*</strong> Campos Obligatorios</span>
       <br><br>
       <div class="form-group">
         <button type="submit" class="btn btn-success my-2 my-sm-0">Registrar</button>

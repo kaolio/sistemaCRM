@@ -123,9 +123,15 @@ class InventarioController extends Controller
         $inventario->numero_de_serie = request('numero_de_serie');
         $inventario->firmware = request('firmware');
         $inventario->capacidad = request('capacidad');
+        $inventario->part_Number = request('partNumber');
+        $inventario->date_code = request('dateCode');
+        $inventario->site_code = request('siteCode');
+        $inventario->product_of = request('productOf');
         $inventario->pbc = request('pbc');
+        $inventario->pcb_revision = request('pcbRevision');
+        $inventario->phisycal_heads = request('phisycalHeads');
+        $inventario->premp_type = request('prempType');
         $inventario->ubicacion = request('ubicacion');
-        $inventario->fechaDisco = request('fechaDisco');
         $inventario->factor_de_forma = request('factor_de_forma');
         $inventario->nota = request('nota');
         $inventario->precio = request('precio');

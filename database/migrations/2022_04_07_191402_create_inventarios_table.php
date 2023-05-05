@@ -21,9 +21,15 @@ class CreateInventariosTable extends Migration
             $table->String('numero_de_serie'); 
             $table->String('firmware')->nullable();
             $table->String('capacidad')->nullable(); 
+            $table->String('part_Number')->nullable(); 
+            $table->String('date_code')->nullable(); 
+            $table->String('site_code')->nullable(); 
+            $table->String('product_of')->nullable(); 
             $table->String('pbc')->nullable();
+            $table->String('pcb_revision')->nullable(); 
+            $table->String('phisycal_heads')->nullable(); 
+            $table->String('premp_Type')->nullable(); 
             $table->String('ubicacion')->nullable();
-            $table->String('fechaDisco')->nullable();
             $table->String('factor_de_forma')->nullable();
             $table->String('nota')->nullable();
             $table->String('precio')->nullable();
