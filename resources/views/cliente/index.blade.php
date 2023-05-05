@@ -49,7 +49,6 @@
       <th class="text-center">CodigoPostal</th>
       <th class="text-center">Poblacion</th>
       <th class="text-center">Provincia</th>
-      <th class="text-center">Pais</th>
       <th class="text-center">Fecha</th>
       <th class="text-center">Nota</th>
       <th class="text-center" style="width: 10%">Acciones</th>
@@ -66,7 +65,6 @@
         <td class="text-center">{{$cliente->codigoPostal}}</td>
         <td class="text-center">{{$cliente->poblacion}}</td>
         <td class="text-center">{{$cliente->provincia}}</td>
-        <td class="text-center">{{$cliente->pais}}</td>
         <td class="text-center">{{  \Carbon\Carbon::parse($cliente->created_at)->format('d-m-Y')}}</td>
         <td class="text-center">{{$cliente->nota}}</td>
         <td style="width: 10%">

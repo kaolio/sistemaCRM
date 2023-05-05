@@ -257,7 +257,7 @@
                                             @foreach ($notas as $nota)
                                             <tr>
                                                 <td class="text-center">{{$nota->creado}}</td>
-                                                <td class="text-center">{{$nota->created_at}}</td>
+                                                <td class="text-center">{{ \Carbon\Carbon::parse($nota->created_at)->format('d-m-Y')}}</td>
                                                 <td>{{$nota->nota}}</td>
                                                 <td class="text-center">
                     

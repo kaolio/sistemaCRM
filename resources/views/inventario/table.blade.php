@@ -9,7 +9,7 @@
           <th class="column4 text-center">N° de Serie</th>
           <th class="column5 text-center">Firmware</th>
           <th class="column6 text-center">Capacidad</th>
-          <th class="column6 text-center">PBC</th>
+          <th class="column6 text-center">PCB</th>
           <th class="column6 text-center">Ubicación</th>
           <th class="column6 text-center">Factor de Forma</th>
           <th class="column6 text-center">Nota</th>
@@ -21,7 +21,7 @@
       <tbody class="table-bordered" id="myTable"> 
 
           <tr>
-            
+             
           </tr>
       </tbody> 
     </table>

@@ -182,17 +182,17 @@ function redireccionar(datos){
                 }
               var nuevafila= "<tr><td>" +
                 // "CHECK" + "</td><td class='text-center'>" +
-                dataResult.data[i].id + "</td><td>" +
-                dataResult.data[i].manufactura  + "</td><td>" +
-                dataResult.data[i].modelo  + "</td><td>" +
-                dataResult.data[i].numero_de_serie  + "</td><td>" +
-                dataResult.data[i].firmware  + "</td><td>" +
-                dataResult.data[i].capacidad  + "</td><td>"+
-                dataResult.data[i].pbc  + "</td><td>" +
-                dataResult.data[i].ubicacion  + "</td><td>" +
-                dataResult.data[i].factor_de_forma  + "</td><td>" +
-                dataResult.data[i].nota  + "</td><td>" +
-                dataResult.data[i].cabecera  + "</td><td>" +
+                dataResult.data[i].id + "</td><td class='text-center'>" +
+                dataResult.data[i].manufactura  + "</td><td class='text-center'>" +
+                dataResult.data[i].modelo  + "</td><td class='text-center'>" +
+                dataResult.data[i].numero_de_serie  + "</td><td class='text-center'>" +
+                dataResult.data[i].firmware  + "</td><td class='text-center'>" +
+                dataResult.data[i].capacidad  + "</td><td class='text-center'>"+
+                dataResult.data[i].pbc  + "</td><td class='text-center'>" +
+                dataResult.data[i].ubicacion  + "</td><td class='text-center'>" +
+                dataResult.data[i].factor_de_forma  + "</td><td class='text-center'>" +
+                dataResult.data[i].nota  + "</td><td class='text-center'>" +
+                dataResult.data[i].cabecera  + "</td><td class='text-center'>" +
                 dataResult.data[i].info_de_cabecera  + "</td><td>" +
                   '<button type="button" style="padding:3px" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data[i].id+'">'+
                       '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
@@ -346,18 +346,18 @@ $(document).ready(function(){
                 //   "<input class='form-check-input' type='checkbox' value='' id='"+dataResult.data[i].id+"'>"+
                 //   "</div>"+
                 // "</td><td class='text-center'>" +
-                  dataResult.data[i].id + "</td><td>" +
-                dataResult.data[i].manufactura  + "</td><td>" +
-                dataResult.data[i].modelo  + "</td><td>" +
-                dataResult.data[i].numero_de_serie  + "</td><td>" +
-                dataResult.data[i].firmware  + "</td><td>" +
-                dataResult.data[i].capacidad  + "</td><td>"+
-                dataResult.data[i].pbc  + "</td><td>" +
-                dataResult.data[i].ubicacion  + "</td><td>" +
-                dataResult.data[i].factor_de_forma  + "</td><td>" +
-                dataResult.data[i].nota  + "</td><td>" +
-                dataResult.data[i].cabecera  + "</td><td>" +
-                dataResult.data[i].info_de_cabecera  + "</td><td>" +
+                  dataResult.data[i].id + "</td><td class='text-center'>" +
+                dataResult.data[i].manufactura  + "</td><td class='text-center'>" +
+                dataResult.data[i].modelo  + "</td><td class='text-center'>" +
+                dataResult.data[i].numero_de_serie  + "</td><td class='text-center'>" +
+                dataResult.data[i].firmware  + "</td><td class='text-center'>" +
+                dataResult.data[i].capacidad  + "</td><td class='text-center'>"+
+                dataResult.data[i].pbc  + "</td><td class='text-center'>" +
+                dataResult.data[i].ubicacion  + "</td><td class='text-center'>" +
+                dataResult.data[i].factor_de_forma  + "</td><td class='text-center'>" +
+                dataResult.data[i].nota  + "</td><td class='text-center'>" +
+                dataResult.data[i].cabecera  + "</td><td class='text-center'>" +
+                dataResult.data[i].info_de_cabecera  + "</td><td class='text-center'>" +
                     '<button type="button" style="padding:3px" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data[i].id+'">'+
                       '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
                         '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
@@ -633,18 +633,18 @@ $(function(){
                   text = " ";
                 }
               var nuevafila= "<tr><td>" +
-                dataResult.data[i].id + "</td><td>" +
-                dataResult.data[i].manufactura  + "</td><td>" +
-                dataResult.data[i].modelo  + "</td><td>" +
-                dataResult.data[i].numero_de_serie  + "</td><td>" +
-                dataResult.data[i].firmware  + "</td><td>" +
-                dataResult.data[i].capacidad  + "</td><td>"+
-                dataResult.data[i].pbc  + "</td><td>" +
-                dataResult.data[i].ubicacion  + "</td><td>" +
-                dataResult.data[i].factor_de_forma  + "</td><td>" +
-                dataResult.data[i].nota  + "</td><td>" +
-                dataResult.data[i].cabecera  + "</td><td>" +
-                dataResult.data[i].info_de_cabecera  + "</td><td>" +
+                dataResult.data[i].id + "</td><td class='text-center'>" +
+                dataResult.data[i].manufactura  + "</td><td class='text-center'>" +
+                dataResult.data[i].modelo  + "</td><td class='text-center'>" +
+                dataResult.data[i].numero_de_serie  + "</td><td class='text-center'>" +
+                dataResult.data[i].firmware  + "</td><td class='text-center'>" +
+                dataResult.data[i].capacidad  + "</td><td class='text-center'>"+
+                dataResult.data[i].pbc  + "</td><td class='text-center'>" +
+                dataResult.data[i].ubicacion  + "</td><td class='text-center'>" +
+                dataResult.data[i].factor_de_forma  + "</td><td class='text-center'>" +
+                dataResult.data[i].nota  + "</td><td class='text-center'>" +
+                dataResult.data[i].cabecera  + "</td><td class='text-center'>" +
+                dataResult.data[i].info_de_cabecera  + "</td><td class='text-center'>" +
                   '<button type="button" style="padding:3px" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data[i].id+'">'+
                       '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
                         '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
@@ -775,18 +775,18 @@ $(function(){
                   text = " ";
                 }
               var nuevafila= "<tr><td>" +
-                dataResult.data[i].id + "</td><td>" +
-                dataResult.data[i].manufactura  + "</td><td>" +
-                dataResult.data[i].modelo  + "</td><td>" +
-                dataResult.data[i].numero_de_serie  + "</td><td>" +
-                dataResult.data[i].firmware  + "</td><td>" +
-                dataResult.data[i].capacidad  + "</td><td>"+
-                dataResult.data[i].pbc  + "</td><td>" +
-                dataResult.data[i].ubicacion  + "</td><td>" +
-                dataResult.data[i].factor_de_forma  + "</td><td>" +
-                dataResult.data[i].nota  + "</td><td>" +
-                dataResult.data[i].cabecera  + "</td><td>" +
-                dataResult.data[i].info_de_cabecera  + "</td><td>" +
+                dataResult.data[i].id + "</td><td class='text-center'>" +
+                dataResult.data[i].manufactura  + "</td><td class='text-center'>" +
+                dataResult.data[i].modelo  + "</td><td class='text-center'>" +
+                dataResult.data[i].numero_de_serie  + "</td><td class='text-center'>" +
+                dataResult.data[i].firmware  + "</td><td class='text-center'>" +
+                dataResult.data[i].capacidad  + "</td><td class='text-center'>"+
+                dataResult.data[i].pbc  + "</td><td class='text-center'>" +
+                dataResult.data[i].ubicacion  + "</td><td class='text-center'>" +
+                dataResult.data[i].factor_de_forma  + "</td><td class='text-center'>" +
+                dataResult.data[i].nota  + "</td><td class='text-center'>" +
+                dataResult.data[i].cabecera  + "</td><td class='text-center'>" +
+                dataResult.data[i].info_de_cabecera  + "</td><td class='text-center'>" +
                   '<button type="button" style="padding:3px" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data[i].id+'">'+
                       '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
                         '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
@@ -918,18 +918,18 @@ $(function(){
                   text = " ";
                 }
               var nuevafila= "<tr><td>" +
-                dataResult.data[i].id + "</td><td>" +
-                dataResult.data[i].manufactura  + "</td><td>" +
-                dataResult.data[i].modelo  + "</td><td>" +
-                dataResult.data[i].numero_de_serie  + "</td><td>" +
-                dataResult.data[i].firmware  + "</td><td>" +
-                dataResult.data[i].capacidad  + "</td><td>"+
-                dataResult.data[i].pbc  + "</td><td>" +
-                dataResult.data[i].ubicacion  + "</td><td>" +
-                dataResult.data[i].factor_de_forma  + "</td><td>" +
-                dataResult.data[i].nota  + "</td><td>" +
-                dataResult.data[i].cabecera  + "</td><td>" +
-                dataResult.data[i].info_de_cabecera  + "</td><td>" +
+                dataResult.data[i].id + "</td><td class='text-center'>" +
+                dataResult.data[i].manufactura  + "</td><td class='text-center'>" +
+                dataResult.data[i].modelo  + "</td><td class='text-center'>" +
+                dataResult.data[i].numero_de_serie  + "</td><td class='text-center'>" +
+                dataResult.data[i].firmware  + "</td><td class='text-center'>" +
+                dataResult.data[i].capacidad  + "</td><td class='text-center'>"+
+                dataResult.data[i].pbc  + "</td><td class='text-center'>" +
+                dataResult.data[i].ubicacion  + "</td><td class='text-center'>" +
+                dataResult.data[i].factor_de_forma  + "</td><td class='text-center'>" +
+                dataResult.data[i].nota  + "</td><td class='text-center'>" +
+                dataResult.data[i].cabecera  + "</td><td class='text-center'>" +
+                dataResult.data[i].info_de_cabecera  + "</td><td class='text-center'>" +
                   '<button type="button" style="padding:3px" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data[i].id+'">'+
                       '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
                         '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
@@ -1062,18 +1062,18 @@ $(function(){
                 }
 
               var nuevafila= "<tr><td>" +
-                dataResult.data[i].id + "</td><td>" +
-                dataResult.data[i].manufactura  + "</td><td>" +
-                dataResult.data[i].modelo  + "</td><td>" +
-                dataResult.data[i].numero_de_serie  + "</td><td>" +
-                dataResult.data[i].firmware  + "</td><td>" +
-                dataResult.data[i].capacidad  + "</td><td>"+
-                dataResult.data[i].pbc  + "</td><td>" +
-                dataResult.data[i].ubicacion  + "</td><td>" +
-                dataResult.data[i].factor_de_forma  + "</td><td>" +
-                dataResult.data[i].nota  + "</td><td>" +
-                dataResult.data[i].cabecera  + "</td><td>" +
-                dataResult.data[i].info_de_cabecera  + "</td><td>" +
+                dataResult.data[i].id + "</td><td class='text-center'>" +
+                dataResult.data[i].manufactura  + "</td><td class='text-center'>" +
+                dataResult.data[i].modelo  + "</td><td class='text-center'>" +
+                dataResult.data[i].numero_de_serie  + "</td><td class='text-center'>" +
+                dataResult.data[i].firmware  + "</td><td class='text-center'>" +
+                dataResult.data[i].capacidad  + "</td><td class='text-center'>"+
+                dataResult.data[i].pbc  + "</td><td class='text-center'>" +
+                dataResult.data[i].ubicacion  + "</td><td class='text-center'>" +
+                dataResult.data[i].factor_de_forma  + "</td><td class='text-center'>" +
+                dataResult.data[i].nota  + "</td><td class='text-center'>" +
+                dataResult.data[i].cabecera  + "</td><td class='text-center'>" +
+                dataResult.data[i].info_de_cabecera  + "</td><td class='text-center'>" +
                   '<button type="button" style="padding:3px" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data[i].id+'">'+
                       '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
                         '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
@@ -1205,18 +1205,18 @@ $(function(){
                   text = " ";
                 }
               var nuevafila= "<tr><td>" +
-                dataResult.data[i].id + "</td><td>" +
-                dataResult.data[i].manufactura  + "</td><td>" +
-                dataResult.data[i].modelo  + "</td><td>" +
-                dataResult.data[i].numero_de_serie  + "</td><td>" +
-                dataResult.data[i].firmware  + "</td><td>" +
-                dataResult.data[i].capacidad  + "</td><td>"+
-                dataResult.data[i].pbc  + "</td><td>" +
-                dataResult.data[i].ubicacion  + "</td><td>" +
-                dataResult.data[i].factor_de_forma  + "</td><td>" +
-                dataResult.data[i].nota  + "</td><td>" +
-                dataResult.data[i].cabecera  + "</td><td>" +
-                dataResult.data[i].info_de_cabecera  + "</td><td>" +
+                dataResult.data[i].id + "</td><td class='text-center'>" +
+                dataResult.data[i].manufactura  + "</td><td class='text-center'>" +
+                dataResult.data[i].modelo  + "</td><td class='text-center'>" +
+                dataResult.data[i].numero_de_serie  + "</td><td class='text-center'>" +
+                dataResult.data[i].firmware  + "</td><td class='text-center'>" +
+                dataResult.data[i].capacidad  + "</td><td class='text-center'>"+
+                dataResult.data[i].pbc  + "</td><td class='text-center'>" +
+                dataResult.data[i].ubicacion  + "</td><td class='text-center'>" +
+                dataResult.data[i].factor_de_forma  + "</td><td class='text-center'>" +
+                dataResult.data[i].nota  + "</td><td class='text-center'>" +
+                dataResult.data[i].cabecera  + "</td><td class='text-center'>" +
+                dataResult.data[i].info_de_cabecera  + "</td><td class='text-center'>" +
                   '<button type="button" style="padding:3px" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data[i].id+'">'+
                       '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
                         '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
