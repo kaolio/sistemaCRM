@@ -34,7 +34,7 @@ class HomeController extends Controller
                     ->where('model_id',Auth::user()->id)
                     ->first();
             $rol = Role::findById($rols->role_id)->name ;
-        if (Role::findById(Auth::user()->id)->name != 'ADMINISTRADOR') {
+        if ($rol != 'ADMINISTRADOR') {
             
             $trabajosUrgentes = DB::table('orden_trabajos')
                             ->select('*')

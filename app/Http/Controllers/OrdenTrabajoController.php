@@ -153,7 +153,6 @@ class OrdenTrabajoController extends Controller
     public function store(Request $request, Roles $roles)
     {
 
-       try {
         
             $posicion_coincidencia = strpos($request->get('cliente'), ',');
 
@@ -274,7 +273,7 @@ class OrdenTrabajoController extends Controller
                     $ima->id_trabajo = $datoTrabajo->id;
                     $ima->save();
                     //storage::disk('imagenes')->put($nombre, File::get($file[$i]));//indicamos que queremos guardar un nuevo archivo en el disco local
-                    $request->file('imagen')->move(base_path('public/imagenes-caso/'),  $datoTrabajo->id."-".$nombre.'.jpg');
+                    $file[$i]->move(base_path('public/imagenes-caso/'),  $datoTrabajo->id."-".$nombre.'.jpg');
                 } 
             }
 
@@ -285,9 +284,7 @@ class OrdenTrabajoController extends Controller
             $rol = Role::findById($rols->role_id)->name ;
             return view('trabajo.confirmacion',compact('trabajo','cliente','acceso','rol'));
 
-       } catch (\Throwable $th) {
-            return view('errors.errorCreacionPartner');
-       }
+       
         
         //dd($cliente);
     }
