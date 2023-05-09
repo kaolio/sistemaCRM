@@ -122,6 +122,7 @@ Route::post('/trabajos/detalle/guardarEstado',[DetalleController::class,'guardar
 Route::post('/trabajos/detalle/guardarPrioridad',[DetalleController::class,'guardarPrioridad']); //ruta para guardar prioridad
 Route::post('/trabajos/detalle/NotaCliente',[DetalleController::class,'guardarNotaCliente']); //guardar nota de cliente
 Route::post('/trabajos/detalle/nota',[DetalleController::class,'guardarNota']); //guardar comentario
+Route::post('/trabajos/detalle/editCliente',[DetalleController::class,'actualizarCliente']);
 Route::post('/trabajos/nuevo/detalle/datosTabla',[DetalleController::class,'datosTabla']); //ruta de tabla pacientes
 Route::post('/trabajos/nuevo/detalle/datosClones',[DetalleController::class,'datosClones']); //ruta tabla clones 
 Route::post('/trabajos/nuevo/detalle/datosDonantes',[DetalleController::class,'datosDonantes']); //ruta tabla donantes

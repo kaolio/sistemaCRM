@@ -94,7 +94,7 @@
             <select name="manufactura" class="form-control" class="btn-block" required>
                 <option selected disabled value="">Elija el Fabricante</option>
                 @foreach ($fabricante as $fabricantes)
-                   @if ($fabricantes->nombre_fabricante == $inventario_elegido->fabricante)
+                   @if ($fabricantes->nombre_fabricante == $inventario_elegido->manufactura)
                   <option value="{{$fabricantes->nombre_fabricante}}" selected>{{$fabricantes->nombre_fabricante}}</option>
                   @else
                   <option value="{{$fabricantes->nombre_fabricante}}">{{$fabricantes->nombre_fabricante}}</option>
@@ -138,6 +138,29 @@
               (event.charCode >= 103 && event.charCode <= 103)||(event.charCode >= 66 && event.charCode <= 66)||(event.charCode >= 71 && event.charCode <= 71)||(event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32))">      
                      <span id="estadoCapacidad"></span>
           </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="inputCity">Part Number </label>
+          <input type="text" class="form-control" id="partNumber" name="partNumber" autocomplete="off" value="{{$inventario->part_Number}}"
+          placeholder="Part Number" value="{{ old('partNumber') }}" onkeyup="validarSerie()" autocomplete="off" 
+          onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))">
+          <span id="estadoSerie"></span>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputCity">Date Code </label>
+          <input type="text" class="form-control" id="dateCode" name="dateCode" autocomplete="off" value="{{$inventario->date_code}}"
+          placeholder="Date Code" value="{{ old('dateCode') }}" onkeyup="validarFirmware()" 
+          onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 47))">
+          <span id="estadoFirmware"></span>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputCity">Site Code </label>
+          <input type="text" class="form-control" id="siteCode" name="siteCode" autocomplete="off" value="{{$inventario->site_code}}"
+          placeholder="Site Code" value="{{ old('siteCode') }}" onkeyup="validarFirmware()"
+          onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 47))">
+          <span id="estadoFirmware"></span>
+        </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-4" style="padding-top: 8px">
@@ -190,24 +213,48 @@
             </div>
           </div> 
         </div>
-      <div class="form-row">
+        <div class="form-row">
           <div class="form-group col-md-4">
-            <label for="inputCity">PCB <strong>*</strong></label>
-            <input type="text" class="form-control" id="pbc" name="pbc" value="{{$inventario->pbc}}" autocomplete="off"
-                   value="{{ old('pbc') }}" onkeyup="validarPbc()" required
-                   onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
-                   <span id="estadoPbc"></span>
-          </div>
-          <div class="form-group col-md-4">
-              <label for="inputCity">Ubicación </label>
-              <input type="text" class="form-control" id="ubicacion" name="ubicacion" value="{{$inventario->ubicacion}}" autocomplete="off"
+            <label for="inputCity">Product Of <strong style="color: red">*</strong></label>
+              <input type="text" class="form-control" id="productOf" name="productOf" placeholder="Product Of" autocomplete="off" value="{{$inventario->product_of}}"
               onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
-          </div> 
-          <div class="form-group col-md-4">
-            <label for="inputCity">Fecha de Disco</label>
-              <input type="date" class="form-control" id="fechaDisco" name="fechaDisco"  value="{{$inventario->fechaDisco}}" autocomplete="off">
             </div>
-      </div>
+            <div class="form-group col-md-4">
+              <label for="inputCity">PCB Sticker <strong style="color: red">*</strong></label>
+              <input type="text" class="form-control" id="pbc" name="pbc" placeholder="Ingrese PCB Sticker" autocomplete="off" value="{{$inventario->pbc}}"
+              value="{{ old('pbc') }}" onkeyup="validarPbc()" 
+              onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
+              <span id="estadoPbc"></span>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputCity">PCB Revision</label>
+              <input type="text" class="form-control" id="pcbRevision" name="pcbRevision" placeholder=" PCB Revision" autocomplete="off" value="{{$inventario->pcb_revision}}"
+              value="{{ old('pcbRevision') }}" onkeyup="validarPbc()" 
+              onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
+              <span id="estadoPbc"></span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="inputCity">Phisycal Heads </label>
+              <input type="text" class="form-control" id="phisycalHeads" name="phisycalHeads" autocomplete="off" value="{{$inventario->phisycal_heads}}"
+              placeholder="Phisycal Heads" value="{{ old('phisycalHeads') }}" 
+              onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 47))">
+              <span id="estadoFirmware"></span>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputCity">PrempType </label>
+              <input type="text" class="form-control" id="prempType" name="prempType" autocomplete="off" value="{{$inventario->premp_type}}"
+              placeholder="PrempType" value="{{ old('prempType') }}"  
+              onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 47))">
+              <span id="estadoFirmware"></span>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputCity">Ubicación</label>
+                <input type="text" class="form-control" id="ubicacion" name="ubicacion" placeholder="Ingrese la ubicación" autocomplete="off" value="{{$inventario->ubicacion}}"
+                onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209)|| (event.charCode == 45))">
+              </div>
+          </div>
       <div class="form-row">
           <div class="form-group col-md-4">
             <label for="inputCity">Nota </label>

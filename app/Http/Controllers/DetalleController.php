@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
 use App\Models\Clones;
 use App\Models\Nota;
 use App\Models\DetalleOrden;
 use App\Models\Donantes;
+use Facade\FlareClient\Http\Client;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -111,8 +113,8 @@ class DetalleController extends InventarioController
             $orden_elegida = DB::table('orden_trabajos')
                                     ->join('clientes','clientes.id','=','orden_trabajos.id_cliente')
                                     ->join('users','users.id','=','orden_trabajos.asignado')
-                                    ->select('clientes.nombreCliente','clientes.cif','clientes.calle','clientes.codigoPostal','clientes.provincia',
-                                    'clientes.pais','clientes.nota','users.name','orden_trabajos.id','orden_trabajos.informacion','orden_trabajos.estado','orden_trabajos.prioridad','orden_trabajos.datosImportantes','orden_trabajos.nombre_archivo','orden_trabajos.password','orden_trabajos.lista_archivo','orden_trabajos.nota as notaOrden')
+                                    ->select('clientes.nombreCliente','clientes.cif','clientes.calle','clientes.codigoPostal','clientes.provincia','clientes.correo','clientes.numero','clientes.telefono', 'clientes.poblacion','clientes.idioma',
+                                    'clientes.pais','clientes.nota','users.name','orden_trabajos.id_cliente','orden_trabajos.id','orden_trabajos.informacion','orden_trabajos.estado','orden_trabajos.prioridad','orden_trabajos.datosImportantes','orden_trabajos.nombre_archivo','orden_trabajos.password','orden_trabajos.lista_archivo','orden_trabajos.nota as notaOrden')
                                     ->where('orden_trabajos.id','=',$id)
                                     ->first(); 
 
@@ -630,7 +632,7 @@ class DetalleController extends InventarioController
 
             return json_encode(array('data'=>$clonesRestantes));
     }
-
+ 
     public function actualizarDispositivo(){
 
         $tipos = DB::table('detalle_ordens')
@@ -732,6 +734,18 @@ class DetalleController extends InventarioController
                 
             }
         }
+    }
+
+    public function actualizarCliente(){
+
+
+
+            DB::table('clientes')
+                    ->where('id','=', $_POST["id_cliente"])
+                    ->update(['nombreCliente' => $_POST["nombre"]]);
+    
+            return json_encode(array('data'=>true));
+                
     }
 
 

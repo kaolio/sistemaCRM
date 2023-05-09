@@ -185,7 +185,7 @@ class InventarioController extends Controller
                     ->select('*')
                     ->Where('inventarios.id', '=', $id)
                     ->first();
-            // return $inventario;
+                    //dd($inventario_elegido->manufactura);
             return view('inventario.editar',compact('inventario', 'inventario_elegido','fabricante','factor','dispositivo'));
 
         } catch (\Throwable $th) {
@@ -211,7 +211,14 @@ class InventarioController extends Controller
         $inventario->numero_de_serie = request('numero_de_serie');
         $inventario->firmware = request('firmware');
         $inventario->capacidad = request('capacidad');
+        $inventario->part_Number = request('partNumber');
+        $inventario->date_code = request('dateCode');
+        $inventario->site_code = request('siteCode');
+        $inventario->product_of = request('productOf');
         $inventario->pbc = request('pbc');
+        $inventario->pcb_revision = request('pcbRevision');
+        $inventario->phisycal_heads = request('phisycalHeads');
+        $inventario->premp_type = request('prempType');
         $inventario->ubicacion = request('ubicacion');
         $inventario->factor_de_forma = request('factor_de_forma');
         $inventario->nota = request('nota');

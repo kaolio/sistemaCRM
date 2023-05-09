@@ -488,7 +488,7 @@
                                 '</div>'+
                             '</div>'+
                             
-                            '<div class="modal-footer">'+
+                            '<div class="modal-footer">'+ 
                             '<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>'+
                             '<button class="btn btn-primary" onclick="actualizarDispositivo('+dataResult.data[i].id+')" >'+
                                 'Actualizar'+

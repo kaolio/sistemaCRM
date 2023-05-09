@@ -314,5 +314,46 @@
             $('#submit').prop("disabled", false);
             }
     })*/
+
+    function actualizarCliente(id_cliente){
+            
+            var nombre = $("#clienteNombre"+id_cliente).val();
+            var correo = $("#editCorreoCliente"+id_cliente).val();
+            var direccion = $("#editDireccionCliente"+id_cliente).val();
+            var cif = $("#editCifCliente"+id_cliente).val();
+            var movil = $("#editMovilCliente"+id_cliente).val();
+            var telefono = $("#editNombreUnidad"+id_cliente).val();
+            var postal = $("#editPostalCliente"+id_cliente).val();
+            var poblacion = $("#editPoblacionCliente"+id_cliente).val();
+            var provincia = $("#editProvinciaCliente"+id_cliente).val();
+            var ciudad = $("#editCiudadCliente"+id_cliente).val();
+
+            $.ajax({
+                url: "/trabajos/detalle/editCliente",
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "id_cliente": id_cliente,
+                    "nombre": nombre,
+                    "correo": correo,
+                    "direccion": direccion,
+                    "cif": cif,
+                    "movil": movil,
+                    "telefono": telefono,
+                    "postal": postal,
+                    "poblacion": poblacion,
+                    "provincia": provincia,
+                    "ciudad": ciudad,
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (dataResult) {
+                    console.log(dataResult);
+                    $('#editarCliente'+id_cliente).modal('hide');
+               
+                }
+                
+            });
+        }
     
 </script>

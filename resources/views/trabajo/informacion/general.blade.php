@@ -104,11 +104,128 @@
                 </div>
             </div>
 
+            <div class="modal fade" id="editarCliente{{$orden_elegida->id_cliente}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Editar Cliente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row justify-content-center">
+                            <div class="input-group-prepend col-10">
+                                <div class="input-group">
+                                    <span class="input-group-text" >Nombre</span>
+                                    <input type="text" id="clienteNombre" name="clienteNombre" class="form-control" autocomplete="off" value="{{$orden_elegida->nombreCliente}}">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row justify-content-center">
+                            <div class="input-group-prepend col-10">
+                                <div class="input-group">
+                                    <span class="input-group-text" >Correo Electronico</span>
+                                    <input type="text" id="clienteCorreo" name="clienteCorreo" class="form-control" autocomplete="off" value="{{$orden_elegida->correo}}">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row justify-content-center">
+                            <div class="input-group-prepend col-10">
+                                <div class="input-group">
+                                    <span class="input-group-text" >Direccion</span>
+                                    <input type="text" id="clienteDireccion" name="clienteDireccion" class="form-control" autocomplete="off" value="{{$orden_elegida->calle}}">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row justify-content-center">
+                            <div class="input-group-prepend col-10">
+                                <div class="input-group">
+                                    <span class="input-group-text" >CIF</span>
+                                    <input type="text" id="clienteCif" name="clienteCif" class="form-control" autocomplete="off" value="{{$orden_elegida->cif}}">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    <div class="row justify-content-center">
+                            <div class="input-group-prepend col-10">
+                                <div class="input-group">
+                                    <span class="input-group-text" >Tel.Movil</span>
+                                    <input type="text" id="clienteMovil" name="clienteMovil" class="form-control" autocomplete="off" value="{{$orden_elegida->numero}}">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row justify-content-center">
+                            <div class="input-group-prepend col-10">
+                                <div class="input-group">
+                                <span class="input-group-text" >Telefono</span>
+                                    <input type="text" id="clienteTelefono" name="clienteTelefono" class="form-control" autocomplete="off" value="{{$orden_elegida->telefono}}">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row justify-content-center">
+                            <div class="input-group-prepend col-10">
+                                <div class="input-group">
+                                <span class="input-group-text" >Codigo Postal</span>
+                                    <input type="text" id="clientePostal" name="clientePostal" class="form-control" autocomplete="off" value="{{$orden_elegida->codigoPostal}}">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row justify-content-center">
+                            <div class="input-group-prepend col-10">
+                                <div class="input-group">
+                                <span class="input-group-text" >Poblacion</span>
+                                    <input type="text" id="clientePoblacion" name="clientePoblacion" class="form-control" autocomplete="off" value="{{$orden_elegida->poblacion}}">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row justify-content-center">
+                            <div class="input-group-prepend col-10">
+                                <div class="input-group">
+                                <span class="input-group-text" >Provincia</span>
+                                    <input type="text" id="clienteProvincia" name="clienteProvincia" class="form-control" autocomplete="off" value="{{$orden_elegida->provincia}}">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row justify-content-center">
+                            <div class="input-group-prepend col-10">
+                                <div class="input-group">
+                                <span class="input-group-text" >Ciudad</span>
+                                    <input type="text" id="clienteCiudad" name="clienteCiudad" class="form-control" autocomplete="off" value="{{$orden_elegida->pais}}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-primary" onclick="actualizarCliente({{$orden_elegida->id_cliente}})" >
+                            Actualizar
+                        </button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
                 <div class="col-7">
                     <div class="card">
+                        
                         <div class="card">
+                           <button class="btn btn-white boton" data-toggle="modal" data-target="#editarCliente{{$orden_elegida->id_cliente}}">
+                            <svg xmlns="http://www.w3.org/2000/svg"  width="20" height="20" fill="blue" viewBox="0 0 512 512">
+                                <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg>   
+                        </button> 
                             </br>
                         <h6 class="text-left" style="position: relative;left:20px">&nbsp;&nbsp;<b>INFORMACION DE CLIENTE </b></h6>
+                        
                          </br>
                             <p class="text-left" style="position: relative;left:30px">&nbsp;&nbsp;<b>Nombre de Cliente:</b>&nbsp;&nbsp;&nbsp;{{$orden_elegida->nombreCliente}}</p>
                             <p class="text-left" style="position: relative;left:30px">&nbsp;&nbsp;<b>CIF:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
