@@ -21,7 +21,8 @@
                         <div class="card-body">
                             <h3><b>{{$orden_elegida->id}} - {{$orden_elegida->nombreCliente}}</b></h3>
                             <button class="btn btn-warning" id="botones"data-toggle="modal" data-target="#exampleModal01">Asignar un Usuario</button>
-                            <button class="btn btn-primary" id="botones">Formulario de Admision</button>
+                            <button class="btn btn-primary" id="botones"><a class="text-white" href="{{URL('/trabajo/imprimirContrato/'.$orden_elegida->id)}}" target="_blank" rel="noopener noreferrer">Contrato</a></button>
+                            <button class="btn btn-warning" id="botones"><a class="text-dark" href="{{URL('/trabajo/imprimirOrden/'.$orden_elegida->id)}}" target="_blank" rel="noopener noreferrer">Imprimir Orden</a></button>
                             <button class="btn btn-primary" id="botones"data-toggle="modal" data-target="#ListaDeArchivos{{$orden_elegida->id}}">Ir a Lista de archivos</button>
                             <button class="btn btn-warning" id="botones">Desbloquear Acceso de cliente</button>
                         </div>

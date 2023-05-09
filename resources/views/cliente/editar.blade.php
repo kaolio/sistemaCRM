@@ -43,7 +43,7 @@
                       </div>
                       <div class="col-3">
                         <div class="input-group">
-                          <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Número</span>
+                          <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Tel. Movil</span>
                         <input type="text" id="numero" name="numero" class="form-control" 
                            value="{{$cliente->numero}}" onkeyup="" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
                         </div>

@@ -153,7 +153,6 @@ class OrdenTrabajoController extends Controller
     public function store(Request $request, Roles $roles)
     {
 
-       try {
         
             $posicion_coincidencia = strpos($request->get('cliente'), ',');
 
@@ -274,7 +273,7 @@ class OrdenTrabajoController extends Controller
                     $ima->id_trabajo = $datoTrabajo->id;
                     $ima->save();
                     //storage::disk('imagenes')->put($nombre, File::get($file[$i]));//indicamos que queremos guardar un nuevo archivo en el disco local
-                    $request->file('imagen')->move(base_path('public/imagenes-caso/'),  $datoTrabajo->id."-".$nombre.'.jpg');
+                    $file[$i]->move(base_path('public/imagenes-caso/'),  $datoTrabajo->id."-".$nombre.'.jpg');
                 } 
             }
 
@@ -285,9 +284,7 @@ class OrdenTrabajoController extends Controller
             $rol = Role::findById($rols->role_id)->name ;
             return view('trabajo.confirmacion',compact('trabajo','cliente','acceso','rol'));
 
-       } catch (\Throwable $th) {
-            return view('errors.errorCreacionPartner');
-       }
+       
         
         //dd($cliente);
     }
@@ -352,6 +349,55 @@ class OrdenTrabajoController extends Controller
             $pdf = \PDF::loadView('/trabajo/reportes/ordenVarios',compact('contenedor'));
             
             return $pdf->setPaper('carta', 'portrait')->stream('orden.pdf');
+    }
+
+    public function imprimirContrato($id)
+    {
+        
+        $contenedor = [];
+        
+            $variable = [];
+            $datos = DB::table('orden_trabajos')
+                ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                ->select('clientes.nombreCliente','clientes.calle','clientes.poblacion','clientes.cif','clientes.numero',
+                'orden_trabajos.id','orden_trabajos.created_at','orden_trabajos.prioridad')
+                ->where('orden_trabajos.id',$id)
+                ->first(); 
+
+            $precio_prioridad = DB::table('prioridads')
+                ->select('prioridad_precio')
+                ->where('prioridads.nombre_prioridad',$datos->prioridad)
+                ->first();
+
+            $aux = [];
+            $detalle = DB::table('detalle_ordens')
+                ->select('*')
+                ->where('detalle_ordens.id_trabajos', $id)
+                ->first(); 
+
+            $precio_mal_funcionamiento = DB::table('mal_funcionamientos')
+                ->select('mal_funcio_precio')
+                ->where('mal_funcionamiento',  $detalle->mal_funcionamiento)
+                ->first();
+                
+            $total = $precio_prioridad->prioridad_precio + $precio_mal_funcionamiento->mal_funcio_precio;
+            
+            array_push($variable, $datos);
+            array_push($variable, $precio_prioridad);
+            array_push($variable, $precio_mal_funcionamiento);
+            array_push($variable, $total);
+
+            foreach ($detalle as $detalle) {
+                array_push($aux, $detalle);
+            }
+            array_push($variable, $aux);
+            array_push($contenedor, $variable);
+            
+            //dd($contenedor);
+
+            $pdf = \PDF::loadView('/trabajo/reportes/contrato',compact('contenedor'));
+            
+            return $pdf->setPaper('A4', 'portrait')->stream('contrato.pdf');
     }
 
     /**

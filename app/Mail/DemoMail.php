@@ -35,6 +35,6 @@ class DemoMail extends Mailable
     public function build()
     {
         return $this->subject('RECUPERACION DE DATOS')
-        ->view('emails.demoMail',compact($this->datos,$this->total));
+        ->view('emails.demoMail');
     }
 }
