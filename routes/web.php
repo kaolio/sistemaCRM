@@ -43,7 +43,7 @@ Route::get('/', function () {
 Auth::routes();
 
 //HOME
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware();
 Route::post('/home/datosDashboard',[HomeController::class, 'datosDashboard']);
 Route::get('/home/urgente',[HomeController::class, 'urgente']);
 Route::get('/home/completo',[HomeController::class, 'completo']);
@@ -99,6 +99,7 @@ Route::get('/trabajo/pdf',[OrdenTrabajoController::class,'descargarPDF']); //rut
 Route::get('/trabajo/excel',[OrdenTrabajoController::class,'descargarExcel']); //ruta para descargar excel
 Route::get('/trabajo/imprimirIndex',[OrdenTrabajoController::class,'imprimirPDF']); //imprimir pdf
 Route::get('/trabajo/imprimirOrden/{id}',[OrdenTrabajoController::class,'imprimirOrden']); //imprimir orden especifica
+Route::get('/trabajo/imprimirContrato/{id}',[OrdenTrabajoController::class,'imprimirContrato']); //imprimir orden especifica
 
 Route::post('/trabajo/nuevo/buscarClientes',[OrdenTrabajoController::class,'buscarClientes']);
 Route::post('/trabajo/nuevo/tiempoEstimado',[OrdenTrabajoController::class,'tiempoEstimado']);
@@ -110,7 +111,7 @@ Route::get('/trabajo/general',[OrdenTrabajoController::class,'general']);
 
 Route::post('/trabajos/nuevo/detalle/servicio',[ServicioController::class,'guardarTabla']);
 Route::post('/trabajos/nuevo/detalle/guardarServicio',[ServicioController::class,'guardar']);
-Route::post('/trabajos/nuevo/detalle/editarServicio',[ServicioController::class,'edit']);
+Route::post('/trabajos/nuevo/detalle/editarServicio',[ServicioController::class,'edit7']);
 Route::post('/trabajos/nuevo/detalle/enviarServicio',[ServicioController::class,'enviar']);
 Route::post('/detalleServicio/eliminar',[ServicioController::class,'destroy']);
 
