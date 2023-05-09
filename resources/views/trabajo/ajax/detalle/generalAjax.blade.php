@@ -318,15 +318,15 @@
     function actualizarCliente(id_cliente){
             
             var nombre = $("#clienteNombre"+id_cliente).val();
-            var correo = $("#editCorreoCliente"+id_cliente).val();
-            var direccion = $("#editDireccionCliente"+id_cliente).val();
-            var cif = $("#editCifCliente"+id_cliente).val();
-            var movil = $("#editMovilCliente"+id_cliente).val();
-            var telefono = $("#editNombreUnidad"+id_cliente).val();
-            var postal = $("#editPostalCliente"+id_cliente).val();
-            var poblacion = $("#editPoblacionCliente"+id_cliente).val();
-            var provincia = $("#editProvinciaCliente"+id_cliente).val();
-            var ciudad = $("#editCiudadCliente"+id_cliente).val();
+            var correo = $("#clienteCorreo"+id_cliente).val();
+            var direccion = $("#clienteDireccion"+id_cliente).val();
+            var cif = $("#clienteCif"+id_cliente).val();
+            var movil = $("#clienteMovil"+id_cliente).val();
+            var telefono = $("#clienteTelefono"+id_cliente).val();
+            var postal = $("#clientePostal"+id_cliente).val();
+            var poblacion = $("#clientePoblacion"+id_cliente).val();
+            var provincia = $("#clienteProvincia"+id_cliente).val();
+            var ciudad = $("#clienteCiudad"+id_cliente).val();
 
             $.ajax({
                 url: "/trabajos/detalle/editCliente",

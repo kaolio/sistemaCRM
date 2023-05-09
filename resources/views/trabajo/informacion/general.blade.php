@@ -118,7 +118,7 @@
                             <div class="input-group-prepend col-10">
                                 <div class="input-group">
                                     <span class="input-group-text" >Nombre</span>
-                                    <input type="text" id="clienteNombre" name="clienteNombre" class="form-control" autocomplete="off" value="{{$orden_elegida->nombreCliente}}">
+                                    <input type="text" id="clienteNombre{{$orden_elegida->id_cliente}}" name="clienteNombre" class="form-control" autocomplete="off" value="{{$orden_elegida->nombreCliente}}">
                                 </div>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                             <div class="input-group-prepend col-10">
                                 <div class="input-group">
                                     <span class="input-group-text" >Correo Electronico</span>
-                                    <input type="text" id="clienteCorreo" name="clienteCorreo" class="form-control" autocomplete="off" value="{{$orden_elegida->correo}}">
+                                    <input type="text" id="clienteCorreo{{$orden_elegida->id_cliente}}" name="clienteCorreo" class="form-control" autocomplete="off" value="{{$orden_elegida->correo}}">
                                 </div>
                             </div>
                         </div>
@@ -136,7 +136,7 @@
                             <div class="input-group-prepend col-10">
                                 <div class="input-group">
                                     <span class="input-group-text" >Direccion</span>
-                                    <input type="text" id="clienteDireccion" name="clienteDireccion" class="form-control" autocomplete="off" value="{{$orden_elegida->calle}}">
+                                    <input type="text" id="clienteDireccion{{$orden_elegida->id_cliente}}" name="clienteDireccion" class="form-control" autocomplete="off" value="{{$orden_elegida->calle}}">
                                 </div>
                             </div>
                         </div>
@@ -145,7 +145,7 @@
                             <div class="input-group-prepend col-10">
                                 <div class="input-group">
                                     <span class="input-group-text" >CIF</span>
-                                    <input type="text" id="clienteCif" name="clienteCif" class="form-control" autocomplete="off" value="{{$orden_elegida->cif}}">
+                                    <input type="text" id="clienteCif{{$orden_elegida->id_cliente}}" name="clienteCif" class="form-control" autocomplete="off" value="{{$orden_elegida->cif}}">
                                 </div>
                             </div>
                         </div>
@@ -154,7 +154,7 @@
                             <div class="input-group-prepend col-10">
                                 <div class="input-group">
                                     <span class="input-group-text" >Tel.Movil</span>
-                                    <input type="text" id="clienteMovil" name="clienteMovil" class="form-control" autocomplete="off" value="{{$orden_elegida->numero}}">
+                                    <input type="text" id="clienteMovil{{$orden_elegida->id_cliente}}" name="clienteMovil" class="form-control" autocomplete="off" value="{{$orden_elegida->numero}}">
                                 </div>
                             </div>
                         </div>
@@ -163,7 +163,7 @@
                             <div class="input-group-prepend col-10">
                                 <div class="input-group">
                                 <span class="input-group-text" >Telefono</span>
-                                    <input type="text" id="clienteTelefono" name="clienteTelefono" class="form-control" autocomplete="off" value="{{$orden_elegida->telefono}}">
+                                    <input type="text" id="clienteTelefono{{$orden_elegida->id_cliente}}" name="clienteTelefono" class="form-control" autocomplete="off" value="{{$orden_elegida->telefono}}">
                                 </div>
                             </div>
                         </div>
@@ -172,7 +172,7 @@
                             <div class="input-group-prepend col-10">
                                 <div class="input-group">
                                 <span class="input-group-text" >Codigo Postal</span>
-                                    <input type="text" id="clientePostal" name="clientePostal" class="form-control" autocomplete="off" value="{{$orden_elegida->codigoPostal}}">
+                                    <input type="text" id="clientePostal{{$orden_elegida->id_cliente}}" name="clientePostal" class="form-control" autocomplete="off" value="{{$orden_elegida->codigoPostal}}">
                                 </div>
                             </div>
                         </div>
@@ -181,7 +181,7 @@
                             <div class="input-group-prepend col-10">
                                 <div class="input-group">
                                 <span class="input-group-text" >Poblacion</span>
-                                    <input type="text" id="clientePoblacion" name="clientePoblacion" class="form-control" autocomplete="off" value="{{$orden_elegida->poblacion}}">
+                                    <input type="text" id="clientePoblacion{{$orden_elegida->id_cliente}}" name="clientePoblacion" class="form-control" autocomplete="off" value="{{$orden_elegida->poblacion}}">
                                 </div>
                             </div>
                         </div>
@@ -190,7 +190,7 @@
                             <div class="input-group-prepend col-10">
                                 <div class="input-group">
                                 <span class="input-group-text" >Provincia</span>
-                                    <input type="text" id="clienteProvincia" name="clienteProvincia" class="form-control" autocomplete="off" value="{{$orden_elegida->provincia}}">
+                                    <input type="text" id="clienteProvincia{{$orden_elegida->id_cliente}}" name="clienteProvincia" class="form-control" autocomplete="off" value="{{$orden_elegida->provincia}}">
                                 </div>
                             </div>
                         </div>
@@ -199,7 +199,7 @@
                             <div class="input-group-prepend col-10">
                                 <div class="input-group">
                                 <span class="input-group-text" >Ciudad</span>
-                                    <input type="text" id="clienteCiudad" name="clienteCiudad" class="form-control" autocomplete="off" value="{{$orden_elegida->pais}}">
+                                    <input type="text" id="clienteCiudad{{$orden_elegida->id_cliente}}" name="clienteCiudad" class="form-control" autocomplete="off" value="{{$orden_elegida->pais}}">
                                 </div>
                             </div>
                         </div>

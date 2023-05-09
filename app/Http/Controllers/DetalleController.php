@@ -737,12 +737,20 @@ class DetalleController extends InventarioController
     }
 
     public function actualizarCliente(){
+        
 
-
-
-            DB::table('clientes')
-                    ->where('id','=', $_POST["id_cliente"])
-                    ->update(['nombreCliente' => $_POST["nombre"]]);
+            $datoCliente = Cliente::find($_POST["id_cliente"]);
+            $datoCliente->nombreCliente = $_POST["nombre"];
+            $datoCliente->correo = $_POST["correo"];
+            $datoCliente->calle = $_POST["direccion"];
+            $datoCliente->cif = $_POST["cif"];
+            $datoCliente->numero = $_POST["movil"];
+            $datoCliente->telefono = $_POST["telefono"];
+            $datoCliente->codigoPostal = $_POST["postal"];
+            $datoCliente->poblacion = $_POST["poblacion"];
+            $datoCliente->provincia = $_POST["provincia"];
+            $datoCliente->pais = $_POST["ciudad"];
+            $datoCliente->update();
     
             return json_encode(array('data'=>true));
                 
