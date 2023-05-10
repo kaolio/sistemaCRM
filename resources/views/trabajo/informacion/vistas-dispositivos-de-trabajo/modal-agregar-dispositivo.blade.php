@@ -66,7 +66,7 @@
                                         </div>
                                         <div class="input-group mt-2">
                                             <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tamaño</span>
-                                            <input type="text" class="form-control" id="tamañoClon">
+                                            <input type="text" class="form-control" id="tamanoClon">
                                         </div>
                                         <div class="input-group mt-2">
                                             <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">PCB ID</span>
@@ -117,7 +117,7 @@
                                             </div>
                                             <div class="input-group mt-2">
                                                 <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tamaño</span>
-                                                <input type="text" class="form-control" id="tamañoDonante">
+                                                <input type="text" class="form-control" id="tamanoDonante">
                                             </div>
                                             <div class="input-group mt-2">
                                                 <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">PCB ID</span>

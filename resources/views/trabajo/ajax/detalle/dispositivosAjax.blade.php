@@ -540,7 +540,7 @@
         var url1 = $('#idInternoClon').val();
         var url2 = $('#modeloClon').val();
         var url3 = $('#serieClon').val();
-        var url4 = $('#tamañoClon').val();
+        var url4 = $('#tamanoClon').val();
         var url5 = $('#pcbClon').val(); 
       
         $.ajax({
@@ -551,7 +551,7 @@
               idInternoClon: url1,
                 modeloClon: url2,
                 serieClon: url3,
-                tamañoClon: url4,
+                tamanoClon: url4,
                 pcbClon: url5,
             },
             cache: false,
@@ -682,7 +682,7 @@ $("#btnBuscarDonante").on('click',function(){
     var url1 = $('#idInternoDonante').val();
         var url2 = $('#modeloDonante').val();
         var url3 = $('#serieDonante').val();
-        var url4 = $('#tamañoDonante').val();
+        var url4 = $('#tamanoDonante').val();
         var url5 = $('#pcbDonante').val(); 
       
         $.ajax({
@@ -693,7 +693,7 @@ $("#btnBuscarDonante").on('click',function(){
               idInternoDonante: url1,
                 modeloDonante: url2,
                 serieDonante: url3,
-                tamañoDonante: url4,
+                tamanoDonante: url4,
                 pcbDonante: url5,
             },
             cache: false,

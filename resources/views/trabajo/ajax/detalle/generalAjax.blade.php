@@ -17,9 +17,10 @@
             success: function(dataResult){
             //console.log(dataResult);
             // console.log(myJSON);
-            // console.log(typeof JSON.stringify(dataResult))  
+            // console.log(typeof JSON.stringify(dataResult)) 
+            $("#userDesignado").text(url); 
             $('#exampleModal01').modal('hide');
-            location.reload(); 
+            //location.reload(); 
             $('#userDesignado').html('<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+dataResult.data['name']+'</span>');
             
         }
@@ -264,36 +265,7 @@
             });
     });
     //
-    $('#agregarInfoCliente').on('click', function () {
-          //  $('#tablaN > tbody').empty();
-            var url = $('#infoCliente').val();
-            console.log(url);
-            $.ajax({
-                url: "/trabajos/detalle/notaCliente",
-                type: "POST",
-                data:{ 
-                    "_token": "{{ csrf_token() }}",
-                    infoCliente: url,
-                    "nombre": "{{$orden_elegida->id}}",
-                },
-                cache: false,
-                dataType: 'json',
-                success: function(dataResult){
-                   console.log(dataResult);
-                    var resultData = dataResult.data;
-                    var bodyData = '';
-                    
 
-                    $.each(resultData,function(index,row){
-                        tablaNotas+="<tr>"
-                        tablaNotas+="<td>"+row.creado+"</td><td>"+row.created_at+"</td><td>"+row.nota+"<td>"+"</td>";
-                        tablaNotas+="</tr>";
-                        
-                    })
-                    $("#tablaNotas").append(tablaNotas);
-                }
-            });
-        });
         //
         /*  $(document).on('change keyup', '.required', function(e){
         let Disabled = true;
@@ -315,7 +287,7 @@
             }
     })*/
 
-    function actualizarCliente(id_cliente){
+    function actualizarCliente(id_cliente){ 
             
             var nombre = $("#clienteNombre"+id_cliente).val();
             var correo = $("#clienteCorreo"+id_cliente).val();
@@ -348,7 +320,13 @@
                 cache: false,
                 dataType: 'json',
                 success: function (dataResult) {
-                    console.log(dataResult);
+                    //console.log(dataResult);
+                    $("#ncl").text(nombre);
+                    $("#ncc").text(cif);
+                    $("#ndd").text(direccion);
+                    $("#ncd").text(postal);
+                    $("#npr").text(provincia);
+                    $("#nps").text(ciudad);
                     $('#editarCliente'+id_cliente).modal('hide');
                
                 }

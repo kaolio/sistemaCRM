@@ -259,7 +259,7 @@ class ConfiguracionSeeder extends Seeder
         //ESTADO
 
         DB::table('estados')->insert([
-            'nombre_estado' => 'Recibido',
+            'nombre_estado' => 'Registrado',
         ]);
         DB::table('estados')->insert([
             'nombre_estado' => 'En Proceso',
@@ -287,6 +287,9 @@ class ConfiguracionSeeder extends Seeder
         ]);
         DB::table('estados')->insert([
             'nombre_estado' => 'Pagado y regresado a Cliente',
+        ]);
+        DB::table('estados')->insert([
+            'nombre_estado' => 'Otro',
         ]);
     }
 }

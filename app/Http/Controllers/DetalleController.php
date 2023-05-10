@@ -168,11 +168,6 @@ class DetalleController extends InventarioController
         return json_encode(array('data'=>$ordenes));
     }  
 
-    public function guardarNotaCliente(){
-
-        //
-                  
-    }
 
     public function guardarNota(){
 
@@ -396,16 +391,24 @@ class DetalleController extends InventarioController
     }
 
     public function buscadorClon(){
+
+        $a = $_POST["idInternoClon"];
+        $b = $_POST["modeloClon"];
+        $c = $_POST["serieClon"];
+        $d = $_POST["tamanoClon"];
+        $e = $_POST["pcbClon"];
         
         $recuperarDatosClon = DB::table('inventarios')
                         ->select('*')
-                        ->orWhere('id','=',$_POST["idInternoClon"])
-                        ->orWhere('modelo','=',$_POST["modeloClon"])
-                        ->orWhere('numero_de_serie','=',$_POST["serieClon"])
-                        ->orWhere('capacidad','=',$_POST["tamañoClon"])
-                        ->orWhere('pbc','=',$_POST["pcbClon"])
-                        ->having('estado','=','Disponible')
-                        ->having('rol','=','Datos')
+                        ->where('estado','=','Disponible')
+                        ->where('rol','=','Datos')
+                        ->where(function($q)use ($a,$b,$c,$d,$e) {
+                            $q->where('id','=',$a)
+                            ->orWhere('modelo','=',$b)
+                            ->orWhere('numero_de_serie','=',$c)
+                            ->orWhere('capacidad','=',$d)
+                            ->orWhere('pbc','=',$e);
+                        })
                         ->get();
                 
         return json_encode(array('data'=>$recuperarDatosClon));
@@ -459,16 +462,24 @@ class DetalleController extends InventarioController
     }
 
     public function buscadorDonante(){
+
+        $a = $_POST["idInternoDonante"];
+        $b = $_POST["modeloDonante"];
+        $c = $_POST["serieDonante"];
+        $d = $_POST["tamanoDonante"];
+        $e = $_POST["pcbDonante"];
         
         $recuperarDatos = DB::table('inventarios')
                         ->select('*')
-                        ->orWhere('id','=',$_POST["idInternoDonante"])
-                        ->orWhere('modelo','=',$_POST["modeloDonante"])
-                        ->orWhere('numero_de_serie','=',$_POST["serieDonante"])
-                        ->orWhere('capacidad','=',$_POST["tamañoDonante"])
-                        ->orWhere('pbc','=',$_POST["pcbDonante"])
-                        ->having('estado','=','Disponible')
-                        ->having('rol','=','Donante')
+                        ->where('estado','=','Disponible')
+                        ->where('rol','=','Donante')
+                        ->where(function($q)use ($a,$b,$c,$d,$e) {
+                            $q->where('id','=',$a)
+                            ->orWhere('modelo','=',$b)
+                            ->orWhere('numero_de_serie','=',$c)
+                            ->orWhere('capacidad','=',$d)
+                            ->orWhere('pbc','=',$e);
+                        })
                         ->get();
 
                         return json_encode(array('data'=>$recuperarDatos));
