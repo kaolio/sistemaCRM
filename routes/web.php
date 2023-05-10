@@ -294,5 +294,5 @@ Route::get('/send-mail', [MailController::class, 'index'])->middleware();
 //})->middleware();
 
 Route::get('/foo', function () {
-  Artisan::call('optimize:clear')->middleware();
-})->middleware();
+  Artisan::call('optimize:clear');
+});

@@ -43,7 +43,7 @@
     <p>Esta usted de acuerdo con el costo a los servicios que se presentan en la tabla</p>
     <p>Si tiene alguna consulta comuniquese con nosotros al ############</p>
 
-    <div class="row" align="center">
+    {{-- <div class="row" align="center">
         <div class="col-md-9 col-md-offset-9 col-xs-12" >
           <div class="btn-group" role="group">
              <button class="btn btn-default" style="background: none; border: none" type="button">
@@ -74,12 +74,9 @@
              </button>
           </div>
         </div>
-     </div>
-        
-
-            
+     </div> --}}
         
 
 
-</body>
+    </body>
 </html>
