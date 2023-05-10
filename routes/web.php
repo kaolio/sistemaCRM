@@ -113,6 +113,7 @@ Route::post('/trabajos/nuevo/detalle/servicio',[ServicioController::class,'guard
 Route::post('/trabajos/nuevo/detalle/guardarServicio',[ServicioController::class,'guardar']);
 Route::post('/trabajos/nuevo/detalle/editarServicio',[ServicioController::class,'edit7']);
 Route::post('/trabajos/nuevo/detalle/enviarServicio',[ServicioController::class,'enviar']);
+Route::post('/trabajos/nuevo/detalle/enviarNota',[ServicioController::class,'enviarNota']);
 Route::post('/detalleServicio/eliminar',[ServicioController::class,'destroy']);
 
 Route::get('/trabajos/detalle/{id}',[DetalleController::class,'buscar']);

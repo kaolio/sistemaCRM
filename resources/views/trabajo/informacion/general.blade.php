@@ -59,6 +59,49 @@
                         </div>
                     </div> 
 
+                    <!-- Modal -->
+  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" align="center">
+            <h5>Mensaje Enviado a:</h5>
+            <h4> {{$orden_elegida->nombreCliente}}</h4>
+            <svg xmlns="http://www.w3.org/2000/svg" width='30' height='30' fill='#3FFF33' class='bi bi-trash' viewBox="0 0 512 512">
+                <path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 
+                45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
+            </svg>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="errorMensaje" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" align="center">
+            <h5>Error al Enviar Mensaje a:</h5>
+            <h4> {{$orden_elegida->nombreCliente}}</h4>
+            <svg xmlns="http://www.w3.org/2000/svg" width='30' height='30' fill='red' class='bi bi-trash' viewBox="0 0 512 512">
+                <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM175 175c9.4-9.4 
+                24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 
+                47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/>
+            </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
                     <!--<p style="position: relative;left:20px">Informacion de Trabajo:</p>-->
                    
                     <div class="card" >
@@ -74,19 +117,19 @@
                            <textarea type="text" style="height: 80px" name="datosimportantes" class="form-control" readonly>{{$orden_elegida->notaOrden}}</textarea> 
                         
                         </br>
-                            <p style="height:20px;">Nota de Cliente</p>
-                                <textarea type="text" style="height: 80px" id="infoCliente" name="infoCliente" class="form-control" required></textarea>
+                            <p style="height:20px;">Nota al Cliente</p>
+                                <textarea type="text" style="height: 80px" id="infoCliente" name="infoCliente" class="form-control"></textarea>
                              </br>
                                       <!--Boton agregar-->
                                         <div style="position: relative;left:5px">
-                                            <input type="submit"  id="agregarInfoCliente" class="btn btn-primary my-2 my-sm-0" value="Agregar">
+                                            <button  id="enviarInfoCliente" class="btn btn-primary" >Enviar al Cliente</button>
                                         </div>
                                         <!-- /Boton agregar-->
                                     </br>
                                     <div class="alert alert-success" role="alert" id="successMsg" style="display: none" >
                                         Thank you for getting in touch! 
                                       </div>
-                                    
+                                      <p style="height:20px;">Comentario al Usuario</p>
                                         <div class="input-group">
                                             <span class="input-group-text"  style="height: 80px">Comentario</span>
                                              <textarea class="form-control required" type="text" name="comentario" id="comentario"  style="height: 80px"></textarea>
@@ -372,7 +415,7 @@
                                         </thead>
                                         <tbody id="tablaNotas" class="table-bordered" >
                                             @foreach ($notas as $nota)
-                                            <tr>
+                                            <tr id="actualizarNotas">
                                                 <td class="text-center">{{$nota->creado}}</td>
                                                 <td class="text-center">{{ \Carbon\Carbon::parse($nota->created_at)->format('d-m-Y')}}</td>
                                                 <td>{{$nota->nota}}</td>

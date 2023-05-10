@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Mail\DemoMail;
+use App\Mail\NotaCliente;
+use App\Models\Nota;
 use App\Models\Servicio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
@@ -76,7 +79,7 @@ class ServicioController extends Controller
                 ->first();
 
         $cliente = DB::table('clientes')
-                ->select('correo')
+                ->select('correo','nombreCliente')
                 ->where('id',$datos->id)
                 ->first();
         
@@ -91,13 +94,47 @@ class ServicioController extends Controller
                     ->get()->sum('precio');
 
             $mailData = [
-                        'title' => 'Orden de Trabajo #'.$datos->id,
-                        'body' => 'Estimado/a: '
+                        'title' => 'Orden de Trabajo #'.$_POST["id"],
+                        'body' => 'Estimado/a: '.$cliente->nombreCliente
                     ];
 
                     
             Mail::to($cliente->correo)->send(new DemoMail($mailData,$servicio,$total));
             return json_encode(array('data'));
+        
+        
+    }
+
+    public function enviarNota(){
+
+       
+        $notas = new Nota();
+        $notas->creado = Auth::user()->name;
+        $notas ->id_trabajos = $_POST["id"];
+        $notas->nota = "(Enviado al Cliente) ".$_POST["nota"];
+        $notas->save();
+
+
+        $datos = DB::table('orden_trabajos')
+                ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                ->select('clientes.id')
+                ->where('orden_trabajos.id',$_POST["id"])
+                ->first();
+
+        $cliente = DB::table('clientes')
+                ->select('correo','nombreCliente')
+                ->where('id',$datos->id)
+                ->first();
+
+        $mailData = [
+                    'title' => 'Orden de Trabajo #'.$_POST["id"],
+                    'body' => 'Estimado/a: '.$cliente->nombreCliente
+                ];
+
+        $nota = $_POST["nota"];
+                    
+            Mail::to($cliente->correo)->send(new NotaCliente($mailData,$nota));
+            return json_encode(array('data'=>$notas));
         
         
     }
