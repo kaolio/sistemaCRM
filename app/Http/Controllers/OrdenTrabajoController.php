@@ -174,7 +174,7 @@ class OrdenTrabajoController extends Controller
             $datoTrabajo->id_cliente = $identificado->id;
             $datoTrabajo->prioridad = $request->get('prioridad');
             $datoTrabajo->tiempoEstimado = $request->get('tiempoEstimado');
-            $datoTrabajo->estado = "Recibido";
+            $datoTrabajo->estado = "Registrado";
             $datoTrabajo->informacion = $request->get('informacion');
             $datoTrabajo->datosImportantes = $request->get('dato');
             $datoTrabajo->nota = $request->get('nota');
