@@ -84,9 +84,9 @@
                 <div class="input-group-text">Prioridad</div>
                       <select name="prio" id="prio" class="form-control" >
                         <option selected disabled value="new">Seleccione una prioridad</option>
-                        <option value="normal">Normal</option>
-                        <option value="alta">Alta</option>
-                        <option value="urgente">Urgente</option>
+                        @foreach ($prioridad as $prioridad)
+                          <option value="{{$prioridad->nombre_prioridad}}">{{$prioridad->nombre_prioridad}}</option>
+                        @endforeach
                       </select>
               </div>
             </div>
@@ -209,7 +209,7 @@
           <div class="input-group-text" id="btnGroupAddon">Prioridad</div>
             <select name="grado" id="grado" class="form-control">
               <option value="todos">Todos</option>
-              @foreach ($prioridad as $prioridad)
+              @foreach ($prioridads as $prioridad)
                 <option  value="{{$prioridad->nombre_prioridad}}">{{$prioridad->nombre_prioridad}}</option>
               @endforeach
             </select>

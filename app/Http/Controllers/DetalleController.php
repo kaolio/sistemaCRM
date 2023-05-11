@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use JeroenNoten\LaravelAdminLte\View\Components\Tool\Datatable;
 use Psy\Command\WhereamiCommand;
+use Spatie\Permission\Models\Role;
 
 // use App\Http\Controllers\InventarioController;
 
@@ -146,21 +147,26 @@ class DetalleController extends InventarioController
 
     public function buscarOrden(){
 
-        /*if (Auth::user()->id == 1) {
-
+        $rols = DB::table('model_has_roles')
+                    ->select('role_id')
+                    ->where('model_id',Auth::user()->id)
+                    ->first();
+                    
+            $rol = Role::findById($rols->role_id)->name ;
+        if ($rol == 'ADMINISTRADOR') {
             $buscado = DB::table('orden_trabajos')
                         ->select('id')
                         ->where('id','=',$_POST["orden"])
                         ->exists();
 
-        } else {*/
+        } else {
             
             $buscado = DB::table('orden_trabajos')
                         ->select('id')
                         ->where('creado',Auth::user()->name)
                         ->where('id','=',$_POST["orden"])
                         ->exists();
-        
+        }
 
         $ordenes = [];
         

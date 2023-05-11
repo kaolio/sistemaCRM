@@ -16,7 +16,7 @@
         <a role="button" class="btn btn-warning text-white" href="{{URL('/trabajo/imprimirOrden/'.$trabajo)}}" target="_blank" rel="noopener noreferrer">Imprimir Orden</a>
         @endcan
         @can('editar orden de trabajo')
-        <a type="button" class="btn btn-primary text-white" href="{{url('/trabajos/detalle/'.$trabajo)}}">Ir a Orden de Trabajo</a>
+        <a type="button" class="btn btn-primary text-white" href="{{url('/trabajos/detalle/'.Crypt::encrypt($trabajo))}}">Ir a Orden de Trabajo</a>
         @endcan
         
         @can('ver orden de trabajo')

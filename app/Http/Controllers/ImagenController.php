@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Imagen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -12,35 +13,41 @@ class ImagenController extends Controller
 {
     public function subirArchivo(Request $request,$id){
        
-        
-        $file = $request->file('file-upload');
-
-            //return Storage::disk('archivos')->get($id.'.html'); PARA OBTENER DEL ALMACEN ARCHIVOS Y MOSTRARLO
-
-            $archivo = DB::table('orden_trabajos')
-                        ->select('nombre_archivo')
-                        ->where('id',$id)
-                        ->first();
+        try {
             
-            Storage::delete('public/archivos/'.$archivo->nombre_archivo.'.html');
+                $file = $request->file('file-upload');
 
-            if ($file != null) {
+                //return Storage::disk('archivos')->get($id.'.html'); PARA OBTENER DEL ALMACEN ARCHIVOS Y MOSTRARLO
 
-                $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ%&';
-                $nombre = substr(str_shuffle($permitted_chars), 0, 20);
+                $archivo = DB::table('orden_trabajos')
+                            ->select('nombre_archivo')
+                            ->where('id',$id)
+                            ->first();
+                
+                Storage::delete('public/archivos/'.$archivo->nombre_archivo.'.html');
 
-                DB::table('orden_trabajos')
-                        ->where('id',$id)
-                        ->update(['lista_archivo' => 'SI',
-                                  'nombre_archivo' => $nombre]);
+                if ($file != null) {
 
-                $request->file('file-upload')->storeAs('public/archivos', $nombre.'.html');
-                //$request->file('file-upload')->move(base_path('resources/views/otros'), $id.'.blade.php');
-            } 
+                    $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ%&';
+                    $nombre = substr(str_shuffle($permitted_chars), 0, 20);
 
-                 
-        return redirect('/trabajos/detalle/'.$id);
-        //return view('otros/1');
+                    DB::table('orden_trabajos')
+                            ->where('id',$id)
+                            ->update(['lista_archivo' => 'SI',
+                                    'nombre_archivo' => $nombre]);
+
+                    $request->file('file-upload')->storeAs('public/archivos', $nombre.'.html');
+                    //$request->file('file-upload')->move(base_path('resources/views/otros'), $id.'.blade.php');
+                } 
+
+                    
+            $crip =Crypt::encrypt($id);
+            return redirect('/trabajos/detalle/'.$crip);
+
+        } catch (\Throwable $th) {
+            return back();
+        }
+            
     
     }
 
@@ -74,7 +81,8 @@ class ImagenController extends Controller
             
         Storage::delete('public/archivos/'.$archivo->nombre_archivo.'.html');
 
-        return redirect('/trabajos/detalle/'.$id);
+        $crip =Crypt::encrypt($id);
+        return redirect('/trabajos/detalle/'.$crip);
     } 
 
     public function subirImagen(Request $request,$id){
@@ -100,26 +108,38 @@ class ImagenController extends Controller
                 $request->file('file-upload-image')->move(base_path('public/imagenes-caso/'),  $id."-".$nombre.'.jpg');
             } 
 
-                 
-        return redirect('/trabajos/detalle/'.$id);
+        $crip =Crypt::encrypt($id);
+        return redirect('/trabajos/detalle/'.$crip);
         //return view('otros/1');
     
     }
 
     public function eliminarFileImage($id)
     {
-        $archivo = DB::table('imagens')
-                        ->select('nombre','id_trabajo')
-                        ->where('id',$id)
-                        ->first();
+
+        
+        try {
             
-         File::delete('imagenes-caso/'.$archivo->nombre.'.jpg');
-        //Storage::delete('public/caso/'.$archivo->nombre.'.jpg');
+            $archivo = DB::table('imagens')
+                            ->select('nombre','id_trabajo')
+                            ->where('id',$id)
+                            ->first();
+                
+            File::delete('imagenes-caso/'.$archivo->nombre.'.jpg');
+            //Storage::delete('public/caso/'.$archivo->nombre.'.jpg');
 
-        $trabajo=Imagen::findOrFail($id);
-        $trabajo->delete();
+            $trabajo=Imagen::findOrFail($id);
+            $trabajo->delete();
 
-        return redirect('/trabajos/detalle/'.$archivo->id_trabajo);
+            $crip =Crypt::encrypt($archivo->id_trabajo);
+            return redirect('/trabajos/detalle/'.$crip);
+
+
+        } catch (\Throwable $th) {
+
+            return back();
+        }
+        
     } 
 
 }
