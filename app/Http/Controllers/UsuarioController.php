@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -124,6 +125,7 @@ class UsuarioController extends Controller
     public function edit( $id)
     {
         try {
+            $id = Crypt::decrypt($id);
 
             $user = User::find($id);
             $roles = Role::pluck('name','name')->all();

@@ -1292,7 +1292,7 @@
     $('#btnBuscar').on('click', function () {
 
         var url = document.getElementById('orden').value;
-
+ 
           $.ajax({
             type: "POST",
             url: "/trabajos/detalle",
@@ -1307,7 +1307,7 @@
                 if (data.data[0]==true) {
 
                   var myJSON = JSON.stringify(data.data[1]);
-                    //console.log(data['data'][0]);
+                    //console.log(data['data']);
                  window.location.href=data['data'][1];
 
                 } else {

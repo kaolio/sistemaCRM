@@ -24,7 +24,7 @@
         <div class="card-body">
                 @foreach ($urgente as $urgente)
                 @can('editar orden de trabajo')
-                      <a href="/trabajos/detalle/{{$urgente->id}}" >  
+                      <a href="/trabajos/detalle/{{Crypt::encrypt($urgente->id)}}" >  
                     @endcan
                     
                         &nbsp;

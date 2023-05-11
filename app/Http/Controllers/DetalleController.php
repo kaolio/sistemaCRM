@@ -9,6 +9,7 @@ use App\Models\DetalleOrden;
 use App\Models\Donantes;
 use Facade\FlareClient\Http\Client;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -79,8 +80,10 @@ class DetalleController extends InventarioController
     
     public function buscar($id){ 
 
-
+        
         try {
+
+            $id = Crypt::decrypt($id);
 
              $diagnosticoDesignado = DB::table('orden_trabajos')
                             ->select('diagnostico')
@@ -135,7 +138,7 @@ class DetalleController extends InventarioController
 
         } catch (\Throwable $th) {
 
-            //
+            return view('errors.detalle');
 
         }
 
@@ -143,25 +146,27 @@ class DetalleController extends InventarioController
 
     public function buscarOrden(){
 
-        if (Auth::user()->id == 1) {
+        /*if (Auth::user()->id == 1) {
 
             $buscado = DB::table('orden_trabajos')
                         ->select('id')
                         ->where('id','=',$_POST["orden"])
                         ->exists();
 
-        } else {
+        } else {*/
             
             $buscado = DB::table('orden_trabajos')
                         ->select('id')
                         ->where('creado',Auth::user()->name)
                         ->where('id','=',$_POST["orden"])
                         ->exists();
-        }
+        
 
         $ordenes = [];
-                 
-        $ruta =  "/trabajos/detalle/".$_POST["orden"];
+        
+        $crip =Crypt::encrypt($_POST["orden"]);
+
+        $ruta =  "/trabajos/detalle/".$crip;
 
         array_push($ordenes, $buscado, $ruta);
 

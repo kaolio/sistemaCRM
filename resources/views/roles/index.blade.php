@@ -30,7 +30,7 @@
                                         <td>
                                             @if ($rol->name != 'ADMINISTRADOR')
                                                 @can('editar rol')
-                                                    <a class="btn btn-sm btn-primary float-left"  href="{{ url('roles/editar/'.$rol->id) }}">Editar</a> 
+                                                    <a class="btn btn-sm btn-primary float-left"  href="{{ url('roles/editar/'.Crypt::encrypt($rol->id)) }}">Editar</a> 
                                                 @endcan
                                                 <a class="float-left">&nbsp;&nbsp;</a>
                                                 @can('borrar rol')

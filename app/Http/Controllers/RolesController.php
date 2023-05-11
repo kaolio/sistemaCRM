@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Roles;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -101,6 +102,8 @@ class RolesController extends Controller
 
         try {
             
+            $id = Crypt::decrypt($id);
+
             $role = Role::find($id);
             $permission = Permission::get();
             $rolePermission = DB::table('role_has_permissions')

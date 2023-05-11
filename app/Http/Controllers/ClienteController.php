@@ -8,6 +8,7 @@ use App\Models\DetalleCliente;
 use Facade\FlareClient\Http\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Maatwebsite\Excel\Facades\Excel;
@@ -152,6 +153,7 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
+        $id = Crypt::decrypt($id);
 
        $cliente = DB::table('clientes')  //recuperar el valor del select
                     ->select('*')

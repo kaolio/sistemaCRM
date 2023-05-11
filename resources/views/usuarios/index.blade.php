@@ -37,7 +37,7 @@
                         </td>
                         <td>
                             @can('editar usuario')
-                            <a class="btn btn-sm btn-primary float-left"  href="{{ url('usuario/editar/'.$usuario->id) }}">Editar</a>
+                            <a class="btn btn-sm btn-primary float-left"  href="{{ url('usuario/editar/'.Crypt::encrypt($usuario->id)) }}">Editar</a>
                             @endcan
                             <a class="float-left">&nbsp;&nbsp;</a>
                             @if ($usuario->name != 'Administrador')
