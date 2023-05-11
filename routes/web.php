@@ -111,8 +111,9 @@ Route::get('/trabajo/general',[OrdenTrabajoController::class,'general'])->middle
 
 Route::post('/trabajos/nuevo/detalle/servicio',[ServicioController::class,'guardarTabla'])->middleware();
 Route::post('/trabajos/nuevo/detalle/guardarServicio',[ServicioController::class,'guardar'])->middleware();
-Route::post('/trabajos/nuevo/detalle/editarServicio',[ServicioController::class,'edit7'])->middleware();
+Route::post('/trabajos/nuevo/detalle/editarServicio',[ServicioController::class,'edit'])->middleware();
 Route::post('/trabajos/nuevo/detalle/enviarServicio',[ServicioController::class,'enviar'])->middleware();
+Route::post('/trabajos/nuevo/detalle/enviarNota',[ServicioController::class,'enviarNota'])->middleware();
 Route::post('/detalleServicio/eliminar',[ServicioController::class,'destroy'])->middleware();
 
 Route::get('/trabajos/detalle/{id}',[DetalleController::class,'buscar'])->middleware();

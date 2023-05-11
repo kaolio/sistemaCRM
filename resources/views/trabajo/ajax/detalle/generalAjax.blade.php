@@ -16,7 +16,7 @@
                     cache: false,
                     dataType: 'json',
                     success: function (dataResult) {
-                        console.log(dataResult);
+                        //console.log(dataResult);
                         $('#infoCliente').val('');
                         $('#exampleModal1').modal('show')
                         

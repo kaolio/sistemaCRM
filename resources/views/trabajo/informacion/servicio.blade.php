@@ -76,7 +76,7 @@
   </div>
   
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModal1Editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -170,13 +170,13 @@
                                     dataResult.data[i].descripcion  + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
                                     dataResult.data[i].precio  + 
                         "</td><td class='text-center' style='width: 3%;background: rgb(209, 244, 255)' >" +
-                      '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModals'+dataResult.data[i].id+'">'+
+                      '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModalsEditar'+dataResult.data[i].id+'">'+
                         '<svg xmlns="http://www.w3.org/2000/svg" fill="rgb(168, 166, 14)" viewBox="0 0 16 16" width="18" height="20">'+
                           '<path fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 '+
                           '0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"></path>'+
                         '</svg>'+
                       '</button>'+
-                      '<div class="modal fade" id="exampleModals'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                      '<div class="modal fade" id="exampleModalsEditar'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
                         '<div class="modal-dialog" role="document">'+
                           '<div class="modal-content">'+
                             '<div class="modal-header">'+
@@ -300,13 +300,13 @@
                         dataResult.data[i].descripcion  + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
                         dataResult.data[i].precio  + 
                         "</td><td class='text-center' style='width: 3%;background: rgb(209, 244, 255)' >" +
-                      '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModals'+dataResult.data[i].id+'">'+
+                      '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModalsEditar'+dataResult.data[i].id+'">'+
                         '<svg xmlns="http://www.w3.org/2000/svg" fill="rgb(168, 166, 14)" viewBox="0 0 16 16" width="18" height="20">'+
                           '<path fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 '+
                           '0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"></path>'+
                         '</svg>'+
                       '</button>'+
-                      '<div class="modal fade" id="exampleModals'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                      '<div class="modal fade" id="exampleModalsEditar'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
                         '<div class="modal-dialog" role="document">'+
                           '<div class="modal-content">'+
                             '<div class="modal-header">'+
@@ -412,8 +412,8 @@
                     cache: false,
                     dataType: 'json',
                     success: function (dataResult) {
-                        console.log(dataResult);
-                        $('#exampleModal1').modal('show')
+                        //console.log(dataResult);
+                        $('#exampleModal1Editar').modal('show')
                     },
                     error : function() {
                         $('#errorMensaje').modal('show')
@@ -441,7 +441,6 @@
 
     function guardarEditServicio(id){
 
-
       var url1 = $('#editDetalle'+id).val();
       var url2 = $('#editDescripcion'+id).val();
       var url3 = $('#editPrecio'+id).val();
@@ -462,7 +461,7 @@
              // console.log(dataResult.data);
               if (dataResult.data == true) {
                 verServicio();
-                $('#exampleModals'+id).modal('hide')
+                $('#exampleModalsEditar'+id).modal('hide')
                   Swal.fire({
                   position: 'center',
                   icon: 'success',
@@ -471,7 +470,7 @@
                   timer: 1500
                 })  
               } else {
-                $('#exampleModals'+id).modal('hide')
+                $('#exampleModalsEditar'+id).modal('hide')
                   Swal.fire({
                   position: 'center',
                   icon: 'error',

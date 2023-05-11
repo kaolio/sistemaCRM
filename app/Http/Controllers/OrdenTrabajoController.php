@@ -56,9 +56,13 @@ class OrdenTrabajoController extends Controller
 
         $prioridad = DB::table('prioridads')
                 ->select('nombre_prioridad')
-                ->get();            
+                ->get();
+            
+        $prioridads = DB::table('prioridads')
+                ->select('nombre_prioridad')
+                ->get();
 
-        return view('trabajo.index', compact('trabajo','rol','prioridad'));
+        return view('trabajo.index', compact('trabajo','rol','prioridad','prioridads'));
         
     }
 
