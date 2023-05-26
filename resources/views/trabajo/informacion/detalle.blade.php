@@ -19,12 +19,8 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-<<<<<<< HEAD
-                            <h3><b>{{$orden_elegida->id}} - <span id="nord">{{$orden_elegida->nombreCliente}}</span></b></h3>
-=======
                             <h3><b>{{$orden_elegida->id}} - {{$orden_elegida->nombreCliente}}</b></h3>
                             @if($rol_encontrado == 'ADMINISTRADOR' || $rolePermission)
->>>>>>> 19f5e87f2af9fe0f90e4a24d225bc05f764a10a4
                             <button class="btn btn-warning" id="botones"data-toggle="modal" data-target="#exampleModal01">Asignar un Usuario</button>
                             <button class="btn btn-primary" id="botones"><a class="text-white" href="{{URL('/trabajo/imprimirContrato/'.Crypt::encrypt($orden_elegida->id))}}" target="_blank" rel="noopener noreferrer">Imprimir Contrato</a></button>
                             <button class="btn btn-warning" id="botones"><a class="text-dark" href="{{URL('/trabajo/imprimirOrden/'.Crypt::encrypt($orden_elegida->id))}}" target="_blank" rel="noopener noreferrer">Imprimir Orden</a></button>
