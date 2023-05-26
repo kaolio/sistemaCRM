@@ -31,12 +31,20 @@
     <br>
     <hr>
     <div style="position: absolute; left: 50px" >
-        Direccion: &nbsp; Calle Antezana <br/>
-        Telefono: &nbsp;&nbsp; 4446652 <br/>
-        Skype: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Empres@ <br/>
-        Sitio Web: &nbsp; www.empresa100.com <br/>
-        E-mail: &nbsp; empresa@gmail.com <br/> 
-    </div>
+      Telefono: &nbsp;&nbsp; +34 966 231 768 <br/>
+      Skype: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Empres@ <br/>
+      Sitio Web: &nbsp; www.empresa100.com <br/>
+      E-mail: &nbsp; empresa@gmail.com <br/>
+      
+  </div>
+  <div style="position: absolute; right: 50px" >
+    DPR Recovery <br>
+    Arzobispo Loaces N17 Local <br>
+    03003 Alicante <br>
+      
+  </div>
+<br><br><br><br><br><br>
+    
 {{--      
     <div style="position: absolute; left: 50px" >
         <br/>
@@ -54,13 +62,6 @@
        <td><hr width="100%"></td>
        </tr> -->
          <tr>
-          <td  align="right">
-            <address>
-            NXXX xxxx XXXX <br>
-            P.o.Box  4678 , XXxxXX <br>
-            0719 260 602 <br>
-           </address>
-        </td>
     
       </tr>
 

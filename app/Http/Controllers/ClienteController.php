@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
+use Spatie\Permission\Models\Role;
 
 class ClienteController extends Controller
 {
@@ -59,7 +60,15 @@ class ClienteController extends Controller
 
         }*/
 
-        $busqueda=trim($request->get('busqueda'));
+        $rols = DB::table('model_has_roles')
+                    ->select('role_id')
+                    ->where('model_id',Auth::user()->id)
+                    ->first();
+                    
+            $rol = Role::findById($rols->role_id)->name ;
+        if ($rol == 'ADMINISTRADOR') {
+
+            $busqueda=trim($request->get('busqueda'));
 
             $cliente=DB::table('clientes')
                         ->select('*')
@@ -67,7 +76,48 @@ class ClienteController extends Controller
                         ->where('nombreCliente', 'LIKE', '%'.$busqueda.'%')
                         ->orWhere('telefono', 'LIKE', '%'.$busqueda.'%')
                         ->orderBy('id','asc')
-                        ->paginate(10);
+                        ->paginate(20);
+
+        }else{
+
+            $rolePermission = Auth::user()->hasPermissionTo('ver orden de trabajo(Personal)');
+
+            $usuario = DB::table('users')
+                    ->select('name')
+                    ->where('id',Auth::user()->id)
+                    ->first();
+            
+            if ($rolePermission) {
+
+                $busqueda=trim($request->get('busqueda'));
+
+                $cliente=DB::table('clientes')
+                            ->select('*')
+                            ->selectRaw('DATE(created_at) AS Fecha')
+                            ->where('id_user',Auth::user()->id)
+                            ->where(function($q) use($busqueda) {
+                                $q->where('nombreCliente', 'LIKE', '%'.$busqueda.'%')
+                                ->orWhere('telefono', 'LIKE', '%'.$busqueda.'%');
+                            })
+                            ->orderBy('id','asc')
+                            ->paginate(20);
+
+            }else{
+
+                $busqueda=trim($request->get('busqueda'));
+
+                $cliente=DB::table('clientes')
+                            ->select('*')
+                            ->selectRaw('DATE(created_at) AS Fecha')
+                            ->where('nombreCliente', 'LIKE', '%'.$busqueda.'%')
+                            ->orWhere('telefono', 'LIKE', '%'.$busqueda.'%')
+                            ->orderBy('id','asc')
+                            ->paginate(20);
+
+            }
+
+        }
+
         
         //$datoCliente['clientes']=Cliente::paginate(10);
         return view('cliente.index', compact('busqueda','cliente'));
@@ -212,11 +262,47 @@ class ClienteController extends Controller
 
     public function descargarPDF(){
 
-       
+
+             $rols = DB::table('model_has_roles')
+                    ->select('role_id')
+                    ->where('model_id',Auth::user()->id)
+                    ->first();
+                    
+            $rol = Role::findById($rols->role_id)->name ;
+
+        if ($rol == 'ADMINISTRADOR') {
+
             $datosTablas = DB::table('clientes')
                         ->select('*')
                         ->orderBy('id','desc')
                         ->get();
+
+
+        }else{
+            $rolePermission = Auth::user()->hasPermissionTo('ver orden de trabajo(Personal)');
+
+            $usuario = DB::table('users')
+                    ->select('name')
+                    ->where('id',Auth::user()->id)
+                    ->first();
+            
+            if ($rolePermission) {
+
+                $datosTablas = DB::table('clientes')
+                        ->select('*')
+                        ->where('id_user',Auth::user()->id)
+                        ->orderBy('id','desc')
+                        ->get();
+
+            }else{
+
+                $datosTablas = DB::table('clientes')
+                        ->select('*')
+                        ->orderBy('id','desc')
+                        ->get();
+
+            }
+        }
         
         $pdf = \PDF::loadView('/cliente/reporte/pdf',compact('datosTablas'));
                               //ruta del archivo        envio de la variable de la db 
@@ -232,10 +318,46 @@ class ClienteController extends Controller
     public function imprimirPdf(){
        
         
+             $rols = DB::table('model_has_roles')
+                    ->select('role_id')
+                    ->where('model_id',Auth::user()->id)
+                    ->first();
+                    
+            $rol = Role::findById($rols->role_id)->name ;
+
+        if ($rol == 'ADMINISTRADOR') {
+
             $datosTablas = DB::table('clientes')
                         ->select('*')
                         ->orderBy('id','desc')
                         ->get();
+
+
+        }else{
+            $rolePermission = Auth::user()->hasPermissionTo('ver orden de trabajo(Personal)');
+
+            $usuario = DB::table('users')
+                    ->select('name')
+                    ->where('id',Auth::user()->id)
+                    ->first();
+            
+            if ($rolePermission) {
+
+                $datosTablas = DB::table('clientes')
+                        ->select('*')
+                        ->where('id_user',Auth::user()->id)
+                        ->orderBy('id','desc')
+                        ->get();
+
+            }else{
+
+                $datosTablas = DB::table('clientes')
+                        ->select('*')
+                        ->orderBy('id','desc')
+                        ->get();
+
+            }
+        }
         
         $pdf = \PDF::loadView('/cliente/reporte/pdf',compact('datosTablas'));
         return $pdf->setPaper('a4','landscape')->stream(); //mandar a imprimir la vista pdf en horizontal

@@ -225,7 +225,10 @@ class InventarioController extends Controller
         $inventario->precio = request('precio');
         $inventario->cabecera = request('cabecera');
         $inventario->info_de_cabecera = request('info_de_cabecera');
+        $inventario->rol = request('rol');
+        $inventario->tipo = request('tipo');
         $inventario->save();
+
 
         return redirect('inventario');
     }
@@ -246,7 +249,7 @@ class InventarioController extends Controller
 
     function autoCompletar(Request $request)
     {
-     if($request->get('query'))
+     if($request->get('query')) 
      {
       $query = $request->get('query');
       $data = DB::table('clientes')

@@ -122,7 +122,7 @@
                         <div class="input-group">
                         <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Telefono</span>
                         <input type="text" id="telefono" name="telefono" class="form-control" 
-                        required  value="{{ $user->telefono }}" Placeholder="Telefono" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) )">
+                        required  value="{{ $user->telefono }}" Placeholder="Telefono" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 43 ) )">
                         </div>
                         <span id="estadoTelefono"></span>
                     </div>
@@ -197,7 +197,7 @@
                     <div class="input-group">
                         <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Contraseña</span>
                             <input class="form-control " type="text" name="password" id="password"  
-                            Placeholder="Ingrese el nombre del password"  onkeyup="validarContraseña()">
+                            Placeholder="Ingrese la contraseña"  onkeyup="validarContraseña()">
                     </div>
                     <span id="estadoPassword"></span>
                 </div>

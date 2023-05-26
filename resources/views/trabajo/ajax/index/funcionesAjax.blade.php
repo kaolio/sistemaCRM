@@ -1308,19 +1308,18 @@
 
                   var myJSON = JSON.stringify(data.data[1]);
                     //console.log(data['data']);
+                  
                  window.location.href=data['data'][1];
-
+                  
                 } else {
                   $('#error').modal('show');
                 }
-                
-              
-              
-                   
+     
             }
           });
     });
 
   });
+
 
 </script>

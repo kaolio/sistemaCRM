@@ -116,6 +116,7 @@
                 <div class="input-group-text">Estado</div>
                       <select name="est" id="est" class="form-control" >
                         <option selected disabled value="new">Seleccione un Estado</option>
+                        <option value="registrado">Registrado</option>
                         <option value="recibido">Recibido</option>
                         <option value="enProceso">En proceso</option>
                         <option value="esperandoPiezas">Esperando Piezas</option>
@@ -166,7 +167,7 @@
         <div class="input-group-prepend">
           <div class="input-group-text">Ver</div>
                 <select name="ver" id="ver" class="form-control">
-                  @for ($i = 10; $i <= 30; $i++)
+                  @for ($i = 50; $i <= 100; $i=$i+10)
                       <option value="{{$i}}">{{$i}}</option>
                   @endfor
                 </select>
@@ -186,7 +187,7 @@
         <a class="btn btn-danger" href="{{URL('trabajo/pdf')}}" role="button">PDF</a> 
     @endcan
     @can('imprimir lista de trabajos')
-        <a type="button" href="{{URL('trabajo/imprimirIndex')}}" class="btn btn-primary">Imprimir</a>
+        <a type="button" href="{{URL('trabajo/imprimirIndex')}}" target="_blank"  class="btn btn-primary">Imprimir</a>
     @endcan
     
   </div>
@@ -218,6 +219,7 @@
           <div class="input-group-text" id="btnGroupAddon">Estado</div>
           <select name="estado" id="estado" class="form-control">
             <option value="todos">Todos</option>
+            <option value="registrado">Registrado</option>
             <option value="recibido">Recibido</option>
             <option value="enProceso">En proceso</option>
             <option value="esperandoPiezas">Esperando Piezas</option>
@@ -230,6 +232,7 @@
             <option value="pagadoRegresadoCliente">Pagado y regresado a Cliente</option>
           </select>
         </div>
+        @if ($rol_encontrado == 'ADMINISTRADOR' || $rolePermission != 1)
         <div class="input-group-prepend">
           <div class="input-group-text" id="btnGroupAddon">Ingeniero</div>
         
@@ -239,7 +242,7 @@
               <option {{ old('categoria') == $rol->id ? "selected" : "" }} value="{{$rol->id}}">{{$rol->name}}</option>
             @endforeach
           </select>
-        </div>
+        </div>@endif
      </div>
 
      
@@ -259,7 +262,9 @@
 @include('trabajo.ajax.index.funcionesAjax')
 
 <script>
-  var msg = '{{Session::get('alert')}}';
+
+
+var msg = '{{Session::get('alert')}}';
   var exist = '{{Session::has('alert')}}';
   if(exist){
     alert(msg);

@@ -19,7 +19,7 @@
     }
   }
 
-  function imprimirPDF(){
+  /*function imprimirPDF(){
     var seleccionados = $("input:checkbox:checked");
     var arreglo = [];
     $(seleccionados).each(function() {
@@ -46,6 +46,36 @@
                 console.log(dataResult);
               }
           });
+
+  }*/
+
+  function imprimirPDF(){
+      
+    var seleccionados = $("input:checkbox:checked");
+    var arreglo = [];
+    $(seleccionados).each(function() {
+      arreglo.push($(this).attr('id'));
+    });
+    //console.log(arreglo);
+
+    enviarPagina(arreglo,0);
+
+  }
+
+
+  function enviarPagina(params,index) {
+
+    if (index < params.length) {
+      
+      window.location.href="/trabajo/imprimir/"+params[index];
+
+      setTimeout(function(){
+          
+            enviarPagina(params,index +1);
+
+          },5000);
+
+    }
 
   }
 

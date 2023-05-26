@@ -38,10 +38,10 @@
           <div style="position: absolute; left: 50px" >
               <br/><br/>
 
-              Direccion: &nbsp; Calle Antezana <br/>
-              Telefono: &nbsp;&nbsp; 4446652 <br/>
+              Empresa: &nbsp; DPR Recovery <br/>
+              Direccion: &nbsp; Arzobispo Loaces N17 Local<br/>
+              Telefono: &nbsp;&nbsp; +34 966 231 768 <br/>
               Skype: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Empres@ <br/>
-              Sitio Web: &nbsp; www.empresa100.com <br/>
               E-mail: &nbsp; empresa@gmail.com <br/>
               
           </div>
@@ -51,14 +51,12 @@
           
           <div style="position: absolute; left: 50px" >
               <br/>
-                Nombre: &nbsp;&nbsp;&nbsp;&nbsp; {{$contenedor[$i][1]->nombreCliente}} <br/>
-                Direccion: &nbsp;&nbsp; {{$contenedor[$i][1]->calle}} <br/>
-                Provincia
-                : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   {{$contenedor[$i][1]->provincia}} <br/>
-                Fecha: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$contenedor[$i][1]->created_at}} <br/>
-                Servicio: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Recuperacion de datos <br/> 
-              
-
+                Nombre: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$contenedor[$i][1]->nombreCliente}} <br/>
+                Direccion: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$contenedor[$i][1]->calle}} <br/>
+                Provincia: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$contenedor[$i][1]->provincia}} <br/>
+                Fecha: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$contenedor[$i][1]->created_at}} <br/>
+                Servicio: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Recuperacion de datos <br/> 
+                Contraseña: &nbsp;&nbsp;&nbsp;  {{$contenedor[$i][1]->password}} <br/> 
               
           </div>
           <br/><br/><br/><br/><br/><br/><br/><br/><br/>
@@ -92,11 +90,7 @@
                 <hr>
                 <div style="position: absolute; left: 50px" >
                   <br/>
-                  Beneficiario: Empres@ <br/>
-                  IBAN: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JRS35160005010028639124<br/>
-                  Nro de Cuenta: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   00-501-0028639.1 <br/>
-                  Siwft: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DBDBRSBG <br/>
-                  Banco: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Banca Intesa AD.<br/>
+                  pagina para verificar su estado:  https://crm.vtdfix.com/login/cliente<br/>
           
                   
               </div>

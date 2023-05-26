@@ -165,17 +165,16 @@
       <div class="form-row">
         <div class="form-group col-md-4" style="padding-top: 8px">
           <div class="input-group">
-            <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Rol del Disco&nbsp;<strong>*</strong></span>
+            <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Rol&nbsp;<strong>*</strong></span>
             <select name="rol" class="form-control" class="btn-block" required>
               <option disabled value="">Elija el Rol</option>
-              @if ($inventario->rol == $inventario_elegido->rol)
-              <option value="{{$inventario->rol}}" selected>{{$inventario->rol}}</option>                      
-            @else
-              <option value="{{$inventario->rol}}">{{$inventario->rol}}</option>      
-            @endif
-              <option value="Datos">Datos</option>
-              <option value="Dispositivo a Recuperar">Dispositivo a Recuperar</option>
-              <option value="Donante">Donante</option>
+              @if ($inventario->rol == 'Donante')
+                <option value="{{$inventario->rol}}" selected>{{$inventario->rol}}</option>       
+                <option value="Datos">Datos</option>               
+              @else
+                <option value="{{$inventario->rol}}" selected>{{$inventario->rol}}</option>  
+                <option value="Donante">Donante</option>   
+              @endif
             </select>
             <span id="estadoManufactura"></span>
           </div>
@@ -244,8 +243,8 @@
             </div>
             <div class="form-group col-md-4">
               <label for="inputCity">PrempType </label>
-              <input type="text" class="form-control" id="prempType" name="prempType" autocomplete="off" value="{{$inventario->premp_type}}"
-              placeholder="PrempType" value="{{ old('prempType') }}"  
+              <input type="text" class="form-control" id="prempType" name="prempType" autocomplete="off" value="{{$inventario->premp_Type}}"
+              placeholder="PrempType"  value="{{ old('prempType') }}"
               onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 47))">
               <span id="estadoFirmware"></span>
             </div>

@@ -161,7 +161,12 @@
                                                                         <div class="card-header">
                                                                             @foreach ($permission as $value)
                                                                                 @if ($value->tipo == 'trabajo' )
+                                                                                @if ($value->name == 'ver orden de trabajo')
+                                                                                <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}(Admin. Sec.)</span></label><br>
+                                                                                @else
                                                                                     <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
+                                                                                @endif
+                                                                                    
                                                                                 @endif
                                                                             @endforeach 
                                                                         </div>

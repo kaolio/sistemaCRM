@@ -57,7 +57,7 @@ input:focus + label {
   <div class="card-body">
     <body>
       
-        <form action="{{url('/trabajo/nuevo')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{url('/trabajo/nuevo')}}" method="POST" id="mi_formulario" enctype="multipart/form-data">
           @csrf
           <div class='container-fluid'>
                 <div class="card">
@@ -309,7 +309,7 @@ input:focus + label {
                 <br>
                 <div class="form-group">
                 <a href="/trabajos" class="btn btn-danger my-2 my-sm-0">Cancelar</a>
-                <button class="btn btn-primary" type="submit" >Aceptar</button>
+                <button class="btn btn-primary" id="boton_bloquear" type="submit" >Aceptar</button>
                 </div>
             </div>
           </form>   
@@ -449,7 +449,7 @@ input:focus + label {
 
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{ asset('js/trabajo/create.js')}}"></script>
 <link rel="stylesheet" href="{{ URL::asset('estilos/style.css') }} ">
 <script>
@@ -460,7 +460,7 @@ if ($('#cliente').val() != "") {
 
   $('#cliente').keyup(function() {
       var query = $(this).val();
-      console.log(query);
+      //console.log(query);
       if (query != '') {
           $.ajax({
               url: '/autocompletarCliente',
@@ -507,7 +507,7 @@ if ($('#cliente').val() != "") {
   }
 
   function addImg(input,cont) {
-      console.log(input.files);
+      //console.log(input.files);
       var reader = new FileReader();
       reader.onload = function(e) {
         // Asignamos el atributo src a la tag de imagen
@@ -578,7 +578,7 @@ if ($('#cliente').val() != "") {
 
   function llenarCampoCliente(a,b,c,d,e){
     //var json = JSON.parse(a);
-    console.log(a,b,c,d,e);
+    //console.log(a,b,c,d,e);
     $('#cliente').val();
     $('#cliente').val(a+", "+b+", "+c+", "+d+", "+e);
     $('#busquedaCliente').modal('hide');
@@ -589,6 +589,7 @@ if ($('#cliente').val() != "") {
     $('#buscarCif').val('');
     $('#buscarTelefono').val('');
     $('#tablaBuscar').hide();
+    myButton.disabled = false;
   }
 
   function tiempoEstimadoSeleccionado() {
@@ -610,6 +611,42 @@ if ($('#cliente').val() != "") {
             }
           });
   }
+
+  const myButton = document.getElementById('boton_bloquear');
+ 
+  myButton.addEventListener('click', function() {
+    
+    if($("#cliente").val() == ""){
+        myButton.disabled = true;
+        mensaje();
+        
+    }else{
+        
+        myButton.disabled = true;
+        document.getElementById("mi_formulario").submit();
+    }
+      //myButton.style.opacity = 0.7;
+      //myButton.textContent = 'Ejecutando proceso...';
+  
+      //simulación de espera para ejecución de un proceso
+      //setTimeout(function() {
+        //  myButton.textContent = 'Pulsar';
+          //myButton.style.opacity = 1;
+          //myButton.disabled = false;
+      //}, 5000);
+  });
+
+ 
+  function mensaje(){
+      Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Seleccione un Cliente!!',
+            showConfirmButton: false,
+            timer: 1500
+            })
+  }
+
 </script>
 
 @endsection

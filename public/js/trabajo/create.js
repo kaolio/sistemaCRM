@@ -14,9 +14,7 @@
             //adding row to end and start
             //$("#tabla>tbody").prepend("<tr><td>Test Row Prepend</td></tr>");
             var tipo = document.getElementById("tipo").value;
-            var selectedTipo = tipo.options[tipo.selectedIndex].text;
-            var rol = document.getElementById("rol");
-            var selectedRol = rol.options[rol.selectedIndex].text;
+            var rol = document.getElementById("rol").value;
             var fabricante = document.getElementById("fabricante").value;
             var modelo = document.getElementById("modelo").value;
             var serial = document.getElementById("serial").value;
@@ -29,13 +27,13 @@
                                         "<td>"+
                                           "<div class='input-group'>"+
                                           "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Tipo</span>"+
-                                          "<input type='text' class='form-control' name='tipo[]'id='tipo' readonly value='"+selectedTipo+"'>"+
+                                          "<input type='text' class='form-control' name='tipo[]'id='tipo' readonly value='"+tipo+"'>"+
                                           "</div>"+
                                         "</td>"+
                                         "<td>"+
                                           "<div class='input-group'>"+
                                           "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Rol</span>"+
-                                          "<input type='text' class='form-control' name='rol[]'id='rol' readonly value='"+selectedRol+"'>"+
+                                          "<input type='text' class='form-control' name='rol[]'id='rol' readonly value='"+rol+"'>"+
                                           "</div>"+
                                         "</td>"+
                                         "<td>"+

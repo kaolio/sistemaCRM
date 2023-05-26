@@ -36,7 +36,7 @@ class UsuarioController extends Controller
     {
         try {
             
-            $usuarios = user::paginate(5);
+            $usuarios = user::paginate(15);
 
             return view('usuarios.index',compact('usuarios'));
 
@@ -89,6 +89,7 @@ class UsuarioController extends Controller
                 $datoCliente->nombreCliente = $request->get('name');
                 $datoCliente->calle = $request->get('direccionSocial');
                 $datoCliente->numero = $request->get('telefono');
+                $datoCliente->cif = $request->get('cif');
                 $datoCliente->correo =  $request->get('email');
                 $datoCliente->telefono = $request->get('telefono');
                 $datoCliente->codigoPostal = $request->get('codigoPostal');

@@ -44,7 +44,7 @@
                         <div class="input-group">
                           <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Tel. Movil</span>
                         <input type="text" id="numero" name="numero" class="form-control" 
-                           onkeyup="" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
+                           onkeyup="" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 43 ))">
                         </div>
                       </div>
                     </div>
@@ -62,7 +62,7 @@
                         <div class="input-group">
                           <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Telefono</span>
                              <input type="text" id="telefono" name="telefono" class="form-control" 
-                                  autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
+                                  autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 43 ))">
                         </div>
                          <span id="estadoTelefono"></span>
                       </div>
