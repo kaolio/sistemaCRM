@@ -243,7 +243,7 @@ function redireccionar(datos){
                     '</svg>'+
                   '</button>'+
             '</a>'+
-            '<a href="{{url('/inventario/imprimirItemPdf')}}'+'/'+dataResult.data[i].id+'">'+
+            '<a target="_blank" href="{{url('/inventario/imprimirItemPdf')}} '+'/'+dataResult.data[i].id+'">'+
                 '<button class="btn btn-light-active btn-sm" style="padding:3px" >'+
                 '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(39, 62, 62)" class="bi bi-printer" viewBox="0 0 16 16">'+
                   '<path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>'+
@@ -407,7 +407,7 @@ $(document).ready(function(){
                     '</svg>'+
                   '</button>'+
             '</a>'+
-            '<a href="{{url('/inventario/imprimirItemPdf')}}'+'/'+dataResult.data[i].id+'">'+
+            '<a target="_blank" href="{{url('/inventario/imprimirItemPdf')}}'+'/'+dataResult.data[i].id+'">'+
                 '<button class="btn btn-light-active btn-sm" style="padding:3px" >'+
                 '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(39, 62, 62)" class="bi bi-printer" viewBox="0 0 16 16">'+
                   '<path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>'+
@@ -549,7 +549,7 @@ $(function(){
                     '</svg>'+
                   '</button>'+
             '</a>'+
-            '<a href="{{url('/inventario/imprimirItemPdf')}}'+'/'+dataResult.data[i].id+'">'+
+            '<a target="_blank" href="{{url('/inventario/imprimirItemPdf')}}'+'/'+dataResult.data[i].id+'">'+
                 '<button class="btn btn-light-active btn-sm" style="padding:3px" >'+
                 '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(39, 62, 62)" class="bi bi-printer" viewBox="0 0 16 16">'+
                   '<path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>'+
@@ -694,7 +694,7 @@ $(function(){
                     '</svg>'+
                   '</button>'+
             '</a>'+
-            '<a href="{{url('/inventario/imprimirItemPdf')}}'+'/'+dataResult.data[i].id+'">'+
+            '<a target="_blank" href="{{url('/inventario/imprimirItemPdf')}}'+'/'+dataResult.data[i].id+'">'+
                 '<button class="btn btn-light-active btn-sm" style="padding:3px" >'+
                 '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(39, 62, 62)" class="bi bi-printer" viewBox="0 0 16 16">'+
                   '<path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>'+
@@ -836,7 +836,7 @@ $(function(){
                     '</svg>'+
                   '</button>'+
             '</a>'+
-            '<a href="{{url('/inventario/imprimirItemPdf')}}'+'/'+dataResult.data[i].id+'">'+
+            '<a target="_blank" href="{{url('/inventario/imprimirItemPdf')}}'+'/'+dataResult.data[i].id+'">'+
                 '<button class="btn btn-light-active btn-sm" style="padding:3px" >'+
                 '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(39, 62, 62)" class="bi bi-printer" viewBox="0 0 16 16">'+
                   '<path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>'+
@@ -979,7 +979,7 @@ $(function(){
                     '</svg>'+
                   '</button>'+
             '</a>'+
-            '<a href="{{url('/inventario/imprimirItemPdf')}}'+'/'+dataResult.data[i].id+'">'+
+            '<a target="_blank" href="{{url('/inventario/imprimirItemPdf')}}'+'/'+dataResult.data[i].id+'">'+
                 '<button class="btn btn-light-active btn-sm" style="padding:3px" >'+
                 '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(39, 62, 62)" class="bi bi-printer" viewBox="0 0 16 16">'+
                   '<path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>'+
@@ -1123,7 +1123,7 @@ $(function(){
                     '</svg>'+
                   '</button>'+
             '</a>'+
-            '<a href="{{url('/inventario/imprimirItemPdf')}}'+'/'+dataResult.data[i].id+'">'+
+            '<a target="_blank" href="{{url('/inventario/imprimirItemPdf')}}'+'/'+dataResult.data[i].id+'">'+
                 '<button class="btn btn-light-active btn-sm" style="padding:3px" >'+
                 '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(39, 62, 62)" class="bi bi-printer" viewBox="0 0 16 16">'+
                   '<path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>'+
@@ -1266,7 +1266,7 @@ $(function(){
                     '</svg>'+
                   '</button>'+
             '</a>'+
-            '<a href="{{url('/inventario/imprimirItemPdf')}}'+'/'+dataResult.data[i].id+'">'+
+            '<a target="_blank" href="{{url('/inventario/imprimirItemPdf')}}'+'/'+dataResult.data[i].id+'">'+
                 '<button class="btn btn-light-active btn-sm" style="padding:3px" >'+
                 '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(39, 62, 62)" class="bi bi-printer" viewBox="0 0 16 16">'+
                   '<path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>'+

@@ -20,9 +20,11 @@
                     <div class="card">
                         <div class="card-body">
                             <h3><b>{{$orden_elegida->id}} - {{$orden_elegida->nombreCliente}}</b></h3>
+                            @if($rol_encontrado == 'ADMINISTRADOR' || $rolePermission)
                             <button class="btn btn-warning" id="botones"data-toggle="modal" data-target="#exampleModal01">Asignar un Usuario</button>
-                            <button class="btn btn-primary" id="botones"><a class="text-white" href="{{URL('/trabajo/imprimirContrato/'.$orden_elegida->id)}}" target="_blank" rel="noopener noreferrer">Imprimir Contrato</a></button>
-                            <button class="btn btn-warning" id="botones"><a class="text-dark" href="{{URL('/trabajo/imprimirOrden/'.$orden_elegida->id)}}" target="_blank" rel="noopener noreferrer">Imprimir Orden</a></button>
+                            <button class="btn btn-primary" id="botones"><a class="text-white" href="{{URL('/trabajo/imprimirContrato/'.Crypt::encrypt($orden_elegida->id))}}" target="_blank" rel="noopener noreferrer">Imprimir Contrato</a></button>
+                            <button class="btn btn-warning" id="botones"><a class="text-dark" href="{{URL('/trabajo/imprimirOrden/'.Crypt::encrypt($orden_elegida->id))}}" target="_blank" rel="noopener noreferrer">Imprimir Orden</a></button>
+                            @endif
                             <button class="btn btn-primary" id="botones"data-toggle="modal" data-target="#ListaDeArchivos{{$orden_elegida->id}}">Ir a Lista de archivos</button>
                             <button class="btn btn-warning" id="botones">Desbloquear Acceso de cliente</button>
                         </div>
@@ -145,7 +147,6 @@
                                 <li class="nav-item"><a class="nav-link" href="#adjuntarArchivo" data-toggle="tab">Archivos adjuntos</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#imagenes" data-toggle="tab">Imagenes</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#historial" data-toggle="tab">Historial</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#" data-toggle="tab">Iniciar Sesion</a></li>
                                 </ul>
                             </div><!-- /.card-header -->
                             <div class="card-body">
@@ -183,6 +184,7 @@
                                     @include('trabajo.informacion.historial')
                                 </div>
                                 <!-- /Historial -->
+
                                 </div>
                                 <!-- /.tab-content -->
                             </div><!-- /.card-body -->

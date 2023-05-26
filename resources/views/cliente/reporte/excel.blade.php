@@ -23,8 +23,12 @@
           <th></th>
           <th></th>
           <th></th>
+          <th style="font-size:25px"><strong>LISTA DE CLIENTES</strong></th>
           <th></th>
-          <th style="font-size:25px"><strong>REPORTE ORDENES DE TRABAJO</strong></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          
         </tr>
         <tr>
         </tr>

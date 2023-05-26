@@ -27,12 +27,12 @@
     
 
     
-            <link rel="stylesheet" href="http://localhost:8000/vendor/fontawesome-free/css/all.min.css">
-        <link rel="stylesheet" href="http://localhost:8000/vendor/overlayScrollbars/css/OverlayScrollbars.min.css">
+            <link rel="stylesheet" href="https://crm.vtdfix.com//vendor/fontawesome-free/css/all.min.css">
+        <link rel="stylesheet" href="https://crm.vtdfix.com//vendor/overlayScrollbars/css/OverlayScrollbars.min.css">
 
         
         
-        <link rel="stylesheet" href="http://localhost:8000/vendor/adminlte/dist/css/adminlte.min.css">
+        <link rel="stylesheet" href="https://crm.vtdfix.com//vendor/adminlte/dist/css/adminlte.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     
     
@@ -50,8 +50,8 @@
 
         
         <div class="login-logo">
-            <a href="http://localhost:8000/home">
-                <img src="http://localhost:8000/vendor/adminlte/dist/img/AdminLTELogo.png" height="50">
+            <a href="https://crm.vtdfix.com//home">
+                <img src="https://crm.vtdfix.com//vendor/adminlte/dist/img/AdminLTELogo.png" height="50">
                 <b>CRM</b>&nbsp;CLIENTE
             </a>
         </div>
@@ -69,11 +69,11 @@
             <div class="card-body login-card-body ">   
         <div class="input-group mb-3">
             <input type="text" name="numero" id="numero" class="form-control "
-                   value="" placeholder="Numero de Telefono" autofocus>
+                   value="" placeholder="Numero de CIF" autofocus>
 
             <div class="input-group-append">
                 <div class="input-group-text">
-                    <span class="fas fa-phone fa-lg text-info"></span>
+                    <span class="fas fa-user fa-lg text-info"></span>
                 </div>
             </div>
 
@@ -113,13 +113,13 @@
     </div>
 
     
-            <script src="http://localhost:8000/vendor/jquery/jquery.min.js"></script>
-        <script src="http://localhost:8000/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="http://localhost:8000/vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+            <script src="https://crm.vtdfix.com//vendor/jquery/jquery.min.js"></script>
+        <script src="https://crm.vtdfix.com//vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="https://crm.vtdfix.com//vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 
         
         
-        <script src="http://localhost:8000/vendor/adminlte/dist/js/adminlte.min.js"></script>
+        <script src="https://crm.vtdfix.com//vendor/adminlte/dist/js/adminlte.min.js"></script>
     
     
     
@@ -127,6 +127,7 @@
         function enviar(){
             var num = $("#numero").val();
             var pass = $("#password").val();
+            
         $.ajax({
             url: "/login/cliente",
             type: "POST",

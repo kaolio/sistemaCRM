@@ -13,6 +13,7 @@ use App\Models\Productos;
 use App\Models\Roles;
 use App\Models\Servicio;
 use PDF;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -26,14 +27,14 @@ class OrdenTrabajoController extends Controller
 
     function __construct()
     {
-        $this->middleware('permission:ver orden de trabajo|crear orden de trabajo|editar trabajo|borrar orden de trabajo|imprimir orden de trabajo|imprimir lista de trabajos|descargar lista excel|descargar lista PDF',['only'=>['index']]);
+        $this->middleware('permission:ver orden de trabajo|crear orden de trabajo|editar trabajo|borrar orden de trabajo|imprimir orden de trabajo|imprimir lista de trabajos|lista de trabajos excel|lista de trabajos PDF',['only'=>['index']]);
         $this->middleware('permission:crear orden de trabajo',['only'=>['create','store']]);
         $this->middleware('permission:editar orden de trabajo',['only'=>['edit','update']]);
         $this->middleware('permission:borrar orden de trabajo',['only'=>['destroy']]);
         $this->middleware('permission:imprimir orden de trabajo',['only'=>['variosPDF']]);
         $this->middleware('permission:imprimir lista de trabajos',['only'=>['imprimirPdf']]);
-        $this->middleware('permission:descargar lista excel',['only'=>['descargarExcel']]);
-        $this->middleware('permission:descargar lista PDF',['only'=>['descargarPDF']]);
+        $this->middleware('permission:lista de trabajos excel',['only'=>['descargarExcel']]);
+        $this->middleware('permission:lista de trabajos PDF',['only'=>['descargarPDF']]);
 
     }
     /**
@@ -43,6 +44,14 @@ class OrdenTrabajoController extends Controller
      */
     public function index(Request $request)
     {
+
+        $rols_id = DB::table('model_has_roles')
+                    ->select('role_id')
+                    ->where('model_id',Auth::user()->id)
+                    ->first();
+                    
+        $rol_encontrado = Role::findById($rols_id->role_id)->name ;
+        $rolePermission = Auth::user()->hasPermissionTo('ver orden de trabajo(Personal)');
         
         $rol = DB::table('users')
                 ->select('*')
@@ -62,7 +71,7 @@ class OrdenTrabajoController extends Controller
                 ->select('nombre_prioridad')
                 ->get();
 
-        return view('trabajo.index', compact('trabajo','rol','prioridad','prioridads'));
+        return view('trabajo.index', compact('trabajo','rol','prioridad','prioridads','rol_encontrado','rolePermission'));
         
     }
 
@@ -80,27 +89,132 @@ class OrdenTrabajoController extends Controller
         $cif = $_POST["cif"];
         $telefono = $_POST["telefono"];
 
-        if($nombre == ''){
-            $nombre = "vacio";
-        }
-        if($correo == ''){
-            $correo = "vacio";
-        }
-        if($cif == ''){
-            $cif = "0000";
-        }
-        if($telefono == ''){
-            $telefono = "0000";
+
+        $rols = DB::table('model_has_roles')
+                    ->select('role_id')
+                    ->where('model_id',Auth::user()->id)
+                    ->first();
+                    
+        $rol = Role::findById($rols->role_id)->name ;
+
+        if ($rol == 'ADMINISTRADOR') {
+
+            if ($nombre != "") {
+                $cliente = DB::table('clientes')
+                        ->select('*')
+                        ->where('nombreCliente', 'like', '%' . $nombre . '%')
+                        ->get();
+                return json_encode(array('data'=>$cliente));
+            }
+
+            if ($correo != "") {
+                $cliente = DB::table('clientes')
+                        ->select('*')
+                        ->where('correo', 'like', '%' . $correo . '%')
+                        ->get();
+                return json_encode(array('data'=>$cliente));
+            }
+
+            if ($cif != "") {
+                $cliente = DB::table('clientes')
+                        ->select('*')
+                        ->where('cif', 'like', '%' . $cif . '%')
+                        ->get();
+                return json_encode(array('data'=>$cliente));
+            }
+
+            if ($telefono != "") {
+                $cliente = DB::table('clientes')
+                        ->select('*')
+                        ->where('telefono', 'like', '%' . $telefono . '%')
+                        ->get();
+                return json_encode(array('data'=>$cliente));
+            }
+
+        }else{
+
+            $rolePermission = Auth::user()->hasPermissionTo('ver orden de trabajo(Personal)'); 
+            
+            if ($rolePermission) {
+
+                if ($nombre != "") {
+                    $cliente = DB::table('clientes')
+                            ->select('*')
+                            ->where('id_user',Auth::user()->id)
+                            ->where('nombreCliente', 'like', '%' . $nombre . '%')
+                            ->get();
+                    return json_encode(array('data'=>$cliente));
+                }
+    
+                if ($correo != "") {
+                    $cliente = DB::table('clientes')
+                            ->select('*')
+                            ->where('id_user',Auth::user()->id)
+                            ->where('correo', 'like', '%' . $correo . '%')
+                            ->get();
+                    return json_encode(array('data'=>$cliente));
+                }
+    
+                if ($cif != "") {
+                    $cliente = DB::table('clientes')
+                            ->select('*')
+                            ->where('id_user',Auth::user()->id)
+                            ->where('cif', 'like', '%' . $cif . '%')
+                            ->get();
+                    return json_encode(array('data'=>$cliente));
+                }
+    
+                if ($telefono != "") {
+                    $cliente = DB::table('clientes')
+                            ->select('*')
+                            ->where('id_user',Auth::user()->id)
+                            ->where('telefono', 'like', '%' . $telefono . '%')
+                            ->get();
+                    return json_encode(array('data'=>$cliente));
+                }
+                
+
+            }else{
+
+                if ($nombre != "") {
+                    $cliente = DB::table('clientes')
+                            ->select('*')
+                            ->where('nombreCliente', 'like', '%' . $nombre . '%')
+                            ->get();
+                    return json_encode(array('data'=>$cliente));
+                }
+    
+                if ($correo != "") {
+                    $cliente = DB::table('clientes')
+                            ->select('*')
+                            ->where('correo', 'like', '%' . $correo . '%')
+                            ->get();
+                    return json_encode(array('data'=>$cliente));
+                }
+    
+                if ($cif != "") {
+                    $cliente = DB::table('clientes')
+                            ->select('*')
+                            ->where('cif', 'like', '%' . $cif . '%')
+                            ->get();
+                    return json_encode(array('data'=>$cliente));
+                }
+    
+                if ($telefono != "") {
+                    $cliente = DB::table('clientes')
+                            ->select('*')
+                            ->where('telefono', 'like', '%' . $telefono . '%')
+                            ->get();
+                    return json_encode(array('data'=>$cliente));
+                }
+
+            }
+
         }
 
-        $cliente = DB::table('clientes')
-                ->select('*')
-                ->where('nombreCliente', 'like', '%' . $nombre . '%')
-                      ->orWhere('correo', 'like', '%' . $correo . '%')
-                      ->orWhere('cif', 'like', '%' . $cif . '%')
-                      ->orWhere('telefono', 'like', '%' . $telefono . '%')
-                ->get();
+        $cliente = [];
         return json_encode(array('data'=>$cliente));
+        
     }
 
     /**
@@ -178,7 +292,7 @@ class OrdenTrabajoController extends Controller
             $datoTrabajo->id_cliente = $identificado->id;
             $datoTrabajo->prioridad = $request->get('prioridad');
             $datoTrabajo->tiempoEstimado = $request->get('tiempoEstimado');
-            $datoTrabajo->estado = "Recibido";
+            $datoTrabajo->estado = "Registrado";
             $datoTrabajo->informacion = $request->get('informacion');
             $datoTrabajo->datosImportantes = $request->get('dato');
             $datoTrabajo->nota = $request->get('nota');
@@ -323,7 +437,8 @@ class OrdenTrabajoController extends Controller
 
     public function imprimirOrden($id)
     {
-        
+
+        $id = Crypt::decrypt($id);
         $contenedor = [];
         
             $variable = [];
@@ -357,7 +472,8 @@ class OrdenTrabajoController extends Controller
 
     public function imprimirContrato($id)
     {
-        
+        $id = Crypt::decrypt($id);
+
         $contenedor = [];
         
             $variable = [];
@@ -438,9 +554,10 @@ class OrdenTrabajoController extends Controller
         //dd($id);
         // OrdenTrabajo::destroy($id); 
         // return redirect('trabajos');
+        
         $trabajo=OrdenTrabajo::findOrFail($id);
         $trabajo->delete();
-                return redirect('trabajos');
+        return redirect('trabajos');
     }
 
     function autoCompletar(Request $request)
@@ -478,73 +595,15 @@ class OrdenTrabajoController extends Controller
 
     public function prioridad()
     {
-        if (Auth::user()->id != 1) {
-            
-
-                $rolePermission = DB::table('role_has_permissions')
-                    ->where('role_id',Auth::user()->id)
-                    ->where('permission_id',11)
-                    ->exists();
-
-                $usuario = DB::table('users')
-                    ->select('name')
-                    ->where('id',Auth::user()->id)
+        $rols = DB::table('model_has_roles')
+                    ->select('role_id')
+                    ->where('model_id',Auth::user()->id)
                     ->first();
-
-            if ($_POST["orden"] =='Todos') {
-
-                if ($rolePermission) {
-                    $datosTabla =  DB::table('orden_trabajos')
-                                ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-                                ->join('users','users.id','orden_trabajos.asignado')
-                                ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-                                ->where('orden_trabajos.creado',$usuario->name)
-                                //->orWhere('orden_trabajos.asignado',Auth::user()->id)
-                                ->orderBy('orden_trabajos.id','desc')
-                                ->get(); 
-                } else {
-                    $datosTabla =  DB::table('orden_trabajos')
-                                ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-                                ->join('users','users.id','orden_trabajos.asignado')
-                                ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-                                ->where('orden_trabajos.creado',$usuario->name)
-                                //->orWhere('orden_trabajos.asignado',Auth::user()->id)
-                                ->orderBy('orden_trabajos.id','desc')
-                                ->get(); 
-                }
-            }else{
-
-                if (($rolePermission)) {
                     
-                    $datosTabla =  DB::table('orden_trabajos')
-                        ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-                        ->join('users','users.id','orden_trabajos.asignado')
-                        ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-                        ->where('orden_trabajos.prioridad','=',$_POST["orden"])
-                        ->where(function($q) use($usuario) {
-                            $q->where('orden_trabajos.creado',$usuario->name);
-                            /*->orWhere('orden_trabajos.asignado',Auth::user()->id);*/
-                        })
-                        ->orderBy('orden_trabajos.id','desc')
-                        ->get();
+        $rol = Role::findById($rols->role_id)->name ;
 
-                } else {  
-                    $datosTabla =  DB::table('orden_trabajos')
-                        ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-                        ->join('users','users.id','orden_trabajos.asignado')
-                        ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-                        ->where('orden_trabajos.prioridad','=',$_POST["orden"])
-                        /*->where(function($q) use($usuario) {
-                            $q->where('orden_trabajos.creado',$usuario->name)
-                            ->orWhere('orden_trabajos.asignado',Auth::user()->id);
-                        })*/
-                        ->orderBy('orden_trabajos.id','desc')
-                        ->get();
-                }
-                
-            }
-        }else{
-
+        if ($rol == 'ADMINISTRADOR') {
+            
             if ($_POST["orden"] =='Todos') {
                 $datosTabla =  DB::table('orden_trabajos')
                 ->join('clientes','clientes.id','orden_trabajos.id_cliente')
@@ -565,30 +624,108 @@ class OrdenTrabajoController extends Controller
                 ->orderBy('orden_trabajos.id','desc')
                 ->get();
             }
-        } 
+        }else{
+            
+            $rolePermission = Auth::user()->hasPermissionTo('ver orden de trabajo(Personal)');
+
+            $usuario = DB::table('users')
+                    ->select('name')
+                    ->where('id',Auth::user()->id)
+                    ->first();
+            
+            if ($rolePermission) {
+                if ($_POST["orden"] =='Todos') {
+                    
+                     $datosTabla =  DB::table('orden_trabajos')
+                        ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                        ->join('users','users.id','orden_trabajos.asignado')
+                        ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+                        //->where('orden_trabajos.prioridad','=',$_POST["orden"])
+                        ->where(function($q) use($usuario) {
+                            $q->where('orden_trabajos.creado',$usuario->name);
+                            /*->orWhere('orden_trabajos.asignado',Auth::user()->id);*/
+                        })
+                        ->orderBy('orden_trabajos.id','desc')
+                        ->get();
+                    
+                    
+                }else{
+                    
+                     $datosTabla =  DB::table('orden_trabajos')
+                        ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                        ->join('users','users.id','orden_trabajos.asignado')
+                        ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+                        ->where('orden_trabajos.prioridad','=',$_POST["orden"])
+                        ->where(function($q) use($usuario) {
+                            $q->where('orden_trabajos.creado',$usuario->name);
+                            /*->orWhere('orden_trabajos.asignado',Auth::user()->id);*/
+                        })
+                        ->orderBy('orden_trabajos.id','desc')
+                        ->get();
+                    
+                }
+               
+            }else{
+                
+                 if ($_POST["orden"] =='Todos') {
+                     
+                     $datosTabla =  DB::table('orden_trabajos')
+                        ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                        ->join('users','users.id','orden_trabajos.asignado')
+                        ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+                        //->where('orden_trabajos.prioridad','=',$_POST["orden"])
+                        /*->where(function($q) use($usuario) {
+                            $q->where('orden_trabajos.creado',$usuario->name)
+                            ->orWhere('orden_trabajos.asignado',Auth::user()->id);
+                        })*/
+                        ->orderBy('orden_trabajos.id','desc')
+                        ->get();
+                     
+                 }else{
+                     
+                     $datosTabla =  DB::table('orden_trabajos')
+                        ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                        ->join('users','users.id','orden_trabajos.asignado')
+                        ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+                        ->where('orden_trabajos.prioridad','=',$_POST["orden"])
+                        /*->where(function($q) use($usuario) {
+                            $q->where('orden_trabajos.creado',$usuario->name)
+                            ->orWhere('orden_trabajos.asignado',Auth::user()->id);
+                        })*/
+                        ->orderBy('orden_trabajos.id','desc')
+                        ->get();
+                     
+                 }
+                
+                
+            }
+        }
 
         return json_encode(array('data'=>$datosTabla));
     }
 
     public function estado()
     {
-        $usuario = DB::table('users')
-                ->select('name')
-                ->where('id',Auth::user()->id)
-                ->first();
-        if (Auth::user()->id != 1) {
+        $rols = DB::table('model_has_roles')
+                    ->select('role_id')
+                    ->where('model_id',Auth::user()->id)
+                    ->first();
+                    
+        $rol = Role::findById($rols->role_id)->name ;
+
+        if ($rol == 'ADMINISTRADOR') {
             
             if ($_POST["orden"] =='Todos') {
-
+                
                 $datosTabla =  DB::table('orden_trabajos')
                 ->join('clientes','clientes.id','orden_trabajos.id_cliente')
                 ->join('users','users.id','orden_trabajos.asignado')
                 ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-                //->where('orden_trabajos.creado',$usuario->name)
-                //->orWhere('orden_trabajos.asignado',Auth::user()->id)
                 ->orderBy('orden_trabajos.id','desc')
-                ->get();  
+                ->get();
+
             }else{
+                
                 $datosTabla =  DB::table('orden_trabajos')
                 ->join('clientes','clientes.id','orden_trabajos.id_cliente')
                 ->join('users','users.id','orden_trabajos.asignado')
@@ -600,32 +737,77 @@ class OrdenTrabajoController extends Controller
                 })*/
                 ->orderBy('orden_trabajos.id','desc')
                 ->get();
-
-
+                
             }
         }else{
+            
+            $rolePermission = Auth::user()->hasPermissionTo('ver orden de trabajo(Personal)');
 
-            if ($_POST["orden"] =='Todos') {
-                $datosTabla =  DB::table('orden_trabajos')
-                ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-                ->join('users','users.id','orden_trabajos.asignado')
-                ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-                ->orderBy('orden_trabajos.id','desc')
-                ->get();
+            $usuario = DB::table('users')
+                    ->select('name')
+                    ->where('id',Auth::user()->id)
+                    ->first();
+            
+            if ($rolePermission) {
+                if ($_POST["orden"] =='Todos') {
+                    
+                    $datosTabla =  DB::table('orden_trabajos')
+                            ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                            ->join('users','users.id','orden_trabajos.asignado')
+                            ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+                            ->where('orden_trabajos.creado',$usuario->name)
+                            ->orWhere('orden_trabajos.asignado',Auth::user()->id)
+                            ->orderBy('orden_trabajos.id','desc')
+                            ->get(); 
+                    
+                }else{
+                    
+                    $datosTabla =  DB::table('orden_trabajos')
+                            ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                            ->join('users','users.id','orden_trabajos.asignado')
+                            ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+                            ->where('orden_trabajos.estado','=',$_POST["orden"])
+                            ->where(function($q) use($usuario) {
+                                $q->where('orden_trabajos.creado',$usuario->name)
+                                ->orWhere('orden_trabajos.asignado',Auth::user()->id);
+                            })
+                            ->orderBy('orden_trabajos.id','desc')
+                            ->get();
+                }
+               
             }else{
-                $datosTabla =  DB::table('orden_trabajos')
-                ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-                ->join('users','users.id','orden_trabajos.asignado')
-                ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-                ->where('orden_trabajos.estado','=',$_POST["orden"])
-                /*->where(function($q) use($usuario) {
-                    $q->where('orden_trabajos.creado',$usuario->name)
-                      ->orWhere('orden_trabajos.asignado',Auth::user()->id);
-                })*/
-                ->orderBy('orden_trabajos.id','desc')
-                ->get();
+                
+                 if ($_POST["orden"] =='Todos') {
+                     
+                    $datosTabla =  DB::table('orden_trabajos')
+                            ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                            ->join('users','users.id','orden_trabajos.asignado')
+                            ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+                            //->where('orden_trabajos.creado',$usuario->name)
+                            //->orWhere('orden_trabajos.asignado',Auth::user()->id)
+                            ->orderBy('orden_trabajos.id','desc')
+                            ->get(); 
+                     
+                 }else{
+                     
+                    $datosTabla =  DB::table('orden_trabajos')
+                    ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                    ->join('users','users.id','orden_trabajos.asignado')
+                    ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+                    ->where('orden_trabajos.estado','=',$_POST["orden"])
+                    /*->where(function($q) use($usuario) {
+                        $q->where('orden_trabajos.creado',$usuario->name)
+                          ->orWhere('orden_trabajos.asignado',Auth::user()->id);
+                    })*/
+                    ->orderBy('orden_trabajos.id','desc')
+                    ->get();
+                     
+                 }
+                
+                
             }
-        } 
+        }
+
         
         return json_encode(array('data'=>$datosTabla));
     }
@@ -633,56 +815,95 @@ class OrdenTrabajoController extends Controller
     public function ingeniero()
     {
 
-        $usuario = DB::table('users')
-                ->select('name')
-                ->where('id',Auth::user()->id)
-                ->first();
-        if (Auth::user()->id != 1) {
+        $rols = DB::table('model_has_roles')
+                    ->select('role_id')
+                    ->where('model_id',Auth::user()->id)
+                    ->first();
+                    
+        $rol = Role::findById($rols->role_id)->name ;
+
+        if ($rol == 'ADMINISTRADOR') {
             
             if ($_POST["orden"] =='Todos los Ingenieros') {
+                
+                $datosTabla =  DB::table('orden_trabajos')
+                        ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                        ->join('users','users.id','orden_trabajos.asignado')
+                        ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+                        ->orderBy('orden_trabajos.id','desc')
+                        ->get();
+
+            }else{
 
                 $datosTabla =  DB::table('orden_trabajos')
-                ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-                ->join('users','users.id','orden_trabajos.asignado')
-                ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-                //->where('orden_trabajos.creado',$usuario->name)
-                //->orWhere('orden_trabajos.asignado',Auth::user()->id)
-                ->orderBy('orden_trabajos.id','desc')
-                ->get();  
-            }else{
-                $datosTabla =  DB::table('orden_trabajos')
-                ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-                ->join('users','users.id','orden_trabajos.asignado')
-                ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-                ->where('orden_trabajos.asignado','=',Auth::user()->id)
-                ->orderBy('orden_trabajos.id','desc')
-                ->get();
+                        ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                        ->join('users','users.id','orden_trabajos.asignado')
+                        ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+                        ->where('orden_trabajos.creado',$_POST["orden"])
+                        ->orderBy('orden_trabajos.id','desc')
+                        ->get();
+                        
             }
         }else{
+            
+            $rolePermission = Auth::user()->hasPermissionTo('ver orden de trabajo(Personal)');
 
-            if ($_POST["orden"] =='Todos los Ingenieros') {
-                $datosTabla =  DB::table('orden_trabajos')
-                ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-                ->join('users','users.id','orden_trabajos.asignado')
-                ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-                ->orderBy('orden_trabajos.id','desc')
-                ->get();
+            $usuario = DB::table('users')
+                    ->select('name')
+                    ->where('id',Auth::user()->id)
+                    ->first();
+            
+            if ($rolePermission) {
+                if ($_POST["orden"] =='Todos') {
+                    
+                    $datosTabla =  DB::table('orden_trabajos')
+                                ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                                ->join('users','users.id','orden_trabajos.asignado')
+                                ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+                                ->where('orden_trabajos.creado',$usuario->name)
+                                ->orWhere('orden_trabajos.asignado',Auth::user()->id)
+                                ->orderBy('orden_trabajos.id','desc')
+                                ->get();
+                    
+                }else{
+                    
+                    $datosTabla =  DB::table('orden_trabajos')
+                                ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                                ->join('users','users.id','orden_trabajos.asignado')
+                                ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+                                ->where('orden_trabajos.creado',$usuario->name)
+                                ->orWhere('orden_trabajos.asignado',Auth::user()->id)
+                                ->orderBy('orden_trabajos.id','desc')
+                                ->get();
+                    
+                }
+               
             }else{
-                $user = DB::table('users')
-                            ->select('id')
-                            ->where('name',$_POST["orden"])
-                            ->first();
-
-                $datosTabla =  DB::table('orden_trabajos')
-                ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-                ->join('users','users.id','orden_trabajos.asignado')
-                ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-                ->where('orden_trabajos.creado',$_POST["orden"])
-                ->orWhere('orden_trabajos.asignado',$user->id)
-                ->orderBy('orden_trabajos.id','desc')
-                ->get();
+                
+                 if ($_POST["orden"] =='Todos los Ingenieros') {
+                     
+                    $datosTabla =  DB::table('orden_trabajos')
+                            ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                            ->join('users','users.id','orden_trabajos.asignado')
+                            ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+                            ->orderBy('orden_trabajos.id','desc')
+                            ->get();
+                     
+                 }else{
+                     
+                    $datosTabla =  DB::table('orden_trabajos')
+                            ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                            ->join('users','users.id','orden_trabajos.asignado')
+                            ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+                            ->where('orden_trabajos.creado',$_POST["orden"])
+                            ->orderBy('orden_trabajos.id','desc')
+                            ->get();
+                    
+                 }
+                
+                
             }
-        } 
+        }
 
         
         return json_encode(array('data'=>$datosTabla));
@@ -691,25 +912,36 @@ class OrdenTrabajoController extends Controller
     public function ver()
     {
 
-        if (Auth::user()->id == 1) {
+        $rols = DB::table('model_has_roles')
+                    ->select('role_id')
+                    ->where('model_id',Auth::user()->id)
+                    ->first();
+                    
+        $rol = Role::findById($rols->role_id)->name ;
+
+        if ($rol == 'ADMINISTRADOR') {
             $datosTabla =  DB::table('orden_trabajos')
-            ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-            ->join('users','users.id','orden_trabajos.asignado')
-            ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-            ->orderBy('orden_trabajos.id','desc')
-            ->get();
+                    ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                    ->join('users','users.id','orden_trabajos.asignado')
+                    ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+                    ->orderBy('orden_trabajos.id','desc')
+                    ->get();
 
         }else{
 
-            $rolePermission = DB::table('role_has_permissions')
-            ->where('role_id',Auth::user()->id)
-            ->where('permission_id',11)
-            ->exists();
+            /*$rolePermission = DB::table('role_has_permissions')
+                    ->where('role_id',Auth::user()->id)
+                    ->where('permission_id',11)
+                    ->exists();*/
+                    
+            $rolePermission = Auth::user()->hasPermissionTo('ver orden de trabajo(Personal)');
+            //$rolePermission = Auth::user()->hasRole('ver orden de trabajo(Personal)');
+                //return json_encode(array('data'=>$rolePermission));
 
             $usuario = DB::table('users')
-            ->select('name')
-            ->where('id',Auth::user()->id)
-            ->first();
+                    ->select('name')
+                    ->where('id',Auth::user()->id)
+                    ->first();
             
             if ($rolePermission) {
                 $datosTabla =  DB::table('orden_trabajos')
@@ -717,6 +949,7 @@ class OrdenTrabajoController extends Controller
                     ->join('users','users.id','orden_trabajos.asignado')
                     ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
                     ->Where('orden_trabajos.creado',$usuario->name)
+                    ->orWhere('orden_trabajos.asignado',Auth::user()->id)
                     ->orderBy('orden_trabajos.id','desc')
                     ->get();
             } else {
@@ -741,21 +974,25 @@ class OrdenTrabajoController extends Controller
                 ->select('name')
                 ->where('id',Auth::user()->id)
                 ->first();
+            
+            $a = $_POST["value"];
 
             $datosTabla =  DB::table('orden_trabajos')
-            ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-            ->join('users','users.id','orden_trabajos.asignado')
-            ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-            ->where('clientes.nombreCliente', 'like', '%' . $_POST["value"] . '%')
-            ->orWhere('orden_trabajos.id', 'like', '%' . $_POST["value"] . '%')
-            ->orWhere('orden_trabajos.informacion', 'like', '%' . $_POST["value"] . '%')
-            ->where(function($q) use($usuario) {
-                $q->where('orden_trabajos.creado',$usuario->name)
-                  ->orWhere('orden_trabajos.asignado',Auth::user()->id);
-            })
-            ->orderBy('orden_trabajos.id','desc')
-            ->get();  
-        
+                    ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                    ->join('users','users.id','orden_trabajos.asignado')
+                    ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+                    ->where(function($q) use($usuario) {
+                        $q->where('orden_trabajos.creado',$usuario->name)
+                        ->orWhere('orden_trabajos.asignado',Auth::user()->id);
+                    })
+                    ->where(function($q) use($a) {
+                        $q->where('clientes.nombreCliente', 'like', '%' . $a . '%')
+                        ->orWhere('orden_trabajos.id', 'like', '%' . $a . '%')
+                        ->orWhere('orden_trabajos.informacion', 'like', '%' . $a . '%');
+                        
+                    })
+                    ->orderBy('orden_trabajos.id','desc')
+                    ->get();  
             
         return json_encode(array('data'=>$datosTabla));
     }
@@ -914,16 +1151,43 @@ class OrdenTrabajoController extends Controller
         return json_encode(array('data'=>$datosTablas));
     }
 
-    public function variosPDF()
+    public function variosPDF($id)
     {
         //sizeof($_POST['arreglo'])  $_POST['arreglo'][$i]
+
+        $contenedor = [];
+        
+            $variable = [];
+            $datos = DB::table('orden_trabajos')
+                ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                ->select('clientes.nombreCliente','clientes.calle','clientes.provincia','clientes.created_at','orden_trabajos.password')
+                ->where('orden_trabajos.id',$id)
+                ->first(); 
+            
+            $ident = $id;
+
+            $aux = [];
+            $detalle = DB::table('orden_trabajos')
+                ->join('detalle_ordens','detalle_ordens.id_trabajos','orden_trabajos.id')
+                ->select('detalle_ordens.tipo','detalle_ordens.fabricante','detalle_ordens.modelo','detalle_ordens.serial')
+                ->where('orden_trabajos.id', $id)
+                ->get(); 
+            
+            array_push($variable, $ident);
+            array_push($variable, $datos);
+            foreach ($detalle as $detalle) {
+                array_push($aux, $detalle);
+            }
+            array_push($variable, $aux);
+            array_push($contenedor, $variable);
+            /*
         $contenedor = [];
         for ($i=0; $i < sizeof($_POST['arreglo']); $i++) {
 
             $variable = [];
             $datos = DB::table('orden_trabajos')
                 ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-                ->select('clientes.nombreCliente','clientes.calle','clientes.provincia','clientes.created_at')
+                ->select('clientes.nombreCliente','clientes.calle','clientes.provincia','clientes.created_at','orden_trabajos.password')
                 ->where('orden_trabajos.id',$_POST['arreglo'][$i])
                 ->first(); 
             
@@ -943,66 +1207,131 @@ class OrdenTrabajoController extends Controller
             }
             array_push($variable, $aux);
             array_push($contenedor, $variable);
-        }
+        }*/
 
         //return json_encode(array('data'=>$contenedor));
             $pdf = \PDF::loadView('/trabajo/reportes/ordenVarios',compact('contenedor'));
             
-            return $pdf->setPaper('carta', 'portrait')->stream('orden.pdf');
+            return $pdf->setPaper('carta', 'portrait')->download('orden.pdf');
     }
 
     public function imprimirPdf(){
        
-        if (Auth::user()->id != 1) {
-            $usuario = DB::table('users')
-            ->select('name')
-            ->where('id',Auth::user()->id)
-            ->first();
-            
+        $rols = DB::table('model_has_roles')
+                    ->select('role_id')
+                    ->where('model_id',Auth::user()->id)
+                    ->first();
+                    
+            $rol = Role::findById($rols->role_id)->name ;
+
+        if ($rol == 'ADMINISTRADOR') {
+
             $datosTablas =  DB::table('orden_trabajos')
-            ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-            ->join('users','users.id','orden_trabajos.asignado')
-            ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-            ->Where('orden_trabajos.creado',$usuario->name)
-            ->orWhere('orden_trabajos.asignado',Auth::user()->id)
-            ->orderBy('orden_trabajos.id','desc')
-            ->get();
+                    ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                    ->join('users','users.id','orden_trabajos.asignado')
+                    ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+                    ->orderBy('orden_trabajos.id','desc')
+                    ->get();
+
+
         }else{
-            $datosTablas =  DB::table('orden_trabajos')
-            ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-            ->join('users','users.id','orden_trabajos.asignado')
-            ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-            ->orderBy('orden_trabajos.id','desc')
-            ->get();
+            $rolePermission = Auth::user()->hasPermissionTo('ver orden de trabajo(Personal)');
+
+            $usuario = DB::table('users')
+                    ->select('name')
+                    ->where('id',Auth::user()->id)
+                    ->first();
+            
+            if ($rolePermission) {
+
+                if (Auth::user()->hasPermissionTo('imprimir lista de trabajos')) {
+                    $datosTablas =  DB::table('orden_trabajos')
+                        ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                        ->join('users','users.id','orden_trabajos.asignado')
+                        ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+                        ->Where('orden_trabajos.creado',$usuario->name)
+                        ->orWhere('orden_trabajos.asignado',Auth::user()->id)
+                        ->orderBy('orden_trabajos.id','desc')
+                        ->get();
+                }
+
+                
+
+            }else{
+
+                if (Auth::user()->hasPermissionTo('imprimir lista de trabajos')) {
+                    $datosTablas =  DB::table('orden_trabajos')
+                        ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                        ->join('users','users.id','orden_trabajos.asignado')
+                        ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+                        ->orderBy('orden_trabajos.id','desc')
+                        ->get();
+                } 
+
+            }
         }
         $pdf = \PDF::loadView('/trabajo/reportes/pdf',compact('datosTablas'));
         return $pdf->setPaper('a4','landscape')->stream(); //mandar a imprimir la vista pdf en horizontal
     }
 
     public function descargarPDF(){
-        if (Auth::user()->id != 1) {
-            $usuario = DB::table('users')
-            ->select('name')
-            ->where('id',Auth::user()->id)
-            ->first();
-            
+
+        $rols = DB::table('model_has_roles')
+                    ->select('role_id')
+                    ->where('model_id',Auth::user()->id)
+                    ->first();
+                    
+            $rol = Role::findById($rols->role_id)->name ;
+
+        if ($rol == 'ADMINISTRADOR') {
+
             $datosTablas =  DB::table('orden_trabajos')
-            ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-            ->join('users','users.id','orden_trabajos.asignado')
-            ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-            ->Where('orden_trabajos.creado',$usuario->name)
-            ->orWhere('orden_trabajos.asignado',Auth::user()->id)
-            ->orderBy('orden_trabajos.id','desc')
-            ->get();
+                    ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                    ->join('users','users.id','orden_trabajos.asignado')
+                    ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+                    ->orderBy('orden_trabajos.id','desc')
+                    ->get();
+                    
+
         }else{
-            $datosTablas =  DB::table('orden_trabajos')
-            ->join('clientes','clientes.id','orden_trabajos.id_cliente')
-            ->join('users','users.id','orden_trabajos.asignado')
-            ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
-            ->orderBy('orden_trabajos.id','desc')
-            ->get();
+            $rolePermission = Auth::user()->hasPermissionTo('ver orden de trabajo(Personal)');
+
+            $usuario = DB::table('users')
+                    ->select('name')
+                    ->where('id',Auth::user()->id)
+                    ->first();
+            
+            if ($rolePermission) {
+
+                if (Auth::user()->hasPermissionTo('lista de trabajos PDF')) {
+
+                    $datosTablas =  DB::table('orden_trabajos')
+                            ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                            ->join('users','users.id','orden_trabajos.asignado')
+                            ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+                            ->Where('orden_trabajos.creado',$usuario->name)
+                            ->orWhere('orden_trabajos.asignado',Auth::user()->id)
+                            ->orderBy('orden_trabajos.id','desc')
+                            ->get();
+                }
+                
+            }else{
+
+                if (Auth::user()->hasPermissionTo('lista de trabajos PDF')) {
+
+                    $datosTablas =  DB::table('orden_trabajos')
+                            ->join('clientes','clientes.id','orden_trabajos.id_cliente')
+                            ->join('users','users.id','orden_trabajos.asignado')
+                            ->select('orden_trabajos.id','orden_trabajos.prioridad','clientes.nombreCliente','estado','informacion','datosImportantes','users.name','creado','orden_trabajos.created_at')
+                            ->orderBy('orden_trabajos.id','desc')
+                            ->get();
+
+                }
+
+            }
         }
 
+       
         $pdf = \PDF::loadView('/trabajo/reportes/pdf',compact('datosTablas'));
                               //ruta del archivo        envio de la variable de la db 
         return $pdf->setPaper('a4','landscape')->download('Reporte-Ordenes_de_trabajo.pdf');

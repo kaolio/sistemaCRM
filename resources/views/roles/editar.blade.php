@@ -116,13 +116,21 @@
                                                         @foreach ($rolePermission as $item)
                                                         @if ($value->tipo == 'trabajo' )
                                                             @if ($item == $value->id)
-                                                                <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}" checked> {{$value->name}}</span></label><br>
+                                                                @if ($value->name == 'ver orden de trabajo')
+                                                                    <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}" checked> {{$value->name}}(Admin. Sec.)</span></label><br>
+                                                                @else
+                                                                    <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}" checked> {{$value->name}}</span></label><br>
+                                                                @endif
                                                             @endif
                                                             @endif
                                                         @endforeach
                                                         @if ($value->tipo == 'trabajo' )
                                                             @if (!in_array($value->id, $rolePermission))
-                                                                <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
+                                                                @if ($value->name == 'ver orden de trabajo')
+                                                                    <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}(Admin. Sec.)</span></label><br>
+                                                                @else
+                                                                    <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
+                                                                @endif
                                                             @endif
                                                             @endif
                                                         @endforeach

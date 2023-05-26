@@ -15,7 +15,7 @@
           <a class="btn btn-danger" href="{{URL('cliente/pdf')}}" role="button">PDF</a>
       @endcan
       @can('imprimir lista de clientes')
-          <a type="button" href="{{URL('cliente/imprimirIndex')}}" class="btn btn-primary">Imprimir</a>
+          <a type="button" href="{{URL('cliente/imprimirIndex')}}" target="_blank" class="btn btn-primary">Imprimir</a>
       @endcan
       
        
@@ -55,25 +55,25 @@
     </tr>
   </thead>
   <tbody>
-    @foreach ($cliente as $cliente)
+    @foreach ($cliente as $clientes)
       <tr>
-        <td class="text-center">{{$cliente->id}}</td>
-        <td >{{$cliente->nombreCliente}}</td>
-        <td class="text-center">{{$cliente->calle}}</td>
-        <td class="text-center">{{$cliente->cif}}</td>
-        <td class="text-center">{{$cliente->numero}}</td>
-        <td class="text-center">{{$cliente->codigoPostal}}</td>
-        <td class="text-center">{{$cliente->poblacion}}</td>
-        <td class="text-center">{{$cliente->provincia}}</td>
-        <td class="text-center">{{  \Carbon\Carbon::parse($cliente->created_at)->format('d-m-Y')}}</td>
-        <td class="text-center">{{$cliente->nota}}</td>
+        <td class="text-center">{{$clientes->id}}</td>
+        <td >{{$clientes->nombreCliente}}</td>
+        <td class="text-center">{{$clientes->calle}}</td>
+        <td class="text-center">{{$clientes->cif}}</td>
+        <td class="text-center">{{$clientes->numero}}</td>
+        <td class="text-center">{{$clientes->codigoPostal}}</td>
+        <td class="text-center">{{$clientes->poblacion}}</td>
+        <td class="text-center">{{$clientes->provincia}}</td>
+        <td class="text-center">{{  \Carbon\Carbon::parse($clientes->created_at)->format('d-m-Y')}}</td>
+        <td class="text-center">{{$clientes->nota}}</td>
         <td style="width: 10%">
 
           <div style="text-align: center;width:90px">
             
           @can('editar cliente')
                 {{-- EDITAR --}}
-          <a href="{{ url('/cliente/editar/'.Crypt::encrypt($cliente->id))}}">
+          <a href="{{ url('/cliente/editar/'.Crypt::encrypt($clientes->id))}}">
             <button class="btn btn-light-active btn-sm d-inline"  >
               <svg xmlns="http://www.w3.org/2000/svg" fill="rgb(168, 166, 14)" viewBox="0 0 16 16" width="18" height="20">
                 <path fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 
@@ -86,7 +86,7 @@
           
           @can('borrar cliente')
             {{-- ELIMINAR --}}
-            <button class="btn d-inline" style="color: red"  data-toggle="modal" data-target="#eliminar{{$cliente->id}}">
+            <button class="btn d-inline" style="color: red"  data-toggle="modal" data-target="#eliminar{{$clientes->id}}">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                 <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
@@ -99,7 +99,7 @@
 
 
           {{-- ELIMINAR --}}
-          <div class="modal fade" id="eliminar{{$cliente->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="eliminar{{$clientes->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -111,7 +111,7 @@
                 <div class="modal-title w-100 text-center">
                   ¿Realmente Desea Borrar el Cliente?
                 </div>
-                <form action="{{url('/producto/'.$cliente->id)}}" method="POST">
+                <form action="{{url('/producto/'.$clientes->id)}}" method="POST">
                   @csrf
                   @method('DELETE')
                 <div class="modal-footer">
@@ -127,7 +127,7 @@
       @endforeach  
   </tbody> 
 </table>
-
+{{ $cliente->links() }}
 </div>
 </div>
 

@@ -7,6 +7,7 @@ use App\Models\Clones;
 use App\Models\Nota;
 use App\Models\DetalleOrden;
 use App\Models\Donantes;
+use App\Models\InicioSesion;
 use Facade\FlareClient\Http\Client;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -86,6 +87,15 @@ class DetalleController extends InventarioController
 
             $id = Crypt::decrypt($id);
 
+            $rols_id = DB::table('model_has_roles')
+                    ->select('role_id')
+                    ->where('model_id',Auth::user()->id)
+                    ->first();
+                    
+            $rol_encontrado = Role::findById($rols_id->role_id)->name ;
+
+            $rolePermission = Auth::user()->hasPermissionTo('ver orden de trabajo(Personal)');
+
              $diagnosticoDesignado = DB::table('orden_trabajos')
                             ->select('diagnostico')
                             ->get();
@@ -134,8 +144,20 @@ class DetalleController extends InventarioController
                                     ->select('*')
                                     ->where('id_trabajo','=',$id)
                                     ->get();
-                                
-             return view('trabajo.informacion.detalle',compact('orden_elegida','usuarioDesignado','notas','recuperarDatos','diagnosticoCambiado','recuperarDonante','imagenes','estados','prioridad'));
+
+            $inicio_sesion = DB::table('inicio_sesions')
+                                ->select('*')
+                                ->where('id_trabajos','=',$id)
+                                ->orderBy('id','desc')
+                                ->paginate(10);
+
+            $historial = DB::table('historials')
+                                ->select('*')
+                                ->where('id_trabajos','=',$id)
+                                ->orderBy('id','desc')
+                                ->paginate(10);
+
+             return view('trabajo.informacion.detalle',compact('orden_elegida','usuarioDesignado','notas','recuperarDatos','diagnosticoCambiado','recuperarDonante','imagenes','estados','prioridad','rol_encontrado','rolePermission','inicio_sesion','historial'));
 
         } catch (\Throwable $th) {
 
@@ -168,6 +190,14 @@ class DetalleController extends InventarioController
                         ->exists();
         }
 
+        if ($buscado) {
+            $ini_ses = new InicioSesion();
+            $ini_ses->usuario = Auth::user()->name;
+            $ini_ses->informacion = 'Inicio de Sesion';
+            $ini_ses->id_trabajos = $_POST["orden"];
+            $ini_ses->save(); 
+        }
+
         $ordenes = [];
         
         $crip =Crypt::encrypt($_POST["orden"]);
@@ -175,6 +205,8 @@ class DetalleController extends InventarioController
         $ruta =  "/trabajos/detalle/".$crip;
 
         array_push($ordenes, $buscado, $ruta);
+
+        
 
         return json_encode(array('data'=>$ordenes));
     }  

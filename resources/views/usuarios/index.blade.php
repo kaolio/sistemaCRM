@@ -63,8 +63,8 @@
             </table>
             </div>
             
-            <div class="pagination justify-content-end">
-                
+            <div class="pagination justify-content-start">
+                {!! $usuarios->links() !!}
             </div>
 
         </div>

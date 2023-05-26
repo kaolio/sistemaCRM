@@ -32,7 +32,7 @@
         <a class="btn btn-danger" href="{{URL('inventario/pdf')}}" style="background: #AF1512" role="button">PDF</a> 
     @endcan
     @can('imprimir lista de inventario')
-        <a class="btn text-white" href="{{URL('inventario/imprimirInventario')}}" style="background:#0F3078" role="button">IMPRIMIR</a>
+        <a class="btn text-white" href="{{URL('inventario/imprimirInventario')}}" target="_blank" style="background:#0F3078" role="button">IMPRIMIR</a>
     @endcan
   </div>
   
