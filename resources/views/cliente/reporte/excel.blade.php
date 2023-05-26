@@ -36,7 +36,6 @@
           <th class="text-center">CodigoPostal</th>
           <th class="text-center">Provincia</th>
           <th class="text-center">Pais</th>
-          <th class="text-center">Referencia</th>
           <th class="text-center">Fecha</th>
         </tr>
         </thead>
@@ -55,7 +54,6 @@
                 <td class="text-center">{{$cliente->codigoPostal}}</td>
                 <td class="text-center">{{$cliente->provincia}}</td>
                 <td class="text-center">{{$cliente->pais}}</td>
-                <td class="text-center">{{$cliente->referencia}}</td>
                 <td class="text-center">{{ $cliente->created_at}}</td>
 
           </tr>

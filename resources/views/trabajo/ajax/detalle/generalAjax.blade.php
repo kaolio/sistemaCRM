@@ -374,6 +374,7 @@
                 dataType: 'json',
                 success: function (dataResult) {
                     //console.log(dataResult);
+                    $("#nord").text(nombre);
                     $("#ncl").text(nombre);
                     $("#ncc").text(cif);
                     $("#ndd").text(direccion);

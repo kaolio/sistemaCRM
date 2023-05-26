@@ -19,7 +19,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <h3><b>{{$orden_elegida->id}} - {{$orden_elegida->nombreCliente}}</b></h3>
+                            <h3><b>{{$orden_elegida->id}} - <span id="nord">{{$orden_elegida->nombreCliente}}</span></b></h3>
                             <button class="btn btn-warning" id="botones"data-toggle="modal" data-target="#exampleModal01">Asignar un Usuario</button>
                             <button class="btn btn-primary" id="botones"><a class="text-white" href="{{URL('/trabajo/imprimirContrato/'.$orden_elegida->id)}}" target="_blank" rel="noopener noreferrer">Imprimir Contrato</a></button>
                             <button class="btn btn-warning" id="botones"><a class="text-dark" href="{{URL('/trabajo/imprimirOrden/'.$orden_elegida->id)}}" target="_blank" rel="noopener noreferrer">Imprimir Orden</a></button>
