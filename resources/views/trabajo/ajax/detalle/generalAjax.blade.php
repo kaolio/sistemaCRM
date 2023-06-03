@@ -18,33 +18,10 @@
                     success: function (dataResult) {
                         //console.log(dataResult);
                         $('#infoCliente').val('');
-                        $('#exampleModal1').modal('show')
+                        $('#exampleModal1').modal('show');
                         
-
-                        datosDispositivos+="<td>"+dataResult.data.creado+"</td><td> </td><td>"+dataResult.data.nota+"</td>"+
-                        "<td>"+
-                            '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data.id+'">'+
-                            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
-                                '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
-                                '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
-                            '</svg></button>'+
-                            '<div class="modal fade" id="exampleModal'+dataResult.data.id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
-                            '<div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header">'+
-                                    '<h5 class="modal-title" id="exampleModalLabel">Eliminar Nota</h5>'+
-                                    '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
-                                    '<span aria-hidden="true">&times;</span></button></div>'+
-                                '<div class="modal-body">¿Realmente Desea Eliminar la nota?</div>'+
-                                '<form action="{{url('/trabajos/detalle/')}}'+'/'+dataResult.data.id+'" method="POST" class="d-inline">'+
-                                    '@csrf'+
-                                   '@method('DELETE')'+
-                                '<div class="modal-footer">'+
-                                    '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
-                                    '<button class="btn btn-primary" style="padding-left: 5px">'+
-                                    'Aceptar'+
-                                '</button></div></form></div></div></div></td>';
-                    
-                        $("#tablaNotas").append(datosDispositivos);
-
+                        cargarNotas();
+                        
                     },
                     error : function() {
                         $('#errorMensaje').modal('show')
@@ -252,9 +229,51 @@
             }
         });
     });
+
+
+    function cargarNotas() {
+        $.ajax({
+            url: "/trabajos/detalle/notasCargadas",
+            type: "POST",
+            data:{ 
+                "_token": "{{ csrf_token() }}",
+                "id": "{{$orden_elegida->id}}",
+            },
+            cache: false,
+            dataType: 'json',
+            success: function(dataResult){
+                //console.log(dataResult);
+                $("#tablaNotas").empty();
+                var resultData = dataResult.data;
+                var datosDispositivos
+                $.each(resultData,function(index,row){
+                    datosDispositivos+="<tr><td>"+row.creado+"</td><td>"+row.created_at+"</td><td>"+row.nota+"</td>"+
+                    "<td>"+
+                            '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data.id+'">'+
+                            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
+                                '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
+                                '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
+                            '</svg></button>'+
+                            '<div class="modal fade" id="exampleModal'+dataResult.data.id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                            '<div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header">'+
+                                    '<h5 class="modal-title" id="exampleModalLabel">Eliminar Nota</h5>'+
+                                    '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
+                                    '<span aria-hidden="true">&times;</span></button></div>'+
+                                '<div class="modal-body">¿Realmente Desea Eliminar la nota?</div>'+
+                                '<div class="modal-footer">'+
+                                    '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
+                                    '<button class="btn btn-primary" onclick="eliminarNota('+dataResult.data.id+')" data-dismiss="modal">'+
+                                    'Aceptar'+
+                                '</button></div></div></div></div></td><tr>';
+                                    
+                    
+                })
+                $("#tablaNotas").append(datosDispositivos);
+            }
+        });
+    }
     //
-    $('#submit').on('click', function () {
-            $('#tablaN > tbody').empty();
+    $('#enviarComentario').on('click', function () {
             var url = $('#comentario').val();
 
             $.ajax({
@@ -263,82 +282,34 @@
                 data:{ 
                     "_token": "{{ csrf_token() }}",
                     comentario: url,
-                    "nombre": "{{$orden_elegida->id}}",
+                    "id": "{{$orden_elegida->id}}",
                 },
                 cache: false,
                 dataType: 'json',
                 success: function(dataResult){
-                  // console.log(dataResult);
-                  location.reload(); 
-                    var resultData = dataResult.data;
-                    var bodyData = '';
-                    
+                   //console.log(dataResult);
+                   $('#comentario').val('');
+                    cargarNotas();
 
-                    $.each(resultData,function(index,row){
-                        tablaNotas+="<tr>"
-                        tablaNotas+="<td>"+row.creado+"</td><td>"+row.created_at+"</td><td>"+row.nota+"<td>"+
-                            '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal'+dataResult.data[i].id+'">'+
-                        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
-                          '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
-                          '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
-                        '</svg>'+
-                      '</button>'+
-                      '<div class="modal fade" id="exampleModal'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
-                        '<div class="modal-dialog" role="document">'+
-                          '<div class="modal-content">'+
-                            '<div class="modal-header">'+
-                              '<h5 class="modal-title" id="exampleModalLabel">Eliminar Nota</h5>'+
-                              '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
-                                '<span aria-hidden="true">&times;</span>'+
-                              '</button>'+
-                            '</div>'+
-                            '<div class="modal-body">'+
-                            '¿Realmente Desea Eliminar la nota?'+
-                            '</div>'+
-                            '<form action="{{url('/trabajos/detalle/')}}'+'/'+dataResult.data[i].id+'" method="POST" class="d-inline">'+
-                              '@csrf'+
-                            ' @method('DELETE')'+
-                            '<div class="modal-footer">'+
-                              '<button type="button" class="btn btn-danger" data-dismiss="modal">Rechazar</button>'+
-                              '<button class="btn btn-primary" style="padding-left: 5px">'+
-                                'Aceptar'+
-                              '</button>'+
-                            '</div>'+
-                          '</form> '+
-                          '</div>'+
-                        '</div>'+
-                    ' </div> '+
-                            "</td>";
-                        tablaNotas+="</tr>";
-                        
-                    })
-                    
-                    
                 }
             });
     });
-    //
-
-        //
-        /*  $(document).on('change keyup', '.required', function(e){
-        let Disabled = true;
-        $(".required").each(function() {
-            let value = this.value
-            if ((value)&&(value.trim() !=''))
-                {
-                Disabled = false
-                }else{
-                Disabled = true
-                return false
+    
+    function eliminarNota(id_nota) {
+        $.ajax({
+                url: "/trabajos/detalle/eliminarNota",
+                type: "POST",
+                data:{ 
+                    "_token": "{{ csrf_token() }}",
+                    "id": id_nota,
+                },
+                cache: false,
+                dataType: 'json',
+                success: function(dataResult){
+                    cargarNotas();
                 }
-        });
-        
-        if(Disabled){
-            $('#submit').prop("disabled", true);
-            }else{
-            $('#submit').prop("disabled", false);
-            }
-    })*/
+            });
+    }
 
     function actualizarCliente(id_cliente){ 
             
@@ -358,6 +329,7 @@
                 type: "POST",
                 data: {
                     "_token": "{{ csrf_token() }}",
+                    "id": "{{$orden_elegida->id}}",
                     "id_cliente": id_cliente,
                     "nombre": nombre,
                     "correo": correo,

@@ -57,7 +57,7 @@
                                <span class="input-group-text">Ubicación Actual</span> 
                             </td>
                             <td>
-                                <input type="text" id="ubicacionClon" class="form-control" value="">  
+                                <input type="text" id="ubicacionClon" readonly class="form-control text-center" value="">  
                             </td>
                         </tr>
                     </div>
@@ -87,16 +87,10 @@
         </button>
 
         @include('trabajo/informacion/vistas-dispositivos-de-trabajo/modal-agregar-nuevo-dispositivo')
-
+        
         @include('trabajo/informacion/vistas-dispositivos-de-trabajo/modal-agregar-dispositivo')
 
-        <button class="btn btn-danger" id="botones">
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
-                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-                <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
-            </svg>
-            Liberar seleccionados
-        </button>
+       
 </div>
 <br>
 <p class="subtitulo">Dispositivo a Recuperar</p>
@@ -214,7 +208,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <h5 class="text-center">¿Esta seguro de eliminar este registro?</h5>
+              <h5 class="text-center">¿Esta seguro de eliminar estos dispositivos?</h5>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>

@@ -19,7 +19,7 @@
                                 <span>
                                 <label for="file-upload"  style="cursor:pointer; background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);" class="subir">
                                 <i class="fas fa-cloud-upload-alt"></i> Cargar archivo</label>
-                                <input id="file-upload" name="file-upload" onchange='cambiar()'  type="file" style='display: none;'/>
+                                <input id="file-upload" name="file-upload" onchange='cambiarTexto()'  type="file" style='display: none;'/>
                                 <span class="input-group-text"  style=" background:rgb(29, 145, 195);display: none; color: aliceblue"></span>
                                 <input type="text"  class="form-control required"  disabled  id="info" > &nbsp;<br>
                                 <button class="btn btn-sm btn-success" type="submit" id="subirArchivo" name="subirArchivo">Subir Archivo</button>
@@ -43,7 +43,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
-    function cambiar(){
+    function cambiarTexto(){
       var pdrs = document.getElementById('file-upload').files[0].name;
       document.getElementById('info').value = pdrs;
     }

@@ -5,7 +5,7 @@
    .table-responsive{
    font-size: 14px;
  }  
- #botones, #btnAsignar{
+ #botones, #btnAsignar, #btnGuardarNuevoDispositivo{
         font-size: 14px;
         border-radius: 4px;
         padding: 5px;
