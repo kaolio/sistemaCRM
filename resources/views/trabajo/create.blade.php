@@ -448,7 +448,7 @@ input:focus + label {
                 </div> 
 
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{ asset('js/trabajo/create.js')}}"></script>
 <link rel="stylesheet" href="{{ URL::asset('estilos/style.css') }} ">

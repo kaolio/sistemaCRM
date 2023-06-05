@@ -141,8 +141,8 @@
                 
 
 </body>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 
 <script src="{{ asset('js/cliente/create.js')}}"></script>
 <link rel="stylesheet" href="{{ URL::asset('estilos/style.css') }} ">
