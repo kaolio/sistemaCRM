@@ -117,7 +117,7 @@ class InventarioController extends Controller
     {
                                
         $inventario = new Inventario;
-
+        $inventario->id_identificador = request('id_identificador');
         $inventario->manufactura = request('manufactura');
         $inventario->modelo = request('modelo');
         $inventario->numero_de_serie = request('numero_de_serie');
@@ -126,9 +126,13 @@ class InventarioController extends Controller
         $inventario->part_Number = request('partNumber');
         $inventario->date_code = request('dateCode');
         $inventario->site_code = request('siteCode');
+        $inventario->hda_barcode = request('hda_barcode');
+        $inventario->dcm = request('dcm');
+        $inventario->mlc = request('mlc');
         $inventario->product_of = request('productOf');
         $inventario->pbc = request('pbc');
         $inventario->pcb_revision = request('pcbRevision');
+        $inventario->controller_chip = request('controller_chip');
         $inventario->phisycal_heads = request('phisycalHeads');
         $inventario->premp_type = request('prempType');
         $inventario->ubicacion = request('ubicacion');
@@ -137,7 +141,6 @@ class InventarioController extends Controller
         $inventario->precio = request('precio');
         $inventario->cabecera = request('cabecera');
         $inventario->info_de_cabecera = request('info_de_cabecera');
-        $inventario->diagnostico = request('diagnostico');
         $inventario->rol = request('rol');
         $inventario->tipo = request('tipo');
         $inventario->estado = "Disponible";
@@ -221,6 +224,10 @@ class InventarioController extends Controller
         $inventario->premp_type = request('prempType');
         $inventario->ubicacion = request('ubicacion');
         $inventario->factor_de_forma = request('factor_de_forma');
+        $inventario->hda_barcode = request('hda_barcode');
+        $inventario->dcm = request('dcm');
+        $inventario->mlc = request('mlc');
+        $inventario->controller_chip = request('controller_chip');
         $inventario->nota = request('nota');
         $inventario->precio = request('precio');
         $inventario->cabecera = request('cabecera');

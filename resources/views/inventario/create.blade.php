@@ -59,52 +59,47 @@
           <div class="form-group col-md-4">
             <label for="inputCity">Part Number </label>
             <input type="text" class="form-control" id="partNumber" name="partNumber" autocomplete="off"
-            placeholder="Part Number" value="{{ old('partNumber') }}" onkeyup="validarSerie()" autocomplete="off" 
+            placeholder="Part Number" value="{{ old('partNumber') }}" autocomplete="off" 
             onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))">
-            <span id="estadoSerie"></span>
           </div>
           <div class="form-group col-md-4">
             <label for="inputCity">Date Code </label>
             <input type="text" class="form-control" id="dateCode" name="dateCode" autocomplete="off"
-            placeholder="Date Code" value="{{ old('dateCode') }}" onkeyup="validarFirmware()" 
+            placeholder="Date Code" value="{{ old('dateCode') }}"
             onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 47))">
-            <span id="estadoFirmware"></span>
           </div>
           <div class="form-group col-md-4">
             <label for="inputCity">Site Code </label>
             <input type="text" class="form-control" id="siteCode" name="siteCode" autocomplete="off"
-            placeholder="Site Code" value="{{ old('siteCode') }}" onkeyup="validarFirmware()"
+            placeholder="Site Code" value="{{ old('siteCode') }}" 
             onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 47))">
-            <span id="estadoFirmware"></span>
           </div>
         </div> 
         <div class="form-row">
           <div class="form-group col-md-4" style="padding-top: 8px">
             <div class="input-group">
-              <span class="input-group-text" style="background:rgb(2, 117, 216); color: aliceblue">Rol &nbsp;<strong>*</strong></span>
+              <span class="input-group-text" style="background:rgb(2, 117, 216); color: aliceblue">Rol &nbsp;<strong style="color: red">*</strong></span>
               <select name="rol" class="form-control" class="btn-block" required>
                 <option value="">Elija el Rol</option>
                 <option value="Datos">Datos</option>
                 <option value="Donante">Donante</option>
               </select>
-              <span id="estadoManufactura"></span>
             </div>
           </div>
             <div class="form-group col-md-4" style="padding-top: 8px">
               <div class="input-group">
-                <span class="input-group-text" style="background:rgb(2, 117, 216); color: aliceblue">Tipo&nbsp;<strong>*</strong></span>
+                <span class="input-group-text" style="background:rgb(2, 117, 216); color: aliceblue">Tipo&nbsp;<strong style="color: red">*</strong></span>
                 <select name="tipo" class="form-control" class="btn-block" required>
                   <option selected value="Elige un Rol" disabled>Elige un Dispositivo</option>
                     @foreach ($dispositivo as $dispositivos)
                     <option value="{{$dispositivos->nombre_dispositivo}}">{{$dispositivos->nombre_dispositivo}}</option>
                     @endforeach
                 </select>
-                <span id="estadoManufactura"></span>
               </div>
             </div>
             <div class="form-group col-md-4" style="padding-top: 8px">
               <div class="input-group">
-                <span class="input-group-text" style="background:rgb(2, 117, 216); color: aliceblue">Factor de Forma &nbsp;<strong>*</strong></span>
+                <span class="input-group-text" style="background:rgb(2, 117, 216); color: aliceblue">Factor de Forma &nbsp;<strong style="color: red">*</strong></span>
                 <select class="form-control" class="btn-block" id="factor_de_forma" name="factor_de_forma" required>
                   <option selected value="Elige un Rol" disabled>Elige un Factor de Forma</option>
                     @foreach ($factor as $factores)
@@ -114,11 +109,29 @@
               </div>
             </div>
           </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="inputCity">HDA Barcode</label>
+                <input type="text" class="form-control" id="hda_barcode" name="hda_barcode" placeholder="Ingrese HDA Barcode" autocomplete="off"
+                onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
+              </div>
+            <div class="form-group col-md-4">
+              <label for="inputCity">DCM</label>
+                <input type="text" class="form-control" id="dcm" name="dcm" placeholder="Ingrese DCM" autocomplete="off"
+                onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputCity">MLC</label>
+                <input type="text" class="form-control" id="mlc" name="mlc" placeholder="Ingrese MLC" autocomplete="off"
+                value="{{ old('pbc') }}"
+                onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
+              </div>
+            </div>
         <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="inputCity">Product Of <strong style="color: red">*</strong></label>
-              <input type="text" class="form-control" id="productOf" name="productOf" placeholder="Product Of" autocomplete="off"
-              onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
+              <div class="form-group col-md-4">
+                <label for="inputCity">Product Of <strong style="color: red">*</strong></label>
+                <input type="text" class="form-control" id="productOf" name="productOf" placeholder="Product Of" autocomplete="off"
+                  onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
             </div>
             <div class="form-group col-md-4">
               <label for="inputCity">PCB Sticker <strong style="color: red">*</strong></label>
@@ -130,37 +143,36 @@
             <div class="form-group col-md-4">
               <label for="inputCity">PCB Revision</label>
               <input type="text" class="form-control" id="pcbRevision" name="pcbRevision" placeholder=" PCB Revision" autocomplete="off"
-              value="{{ old('pcbRevision') }}" onkeyup="validarPbc()" 
+              value="{{ old('pcbRevision') }}"
               onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
               <span id="estadoPbc"></span>
             </div>
           </div>
       <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="inputCity">Controller Chip</label>
+            <input type="text" class="form-control" id="controller_chip" name="controller_chip" placeholder="Ingrese controllerChip" autocomplete="off"
+            value="{{ old('controllerChip') }}" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
+          </div>
         <div class="form-group col-md-4">
           <label for="inputCity">Phisycal Heads </label>
           <input type="text" class="form-control" id="phisycalHeads" name="phisycalHeads" autocomplete="off"
           placeholder="Phisycal Heads" value="{{ old('phisycalHeads') }}" 
           onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 47))">
-          <span id="estadoFirmware"></span>
         </div>
         <div class="form-group col-md-4">
           <label for="inputCity">PrempType </label>
           <input type="text" class="form-control" id="prempType" name="prempType" autocomplete="off"
           placeholder="PrempType" value="{{ old('prempType') }}"  
           onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 47))">
-          <span id="estadoFirmware"></span>
         </div>
-        <div class="form-group col-md-4">
-          <label for="inputCity">Ubicación</label>
-            <input type="text" class="form-control" id="ubicacion" name="ubicacion" placeholder="Ingrese la ubicación" autocomplete="off"
-            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209)|| (event.charCode == 45))">
-          </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-4">
-          <label for="inputCity">Nota</label>
-          <textarea class="form-control" id="nota" name="nota" rows="1" cols="20" placeholder="Ingrese una nota del disco" autocomplete="off"></textarea>
-        </div>
+          <label for="inputCity">Ubicación<strong style="color: red">*</strong></label>
+            <input type="text" class="form-control" id="ubicacion" name="ubicacion" placeholder="Ingrese la ubicación" autocomplete="off"
+            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209)|| (event.charCode == 45))">
+          </div>
         <div class="form-group col-md-4">
           <label for="inputCity">Cabezal</label>
           <input type="text" class="form-control" id="cabecera" name="cabecera" autocomplete="off" placeholder="Ingrese el cabezal del disco" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
@@ -175,6 +187,10 @@
         <div class="form-group col-md-4">
           <label for="inputCity">Precio de Compra</label>
           <textarea class="form-control" id="precio" name="precio" rows="1" cols="20" placeholder="Precio de Compra" autocomplete="off"></textarea>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputCity">Nota</label>
+          <textarea class="form-control" id="nota" name="nota" rows="1" cols="20" placeholder="Ingrese una nota del disco" autocomplete="off"></textarea>
         </div>
       </div>
       <span class="mb-4"><strong style="color: red">*</strong> Campos Obligatorios</span>

@@ -4,7 +4,7 @@ document.oncontextmenu = function(){return false}
               $("#stateRow").html("<span  class='bien'><h5 ></h5></span>");
                 e.value = e.value.toUpperCase();
             }
-
+ 
 function validarModelo(){
     if($("#modelo").val() == ""){
       $("#estadoModelo").html("<span  class='error'><h5 class=''>Este campo no puede estar vacío</h5></span>");
