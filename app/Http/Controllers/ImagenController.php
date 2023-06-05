@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Historial;
 use App\Models\Imagen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -38,6 +40,13 @@ class ImagenController extends Controller
 
                     $request->file('file-upload')->storeAs('public/archivos', $nombre.'.html');
                     //$request->file('file-upload')->move(base_path('resources/views/otros'), $id.'.blade.php');
+
+                
+                    $ini_ses = new Historial();
+                    $ini_ses->usuario = Auth::user()->name;
+                    $ini_ses->informacion = 'Subio una lista de archivos';
+                    $ini_ses->id_trabajos = $id;
+                    $ini_ses->save();
                 } 
 
                     
@@ -63,7 +72,6 @@ class ImagenController extends Controller
 
     public function descargarFileList($id)
     {
-       
 
         return Storage::download('public/archivos/'.$id.'.html');
     }
@@ -78,6 +86,12 @@ class ImagenController extends Controller
         DB::table('orden_trabajos')
                         ->where('id',$id)
                         ->update(['lista_archivo' => 'NO']);
+
+        $ini_ses = new Historial();
+        $ini_ses->usuario = Auth::user()->name;
+        $ini_ses->informacion = 'Elimino la lista de archivos';
+        $ini_ses->id_trabajos = $id;
+        $ini_ses->save();
             
         Storage::delete('public/archivos/'.$archivo->nombre_archivo.'.html');
 
@@ -106,6 +120,12 @@ class ImagenController extends Controller
                 //$request->file('file-upload-image')->storeAs('public/caso/', $id."-".$nombre.'.jpg');
                 //$request->file('file-upload')->move(base_path('resources/views/otros'), $id.'.blade.php');
                 $request->file('file-upload-image')->move(base_path('public/imagenes-caso/'),  $id."-".$nombre.'.jpg');
+
+                $ini_ses = new Historial();
+                $ini_ses->usuario = Auth::user()->name;
+                $ini_ses->informacion = 'Subio una Imagen';
+                $ini_ses->id_trabajos = $id;
+                $ini_ses->save();
             } 
 
         $crip =Crypt::encrypt($id);
@@ -130,6 +150,12 @@ class ImagenController extends Controller
 
             $trabajo=Imagen::findOrFail($id);
             $trabajo->delete();
+
+            $ini_ses = new Historial();
+            $ini_ses->usuario = Auth::user()->name;
+            $ini_ses->informacion = 'Elimino una imagen';
+            $ini_ses->id_trabajos = $archivo->id_trabajo;
+            $ini_ses->save();
 
             $crip =Crypt::encrypt($archivo->id_trabajo);
             return redirect('/trabajos/detalle/'.$crip);

@@ -130,7 +130,7 @@ Route::post('/trabajos/nuevo/detalle/datosTabla',[DetalleController::class,'dato
 Route::post('/trabajos/nuevo/detalle/datosClones',[DetalleController::class,'datosClones'])->middleware('auth'); //ruta tabla clones 
 Route::post('/trabajos/nuevo/detalle/datosDonantes',[DetalleController::class,'datosDonantes'])->middleware('auth'); //ruta tabla donantes
 Route::post('/trabajos/nuevo/detalle/datosDispositivos',[DetalleController::class,'datosDispositivos'])->middleware('auth'); // ruta de tabla dispositivos
-Route::delete('/trabajos/detalle/{id}',[DetalleController::class,'eliminarNota'])->middleware('auth');// eliminar nota
+Route::post('/trabajos/detalle/eliminarNota',[DetalleController::class,'eliminarNotas'])->middleware('auth');// eliminar nota
 Route::post('/trabajos/nuevo/detalle/busquedaRapida',[DetalleController::class,'busquedaRapida'])->middleware('auth');//busqueda de notas 
 //dispositivos de trabajo 
 Route::delete('/eliminarOtrosDispositivos/{id}',[DetalleController::class,'eliminarOtroDispositivo'])->middleware('auth');
@@ -144,10 +144,11 @@ Route::post('/trabajos/nuevo/detalle/modalDonante',[DetalleController::class,'bu
 Route::post('/trabajos/nuevo/detalle/agregarDonanteBuscado',[DetalleController::class,'agregarBusquedaDonante'])->middleware('auth'); //agregar donante buscados
 Route::post('/trabajos/nuevo/detalle/datosDonantesBuscados',[DetalleController::class,'mostrarDonantesBuscados'])->middleware('auth'); //mostrar donantes agregados
 Route::post('/trabajos/nuevo/detalle/moverUbicacion',[DetalleController::class,'ubicacionNueva'])->middleware('auth');
-Route::post('/trabajos/nuevo/detalle/eliminarVariosClones',[DetalleController::class,'eliminarVariosC'])->middleware('auth');//eliminar varios cheks
+Route::post('/trabajos/nuevo/detalle/eliminarVariosDispositivos',[DetalleController::class,'eliminarVariosC'])->middleware('auth');//eliminar varios cheks
 Route::post('/trabajos/nuevo/detalle/moverDispositivoRecuperar',[DetalleController::class,'moverDispositivoRecuperar'])->middleware('auth');
 Route::post('/trabajos/nuevo/detalle/moverOtroDispositivo',[DetalleController::class,'moverDispositivOtro'])->middleware('auth');
 Route::post('/trabajos/nuevo/detalle/guardarNuevoDispositivo',[DetalleController::class,'guardarNuevoDispositivo'])->middleware('auth');
+Route::post('/trabajos/nuevo/detalle/guardarNuevoDispositivoVolcado',[DetalleController::class,'guardarNuevoDispositivoVolcado'])->middleware('auth');
 Route::post('/trabajos/nuevo/detalle/actualizarDispositivo',[DetalleController::class,'actualizarDispositivo'])->middleware('auth');
 Route::post('/trabajos/nuevo/detalle/actualizarOtroDispositivo',[DetalleController::class,'actualizarDispositivOtro'])->middleware('auth');
 Route::post('/trabajos/nuevo/detalle/obtenerValores',[DetalleController::class,'obtenerValores'])->middleware('auth');
@@ -159,7 +160,7 @@ Route::post('/trabajos/nuevo/detalle/agregarDonante',[DetalleController::class,'
 Route::post('/trabajos/nuevo/detalle/guardarDiagnosticoRecuperacion',[DetalleController::class,'guardarDiagnosticoRecuperacion'])->middleware('auth');  // guardar diagnostico a los disp de los pacientes
 Route::delete('/trabajos/nuevo/detalle/eliminarPaciente/id',[DetalleController::class,'eliminarPaciente'])->middleware('auth');
 Route::delete('/trabajos/detalle',[DetalleController::class,'eliminarFilaPaciente'])->middleware('auth');// eliminar registro de disp paciente
-
+Route::post('/trabajos/detalle/notasCargadas',[DetalleController::class,'datosNotas'])->middleware('auth');//  registro de notas
 
 //CLONES
 Route::get('/inventario/discosUso',[ClonesController::class,'discosUso'])->middleware('auth');

@@ -337,7 +337,7 @@ class OrdenTrabajoController extends Controller
                 $detalle->save();
 
                 $servicio = new Servicio();
-                $servicio->detalle = "Daño ".$malFuncionamiento[$i];
+                $servicio->detalle = $malFuncionamiento[$i];
                 $servicio->descripcion = "Daño que Presenta el Dispositivo";
                 $servicio->precio = $servicio->obtenerPrecioFuncionamiento($malFuncionamiento[$i]);
                 $servicio->id_trabajos = $datoTrabajo->id;
@@ -359,6 +359,7 @@ class OrdenTrabajoController extends Controller
                 for ($i=0; $i < sizeOf($tipoVolcado); $i++) { 
 
                     $clon = new Clones();
+                    $clon->id_clon = "VC-".$clon->sumaCantidad()+1;
                     $clon->tipo = $tipoVolcado[$i];
                     $clon->manufactura = $fabricanteVolcado[$i];
                     $clon->modelo = $modeloVolcado[$i];
@@ -369,10 +370,6 @@ class OrdenTrabajoController extends Controller
                     $clon->ubicacion = 'Sin Especificar';
                     $clon->nota = 'tipo de conexión '.$conexionVolcado[$i];
                     $clon->save();
-
-                    DB::table('clones')
-                        ->where('id', $clon->id)
-                        ->update(['id_clon' =>'C-'.$clon->id]);
                 
                 }
                 
@@ -554,6 +551,26 @@ class OrdenTrabajoController extends Controller
         //dd($id);
         // OrdenTrabajo::destroy($id); 
         // return redirect('trabajos');
+        $archivo = DB::table('imagens')
+                            ->select('*')
+                            ->where('id_trabajo',$id)
+                            ->get();
+        foreach ($archivo as $item) {
+            File::delete('imagenes-caso/'.$item->nombre.'.jpg');
+        }
+
+        DB::table('imagens')->where('id_trabajo',$id)->delete();
+
+
+        $file_list = DB::table('orden_trabajos')
+                    ->select('nombre_archivo')
+                    ->where('id',$id)
+                    ->first();
+
+        if ($file_list->nombre_archivo != null) {
+            Storage::delete('public/archivos/'.$file_list->nombre_archivo.'.html');
+        }
+
         
         $trabajo=OrdenTrabajo::findOrFail($id);
         $trabajo->delete();
@@ -1120,6 +1137,29 @@ class OrdenTrabajoController extends Controller
     {
 
         for ($i=0; $i < sizeof($_POST['arreglo']); $i++) { 
+
+
+            $archivo = DB::table('imagens')
+                            ->select('*')
+                            ->where('id_trabajo',$_POST['arreglo'][$i])
+                            ->get();
+            foreach ($archivo as $item) {
+                File::delete('imagenes-caso/'.$item->nombre.'.jpg');
+            }
+
+            DB::table('imagens')->where('id_trabajo',$_POST['arreglo'][$i])->delete();
+
+
+            $file_list = DB::table('orden_trabajos')
+                        ->select('nombre_archivo')
+                        ->where('id',$_POST['arreglo'][$i])
+                        ->first();
+
+            if ($file_list->nombre_archivo != null) {
+                Storage::delete('public/archivos/'.$file_list->nombre_archivo.'.html');
+            }
+
+
             DB::table('orden_trabajos')
                 ->where('id', $_POST['arreglo'][$i])
                 ->delete();

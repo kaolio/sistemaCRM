@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\DemoMail;
 use App\Mail\NotaCliente;
+use App\Models\Historial;
 use App\Models\Nota;
 use App\Models\Servicio;
 use Illuminate\Http\Request;
@@ -37,6 +38,12 @@ class ServicioController extends Controller
         ->where('id_trabajos','=',$_POST["id"])
         ->get();
 
+        $ini_ses = new Historial();
+        $ini_ses->usuario = Auth::user()->name;
+        $ini_ses->informacion = 'Registro un nuevo servicio Detalle: '.$servicio->detalle.' Descripcion: '.$servicio->descripcion.' Precio: '.$servicio->precio;
+        $ini_ses->id_trabajos = $_POST["id"];
+        $ini_ses->save();
+
         return json_encode(array('data'=>$nuevo));
 
     }
@@ -44,11 +51,22 @@ class ServicioController extends Controller
     public function edit()
     {
         try {
+            $serve = DB::table('servicios')
+                        ->select('*')
+                        ->where('id','=',$_POST["id"])
+                        ->first();
+            
             $servicio = Servicio::find($_POST["id"]);
             $servicio->detalle = $_POST["detalle"];
             $servicio->descripcion = $_POST["descripcion"];
             $servicio->precio = $_POST["precio"];
             $servicio->save();
+
+            $ini_ses = new Historial();
+            $ini_ses->usuario = Auth::user()->name;
+            $ini_ses->informacion = 'Edito el registro del servicio Detalle: '.$serve->detalle.' Descripcion: '.$serve->descripcion.' Precio: '.$serve->precio.' a '.$_POST["detalle"].' Descripcion: '.$_POST["descripcion"].' Precio: '.$_POST["precio"];
+            $ini_ses->id_trabajos = $serve->id_trabajos;
+            $ini_ses->save();
 
             return json_encode(array('data'=>true));
         } catch (\Throwable $th) {
@@ -70,7 +88,7 @@ class ServicioController extends Controller
 
     public function enviar(){
 
-       
+        
 
         $datos = DB::table('orden_trabajos')
                 ->join('clientes','clientes.id','orden_trabajos.id_cliente')
@@ -87,6 +105,12 @@ class ServicioController extends Controller
                 ->select('*')
                 ->where('id_trabajos',$_POST["id"])
                 ->get();
+
+            $ini_ses = new Historial();
+            $ini_ses->usuario = Auth::user()->name;
+            $ini_ses->informacion = 'Envio correo electronico al cliente: '.$cliente->nombreCliente.' del total de servicios';
+            $ini_ses->id_trabajos = $_POST["id"];
+            $ini_ses->save();
         
             $total = DB::table('servicios')
                     ->select('precio')
@@ -114,7 +138,6 @@ class ServicioController extends Controller
         $notas->nota = "(Enviado al Cliente) ".$_POST["nota"];
         $notas->save();
 
-
         $datos = DB::table('orden_trabajos')
                 ->join('clientes','clientes.id','orden_trabajos.id_cliente')
                 ->select('clientes.id')
@@ -126,12 +149,19 @@ class ServicioController extends Controller
                 ->where('id',$datos->id)
                 ->first();
 
+        $nota = $_POST["nota"];
+
+        $ini_ses = new Historial();
+        $ini_ses->usuario = Auth::user()->name;
+        $ini_ses->informacion = 'Envio correo electronico al cliente: '.$cliente->nombreCliente.' Asunto: '.$nota;
+        $ini_ses->id_trabajos = $_POST["id"];
+        $ini_ses->save();
+
         $mailData = [
                     'title' => 'Orden de Trabajo #'.$_POST["id"],
                     'body' => 'Estimado/a: '.$cliente->nombreCliente
                 ];
-
-        $nota = $_POST["nota"];
+        
                     
             Mail::to($cliente->correo)->send(new NotaCliente($mailData,$nota));
             return json_encode(array('data'=>$notas));
@@ -140,8 +170,19 @@ class ServicioController extends Controller
     }
 
     public function destroy(){
- 
+
+        $serve = DB::table('servicios')
+                ->select('*')
+                ->where('id','=',$_POST["id"])
+                ->first();
                     
+        $ini_ses = new Historial();
+        $ini_ses->usuario = Auth::user()->name;
+        $ini_ses->informacion = 'Elimino el registro de servicio Detalle: '.$serve->detalle.' Descripcion: '.$serve->descripcion.' Precio: '.$serve->precio;
+        $ini_ses->id_trabajos = $serve->id_trabajos;
+        $ini_ses->save();
+
+
         $trabajo=Servicio::findOrFail($_POST["id"]);
         $trabajo->delete();
 
