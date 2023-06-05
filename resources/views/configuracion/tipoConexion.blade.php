@@ -69,6 +69,7 @@
                     success: function (dataResult) {
                        // console.log(dataResult);
                        datosConexion();
+                       $("#nombreConexion").val('');
                     }
                 });
         });

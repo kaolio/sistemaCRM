@@ -98,7 +98,7 @@
                 </select>
         </div>
      </div>
-
+ 
      
      @include('inventario.table')
 

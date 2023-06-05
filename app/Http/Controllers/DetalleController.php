@@ -589,7 +589,7 @@ class DetalleController extends InventarioController
                         ->where('estado','=','Disponible')
                         ->where('rol','=','Datos')
                         ->where(function($q)use ($a,$b,$c,$d,$e) {
-                            $q->where('id','=',$a)
+                            $q->where('id_identificador','=',$a)
                             ->orWhere('modelo','=',$b)
                             ->orWhere('numero_de_serie','=',$c)
                             ->orWhere('capacidad','=',$d)
@@ -666,7 +666,7 @@ class DetalleController extends InventarioController
                         ->where('estado','=','Disponible')
                         ->where('rol','=','Donante')
                         ->where(function($q)use ($a,$b,$c,$d,$e) {
-                            $q->where('id','=',$a)
+                            $q->where('id_identificador','=',$a)
                             ->orWhere('modelo','=',$b)
                             ->orWhere('numero_de_serie','=',$c)
                             ->orWhere('capacidad','=',$d)

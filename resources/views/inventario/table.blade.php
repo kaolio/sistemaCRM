@@ -12,9 +12,6 @@
           <th class="column6 text-center">PCB</th>
           <th class="column6 text-center">Ubicación</th>
           <th class="column6 text-center">Factor de Forma</th>
-          <th class="column6 text-center">Nota</th>
-          <th class="column6 text-center">Cabezal</th>
-          <th class="column6 text-center">Inf. del Cabezal</th>
           <th class="column6 text-center">Acciones &nbsp;&nbsp;&nbsp;</th>
         </tr>
       </thead>

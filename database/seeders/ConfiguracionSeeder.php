@@ -116,54 +116,67 @@ class ConfiguracionSeeder extends Seeder
         //FABRICANTE
         DB::table('fabricantes')->insert([
             'nombre_fabricante' => 'Seagate',
+            'abreviacion' => 'ST',
         ]);
 
         DB::table('fabricantes')->insert([
             'nombre_fabricante' => 'Toshiba',
+            'abreviacion' => 'TH',
         ]);
 
         DB::table('fabricantes')->insert([
             'nombre_fabricante' => 'Samsung',
+            'abreviacion' => 'SM',
         ]);
 
         DB::table('fabricantes')->insert([
             'nombre_fabricante' => 'Verbatim',
+            'abreviacion' => 'VM',
         ]);
 
         DB::table('fabricantes')->insert([
             'nombre_fabricante' => 'Western Digital',
+            'abreviacion' => 'WD',
         ]);
 
         DB::table('fabricantes')->insert([
             'nombre_fabricante' => 'SkyNet',
+            'abreviacion' => 'SK',
         ]);
 
         DB::table('fabricantes')->insert([
             'nombre_fabricante' => 'Maxtor',
+            'abreviacion' => 'MT',
         ]);
 
         DB::table('fabricantes')->insert([
             'nombre_fabricante' => 'Adata',
+            'abreviacion' => 'AT',
         ]);
 
         DB::table('fabricantes')->insert([
             'nombre_fabricante' => 'Crucial',
+            'abreviacion' => 'CL',
         ]);
 
         DB::table('fabricantes')->insert([
             'nombre_fabricante' => 'Kingston',
+            'abreviacion' => 'KS',
         ]);
 
         DB::table('fabricantes')->insert([
             'nombre_fabricante' => 'Sony',
+            'abreviacion' => 'SY',
         ]);
 
         DB::table('fabricantes')->insert([
             'nombre_fabricante' => 'Hitachi',
+            'abreviacion' => 'HTS',
         ]);
 
         DB::table('fabricantes')->insert([
             'nombre_fabricante' => 'Asus',
+            'abreviacion' => 'AS',
         ]);
 
         //TIPO DE DAÑO

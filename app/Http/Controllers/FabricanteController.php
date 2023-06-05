@@ -89,6 +89,7 @@ class FabricanteController extends Controller
 
         $dispositivo = new Fabricante();
         $dispositivo->nombre_fabricante = $_POST["fabricante"];
+        $dispositivo->abreviacion = $_POST["abreviacion"];
         $dispositivo->save();
 
 
@@ -110,6 +111,7 @@ class FabricanteController extends Controller
 
         $datoFabricante = Fabricante::find($_POST["id_fabricante"]);
         $datoFabricante->nombre_fabricante = $_POST["fabricante"];
+        $datoFabricante->abreviacion = $_POST["abreviacion"];
         $datoFabricante->update();
 
         return json_encode(array('data'=>true));

@@ -667,6 +667,8 @@
             }
         });
             $('#exampleModalMover').modal('hide');
+            $("#cabeceraClones").empty();
+            $('#tablaClones > tbody').empty();
 
     });
     //
@@ -712,7 +714,7 @@
                         '<div class="modal-dialog" role="document">'+
                         '<div class="modal-content">'+
                             '<div class="modal-header">'+
-                            '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Clon</h5>'+
+                            '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Disco Volcado</h5>'+
                             '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
                                 '<span aria-hidden="true">&times;</span>'+
                             '</button>'+

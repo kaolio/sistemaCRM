@@ -92,6 +92,9 @@
                     success: function (dataResult) {
                        // console.log(dataResult);
                        datosPrioridad();
+                       $("#prioridad").val('');
+                       $("#tiempoEstimado").val('');
+                       $("#precioPrioridad").val('');
                     }
                 });
         });

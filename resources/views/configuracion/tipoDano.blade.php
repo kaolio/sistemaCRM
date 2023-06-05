@@ -82,6 +82,8 @@
                     success: function (dataResult) {
                        // console.log(dataResult);
                        datosTipoDaño();
+                       $("#nombreDaño").val('');
+                       $("#precioTipoDaño").val('');
                     }
                 });
         });

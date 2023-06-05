@@ -16,6 +16,7 @@ class CreateFabricantesTable extends Migration
         Schema::create('fabricantes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre_fabricante')->nullable();
+            $table->string('abreviacion')->nullable();
             $table->timestamps();
         });
     }

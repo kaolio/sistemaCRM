@@ -71,6 +71,7 @@
                     success: function (dataResult) {
                        // console.log(dataResult);
                        datosDispositivo();
+                       $("#nombre").val('');
                     }
                 });
         });

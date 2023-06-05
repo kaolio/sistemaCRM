@@ -115,9 +115,13 @@ class InventarioController extends Controller
      */
     public function store(Request $request, Roles $roles)
     {
-                               
+        $abrev = DB::table('fabricantes')
+                        ->select('abreviacion')
+                        ->where('nombre_fabricante', request('manufactura'))
+                        ->first();
+                                
         $inventario = new Inventario;
-        $inventario->id_identificador = request('id_identificador');
+        $inventario->id_identificador = $abrev->abreviacion.'-'.($inventario->sumaCantidad()+1);
         $inventario->manufactura = request('manufactura');
         $inventario->modelo = request('modelo');
         $inventario->numero_de_serie = request('numero_de_serie');

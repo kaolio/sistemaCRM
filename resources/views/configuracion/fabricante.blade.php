@@ -10,6 +10,13 @@
                     onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode >= 48 && event.charCode <= 57))">
                 </div>
             </div>
+            <div class="col-3">
+                <div class="input-group">
+                    <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Abreviacion</span>
+                    <input type="text" class="form-control " name="abrev"id="abrev"
+                    onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode >= 48 && event.charCode <= 57))">
+                </div>
+            </div>
         
             <div class="col-1">
                 <button class='btn btn-icon btn-success' type='button' id='guardarFabri' name='guardarFabri'>
@@ -33,6 +40,7 @@
             <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
                 <tr>
                   <th class="text-center" style="width: 20%">Nombre de Dispositivo</th>
+                  <th class="text-center" style="width: 20%">Abreviacion</th>
                   <th class="text-center" style="width: 10%"></th>
                 </tr>
               </thead>
@@ -57,6 +65,7 @@
 
         $("#guardarFabri").on('click',function(){
             var url1 = $('#nombrefabri').val();
+            var url2 = $('#abrev').val();
 
             console.log(url1);
                 $.ajax({
@@ -65,12 +74,15 @@
                     data: {
                         "_token": "{{ csrf_token() }}",
                         fabricante: url1,
+                        abreviacion: url2,
                     },
                     cache: false,
                     dataType: 'json',
                     success: function (dataResult) {
                        // console.log(dataResult);
                        datosFabricante();
+                       $("#nombrefabri").val('');
+                       $("#abrev").val('');
                     }
                 });
         });
@@ -100,7 +112,8 @@
                         }
                             
                             var nuevafila= "<tr><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
-                           dataResult.data[i].nombre_fabricante  + 
+                           dataResult.data[i].nombre_fabricante  + "</td><td class='text-center' style='width: 3%;background: rgb(209, 244, 255)' >" +
+                            dataResult.data[i].abreviacion  +
                             "</td><td class='text-center' style='width: 3%;background: rgb(209, 244, 255)' >" +
                                 '<button type="button" class="btn" data-toggle="modal" data-target="#fabricanteEditar'+dataResult.data[i].id+'">'+
                 '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(168, 166, 14)" class="bi bi-trash" viewBox="0 0 16 16">'+
@@ -123,6 +136,15 @@
                                         '<div class="input-group">'+
                                             '<span class="input-group-text" >Dispositivo</span>'+
                                             '<input type="text" id="editNombreFabricante'+dataResult.data[i].id+'" name="editNombreFabricante" class="form-control" autocomplete="off" value="'+[dataResult.data[i].nombre_fabricante]+'">'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</br>'+
+                            '<div class="row justify-content-center">'+
+                                    '<div class="input-group-prepend col-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-text" >Abreviacion</span>'+
+                                            '<input type="text" id="editAbreviacion'+dataResult.data[i].id+'" name="editAbreviacion" class="form-control" autocomplete="off" value="'+[dataResult.data[i].abreviacion]+'">'+
                                         '</div>'+
                                     '</div>'+
                                 '</div>'+
@@ -179,6 +201,7 @@
     function actualizarFabricante(id_fabricante){
             
             var fabricante = $("#editNombreFabricante"+id_fabricante).val();
+            var abreviacion = $("#editAbreviacion"+id_fabricante).val();
 
             //console.log(tipo,rol,fabricante,modelo,serial,localizacion);
 
@@ -189,6 +212,7 @@
                     "_token": "{{ csrf_token() }}",
                     "id_fabricante": id_fabricante,
                     "fabricante": fabricante,
+                    "abreviacion": abreviacion,
                 },
                 cache: false,
                 dataType: 'json',
