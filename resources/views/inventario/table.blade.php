@@ -5,7 +5,7 @@
         <tr>
           <th class="column1 text-center">Id</th>
           <th class="column2 text-center">Fabricante</th>
-          <th class="column3 text-center">Modelo</th>
+          <th class="column3 text-center" style="width: 20%">Modelo</th>
           <th class="column4 text-center">N° de Serie</th>
           <th class="column5 text-center">Firmware</th>
           <th class="column6 text-center">Capacidad</th>

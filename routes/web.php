@@ -176,6 +176,7 @@ Route::get('/inventario/nuevo',[InventarioController::class,'create'])->middlewa
 Route::post('/inventario/nuevo',[InventarioController::class,'store'])->middleware('auth');
 Route::get('/inventario/editar/{id}',[InventarioController::class,'edit'])->middleware('auth');
 Route::post('/inventario/editar/{id}',[InventarioController::class,'update'])->middleware('auth');
+Route::post('/inventario/eliminar/image',[InventarioController::class,'eliminarImagen'])->middleware('auth');
 Route::delete('/inventario/{id}',[InventarioController::class,'destroy'])->middleware('auth');
 Route::get('/inventario/pdf',[InventarioController::class,'descargarPDF'])->middleware('auth'); //ruta para descargar pdf
 Route::get('/inventario/itemPdf/{id}',[InventarioController::class,'descargarItemPdf'])->middleware('auth'); //ruta para descargar pdf (1 item)
@@ -194,6 +195,7 @@ Route::post('/inventario/factor_de_forma',[InventarioController::class,'factorDe
 Route::post('/inventario/redireccionar',[InventarioController::class,'redireccionar'])->middleware('auth');
 Route::post('/inventario/buscadorTiempoReal',[InventarioController::class,'buscadorTiempoReal'])->middleware('auth');
 Route::post('/inventario/moverDisco',[InventarioController::class,'moverDisco'])->middleware('auth');
+
 
  
 //CLIENTES

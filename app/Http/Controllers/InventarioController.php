@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Session;
 use PDF; // use Barryvdh\DomPDF\Facade as PDF;
 use Maatwebsite\Excel\Facades\Excel; //excel
 use App\Exports\InventarioExport;    //excel
+use App\Models\ImagenInventario;
 
 class InventarioController extends Controller
 {
@@ -41,7 +42,19 @@ class InventarioController extends Controller
                     ->orderBy('inventarios.id','desc')
                     ->get();
 
-        return view('inventario.index', compact('trabajo','rol'));
+        $dispositivo = DB::table('dispositivos')
+                ->select('*')
+                ->get();
+
+        $fabricante = DB::table('fabricantes')
+                ->select('*')
+                ->get();
+
+        $factor = DB::table('factor_formas')
+                ->select('*')
+                ->get();
+
+        return view('inventario.index', compact('trabajo','rol','dispositivo','fabricante','factor'));
         
     }
 
@@ -57,19 +70,32 @@ class InventarioController extends Controller
 
     public function descargarItemPdf($id){
         $inventario = Inventario::find($id);
-        $pdf = \PDF::loadView('/inventario/itemPdf',compact('inventario')); //bien
+
+        
+        $imagenes = DB::table('imagen_inventarios')
+        ->select('*')
+        ->where('id_inventario','=',$id)
+        ->get();
+
+        $pdf = \PDF::loadView('/inventario/itemPdf',compact('inventario','imagenes')); //bien
         return $pdf->setPaper('a4')->download('Reporte-Item-Inventario.pdf');
     }
 
     public function imprimirPdf(){
         $inventario = Inventario::all();
+    
         $pdf = \PDF::loadView('/inventario/pdf',compact('inventario'));
         return $pdf->setPaper('a4','landscape')->stream(); //mandar a imprimir la vista pdf en horizontal
     }
 
     public function imprimirItemPdf($id){
         $inventario = Inventario::find($id);
-        $pdf = \PDF::loadView('/inventario/itemPdf',compact('inventario')); //imprimir la vista itemPdf
+        $imagenes = DB::table('imagen_inventarios')
+        ->select('*')
+        ->where('id_inventario','=',$id)
+        ->get();
+
+        $pdf = \PDF::loadView('/inventario/itemPdf',compact('inventario','imagenes')); //imprimir la vista itemPdf
                                          //ruta del archivo
         return $pdf->setPaper('a4')->stream();
     }
@@ -115,6 +141,7 @@ class InventarioController extends Controller
      */
     public function store(Request $request, Roles $roles)
     {
+        
         $abrev = DB::table('fabricantes')
                         ->select('abreviacion')
                         ->where('nombre_fabricante', request('manufactura'))
@@ -150,6 +177,42 @@ class InventarioController extends Controller
         $inventario->estado = "Disponible";
       
         $inventario->save();
+        $file_pcb = $request->file('file-upload-image-pcb');
+        
+            if ($file_pcb != null) {
+                    //$nombre =  time()."_".$file[$i]->getClientOriginalName();//obtenemos el nombre del archivo
+                    $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                    $nombre = substr(str_shuffle($permitted_chars), 0, 10);
+
+                    $imas = new ImagenInventario();
+                    $imas->nombre = $inventario->id."-".$nombre;
+                    $imas->id_inventario = $inventario->id;
+                    $imas->save();
+
+                    //storage::disk('imagenes')->put($nombre, File::get($file[$i]));//indicamos que queremos guardar un nuevo archivo en el disco local
+                    $file_pcb->move(base_path('public/imagenes-inventario/'),  $inventario->id."-".$nombre.'.jpg');
+                
+            }
+
+
+        $file_pegatina = $request->file('file-upload-image-pegatina');
+
+            if ($file_pegatina != null) {
+                    //$nombre =  time()."_".$file[$i]->getClientOriginalName();//obtenemos el nombre del archivo
+                    $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                    $nombre = substr(str_shuffle($permitted_chars), 0, 10);
+
+                    $ima = new ImagenInventario();
+                    $ima->nombre = $inventario->id."-".$nombre;
+                    $ima->id_inventario = $inventario->id;
+                    $ima->save();
+                    //storage::disk('imagenes')->put($nombre, File::get($file[$i]));//indicamos que queremos guardar un nuevo archivo en el disco local
+                    $file_pegatina->move(base_path('public/imagenes-inventario/'),  $inventario->id."-".$nombre.'.jpg');
+                
+            }
+
+
+       
         return redirect('inventario');
     }
 
@@ -192,8 +255,13 @@ class InventarioController extends Controller
                     ->select('*')
                     ->Where('inventarios.id', '=', $id)
                     ->first();
+
+             $imagenes = DB::table('imagen_inventarios')
+                                    ->select('*')
+                                    ->where('id_inventario','=',$id)
+                                    ->get();
                     //dd($inventario_elegido->manufactura);
-            return view('inventario.editar',compact('inventario', 'inventario_elegido','fabricante','factor','dispositivo'));
+            return view('inventario.editar',compact('inventario', 'inventario_elegido','fabricante','factor','dispositivo','imagenes'));
 
         } catch (\Throwable $th) {
             //throw $th;
@@ -241,6 +309,38 @@ class InventarioController extends Controller
         $inventario->save();
 
 
+        $file_pcb = $request->file('file-upload-image-pcb');
+
+        if ($file_pcb != null) {
+                //$nombre =  time()."_".$file[$i]->getClientOriginalName();//obtenemos el nombre del archivo
+                $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                $nombre = substr(str_shuffle($permitted_chars), 0, 10);
+
+                $imas = new ImagenInventario();
+                $imas->nombre = $inventario->id."-".$nombre;
+                $imas->id_inventario = $inventario->id;
+                $imas->save();
+                //storage::disk('imagenes')->put($nombre, File::get($file[$i]));//indicamos que queremos guardar un nuevo archivo en el disco local
+                $file_pcb->move(base_path('public/imagenes-inventario/'),  $inventario->id."-".$nombre.'.jpg');
+             
+        }
+
+    $file_pegatina = $request->file('file-upload-image-pegatina');
+
+        if ($file_pegatina != null) {
+                //$nombre =  time()."_".$file[$i]->getClientOriginalName();//obtenemos el nombre del archivo
+                $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                $nombre = substr(str_shuffle($permitted_chars), 0, 10);
+
+                $ima = new ImagenInventario();
+                $ima->nombre = $inventario->id."-".$nombre;
+                $ima->id_inventario = $inventario->id;
+                $ima->save();
+                //storage::disk('imagenes')->put($nombre, File::get($file[$i]));//indicamos que queremos guardar un nuevo archivo en el disco local
+                $file_pegatina->move(base_path('public/imagenes-inventario/'),  $inventario->id."-".$nombre.'.jpg');
+            
+        }
+
         return redirect('inventario');
     }
 
@@ -252,11 +352,16 @@ class InventarioController extends Controller
      */
     public function destroy(Inventario $inventario, $id)
     {
+        $inventario=ImagenInventario::findOrFail($id);
+        $inventario->delete();
+
         $inventario=Inventario::findOrFail($id);
         $inventario->delete();
 
         return redirect('inventario');
     }
+
+    
 
     function autoCompletar(Request $request)
     {
@@ -443,11 +548,18 @@ class InventarioController extends Controller
 
     public function moverDisco(){
 
-        DB::table('inventario')
+        DB::table('inventario') 
                 ->where('id', $_POST["id"])
                 ->update(['ubicacion' => $_POST["ubicacion"]]);
 
 
          return json_encode(array('data'=>$_POST["ubicacion"]));
+    }
+
+    public function eliminarImagen()
+    {
+        $inventario=ImagenInventario::findOrFail($_POST["id"]);
+        $inventario->delete();
+        return json_encode(array('data'=>true));
     }
 }

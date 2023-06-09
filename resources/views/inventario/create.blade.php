@@ -10,14 +10,14 @@
 
 <div class="card">
   <div class="container-fluid">
-    <form class="m-3" action="{{ url('/inventario/nuevo') }}" method="POST">
+    <form class="m-3" action="{{ url('/inventario/nuevo') }}" enctype="multipart/form-data" method="POST">
       @csrf
       <div class="form-row">
         <div class="form-group col-md-6" style="padding-top: 32px">
           <div class="input-group">
             <span class="input-group-text" style="background:rgb(2, 117, 216); color: aliceblue">Fabricante&nbsp;<strong style="color: red">*</strong></span>
             <select name="manufactura" class="form-control" class="btn-block" required>
-              <option selected value="Elige un Rol" disabled>Elige un Fabricante</option>
+              <option selected value="" disabled>Elige un Fabricante</option>
                 @foreach ($fabricante as $fabricantes)
                  <option value="{{$fabricantes->nombre_fabricante}}">{{$fabricantes->nombre_fabricante}}</option>
                  @endforeach
@@ -42,9 +42,9 @@
             <span id="estadoSerie"></span>
           </div>
           <div class="form-group col-md-4">
-            <label for="inputCity">Firmware <strong style="color: red">*</strong></label>
+            <label for="inputCity">Firmware</label>
             <input type="text" class="form-control" id="firmware" name="firmware" autocomplete="off"
-            placeholder="Ingrese el firmware" value="{{ old('firmware') }}" onkeyup="validarFirmware()" required
+            placeholder="Ingrese el firmware" value="{{ old('firmware') }}" onkeyup="validarFirmware()" 
             onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 47))">
             <span id="estadoFirmware"></span>
           </div>
@@ -90,7 +90,7 @@
               <div class="input-group">
                 <span class="input-group-text" style="background:rgb(2, 117, 216); color: aliceblue">Tipo&nbsp;<strong style="color: red">*</strong></span>
                 <select name="tipo" class="form-control" class="btn-block" required>
-                  <option selected value="Elige un Rol" disabled>Elige un Dispositivo</option>
+                  <option selected value="" disabled>Elige un Dispositivo</option>
                     @foreach ($dispositivo as $dispositivos)
                     <option value="{{$dispositivos->nombre_dispositivo}}">{{$dispositivos->nombre_dispositivo}}</option>
                     @endforeach
@@ -101,7 +101,7 @@
               <div class="input-group">
                 <span class="input-group-text" style="background:rgb(2, 117, 216); color: aliceblue">Factor de Forma &nbsp;<strong style="color: red">*</strong></span>
                 <select class="form-control" class="btn-block" id="factor_de_forma" name="factor_de_forma" required>
-                  <option selected value="Elige un Rol" disabled>Elige un Factor de Forma</option>
+                  <option selected value="" disabled>Elige un Factor de Forma</option>
                     @foreach ($factor as $factores)
                      <option value="{{$factores->nombre_factor}}">{{$factores->nombre_factor}}</option>
                      @endforeach
@@ -129,12 +129,12 @@
             </div>
         <div class="form-row">
               <div class="form-group col-md-4">
-                <label for="inputCity">Product Of <strong style="color: red">*</strong></label>
+                <label for="inputCity">Product Of </label>
                 <input type="text" class="form-control" id="productOf" name="productOf" placeholder="Product Of" autocomplete="off"
                   onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
             </div>
             <div class="form-group col-md-4">
-              <label for="inputCity">PCB Sticker <strong style="color: red">*</strong></label>
+              <label for="inputCity">PCB Sticker</label>
               <input type="text" class="form-control" id="pbc" name="pbc" placeholder="Ingrese PCB Sticker" autocomplete="off"
               value="{{ old('pbc') }}" onkeyup="validarPbc()" 
               onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
@@ -169,7 +169,7 @@
       </div>
       <div class="form-row">
         <div class="form-group col-md-4">
-          <label for="inputCity">Ubicación<strong style="color: red">*</strong></label>
+          <label for="inputCity">Ubicación</label>
             <input type="text" class="form-control" id="ubicacion" name="ubicacion" placeholder="Ingrese la ubicación" autocomplete="off"
             onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209)|| (event.charCode == 45))">
           </div>
@@ -195,212 +195,87 @@
       </div>
       <span class="mb-4"><strong style="color: red">*</strong> Campos Obligatorios</span>
       <br><br>
+
+      <label for="inputCity">Imagenes</label>
+      <div class="card">
+        <div class="card-body">
+          <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+
+                      <div class="row">
+                        <div class="col">
+                          <div class="text-center">
+                            <div class="subir_imagen">
+                                <div class="col-12">
+                                    <div class="input-group">
+                                        <span>
+                                        <label for="file-upload-image-pcb"  style="cursor:pointer; background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);" class="subir">
+                                        <i class="fas fa-cloud-upload-alt"></i>Imagen PCB</label>
+                                        <input id="file-upload-image-pcb" name="file-upload-image-pcb" onchange='cambiarPCB()'  type="file" style='display: none;'/>
+                                        <span class="input-group-text"  style=" background:rgb(29, 145, 195);display: none; color: aliceblue"></span>
+                                        <input type="text"  class="form-control required"  disabled  id="info-imagen-PCB" > &nbsp;<br>
+                                        
+                                     </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="text-center">
+                            <div class="subir_imagen">
+                                <div class="col-12">
+                                    <div class="input-group">
+                                        <span>
+                                        <label for="file-upload-image-pegatina"  style="cursor:pointer; background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);" class="subir">
+                                        <i class="fas fa-cloud-upload-alt"></i>Imagen Pegatina</label>
+                                        <input id="file-upload-image-pegatina" name="file-upload-image-pegatina" onchange='cambiarPegatina()'  type="file" style='display: none;'/>
+                                        <span class="input-group-text"  style=" background:rgb(29, 145, 195);display: none; color: aliceblue"></span>
+                                        <input type="text"  class="form-control required"  disabled  id="info-imagen-Pegatina" > &nbsp;<br>
+                                        
+                                     </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+      </div>
+
+        
+
       <div class="form-group">
         <button type="submit" class="btn btn-success my-2 my-sm-0">Registrar</button>
       </div>
     </div>
   </form>
+
+
+
+
 </div>
 </div>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
-  $(function() {
-      
-      console.log($('#cliente').val());
-      if ($('#cliente').val() != "") {
-        $('#cliente').prop('readonly', true);
-      }
-    
-      $('#cliente').keyup(function() {
-          var query = $(this).val();
-          if (query != '') {
-              var _token = $('input[name="_token"]').val();
-              $.ajax({
-                  url: '/autocompletarCliente',
-                  method: 'POST',
-                  data: {
-                      query: query,
-                      _token: _token,
-                  },
-                  success: function(data) {
-                      $('#codigoDatalist').fadeIn();
-                      $('#codigoDatalist').html(data);
-                  }
-              
-              });
-          }
-      });
-    
-      var eliminar = 0;
-    
-      $("#adicional").on('click', function() {
-    
-        if (validarTabla()) {
-          eliminar = eliminar+1;
-                //var iman = 0;
-                //iman = iman + 1;
-                //$("#tabla tbody tr:eq(0)").clone().appendTo("#tabla").attr("id", "columna-" + (iman)).find('input, select').attr('readonly', true).show();
-                //adding row to end and start
-                //$("#tabla>tbody").prepend("<tr><td>Test Row Prepend</td></tr>");
-                var tipo = document.getElementById("tipo");
-                var selectedTipo = tipo.options[tipo.selectedIndex].text;
-                var rol = document.getElementById("rol");
-                var selectedRol = rol.options[rol.selectedIndex].text;
-                var fabricante = document.getElementById("fabricante").value;
-                var modelo = document.getElementById("modelo").value;
-                var serial = document.getElementById("serial").value;
-                var localizacion = document.getElementById("localizacion").value;
-                $("#tabla>tbody").append("<tr>"+
-                                            "<td>"+
-                                              "<div class='input-group'>"+
-                                              "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Tipo</span>"+
-                                              "<input type='text' class='form-control' name='tipo[]'id='tipo' readonly value='"+selectedTipo+"'>"+
-                                              "</div>"+
-                                            "</td>"+
-                                            "<td>"+
-                                              "<div class='input-group'>"+
-                                              "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Rol</span>"+
-                                              "<input type='text' class='form-control' name='rol[]'id='rol' readonly value='"+selectedRol+"'>"+
-                                              "</div>"+
-                                            "</td>"+
-                                            "<td>"+
-                                              "<div class='input-group'>"+
-                                              "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Fabricante</span>"+
-                                              "<input type='text' class='form-control' name='fabricante[]'id='fabricante' readonly value='"+fabricante+"'>"+
-                                              "</div>"+
-                                            "</td>"+
-                                            "<td>"+
-                                              "<div class='input-group'>"+
-                                              "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Modelo</span>"+
-                                              "<input type='text' class='form-control' name='modelo[]'id='modelo' readonly value='"+modelo+"'>"+
-                                              "</div>"+
-                                            "</td>"+
-                                            "<td>"+
-                                              "<div class='input-group'>"+
-                                              "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Serial</span>"+
-                                              "<input type='text' class='form-control' name='serial[]'id='serial' readonly value='"+serial+"'>"+
-                                              "</div>"+
-                                            "</td>"+
-                                            "<td>"+
-                                              "<div class='input-group'>"+
-                                              "<span class='input-group-text' style='background:rgb(29, 145, 195); color: aliceblue'>Localizacion</span>"+
-                                              "<input type='text' class='form-control' name='localizacion[]'id='localizacion' readonly value='"+localizacion+"'>"+
-                                              "</div>"+
-                                            "</td>"+
-                                            "<td class='eliminar'>"+
-                                              "<button class='btn btn-icon btn-danger' type='button' id='deletRow' name='deletRow'>"+
-                                              "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>"+
-                                              "<path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'/>"+
-                                              "<path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/>"+
-                                              "</svg>"+
-                                              "</button>"+
-                                            "</td>"+
-                                          "</tr>");
-    
-                                          $("#tipo").val('Tipo de Dispositivo'); 
-                                          $("#rol").val('Escoja un rol'); 
-                                          $("#fabricante").val('');    
-                                          $("#modelo").val('');  
-                                          $("#serial").val(''); 
-                                          $("#localizacion").val('');                           
-        
-                                          $("#stateRow").html("<span  class='bien text-center'><h5 ></h5></span>");
-        } else {
-          $("#stateRow").html("<span  class='menor' ><h5 >Llene todos los campos</h5></span>");
-        }
-              
-      });
-      $(document).on("click", ".eliminar", function() {
-        
-        
-        if (eliminar != 0) {
-            $(this).parents('tr').remove();
-            eliminar = eliminar-1;
-        }
-          
-      });
-    
-      $(document).on("click", ".borrar", function(){
-      $("#tipo").val('HDD'); 
-      $("#rol").val('Paciente');
-      $("#fabricante").val('');
-      $("#modelo").val('');
-      $("#serial").val('');
-      $("#localizacion").val('');
-      $("#estado").html("<span  class='mayor'><h5 class='bien'></h5></span>");
-    });
-    });
-    
-    function validarTabla(){ 
-      
-      var validado = true;
-    
-      var fabricante = document.getElementById("fabricante").value;
-      var modelo = document.getElementById("modelo").value;
-      var serial = document.getElementById("serial").value;
-      var localizacion = document.getElementById("localizacion").value;
-    
-      if (fabricante == '' || modelo == '' || serial == '' || localizacion == '') {
-        return false;
-      } else {
-        return true;
-      }
-      
+    function cambiarPCB(){
+      var pdrs = document.getElementById('file-upload-image-pcb').files[0].name;
+      document.getElementById('info-imagen-PCB').value = pdrs;
     }
-    function validarInfo(){
-        if($("#infoCliente").val() == ""){
-          $("#estadoInfo").html("<span  class='error'><h5 class='menor'>Este campo no puede estar vacío</h5></span>"); 
-        }else{
-          if ($("#infoCliente").val().length < 5) {
-                 $("#estadoInfo").html(
-                     "<span  class='menor'><h5 class='menor'>Ingrese de 5 a 50 caracteres</h5></span>");
-             } else {
-              if ($("#infoCliente").val().length > 50) {
-                     $("#estadoInfo").html(
-                         "<span  class='menor'><h5 class='menor'>Ingrese menos de 50 caracteres</h5></span>");
-                 } else {
-          
-                    $("#estadoInfo").html("<span  class='bien'><h5 >Válido</h5></span>");
-                  }
-              }
-          }
-      }
-      
-      function validarTiempo(){
-        if($("#tiempo").val() == ""){
-          $("#estadoTiempo").html("<span  class='error'><h5 class='menor'></h5></span>"); 
-        }else{
-          if ($("#tiempo").val().length < 3) {
-                 $("#estadoTiempo").html("<span  class='menor'><h5 class='menor'>" +
-                  "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-                  "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-                  "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-                  "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-                  "Ingrese de 3 a 50 caracteres</h5></span>");
-             } else {
-              if ($("#tiempo").val().length > 50) {
-                     $("#estadoTiempo").html(
-                         "<span  class='menor'><h5 class='menor'>"+
-                        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-                        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-                        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-                        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-                          
-                          "Ingrese menos de 50 caracteres</h5></span>");
-                 } else {
-          
-                    $("#estadoTiempo").html("<span  class='bien'><h5 >"+
-                      "&nbsp;&nbsp;&nbsp;"+
-                      "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-                      "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-                      "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-                      "Válido</h5></span>");
-                  }
-              }
-              
-        }
-      }
+
+    function cambiarPegatina(){
+      var pdrs = document.getElementById('file-upload-image-pegatina').files[0].name;
+      document.getElementById('info-imagen-Pegatina').value = pdrs;
+    }
+   
 </script>
+
+{{--<script src="{{ asset('js/inventario/create.js')}}"></script>--}}
 <link rel="stylesheet" href="{{ URL::asset('estilos/style.css') }} ">
 
 <br>
