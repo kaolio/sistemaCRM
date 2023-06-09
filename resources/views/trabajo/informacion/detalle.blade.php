@@ -26,7 +26,6 @@
                             <button class="btn btn-warning" id="botones"><a class="text-dark" href="{{URL('/trabajo/imprimirOrden/'.Crypt::encrypt($orden_elegida->id))}}" target="_blank" rel="noopener noreferrer">Imprimir Orden</a></button>
                             @endif
                             <button class="btn btn-primary" id="botones"data-toggle="modal" data-target="#ListaDeArchivos{{$orden_elegida->id}}">Ir a Lista de archivos</button>
-                            <button class="btn btn-warning" id="botones">Desbloquear Acceso de cliente</button>
                         </div>
 
                              <!-- Modal asignar ingeniero-->

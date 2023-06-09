@@ -54,8 +54,6 @@
           <div class="input-group-text" id="btnGroupAddon">Rol del Dispositivo</div>
                 <select name="grado" id="grado" class="form-control">
                   <option value="todos">Todos</option>
-                  <option value="Dispositivo a Recuperar">Dispositivo a Recuperar</option>
-                  <option value="Disco Para Volcado">Disco Para Volcado</option>
                   <option value="Donante">Donante</option>
                   <option value="Datos">Datos</option>
                 </select>
