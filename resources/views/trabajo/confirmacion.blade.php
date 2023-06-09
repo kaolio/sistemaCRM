@@ -13,7 +13,7 @@
     </div>
     <div class="card-footer"> 
         @can('imprimir orden de trabajo')
-        <a role="button" class="btn btn-warning text-white" href="{{URL('/trabajo/imprimirOrden/'.$trabajo)}}" target="_blank" rel="noopener noreferrer">Imprimir Orden</a>
+        <a role="button" class="btn btn-warning text-white" href="{{URL('/trabajo/imprimirOrden/'.Crypt::encrypt($trabajo))}}" target="_blank" rel="noopener noreferrer">Imprimir Orden</a>
         @endcan
         @can('editar orden de trabajo')
         <a type="button" class="btn btn-primary text-white" href="{{url('/trabajos/detalle/'.Crypt::encrypt($trabajo))}}">Ir a Orden de Trabajo</a>

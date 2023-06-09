@@ -184,6 +184,13 @@
             Banco: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Banca Intesa AD.<br/>
         </div> --}}
     
+        @foreach ($imagenes as $item)
+       
+        
+          <img src="{{public_path('imagenes-inventario/'.$item->nombre.'.jpg') }}" width="50%" height="50%" align="left">
+          
      
+        @endforeach
+    
 </body>
 </html>

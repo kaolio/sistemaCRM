@@ -16,6 +16,11 @@
   strong{
           color: red;
         }
+    .botones{
+    position: absolute;
+    right: 3%;
+    top:2%;
+  }
 </style>
   
 <script>
@@ -85,7 +90,7 @@
 
 <div class="card">
     <div class="container-fluid">
-    <form class="m-3" action="{{ url('/inventario/editar', $inventario->id) }}" method="post">
+    <form class="m-3"  action="{{ url('/inventario/editar/'.$inventario->id) }}" enctype="multipart/form-data" method="post">
       @csrf
       <div class="form-row">
         <div class="form-group col-md-6" style="padding-top: 32px">
@@ -122,9 +127,9 @@
                    <span id="estadoSerie"></span>
           </div>
           <div class="form-group col-md-4">
-              <label for="inputCity">Firmware <strong>*</strong></label>
+              <label for="inputCity">Firmware</label>
               <input type="text" class="form-control" id="firmware" name="firmware" value="{{$inventario->firmware}}" autocomplete="off"
-                     value="{{ old('firmware') }}" onkeyup="validarFirmware()" required 
+                     value="{{ old('firmware') }}" onkeyup="validarFirmware()"  
                      onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))">
                      <span id="estadoFirmware"></span>
           </div>
@@ -140,19 +145,19 @@
         <div class="form-group col-md-4">
           <label for="inputCity">Part Number </label>
           <input type="text" class="form-control" id="partNumber" name="partNumber" autocomplete="off" value="{{$inventario->part_Number}}"
-          placeholder="Part Number" value="{{ old('partNumber') }}" onkeyup="validarSerie()" autocomplete="off" 
+          placeholder="Part Number" value="{{ old('partNumber') }}" autocomplete="off" 
           onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209))">
         </div>
         <div class="form-group col-md-4">
           <label for="inputCity">Date Code </label>
           <input type="text" class="form-control" id="dateCode" name="dateCode" autocomplete="off" value="{{$inventario->date_code}}"
-          placeholder="Date Code" value="{{ old('dateCode') }}" onkeyup="validarFirmware()" 
+          placeholder="Date Code" value="{{ old('dateCode') }}" 
           onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 47))">
         </div>
         <div class="form-group col-md-4">
           <label for="inputCity">Site Code </label>
           <input type="text" class="form-control" id="siteCode" name="siteCode" autocomplete="off" value="{{$inventario->site_code}}"
-          placeholder="Site Code" value="{{ old('siteCode') }}" onkeyup="validarFirmware()"
+          placeholder="Site Code" value="{{ old('siteCode') }}" 
           onkeypress="return ((event.charCode >= 45 && event.charCode <= 45) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 47))">
         </div>
       </div>
@@ -176,10 +181,10 @@
             <div class="input-group">
               <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo&nbsp;<strong>*</strong></span>
               <select name="tipo" class="form-control" class="btn-block" required>
-                <option disabled value="">Elija el Dispositivo</option>
+                <option disabled value="" selected>Elija el Dispositivo</option>
                 @foreach ($dispositivo as $dispositivos)
-                    @if ($dispositivos->nombre_dispositivo == $inventario_elegido->tipo)
-                <option value="{{$dispositivos->nombre_dispositivo}}" selected>{{$dispositivos->nombre_dispositivo}}</option>                      
+                  @if ($dispositivos->nombre_dispositivo == $inventario_elegido->tipo)
+                    <option value="{{$dispositivos->nombre_dispositivo}}" selected>{{$dispositivos->nombre_dispositivo}}</option>                      
                   @else
                     <option value="{{$dispositivos->nombre_dispositivo}}">{{$dispositivos->nombre_dispositivo}}</option>      
                   @endif
@@ -224,12 +229,12 @@
           </div>
         <div class="form-row">
           <div class="form-group col-md-4">
-            <label for="inputCity">Product Of <strong style="color: red">*</strong></label>
+            <label for="inputCity">Product Of </label>
               <input type="text" class="form-control" id="productOf" name="productOf" placeholder="Product Of" autocomplete="off" value="{{$inventario->product_of}}"
               onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
             </div>
             <div class="form-group col-md-4">
-              <label for="inputCity">PCB Sticker <strong style="color: red">*</strong></label>
+              <label for="inputCity">PCB Sticker</label>
               <input type="text" class="form-control" id="pbc" name="pbc" placeholder="Ingrese PCB Sticker" autocomplete="off" value="{{$inventario->pbc}}"
               value="{{ old('pbc') }}" onkeyup="validarPbc()" 
               onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 45))">
@@ -293,14 +298,138 @@
     <br><br>
      <span class="mb-4"><strong>*</strong> Campos Obligatorios</span>
       <br>
+      <label for="inputCity">Imagenes</label>
+      <div class="card">
+        <div class="card-body">
+          <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+
+                      <div class="row">
+                        <div class="col">
+                          <div class="text-center">
+                            <div class="subir_imagen">
+                                <div class="col-12">
+                                    <div class="input-group">
+                                        <span>
+                                        <label for="file-upload-image-pcb"  style="cursor:pointer; background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);" class="subir">
+                                        <i class="fas fa-cloud-upload-alt"></i>Imagen PCB</label>
+                                        <input id="file-upload-image-pcb" name="file-upload-image-pcb" onchange='cambiarPCB()'  type="file" style='display: none;'/>
+                                        <span class="input-group-text"  style=" background:rgb(29, 145, 195);display: none; color: aliceblue"></span>
+                                        <input type="text"  class="form-control required"  disabled  id="info-imagen-PCB" > &nbsp;<br>
+                                        
+                                     </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="text-center">
+                            <div class="subir_imagen">
+                                <div class="col-12">
+                                    <div class="input-group">
+                                        <span>
+                                        <label for="file-upload-image-pegatina"  style="cursor:pointer; background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);" class="subir">
+                                        <i class="fas fa-cloud-upload-alt"></i>Imagen Pegatina</label>
+                                        <input id="file-upload-image-pegatina" name="file-upload-image-pegatina" onchange='cambiarPegatina()'  type="file" style='display: none;'/>
+                                        <span class="input-group-text"  style=" background:rgb(29, 145, 195);display: none; color: aliceblue"></span>
+                                        <input type="text"  class="form-control required"  disabled  id="info-imagen-Pegatina" > &nbsp;<br>
+                                        
+                                     </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+          @foreach ($imagenes as $imagenes)
+              <div class="card col-5" style="width: 35%;height: 10%;" id="card_cerrado{{$imagenes->id}}">
+                  <button type="button" class="btn btn-white botones" data-toggle="modal" data-target="#eliminarImage{{$imagenes->id}}">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" class="bi bi-trash" viewBox="0 0 448 512">
+                          <path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z"/></svg>    
+                  </button>
+                  <img src="{{asset('imagenes-inventario/'.$imagenes->nombre.'.jpg') }}" align="left">
+                  
+              </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      
+      
+              {{-- ELIMINAR --}}
+              <div class="modal fade" id="eliminarImage{{$imagenes->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Imagen</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-title w-100 text-center">
+                          ¿Realmente Desea Borrar esta Imagen?
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>
+                          <button type="button" onclick="enviarDelete({{$imagenes->id}})" class="btn btn-success" >Aceptar</button>
+                      </div>
+                      
+                      </div>
+                  </div>
+                  </div>
+      
+          @endforeach 
+      
+      </div>
+        </div>
+      </div>
+
+
         <div class="form-group">
           <a href="{{url('/inventario')}}" class="btn btn-danger my-2 my-sm-0">Regresar</a>
           <button type="submit" class="btn btn-PRIMARY my-2 my-sm-0">Actualizar</button>
           
         </div>
+         </form>
       </div>
-    </form>
+   
   </div>
-  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script>
+    function cambiarPCB(){
+      var pdrs = document.getElementById('file-upload-image-pcb').files[0].name;
+      document.getElementById('info-imagen-PCB').value = pdrs;
+    }
+
+    function cambiarPegatina(){
+      var pdrs = document.getElementById('file-upload-image-pegatina').files[0].name;
+      document.getElementById('info-imagen-Pegatina').value = pdrs;
+    }
+
+    function enviarDelete(id) {  
+        $("#card_cerrado"+id).remove();
+      $.ajax({
+              type: 'POST',
+              url: '/inventario/eliminar/image',
+              data: {
+                "_token": "{{ csrf_token() }}",
+                  id: id,
+              },
+              cache: false,
+              dataType: 'json',
+              success: function(data) {
+                  //console.log(data);  
+                
+                $('#eliminarImage'+id).modal('hide');
+              }
+      });
+    }
+
+</script>
 
 @endsection

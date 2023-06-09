@@ -54,8 +54,6 @@
           <div class="input-group-text" id="btnGroupAddon">Rol del Dispositivo</div>
                 <select name="grado" id="grado" class="form-control">
                   <option value="todos">Todos</option>
-                  <option value="Dispositivo a Recuperar">Dispositivo a Recuperar</option>
-                  <option value="Disco Para Volcado">Disco Para Volcado</option>
                   <option value="Donante">Donante</option>
                   <option value="Datos">Datos</option>
                 </select>
@@ -64,37 +62,28 @@
           <div class="input-group-text" id="btnGroupAddon">Fabricante</div>
           <select name="estado" id="estado" class="form-control">
             <option value="todos">Todos</option>
-            <option value="Seagate">Seagate</option>
-            <option value="Toshiba">Toshiba</option>
-            <option value="Samsung">Samsung</option>
-            <option value="Verbatim">Verbatim</option>
-            <option value="Western Digital">Western Digital</option>
-            <option value="Skynet">Skynet</option>
-            <option value="Maxtor">Maxtor</option>
-            <option value="Adata">Adata</option>
-            <option value="Crucial">Crucial</option>
-            <option value="Kingston">Kingston</option>
-            <option value="Sony">Sony</option>
-            <option value="Hitachi">Hitachi</option>
-            <option value="Asus">Asus</option>
+            @foreach ($fabricante as $item)
+                <option value="{{$item->nombre_fabricante}}">{{$item->nombre_fabricante}}</option>
+            @endforeach
           </select>
         </div>
-        <div class="input-group-prepend">
+        <div class="input-group-prepend col-3">
           <div class="input-group-text" id="btnGroupAddon">Tipo</div>
         
           <select name="ingeniero" id="ingeniero" class="form-control">
             <option value="todos">Todos</option>
-            <option value="HDD">HDD</option>
-            <option value="SSD">SSD</option>
+            @foreach ($dispositivo as $item)
+                <option value="{{$item->nombre_dispositivo}}">{{$item->nombre_dispositivo}}</option>
+            @endforeach
           </select>
         </div>
         <div class="input-group-prepend">
           <div class="input-group-text" id="btnGroupAddon">Factor de Forma</div>
                 <select name="factor_de_forma" id="factor_de_forma" class="form-control">
                   <option value="Todos">Todos</option>
-                  <option value="3.5 pulgadas">3.5 pulgadas</option>
-                  <option value="2.5 pulgadas">2.5 pulgadas</option>
-                  <option value="M2">M2</option>
+                  @foreach ($factor as $item)
+                <option value="{{$item->nombre_factor}}">{{$item->nombre_factor}}</option>
+            @endforeach
                 </select>
         </div>
      </div>
