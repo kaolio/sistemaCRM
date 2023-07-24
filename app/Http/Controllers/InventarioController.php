@@ -558,6 +558,8 @@ class InventarioController extends Controller
 
     public function eliminarImagen()
     {
+
+        //Storage::delete('public/archivos/'.$archivo->nombre_archivo.'.html');
         $inventario=ImagenInventario::findOrFail($_POST["id"]);
         $inventario->delete();
         return json_encode(array('data'=>true));
